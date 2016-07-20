@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3A45B58978882C650823EE39 /* Pods_PeakPerformance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */; };
+		B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455A1D3FB85500F20D25 /* DataService.swift */; };
+		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
+		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
+		B53B45611D3FB85500F20D25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455D1D3FB85500F20D25 /* User.swift */; };
 		B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */; };
-		B59EC4351D3FB45C00AF1297 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4341D3FB45C00AF1297 /* ViewController.swift */; };
 		B59EC4381D3FB45C00AF1297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4361D3FB45C00AF1297 /* Main.storyboard */; };
 		B59EC43A1D3FB45C00AF1297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4391D3FB45C00AF1297 /* Assets.xcassets */; };
 		B59EC43D1D3FB45C00AF1297 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59EC43B1D3FB45C00AF1297 /* LaunchScreen.storyboard */; };
@@ -39,9 +42,12 @@
 		1F46C5B205D65FAB57EACF14 /* Pods-PeakPerformance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeakPerformance.release.xcconfig"; path = "Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance.release.xcconfig"; sourceTree = "<group>"; };
 		300B342D95480D2EB8714615 /* Pods-PeakPerformance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeakPerformance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance.debug.xcconfig"; sourceTree = "<group>"; };
 		733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53B455A1D3FB85500F20D25 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B53B455D1D3FB85500F20D25 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B59EC42F1D3FB45C00AF1297 /* PeakPerformance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeakPerformance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B59EC4341D3FB45C00AF1297 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B59EC4371D3FB45C00AF1297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B59EC4391D3FB45C00AF1297 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B59EC43C1D3FB45C00AF1297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,6 +104,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B53B454E1D3FB78700F20D25 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B53B455B1D3FB85500F20D25 /* LoginViewController.swift */,
+				B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B53B454F1D3FB78F00F20D25 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B53B455D1D3FB85500F20D25 /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B59EC4261D3FB45C00AF1297 = {
 			isa = PBXGroup;
 			children = (
@@ -123,12 +146,14 @@
 		B59EC4311D3FB45C00AF1297 /* PeakPerformance */ = {
 			isa = PBXGroup;
 			children = (
-				B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */,
-				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
-				B59EC4341D3FB45C00AF1297 /* ViewController.swift */,
 				B59EC4361D3FB45C00AF1297 /* Main.storyboard */,
+				B53B454E1D3FB78700F20D25 /* ViewControllers */,
+				B53B454F1D3FB78F00F20D25 /* Models */,
+				B53B455A1D3FB85500F20D25 /* DataService.swift */,
+				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
 				B59EC4391D3FB45C00AF1297 /* Assets.xcassets */,
 				B59EC43B1D3FB45C00AF1297 /* LaunchScreen.storyboard */,
+				B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */,
 				B59EC43E1D3FB45C00AF1297 /* Info.plist */,
 			);
 			path = PeakPerformance;
@@ -335,8 +360,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B59EC4351D3FB45C00AF1297 /* ViewController.swift in Sources */,
+				B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */,
 				B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */,
+				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
+				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
+				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
