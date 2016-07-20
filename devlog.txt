@@ -10,3 +10,7 @@
 	- working on firebase test app
 		- fetching details on log in and creating user object
 		- split database methods out into DataService class
+
+20/07/2016 2330 - 
+	- setting up peak performance app
+	- moved over some files from test app

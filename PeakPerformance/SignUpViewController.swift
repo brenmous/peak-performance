@@ -1,6 +1,6 @@
 //
 //  SignUpViewController.swift
-//  FirebaseTest
+//  PeakPerformance
 //
 //  Created by Bren on 17/07/2016.
 //  Copyright © 2016 Bren. All rights reserved.

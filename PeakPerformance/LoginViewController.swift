@@ -1,6 +1,6 @@
 //
 //  LoginViewController.swift
-//  FirebaseTest
+//  PeakPerformance
 //
 //  Created by Bren on 17/07/2016.
 //  Copyright © 2016 Bren. All rights reserved.
@@ -14,18 +14,35 @@ protocol LogInDataService
     func loadUser( uid: String ) -> User
 }
 
+/**
+    Class that controls the Log In view.
+ */
 class LoginViewController: UIViewController {
-
+ 
+    // MARK: - Properties
+    
+    /// The currently authenticated user.
     var currentUser: User?
+    /// This view controller's DataService instance.
     var dataService: DataService?
+    
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    
+    // MARK: - Actions
     
     @IBAction func logInButtonPressed(sender: AnyObject) {
         self.login( )
     }
     
+    
+    // MARK: - Methods
+    
+    /// Attempts to authenticate a user using supplied details.
     func login( )
     {
         FIRAuth.auth()?.signInWithEmail( userNameField.text!, password: passwordField.text!, completion:  {
@@ -46,25 +63,25 @@ class LoginViewController: UIViewController {
                     let uid = user.uid as String
                     self.currentUser = self.dataService!.loadUser( uid )
                     self.performSegueWithIdentifier( "loggedIn", sender: self )
-                    
                 }
             }
         })
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //set up data service
+        //set up DataService instant
         self.dataService = DataService( )
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     
     // MARK: - Navigation
 
