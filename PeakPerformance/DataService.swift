@@ -1,6 +1,6 @@
 //
 //  DataService.swift
-//  FirebaseTest
+//  PeakPerformance
 //
 //  Created by Bren on 18/07/2016.
 //  Copyright © 2016 Bren. All rights reserved.
@@ -9,10 +9,25 @@
 import Foundation
 import Firebase
 
+/**
+    This class handles read/write to the Firebase realtime database.
+  */
 class DataService: SignUpDataService, LogInDataService
 {
+    // MARK: - Properties
+    
+    /// Base reference to the Firebase DB.
     let baseRef = FIRDatabase.database().reference()
 
+    
+    // MARK: - Methods
+    
+    /**
+        Saves a user's details to the database.
+
+        - Parameters:
+            - user: the user being saved.
+    */
     func saveUser(user: User) {
         
         let usersRef = baseRef.child("users")
@@ -26,6 +41,14 @@ class DataService: SignUpDataService, LogInDataService
         
     }
     
+    /**
+        Loads a user from the database and creates a user object.
+
+        - Parameters:
+            - uid: the user's unique ID.
+
+        - Returns: the user object.
+    */
     func loadUser( uid: String ) -> User {
         
         let usersRef = baseRef.child("users")

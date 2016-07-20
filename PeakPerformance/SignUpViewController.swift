@@ -9,15 +9,30 @@
 import UIKit
 import Firebase
 
+/**
+    Protocol for specifying Sign Up DataService.
+ */
 protocol SignUpDataService
 {
     func saveUser( user: User )
 }
 
+
+/**
+    Class that controls the Sign Up view.
+ */
 class SignUpViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    /// The currently authenticated user.
     var currentUser: User?
+    
+    /// This view controller's DataService instance.
     var dataService: DataService?
+    
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -26,37 +41,47 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    @IBAction func signUpButtonPressed(sender: AnyObject) {
-        
+    
+    // MARK: - Actions
+    
+    @IBAction func signUpButtonPressed(sender: AnyObject)
+    {
+        self.signUp()
+    }
+    
+    
+    // MARK: - Methods
+    
+    /// Attempts to create a new Firebase user account with supplied email and password.
+    func signUp()
+    {
         if ( self.validateFields( ) )
         {
             print("fields valid")
             
             FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
                 user, error in
-                
-                
                 if let error = error
                 {
+                    //Inform user of error here somewhere
                     print("error creating account: " + error.localizedDescription)
                 }
-                    //account successfully created
                 else
                 {
                     print("account created")
-                    
-                    
                     self.login()
                 }
             })
         }
         else
         {
+            //Inform user of bad input here somewhere
             print("Invalid text in fields")
         }
-        
+
     }
     
+    //delegate this back to Login VC
     func login( )
     {
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
@@ -70,28 +95,29 @@ class SignUpViewController: UIViewController {
             else
             {
                 print("logged in")
-                
-                //create user object and save to database
-                if let user = FIRAuth.auth( )?.currentUser
-                {
-                    //create new user object
-                    let fname = self.firstNameField.text!
-                    let lname = self.lastNameField.text!
-                    let org = self.orgField.text!
-                    let username = self.userNameField.text!
-                    let email = self.emailField.text!
-                    let uid = user.uid as String
-                    self.currentUser = User( fname: fname, lname: lname, org: org, email: email, username: username, uid: uid )
-                    
-                    
-                    self.dataService!.saveUser( self.currentUser! )
-                    
-                    self.performSegueWithIdentifier( "loggedIn", sender: self )
-                }
+                self.createUser( )
+                self.performSegueWithIdentifier( "loggedIn", sender: self )
             }
         })
-        
-
+    }
+    
+    /// Creates a new user and save details to database.
+    func createUser( )
+    {
+        if let user = FIRAuth.auth( )?.currentUser
+        {
+            //create new user object
+            let fname = self.firstNameField.text!
+            let lname = self.lastNameField.text!
+            let org = self.orgField.text!
+            let username = self.userNameField.text!
+            let email = self.emailField.text!
+            let uid = user.uid as String
+            
+            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, username: username, uid: uid )
+            
+            self.dataService!.saveUser( self.currentUser! )
+        }
     }
     
     //this is where we will check our fields, check p/w strength etc. but for now we are just making sure no fields are empty
@@ -125,6 +151,7 @@ class SignUpViewController: UIViewController {
         return true
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -132,6 +159,7 @@ class SignUpViewController: UIViewController {
         self.dataService = DataService( )
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

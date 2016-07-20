@@ -9,10 +9,14 @@
 import UIKit
 import Firebase
 
+/**
+    Protocol for specifying log in DataService requirements.
+ */
 protocol LogInDataService
 {
     func loadUser( uid: String ) -> User
 }
+
 
 /**
     Class that controls the Log In view.
@@ -23,6 +27,7 @@ class LoginViewController: UIViewController {
     
     /// The currently authenticated user.
     var currentUser: User?
+    
     /// This view controller's DataService instance.
     var dataService: DataService?
     
@@ -35,48 +40,47 @@ class LoginViewController: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func logInButtonPressed(sender: AnyObject) {
-        self.login( )
+    @IBAction func logInButtonPressed(sender: AnyObject)
+    {
+        self.login()
     }
     
     
     // MARK: - Methods
     
     /// Attempts to authenticate a user using supplied details.
-    func login( )
+    func login()
     {
+        
+        //Validate fields here somewhere.
+        
         FIRAuth.auth()?.signInWithEmail( userNameField.text!, password: passwordField.text!, completion:  {
             user, error in
             
             if let error = error
             {
-                print("error loggin in: " + error.localizedDescription)
+                //notify user of bad input/error somewhere here
+                print("error logging in: " + error.localizedDescription)
             }
-            //login successfull
             else
             {
                 print("logged in")
-                
-                //get user details and make user object
                 if let user = FIRAuth.auth( )?.currentUser
                 {
                     let uid = user.uid as String
                     self.currentUser = self.dataService!.loadUser( uid )
-                    self.performSegueWithIdentifier( "loggedIn", sender: self )
                 }
+                self.performSegueWithIdentifier( "loggedIn", sender: self )
             }
         })
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //set up DataService instant
+        //set up DataService instance
         self.dataService = DataService( )
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
