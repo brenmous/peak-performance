@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A45B58978882C650823EE39 /* Pods_PeakPerformance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */; };
 		B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */; };
 		B59EC4351D3FB45C00AF1297 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4341D3FB45C00AF1297 /* ViewController.swift */; };
 		B59EC4381D3FB45C00AF1297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4361D3FB45C00AF1297 /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		B59EC43D1D3FB45C00AF1297 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59EC43B1D3FB45C00AF1297 /* LaunchScreen.storyboard */; };
 		B59EC4481D3FB45C00AF1297 /* PeakPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4471D3FB45C00AF1297 /* PeakPerformanceTests.swift */; };
 		B59EC4531D3FB45C00AF1297 /* PeakPerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4521D3FB45C00AF1297 /* PeakPerformanceUITests.swift */; };
+		B59EC4611D3FB50C00AF1297 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F46C5B205D65FAB57EACF14 /* Pods-PeakPerformance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeakPerformance.release.xcconfig"; path = "Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance.release.xcconfig"; sourceTree = "<group>"; };
+		300B342D95480D2EB8714615 /* Pods-PeakPerformance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeakPerformance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance.debug.xcconfig"; sourceTree = "<group>"; };
+		733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59EC42F1D3FB45C00AF1297 /* PeakPerformance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeakPerformance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B59EC4341D3FB45C00AF1297 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		B59EC44E1D3FB45C00AF1297 /* PeakPerformanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeakPerformanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59EC4521D3FB45C00AF1297 /* PeakPerformanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUITests.swift; sourceTree = "<group>"; };
 		B59EC4541D3FB45C00AF1297 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A45B58978882C650823EE39 /* Pods_PeakPerformance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +81,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14EBC81FE5DA50BB750EDA8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				300B342D95480D2EB8714615 /* Pods-PeakPerformance.debug.xcconfig */,
+				1F46C5B205D65FAB57EACF14 /* Pods-PeakPerformance.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		96DE1C1129CFEE0CC83AA1C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B59EC4261D3FB45C00AF1297 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +105,8 @@
 				B59EC4461D3FB45C00AF1297 /* PeakPerformanceTests */,
 				B59EC4511D3FB45C00AF1297 /* PeakPerformanceUITests */,
 				B59EC4301D3FB45C00AF1297 /* Products */,
+				14EBC81FE5DA50BB750EDA8A /* Pods */,
+				96DE1C1129CFEE0CC83AA1C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +123,7 @@
 		B59EC4311D3FB45C00AF1297 /* PeakPerformance */ = {
 			isa = PBXGroup;
 			children = (
+				B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */,
 				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
 				B59EC4341D3FB45C00AF1297 /* ViewController.swift */,
 				B59EC4361D3FB45C00AF1297 /* Main.storyboard */,
@@ -132,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B59EC4571D3FB45C00AF1297 /* Build configuration list for PBXNativeTarget "PeakPerformance" */;
 			buildPhases = (
+				FE37912E28316CED7A2DE53E /* [CP] Check Pods Manifest.lock */,
 				B59EC42B1D3FB45C00AF1297 /* Sources */,
 				B59EC42C1D3FB45C00AF1297 /* Frameworks */,
 				B59EC42D1D3FB45C00AF1297 /* Resources */,
+				C81F536572CBE575810D38AC /* [CP] Embed Pods Frameworks */,
+				18F1B469A8521A7AC8E2D017 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,6 +262,7 @@
 				B59EC43D1D3FB45C00AF1297 /* LaunchScreen.storyboard in Resources */,
 				B59EC43A1D3FB45C00AF1297 /* Assets.xcassets in Resources */,
 				B59EC4381D3FB45C00AF1297 /* Main.storyboard in Resources */,
+				B59EC4611D3FB50C00AF1297 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +281,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18F1B469A8521A7AC8E2D017 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C81F536572CBE575810D38AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE37912E28316CED7A2DE53E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B59EC42B1D3FB45C00AF1297 /* Sources */ = {
@@ -397,6 +476,7 @@
 		};
 		B59EC4581D3FB45C00AF1297 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 300B342D95480D2EB8714615 /* Pods-PeakPerformance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PeakPerformance/Info.plist;
@@ -408,6 +488,7 @@
 		};
 		B59EC4591D3FB45C00AF1297 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F46C5B205D65FAB57EACF14 /* Pods-PeakPerformance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PeakPerformance/Info.plist;
@@ -484,6 +565,7 @@
 				B59EC4591D3FB45C00AF1297 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B59EC45A1D3FB45C00AF1297 /* Build configuration list for PBXNativeTarget "PeakPerformanceTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +574,7 @@
 				B59EC45C1D3FB45C00AF1297 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B59EC45D1D3FB45C00AF1297 /* Build configuration list for PBXNativeTarget "PeakPerformanceUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +583,7 @@
 				B59EC45F1D3FB45C00AF1297 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

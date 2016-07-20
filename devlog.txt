@@ -1,0 +1,12 @@
+~~~~~~~~~~~DEVLOG~~~~~~~~~~~
+15/07/2016 1415 - 1540
+	- creating Firebase test app
+
+17/07/2016 1630 - 1903
+	- working on Firebase test app
+		- logging in/signing up/saving user details to database
+
+18/07/2016 1800 - 1900, 1930 - 2020
+	- working on firebase test app
+		- fetching details on log in and creating user object
+		- split database methods out into DataService class

@@ -1,0 +1,6 @@
+framework module Pods_PeakPerformance {
+  umbrella header "Pods-PeakPerformance-umbrella.h"
+
+  export *
+  module * { export * }
+}
