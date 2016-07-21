@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftValidator
 
 /**
     Protocol for specifying Sign Up DataService.
@@ -21,7 +22,7 @@ protocol SignUpDataService
 /**
     Class that controls the Sign Up view.
  */
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, ValidationDelegate {
     
     // MARK: - Properties
     
@@ -29,11 +30,15 @@ class SignUpViewController: UIViewController {
     var currentUser: User?
     
     /// This view controller's DataService instance.
-    var dataService: DataService?
+    let dataService = DataService( )
+    
+    /// This view controller's SwiftValidator instance.
+    let validator = Validator( )
     
     
     // MARK: - Outlets
     
+    //text fields
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var orgField: UITextField!
@@ -42,24 +47,49 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    //labels
+    @IBOutlet weak var firstNameErrorLabel: UILabel!
+    
     
     // MARK: - Actions
     
     @IBAction func signUpButtonPressed(sender: AnyObject)
     {
-        self.signUp()
+        //self.signUp()
+        validator.validate(self)
     }
     
     
     
     // MARK: - Methods
     
+    func validationSuccessful()
+    {
+        print ("validation successful")
+        self.signUp()
+    }
+    
+    func validationFailed(errors: [(Validatable, ValidationError)]) {
+        /*for (field, error) in errors
+        {
+            if let field = field as? UITextField
+            {
+                field.layer.borderColor = UIColor.redColor().CGColor
+                field.layer.borderWidth = 1.0
+            }
+            error.errorLabel?.text = error.errorMessage
+            error.errorLabel?.hidden = false
+        } */
+        
+        print ("validation failed")
+    }
+    
     /// Attempts to create a new Firebase user account with supplied email and password.
     func signUp()
     {
-        if ( self.validateFields( ) )
-        {
-            print("fields valid")
+        //if ( self.validateFields( ) )
+        //{
+            //print("fields valid")
             
             FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
                 user, error in
@@ -74,12 +104,12 @@ class SignUpViewController: UIViewController {
                     self.firstLogin()
                 }
             })
-        }
-        else
-        {
+       // }
+       // else
+       // {
             //Inform user of bad input here somewhere
-            print("Invalid text in fields")
-        }
+           // print("Invalid text in fields")
+       // }
 
     }
     
@@ -117,7 +147,7 @@ class SignUpViewController: UIViewController {
             
             self.currentUser = User( fname: fname, lname: lname, org: org, email: email, username: username, uid: uid )
             
-            self.dataService!.saveUser( self.currentUser! )
+            self.dataService.saveUser( self.currentUser! )
         }
     }
     
@@ -156,14 +186,39 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //set up data service
-        self.dataService = DataService( )
+        validator.styleTransformers(success: { (validationRule) -> Void in
+            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.text = ""
+            if let textField = validationRule.field as? UITextField
+            {
+                textField.layer.borderColor = UIColor.greenColor().CGColor
+                textField.layer.borderWidth = 0.5
+            }
+            
+            }, error: { (validationError ) -> Void in
+                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.text = validationError.errorMessage
+                if let textField = validationError.field as? UITextField
+                {
+                    textField.layer.borderColor = UIColor.redColor( ).CGColor
+                    textField.layer.borderWidth = 1.0
+                }
+            })
+        
+        validator.registerField(firstNameField, errorLabel: firstNameErrorLabel, rules: [RequiredRule( message: "First name is required"), AlphaRule( message: "Only letters")] )
     }
 
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //hide error labels
+        firstNameErrorLabel.hidden = true
     }
     
 

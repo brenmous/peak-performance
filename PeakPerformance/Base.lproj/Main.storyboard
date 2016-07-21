@@ -66,15 +66,23 @@
                                     <action selector="signUpButtonPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="mNZ-N0-LJc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="First Name Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCf-5S-Dgh">
+                                <rect key="frame" x="20" y="112" width="270" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lYT-Fp-fXh" firstAttribute="top" secondItem="8fq-7X-SFN" secondAttribute="bottom" constant="8" symbolic="YES" id="132-eo-afN"/>
                             <constraint firstItem="8fq-7X-SFN" firstAttribute="leading" secondItem="1NA-lP-kk9" secondAttribute="leading" id="4YT-jr-3gy"/>
                             <constraint firstItem="8fq-7X-SFN" firstAttribute="top" secondItem="1NA-lP-kk9" secondAttribute="bottom" constant="8" symbolic="YES" id="4xQ-vU-egG"/>
+                            <constraint firstItem="KCf-5S-Dgh" firstAttribute="trailing" secondItem="UIa-u0-c80" secondAttribute="trailing" id="5P7-if-DIM"/>
                             <constraint firstItem="uJ6-a3-URf" firstAttribute="trailing" secondItem="5FU-lk-EAK" secondAttribute="trailing" id="8Zu-FE-aFn"/>
                             <constraint firstItem="uJ6-a3-URf" firstAttribute="leading" secondItem="UIa-u0-c80" secondAttribute="leading" id="9KZ-cA-pjR"/>
                             <constraint firstItem="UIa-u0-c80" firstAttribute="top" secondItem="PuC-0W-GdE" secondAttribute="bottom" constant="121" id="CTK-ID-t3Z"/>
+                            <constraint firstItem="UIa-u0-c80" firstAttribute="top" secondItem="KCf-5S-Dgh" secondAttribute="bottom" constant="8" symbolic="YES" id="CWX-Dm-83G"/>
                             <constraint firstItem="1NA-lP-kk9" firstAttribute="leading" secondItem="BJO-j0-lvV" secondAttribute="leadingMargin" id="DQ7-53-gAf"/>
                             <constraint firstItem="1NA-lP-kk9" firstAttribute="trailing" secondItem="BJO-j0-lvV" secondAttribute="trailingMargin" id="Gcb-ta-3bb"/>
                             <constraint firstItem="uJ6-a3-URf" firstAttribute="top" secondItem="UIa-u0-c80" secondAttribute="bottom" constant="8" symbolic="YES" id="Guh-V3-gjv"/>
@@ -84,6 +92,7 @@
                             <constraint firstItem="5FU-lk-EAK" firstAttribute="leading" secondItem="UIa-u0-c80" secondAttribute="trailing" constant="20" id="Qzh-Kh-uIS"/>
                             <constraint firstItem="8fq-7X-SFN" firstAttribute="leading" secondItem="lYT-Fp-fXh" secondAttribute="leading" id="SLu-f0-aae"/>
                             <constraint firstItem="lYT-Fp-fXh" firstAttribute="trailing" secondItem="8fq-7X-SFN" secondAttribute="trailing" id="YEr-br-mM0"/>
+                            <constraint firstItem="KCf-5S-Dgh" firstAttribute="leading" secondItem="UIa-u0-c80" secondAttribute="leading" id="YUr-Ih-28m"/>
                             <constraint firstItem="UIa-u0-c80" firstAttribute="width" secondItem="5FU-lk-EAK" secondAttribute="width" id="aSI-sJ-i4T"/>
                             <constraint firstItem="1NA-lP-kk9" firstAttribute="trailing" secondItem="JnN-Ay-iJT" secondAttribute="trailing" id="apP-z4-4z8"/>
                             <constraint firstItem="uJ6-a3-URf" firstAttribute="leading" secondItem="JnN-Ay-iJT" secondAttribute="leading" id="dd3-6V-t6C"/>
@@ -97,6 +106,7 @@
                     <connections>
                         <outlet property="confirmPasswordField" destination="lYT-Fp-fXh" id="yNB-F4-adv"/>
                         <outlet property="emailField" destination="JnN-Ay-iJT" id="CM9-KJ-zZo"/>
+                        <outlet property="firstNameErrorLabel" destination="KCf-5S-Dgh" id="DXF-tJ-qzv"/>
                         <outlet property="firstNameField" destination="UIa-u0-c80" id="DGH-Xi-qsj"/>
                         <outlet property="lastNameField" destination="5FU-lk-EAK" id="9nU-bP-Qiz"/>
                         <outlet property="orgField" destination="uJ6-a3-URf" id="qc3-eE-GT7"/>

@@ -16,6 +16,7 @@
 		- moved over some files from test app
 		- added comments/cleaned up imported code
 
-21/07/2016 1730 - 
+21/07/2016 1730 - 1830 
 	- working on simple sign up view & input validation
+		- trying to test out some validator frameworks
 	- account creation + saving to DB
