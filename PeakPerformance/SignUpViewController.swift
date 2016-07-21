@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import SwiftValidator
+import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
 /**
     Protocol for specifying Sign Up DataService.
@@ -47,9 +47,15 @@ class SignUpViewController: UIViewController, ValidationDelegate {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    
     //labels
     @IBOutlet weak var firstNameErrorLabel: UILabel!
-    
+    @IBOutlet weak var lastNameErrorLabel: UILabel!
+    @IBOutlet weak var orgErrorLabel: UILabel!
+    @IBOutlet weak var emailErrorLabel: UILabel!
+    @IBOutlet weak var userNameErrorLabel: UILabel!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     
     // MARK: - Actions
     
@@ -63,39 +69,26 @@ class SignUpViewController: UIViewController, ValidationDelegate {
     
     // MARK: - Methods
     
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
         print ("validation successful")
         self.signUp()
     }
     
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)]) {
-        /*for (field, error) in errors
-        {
-            if let field = field as? UITextField
-            {
-                field.layer.borderColor = UIColor.redColor().CGColor
-                field.layer.borderWidth = 1.0
-            }
-            error.errorLabel?.text = error.errorMessage
-            error.errorLabel?.hidden = false
-        } */
-        
         print ("validation failed")
     }
     
     /// Attempts to create a new Firebase user account with supplied email and password.
     func signUp()
     {
-        //if ( self.validateFields( ) )
-        //{
-            //print("fields valid")
-            
             FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
                 user, error in
                 if let error = error
                 {
-                    //Inform user of error here somewhere
+                    //Check for Firebase errors and inform user of error here somewhere
                     print("error creating account: " + error.localizedDescription)
                 }
                 else
@@ -104,13 +97,6 @@ class SignUpViewController: UIViewController, ValidationDelegate {
                     self.firstLogin()
                 }
             })
-       // }
-       // else
-       // {
-            //Inform user of bad input here somewhere
-           // print("Invalid text in fields")
-       // }
-
     }
     
     //delegate this back to Login VC???
@@ -151,47 +137,18 @@ class SignUpViewController: UIViewController, ValidationDelegate {
         }
     }
     
-    //this is where we will check our fields, check p/w strength etc. but for now we are just making sure no fields are empty
-    func validateFields( ) -> Bool
-    {
-        if ( firstNameField.text!.isEmpty )
-        {
-            return false
-        }
-        if ( lastNameField.text!.isEmpty )
-        {
-            return false
-        }
-        if ( orgField.text!.isEmpty )
-        {
-            return false
-        }
-        if ( userNameField.text!.isEmpty )
-        {
-            return false
-        }
-        if ( emailField.text!.isEmpty )
-        {
-            return false
-        }
-        if ( passwordField.text!.isEmpty )
-        {
-            return false
-        }
-        
-        return true
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        //Set up SwiftValidator style transformers (modifying the field/error label based on success or failure).
+        //This should pretty much stay the same for all controllers and text fields.
         validator.styleTransformers(success: { (validationRule) -> Void in
             validationRule.errorLabel?.hidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
-                textField.layer.borderColor = UIColor.greenColor().CGColor
+                textField.layer.borderColor = UIColor.clearColor().CGColor
                 textField.layer.borderWidth = 0.5
             }
             
@@ -205,7 +162,31 @@ class SignUpViewController: UIViewController, ValidationDelegate {
                 }
             })
         
-        validator.registerField(firstNameField, errorLabel: firstNameErrorLabel, rules: [RequiredRule( message: "First name is required"), AlphaRule( message: "Only letters")] )
+        //Registering fields to be validated by SwiftValidator.
+        //Params for registration are the text field, the label to display the error and an array of validation rules which can also each take an error message as an argument.
+        //See "jpotss18.github.io/SwiftValidator" for the docs and various rules.
+        //Custom rules can be created but if this framework doesn't work I can build a custom module, but for now it's working pretty good.
+        
+        //first name field
+        validator.registerField(firstNameField, errorLabel: firstNameErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), AlphaRule( message: ALPHA_ERR_MSG)] )
+        
+        //last name field
+        validator.registerField(lastNameField, errorLabel: lastNameErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), AlphaRule( message: ALPHA_ERR_MSG)] )
+        
+        //org field
+        validator.registerField(orgField, errorLabel: orgErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG ), AlphaRule( message: ALPHA_ERR_MSG)] )
+        
+        //email field
+        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), EmailRule( message: EMAIL_ERR_MSG)] )
+        
+        //username field
+        validator.registerField(userNameField, errorLabel: userNameErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), AlphaNumericRule( message: ALPNUM_ERR_MSG) ] )
+        
+        //password field
+        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), MinLengthRule(length: PW_MIN_LEN, message: SHORTPW_ERR_MSG ), MaxLengthRule(length: PW_MAX_LEN, message: LONGPW_ERR_MSG), PasswordRule( message: BADPW_ERR_MSG ) ] )
+        
+        //confirm password field
+        validator.registerField(confirmPasswordField, errorLabel: confirmPasswordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), ConfirmationRule( confirmField: passwordField, message: CONPW_ERR_MSG)])
     }
 
     
@@ -219,6 +200,12 @@ class SignUpViewController: UIViewController, ValidationDelegate {
         
         //hide error labels
         firstNameErrorLabel.hidden = true
+        lastNameErrorLabel.hidden = true
+        orgErrorLabel.hidden = true
+        emailErrorLabel.hidden = true
+        userNameErrorLabel.hidden = true
+        passwordErrorLabel.hidden = true
+        confirmPasswordErrorLabel.hidden = true
     }
     
 

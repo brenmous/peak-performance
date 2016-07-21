@@ -12,6 +12,7 @@
 		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
 		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
 		B53B45611D3FB85500F20D25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455D1D3FB85500F20D25 /* User.swift */; };
+		B55652581D40DCE900E315A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55652571D40DCE900E315A4 /* Constants.swift */; };
 		B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */; };
 		B59EC4381D3FB45C00AF1297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4361D3FB45C00AF1297 /* Main.storyboard */; };
 		B59EC43A1D3FB45C00AF1297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4391D3FB45C00AF1297 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B53B455D1D3FB85500F20D25 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B55652571D40DCE900E315A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B59EC42F1D3FB45C00AF1297 /* PeakPerformance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeakPerformance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B59EC4371D3FB45C00AF1297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				B53B454E1D3FB78700F20D25 /* ViewControllers */,
 				B53B454F1D3FB78F00F20D25 /* Models */,
 				B53B455A1D3FB85500F20D25 /* DataService.swift */,
+				B55652571D40DCE900E315A4 /* Constants.swift */,
 				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
 				B59EC4391D3FB45C00AF1297 /* Assets.xcassets */,
 				B59EC43B1D3FB45C00AF1297 /* LaunchScreen.storyboard */,
@@ -365,6 +368,7 @@
 				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
 				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
+				B55652581D40DCE900E315A4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
