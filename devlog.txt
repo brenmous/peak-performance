@@ -15,3 +15,7 @@
 	- setting up peak performance app
 		- moved over some files from test app
 		- added comments/cleaned up imported code
+
+21/07/2016 1730 - 
+	- working on simple sign up view & input validation
+	- account creation + saving to DB

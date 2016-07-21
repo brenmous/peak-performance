@@ -40,6 +40,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var confirmPasswordField: UITextField!
     
     
     // MARK: - Actions
@@ -48,6 +49,7 @@ class SignUpViewController: UIViewController {
     {
         self.signUp()
     }
+    
     
     
     // MARK: - Methods
@@ -69,7 +71,7 @@ class SignUpViewController: UIViewController {
                 else
                 {
                     print("account created")
-                    self.login()
+                    self.firstLogin()
                 }
             })
         }
@@ -81,8 +83,8 @@ class SignUpViewController: UIViewController {
 
     }
     
-    //delegate this back to Login VC
-    func login( )
+    //delegate this back to Login VC???
+    func firstLogin( )
     {
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
@@ -91,14 +93,13 @@ class SignUpViewController: UIViewController {
             {
                 print("error logging in: " + error.localizedDescription)
             }
-                //login successfull
             else
             {
                 print("logged in")
                 self.createUser( )
-                self.performSegueWithIdentifier( "loggedIn", sender: self )
             }
         })
+       // self.performSegueWithIdentifier( "signedUp", sender: self )
     }
     
     /// Creates a new user and save details to database.
