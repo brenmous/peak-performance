@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oXb-Ny-XTu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3ra-BT-UfF">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -19,18 +19,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cvp-nV-FmB">
-                                <rect key="frame" x="20" y="169" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cvp-nV-FmB">
+                                <rect key="frame" x="20" y="192" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ikR-Y7-7R3">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ikR-Y7-7R3">
                                 <rect key="frame" x="20" y="230" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w5-ET-fqG">
-                                <rect key="frame" x="20" y="140" width="560" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVH-om-b57">
+                                <rect key="frame" x="279" y="268" width="42" height="30"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="logInButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="qXu-Fe-5R0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uit-D8-Snw">
+                                <rect key="frame" x="273" y="306" width="55" height="30"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="g8R-nA-aTl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0d-YW-iKQ">
+                                <rect key="frame" x="246" y="344" width="109" height="30"/>
+                                <state key="normal" title="Reset Password"/>
+                                <connections>
+                                    <action selector="resetPasswordButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="2Xd-I8-zPK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Login Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w5-ET-fqG">
+                                <rect key="frame" x="20" y="163" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Zxm-Cp-d55"/>
                                 </constraints>
@@ -38,36 +59,6 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEI-Xc-CEP">
-                                <rect key="frame" x="20" y="207" width="560" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="IlP-el-PEu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVH-om-b57">
-                                <rect key="frame" x="279" y="268" width="42" height="30"/>
-                                <state key="normal" title="Log In"/>
-                                <connections>
-                                    <action selector="logInButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="qXu-Fe-5R0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uit-D8-Snw">
-                                <rect key="frame" x="273" y="306" width="55" height="30"/>
-                                <state key="normal" title="Sign Up"/>
-                                <connections>
-                                    <action selector="signUpButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="g8R-nA-aTl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0d-YW-iKQ">
-                                <rect key="frame" x="246" y="344" width="109" height="30"/>
-                                <state key="normal" title="Reset Password"/>
-                                <connections>
-                                    <action selector="resetPasswordButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="2Xd-I8-zPK"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -75,26 +66,19 @@
                             <constraint firstItem="Uit-D8-Snw" firstAttribute="top" secondItem="tVH-om-b57" secondAttribute="bottom" constant="8" symbolic="YES" id="Axm-9l-TEJ"/>
                             <constraint firstItem="7w5-ET-fqG" firstAttribute="top" secondItem="wZl-75-bn6" secondAttribute="bottom" constant="120" id="Cno-bT-cLA"/>
                             <constraint firstItem="7w5-ET-fqG" firstAttribute="leading" secondItem="cvp-nV-FmB" secondAttribute="leading" id="Cve-44-gWH"/>
-                            <constraint firstItem="cvp-nV-FmB" firstAttribute="trailing" secondItem="UEI-Xc-CEP" secondAttribute="trailing" id="Jcl-bZ-4Gu"/>
                             <constraint firstItem="cvp-nV-FmB" firstAttribute="top" secondItem="7w5-ET-fqG" secondAttribute="bottom" constant="8" symbolic="YES" id="MpR-HB-WRm"/>
-                            <constraint firstItem="UEI-Xc-CEP" firstAttribute="top" secondItem="cvp-nV-FmB" secondAttribute="bottom" constant="8" symbolic="YES" id="VAy-1x-80X"/>
-                            <constraint firstItem="UEI-Xc-CEP" firstAttribute="trailing" secondItem="3mb-Ix-HDL" secondAttribute="trailingMargin" id="X99-TQ-JEr"/>
                             <constraint firstItem="tVH-om-b57" firstAttribute="top" secondItem="ikR-Y7-7R3" secondAttribute="bottom" constant="8" symbolic="YES" id="aUL-cy-yIU"/>
                             <constraint firstItem="cvp-nV-FmB" firstAttribute="trailing" secondItem="7w5-ET-fqG" secondAttribute="trailing" id="bsW-1J-nGy"/>
                             <constraint firstItem="F0d-YW-iKQ" firstAttribute="top" secondItem="Uit-D8-Snw" secondAttribute="bottom" constant="8" symbolic="YES" id="f13-dH-Aqg"/>
                             <constraint firstItem="7w5-ET-fqG" firstAttribute="leading" secondItem="3mb-Ix-HDL" secondAttribute="leadingMargin" id="gHD-oq-XXy"/>
                             <constraint firstItem="tVH-om-b57" firstAttribute="centerX" secondItem="ikR-Y7-7R3" secondAttribute="centerX" id="h9C-K8-ilV"/>
-                            <constraint firstItem="cvp-nV-FmB" firstAttribute="leading" secondItem="UEI-Xc-CEP" secondAttribute="leading" id="nDD-Kh-RXu"/>
-                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="top" secondItem="UEI-Xc-CEP" secondAttribute="bottom" constant="2" id="rNZ-Nn-ogB"/>
-                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="trailing" secondItem="UEI-Xc-CEP" secondAttribute="trailing" id="sHj-3b-yHB"/>
-                            <constraint firstItem="UEI-Xc-CEP" firstAttribute="leading" secondItem="ikR-Y7-7R3" secondAttribute="leading" id="udC-kz-dOU"/>
                             <constraint firstItem="Uit-D8-Snw" firstAttribute="centerX" secondItem="tVH-om-b57" secondAttribute="centerX" id="uuC-SV-kqR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailErrorLabel" destination="7w5-ET-fqG" id="EkY-Eb-wBX"/>
                         <outlet property="emailField" destination="cvp-nV-FmB" id="ibD-7H-xYL"/>
-                        <outlet property="passwordErrorLabel" destination="UEI-Xc-CEP" id="ZEI-p6-lG4"/>
+                        <outlet property="logInErrorLabel" destination="7w5-ET-fqG" id="1vv-su-Pcf"/>
                         <outlet property="passwordField" destination="ikR-Y7-7R3" id="SBh-4a-MTN"/>
                     </connections>
                 </viewController>

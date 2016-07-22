@@ -22,7 +22,7 @@ protocol LogInDataService
 /**
     Class that controls the Log In view.
  */
-class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate {
  
     // MARK: - Properties
     
@@ -43,16 +43,14 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     @IBOutlet weak var passwordField: UITextField!
     
     //labels
-    @IBOutlet weak var emailErrorLabel: UILabel!
-    @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var logInErrorLabel: UILabel!
     
     
     // MARK: - Actions
     
     @IBAction func logInButtonPressed(sender: AnyObject)
     {
-        //self.login( )
-        validator.validate(self)
+        self.login( )
     }
     
     //@IBAction func signUpButtonPressed(sender: AnyObject) {}
@@ -62,20 +60,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     
     // MARK: - Methods
-    
-    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
-    func validationSuccessful()
-    {
-        print ("validation successful")
-        self.login()
-    }
-    
-    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
-    {
-        print ("validation failed")
-    }
-    
     
     /// Attempts to authenticate a user using supplied details.
     func login()
@@ -87,6 +71,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             {
                 //notify user of bad input/error somewhere here
                 print("error logging in: " + error.localizedDescription)
+                if error == FIRAuthErrorCode.ErrorCodeUserNotFound
+                {
+                    
+                }
             }
             else
             {
@@ -104,41 +92,13 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        validator.validate(self)
+        self.login()
         return true
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        //set up swift validator (check sign up VC swift file for explanation)
-        validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
-            validationRule.errorLabel?.text = ""
-            if let textField = validationRule.field as? UITextField
-            {
-                textField.layer.borderColor = TF_REG_COL
-                textField.layer.borderWidth = CGFloat( TF_REG_BRD )
-            }
-            
-            }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
-                validationError.errorLabel?.text = validationError.errorMessage
-                if let textField = validationError.field as? UITextField
-                {
-                    textField.layer.borderColor = TF_ERR_COL
-                    textField.layer.borderWidth = CGFloat( TF_ERR_BRD )
-                }
-        })
-        
-        //register fields to be validated (check sign up VC swift file for explanation)
-        
-        //email field
-        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), EmailRule( message: EMAIL_ERR_MSG)] )
-        
-        //password field
-        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), MinLengthRule(length: PW_MIN_LEN, message: SHORTPW_ERR_MSG ), MaxLengthRule(length: PW_MAX_LEN, message: LONGPW_ERR_MSG), PasswordRule( message: BADPW_ERR_MSG ) ] )
     
     }
     
@@ -147,8 +107,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         super.viewWillAppear(animated)
         
         //hide error labels
-        emailErrorLabel.hidden = true
-        passwordErrorLabel.hidden = true
+        logInErrorLabel.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
