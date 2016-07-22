@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
 /**
     Protocol for specifying log in DataService requirements.
@@ -29,7 +30,7 @@ class LoginViewController: UIViewController {
     var currentUser: User?
     
     /// This view controller's DataService instance.
-    var dataService: DataService?
+    let dataService = DataService( )
     
     
     // MARK: - Outlets
@@ -68,7 +69,7 @@ class LoginViewController: UIViewController {
                 if let user = FIRAuth.auth( )?.currentUser
                 {
                     let uid = user.uid as String
-                    self.currentUser = self.dataService!.loadUser( uid )
+                    self.currentUser = self.dataService.loadUser( uid )
                 }
                 self.performSegueWithIdentifier( "loggedIn", sender: self )
             }
@@ -77,8 +78,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //set up DataService instance
-        self.dataService = DataService( )
+        
     }
 
     override func didReceiveMemoryWarning() {
