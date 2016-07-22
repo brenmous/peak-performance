@@ -67,5 +67,6 @@ let TF_ERR_BRD = 1.0
 let TF_REG_COL = UIColor.clearColor().CGColor
 
 //The text field border colour for indicating an error
-let TF_ERR_COL = UIColor.redColor().CGColor
-
+let TF_ERR_COL = UIColor.purpleColor().CGColor
+// UIColor:(160.0, 97.0, 5.0, 1.0)
+// UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 1.0)
