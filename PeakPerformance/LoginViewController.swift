@@ -32,22 +32,33 @@ class LoginViewController: UIViewController {
     /// This view controller's DataService instance.
     let dataService = DataService( )
     
+    /// This view controller's SwiftValidator instance.
+    let validator = Validator( )
+    
     
     // MARK: - Outlets
     
-    @IBOutlet weak var userNameField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
     
     
     // MARK: - Actions
     
-    @IBAction func logInButtonPressed(sender: AnyObject)
-    {
-        self.login()
-    }
+    
     
     
     // MARK: - Methods
+    /*
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
+    func validationSuccessful()
+    {
+        print ("validation successful")
+        self.signUp()
+    }
+    
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
+    func validationFailed(errors: [(Validatable, ValidationError)]) {
+        print ("validation failed")
+    }
+    */
     
     /// Attempts to authenticate a user using supplied details.
     func login()
@@ -71,9 +82,10 @@ class LoginViewController: UIViewController {
                     let uid = user.uid as String
                     self.currentUser = self.dataService.loadUser( uid )
                 }
-                self.performSegueWithIdentifier( "loggedIn", sender: self )
+                
             }
         })
+        //self.performSegueWithIdentifier( "loggedIn", sender: self )
     }
     
     override func viewDidLoad() {
