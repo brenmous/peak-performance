@@ -43,6 +43,9 @@ let BADPW_ERR_MSG = "Password must contain at least one uppercase letter and one
 //Password confirm field doesn't match.
 let CONPW_ERR_MSG = "Passwords must match."
 
+//Unable to log in due to user error (covers user not found, password mismatch, malformed email etc.).
+let LOGIN_ERR_MSG = "No account found with provided details."
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.

@@ -21,3 +21,9 @@
 		- trying to test out some validator frameworks
 	- account creation + saving to DB
 	- implemented SwiftValidator for input validation
+
+22/07/2016 1430 - 16340
+	- working on login view
+		- built prototype UI
+		- added validation
+		- started handling firebase errors
