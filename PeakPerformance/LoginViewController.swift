@@ -80,6 +80,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Attempts to authenticate a user using supplied details.
     func login()
     {
+        //reset login error label
+        logInErrorLabel.hidden = true
+        logInErrorLabel.text = ""
+       
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
             
