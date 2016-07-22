@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="zDc-cb-7Sw">
             <objects>
-                <viewController id="3ra-BT-UfF" sceneMemberID="viewController">
+                <viewController id="3ra-BT-UfF" customClass="LoginViewController" customModule="PeakPerformance" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wZl-75-bn6"/>
                         <viewControllerLayoutGuide type="bottom" id="KMn-F6-qlH"/>
@@ -30,19 +30,18 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w5-ET-fqG">
-                                <rect key="frame" x="20" y="140" width="270" height="21"/>
+                                <rect key="frame" x="20" y="140" width="560" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="270" id="54C-sO-2vh"/>
-                                    <constraint firstAttribute="height" constant="21" id="hSk-0t-Ngf"/>
+                                    <constraint firstAttribute="height" constant="21" id="Zxm-Cp-d55"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEI-Xc-CEP">
-                                <rect key="frame" x="20" y="207" width="270" height="21"/>
+                                <rect key="frame" x="20" y="207" width="560" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="qMl-fv-tHe"/>
+                                    <constraint firstAttribute="height" constant="21" id="IlP-el-PEu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,37 +50,53 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVH-om-b57">
                                 <rect key="frame" x="279" y="268" width="42" height="30"/>
                                 <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="logInButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="qXu-Fe-5R0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uit-D8-Snw">
                                 <rect key="frame" x="273" y="306" width="55" height="30"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="g8R-nA-aTl"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0d-YW-iKQ">
                                 <rect key="frame" x="246" y="344" width="109" height="30"/>
                                 <state key="normal" title="Reset Password"/>
+                                <connections>
+                                    <action selector="resetPasswordButtonPressed:" destination="3ra-BT-UfF" eventType="touchUpInside" id="2Xd-I8-zPK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="top" secondItem="UEI-Xc-CEP" secondAttribute="bottom" constant="2" id="3Rl-pl-skc"/>
-                            <constraint firstItem="7w5-ET-fqG" firstAttribute="trailing" secondItem="UEI-Xc-CEP" secondAttribute="trailing" id="66y-df-Q3F"/>
-                            <constraint firstItem="cvp-nV-FmB" firstAttribute="trailing" secondItem="3mb-Ix-HDL" secondAttribute="trailingMargin" id="Cw4-5m-xHL"/>
-                            <constraint firstItem="cvp-nV-FmB" firstAttribute="top" secondItem="7w5-ET-fqG" secondAttribute="bottom" constant="8" symbolic="YES" id="EFw-bQ-6F8"/>
-                            <constraint firstItem="tVH-om-b57" firstAttribute="centerX" secondItem="Uit-D8-Snw" secondAttribute="centerX" id="GRo-la-UU9"/>
-                            <constraint firstItem="cvp-nV-FmB" firstAttribute="leading" secondItem="UEI-Xc-CEP" secondAttribute="leading" id="GWP-xH-MRm"/>
-                            <constraint firstItem="UEI-Xc-CEP" firstAttribute="top" secondItem="cvp-nV-FmB" secondAttribute="bottom" constant="8" symbolic="YES" id="HeS-TA-dhz"/>
-                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="centerX" secondItem="tVH-om-b57" secondAttribute="centerX" id="M7Q-jQ-BuT"/>
-                            <constraint firstItem="F0d-YW-iKQ" firstAttribute="top" secondItem="Uit-D8-Snw" secondAttribute="bottom" constant="8" symbolic="YES" id="NGo-Br-QVU"/>
-                            <constraint firstItem="7w5-ET-fqG" firstAttribute="top" secondItem="wZl-75-bn6" secondAttribute="bottom" constant="120" id="Ygm-lC-3yY"/>
-                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="trailing" secondItem="cvp-nV-FmB" secondAttribute="trailing" id="ZaO-up-jaC"/>
-                            <constraint firstItem="cvp-nV-FmB" firstAttribute="leading" secondItem="7w5-ET-fqG" secondAttribute="leading" id="dY0-ll-iW5"/>
-                            <constraint firstItem="Uit-D8-Snw" firstAttribute="top" secondItem="tVH-om-b57" secondAttribute="bottom" constant="8" symbolic="YES" id="g8J-RR-zEg"/>
-                            <constraint firstItem="F0d-YW-iKQ" firstAttribute="centerX" secondItem="Uit-D8-Snw" secondAttribute="centerX" id="kbM-Sp-doa"/>
-                            <constraint firstItem="tVH-om-b57" firstAttribute="top" secondItem="ikR-Y7-7R3" secondAttribute="bottom" constant="8" symbolic="YES" id="nlL-iO-WNt"/>
-                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="leading" secondItem="UEI-Xc-CEP" secondAttribute="leading" id="rka-HY-qan"/>
-                            <constraint firstItem="7w5-ET-fqG" firstAttribute="leading" secondItem="3mb-Ix-HDL" secondAttribute="leadingMargin" id="uYc-8B-kaf"/>
+                            <constraint firstItem="F0d-YW-iKQ" firstAttribute="centerX" secondItem="Uit-D8-Snw" secondAttribute="centerX" id="3pX-Dy-ioM"/>
+                            <constraint firstItem="Uit-D8-Snw" firstAttribute="top" secondItem="tVH-om-b57" secondAttribute="bottom" constant="8" symbolic="YES" id="Axm-9l-TEJ"/>
+                            <constraint firstItem="7w5-ET-fqG" firstAttribute="top" secondItem="wZl-75-bn6" secondAttribute="bottom" constant="120" id="Cno-bT-cLA"/>
+                            <constraint firstItem="7w5-ET-fqG" firstAttribute="leading" secondItem="cvp-nV-FmB" secondAttribute="leading" id="Cve-44-gWH"/>
+                            <constraint firstItem="cvp-nV-FmB" firstAttribute="trailing" secondItem="UEI-Xc-CEP" secondAttribute="trailing" id="Jcl-bZ-4Gu"/>
+                            <constraint firstItem="cvp-nV-FmB" firstAttribute="top" secondItem="7w5-ET-fqG" secondAttribute="bottom" constant="8" symbolic="YES" id="MpR-HB-WRm"/>
+                            <constraint firstItem="UEI-Xc-CEP" firstAttribute="top" secondItem="cvp-nV-FmB" secondAttribute="bottom" constant="8" symbolic="YES" id="VAy-1x-80X"/>
+                            <constraint firstItem="UEI-Xc-CEP" firstAttribute="trailing" secondItem="3mb-Ix-HDL" secondAttribute="trailingMargin" id="X99-TQ-JEr"/>
+                            <constraint firstItem="tVH-om-b57" firstAttribute="top" secondItem="ikR-Y7-7R3" secondAttribute="bottom" constant="8" symbolic="YES" id="aUL-cy-yIU"/>
+                            <constraint firstItem="cvp-nV-FmB" firstAttribute="trailing" secondItem="7w5-ET-fqG" secondAttribute="trailing" id="bsW-1J-nGy"/>
+                            <constraint firstItem="F0d-YW-iKQ" firstAttribute="top" secondItem="Uit-D8-Snw" secondAttribute="bottom" constant="8" symbolic="YES" id="f13-dH-Aqg"/>
+                            <constraint firstItem="7w5-ET-fqG" firstAttribute="leading" secondItem="3mb-Ix-HDL" secondAttribute="leadingMargin" id="gHD-oq-XXy"/>
+                            <constraint firstItem="tVH-om-b57" firstAttribute="centerX" secondItem="ikR-Y7-7R3" secondAttribute="centerX" id="h9C-K8-ilV"/>
+                            <constraint firstItem="cvp-nV-FmB" firstAttribute="leading" secondItem="UEI-Xc-CEP" secondAttribute="leading" id="nDD-Kh-RXu"/>
+                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="top" secondItem="UEI-Xc-CEP" secondAttribute="bottom" constant="2" id="rNZ-Nn-ogB"/>
+                            <constraint firstItem="ikR-Y7-7R3" firstAttribute="trailing" secondItem="UEI-Xc-CEP" secondAttribute="trailing" id="sHj-3b-yHB"/>
+                            <constraint firstItem="UEI-Xc-CEP" firstAttribute="leading" secondItem="ikR-Y7-7R3" secondAttribute="leading" id="udC-kz-dOU"/>
+                            <constraint firstItem="Uit-D8-Snw" firstAttribute="centerX" secondItem="tVH-om-b57" secondAttribute="centerX" id="uuC-SV-kqR"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailErrorLabel" destination="7w5-ET-fqG" id="EkY-Eb-wBX"/>
+                        <outlet property="emailField" destination="cvp-nV-FmB" id="ibD-7H-xYL"/>
+                        <outlet property="passwordErrorLabel" destination="UEI-Xc-CEP" id="ZEI-p6-lG4"/>
+                        <outlet property="passwordField" destination="ikR-Y7-7R3" id="SBh-4a-MTN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CrL-te-Spe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

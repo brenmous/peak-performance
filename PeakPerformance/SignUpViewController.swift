@@ -22,7 +22,7 @@ protocol SignUpDataService
 /**
     Class that controls the Sign Up view.
  */
-class SignUpViewController: UIViewController, ValidationDelegate {
+class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDelegate {
     
     // MARK: - Properties
     
@@ -107,6 +107,7 @@ class SignUpViewController: UIViewController, ValidationDelegate {
             
             if let error = error
             {
+                //Check for Firebase errors and inform user here
                 print("error logging in: " + error.localizedDescription)
             }
             else
@@ -135,6 +136,12 @@ class SignUpViewController: UIViewController, ValidationDelegate {
             
             self.dataService.saveUser( self.currentUser! )
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        validator.validate(self)
+        return true
     }
     
     override func viewDidLoad() {
