@@ -22,7 +22,7 @@ protocol LogInDataService
 /**
     Class that controls the Log In view.
  */
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDelegate {
  
     // MARK: - Properties
     
@@ -44,13 +44,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //labels
     @IBOutlet weak var logInErrorLabel: UILabel!
+    @IBOutlet weak var emailErrorLabel: UILabel!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
+    
     
     
     // MARK: - Actions
     
     @IBAction func logInButtonPressed(sender: AnyObject)
     {
-        self.login( )
+        //self.login( )
+        validator.validate(self)
     }
     
     //@IBAction func signUpButtonPressed(sender: AnyObject) {}
@@ -61,6 +65,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Methods
     
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
+    func validationSuccessful()
+    {
+        print ("validation successful")
+        self.login()
+    }
+    
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
+    func validationFailed(errors: [(Validatable, ValidationError)]) {
+        print ("validation failed")
+    }
+
     /// Attempts to authenticate a user using supplied details.
     func login()
     {
@@ -69,16 +85,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             if let error = error
             {
-                //notify user of bad input/error somewhere here
                 print("error logging in: " + error.localizedDescription)
-                if error == FIRAuthErrorCode.ErrorCodeUserNotFound
+                if let errCode = FIRAuthErrorCode( rawValue: error.code )
                 {
-                    
+                    switch errCode
+                    {
+                        case .ErrorCodeUserNotFound:
+                            self.logInErrorLabel.text = LOGIN_ERR_MSG
+                            self.logInErrorLabel.hidden = false
+                        
+                        default:
+                            print("error case not currently covered")
+                    }
                 }
             }
             else
             {
                 print("logged in")
+                self.logInErrorLabel.hidden = true
+                self.logInErrorLabel.text = ""
                 if let user = FIRAuth.auth( )?.currentUser
                 {
                     let uid = user.uid as String
@@ -92,13 +117,47 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        self.login()
+        //self.login()
+        validator.validate( self )
         return true
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        //set up validator style transformer
+        validator.styleTransformers(success: { (validationRule) -> Void in
+            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.text = ""
+            if let textField = validationRule.field as? UITextField
+            {
+                textField.layer.borderColor = TF_REG_COL
+                textField.layer.borderWidth = CGFloat( TF_REG_BRD )
+            }
+            
+            }, error: { (validationError ) -> Void in
+                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.text = validationError.errorMessage
+                if let textField = validationError.field as? UITextField
+                {
+                    textField.layer.borderColor = TF_ERR_COL
+                    textField.layer.borderWidth = CGFloat( TF_ERR_BRD )
+                }
+        })
+        
+        //register fields for validation
+        //email field
+        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), EmailRule( message: EMAIL_ERR_MSG)] )
+        
+        //password field
+        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG)] )
+        
+        
+        //set up text field delegates
+        emailField.delegate = self
+        passwordField.delegate = self
+
     
     }
     
@@ -108,6 +167,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         //hide error labels
         logInErrorLabel.hidden = true
+        emailErrorLabel.hidden = true
+        passwordErrorLabel.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
