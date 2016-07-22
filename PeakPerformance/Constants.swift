@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
     This file contains various constants used throughout the program.
@@ -51,3 +52,20 @@ let PW_MIN_LEN = 6
 
 //Password max length
 let PW_MAX_LEN = 32
+
+
+// MARK: - Textfield parameters
+//This is things like border width, color etc. of text fields
+
+//The standard text field border size
+let TF_REG_BRD = 0.5
+
+//The text field border size for indicating an error
+let TF_ERR_BRD = 1.0
+
+//The standard text field border colour
+let TF_REG_COL = UIColor.clearColor().CGColor
+
+//The text field border colour for indicating an error
+let TF_ERR_COL = UIColor.redColor().CGColor
+

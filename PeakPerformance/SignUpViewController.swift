@@ -148,8 +148,8 @@ class SignUpViewController: UIViewController, ValidationDelegate {
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
-                textField.layer.borderColor = UIColor.clearColor().CGColor
-                textField.layer.borderWidth = 0.5
+                textField.layer.borderColor = TF_REG_COL
+                textField.layer.borderWidth = CGFloat( TF_REG_BRD )
             }
             
             }, error: { (validationError ) -> Void in
@@ -157,8 +157,8 @@ class SignUpViewController: UIViewController, ValidationDelegate {
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
-                    textField.layer.borderColor = UIColor.redColor( ).CGColor
-                    textField.layer.borderWidth = 1.0
+                    textField.layer.borderColor = TF_ERR_COL
+                    textField.layer.borderWidth = CGFloat( TF_ERR_BRD )
                 }
             })
         
