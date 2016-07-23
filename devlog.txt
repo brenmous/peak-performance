@@ -11,7 +11,7 @@
 		- fetching details on log in and creating user object
 		- split database methods out into DataService class
 
-20/07/2016 2330 - 1240 
+20/07/2016 2330 - 0040 
 	- setting up peak performance app
 		- moved over some files from test app
 		- added comments/cleaned up imported code
@@ -22,8 +22,12 @@
 	- account creation + saving to DB
 	- implemented SwiftValidator for input validation
 
-22/07/2016 1430 - 16340
+22/07/2016 1430 - 1640
 	- working on login view
 		- built prototype UI
 		- added validation
 		- started handling firebase errors
+
+23/07/2016 1600 -
+	- adding Firebase error handling for login/signup
+		- add sign up error label to sign up view

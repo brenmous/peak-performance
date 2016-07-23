@@ -98,6 +98,14 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                             self.logInErrorLabel.text = LOGIN_ERR_MSG
                             self.logInErrorLabel.hidden = false
                         
+                        case .ErrorCodeTooManyRequests:
+                            self.logInErrorLabel.text = REQUEST_ERR_MSG
+                            self.logInErrorLabel.hidden = false
+                        
+                        case .ErrorCodeNetworkError:
+                            self.logInErrorLabel.text = NETWORK_ERR_MSG
+                            self.logInErrorLabel.hidden = false
+                        
                         default:
                             print("error case not currently covered")
                     }

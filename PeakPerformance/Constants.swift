@@ -46,6 +46,15 @@ let CONPW_ERR_MSG = "Passwords must match."
 //Unable to log in due to user error (covers user not found, password mismatch, malformed email etc.).
 let LOGIN_ERR_MSG = "No account found with provided details."
 
+//Too many requests made to server error message.
+let REQUEST_ERR_MSG = "Too many login requests have been made. Please wait and try again."
+
+//Firebase network connection error.
+let NETWORK_ERR_MSG = "Cannot connect to the network. Please wait and try again."
+
+//Email already in use sign up error.
+let EMAIL_IN_USE_ERR_MSG = "An account already exists with this email address."
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.

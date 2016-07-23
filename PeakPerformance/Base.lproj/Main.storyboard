@@ -229,11 +229,21 @@
                                 <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgv-UW-LfC">
+                                <rect key="frame" x="20" y="472" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="eKC-T5-vqg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.7803921568627451" green="0.80000000000000004" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="G3g-Oj-ZGE" firstAttribute="trailing" secondItem="5FU-lk-EAK" secondAttribute="trailing" id="0aR-sA-hnW"/>
                             <constraint firstItem="KCf-5S-Dgh" firstAttribute="top" secondItem="PuC-0W-GdE" secondAttribute="bottom" constant="8" symbolic="YES" id="1Gi-rz-IZh"/>
+                            <constraint firstItem="Fgv-UW-LfC" firstAttribute="top" secondItem="BXg-UV-UPm" secondAttribute="bottom" constant="8" symbolic="YES" id="1yI-Nk-JCk"/>
                             <constraint firstItem="UIa-u0-c80" firstAttribute="top" secondItem="KCf-5S-Dgh" secondAttribute="bottom" constant="8" symbolic="YES" id="39g-0H-2Pu"/>
                             <constraint firstItem="0Dd-61-3VN" firstAttribute="leading" secondItem="uJ6-a3-URf" secondAttribute="leading" id="3DV-Mq-KVe"/>
                             <constraint firstItem="1NA-lP-kk9" firstAttribute="trailing" secondItem="8fq-7X-SFN" secondAttribute="trailing" id="7mk-pG-ljy"/>
@@ -261,9 +271,11 @@
                             <constraint firstItem="KCf-5S-Dgh" firstAttribute="leading" secondItem="UIa-u0-c80" secondAttribute="leading" id="Wzh-aJ-USl"/>
                             <constraint firstItem="V2M-oP-ICV" firstAttribute="trailing" secondItem="8fq-7X-SFN" secondAttribute="trailing" id="Wzy-kN-5eN"/>
                             <constraint firstItem="0Dd-61-3VN" firstAttribute="top" secondItem="uJ6-a3-URf" secondAttribute="bottom" constant="8" symbolic="YES" id="XMg-ix-8DM"/>
+                            <constraint firstItem="Fgv-UW-LfC" firstAttribute="leading" secondItem="lYT-Fp-fXh" secondAttribute="leading" id="YE0-wn-oPO"/>
                             <constraint firstItem="Swi-hs-FRV" firstAttribute="leading" secondItem="KCf-5S-Dgh" secondAttribute="trailing" constant="20" id="YTM-hG-qTz"/>
                             <constraint firstItem="rYb-mz-ppc" firstAttribute="top" secondItem="1NA-lP-kk9" secondAttribute="bottom" constant="8" symbolic="YES" id="aBe-xk-W0a"/>
                             <constraint firstItem="JnN-Ay-iJT" firstAttribute="trailing" secondItem="uJ6-a3-URf" secondAttribute="trailing" id="eCe-Q4-4wu"/>
+                            <constraint firstItem="Fgv-UW-LfC" firstAttribute="trailing" secondItem="lYT-Fp-fXh" secondAttribute="trailing" id="eM3-DX-1v3"/>
                             <constraint firstItem="rYb-mz-ppc" firstAttribute="leading" secondItem="8fq-7X-SFN" secondAttribute="leading" id="fMC-LV-ZPZ"/>
                             <constraint firstItem="1NA-lP-kk9" firstAttribute="top" secondItem="XmE-wg-CSO" secondAttribute="bottom" constant="5" id="fUF-r3-lUt"/>
                             <constraint firstItem="KCf-5S-Dgh" firstAttribute="firstBaseline" secondItem="Swi-hs-FRV" secondAttribute="firstBaseline" id="fp4-W1-SdL"/>
@@ -293,6 +305,7 @@
                         <outlet property="orgField" destination="uJ6-a3-URf" id="qc3-eE-GT7"/>
                         <outlet property="passwordErrorLabel" destination="rYb-mz-ppc" id="Zkb-r1-bUl"/>
                         <outlet property="passwordField" destination="8fq-7X-SFN" id="8Dc-OP-DHb"/>
+                        <outlet property="signUpErrorLabel" destination="Fgv-UW-LfC" id="Czi-Bo-3Wd"/>
                         <outlet property="userNameErrorLabel" destination="XmE-wg-CSO" id="kzd-Kj-Fa8"/>
                         <outlet property="userNameField" destination="1NA-lP-kk9" id="nsd-hP-0r3"/>
                     </connections>
@@ -305,6 +318,10 @@
         <scene sceneID="UB8-7a-0Os">
             <objects>
                 <viewController id="scE-xy-Dol" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cW5-V0-e6q"/>
+                        <viewControllerLayoutGuide type="bottom" id="bFq-o6-Jts"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mQt-10-Ft3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

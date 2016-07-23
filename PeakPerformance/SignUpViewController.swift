@@ -56,6 +56,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var userNameErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
+    @IBOutlet weak var signUpErrorLabel: UILabel!
     
     // MARK: - Actions
     
@@ -109,6 +110,23 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             {
                 //Check for Firebase errors and inform user here
                 print("error logging in: " + error.localizedDescription)
+                if let errCode = FIRAuthErrorCode( rawValue: error.code )
+                {
+                    switch errCode
+                    {
+                    case .ErrorCodeNetworkError:
+                        self.signUpErrorLabel.text = NETWORK_ERR_MSG
+                        self.signUpErrorLabel.hidden = false
+                        
+                    case .ErrorCodeEmailAlreadyInUse:
+                        self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
+                        self.signUpErrorLabel.hidden = false
+                        
+                    default:
+                        print("error case not currently covered")
+                    }
+                }
+
             }
             else
             {
@@ -213,6 +231,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         userNameErrorLabel.hidden = true
         passwordErrorLabel.hidden = true
         confirmPasswordErrorLabel.hidden = true
+        signUpErrorLabel.hidden = true
     }
     
 
