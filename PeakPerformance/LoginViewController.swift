@@ -57,7 +57,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         validator.validate(self)
     }
     
-    //@IBAction func signUpButtonPressed(sender: AnyObject) {}
+    @IBAction func signUpButtonPressed(sender: AnyObject)
+    {
+        shouldPerformSegueWithIdentifier( "goToSignUp" , sender: self )
+    }
     
     //@IBAction func resetPasswordButtonPressed(sender: AnyObject) {}
     
@@ -192,18 +195,19 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /*
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "loggedIn"
+       /* if segue.identifier == "loggedIn"
         {
             let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
-        }
-        else if segue.identifier == "signUp"
+        }*/
+        if segue.identifier == "goToSignUp"
         {
-            //let dvc = segue.destinationViewController as! SignUpViewController
+            let dvc = segue.destinationViewController as! SignUpViewController
+            dvc.currentUser = self.currentUser
         }
-    } */
+    }
     
 
 }

@@ -67,6 +67,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     }
     
     
+    @IBAction func goToLogIn(sender: AnyObject)
+    {
+        shouldPerformSegueWithIdentifier("goToLogIn", sender: self )
+    }
+    
+    
     
     // MARK: - Methods
     
@@ -237,14 +243,16 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
 
     
     // MARK: - Navigation
-    /*
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dvc = segue.destinationViewController as! TabBarViewController
-        dvc.currentUser = self.currentUser
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    } */
+        //if identifier == "loggedIn" {}
+        if segue.identifier == "goToLogIn"
+        {
+            let dvc = segue.destinationViewController as! LoginViewController
+            dvc.currentUser = self.currentUser
+        }
+    }
     
 
 }
