@@ -144,8 +144,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
-                textField.layer.borderColor = TF_REG_COL
-                textField.layer.borderWidth = CGFloat( TF_REG_BRD )
+                textField.layer.borderColor = TEXTFIELD_REGULAR_BORDER_COLOUR
+                textField.layer.borderWidth = CGFloat( TEXTFIELD_REGULAR_BORDER_WIDTH )
             }
             
             }, error: { (validationError ) -> Void in
@@ -153,17 +153,17 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
-                    textField.layer.borderColor = TF_ERR_COL
-                    textField.layer.borderWidth = CGFloat( TF_ERR_BRD )
+                    textField.layer.borderColor = TEXTFIELD_ERROR_BORDER_COLOUR
+                    textField.layer.borderWidth = CGFloat( TEXTFIELD_ERROR_BORDER_WIDTH )
                 }
         })
         
         //register fields for validation
         //email field
-        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), EmailRule( message: EMAIL_ERR_MSG)] )
+        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), EmailRule( message: BAD_EMAIL_ERR_MSG)] )
         
         //password field
-        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG)] )
+        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG)] )
         
         
         //set up text field delegates

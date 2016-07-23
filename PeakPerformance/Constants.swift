@@ -20,16 +20,16 @@ import UIKit
 //N.B. Change these messages to something more appropriate/polite, just placeholders at the moment
 
 //Required field error message.
-let REQ_ERR_MSG = "This field is required."
+let REQUIRED_FIELD_ERR_MSG = "This field is required."
 
 //Alpha characters only error message.
-let ALPHA_ERR_MSG = "No numbers or symbols allowed."
+let ALPHA_CHAR_ERR_MSG = "No numbers or symbols allowed."
 
 //Incorrect email error message.
-let EMAIL_ERR_MSG = "Not a valid email address."
+let BAD_EMAIL_ERR_MSG = "Not a valid email address."
 
 //Alphanumeric characters only error message.
-let ALPNUM_ERR_MSG = "Only letters and numbers allowed."
+let ALPHA_NUMERIC_CHAR_ERR_MSG = "Only letters and numbers allowed."
 
 //Password too short.
 let SHORTPW_ERR_MSG = "Password must be a minimum of 6 characters."
@@ -70,15 +70,15 @@ let PW_MAX_LEN = 32
 //This is things like border width, color etc. of text fields
 
 //The standard text field border size
-let TF_REG_BRD = 0.5
+let TEXTFIELD_REGULAR_BORDER_WIDTH = 0.5
 
 //The text field border size for indicating an error
-let TF_ERR_BRD = 1.0
+let TEXTFIELD_ERROR_BORDER_WIDTH = 1.0
 
 //The standard text field border colour
-let TF_REG_COL = UIColor.clearColor().CGColor
+let TEXTFIELD_REGULAR_BORDER_COLOUR = UIColor.clearColor().CGColor
 
 //The text field border colour for indicating an error
-let TF_ERR_COL = UIColor.purpleColor().CGColor
+let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.purpleColor().CGColor
 // UIColor:(160.0, 97.0, 5.0, 1.0)
 // UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 1.0)
