@@ -124,10 +124,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                     let uid = user.uid as String
                     self.currentUser = self.dataService.loadUser( uid )
                 }
+                self.performSegueWithIdentifier( "loggedIn", sender: self )
                 
             }
         })
-        //self.performSegueWithIdentifier( "loggedIn", sender: self )
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -197,12 +197,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-       /* if segue.identifier == "loggedIn"
+        if segue.identifier == "loggedIn"
         {
             let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
-        }*/
-        if segue.identifier == "goToSignUp"
+        }
+        else if segue.identifier == "goToSignUp"
         {
             let dvc = segue.destinationViewController as! SignUpViewController
             dvc.currentUser = self.currentUser

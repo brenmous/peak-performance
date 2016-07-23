@@ -138,9 +138,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             {
                 print("logged in")
                 self.createUser( )
+                //currently this segue goes to the TabBar view, but this where you would segue to the tutorial/initial setup
+                //feel free to change the segue in the storyboard (but keep the ID!) when it's ready
+                self.performSegueWithIdentifier( "firstTimeLogIn", sender: self )
             }
         })
-       // self.performSegueWithIdentifier( "signedUp", sender: self )
+        
     }
     
     /// Creates a new user and save details to database.
@@ -250,6 +253,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         if segue.identifier == "goToLogIn"
         {
             let dvc = segue.destinationViewController as! LoginViewController
+            dvc.currentUser = self.currentUser
+        }
+        else if segue.identifier == "firstTimeLogIn"
+        {
+            //here is where you would segue to tutorial/inital setup when it's ready
+            let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
         }
     }
