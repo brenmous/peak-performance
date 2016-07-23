@@ -56,6 +56,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var userNameErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
+    @IBOutlet weak var signUpErrorLabel: UILabel!
     
     // MARK: - Actions
     
@@ -63,6 +64,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     {
         //self.signUp()
         validator.validate(self)
+    }
+    
+    
+    @IBAction func goToLogIn(sender: AnyObject)
+    {
+        shouldPerformSegueWithIdentifier("goToLogIn", sender: self )
     }
     
     
@@ -109,14 +116,34 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             {
                 //Check for Firebase errors and inform user here
                 print("error logging in: " + error.localizedDescription)
+                if let errCode = FIRAuthErrorCode( rawValue: error.code )
+                {
+                    switch errCode
+                    {
+                    case .ErrorCodeNetworkError:
+                        self.signUpErrorLabel.text = NETWORK_ERR_MSG
+                        self.signUpErrorLabel.hidden = false
+                        
+                    case .ErrorCodeEmailAlreadyInUse:
+                        self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
+                        self.signUpErrorLabel.hidden = false
+                        
+                    default:
+                        print("error case not currently covered")
+                    }
+                }
+
             }
             else
             {
                 print("logged in")
                 self.createUser( )
+                //currently this segue goes to the TabBar view, but this where you would segue to the tutorial/initial setup
+                //feel free to change the segue in the storyboard (but keep the ID!) when it's ready
+                self.performSegueWithIdentifier( "firstTimeLogIn", sender: self )
             }
         })
-       // self.performSegueWithIdentifier( "signedUp", sender: self )
+        
     }
     
     /// Creates a new user and save details to database.
@@ -155,8 +182,8 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
-                textField.layer.borderColor = TF_REG_COL
-                textField.layer.borderWidth = CGFloat( TF_REG_BRD )
+                textField.layer.borderColor = TEXTFIELD_REGULAR_BORDER_COLOUR
+                textField.layer.borderWidth = CGFloat( TEXTFIELD_REGULAR_BORDER_WIDTH )
             }
             
             }, error: { (validationError ) -> Void in
@@ -164,8 +191,8 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
-                    textField.layer.borderColor = TF_ERR_COL
-                    textField.layer.borderWidth = CGFloat( TF_ERR_BRD )
+                    textField.layer.borderColor = TEXTFIELD_ERROR_BORDER_COLOUR
+                    textField.layer.borderWidth = CGFloat( TEXTFIELD_ERROR_BORDER_WIDTH )
                 }
             })
         
@@ -175,25 +202,25 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         //Custom rules can be created but if this framework doesn't work I can build a custom module, but for now it's working pretty good.
         
         //first name field
-        validator.registerField(firstNameField, errorLabel: firstNameErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), AlphaRule( message: ALPHA_ERR_MSG)] )
+        validator.registerField(firstNameField, errorLabel: firstNameErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), AlphaRule( message: ALPHA_CHAR_ERR_MSG)] )
         
         //last name field
-        validator.registerField(lastNameField, errorLabel: lastNameErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), AlphaRule( message: ALPHA_ERR_MSG)] )
+        validator.registerField(lastNameField, errorLabel: lastNameErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), AlphaRule( message: ALPHA_CHAR_ERR_MSG)] )
         
         //org field
-        validator.registerField(orgField, errorLabel: orgErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG ), AlphaRule( message: ALPHA_ERR_MSG)] )
+        validator.registerField(orgField, errorLabel: orgErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG ), AlphaRule( message: ALPHA_CHAR_ERR_MSG)] )
         
         //email field
-        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), EmailRule( message: EMAIL_ERR_MSG)] )
+        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), EmailRule( message: BAD_EMAIL_ERR_MSG)] )
         
         //username field
-        validator.registerField(userNameField, errorLabel: userNameErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), AlphaNumericRule( message: ALPNUM_ERR_MSG) ] )
+        validator.registerField(userNameField, errorLabel: userNameErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), AlphaNumericRule( message: ALPHA_NUMERIC_CHAR_ERR_MSG) ] )
         
         //password field
-        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), MinLengthRule(length: PW_MIN_LEN, message: SHORTPW_ERR_MSG ), MaxLengthRule(length: PW_MAX_LEN, message: LONGPW_ERR_MSG), PasswordRule( message: BADPW_ERR_MSG ) ] )
+        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), MinLengthRule(length: PW_MIN_LEN, message: SHORTPW_ERR_MSG ), MaxLengthRule(length: PW_MAX_LEN, message: LONGPW_ERR_MSG), PasswordRule( message: BADPW_ERR_MSG ) ] )
         
         //confirm password field
-        validator.registerField(confirmPasswordField, errorLabel: confirmPasswordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), ConfirmationRule( confirmField: passwordField, message: CONPW_ERR_MSG)])
+        validator.registerField(confirmPasswordField, errorLabel: confirmPasswordErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), ConfirmationRule( confirmField: passwordField, message: CONPW_ERR_MSG)])
     }
 
     
@@ -213,19 +240,28 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         userNameErrorLabel.hidden = true
         passwordErrorLabel.hidden = true
         confirmPasswordErrorLabel.hidden = true
+        signUpErrorLabel.hidden = true
     }
     
 
     
     // MARK: - Navigation
-    /*
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dvc = segue.destinationViewController as! TabBarViewController
-        dvc.currentUser = self.currentUser
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    } */
+        //if identifier == "loggedIn" {}
+        if segue.identifier == "goToLogIn"
+        {
+            let dvc = segue.destinationViewController as! LoginViewController
+            dvc.currentUser = self.currentUser
+        }
+        else if segue.identifier == "firstTimeLogIn"
+        {
+            //here is where you would segue to tutorial/inital setup when it's ready
+            let dvc = segue.destinationViewController as! TabBarViewController
+            dvc.currentUser = self.currentUser
+        }
+    }
     
 
 }

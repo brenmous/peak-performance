@@ -57,7 +57,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         validator.validate(self)
     }
     
-    //@IBAction func signUpButtonPressed(sender: AnyObject) {}
+    @IBAction func signUpButtonPressed(sender: AnyObject)
+    {
+        shouldPerformSegueWithIdentifier( "goToSignUp" , sender: self )
+    }
     
     //@IBAction func resetPasswordButtonPressed(sender: AnyObject) {}
     
@@ -98,6 +101,14 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                             self.logInErrorLabel.text = LOGIN_ERR_MSG
                             self.logInErrorLabel.hidden = false
                         
+                        case .ErrorCodeTooManyRequests:
+                            self.logInErrorLabel.text = REQUEST_ERR_MSG
+                            self.logInErrorLabel.hidden = false
+                        
+                        case .ErrorCodeNetworkError:
+                            self.logInErrorLabel.text = NETWORK_ERR_MSG
+                            self.logInErrorLabel.hidden = false
+                        
                         default:
                             print("error case not currently covered")
                     }
@@ -113,10 +124,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                     let uid = user.uid as String
                     self.currentUser = self.dataService.loadUser( uid )
                 }
+                self.performSegueWithIdentifier( "loggedIn", sender: self )
                 
             }
         })
-        //self.performSegueWithIdentifier( "loggedIn", sender: self )
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -136,8 +147,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
-                textField.layer.borderColor = TF_REG_COL
-                textField.layer.borderWidth = CGFloat( TF_REG_BRD )
+                textField.layer.borderColor = TEXTFIELD_REGULAR_BORDER_COLOUR
+                textField.layer.borderWidth = CGFloat( TEXTFIELD_REGULAR_BORDER_WIDTH )
             }
             
             }, error: { (validationError ) -> Void in
@@ -145,17 +156,17 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
-                    textField.layer.borderColor = TF_ERR_COL
-                    textField.layer.borderWidth = CGFloat( TF_ERR_BRD )
+                    textField.layer.borderColor = TEXTFIELD_ERROR_BORDER_COLOUR
+                    textField.layer.borderWidth = CGFloat( TEXTFIELD_ERROR_BORDER_WIDTH )
                 }
         })
         
         //register fields for validation
         //email field
-        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG), EmailRule( message: EMAIL_ERR_MSG)] )
+        validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), EmailRule( message: BAD_EMAIL_ERR_MSG)] )
         
         //password field
-        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQ_ERR_MSG)] )
+        validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG)] )
         
         
         //set up text field delegates
@@ -184,18 +195,19 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /*
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "loggedIn"
         {
             let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
         }
-        else if segue.identifier == "signUp"
+        else if segue.identifier == "goToSignUp"
         {
-            //let dvc = segue.destinationViewController as! SignUpViewController
+            let dvc = segue.destinationViewController as! SignUpViewController
+            dvc.currentUser = self.currentUser
         }
-    } */
+    }
     
 
 }
