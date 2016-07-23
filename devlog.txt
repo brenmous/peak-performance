@@ -28,8 +28,9 @@
 		- added validation
 		- started handling firebase errors
 
-23/07/2016 1600 
+23/07/2016 1600 - 1700
 	- adding Firebase error handling for login/signup
 		- add sign up error label to sign up view
 	- renamed some constants to be more understandable
 	- creating tabBar controller + weekly goal view
+	- BUG: login/signup segues to TabBarView before user is created
