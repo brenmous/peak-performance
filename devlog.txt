@@ -41,3 +41,4 @@
 	- created weekly goals data model
 	- working on weeklygoals data service
 	- BUG 2: user details pulled from DB are blank
+	- FIXED 2: duplicate entry in database breaks details - need to remove DB entry when deleting user
