@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
+/*
 /**
     Protocol for specifying Sign Up DataService.
  */
@@ -17,7 +18,7 @@ protocol SignUpDataService
 {
     func saveUser( user: User )
 }
-
+*/
 
 /**
     Class that controls the Sign Up view.
@@ -79,13 +80,13 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("validation successful")
+        print ("SUVC: validation successful") //DEBUG
         self.signUp()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)]) {
-        print ("validation failed")
+        print ("SUVC: validation failed") //DEBUG
     }
     
     /// Attempts to create a new Firebase user account with supplied email and password.
@@ -96,11 +97,11 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 if let error = error
                 {
                     //Check for Firebase errors and inform user of error here somewhere
-                    print("error creating account: " + error.localizedDescription)
+                    print("SUVC: error creating account - " + error.localizedDescription) //DEBUG
                 }
                 else
                 {
-                    print("account created")
+                    print("SUVC: account created") //DEBUG
                     self.firstLogin()
                 }
             })
@@ -115,7 +116,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             if let error = error
             {
                 //Check for Firebase errors and inform user here
-                print("error logging in: " + error.localizedDescription)
+                print("SUVC: error logging in - " + error.localizedDescription) //DEBUG
                 if let errCode = FIRAuthErrorCode( rawValue: error.code )
                 {
                     switch errCode
@@ -129,7 +130,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                         self.signUpErrorLabel.hidden = false
                         
                     default:
-                        print("error case not currently covered")
+                        print("SUVC: error case not currently covered") //DEBUG
                     }
                 }
 
@@ -159,7 +160,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             let email = self.emailField.text!
             let uid = user.uid as String
             
-            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, username: username, uid: uid )
+            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: [WeeklyGoal]() )
             
             self.dataService.saveUser( self.currentUser! )
         }

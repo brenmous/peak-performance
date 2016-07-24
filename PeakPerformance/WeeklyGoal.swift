@@ -39,4 +39,21 @@ class WeeklyGoal
         self.deadline = deadline
     }
     
+    /**
+    Convenience initiliaser for creating a goal with a deadline in String format.
+    
+    - Parameters:
+        - goalText: the text of the weekly goal.
+        - kla: the key life area of the weekly goal.
+        - deadline: the deadline of the weekly goal (in String format).
+    
+    - Returns: a weekly goal with the specified parameters.
+     */
+    convenience init ( goalText: String, kla: KeyLifeArea, deadline: String )
+    {
+        let dateFormatter = NSDateFormatter( )
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let newDeadline = dateFormatter.dateFromString(deadline)
+        self.init( goalText: goalText, kla: kla, deadline: newDeadline! )
+    }
 }

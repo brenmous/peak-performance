@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
+/*
 /**
     Protocol for specifying log in DataService requirements.
  */
@@ -17,7 +18,7 @@ protocol LogInDataService
 {
     func loadUser( uid: String ) -> User
 }
-
+*/
 
 /**
     Class that controls the Log In view.
@@ -71,13 +72,13 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("validation successful")
+        print ("LIVC: validation successful") //DEBUG
         self.login()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)]) {
-        print ("validation failed")
+        print ("LIVC: validation failed") //DEBUG
     }
 
     /// Attempts to authenticate a user using supplied details.
@@ -92,7 +93,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             
             if let error = error
             {
-                print("error logging in: " + error.localizedDescription)
+                print("LIVC: error logging in - " + error.localizedDescription) //DEBUG
                 if let errCode = FIRAuthErrorCode( rawValue: error.code )
                 {
                     switch errCode
@@ -110,13 +111,13 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                             self.logInErrorLabel.hidden = false
                         
                         default:
-                            print("error case not currently covered")
+                            print("LIVC: error case not currently covered") //DEBUG
                     }
                 }
             }
             else
             {
-                print("logged in")
+                print("LIVC: logged in") //DEBUG
                 self.logInErrorLabel.hidden = true
                 self.logInErrorLabel.text = ""
                 if let user = FIRAuth.auth( )?.currentUser
@@ -126,12 +127,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 }
                 if self.currentUser != nil
                 {
-                    print("got user")
+                    print("LIVC: got user") //DEBUG
                     self.performSegueWithIdentifier( "loggedIn", sender: self )
                 }
                 else
                 {
-                    print("can't segue: no user")
+                    print("LIVC: can't segue - no user") //DEBUG
                 }
                 
                 

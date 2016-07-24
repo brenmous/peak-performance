@@ -12,7 +12,7 @@ import Firebase
 /**
     This class handles read/write to the Firebase realtime database.
   */
-class DataService: SignUpDataService, LogInDataService
+class DataService       //: SignUpDataService, LogInDataService
 {
     // MARK: - Properties
     
@@ -37,7 +37,7 @@ class DataService: SignUpDataService, LogInDataService
         userRef.child("org").setValue(user.org)
         userRef.child("username").setValue(user.username)
         userRef.child("email").setValue(user.email)
-        print("user stored in database")
+        print("DS: user stored in database") //DEBUG
         
     }
     
@@ -58,6 +58,8 @@ class DataService: SignUpDataService, LogInDataService
         var org = ""
         var username = ""
         var email = ""
+        var weeklyGoalIDs: [String]? = nil
+        var weeklyGoals = [WeeklyGoal]()
         
         userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             fname = snapshot.value!["fname"] as! String
@@ -65,11 +67,57 @@ class DataService: SignUpDataService, LogInDataService
             org = snapshot.value!["org"] as! String
             username = snapshot.value!["username"] as! String
             email = snapshot.value!["email"] as! String
+            weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String]?
+                
         })
         
-        print("user details fetched from database")
-        return User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid)
+        if let wgIDs = weeklyGoalIDs
+        {
+            weeklyGoals = loadWeeklyGoals( wgIDs )
+        }
+        else
+        {
+            print("DS: no weekly goals found for user") //DEBUG
+        }
+        
+        print("DS: user details fetched from database") //DEBUG
+        return User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: weeklyGoals )
         
     }
+    
+    /**
+        Loads a user's weekly goals from the database and creates an array of weekly goals.
+
+        - Parameters:
+            - weeklyGoalIDs: array of weekly goal IDs.
+
+        - Returns: an array containing the user's weekly goals.
+     */
+    func loadWeeklyGoals( weeklyGoalIDs: [String] ) -> [WeeklyGoal]
+    {
+        let weeklyGoalsRef = baseRef.child("weeklyGoals")
+        var weeklyGoals = [WeeklyGoal]()
+        for goalID in weeklyGoalIDs
+        {
+            let weeklyGoalRef = weeklyGoalsRef.child(goalID)
+            var goalText = ""
+            var keyLifeArea = KeyLifeArea.Empty
+            var deadline = ""
+            
+            weeklyGoalRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                goalText = snapshot.value!["goalText"] as! String
+                keyLifeArea = snapshot.value!["keyLifeArea"] as! KeyLifeArea
+                deadline = snapshot.value!["deadline"] as! String
+            })
+            
+            let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline)
+            weeklyGoals.append( weeklyGoal )
+        }
+        
+        print("DS: weekly goals fetched from database") //DEBUG
+        return weeklyGoals
+    }
+    
+
     
 }

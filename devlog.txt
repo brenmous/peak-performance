@@ -38,3 +38,6 @@
 24/07/2016 2100 - 
 	- working on weekly goals view
 	- FIXED 1: can now segue to TBVC with a user and pass to tabs
+	- created weekly goals data model
+	- working on weeklygoals data service
+	- BUG 2: user details pulled from DB are blank

@@ -96,4 +96,6 @@ enum KeyLifeArea: String
     case Emotional = "Emotional & Spritual"
     
     case Parter = "Partner"
+    
+    case Empty = ""
 }

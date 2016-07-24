@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol WeeklyGoalsDataService
+{
+    
+}
+
+/**
+    Class that controls the weekly goals view.
+  */
 class WeeklyGoalsViewController: UITableViewController {
 
     /// The currently authenticated user.
@@ -21,6 +29,19 @@ class WeeklyGoalsViewController: UITableViewController {
         //Get user from TBVC
         let tbvc = self.tabBarController as! TabBarViewController
         self.currentUser = tbvc.currentUser
+        
+        if let cu = currentUser
+        {
+            print("WGVC: current user is " + "\(cu.fname)")
+            if cu.weeklyGoals.isEmpty
+            {
+                print("WGVC: no weekly goals")
+            }
+            else
+            {
+                print("WGVC: goals found")
+            }
+        }
      
 
         // Uncomment the following line to preserve selection between presentations
