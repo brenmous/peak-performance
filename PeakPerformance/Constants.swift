@@ -82,3 +82,18 @@ let TEXTFIELD_REGULAR_BORDER_COLOUR = UIColor.clearColor().CGColor
 let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.purpleColor().CGColor
 // UIColor:(160.0, 97.0, 5.0, 1.0)
 // UIColor(red: (160/255.0), green: (97/255.0), blue: (5/255.0), alpha: 1.0)
+
+
+// MARK: - Key Life Areas
+
+//An enum for the key life areas. TODO: Add rest of KLAs.
+enum KeyLifeArea: String
+{
+    case Family = "Family"
+    
+    case Work = "Work & Business"
+    
+    case Emotional = "Emotional & Spritual"
+    
+    case Parter = "Partner"
+}

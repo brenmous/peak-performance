@@ -18,6 +18,9 @@ class TabBarViewController: UITabBarController {
     /// The currently authenticated user.
     var currentUser: User?
     
+    
+    // MARK: - Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
