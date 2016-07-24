@@ -33,7 +33,8 @@
 		- add sign up error label to sign up view
 	- renamed some constants to be more understandable
 	- creating tabBar controller + weekly goal view
-	- BUG: login/signup segues to TabBarView before user is created
+	- BUG 1: login/signup segues to TabBarView before user is created
 
 24/07/2016 2100 - 
 	- working on weekly goals view
+	- FIXED 1: can now segue to TBVC with a user and pass to tabs
