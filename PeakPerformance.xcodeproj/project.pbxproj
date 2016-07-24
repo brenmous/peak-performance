@@ -22,6 +22,7 @@
 		B59EC4611D3FB50C00AF1297 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */; };
 		B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2C21D43465F0072E50A /* TabBarViewController.swift */; };
 		B5B8D2CB1D44D9270072E50A /* WeeklyGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */; };
+		B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5B8D2C21D43465F0072E50A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoalsViewController.swift; sourceTree = "<group>"; };
+		B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				B53B455D1D3FB85500F20D25 /* User.swift */,
+				B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */,
 				B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */,
 				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
+				B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */,
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
