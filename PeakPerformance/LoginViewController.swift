@@ -124,7 +124,16 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                     let uid = user.uid as String
                     self.currentUser = self.dataService.loadUser( uid )
                 }
-                self.performSegueWithIdentifier( "loggedIn", sender: self )
+                if self.currentUser != nil
+                {
+                    print("got user")
+                    self.performSegueWithIdentifier( "loggedIn", sender: self )
+                }
+                else
+                {
+                    print("can't segue: no user")
+                }
+                
                 
             }
         })

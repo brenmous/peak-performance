@@ -34,3 +34,6 @@
 	- renamed some constants to be more understandable
 	- creating tabBar controller + weekly goal view
 	- BUG: login/signup segues to TabBarView before user is created
+
+24/07/2016 2100 - 
+	- working on weekly goals view
