@@ -70,7 +70,7 @@ class DataService       //: SignUpDataService, LogInDataService
                 
         })
         
-        sleep( 5 )
+        
         
         if let wgIDs = weeklyGoalIDs
         {
