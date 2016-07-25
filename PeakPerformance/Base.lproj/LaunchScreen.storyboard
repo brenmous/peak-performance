@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P.E.A.K_Performance_Logo_Design_studies.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QOp-Qq-73C">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QOp-Qq-73C">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="P.E.A.K_Performance_Logo_Design_studies.jpg" width="1071" height="1931"/>
+        <image name="SplashScreen.jpg" width="1078" height="1933"/>
     </resources>
 </document>
