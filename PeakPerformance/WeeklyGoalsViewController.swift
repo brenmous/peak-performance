@@ -18,19 +18,25 @@ protocol WeeklyGoalsDataService
   */
 class WeeklyGoalsViewController: UITableViewController {
 
+    // MARK: - Properties
+    
     /// The currently authenticated user.
     var currentUser: User?
+    
+    /// This view controller's data service.
+    //n.b. I dunno if it's a good idea to give each tab bar item its own data service instance.
+    //Maybe it's better to delegate it back to a single DS in the TBVC. Will seek expert advice.
+    let dataService = DataService( )
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Get user from TBVC
         let tbvc = self.tabBarController as! TabBarViewController
         self.currentUser = tbvc.currentUser
         
-        if let cu = currentUser
+        if let cu = tbvc.currentUser
         {
             print("WGVC: current user is " + "\(cu.fname)")
             if cu.weeklyGoals.isEmpty

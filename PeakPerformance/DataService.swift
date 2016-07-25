@@ -18,9 +18,8 @@ class DataService       //: SignUpDataService, LogInDataService
     
     /// Base reference to the Firebase DB.
     let baseRef = FIRDatabase.database().reference()
-
     
-    // MARK: - Methods
+    // MARK: - User Methods
     
     /**
         Saves a user's details to the database.
@@ -85,6 +84,8 @@ class DataService       //: SignUpDataService, LogInDataService
         
     }
     
+    // MARK: - Weekly Goal Methods
+    
     /**
         Loads a user's weekly goals from the database and creates an array of weekly goals.
 
@@ -110,12 +111,36 @@ class DataService       //: SignUpDataService, LogInDataService
                 deadline = snapshot.value!["deadline"] as! String
             })
             
-            let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline)
+            let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, wgid: goalID )
             weeklyGoals.append( weeklyGoal )
         }
         
         print("DS: weekly goals fetched from database") //DEBUG
         return weeklyGoals
+    }
+    
+    /**
+        Saves a weekly goal to the database.
+    
+        - Parameters:
+            - uid: the user ID of the user the goal belongs to.
+            - weeklyGoal: the goal being saved.
+     */
+    func saveWeeklyGoal( uid: String, weeklyGoal: WeeklyGoal )
+    {
+        //save weekly goal ID under user info in database
+        let usersRef = baseRef.child("users")
+        let userRef = usersRef.child(uid)
+        userRef.child("weeklyGoals").setValue(weeklyGoal.wgid)
+        
+        //save weekly goal info under weekly goals in database
+        let weeklyGoalsRef = baseRef.child("weeklyGoals")
+        let weeklyGoalRef = weeklyGoalsRef.child(weeklyGoal.wgid)
+        weeklyGoalRef.child("goalText").setValue(weeklyGoal.goalText)
+        weeklyGoalRef.child("kla").setValue(weeklyGoal.kla.rawValue)
+        let dateFormatter = NSDateFormatter( )
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        weeklyGoalRef.child("deadline").setValue(dateFormatter.stringFromDate(weeklyGoal.deadline) )
     }
     
 

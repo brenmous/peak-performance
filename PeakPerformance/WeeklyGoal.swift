@@ -22,6 +22,9 @@ class WeeklyGoal
     /// The deadline of the weekly goal.
     var deadline: NSDate
     
+    /// Unique ID of the weekly goal.
+    var wgid: String
+    
     /**
     Initialises a new weekly goal.
     
@@ -32,15 +35,16 @@ class WeeklyGoal
     
     - Returns: A weekly goal with the specified paramters.
     */
-    init ( goalText: String, kla: KeyLifeArea, deadline: NSDate )
+    init ( goalText: String, kla: KeyLifeArea, deadline: NSDate, wgid: String )
     {
         self.goalText = goalText
         self.kla = kla
         self.deadline = deadline
+        self.wgid = wgid
     }
     
     /**
-    Convenience initiliaser for creating a goal with a deadline in String format.
+    Convenience initiliaser for creating a goal with a deadline in String format. Used when loading goals from database.
     
     - Parameters:
         - goalText: the text of the weekly goal.
@@ -49,11 +53,11 @@ class WeeklyGoal
     
     - Returns: a weekly goal with the specified parameters.
      */
-    convenience init ( goalText: String, kla: KeyLifeArea, deadline: String )
+    convenience init ( goalText: String, kla: KeyLifeArea, deadline: String, wgid: String )
     {
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let newDeadline = dateFormatter.dateFromString(deadline)
-        self.init( goalText: goalText, kla: kla, deadline: newDeadline! )
+        self.init( goalText: goalText, kla: kla, deadline: newDeadline!, wgid: wgid )
     }
 }
