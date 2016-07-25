@@ -43,6 +43,8 @@
 	- BUG 2: user details pulled from DB are blank
 	- FIXED 2: duplicate entry in database breaks details - need to remove DB entry when deleting user
 
-25/07/2016 1600 - 
+25/07/2016 1600 - 1740
 	- working on weekly goals
 		- created weekly goals save to DB function
+	- NEED TO REWORK DATA HANDLING
+		- vars in firebase closures can't be read outside closure

@@ -99,3 +99,8 @@ enum KeyLifeArea: String
     
     case Empty = ""
 }
+
+
+// MARK: - Database Reference Strings
+
+// MARK: - Date Format Strings

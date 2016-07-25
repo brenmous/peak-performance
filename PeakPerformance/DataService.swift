@@ -70,6 +70,8 @@ class DataService       //: SignUpDataService, LogInDataService
                 
         })
         
+        sleep( 5 )
+        
         if let wgIDs = weeklyGoalIDs
         {
             weeklyGoals = loadWeeklyGoals( wgIDs )
@@ -142,7 +144,6 @@ class DataService       //: SignUpDataService, LogInDataService
         dateFormatter.dateFormat = "dd/MM/yyyy"
         weeklyGoalRef.child("deadline").setValue(dateFormatter.stringFromDate(weeklyGoal.deadline) )
     }
-    
 
     
 }

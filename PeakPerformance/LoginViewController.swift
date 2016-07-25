@@ -125,9 +125,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                     let uid = user.uid as String
                     self.currentUser = self.dataService.loadUser( uid )
                 }
+
                 if self.currentUser != nil
                 {
-                    print("LIVC: got user") //DEBUG
+                    print("LIVC: got user" + "\(self.currentUser!.username)") //DEBUG
                     self.performSegueWithIdentifier( "loggedIn", sender: self )
                 }
                 else
