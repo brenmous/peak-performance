@@ -48,31 +48,35 @@ class DataService       //: SignUpDataService, LogInDataService
 
         - Returns: the user object.
     */
-    func loadUser( uid: String ) -> User {
+    func loadUser( uid: String, completion: ( user: User ) -> ( ) ) {
         
         let usersRef = baseRef.child("users")
         let userRef = usersRef.child(uid)
-        var fname = ""
+       /* var fname = ""
         var lname = ""
         var org = ""
         var username = ""
-        var email = ""
-        var weeklyGoalIDs: [String]? = nil
-        var weeklyGoals = [WeeklyGoal]()
+        var email = "" */
+        //var weeklyGoalIDs: [String]? = nil
+        //var weeklyGoals = [WeeklyGoal]()
         
         userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            fname = snapshot.value!["fname"] as! String
-            lname = snapshot.value!["lname"] as! String
-            org = snapshot.value!["org"] as! String
-            username = snapshot.value!["username"] as! String
-            email = snapshot.value!["email"] as! String
-            weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String]?
+            print( "FETCHING USER " )
+            let fname = snapshot.value!["fname"] as! String
+            let lname = snapshot.value!["lname"] as! String
+            let org = snapshot.value!["org"] as! String
+            let username = snapshot.value!["username"] as! String
+            let email = snapshot.value!["email"] as! String
+            let user = User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: [WeeklyGoal]())
+            completion( user: user )
+            print( "FETCH COMPLETE" )
+            //weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String]?
                 
         })
         
         
         
-        if let wgIDs = weeklyGoalIDs
+        /*if let wgIDs = weeklyGoalIDs
         {
             weeklyGoals = loadWeeklyGoals( wgIDs )
         }
@@ -83,6 +87,7 @@ class DataService       //: SignUpDataService, LogInDataService
         
         print("DS: user details fetched from database") //DEBUG
         return User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: weeklyGoals )
+        */
         
     }
     
