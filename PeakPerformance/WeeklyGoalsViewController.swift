@@ -26,7 +26,7 @@ class WeeklyGoalsViewController: UITableViewController {
     /// This view controller's data service.
     //n.b. I dunno if it's a good idea to give each tab bar item its own data service instance.
     //Maybe it's better to delegate it back to a single DS in the TBVC. Will seek expert advice.
-    let dataService = DataService( )
+    //let dataService = DataService( )
     
     
     override func viewDidLoad() {
@@ -47,6 +47,10 @@ class WeeklyGoalsViewController: UITableViewController {
             {
                 print("WGVC: goals found")
             }
+        }
+        else
+        {
+            print("WGVC: no user :(" )
         }
      
 

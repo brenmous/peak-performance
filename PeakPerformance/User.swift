@@ -31,8 +31,8 @@ class User
     /// User's unique ID.
     var uid: String
     
-    /// User's weekly goals.
-    var weeklyGoals: [WeeklyGoal]
+    /// User's weekly goals, stored by ID.
+    var weeklyGoals: [String]
     
     /**
         Initialises a new user.
@@ -47,7 +47,7 @@ class User
      
         - Returns: A user with the specified parameters.
     */
-    init( fname: String, lname: String, org: String, email: String, username: String, uid: String, weeklyGoals: [WeeklyGoal] )
+    init( fname: String, lname: String, org: String, email: String, username: String, uid: String, weeklyGoals: [String])
     {
         self.fname = fname
         self.lname = lname

@@ -17,7 +17,7 @@ class WeeklyGoal
     var goalText: String
     
     /// The key life area of the weekly goal.
-    var kla: KeyLifeArea
+    var kla: String
     
     /// The deadline of the weekly goal.
     var deadline: NSDate
@@ -35,7 +35,7 @@ class WeeklyGoal
     
     - Returns: A weekly goal with the specified paramters.
     */
-    init ( goalText: String, kla: KeyLifeArea, deadline: NSDate, wgid: String )
+    init ( goalText: String, kla: String, deadline: NSDate, wgid: String )
     {
         self.goalText = goalText
         self.kla = kla
@@ -53,7 +53,7 @@ class WeeklyGoal
     
     - Returns: a weekly goal with the specified parameters.
      */
-    convenience init ( goalText: String, kla: KeyLifeArea, deadline: String, wgid: String )
+    convenience init ( goalText: String, kla: String, deadline: String, wgid: String )
     {
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = "dd/MM/yyyy"

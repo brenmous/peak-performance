@@ -127,15 +127,16 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             self.dataService.loadUser( user.uid ) {
                 (user) in
                 self.currentUser = user
-                
+
                 //TEST WEEKLY GOAL
-                //let wg = WeeklyGoal( goalText: "test", kla: KeyLifeArea.Family, deadline: "12/05/16", wgid: "12345")
+                //let wg = WeeklyGoal( goalText: "test2", kla: KeyLifeArea.Family, deadline: "12/05/2017", wgid: "54321")
                 //self.dataService.saveWeeklyGoal(user.uid, weeklyGoal: wg)
                 
                 self.performSegueWithIdentifier("loggedIn", sender: self)
             }
         }
     }
+    
 
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {

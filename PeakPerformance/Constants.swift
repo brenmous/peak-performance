@@ -86,19 +86,8 @@ let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.purpleColor().CGColor
 
 // MARK: - Key Life Areas
 
-//An enum for the key life areas. TODO: Add rest of KLAs.
-enum KeyLifeArea: String
-{
-    case Family = "Family"
-    
-    case Work = "Work & Business"
-    
-    case Emotional = "Emotional & Spritual"
-    
-    case Parter = "Partner"
-    
-    case Empty = ""
-}
+//Key Life Area strings. TODO: Add rest of KLAs.
+let KLA_FAMILY = "Family"
 
 
 // MARK: - Database Reference Strings

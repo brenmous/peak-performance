@@ -60,30 +60,18 @@ class DataService       //: SignUpDataService, LogInDataService
             let org = snapshot.value!["org"] as! String
             let username = snapshot.value!["username"] as! String
             let email = snapshot.value!["email"] as! String
-            //let weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String]
+            let weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String:Bool]
             
-            //for wgid in weeklyGoalIDs
-            //{
-            //    print( wgid )
-            //}
-            
-            let user = User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: [WeeklyGoal]())
+            var weeklyGoalIDStrings = [String]( )
+            for wgid in weeklyGoalIDs
+            {
+                weeklyGoalIDStrings.append( wgid.0 )
+            }
+            let user = User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: weeklyGoalIDStrings )
             completion( user: user )
+            
             print( "DS: user \(user.username) fetched" ) //DEBUG
-        })
-        /*if let wgIDs = weeklyGoalIDs
-        {
-            weeklyGoals = loadWeeklyGoals( wgIDs )
-        }
-        else
-        {
-            print("DS: no weekly goals found for user") //DEBUG
-        }
-        
-        print("DS: user details fetched from database") //DEBUG
-        return User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: weeklyGoals )
-        */
-        
+        })        
     }
     
     // MARK: - Weekly Goal Methods
@@ -101,7 +89,7 @@ class DataService       //: SignUpDataService, LogInDataService
     
         weeklyGoalRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             let goalText = snapshot.value!["goalText"] as! String
-            let keyLifeArea = snapshot.value!["keyLifeArea"] as! KeyLifeArea
+            let keyLifeArea = snapshot.value!["kla"] as! String
             let deadline = snapshot.value!["deadline"] as! String
             let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, wgid: weeklyGoalID )
             completion( weeklyGoal: weeklyGoal )
@@ -129,7 +117,7 @@ class DataService       //: SignUpDataService, LogInDataService
         let weeklyGoalsRef = baseRef.child("weeklyGoals")
         let weeklyGoalRef = weeklyGoalsRef.child(weeklyGoal.wgid)
         weeklyGoalRef.child("goalText").setValue(weeklyGoal.goalText)
-        weeklyGoalRef.child("kla").setValue(weeklyGoal.kla.rawValue)
+        weeklyGoalRef.child("kla").setValue(weeklyGoal.kla)
         weeklyGoalRef.child("uid").setValue(uid)
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = "dd/MM/yyyy"
