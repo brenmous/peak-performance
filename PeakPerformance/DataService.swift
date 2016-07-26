@@ -61,7 +61,7 @@ class DataService       //: SignUpDataService, LogInDataService
         //var weeklyGoals = [WeeklyGoal]()
         
         userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            print( "FETCHING USER " )
+            print( "DS: fetching user" ) //DEBUG
             let fname = snapshot.value!["fname"] as! String
             let lname = snapshot.value!["lname"] as! String
             let org = snapshot.value!["org"] as! String
@@ -69,13 +69,10 @@ class DataService       //: SignUpDataService, LogInDataService
             let email = snapshot.value!["email"] as! String
             let user = User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: [WeeklyGoal]())
             completion( user: user )
-            print( "FETCH COMPLETE" )
+            print( "DS: user \(user.username) fetched" ) //DEBUG
             //weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String]?
                 
         })
-        
-        
-        
         /*if let wgIDs = weeklyGoalIDs
         {
             weeklyGoals = loadWeeklyGoals( wgIDs )

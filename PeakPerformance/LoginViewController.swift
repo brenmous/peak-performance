@@ -115,53 +115,23 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                     }
                 }
             }
-            else
-            {
-                print("LIVC: logged in") //DEBUG
-                self.logInErrorLabel.hidden = true
-                self.logInErrorLabel.text = ""
-               /* if let user = FIRAuth.auth( )?.currentUser
-                {
-                    let uid = user.uid as String
-                    self.dataService.loadUser( uid ) {
-                        ( user ) in
-                        self.currentUser = user
-                    }
-                    //self.currentUser = self.dataService.loadUser( uid )
-                }
-
-                if self.currentUser != nil
-                {
-                    print("LIVC: got user" + "\(self.currentUser!.username)") //DEBUG
-                    self.performSegueWithIdentifier( "loggedIn", sender: self )
-                }
-                else
-                {
-                    print("LIVC: can't segue - no user") //DEBUG
-                } */
-                
-                
-            }
         })
         fetchUser( )
-
     }
     
     func fetchUser( )
     {
         if let user = FIRAuth.auth()?.currentUser
         {
+            print("LIVC: logged in")
             self.dataService.loadUser( user.uid ) {
                 (user) in
-                print("current user is \(user.username)")
                 self.currentUser = user
                 self.performSegueWithIdentifier("loggedIn", sender: self)
             }
         }
     }
-    
-   
-    
+
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         //self.login()
