@@ -119,17 +119,29 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 }
             }
         })
-        fetchUserContent( )
+        //Authentication was successful so start fetching the user details and their content.
+        fetchUser( )
     }
     
-    func fetchUserContent( )
+    /// This method fetches the user object from the database and sets it as the currentUser.
+    func fetchUser( )
     {
         if let user = FIRAuth.auth()?.currentUser
         {
             print("LIVC: logged in")
+            //note that when calling a method with a completion block as its last argument, you can supply the needed parameters in brackets
+            // and then specify the completion block in curly braces. Generally I use a sameline curly brace to indicate this and a newline curly brace everywhere else.
             self.dataService.loadUser( user.uid ) {
+                
+                //this is the variable being passed by the completion block back in DataService
                 (user) in
                 self.currentUser = user
+                
+                //Because Firebase retrieval (this method) is asynchronous, we have to chain calls to the fetch (and ultimately the segue) methods by placing 
+                // calling them in the completion block.
+                //Otherwise if they are placed outside this block, the program will continue before the fetch has completed.
+                
+                //Go to next fetch.
                 //self.fetchWeeklyGoals( ) WIP
                 self.performSegueWithIdentifier("loggedIn", sender: self)
                 

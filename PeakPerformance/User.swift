@@ -29,6 +29,9 @@ class User
     var uid: String
     
     /// User's weekly goals, stored by ID.
+    //Goals will be stored as IDs under users as there's not much point nesting it in user objects, we only need to know what goals the user owns.
+    //When fetched from the database the goals will already be in an array, and the goal VCs will require them in an array for the table views to work.
+    //Just saves a bit of effort having to arbitrarily store fetched goals in the user object then place them in a variable in the VCs.
     var weeklyGoals: [String]
     
     /**

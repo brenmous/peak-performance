@@ -108,6 +108,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     }
     
     //delegate this back to Login VC???
+    /// Authenticates the user with the supplied details and if succesfull, creates the user object.
     func firstLogin( )
     {
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
@@ -140,7 +141,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 print("logged in")
                 self.createUser( )
                 //currently this segue goes to the TabBar view, but this where you would segue to the tutorial/initial setup
-                //feel free to change the segue in the storyboard (but keep the ID!) when it's ready
+                //feel free to change the segue in the storyboard (but keep the segue identifier, or change it here) when it's ready
                 self.performSegueWithIdentifier( "firstTimeLogIn", sender: self )
             }
         })
@@ -174,7 +175,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         //Set up SwiftValidator style transformers (modifying the field/error label based on success or failure).
         //This should pretty much stay the same for all controllers and text fields.
