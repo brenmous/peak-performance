@@ -48,17 +48,10 @@ class DataService       //: SignUpDataService, LogInDataService
 
         - Returns: the user object.
     */
-    func loadUser( uid: String, completion: ( user: User ) -> ( ) ) {
+    func loadUser( uid: String, completion: ( user: User ) -> Void ) {
         
         let usersRef = baseRef.child("users")
         let userRef = usersRef.child(uid)
-       /* var fname = ""
-        var lname = ""
-        var org = ""
-        var username = ""
-        var email = "" */
-        //var weeklyGoalIDs: [String]? = nil
-        //var weeklyGoals = [WeeklyGoal]()
         
         userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             print( "DS: fetching user" ) //DEBUG
@@ -67,11 +60,16 @@ class DataService       //: SignUpDataService, LogInDataService
             let org = snapshot.value!["org"] as! String
             let username = snapshot.value!["username"] as! String
             let email = snapshot.value!["email"] as! String
+            //let weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String]
+            
+            //for wgid in weeklyGoalIDs
+            //{
+            //    print( wgid )
+            //}
+            
             let user = User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: [WeeklyGoal]())
             completion( user: user )
             print( "DS: user \(user.username) fetched" ) //DEBUG
-            //weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String]?
-                
         })
         /*if let wgIDs = weeklyGoalIDs
         {
@@ -91,36 +89,24 @@ class DataService       //: SignUpDataService, LogInDataService
     // MARK: - Weekly Goal Methods
     
     /**
-        Loads a user's weekly goals from the database and creates an array of weekly goals.
+        Loads a weekly goal from the database and creates a WeeklyGoal object.
 
         - Parameters:
-            - weeklyGoalIDs: array of weekly goal IDs.
-
-        - Returns: an array containing the user's weekly goals.
+            - weeklyGoalID: a weekly goal IDs.
      */
-    func loadWeeklyGoals( weeklyGoalIDs: [String] ) -> [WeeklyGoal]
+    func loadWeeklyGoal( weeklyGoalID: String, completion: ( weeklyGoal: WeeklyGoal ) -> Void )
     {
         let weeklyGoalsRef = baseRef.child("weeklyGoals")
-        var weeklyGoals = [WeeklyGoal]()
-        for goalID in weeklyGoalIDs
-        {
-            let weeklyGoalRef = weeklyGoalsRef.child(goalID)
-            var goalText = ""
-            var keyLifeArea = KeyLifeArea.Empty
-            var deadline = ""
-            
-            weeklyGoalRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                goalText = snapshot.value!["goalText"] as! String
-                keyLifeArea = snapshot.value!["keyLifeArea"] as! KeyLifeArea
-                deadline = snapshot.value!["deadline"] as! String
-            })
-            
-            let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, wgid: goalID )
-            weeklyGoals.append( weeklyGoal )
-        }
-        
-        print("DS: weekly goals fetched from database") //DEBUG
-        return weeklyGoals
+        let weeklyGoalRef = weeklyGoalsRef.child(weeklyGoalID)
+    
+        weeklyGoalRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            let goalText = snapshot.value!["goalText"] as! String
+            let keyLifeArea = snapshot.value!["keyLifeArea"] as! KeyLifeArea
+            let deadline = snapshot.value!["deadline"] as! String
+            let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, wgid: weeklyGoalID )
+            completion( weeklyGoal: weeklyGoal )
+            print("DS: fetched weekly goal \(weeklyGoal.wgid)") //DEBUG
+        })
     }
     
     /**
@@ -135,16 +121,20 @@ class DataService       //: SignUpDataService, LogInDataService
         //save weekly goal ID under user info in database
         let usersRef = baseRef.child("users")
         let userRef = usersRef.child(uid)
-        userRef.child("weeklyGoals").setValue(weeklyGoal.wgid)
+        let goalRef = userRef.child("weeklyGoals")
+        goalRef.child(weeklyGoal.wgid).setValue(true)
+        print("DS: saved weeklygoal under user ID" ) //DEBUG
         
         //save weekly goal info under weekly goals in database
         let weeklyGoalsRef = baseRef.child("weeklyGoals")
         let weeklyGoalRef = weeklyGoalsRef.child(weeklyGoal.wgid)
         weeklyGoalRef.child("goalText").setValue(weeklyGoal.goalText)
         weeklyGoalRef.child("kla").setValue(weeklyGoal.kla.rawValue)
+        weeklyGoalRef.child("uid").setValue(uid)
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = "dd/MM/yyyy"
         weeklyGoalRef.child("deadline").setValue(dateFormatter.stringFromDate(weeklyGoal.deadline) )
+        print("DS: saved weeklygoal under wgid" ) //DEBUG
     }
 
     

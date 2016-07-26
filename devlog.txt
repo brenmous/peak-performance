@@ -50,3 +50,7 @@
 		- vars in firebase closures can't be read outside closure
 	- Data handling fixed! (tentatively)
 		- need to fully implement and rework some stuff
+
+26/07/2016 1220 - 
+	- implementing dataservice fix
+	- working on weeklygoal dataservice and view
