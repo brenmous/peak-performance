@@ -104,7 +104,7 @@ class DataService       //: SignUpDataService, LogInDataService
     {
         let weeklyGoalsRef = baseRef.child("weeklyGoals")
         let weeklyGoalRef = weeklyGoalsRef.child(weeklyGoalID)
-    
+        
         weeklyGoalRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             let goalText = snapshot.value!["goalText"] as! String
             let keyLifeArea = snapshot.value!["kla"] as! String

@@ -382,8 +382,6 @@
                         <outlet property="passwordErrorLabel" destination="rYb-mz-ppc" id="Zkb-r1-bUl"/>
                         <outlet property="passwordField" destination="8fq-7X-SFN" id="8Dc-OP-DHb"/>
                         <outlet property="signUpErrorLabel" destination="Fgv-UW-LfC" id="Czi-Bo-3Wd"/>
-                        <outlet property="userNameErrorLabel" destination="XmE-wg-CSO" id="kzd-Kj-Fa8"/>
-                        <outlet property="userNameField" destination="1NA-lP-kk9" id="nsd-hP-0r3"/>
                         <segue destination="dRR-os-Kvs" kind="show" identifier="firstTimeLogIn" id="uPT-oo-Xfi"/>
                     </connections>
                 </viewController>
