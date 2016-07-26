@@ -74,14 +74,17 @@ class DataService       //: SignUpDataService, LogInDataService
             
             //If data doesn't exist in the database, the snapshot will be nil.
             //Make sure to check before accessing these optional snapshots.
+            //WeeklyGoalIDs is a dictionary because we have saved it as an index (see comments in saveWeeklyGoals)...
             if let wgids = weeklyGoalIDs as? [String:Bool]
             {
                 for wgid in wgids
                 {
+                    //... so wgid.0 is the value we actually want.
                     weeklyGoalIDStrings.append( wgid.0 )
                 }
             }
             let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, weeklyGoals: weeklyGoalIDStrings )
+            
             completion( user: user ) //passing the created user back using the completion block
             
             print( "DS: user \(user.email) fetched" ) //DEBUG
@@ -96,6 +99,7 @@ class DataService       //: SignUpDataService, LogInDataService
         - Parameters:
             - weeklyGoalID: an array of weekly goal IDs.
      */
+    //WIP
     func loadWeeklyGoal( weeklyGoalID: String, completion: ( weeklyGoal: WeeklyGoal ) -> Void )
     {
         let weeklyGoalsRef = baseRef.child("weeklyGoals")
@@ -115,7 +119,7 @@ class DataService       //: SignUpDataService, LogInDataService
         Saves a weekly goal to the database.
         The goals are stored in their own nodes under their IDs, and the goal IDs are also stored under the node of the user that owns them.
         Firebase snapshots capture all data within a node, so only storing the IDs under User means we can iterate through and retrieve
-        only the goals that we need (if nessecary).
+        only the goals that we need (if necessary).
     
         - Parameters:
             - uid: the user ID of the user the goal belongs to.
