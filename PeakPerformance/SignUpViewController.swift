@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var orgField: UITextField!
     @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var userNameField: UITextField!
+    //@IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
@@ -54,7 +54,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var lastNameErrorLabel: UILabel!
     @IBOutlet weak var orgErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
-    @IBOutlet weak var userNameErrorLabel: UILabel!
+   // @IBOutlet weak var userNameErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     @IBOutlet weak var signUpErrorLabel: UILabel!
@@ -156,11 +156,11 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             let fname = self.firstNameField.text!
             let lname = self.lastNameField.text!
             let org = self.orgField.text!
-            let username = self.userNameField.text!
+            //let username = self.userNameField.text!
             let email = self.emailField.text!
             let uid = user.uid as String
             
-            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: [String]() )
+            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid, weeklyGoals: [String]() )
             
             self.dataService.saveUser( self.currentUser! )
         }
@@ -215,7 +215,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         validator.registerField(emailField, errorLabel: emailErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), EmailRule( message: BAD_EMAIL_ERR_MSG)] )
         
         //username field
-        validator.registerField(userNameField, errorLabel: userNameErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), AlphaNumericRule( message: ALPHA_NUMERIC_CHAR_ERR_MSG) ] )
+        //validator.registerField(userNameField, errorLabel: userNameErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), AlphaNumericRule( message: ALPHA_NUMERIC_CHAR_ERR_MSG) ] )
         
         //password field
         validator.registerField(passwordField, errorLabel: passwordErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), MinLengthRule(length: PW_MIN_LEN, message: SHORTPW_ERR_MSG ), MaxLengthRule(length: PW_MAX_LEN, message: LONGPW_ERR_MSG), PasswordRule( message: BADPW_ERR_MSG ) ] )
@@ -238,7 +238,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         lastNameErrorLabel.hidden = true
         orgErrorLabel.hidden = true
         emailErrorLabel.hidden = true
-        userNameErrorLabel.hidden = true
+        //userNameErrorLabel.hidden = true
         passwordErrorLabel.hidden = true
         confirmPasswordErrorLabel.hidden = true
         signUpErrorLabel.hidden = true

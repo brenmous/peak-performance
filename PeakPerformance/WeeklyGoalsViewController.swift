@@ -38,7 +38,7 @@ class WeeklyGoalsViewController: UITableViewController {
         
         if let cu = tbvc.currentUser
         {
-            print("WGVC: current user is " + "\(cu.username)")
+            print("WGVC: current user is " + "\(cu.email)")
             if cu.weeklyGoals.isEmpty
             {
                 print("WGVC: no weekly goals")

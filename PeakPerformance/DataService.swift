@@ -34,7 +34,7 @@ class DataService       //: SignUpDataService, LogInDataService
         userRef.child("fname").setValue(user.fname)
         userRef.child("lname").setValue(user.lname)
         userRef.child("org").setValue(user.org)
-        userRef.child("username").setValue(user.username)
+        //userRef.child("username").setValue(user.username)
         userRef.child("email").setValue(user.email)
         print("DS: user stored in database") //DEBUG
         
@@ -58,7 +58,7 @@ class DataService       //: SignUpDataService, LogInDataService
             let fname = snapshot.value!["fname"] as! String
             let lname = snapshot.value!["lname"] as! String
             let org = snapshot.value!["org"] as! String
-            let username = snapshot.value!["username"] as! String
+            //let username = snapshot.value!["username"] as! String
             let email = snapshot.value!["email"] as! String
             let weeklyGoalIDs = snapshot.value!["weeklyGoals"]
             var weeklyGoalIDStrings = [String]( )
@@ -69,10 +69,10 @@ class DataService       //: SignUpDataService, LogInDataService
                     weeklyGoalIDStrings.append( wgid.0 )
                 }
             }
-            let user = User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: weeklyGoalIDStrings )
+            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, weeklyGoals: weeklyGoalIDStrings )
             completion( user: user )
             
-            print( "DS: user \(user.username) fetched" ) //DEBUG
+            print( "DS: user \(user.email) fetched" ) //DEBUG
         })        
     }
     

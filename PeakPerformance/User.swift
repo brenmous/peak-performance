@@ -25,9 +25,6 @@ class User
     /// User's email.
     var email: String
     
-    /// User's username.
-    var username: String
-    
     /// User's unique ID.
     var uid: String
     
@@ -47,13 +44,12 @@ class User
      
         - Returns: A user with the specified parameters.
     */
-    init( fname: String, lname: String, org: String, email: String, username: String, uid: String, weeklyGoals: [String])
+    init( fname: String, lname: String, org: String, email: String, uid: String, weeklyGoals: [String])
     {
         self.fname = fname
         self.lname = lname
         self.org = org
         self.email = email
-        self.username = username
         self.uid = uid
         self.weeklyGoals = weeklyGoals
     }
