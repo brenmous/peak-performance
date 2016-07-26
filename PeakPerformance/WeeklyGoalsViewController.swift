@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol WeeklyGoalsDataService
-{
-    
-}
 
 /**
     Class that controls the weekly goals view.
@@ -19,44 +15,23 @@ protocol WeeklyGoalsDataService
 class WeeklyGoalsViewController: UITableViewController {
 
     // MARK: - Properties
-    
+
     /// The currently authenticated user.
     var currentUser: User?
     
-    /// This view controller's data service.
-    //n.b. I dunno if it's a good idea to give each tab bar item its own data service instance.
-    //Maybe it's better to delegate it back to a single DS in the TBVC. Will seek expert advice.
-    //let dataService = DataService( )
-    
+    /// The user's weekly goals.
+    var weeklyGoals = [WeeklyGoal]( )
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Get user from TBVC
+        //Get data from tab bar view controller
         let tbvc = self.tabBarController as! TabBarViewController
-        self.currentUser = tbvc.currentUser
+        self.currentUser = tbvc.currentUser!
+        self.weeklyGoals = tbvc.weeklyGoals
+    
+        tableView.reloadData()
         
-        if let cu = tbvc.currentUser
-        {
-            print("WGVC: current user is " + "\(cu.email)")
-            if cu.weeklyGoals.isEmpty
-            {
-                print("WGVC: no weekly goals")
-            }
-            else
-            {
-                print("WGVC: goals found")
-            }
-        }
-        else
-        {
-            print("WGVC: no user :(" )
-        }
-     
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -77,15 +52,15 @@ class WeeklyGoalsViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return (currentUser?.weeklyGoals.count)!
-        return 1
+        return weeklyGoals.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
-
+        let goal = weeklyGoals[indexPath.row]
         // Configure the cell...
-
+        cell.textLabel!.text = goal.wgid
         return cell
     }
     
