@@ -173,8 +173,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         self.weeklyGoals.append( weeklyGoal )
                         
                         //last goal is fetched so chain the next method before the completion block ends
-                        if index == cu.weeklyGoals.count
+                        if index == cu.weeklyGoals.count - 1
                         {
+                            print("LIVC: last weekly goal loaded, seguing....")
                             //go to next fetch when it's ready, but for now we shall segue
                             self.performSegueWithIdentifier("loggedIn", sender: self)
                         }
