@@ -60,12 +60,14 @@ class DataService       //: SignUpDataService, LogInDataService
             let org = snapshot.value!["org"] as! String
             let username = snapshot.value!["username"] as! String
             let email = snapshot.value!["email"] as! String
-            let weeklyGoalIDs = snapshot.value!["weeklyGoals"] as! [String:Bool]
-            
+            let weeklyGoalIDs = snapshot.value!["weeklyGoals"]
             var weeklyGoalIDStrings = [String]( )
-            for wgid in weeklyGoalIDs
+            if let wgids = weeklyGoalIDs as? [String:Bool]
             {
-                weeklyGoalIDStrings.append( wgid.0 )
+                for wgid in wgids
+                {
+                    weeklyGoalIDStrings.append( wgid.0 )
+                }
             }
             let user = User(fname: fname, lname: lname, org: org, email: email, username: username, uid: uid, weeklyGoals: weeklyGoalIDStrings )
             completion( user: user )
@@ -77,10 +79,10 @@ class DataService       //: SignUpDataService, LogInDataService
     // MARK: - Weekly Goal Methods
     
     /**
-        Loads a weekly goal from the database and creates a WeeklyGoal object.
+        Loads a user's weekly goals from the database and creates an array of WeeklyGoal objects.
 
         - Parameters:
-            - weeklyGoalID: a weekly goal IDs.
+            - weeklyGoalID: an array of weekly goal IDs.
      */
     func loadWeeklyGoal( weeklyGoalID: String, completion: ( weeklyGoal: WeeklyGoal ) -> Void )
     {

@@ -51,6 +51,6 @@
 	- Data handling fixed! (tentatively)
 		- need to fully implement and rework some stuff
 
-26/07/2016 1220 - 
+26/07/2016 1220 - 1400 
 	- implementing dataservice fix
 	- working on weeklygoal dataservice and view

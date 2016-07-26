@@ -30,6 +30,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// The currently authenticated user.
     var currentUser: User?
     
+    /// The user's weekly goals.
+    var weeklyGoals = [WeeklyGoal]( )
+    
     /// This view controller's DataService instance.
     let dataService = DataService( )
     
@@ -116,10 +119,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 }
             }
         })
-        fetchUser( )
+        fetchUserContent( )
     }
     
-    func fetchUser( )
+    func fetchUserContent( )
     {
         if let user = FIRAuth.auth()?.currentUser
         {
@@ -127,15 +130,36 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             self.dataService.loadUser( user.uid ) {
                 (user) in
                 self.currentUser = user
-
+                //self.fetchWeeklyGoals( ) WIP
+                self.performSegueWithIdentifier("loggedIn", sender: self)
+                
                 //TEST WEEKLY GOAL
                 //let wg = WeeklyGoal( goalText: "test2", kla: KeyLifeArea.Family, deadline: "12/05/2017", wgid: "54321")
                 //self.dataService.saveWeeklyGoal(user.uid, weeklyGoal: wg)
-                
-                self.performSegueWithIdentifier("loggedIn", sender: self)
             }
         }
     }
+    
+    //WIP
+    /*
+    func fetchWeeklyGoals( )
+    {
+        if let cu = currentUser
+        {
+            for wgid in cu.weeklyGoals
+            {
+                self.dataService.loadWeeklyGoal(wgid) {
+                    (weeklyGoal) in
+                    self.weeklyGoals.append( weeklyGoal )
+                }
+            }
+        }
+    } */
+    /*
+    func fetchComplete( )
+    {
+        performSegueWithIdentifier("loggedIn", sender: self)
+    } */
     
 
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -209,6 +233,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         {
             let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
+            dvc.weeklyGoals = self.weeklyGoals
         }
         else if segue.identifier == "goToSignUp"
         {
