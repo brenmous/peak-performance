@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     
     @IBAction func goToLogIn(sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier("goToLogIn", sender: self )
+        shouldPerformSegueWithIdentifier(GO_TO_LOG_IN_SEGUE, sender: self )
     }
     
     
@@ -142,7 +142,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.createUser( )
                 //currently this segue goes to the TabBar view, but this where you would segue to the tutorial/initial setup
                 //feel free to change the segue in the storyboard (but keep the segue identifier, or change it here) when it's ready
-                self.performSegueWithIdentifier( "firstTimeLogIn", sender: self )
+                self.performSegueWithIdentifier( FT_LOG_IN_SEGUE, sender: self )
             }
         })
         
@@ -251,12 +251,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //if identifier == "loggedIn" {}
-        if segue.identifier == "goToLogIn"
+        if segue.identifier == GO_TO_LOG_IN_SEGUE
         {
             let dvc = segue.destinationViewController as! LoginViewController
             dvc.currentUser = self.currentUser
         }
-        else if segue.identifier == "firstTimeLogIn"
+        else if segue.identifier == FT_LOG_IN_SEGUE
         {
             //here is where you would segue to tutorial/inital setup when it's ready
             let dvc = segue.destinationViewController as! TabBarViewController

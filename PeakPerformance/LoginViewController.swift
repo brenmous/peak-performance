@@ -63,7 +63,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     @IBAction func signUpButtonPressed(sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier( "goToSignUp" , sender: self )
+        shouldPerformSegueWithIdentifier( GO_TO_SIGN_UP_SEGUE , sender: self )
     }
     
     //@IBAction func resetPasswordButtonPressed(sender: AnyObject) {}
@@ -80,7 +80,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)]) {
+    func validationFailed(errors: [(Validatable, ValidationError)])
+    {
         print ("LIVC: validation failed") //DEBUG
     }
 
@@ -164,7 +165,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             //If the user has no goals then go straight to weekly goal view...
             if cu.weeklyGoals.isEmpty
             {
-                self.performSegueWithIdentifier("loggedIn", sender: self)
+                self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
             }
             //...otherwise fetch the user's goals
             else
@@ -179,10 +180,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         if index == cu.weeklyGoals.count - 1
                         {
                             //go to next fetch when it's ready, but for now we shall segue
-                            dispatch_async( dispatch_get_main_queue(), {
+                            dispatch_async( dispatch_get_main_queue() ) {
                                 print("LIVC: last weekly goal loaded, seguing....")
-                                self.performSegueWithIdentifier("loggedIn", sender: self)
-                            });
+                                self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                            }
                         }
                     }
                 }
@@ -264,13 +265,13 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "loggedIn"
+        if segue.identifier == LOGGED_IN_SEGUE
         {
             let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
             dvc.weeklyGoals = self.weeklyGoals
         }
-        else if segue.identifier == "goToSignUp"
+        else if segue.identifier == GO_TO_SIGN_UP_SEGUE
         {
             let dvc = segue.destinationViewController as! SignUpViewController
             dvc.currentUser = self.currentUser
