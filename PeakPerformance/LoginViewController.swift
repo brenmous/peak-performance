@@ -138,7 +138,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 self.currentUser = user
                 
                 //Because Firebase retrieval (this method) is asynchronous, we have to chain calls to the fetch/segue methods by
-                // calling them in the completion block.
+                // calling them in the completion block within a GCD (dispatch_async).
                 //Otherwise if they are placed outside this block, the program will execute those calls before the fetch has completed.
                 
                 //Go to next fetch.
