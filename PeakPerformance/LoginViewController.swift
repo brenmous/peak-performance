@@ -142,7 +142,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 //Otherwise if they are placed outside this block, the program will execute those calls before the fetch has completed.
                 
                 //Go to next fetch.
-                self.fetchWeeklyGoals( )
+                dispatch_async( dispatch_get_main_queue() ) {
+                    print("LIVC: user fetched, fetching weekly goals...")
+                    self.fetchWeeklyGoals( )
+                }
                 
                 //self.performSegueWithIdentifier("loggedIn", sender: self)
                 
@@ -175,9 +178,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         //last goal is fetched so chain the next method before the completion block ends
                         if index == cu.weeklyGoals.count - 1
                         {
-                            print("LIVC: last weekly goal loaded, seguing....")
                             //go to next fetch when it's ready, but for now we shall segue
-                            self.performSegueWithIdentifier("loggedIn", sender: self)
+                            dispatch_async( dispatch_get_main_queue(), {
+                                print("LIVC: last weekly goal loaded, seguing....")
+                                self.performSegueWithIdentifier("loggedIn", sender: self)
+                            });
                         }
                     }
                 }

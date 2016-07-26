@@ -30,7 +30,9 @@ class WeeklyGoalsViewController: UITableViewController {
         self.currentUser = tbvc.currentUser!
         self.weeklyGoals = tbvc.weeklyGoals
     
-        tableView.reloadData()
+        print("WGVC: got user \(currentUser!.email) with \(weeklyGoals.count) weekly goals") //DEBUG
+        
+        //tableView.reloadData()
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
