@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -399,14 +400,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BBa-rQ-l2w" kind="relationship" relationship="viewControllers" id="kVO-jN-fMe"/>
+                        <segue destination="5Ni-ew-DkC" kind="relationship" relationship="viewControllers" id="kVO-jN-fMe"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2b-WW-js4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1059" y="68"/>
         </scene>
-        <!--Item-->
+        <!--Title-->
         <scene sceneID="mES-0m-MOx">
             <objects>
                 <tableViewController id="BBa-rQ-l2w" customClass="WeeklyGoalsViewController" customModule="PeakPerformance" customModuleProvider="target" sceneMemberID="viewController">
@@ -416,7 +417,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weeklyGoalCell" id="wbi-Bg-0ZW">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wbi-Bg-0ZW" id="NwC-tn-gqo">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -429,9 +430,34 @@
                             <outlet property="delegate" destination="BBa-rQ-l2w" id="ax7-Be-dkT"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="hGs-36-rSL"/>
+                    <navigationItem key="navigationItem" title="Title" id="XhI-57-Qs6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="A6M-9o-uns"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="wF3-ti-P6Q"/>
+                            <barButtonItem systemItem="edit" id="ffR-rp-oQC"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HS0-l7-ZTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2664" y="-178"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ym4-aM-nmP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Ni-ew-DkC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="hGs-36-rSL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hqx-tn-c6g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BBa-rQ-l2w" kind="relationship" relationship="rootViewController" id="Aey-0H-GZT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gs-Bb-94N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1852" y="-178"/>
         </scene>
