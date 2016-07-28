@@ -57,7 +57,8 @@
 		- weeklygoal fetching working
 		- weeklygoals displaying in wg view
 
-28/07/2016 1410 - 
+28/07/2016 1410 - 1515, 1600 - 1745
 	- working on weeklygoals view and view controller
 		- removed content ID strings from User object (see comment)
 		- weekly goal deletion from app + database working
+	- reverted work on WGDVC & saving new goals (not happy with it)
