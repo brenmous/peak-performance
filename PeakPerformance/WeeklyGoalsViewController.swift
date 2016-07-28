@@ -22,6 +22,28 @@ class WeeklyGoalsViewController: UITableViewController {
     /// The user's weekly goals.
     var weeklyGoals = [WeeklyGoal]( )
     
+    
+    // MARK: - Actions
+    
+    @IBAction func editButtonPressed(sender: AnyObject)
+    {
+        self.tableView.setEditing(true, animated: true)
+    }
+    
+   // @IBAction func addButtonPressed(sender: AnyObject)
+   // {
+   //     self.tableView.set
+   // }
+    
+   // @IBAction func menuButtonPressed(sender: AnyObject) {
+   // }
+    
+    
+    // MARK: - Methods
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,8 +83,26 @@ class WeeklyGoalsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
         let goal = weeklyGoals[indexPath.row]
+        
         // Configure the cell...
-        cell.textLabel!.text = goal.wgid
+        cell.textLabel!.text = goal.wgid //whatever we want the goal to be called
+
+        //set image as KLA icon
+        /*
+        //var klaIcon =
+        let kla = goal.kla
+        switch kla
+        {
+            case KLA_FAMILY:
+                klaIcon = familyIcon
+            
+            etc.
+            
+        }
+        */
+        
+        //add checkbox in here somewhere
+        
         return cell
     }
     
@@ -78,10 +118,14 @@ class WeeklyGoalsViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+        if editingStyle == .Delete
+        {
             // Delete the row from the data source
+            weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
+        }
+        else if editingStyle == .Insert
+        {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }

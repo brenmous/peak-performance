@@ -56,3 +56,6 @@
 	- working on weeklygoal dataservice and view
 		- weeklygoal fetching working
 		- weeklygoals displaying in wg view
+
+28/07/2016 1410 - 
+	- working on weeklygoals view and view controller

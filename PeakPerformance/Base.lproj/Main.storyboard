@@ -407,7 +407,7 @@
             </objects>
             <point key="canvasLocation" x="1059" y="68"/>
         </scene>
-        <!--Title-->
+        <!--Weekly Goals-->
         <scene sceneID="mES-0m-MOx">
             <objects>
                 <tableViewController id="BBa-rQ-l2w" customClass="WeeklyGoalsViewController" customModule="PeakPerformance" customModuleProvider="target" sceneMemberID="viewController">
@@ -430,11 +430,23 @@
                             <outlet property="delegate" destination="BBa-rQ-l2w" id="ax7-Be-dkT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="XhI-57-Qs6">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="A6M-9o-uns"/>
+                    <navigationItem key="navigationItem" title="Weekly Goals" id="XhI-57-Qs6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="A6M-9o-uns">
+                            <connections>
+                                <action selector="menuButtonPressed:" destination="BBa-rQ-l2w" id="1Md-7S-6nE"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="wF3-ti-P6Q"/>
-                            <barButtonItem systemItem="edit" id="ffR-rp-oQC"/>
+                            <barButtonItem systemItem="add" id="wF3-ti-P6Q">
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="BBa-rQ-l2w" id="gng-Vc-ILY"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="ffR-rp-oQC">
+                                <connections>
+                                    <action selector="editButtonPressed:" destination="BBa-rQ-l2w" id="OAT-Dm-krU"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
