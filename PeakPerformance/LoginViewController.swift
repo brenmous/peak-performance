@@ -135,7 +135,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             self.dataService.loadUser( user.uid ) {
                 
                 //this is the variable being passed by the completion block back in DataService
-                (user) in
+                (user, weeklyGoalIDStrings ) in
                 self.currentUser = user
                 
                 //Because Firebase retrieval (this method) is asynchronous, we have to chain calls to the fetch/segue methods by
@@ -145,7 +145,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 //Go to next fetch.
                 dispatch_async( dispatch_get_main_queue() ) {
                     print("LIVC: user fetched, fetching weekly goals...")
-                    self.fetchWeeklyGoals( )
+                    self.fetchWeeklyGoals( weeklyGoalIDStrings )
                 }
                 
                 //self.performSegueWithIdentifier("loggedIn", sender: self)
@@ -158,38 +158,36 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
     
     /// This method fetches the user's weekly goals from the database sets it as the value of the weeklyGoals variable.
-    func fetchWeeklyGoals( )
+    func fetchWeeklyGoals( weeklyGoalIDStrings: [String] )
     {
-        if let cu = currentUser
+        //If the user has no goals then go straight to weekly goal view...
+        if weeklyGoalIDStrings.isEmpty
         {
-            //If the user has no goals then go straight to weekly goal view...
-            if cu.weeklyGoals.isEmpty
-            {
-                self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
-            }
+            self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+        }
             //...otherwise fetch the user's goals
-            else
+        else
+        {
+            for ( index, wgid ) in weeklyGoalIDStrings.enumerate()
             {
-                for ( index, wgid ) in cu.weeklyGoals.enumerate()
-                {
-                    self.dataService.loadWeeklyGoal(wgid) {
-                        (weeklyGoal) in
-                        self.weeklyGoals.append( weeklyGoal )
-                        
-                        //last goal is fetched so chain the next method before the completion block ends
-                        if index == cu.weeklyGoals.count - 1
-                        {
-                            //go to next fetch when it's ready, but for now we shall segue
-                            dispatch_async( dispatch_get_main_queue() ) {
-                                print("LIVC: last weekly goal loaded, seguing....")
-                                self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
-                            }
+                self.dataService.loadWeeklyGoal(wgid) {
+                    (weeklyGoal) in
+                    self.weeklyGoals.append( weeklyGoal )
+                    
+                    //last goal is fetched so chain the next method before the completion block ends
+                    if index == weeklyGoalIDStrings.count - 1
+                    {
+                        //go to next fetch when it's ready, but for now we shall segue
+                        dispatch_async( dispatch_get_main_queue() ) {
+                            print("LIVC: last weekly goal loaded, seguing....")
+                            self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                         }
                     }
                 }
             }
         }
     }
+    
     
     /*
     func fetchComplete( )

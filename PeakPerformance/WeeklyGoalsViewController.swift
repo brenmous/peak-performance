@@ -21,6 +21,7 @@ class WeeklyGoalsViewController: UITableViewController {
     
     /// The user's weekly goals.
     var weeklyGoals = [WeeklyGoal]( )
+
     
     
     // MARK: - Actions
@@ -49,37 +50,34 @@ class WeeklyGoalsViewController: UITableViewController {
         
         //Get data from tab bar view controller
         let tbvc = self.tabBarController as! TabBarViewController
-        self.currentUser = tbvc.currentUser!
+        
+        if let cu = tbvc.currentUser
+        {
+            self.currentUser = cu
+        }
         self.weeklyGoals = tbvc.weeklyGoals
     
         print("WGVC: got user \(currentUser!.email) with \(weeklyGoals.count) weekly goals") //DEBUG
-        
-        //tableView.reloadData()
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //return (currentUser?.weeklyGoals.count)!
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return weeklyGoals.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
         let goal = weeklyGoals[indexPath.row]
@@ -87,7 +85,7 @@ class WeeklyGoalsViewController: UITableViewController {
         // Configure the cell...
         cell.textLabel!.text = goal.wgid //whatever we want the goal to be called
 
-        //set image as KLA icon
+        //TODO: set image as KLA icon
         /*
         //var klaIcon =
         let kla = goal.kla
@@ -101,12 +99,10 @@ class WeeklyGoalsViewController: UITableViewController {
         }
         */
         
-        //add checkbox in here somewhere
+        //TODO: add checkbox in here somewhere
         
         return cell
     }
-    
-
     
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -28,11 +28,16 @@ class User
     /// User's unique ID.
     var uid: String
     
+    
+    //Update: I've removed this for now. There's not much point storing content IDs in the user object as it gets fetched from the DB at the start
+    // and never used again, and just creates extra work when adding/deleting goals and other content. For now we can just get the content IDs
+    // straight from the DB and then load the content from the DB and place it in arrays.
+    
     /// User's weekly goals, stored by ID.
     //Goals will be stored as IDs under users as there's not much point nesting it in user objects, we only need to know what goals the user owns.
     //When fetched from the database the goals will already be in an array, and the goal VCs will require them in an array for the table views to work.
     //Just saves a bit of effort having to arbitrarily store fetched goals in the user object then place them in a variable in the VCs.
-    var weeklyGoals: [String]
+    //var weeklyGoals: [String]
     
     /**
         Initialises a new user.
@@ -47,13 +52,13 @@ class User
      
         - Returns: A user with the specified parameters.
     */
-    init( fname: String, lname: String, org: String, email: String, uid: String, weeklyGoals: [String])
+    init( fname: String, lname: String, org: String, email: String, uid: String ) //weeklyGoals: [String])
     {
         self.fname = fname
         self.lname = lname
         self.org = org
         self.email = email
         self.uid = uid
-        self.weeklyGoals = weeklyGoals
+        //self.weeklyGoals = weeklyGoals
     }
 }

@@ -161,7 +161,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             let email = self.emailField.text!
             let uid = user.uid as String
             
-            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid, weeklyGoals: [String]() )
+            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid ) //weeklyGoals: [String]() )
             
             self.dataService.saveUser( self.currentUser! )
         }

@@ -53,7 +53,7 @@ class DataService       //: SignUpDataService, LogInDataService
             - uid: the user's unique ID.
             - completion: the completion block that passes back the completed user.
     */
-    func loadUser( uid: String, completion: ( user: User ) -> Void ) {
+    func loadUser( uid: String, completion: ( user: User, weeklyGoalIDStrings: [String] ) -> Void ) {
         
         //As with saving, create references to the nodes we want to retrieve data from.
         let usersRef = baseRef.child("users")
@@ -83,9 +83,9 @@ class DataService       //: SignUpDataService, LogInDataService
                     weeklyGoalIDStrings.append( wgid.0 )
                 }
             }
-            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, weeklyGoals: weeklyGoalIDStrings )
+            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid ) //weeklyGoals: weeklyGoalIDStrings )
             
-            completion( user: user ) //passing the created user back using the completion block
+            completion( user: user, weeklyGoalIDStrings: weeklyGoalIDStrings ) //passing the created and user and content IDs back using the completion block
             
             print( "DS: user \(user.email) fetched" ) //DEBUG
         })        
