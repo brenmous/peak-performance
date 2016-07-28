@@ -12,6 +12,9 @@ import Firebase
 /**
     This class handles read/write to the Firebase realtime database.
   */
+
+//TODO: Create constants for Firebase DB reference strings.
+//TODO: Experiment with abstracting load/save methods for user content.
 class DataService       //: SignUpDataService, LogInDataService
 {
     // MARK: - Properties
@@ -53,7 +56,7 @@ class DataService       //: SignUpDataService, LogInDataService
             - uid: the user's unique ID.
             - completion: the completion block that passes back the completed user.
     */
-    func loadUser( uid: String, completion: ( user: User ) -> Void ) {
+    func loadUser( uid: String, completion: ( user: User, weeklyGoalIDStrings: [String] ) -> Void ) {
         
         //As with saving, create references to the nodes we want to retrieve data from.
         let usersRef = baseRef.child("users")
@@ -83,9 +86,9 @@ class DataService       //: SignUpDataService, LogInDataService
                     weeklyGoalIDStrings.append( wgid.0 )
                 }
             }
-            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, weeklyGoals: weeklyGoalIDStrings )
+            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid ) //weeklyGoals: weeklyGoalIDStrings )
             
-            completion( user: user ) //passing the created user back using the completion block
+            completion( user: user, weeklyGoalIDStrings: weeklyGoalIDStrings ) //passing the created and user and content IDs back using the completion block
             
             print( "DS: user \(user.email) fetched" ) //DEBUG
         })        
@@ -134,7 +137,7 @@ class DataService       //: SignUpDataService, LogInDataService
         //When saving an ID etc. for indexing purposes, the child reference is really the value we want and the setValue parameter is arbitrary.
         //So in this case, child(weeklyGoal.wgid) is the info we actually care about.
         goalRef.child(weeklyGoal.wgid).setValue(true)
-        print("DS: saved weeklygoal under user ID" ) //DEBUG
+        print("DS: saved weeklygoal \(weeklyGoal.wgid) under user ID" ) //DEBUG
         
         //save weekly goal info under weekly goals in database
         let weeklyGoalsRef = baseRef.child("weeklyGoals")
@@ -146,7 +149,23 @@ class DataService       //: SignUpDataService, LogInDataService
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = "dd/MM/yyyy"
         weeklyGoalRef.child("deadline").setValue(dateFormatter.stringFromDate(weeklyGoal.deadline) )
-        print("DS: saved weeklygoal under wgid" ) //DEBUG
+        print("DS: saved weeklygoal \(weeklyGoal.wgid) under wgid" ) //DEBUG
+    }
+    
+    func removeWeeklyGoal( uid: String, weeklyGoalID: String )
+    {
+        //remove weekly goal ID from user node
+        let usersRef = baseRef.child("users")
+        let userRef = usersRef.child(uid)
+        let goalRef = userRef.child("weeklyGoals")
+        goalRef.child(weeklyGoalID).removeValue()
+        
+        //remove weekly goal from weekly goals node
+        let weeklyGoalsRef = baseRef.child("weeklyGoals")
+        let weeklyGoalRef = weeklyGoalsRef.child(weeklyGoalID)
+        weeklyGoalRef.removeValue()
+        
+        
     }
 
     
