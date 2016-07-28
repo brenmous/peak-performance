@@ -59,3 +59,5 @@
 
 28/07/2016 1410 - 
 	- working on weeklygoals view and view controller
+		- removed content ID strings from User object (see comment)
+		- weekly goal deletion from app + database working

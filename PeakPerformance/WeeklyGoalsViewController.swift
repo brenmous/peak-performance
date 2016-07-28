@@ -118,6 +118,11 @@ class WeeklyGoalsViewController: UITableViewController {
         {
             // Delete the row from the data source
             weeklyGoals.removeAtIndex(indexPath.row)
+            let tbvc = self.tabBarController as! TabBarViewController
+            if let cu = self.currentUser
+            {
+                tbvc.dataService.removeWeeklyGoal( cu.uid, weeklyGoalID: weeklyGoals[indexPath.row].wgid )
+            }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         else if editingStyle == .Insert
