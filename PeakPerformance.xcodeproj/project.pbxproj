@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A45B58978882C650823EE39 /* Pods_PeakPerformance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */; };
 		447E47821D461EDA00DF5351 /* SplashScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 447E47811D461EDA00DF5351 /* SplashScreen.jpg */; };
+		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
 		B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455A1D3FB85500F20D25 /* DataService.swift */; };
 		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
 		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
@@ -47,6 +48,7 @@
 		1F46C5B205D65FAB57EACF14 /* Pods-PeakPerformance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeakPerformance.release.xcconfig"; path = "Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance.release.xcconfig"; sourceTree = "<group>"; };
 		300B342D95480D2EB8714615 /* Pods-PeakPerformance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeakPerformance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance.debug.xcconfig"; sourceTree = "<group>"; };
 		447E47811D461EDA00DF5351 /* SplashScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SplashScreen.jpg; sourceTree = "<group>"; };
+		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
 		733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53B455A1D3FB85500F20D25 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		44ED0A231D44E52100EEE743 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */,
 				447E47811D461EDA00DF5351 /* SplashScreen.jpg */,
 			);
 			name = images;
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */,
 				447E47821D461EDA00DF5351 /* SplashScreen.jpg in Resources */,
 				B59EC43D1D3FB45C00AF1297 /* LaunchScreen.storyboard in Resources */,
 				B59EC43A1D3FB45C00AF1297 /* Assets.xcassets in Resources */,
