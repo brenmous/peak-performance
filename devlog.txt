@@ -62,3 +62,9 @@
 		- removed content ID strings from User object (see comment)
 		- weekly goal deletion from app + database working
 	- reverted work on WGDVC & saving new goals (not happy with it)
+
+29/07/2016 1645 - 1720
+	- working on subclassing weekly goals
+		- generalised goal saving
+	- added database ref constant strings
+	- BUG 2: table cells don't correspond to goal objects in array

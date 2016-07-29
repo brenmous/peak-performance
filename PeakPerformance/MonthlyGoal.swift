@@ -1,5 +1,5 @@
 //
-//  WeeklyGoal.swift
+//  MonthlyGoal.swift
 //  PeakPerformance
 //
 //  Created by Bren on 24/07/2016.
@@ -9,9 +9,9 @@
 import Foundation
 
 /**
-  This class represents a user's weekly goal.
-  */
-class WeeklyGoal: Goal
+ This class represents a user's monthly goal.
+ */
+class MonthlyGoal: Goal
 {
-   
+    
 }

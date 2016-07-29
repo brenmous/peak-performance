@@ -130,6 +130,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         if let user = FIRAuth.auth()?.currentUser
         {
             print("LIVC: logged in")
+            
             //note that when calling a method with a completion block as its last argument, you can supply the needed parameters in brackets
             // and then specify the completion block in curly braces. Generally I use a sameline curly brace to indicate this and a newline curly brace everywhere else.
             self.dataService.loadUser( user.uid ) {
@@ -147,12 +148,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                     print("LIVC: user fetched, fetching weekly goals...")
                     self.fetchWeeklyGoals( weeklyGoalIDStrings )
                 }
-                
-                //self.performSegueWithIdentifier("loggedIn", sender: self)
-                
-                //TEST WEEKLY GOAL
-                //let wg = WeeklyGoal( goalText: "test2", kla: KeyLifeArea.Family, deadline: "12/05/2017", wgid: "54321")
-                //self.dataService.saveWeeklyGoal(user.uid, weeklyGoal: wg)
             }
         }
     }

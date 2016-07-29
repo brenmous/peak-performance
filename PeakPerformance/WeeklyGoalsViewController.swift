@@ -83,7 +83,7 @@ class WeeklyGoalsViewController: UITableViewController {
         let goal = weeklyGoals[indexPath.row]
         
         // Configure the cell...
-        cell.textLabel!.text = goal.wgid //whatever we want the goal to be called
+        cell.textLabel!.text = goal.gid //whatever we want the goal to be called
 
         //TODO: set image as KLA icon
         /*
@@ -121,7 +121,7 @@ class WeeklyGoalsViewController: UITableViewController {
             let tbvc = self.tabBarController as! TabBarViewController
             if let cu = self.currentUser
             {
-                tbvc.dataService.removeWeeklyGoal( cu.uid, weeklyGoalID: weeklyGoals[indexPath.row].wgid )
+                tbvc.dataService.removeWeeklyGoal( cu.uid, weeklyGoalID: weeklyGoals[indexPath.row].gid )
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

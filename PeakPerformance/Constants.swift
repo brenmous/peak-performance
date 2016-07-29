@@ -19,50 +19,50 @@ import UIKit
 // MARK: - Error messages
 //N.B. Change these messages to something more appropriate/polite, just placeholders at the moment
 
-//Required field error message.
+/// Required field error message.
 let REQUIRED_FIELD_ERR_MSG = "This field is required."
 
-//Alpha characters only error message.
+/// Alpha characters only error message.
 let ALPHA_CHAR_ERR_MSG = "No numbers or symbols allowed."
 
-//Incorrect email error message.
+/// Incorrect email error message.
 let BAD_EMAIL_ERR_MSG = "Not a valid email address."
 
-//Alphanumeric characters only error message.
+/// Alphanumeric characters only error message.
 let ALPHA_NUMERIC_CHAR_ERR_MSG = "Only letters and numbers allowed."
 
-//Password too short.
+/// Password too short.
 let SHORTPW_ERR_MSG = "Password must be a minimum of 6 characters."
 
-//Password too long.
+/// Password too long.
 let LONGPW_ERR_MSG = "Password cannot be more than 32 characters."
 
-//Bad password format.
+/// Bad password format.
 let BADPW_ERR_MSG = "Password must contain at least one uppercase letter and one number."
 
-//Password confirm field doesn't match.
+/// Password confirm field doesn't match.
 let CONPW_ERR_MSG = "Passwords must match."
 
-//Unable to log in due to user error (covers user not found, password mismatch, malformed email etc.).
+/// Unable to log in due to user error (covers user not found, password mismatch, malformed email etc.).
 let LOGIN_ERR_MSG = "No account found with provided details."
 
-//Too many requests made to server error message.
+/// Too many requests made to server error message.
 let REQUEST_ERR_MSG = "Too many login requests have been made. Please wait and try again."
 
-//Firebase network connection error.
+/// Firebase network connection error.
 let NETWORK_ERR_MSG = "Cannot connect to the network. Please wait and try again."
 
-//Email already in use sign up error.
+/// Email already in use sign up error.
 let EMAIL_IN_USE_ERR_MSG = "An account already exists with this email address."
 
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.
 
-//Password min length
+/// Password min length
 let PW_MIN_LEN = 6
 
-//Password max length
+/// Password max length
 let PW_MAX_LEN = 32
 
 
@@ -86,11 +86,48 @@ let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.purpleColor().CGColor
 
 // MARK: - Key Life Areas
 
-//Key Life Area strings. TODO: Add rest of KLAs.
+//Key Life Area strings.
+//TODO: Add rest of KLAs.
+/// The string for Family KLA.
 let KLA_FAMILY = "Family"
 
 
 // MARK: - Database Reference Strings
+//Strings used for creating database references.
+
+/// Specifies users node in database.
+let USERS_REF_STRING = "users"
+
+/// Specifies user firstname node in database.
+let FNAME_REF_STRING = "fname"
+
+/// Specifies user lastname node in database.
+let LNAME_REF_STRING = "lname"
+
+/// Specifies user organistion node in database.
+let ORG_REF_STRING = "org"
+
+/// Specifies user email node in database.
+let EMAIL_REF_STRING = "email"
+
+/// Specifies weekly goals node in database.
+let WEEKLYGOALS_REF_STRING = "weeklyGoals"
+
+/// Specifies goal text node in database.
+let GOALTEXT_REF_STRING = "goalText"
+
+/// Specifies key life area node in database.
+let KLA_REF_STRING = "kla"
+
+/// Specifies deadline node in database.
+let DEADLINE_REF_STRING = "deadline"
+
+/// Specifies user ID node in database.
+let UID_REF_STRING = "uid"
+
+/// Specifies monthly goal node in database.
+let MONTHLYGOAL_REF_STRING = "monthlyGoals"
+
 
 // MARK: - Date Format Strings
 let DATE_FORMAT_STRING = "dd/MM/yyyy"

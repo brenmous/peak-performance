@@ -10,6 +10,8 @@
 		3A45B58978882C650823EE39 /* Pods_PeakPerformance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */; };
 		447E47821D461EDA00DF5351 /* SplashScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 447E47811D461EDA00DF5351 /* SplashScreen.jpg */; };
 		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
+		B50861BF1D4B316900901638 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861BE1D4B316900901638 /* Goal.swift */; };
+		B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C01D4B359A00901638 /* MonthlyGoal.swift */; };
 		B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455A1D3FB85500F20D25 /* DataService.swift */; };
 		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
 		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
@@ -50,6 +52,8 @@
 		447E47811D461EDA00DF5351 /* SplashScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SplashScreen.jpg; sourceTree = "<group>"; };
 		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
 		733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B50861BE1D4B316900901638 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		B50861C01D4B359A00901638 /* MonthlyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoal.swift; sourceTree = "<group>"; };
 		B53B455A1D3FB85500F20D25 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			children = (
 				B53B455D1D3FB85500F20D25 /* User.swift */,
 				B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */,
+				B50861BE1D4B316900901638 /* Goal.swift */,
+				B50861C01D4B359A00901638 /* MonthlyGoal.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -396,6 +402,8 @@
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
+				B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */,
+				B50861BF1D4B316900901638 /* Goal.swift in Sources */,
 				B55652581D40DCE900E315A4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
