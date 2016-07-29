@@ -43,10 +43,9 @@ class WeeklyGoalsViewController: UITableViewController {
     // MARK: - Methods
     
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
         
         //Get data from tab bar view controller
         let tbvc = self.tabBarController as! TabBarViewController
@@ -56,8 +55,13 @@ class WeeklyGoalsViewController: UITableViewController {
             self.currentUser = cu
         }
         self.weeklyGoals = tbvc.weeklyGoals
-    
+        tableView.reloadData( )
         print("WGVC: got user \(currentUser!.email) with \(weeklyGoals.count) weekly goals") //DEBUG
+        print("WGVC: \(tableView.numberOfRowsInSection(0)) rows in table") //DEBUG
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
 
@@ -117,12 +121,12 @@ class WeeklyGoalsViewController: UITableViewController {
         if editingStyle == .Delete
         {
             // Delete the row from the data source
-            weeklyGoals.removeAtIndex(indexPath.row)
             let tbvc = self.tabBarController as! TabBarViewController
             if let cu = self.currentUser
             {
                 tbvc.dataService.removeWeeklyGoal( cu.uid, weeklyGoalID: weeklyGoals[indexPath.row].gid )
             }
+            weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         else if editingStyle == .Insert

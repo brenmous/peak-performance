@@ -131,6 +131,16 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         {
             print("LIVC: logged in")
             
+            /*
+            //TEST GOALs
+            let wg1 = WeeklyGoal(goalText: "goaltext", kla: KLA_FAMILY, deadline: "22/02/2016", gid: "54321")
+            let wg2 = WeeklyGoal(goalText: "goaltext", kla: KLA_FAMILY, deadline: "22/02/2016", gid: "12345")
+            let wg3 = WeeklyGoal(goalText: "goaltext", kla: KLA_FAMILY, deadline: "22/02/2016", gid: "01010101")
+            self.dataService.saveGoal(user.uid, goal: wg1)
+            self.dataService.saveGoal(user.uid, goal: wg2)
+            self.dataService.saveGoal(user.uid, goal: wg3)
+            */
+            
             //note that when calling a method with a completion block as its last argument, you can supply the needed parameters in brackets
             // and then specify the completion block in curly braces. Generally I use a sameline curly brace to indicate this and a newline curly brace everywhere else.
             self.dataService.loadUser( user.uid ) {
@@ -138,6 +148,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 //this is the variable being passed by the completion block back in DataService
                 (user, weeklyGoalIDStrings ) in
                 self.currentUser = user
+                print("weekly goal count: \(weeklyGoalIDStrings.count)")
                 
                 //Because Firebase retrieval (this method) is asynchronous, we have to chain calls to the fetch/segue methods by
                 // calling them in the completion block within a GCD (dispatch_async).
