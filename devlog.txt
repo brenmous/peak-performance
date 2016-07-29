@@ -67,4 +67,5 @@
 	- working on subclassing weekly goals
 		- generalised goal saving
 	- added database ref constant strings
-	- BUG 2: table cells don't correspond to goal objects in array
+	- BUG 3: table cells don't correspond to goal objects in array
+	- FIXED 3: was deleting from source before deleting from DB
