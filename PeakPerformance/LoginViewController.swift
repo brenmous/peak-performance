@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         shouldPerformSegueWithIdentifier( GO_TO_SIGN_UP_SEGUE , sender: self )
     }
     
-    //@IBAction func resetPasswordButtonPressed(sender: AnyObject) {}
+    @IBAction func resetPasswordButtonPressed(sender: AnyObject) {}
     
     
     
