@@ -402,8 +402,8 @@
                     <connections>
                         <segue destination="PhF-XF-dKH" kind="relationship" relationship="viewControllers" id="CjU-1F-A7j"/>
                         <segue destination="30V-8v-a0G" kind="relationship" relationship="viewControllers" id="bqs-UL-cNM"/>
-                        <segue destination="bH1-7z-ImZ" kind="relationship" relationship="viewControllers" id="AgS-hv-4Tt"/>
                         <segue destination="5Ni-ew-DkC" kind="relationship" relationship="viewControllers" id="kVO-jN-fMe"/>
+                        <segue destination="bH1-7z-ImZ" kind="relationship" relationship="viewControllers" id="AgS-hv-4Tt"/>
                         <segue destination="jHo-mV-AWr" kind="relationship" relationship="viewControllers" id="nT7-h8-V5V"/>
                     </connections>
                 </tabBarController>
