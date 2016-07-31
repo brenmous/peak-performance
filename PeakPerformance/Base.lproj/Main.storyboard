@@ -46,6 +46,7 @@
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cvp-nV-FmB">
                                                 <rect key="frame" x="0.0" y="0.0" width="500" height="29"/>
+                                                <color key="tintColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
@@ -62,6 +63,7 @@
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ikR-Y7-7R3">
                                                 <rect key="frame" x="0.0" y="0.0" width="500" height="29"/>
+                                                <color key="tintColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                             </textField>
@@ -399,6 +401,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="defaultIndex">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="PhF-XF-dKH" kind="relationship" relationship="viewControllers" id="CjU-1F-A7j"/>
                         <segue destination="30V-8v-a0G" kind="relationship" relationship="viewControllers" id="bqs-UL-cNM"/>
@@ -486,7 +496,19 @@
                             <outlet property="delegate" destination="M6r-l3-UrM" id="WMO-bK-j9J"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Monthly" id="L0N-Dt-2dF"/>
+                    <navigationItem key="navigationItem" title="Monthly" id="L0N-Dt-2dF">
+                        <barButtonItem key="leftBarButtonItem" image="menu icon_25x17.png" id="rLa-hs-ssl">
+                            <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="83Z-c1-jap">
+                                <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="cqG-KM-kxX">
+                                <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sz2-bt-2Ak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -522,7 +544,19 @@
                             <outlet property="delegate" destination="zop-2S-Sc0" id="ioH-Rs-CL2"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Dream List" id="tga-zR-Ld8"/>
+                    <navigationItem key="navigationItem" title="Dream List" id="tga-zR-Ld8">
+                        <barButtonItem key="leftBarButtonItem" image="menu icon_25x17.png" id="Rv3-V5-7vy">
+                            <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="camera" id="T9M-4u-lbo">
+                                <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="WAU-3o-g5D">
+                                <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jGh-jY-kKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -600,7 +634,11 @@
                             <outlet property="delegate" destination="4Jd-Y3-Y5f" id="7b3-3x-4sK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="History" id="2GW-Wx-OT4"/>
+                    <navigationItem key="navigationItem" title="History" id="2GW-Wx-OT4">
+                        <barButtonItem key="leftBarButtonItem" image="menu icon_25x17.png" id="wRh-31-6bw">
+                            <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hEX-qL-GfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
