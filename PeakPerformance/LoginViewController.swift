@@ -137,6 +137,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
     
     /// This method fetches the user object from the database and sets it as the currentUser.
+    /*
+        Currently this loads content sequentially which is not using the full power of the async loading from Firebase.
+        For now it should be okay as performance gains will be negliblblblelble but I will tweak this and try to bundle 
+        fetching into a single method so content loads concurrently.
+    */
     func fetchUser( )
     {
         if let user = FIRAuth.auth()?.currentUser
