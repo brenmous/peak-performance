@@ -51,6 +51,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     
+    //buttons
+    @IBOutlet weak var logInButton: UIButton!
+    
+    
     
     
     // MARK: - Actions
@@ -89,8 +93,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     func login()
     {
         //reset login error label
-        logInErrorLabel.hidden = true
-        logInErrorLabel.text = ""
+        self.logInErrorLabel.hidden = true
+        self.logInErrorLabel.text = ""
+        self.logInButton.enabled = false
        
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
@@ -105,23 +110,30 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         case .ErrorCodeUserNotFound:
                             self.logInErrorLabel.text = LOGIN_ERR_MSG
                             self.logInErrorLabel.hidden = false
+                            self.logInButton.enabled = true
                         
                         case .ErrorCodeTooManyRequests:
                             self.logInErrorLabel.text = REQUEST_ERR_MSG
                             self.logInErrorLabel.hidden = false
+                            self.logInButton.enabled = true
                         
                         case .ErrorCodeNetworkError:
                             self.logInErrorLabel.text = NETWORK_ERR_MSG
                             self.logInErrorLabel.hidden = false
+                            self.logInButton.enabled = true
                         
                         default:
                             print("LIVC: error case not currently covered") //DEBUG
+                            self.logInButton.enabled = true
                     }
                 }
             }
+            else
+            {
+                //Auth successful so fetch user and content
+                self.fetchUser( )
+            }
         })
-        //Authentication was successful so start fetching the user details and their content.
-        fetchUser( )
     }
     
     /// This method fetches the user object from the database and sets it as the currentUser.
@@ -148,7 +160,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 //this is the variable being passed by the completion block back in DataService
                 (user, weeklyGoalIDStrings ) in
                 self.currentUser = user
-                print("weekly goal count: \(weeklyGoalIDStrings.count)")
+                print("LIVC: weekly goal count: \(weeklyGoalIDStrings.count)") //DEBUG
                 
                 //Because Firebase retrieval (this method) is asynchronous, we have to chain calls to the fetch/segue methods by
                 // calling them in the completion block within a GCD (dispatch_async).
@@ -156,7 +168,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 
                 //Go to next fetch.
                 dispatch_async( dispatch_get_main_queue() ) {
-                    print("LIVC: user fetched, fetching weekly goals...")
+                    print("LIVC: user fetched, fetching weekly goals...") //DEBUG
                     self.fetchWeeklyGoals( weeklyGoalIDStrings )
                 }
             }

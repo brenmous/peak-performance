@@ -31,13 +31,13 @@ class WeeklyGoalsViewController: UITableViewController {
         self.tableView.setEditing(true, animated: true)
     }
     
-   // @IBAction func addButtonPressed(sender: AnyObject)
-   // {
-   //     self.tableView.set
-   // }
+    @IBAction func addButtonPressed(sender: AnyObject)
+    {
+       // self.tableView.set
+    }
     
-   // @IBAction func menuButtonPressed(sender: AnyObject) {
-   // }
+    @IBAction func menuButtonPressed(sender: AnyObject) {
+    }
     
     
     // MARK: - Methods
