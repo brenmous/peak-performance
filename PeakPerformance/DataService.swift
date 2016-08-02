@@ -97,7 +97,6 @@ class DataService       //: SignUpDataService, LogInDataService
     
     
     // MARK: - Goal Methods
-    
     /**
         Saves a goal to the database.
         The goals are stored in their own nodes under their IDs, and the goal IDs are also stored under the node of the user that owns them.

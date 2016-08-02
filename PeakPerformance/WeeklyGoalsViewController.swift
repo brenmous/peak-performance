@@ -12,7 +12,7 @@ import UIKit
 /**
     Class that controls the weekly goals view.
   */
-class WeeklyGoalsViewController: UITableViewController {
+class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewControllerDelegate {
 
     // MARK: - Properties
 
@@ -23,7 +23,6 @@ class WeeklyGoalsViewController: UITableViewController {
     var weeklyGoals = [WeeklyGoal]( )
 
     
-    
     // MARK: - Actions
     
     @IBAction func editButtonPressed(sender: AnyObject)
@@ -33,7 +32,7 @@ class WeeklyGoalsViewController: UITableViewController {
     
     @IBAction func addButtonPressed(sender: AnyObject)
     {
-       // self.tableView.set
+       performSegueWithIdentifier(ADD_WEEKLY_GOAL_SEGUE, sender: self)
     }
     
     @IBAction func menuButtonPressed(sender: AnyObject) {
@@ -42,6 +41,13 @@ class WeeklyGoalsViewController: UITableViewController {
     
     // MARK: - Methods
     
+    func addNewGoal( weeklyGoal: WeeklyGoal )
+    {
+        weeklyGoals.append(weeklyGoal)
+        let tbvc = self.tabBarController as! TabBarViewController
+        tbvc.weeklyGoals.append(weeklyGoal)
+        tbvc.dataService.saveGoal((currentUser?.uid)!, goal: weeklyGoal)
+    }
     
     override func viewWillAppear(animated: Bool)
     {
@@ -150,14 +156,18 @@ class WeeklyGoalsViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == ADD_WEEKLY_GOAL_SEGUE
+        {
+            let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
+            dvc.delegate = self
+            dvc.currentUser = self.currentUser
+        }
     }
-    */
+    
 
 }

@@ -124,6 +124,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         
                         default:
                             print("LIVC: error case not currently covered") //DEBUG
+                            self.logInErrorLabel.text = "Error case not currently covered." //DEBUG
+                            self.logInErrorLabel.hidden = false
                             self.logInButton.enabled = true
                     }
                 }

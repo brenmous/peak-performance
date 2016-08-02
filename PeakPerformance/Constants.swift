@@ -145,3 +145,9 @@ let GO_TO_SIGN_UP_SEGUE = "goToSignUp"
 
 /// Segue for when a user goes from the log in view to the sign up view.
 let GO_TO_LOG_IN_SEGUE = "goToLogIn"
+
+/// Segue for adding a new weekly goal.
+let ADD_WEEKLY_GOAL_SEGUE = "addWeeklyGoal"
+
+/// Segue for editing a weekly goal.
+let EDIT_WEEKLY_GOAL_SEGUE = "editWeeklyGoal"
