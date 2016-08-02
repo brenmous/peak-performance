@@ -35,6 +35,7 @@ class WeeklyGoalDetailViewController: UIViewController
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
         self.createNewWeeklyGoal( )
+        
     }
     
     // MARK: - Methods

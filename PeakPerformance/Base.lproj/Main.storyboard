@@ -506,6 +506,7 @@
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="m6s-0q-9KL" eventType="touchUpInside" id="0RR-gT-yNG"/>
+                                    <segue destination="quC-nb-aqH" kind="unwind" unwindAction="unwindFromDetailView:" id="tqF-li-7fN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JA7-Ho-zAL">
@@ -609,6 +610,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGC-qG-36f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="quC-nb-aqH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3356" y="-610"/>
         </scene>

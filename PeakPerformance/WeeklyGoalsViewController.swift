@@ -38,6 +38,11 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     @IBAction func menuButtonPressed(sender: AnyObject) {
     }
     
+    @IBAction func unwindFromDetailView( segue: UIStoryboardSegue)
+    {
+    
+    }
+    
     
     // MARK: - Methods
     
