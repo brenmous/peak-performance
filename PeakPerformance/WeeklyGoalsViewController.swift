@@ -27,7 +27,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     @IBAction func editButtonPressed(sender: AnyObject)
     {
-        self.tableView.setEditing(true, animated: true)
+        self.tableView.setEditing(tableView.editing != true, animated: true) // :)
     }
     
     @IBAction func addButtonPressed(sender: AnyObject)
@@ -51,6 +51,12 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         weeklyGoals.append(weeklyGoal)
         let tbvc = self.tabBarController as! TabBarViewController
         tbvc.weeklyGoals.append(weeklyGoal)
+        tbvc.dataService.saveGoal((currentUser?.uid)!, goal: weeklyGoal)
+    }
+    
+    func saveModifiedGoal(weeklyGoal: WeeklyGoal)
+    {
+        let tbvc = self.tabBarController as! TabBarViewController
         tbvc.dataService.saveGoal((currentUser?.uid)!, goal: weeklyGoal)
     }
     
@@ -171,6 +177,16 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
+        }
+        else if segue.identifier == EDIT_WEEKLY_GOAL_SEGUE
+        {
+            let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
+            dvc.delegate = self
+            dvc.currentUser = self.currentUser
+            if let indexPath = self.tableView.indexPathForSelectedRow
+            {
+                dvc.currentGoal = weeklyGoals[indexPath.row]
+            }
         }
     }
     

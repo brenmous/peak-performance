@@ -87,9 +87,30 @@ let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.purpleColor().CGColor
 // MARK: - Key Life Areas
 
 //Key Life Area strings.
-//TODO: Add rest of KLAs.
+
 /// The string for Family KLA.
 let KLA_FAMILY = "Family"
+
+/// String for Work/Business KLA.
+let KLA_WORKBUSINESS = "Work/Business"
+
+/// String for Personal Development KLA.
+let KLA_PERSONALDEV = "Personal Development"
+
+/// String for Financial KLA.
+let KLA_FINANCIAL = "Financial"
+
+/// String for Friends & Social KLA.
+let KLA_FRIENDSSOCIAL = "Friends & Social"
+
+/// String for Health & Fitness KLA.
+let KLA_HEALTHFITNESS = "Health & Fitness"
+
+/// String for Emotional/Spritiual KLA.
+let KLA_EMOSPIRITUAL = "Emotional/Spritiual"
+
+/// String for Partnert KLA.
+let KLA_PARTNER = "Partner"
 
 
 // MARK: - Database Reference Strings

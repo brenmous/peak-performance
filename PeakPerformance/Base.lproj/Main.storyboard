@@ -477,7 +477,7 @@
             </objects>
             <point key="canvasLocation" x="2592" y="-610"/>
         </scene>
-        <!--Weekly Goal Detail View Controller-->
+        <!--Weekly Goals-->
         <scene sceneID="hof-dq-Q7z">
             <objects>
                 <viewController id="m6s-0q-9KL" customClass="WeeklyGoalDetailViewController" customModule="PeakPerformance" customModuleProvider="target" sceneMemberID="viewController">
@@ -486,7 +486,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9br-DY-Qad"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fdd-fH-5hw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ry0-hy-e0N">
@@ -512,23 +512,23 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JA7-Ho-zAL">
                                 <rect key="frame" x="26" y="72" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="quC-nb-aqH" kind="unwind" unwindAction="unwindFromDetailView:" id="aLt-NV-hdC"/>
+                                </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UrL-OA-mxN">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UrL-OA-mxN">
                                 <rect key="frame" x="20" y="166" width="560" height="128"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key Life Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfc-2H-nN1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Key Life Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfc-2H-nN1">
                                 <rect key="frame" x="20" y="302" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TqS-iu-q0d">
-                                <rect key="frame" x="26" y="178" width="548" height="278"/>
-                            </pickerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H68-T5-Epg">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H68-T5-Epg">
                                 <rect key="frame" x="20" y="331" width="171" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="171" id="Igq-BZ-pal"/>
@@ -536,33 +536,45 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wki-xV-AOc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wki-xV-AOc">
                                 <rect key="frame" x="20" y="369" width="67" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-IY-rkV">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-IY-rkV">
                                 <rect key="frame" x="20" y="398" width="171" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJR-Ps-XBU">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJR-Ps-XBU">
                                 <rect key="frame" x="190" y="398" width="83" height="30"/>
                                 <state key="normal" title="Pick Date"/>
+                                <connections>
+                                    <action selector="deadlineButtonPressed:" destination="m6s-0q-9KL" eventType="touchUpInside" id="IS7-zm-hsI"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pd-W1-ygA">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pd-W1-ygA">
                                 <rect key="frame" x="190" y="330" width="83" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="83" id="Nm2-sT-aO3"/>
                                 </constraints>
                                 <state key="normal" title="Pick KLA"/>
+                                <connections>
+                                    <action selector="klaButtonPressed:" destination="m6s-0q-9KL" eventType="touchUpInside" id="jNa-A8-jRn"/>
+                                </connections>
                             </button>
-                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WAa-TF-82d">
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TqS-iu-q0d">
+                                <rect key="frame" x="26" y="178" width="548" height="278"/>
+                            </pickerView>
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WAa-TF-82d">
                                 <rect key="frame" x="20" y="166" width="560" height="278"/>
                                 <date key="date" timeIntervalSinceReferenceDate="491807529.48487997">
                                     <!--2016-08-02 05:12:09 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="deadlinePickerActivated:" destination="m6s-0q-9KL" eventType="valueChanged" id="XrB-0A-AcV"/>
+                                </connections>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -603,9 +615,16 @@
                             <constraint firstItem="9br-DY-Qad" firstAttribute="top" secondItem="lSy-IY-rkV" secondAttribute="bottom" constant="123" id="z8o-0s-slW"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Weekly Goals" id="RET-rS-Dry">
+                        <barButtonItem key="leftBarButtonItem" image="menu icon_25x17.png" id="3B4-qr-hL9"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deadlinePicker" destination="WAa-TF-82d" id="Ux1-Tp-h1Y"/>
                         <outlet property="deadlineTextField" destination="lSy-IY-rkV" id="jtH-d8-Dy8"/>
                         <outlet property="goalTextView" destination="UrL-OA-mxN" id="aeb-hT-oR4"/>
+                        <outlet property="klaPicker" destination="TqS-iu-q0d" id="zQw-8s-VOQ"/>
                         <outlet property="klaTextField" destination="H68-T5-Epg" id="ddX-mP-lrY"/>
                     </connections>
                 </viewController>
