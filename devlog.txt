@@ -70,6 +70,7 @@
 	- BUG 3: table cells don't correspond to goal objects in array
 	- FIXED 3: was deleting from source before deleting from DB
 
-02/08/2016 1500 - 1525, 1628 - 1735, 2113 - 
+02/08/2016 1500 - 1525, 1628 - 1735, 2113 - 2257
 	- working on weekly goal detail view
 		- pickers
+		- editing + new goals

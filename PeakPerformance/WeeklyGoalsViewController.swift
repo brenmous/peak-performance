@@ -75,6 +75,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         tableView.reloadData( )
         print("WGVC: got user \(currentUser!.email) with \(weeklyGoals.count) weekly goals") //DEBUG
         print("WGVC: \(tableView.numberOfRowsInSection(0)) rows in table") //DEBUG
+        
+        //disable editing in case user left view while in edit mode
+        self.tableView.setEditing(false, animated: true)
     }
     
     override func viewDidLoad() {
@@ -144,6 +147,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 tbvc.dataService.removeWeeklyGoal( cu.uid, weeklyGoalID: weeklyGoals[indexPath.row].gid )
             }
             weeklyGoals.removeAtIndex(indexPath.row)
+            tbvc.weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         else if editingStyle == .Insert
