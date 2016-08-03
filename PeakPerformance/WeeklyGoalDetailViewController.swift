@@ -16,7 +16,7 @@ protocol WeeklyGoalDetailViewControllerDelegate
 
 class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
-
+    
     // MARK: - Properties
     
     /// This view controller's delegate.
@@ -29,8 +29,12 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     var currentGoal: WeeklyGoal?
     
     /// Key life areas for the KLA picker.
-    var keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS,
-                        KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
+    var keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
+    
+    // MARK: Date Picker Instance (retrieved from cocoapods)
+    var datePicker = MIDatePicker.getFromNib()
+    //  var kAreaPicker = MIKLAPicker.getFromNib()
+    var dateFormatter = NSDateFormatter()
     
     // MARK: - Outlets
     
@@ -52,27 +56,29 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         {
             createNewWeeklyGoal( )
         }
-        //...otherwise modify the referenced goal
+            //...otherwise modify the referenced goal
         else
         {
             updateGoal( )
         }
     }
-
-    //unhide pickers when their selection button is pressed
+    
     @IBAction func klaButtonPressed(sender: AnyObject)
     {
         klaPicker.hidden = false
+        //        kAreaPicker.show(inVC: self)
+        
     }
+    
     @IBAction func deadlineButtonPressed(sender: AnyObject)
     {
-        deadlinePicker.hidden = false
+        //        deadlinePicker.hidden = false
+        datePicker.show(inVC: self)
     }
-
+    
     
     // MARK: - Methods
     
-    /// This method creates a new weekly goal using the text fields and passes it to its delegate, where it is saved.
     func createNewWeeklyGoal( )
     {
         //VALIDATE THESE FIELDS, currently temporary setup
@@ -88,7 +94,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         delegate?.addNewGoal(wg)
     }
     
-    /// This method updates an existing weekly goal using the text field and passes it to its delegate, where it is saved.
     func updateGoal( )
     {
         guard let cg = currentGoal else
@@ -107,7 +112,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         delegate?.saveModifiedGoal(cg)
     }
     
-    /// This method fills the text field with details from the goal selected for editing.
     func updateTextFields( )
     {
         guard let cg = currentGoal else
@@ -134,16 +138,16 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         {
             self.updateTextFields( )
         }
-
+        
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         klaPicker.dataSource = self
         klaPicker.delegate = self
-        
+        datePicker.delegate = self
         //Check if user is authenticated
         if currentUser == nil
         {
@@ -154,9 +158,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
         goalTextView.layer.borderWidth = 1
         goalTextView.clipsToBounds = true
-    
+        
     }
-
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -190,21 +194,37 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func deadlinePickerActivated(sender: AnyObject)
     {
-        let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = DATE_FORMAT_STRING
-        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
-        deadlineTextField.text = deadline
-        deadlinePicker.hidden = true
+        //        let dateFormatter = NSDateFormatter( )
+        //        dateFormatter.dateFormat = DATE_FORMAT_STRING
+        //        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
+        //        deadlineTextField.text = deadline
+        //        deadlinePicker.hidden = true
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
+
+extension WeeklyGoalDetailViewController: MIDatePickerDelegate {
+    func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
+        //        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
+        //        deadlineTextField.text = deadline
+        let deadline = dateFormatter.stringFromDate(date)
+        deadlineTextField.text = deadline
+    }
+    
+    func miDatePickerDidCancelSelection(amDatePicker: MIDatePicker) {
+        
+    }
+}
+
+

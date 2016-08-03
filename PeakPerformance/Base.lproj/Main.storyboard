@@ -489,6 +489,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfN-AZ-977">
+                                <rect key="frame" x="0.0" y="64" width="600" height="49"/>
+                                <color key="backgroundColor" red="0.78039215689999997" green="0.80000000000000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="xaI-bx-V2G"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="qxT-e6-oax">
                                 <rect key="frame" x="30" y="135" width="541" height="89"/>
                                 <subviews>
@@ -641,10 +648,6 @@
                                     <action selector="deadlinePickerActivated:" destination="m6s-0q-9KL" eventType="valueChanged" id="XrB-0A-AcV"/>
                                 </connections>
                             </datePicker>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfN-AZ-977">
-                                <rect key="frame" x="0.0" y="65" width="600" height="54"/>
-                                <color key="backgroundColor" red="0.78039215689999997" green="0.80000000000000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -655,22 +658,20 @@
                             <constraint firstItem="9br-DY-Qad" firstAttribute="top" secondItem="TqS-iu-q0d" secondAttribute="bottom" id="F1A-40-l6E"/>
                             <constraint firstItem="pl8-F0-XOq" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="10" id="Fqc-PJ-mYH"/>
                             <constraint firstItem="PeZ-wI-8Hm" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="10" id="Gqj-x7-leh"/>
-                            <constraint firstItem="9br-DY-Qad" firstAttribute="top" secondItem="FfN-AZ-977" secondAttribute="bottom" constant="437" id="I2l-mM-Xac"/>
                             <constraint firstItem="vj3-fX-x3D" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="13" id="IU6-NU-UAW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FfN-AZ-977" secondAttribute="trailing" constant="-20" id="KYn-8U-RJL"/>
-                            <constraint firstItem="FfN-AZ-977" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="-20" id="Kes-cJ-Nf1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vj3-fX-x3D" secondAttribute="trailing" constant="5" id="L7p-Af-dlm"/>
                             <constraint firstItem="pl8-F0-XOq" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="278" id="PiH-Gl-xdr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WAa-TF-82d" secondAttribute="trailing" constant="-20" id="T9q-Gj-Gt0"/>
                             <constraint firstItem="qxT-e6-oax" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="10" id="Tgv-Tu-THj"/>
+                            <constraint firstItem="FfN-AZ-977" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" id="UMz-1f-PZM"/>
                             <constraint firstItem="WAa-TF-82d" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="VUb-Ge-pgu"/>
                             <constraint firstItem="vj3-fX-x3D" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="WbB-9B-z8E"/>
                             <constraint firstItem="qxT-e6-oax" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="71" id="XOp-qb-DhH"/>
-                            <constraint firstItem="FfN-AZ-977" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="Y9y-qg-B2a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FfN-AZ-977" secondAttribute="trailing" constant="-20" id="f41-Pm-lvH"/>
+                            <constraint firstItem="FfN-AZ-977" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="iVk-6h-93b"/>
                             <constraint firstItem="PeZ-wI-8Hm" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="199" id="jUw-xR-dLl"/>
                             <constraint firstItem="9br-DY-Qad" firstAttribute="top" secondItem="WAa-TF-82d" secondAttribute="bottom" constant="10" id="uPg-7N-O0Y"/>
                             <constraint firstItem="TqS-iu-q0d" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="wF8-v5-pvI"/>
-                            <constraint firstItem="FfN-AZ-977" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="1" id="y4J-zg-rNG"/>
                             <constraint firstItem="WAa-TF-82d" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="-20" id="zcT-ch-1w9"/>
                         </constraints>
                     </view>
