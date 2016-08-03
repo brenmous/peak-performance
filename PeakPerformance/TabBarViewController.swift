@@ -41,6 +41,8 @@ class TabBarViewController: UITabBarController {
         
         //set default tab to weekly goals view
         self.selectedIndex = 2
+        
+
        /* WIP
         //load weekly goals
         if let cu = currentUser

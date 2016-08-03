@@ -131,6 +131,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         {
             self.updateTextFields( )
         }
+
     }
     
     override func viewDidLoad()
@@ -146,6 +147,11 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
             //handle error/reauthenticate
         }
         // Do any additional setup after loading the view.
+        goalTextView.layer.cornerRadius = 5
+        goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
+        goalTextView.layer.borderWidth = 1
+        goalTextView.clipsToBounds = true
+    
     }
 
     override func didReceiveMemoryWarning()
