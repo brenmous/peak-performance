@@ -59,11 +59,11 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
 
+    //unhide pickers when their selection button is pressed
     @IBAction func klaButtonPressed(sender: AnyObject)
     {
         klaPicker.hidden = false
     }
-    
     @IBAction func deadlineButtonPressed(sender: AnyObject)
     {
         deadlinePicker.hidden = false
@@ -72,6 +72,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     // MARK: - Methods
     
+    /// This method creates a new weekly goal using the text fields and passes it to its delegate, where it is saved.
     func createNewWeeklyGoal( )
     {
         //VALIDATE THESE FIELDS, currently temporary setup
@@ -87,6 +88,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         delegate?.addNewGoal(wg)
     }
     
+    /// This method updates an existing weekly goal using the text field and passes it to its delegate, where it is saved.
     func updateGoal( )
     {
         guard let cg = currentGoal else
@@ -105,6 +107,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         delegate?.saveModifiedGoal(cg)
     }
     
+    /// This method fills the text field with details from the goal selected for editing.
     func updateTextFields( )
     {
         guard let cg = currentGoal else
