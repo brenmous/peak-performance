@@ -74,3 +74,9 @@
 	- working on weekly goal detail view
 		- pickers
 		- editing + new goals
+
+03/08/2016 1150 - 1555
+	- working on dataservice
+		- got help from Callumn in MiPal
+		- need to restructure database and rewrite some methods
+	- encapsulate user content within user model
