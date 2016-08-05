@@ -113,7 +113,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let goal = currentUser!.weeklyGoals[indexPath.row]
         
         // Configure the cell...
-        cell.textLabel!.text = goal.gid //whatever we want the goal to be called
+        cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
 
         //TODO: set image as KLA icon
         /*

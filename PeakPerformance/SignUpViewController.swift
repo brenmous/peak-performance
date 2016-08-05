@@ -66,12 +66,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         //self.signUp()
         validator.validate(self)
     }
-    
-    
-    @IBAction func goToLogIn(sender: AnyObject)
-    {
-        shouldPerformSegueWithIdentifier(GO_TO_LOG_IN_SEGUE, sender: self )
-    }
+
     
     
     

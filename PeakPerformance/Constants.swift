@@ -178,3 +178,6 @@ let ADD_MONTHLY_GOAL_SEGUE = "addMonthlyGoal"
 
 /// Segue for editing a monthly goal.
 let EDIT_MONTHLY_GOAL_SEGUE = "editMonthlyGoal"
+
+/// Segue for going to tutorial from sign up.
+let GO_TO_TUTORIAL_SEGUE = "goToTutorial"

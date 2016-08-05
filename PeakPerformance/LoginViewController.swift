@@ -68,6 +68,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     @IBAction func resetPasswordButtonPressed(sender: AnyObject) {}
     
+    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue){ }
     
     
     // MARK: - Methods

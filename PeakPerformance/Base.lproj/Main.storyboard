@@ -7,14 +7,6 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--Page View Controller-->
-        <scene sceneID="k3B-nZ-0gc">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="1Io-rz-F0S" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JXG-Y7-TIC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="238" y="-648"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="zDc-cb-7Sw">
             <objects>
@@ -317,7 +309,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="signUpButtonPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="mNZ-N0-LJc"/>
-                                                    <segue destination="1Io-rz-F0S" kind="show" identifier="GO_TO_LOG_IN_SEGUE" id="OHN-2D-qOa"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
@@ -328,8 +319,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="goToLogIn:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="jUP-Rj-grI"/>
-                                                    <segue destination="3ra-BT-UfF" kind="show" identifier="goToLogIn" id="K6m-BP-kuV"/>
+                                                    <segue destination="rLy-Wh-DnS" kind="unwind" unwindAction="unwindFromSignUp:" id="3NQ-cJ-eL3"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -379,12 +369,13 @@
                         <outlet property="passwordErrorLabel" destination="rYb-mz-ppc" id="Zkb-r1-bUl"/>
                         <outlet property="passwordField" destination="8fq-7X-SFN" id="8Dc-OP-DHb"/>
                         <outlet property="signUpErrorLabel" destination="Fgv-UW-LfC" id="Czi-Bo-3Wd"/>
-                        <segue destination="dRR-os-Kvs" kind="show" identifier="firstTimeLogIn" id="uPT-oo-Xfi"/>
+                        <segue destination="dRR-os-Kvs" kind="show" identifier="firstTimeLogIn" id="wcf-iB-f4W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tj8-jy-jx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rLy-Wh-DnS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="253" y="102"/>
+            <point key="canvasLocation" x="252" y="68"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="VUB-jd-Qov">
@@ -1179,6 +1170,14 @@
             </objects>
             <point key="canvasLocation" x="3344" y="76"/>
         </scene>
+        <!--Page View Controller-->
+        <scene sceneID="USw-5c-8is">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Mue-3y-bEd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7p1-oV-BSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="238" y="-648"/>
+        </scene>
     </scenes>
     <resources>
         <image name="dream-list-icon-75x75" width="25" height="25"/>
@@ -1189,7 +1188,7 @@
         <image name="weekly-icon_75x75" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hGi-rQ-ckm"/>
+        <segue reference="wcf-iB-f4W"/>
         <segue reference="F0k-MP-t0R"/>
         <segue reference="RnB-wj-eoz"/>
     </inferredMetricsTieBreakers>
