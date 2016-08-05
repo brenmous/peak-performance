@@ -31,6 +31,9 @@ class User
     /// User's weekly goals.
     var weeklyGoals: [WeeklyGoal]
     
+    /// User's monthly goals.
+    var monthlyGoals: [MonthlyGoal]
+    
     /**
         Initialises a new user.
 
@@ -52,5 +55,6 @@ class User
         self.email = email
         self.uid = uid
         self.weeklyGoals = [WeeklyGoal]( )
+        self.monthlyGoals = [MonthlyGoal]( )
     }
 }

@@ -172,3 +172,9 @@ let ADD_WEEKLY_GOAL_SEGUE = "addWeeklyGoal"
 
 /// Segue for editing a weekly goal.
 let EDIT_WEEKLY_GOAL_SEGUE = "editWeeklyGoal"
+
+/// Segue for adding a new monthly goal.
+let ADD_MONTHLY_GOAL_SEGUE = "addMonthlyGoal"
+
+/// Segue for editing a monthly goal.
+let EDIT_MONTHLY_GOAL_SEGUE = "editMonthlyGoal"

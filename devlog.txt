@@ -81,7 +81,8 @@
 		- need to restructure database and rewrite some methods
 	- encapsulate user content within user model
 
-04/08/2016 1550 - 1645, 1850 
+04/08/2016 1550 - 1645, 1850 - 2015
 	- restructuring database
 		- updated data service methods
 	- encapsulating content within user object
+	- created monthly goals view + methods

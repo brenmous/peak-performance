@@ -130,12 +130,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         })
     }
     
-    /// This method fetches the user object from the database and sets it as the currentUser.
-    /*
-    Currently this loads content sequentially which is not using the full power of the async loading from Firebase.
-    For now it should be okay as performance gains will be negliblblblelble but I will tweak this and try to bundle
-    fetching into a single method so content loads concurrently.
-    */
+    /// This method fetches the user and their content from the database.
     func fetchUser( )
     {
         guard let user = FIRAuth.auth()?.currentUser else
@@ -143,19 +138,21 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             //couldn't auth user -- handle it here
             return
         }
-        print("LIVC: logged in")
+        print("LIVC: authenticated")
+        
+        //Fetch user and content
         self.dataService.loadUser( user.uid ) { (user) in
-            
-            //this is the variable being passed by the completion block back in DataService
             self.currentUser = user
             
-            self.dataService.loadGoals( user.uid ) { ( weeklyGoals ) in
-            
+            self.dataService.loadWeeklyGoals( user.uid ) { ( weeklyGoals ) in
                 user.weeklyGoals = weeklyGoals
                 
-                print("LIVC: user content fetched, going to home screen")
-                
-                self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                self.dataService.loadMonthlyGoals(user.uid) { ( monthlyGoals) in
+                    user.monthlyGoals = monthlyGoals
+                    
+                    print("LIVC: content fetched, going to home screen")
+                    self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                }
             }
         }
     }

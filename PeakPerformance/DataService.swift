@@ -109,17 +109,16 @@ class DataService       //: SignUpDataService, LogInDataService
         print("DS: saved goal \(goal.gid) under gid" ) //DEBUG
     }
     
-    //N.B. might be able to extend this for all content
     /**
-        Loads a user's goals from the database.
+        Loads a user's weekly goals from the database.
      
         - Parameters:
             - uid: user ID that the goals belong.
-            - completion: the block that passes back the created goals.
+            - completion: the block that passes back the fetched goals.
      */
-    func loadGoals( uid: String, completion: ( weeklyGoals: [WeeklyGoal] ) -> Void )
+    func loadWeeklyGoals( uid: String, completion: ( weeklyGoals: [WeeklyGoal] ) -> Void )
     {
-        //Weekly Goals
+        
         var weeklyGoals = [WeeklyGoal]()
         let weeklyGoalsRef = baseRef.child(WEEKLYGOALS_REF_STRING).child(uid)
         weeklyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
@@ -134,13 +133,52 @@ class DataService       //: SignUpDataService, LogInDataService
                     let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID )
                     weeklyGoals.append(weeklyGoal)
                 }
-                completion( weeklyGoals: weeklyGoals )
                 print("DS: fetched weekly goals") //DEBUG
+                completion( weeklyGoals: weeklyGoals )
+                
             }
             else
             {
+                print("DS: no weekly goals to fetch") //DEBUG
                 completion( weeklyGoals: weeklyGoals )
-                print("DS: no weekly goals to fetch")
+                
+            }
+        })
+    }
+    
+    /**
+     Loads a user's monthly goals from the database.
+     
+     - Parameters:
+     - uid: user ID that the goals belong.
+     - completion: the block that passes back the fetched goals.
+     */
+    func loadMonthlyGoals( uid: String, completion: ( monthlyGoals: [MonthlyGoal] ) -> Void )
+    {
+
+        var monthlyGoals = [MonthlyGoal]( )
+        let monthlyGoalsRef = baseRef.child(MONTHLYGOALS_REF_STRING).child(uid)
+        monthlyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if snapshot.exists()
+            {
+                for goalSnapshot in snapshot.children
+                {
+                    let goalText = goalSnapshot.value![GOALTEXT_REF_STRING] as! String
+                    let keyLifeArea = goalSnapshot.value![KLA_REF_STRING] as! String
+                    let deadline = goalSnapshot.value![DEADLINE_REF_STRING] as! String
+                    let gid = String(goalSnapshot.key)
+                    let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid )
+                    monthlyGoals.append(monthlyGoal)
+                }
+                print("DS: fetched monthly goals") //DEBUG
+                completion( monthlyGoals: monthlyGoals )
+                
+            }
+            else
+            {
+                print("DS: no monthly goals to fetch") //DEBUG
+                completion( monthlyGoals: monthlyGoals )
+                
             }
         })
     }
