@@ -147,7 +147,7 @@ let DEADLINE_REF_STRING = "deadline"
 let UID_REF_STRING = "uid"
 
 /// Specifies monthly goal node in database.
-let MONTHLYGOAL_REF_STRING = "monthlyGoals"
+let MONTHLYGOALS_REF_STRING = "monthlyGoals"
 
 
 // MARK: - Date Format Strings

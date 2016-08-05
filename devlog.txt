@@ -80,3 +80,8 @@
 		- got help from Callumn in MiPal
 		- need to restructure database and rewrite some methods
 	- encapsulate user content within user model
+
+04/08/2016 1550 - 1645, 1850 
+	- restructuring database
+		- updated data service methods
+	- encapsulating content within user object

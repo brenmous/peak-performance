@@ -144,7 +144,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             let tbvc = self.tabBarController as! TabBarViewController
             if let cu = self.currentUser
             {
-                tbvc.dataService.removeWeeklyGoal( cu.uid, weeklyGoalID: weeklyGoals[indexPath.row].gid )
+                tbvc.dataService.removeGoal(cu.uid, goal: weeklyGoals[indexPath.row])
             }
             weeklyGoals.removeAtIndex(indexPath.row)
             tbvc.weeklyGoals.removeAtIndex(indexPath.row)

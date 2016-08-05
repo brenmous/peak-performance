@@ -85,11 +85,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
         let deadline = deadlineTextField.text!
-        guard let cu = currentUser else
-        {
-            return
-        }
-        let gid = "\(NSUUID().UUIDString)" + "-\(cu.uid)"
+        let gid = NSUUID( ).UUIDString
         let wg = WeeklyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(wg)
     }

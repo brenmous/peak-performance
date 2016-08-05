@@ -61,7 +61,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     @IBAction func logInButtonPressed(sender: AnyObject)
     {
-        //self.login( )
         validator.validate(self)
     }
     
@@ -96,92 +95,73 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         self.logInErrorLabel.hidden = true
         self.logInErrorLabel.text = ""
         self.logInButton.enabled = false
-       
+        
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
-            
-            if let error = error
-            {
-                print("LIVC: error logging in - " + error.localizedDescription) //DEBUG
-                if let errCode = FIRAuthErrorCode( rawValue: error.code )
-                {
-                    switch errCode
-                    {
-                        case .ErrorCodeUserNotFound:
-                            self.logInErrorLabel.text = LOGIN_ERR_MSG
-                            self.logInErrorLabel.hidden = false
-                            self.logInButton.enabled = true
-                        
-                        case .ErrorCodeTooManyRequests:
-                            self.logInErrorLabel.text = REQUEST_ERR_MSG
-                            self.logInErrorLabel.hidden = false
-                            self.logInButton.enabled = true
-                        
-                        case .ErrorCodeNetworkError:
-                            self.logInErrorLabel.text = NETWORK_ERR_MSG
-                            self.logInErrorLabel.hidden = false
-                            self.logInButton.enabled = true
-                        
-                        default:
-                            print("LIVC: error case not currently covered") //DEBUG
-                            self.logInErrorLabel.text = "Error case not currently covered." //DEBUG
-                            self.logInErrorLabel.hidden = false
-                            self.logInButton.enabled = true
-                    }
-                }
-            }
-            else
-            {
+            guard let error = error else {
                 //Auth successful so fetch user and content
-                self.fetchUser( )
+                self.fetchUser()
+                return
+            }
+            print("LIVC: error logging in - " + error.localizedDescription) //DEBUG
+            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else {
+                return
+            }
+            switch errCode
+            {
+            case .ErrorCodeUserNotFound:
+                self.logInErrorLabel.text = LOGIN_ERR_MSG
+                self.logInErrorLabel.hidden = false
+                self.logInButton.enabled = true
+                
+            case .ErrorCodeTooManyRequests:
+                self.logInErrorLabel.text = REQUEST_ERR_MSG
+                self.logInErrorLabel.hidden = false
+                self.logInButton.enabled = true
+                
+            case .ErrorCodeNetworkError:
+                self.logInErrorLabel.text = NETWORK_ERR_MSG
+                self.logInErrorLabel.hidden = false
+                self.logInButton.enabled = true
+                
+            default:
+                print("LIVC: error case not currently covered") //DEBUG
+                self.logInErrorLabel.text = "Error case not currently covered." //DEBUG
+                self.logInErrorLabel.hidden = false
+                self.logInButton.enabled = true
             }
         })
     }
     
     /// This method fetches the user object from the database and sets it as the currentUser.
     /*
-        Currently this loads content sequentially which is not using the full power of the async loading from Firebase.
-        For now it should be okay as performance gains will be negliblblblelble but I will tweak this and try to bundle 
-        fetching into a single method so content loads concurrently.
+    Currently this loads content sequentially which is not using the full power of the async loading from Firebase.
+    For now it should be okay as performance gains will be negliblblblelble but I will tweak this and try to bundle
+    fetching into a single method so content loads concurrently.
     */
     func fetchUser( )
     {
-        if let user = FIRAuth.auth()?.currentUser
+        guard let user = FIRAuth.auth()?.currentUser else
         {
-            print("LIVC: logged in")
+            return
+        }
+        print("LIVC: logged in")
+        self.dataService.loadUser( user.uid ) { (user) in
             
-            /*
-            //TEST GOALs
-            let wg1 = WeeklyGoal(goalText: "goaltext", kla: KLA_FAMILY, deadline: "22/02/2016", gid: "54321")
-            let wg2 = WeeklyGoal(goalText: "goaltext", kla: KLA_FAMILY, deadline: "22/02/2016", gid: "12345")
-            let wg3 = WeeklyGoal(goalText: "goaltext", kla: KLA_FAMILY, deadline: "22/02/2016", gid: "01010101")
-            self.dataService.saveGoal(user.uid, goal: wg1)
-            self.dataService.saveGoal(user.uid, goal: wg2)
-            self.dataService.saveGoal(user.uid, goal: wg3)
-            */
+            //this is the variable being passed by the completion block back in DataService
+            self.currentUser = user
             
-            //note that when calling a method with a completion block as its last argument, you can supply the needed parameters in brackets
-            // and then specify the completion block in curly braces. Generally I use a sameline curly brace to indicate this and a newline curly brace everywhere else.
-            self.dataService.loadUser( user.uid ) {
+            self.dataService.loadGoals( user.uid ) { ( weeklyGoals ) in
+            
+                user.weeklyGoals = weeklyGoals
                 
-                //this is the variable being passed by the completion block back in DataService
-                (user, weeklyGoalIDStrings ) in
-                self.currentUser = user
-                print("LIVC: weekly goal count: \(weeklyGoalIDStrings.count)") //DEBUG
+                print("LIVC: user content fetched, going to home screen")
                 
-                //Because Firebase retrieval (this method) is asynchronous, we have to chain calls to the fetch/segue methods by
-                // calling them in the completion block within a GCD (dispatch_async).
-                //Otherwise if they are placed outside this block, the program will execute those calls before the fetch has completed.
-                
-                //Go to next fetch.
-                dispatch_async( dispatch_get_main_queue() ) {
-                    print("LIVC: user fetched, fetching weekly goals...") //DEBUG
-                    self.fetchWeeklyGoals( weeklyGoalIDStrings )
-                }
+                self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
             }
         }
     }
-    
+    /*
     /// This method fetches the user's weekly goals from the database sets it as the value of the weeklyGoals variable.
     func fetchWeeklyGoals( weeklyGoalIDStrings: [String] )
     {
@@ -189,37 +169,15 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         if weeklyGoalIDStrings.isEmpty
         {
             self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+            return
         }
-            //...otherwise fetch the user's goals
-        else
-        {
-            for ( index, wgid ) in weeklyGoalIDStrings.enumerate()
+        self.dataService.loadWeeklyGoals(weeklyGoalIDStrings)
             {
-                self.dataService.loadWeeklyGoal(wgid) {
-                    (weeklyGoal) in
-                    self.weeklyGoals.append( weeklyGoal )
-                    
-                    //last goal is fetched so chain the next method before the completion block ends
-                    if index == weeklyGoalIDStrings.count - 1
-                    {
-                        //go to next fetch when it's ready, but for now we shall segue
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            print("LIVC: last weekly goal loaded, seguing....")
-                            self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
-                        }
-                    }
-                }
-            }
+            self.weeklyGoals.appendContentsOf($0)
+            self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
         }
     }
-    
-    
-    /*
-    func fetchComplete( )
-    {
-        performSegueWithIdentifier("loggedIn", sender: self)
-    } */
-    
+    */
 
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
@@ -292,7 +250,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         {
             let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
-            dvc.weeklyGoals = self.weeklyGoals
+            dvc.weeklyGoals = self.currentUser!.weeklyGoals
         }
         else if segue.identifier == GO_TO_SIGN_UP_SEGUE
         {
