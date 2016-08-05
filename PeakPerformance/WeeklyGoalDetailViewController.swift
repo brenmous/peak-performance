@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
 protocol WeeklyGoalDetailViewControllerDelegate
 {
@@ -14,7 +15,7 @@ protocol WeeklyGoalDetailViewControllerDelegate
     func saveModifiedGoal( weeklyGoal: WeeklyGoal )
 }
 
-class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
+class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate
 {
     
     // MARK: - Properties
@@ -30,6 +31,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     /// Key life areas for the KLA picker.
     var keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
+    
+    /// Swift validator instance.
+    let validator = Validator( )
     
     // MARK: Date Picker Instance (retrieved from cocoapods)
     var datePicker = MIDatePicker.getFromNib()
@@ -47,20 +51,18 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet weak var klaPicker: UIPickerView!
     @IBOutlet weak var deadlinePicker: UIDatePicker!
     
+    //error labels
+    @IBOutlet weak var klaErrorLabel: UILabel!
+    @IBOutlet weak var goalTextErrorLabel: UILabel!
+    @IBOutlet weak var deadlineErrorLabel: UILabel!
+    
+    
+    
     // MARK: - Actions
     
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
-        //if there's no current goal, make a new one...
-        if currentGoal == nil
-        {
-            createNewWeeklyGoal( )
-        }
-            //...otherwise modify the referenced goal
-        else
-        {
-            updateGoal( )
-        }
+        validator.validate(self)
     }
     
     @IBAction func klaButtonPressed(sender: AnyObject)
@@ -79,9 +81,42 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     // MARK: - Methods
     
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
+    func validationSuccessful()
+    {
+        print ("WGDVC: validation successful") //DEBUG
+        
+        //hide error labels
+        //goalTextErrorLabel.hidden = true
+        //klaErrorLabel.hidden = true
+        //deadlineErrorLabel.hidden = true
+        
+        saveChanges( )
+    }
+    
+    /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
+    func validationFailed(errors: [(Validatable, ValidationError)])
+    {
+        print ("WGDVC: validation failed") //DEBUG
+    }
+    
+    func saveChanges( )
+    {
+        //if there's no current goal, make a new one...
+        if currentGoal == nil
+        {
+            createNewWeeklyGoal( )
+        }
+            //...otherwise modify the referenced goal
+        else
+        {
+            updateGoal( )
+        }
+        performSegueWithIdentifier(UNWIND_FROM_WGDVC_SEGUE, sender: self)
+    }
+    
     func createNewWeeklyGoal( )
     {
-        //VALIDATE THESE FIELDS, currently temporary setup
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
         let deadline = deadlineTextField.text!
@@ -129,6 +164,11 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         klaPicker.hidden = true
         deadlinePicker.hidden = true
         
+        //hide error labels
+        goalTextErrorLabel.hidden = true
+        klaErrorLabel.hidden = true
+        deadlineErrorLabel.hidden = true
+        
         //update textfields if editing a goal
         if currentGoal != nil
         {
@@ -154,6 +194,36 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
         goalTextView.layer.borderWidth = 1
         goalTextView.clipsToBounds = true
+        
+        //set up validator style transformer
+        validator.styleTransformers(success: { (validationRule) -> Void in
+            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.text = ""
+            if let textField = validationRule.field as? UITextField
+            {
+                textField.layer.borderColor = TEXTFIELD_REGULAR_BORDER_COLOUR
+                textField.layer.borderWidth = CGFloat( TEXTFIELD_REGULAR_BORDER_WIDTH )
+            }
+            
+            }, error: { (validationError ) -> Void in
+                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.text = validationError.errorMessage
+                if let textField = validationError.field as? UITextField
+                {
+                    textField.layer.borderColor = TEXTFIELD_ERROR_BORDER_COLOUR
+                    textField.layer.borderWidth = CGFloat( TEXTFIELD_ERROR_BORDER_WIDTH )
+                }
+        })
+        
+        //Register fields with SwiftValidator.
+        //key life area text field
+        validator.registerField(klaTextField, errorLabel: klaErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG)] )
+        
+        //deadline text field
+        validator.registerField(deadlineTextField, errorLabel: deadlineErrorLabel, rules: [RequiredRule(message: REQUIRED_FIELD_ERR_MSG)])
+        
+        //goal text view
+        validator.registerField(goalTextView, errorLabel: goalTextErrorLabel, rules: [RequiredRule(message: REQUIRED_FIELD_ERR_MSG)])
         
     }
     

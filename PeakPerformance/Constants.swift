@@ -181,3 +181,9 @@ let EDIT_MONTHLY_GOAL_SEGUE = "editMonthlyGoal"
 
 /// Segue for going to tutorial from sign up.
 let GO_TO_TUTORIAL_SEGUE = "goToTutorial"
+
+/// Segue for unwinding from WG detail view.
+let UNWIND_FROM_WGDVC_SEGUE = "unwindFromWGDVC"
+
+/// Segue for unwinding from MG detail view.
+let UNWIND_FROM_MGDVC_SEGUE = "unwindFromMGDVC"

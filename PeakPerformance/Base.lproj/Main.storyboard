@@ -527,7 +527,7 @@
                                             <color key="titleColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="quC-nb-aqH" kind="unwind" unwindAction="unwindFromDetailView:" id="aLt-NV-hdC"/>
+                                            <segue destination="quC-nb-aqH" kind="unwind" unwindAction="unwindFromWGDVC:" id="7QB-QH-8Dm"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY0-xe-5W8">
@@ -547,7 +547,6 @@
                                         </state>
                                         <connections>
                                             <action selector="saveButtonPressed:" destination="m6s-0q-9KL" eventType="touchUpInside" id="0RR-gT-yNG"/>
-                                            <segue destination="quC-nb-aqH" kind="unwind" unwindAction="unwindFromDetailView:" id="tqF-li-7fN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -639,6 +638,27 @@
                                     <action selector="deadlinePickerActivated:" destination="m6s-0q-9KL" eventType="valueChanged" id="XrB-0A-AcV"/>
                                 </connections>
                             </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Key Life Area Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFC-Im-cNL">
+                                <rect key="frame" x="25" y="310" width="240" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deadline Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzV-af-keP">
+                                <rect key="frame" x="-13" y="391" width="240" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Text Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUB-Qp-Z7Z">
+                                <rect key="frame" x="331" y="232" width="240" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="jWK-4r-Wae"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -657,10 +677,12 @@
                             <constraint firstItem="FfN-AZ-977" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" id="UMz-1f-PZM"/>
                             <constraint firstItem="WAa-TF-82d" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="VUb-Ge-pgu"/>
                             <constraint firstItem="vj3-fX-x3D" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="WbB-9B-z8E"/>
+                            <constraint firstItem="RUB-Qp-Z7Z" firstAttribute="trailing" secondItem="qxT-e6-oax" secondAttribute="trailing" id="WyF-0g-fBL"/>
                             <constraint firstItem="qxT-e6-oax" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="71" id="XOp-qb-DhH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FfN-AZ-977" secondAttribute="trailing" constant="-20" id="f41-Pm-lvH"/>
                             <constraint firstItem="FfN-AZ-977" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="iVk-6h-93b"/>
                             <constraint firstItem="PeZ-wI-8Hm" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="199" id="jUw-xR-dLl"/>
+                            <constraint firstItem="RUB-Qp-Z7Z" firstAttribute="top" secondItem="qxT-e6-oax" secondAttribute="bottom" constant="8" symbolic="YES" id="tvj-95-poW"/>
                             <constraint firstItem="9br-DY-Qad" firstAttribute="top" secondItem="WAa-TF-82d" secondAttribute="bottom" constant="10" id="uPg-7N-O0Y"/>
                             <constraint firstItem="TqS-iu-q0d" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="wF8-v5-pvI"/>
                             <constraint firstItem="WAa-TF-82d" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="-20" id="zcT-ch-1w9"/>
@@ -674,11 +696,15 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deadlineErrorLabel" destination="MzV-af-keP" id="ybA-68-8fJ"/>
                         <outlet property="deadlinePicker" destination="WAa-TF-82d" id="Ux1-Tp-h1Y"/>
                         <outlet property="deadlineTextField" destination="lSy-IY-rkV" id="jtH-d8-Dy8"/>
+                        <outlet property="goalTextErrorLabel" destination="RUB-Qp-Z7Z" id="xUD-sU-f7E"/>
                         <outlet property="goalTextView" destination="UrL-OA-mxN" id="aeb-hT-oR4"/>
+                        <outlet property="klaErrorLabel" destination="SFC-Im-cNL" id="9Tq-64-coM"/>
                         <outlet property="klaPicker" destination="TqS-iu-q0d" id="zQw-8s-VOQ"/>
                         <outlet property="klaTextField" destination="H68-T5-Epg" id="ddX-mP-lrY"/>
+                        <segue destination="quC-nb-aqH" kind="unwind" identifier="unwindFromWGDVC" unwindAction="unwindFromWGDVC:" id="C2m-TQ-9hH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGC-qG-36f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1011,7 +1037,7 @@
                                             <color key="titleColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="MCY-Hs-cjn" kind="unwind" unwindAction="unwindFromDetailView:" id="3wA-gE-0a0"/>
+                                            <segue destination="MCY-Hs-cjn" kind="unwind" unwindAction="unwindFromMGDVC:" id="5JA-vR-Wul"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAd-G0-lUg">
@@ -1031,7 +1057,6 @@
                                         </state>
                                         <connections>
                                             <action selector="saveButtonPressed:" destination="vq9-2F-l8P" eventType="touchUpInside" id="ptk-pM-O3H"/>
-                                            <segue destination="MCY-Hs-cjn" kind="unwind" unwindAction="unwindFromDetailView:" id="QDE-o4-edi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1123,6 +1148,24 @@
                                     <action selector="deadlinePickerActivated:" destination="vq9-2F-l8P" eventType="valueChanged" id="FyB-i5-TaP"/>
                                 </connections>
                             </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Key Life Area Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FrF-Yz-3ZL">
+                                <rect key="frame" x="24" y="310" width="240" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Text Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlw-Qx-NeL">
+                                <rect key="frame" x="30" y="246" width="541" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deadline Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpF-i1-zng">
+                                <rect key="frame" x="-13" y="397" width="240" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <color key="textColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1132,6 +1175,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="EO8-Yg-x2A" secondAttribute="trailing" constant="9" id="6C3-65-c8u"/>
                             <constraint firstItem="EO8-Yg-x2A" firstAttribute="top" secondItem="W5g-8J-tEe" secondAttribute="bottom" constant="71" id="8lw-Dl-sXI"/>
                             <constraint firstItem="i0F-jt-2bF" firstAttribute="centerX" secondItem="ANO-7K-vn0" secondAttribute="centerX" id="C9L-re-C6r"/>
+                            <constraint firstItem="mlw-Qx-NeL" firstAttribute="trailing" secondItem="EO8-Yg-x2A" secondAttribute="trailing" id="DgR-dh-f4y"/>
                             <constraint firstItem="EO8-Yg-x2A" firstAttribute="leading" secondItem="ANO-7K-vn0" secondAttribute="leadingMargin" constant="10" id="ECN-6I-0CW"/>
                             <constraint firstItem="Nn5-Nu-OJd" firstAttribute="top" secondItem="W5g-8J-tEe" secondAttribute="bottom" constant="199" id="KJN-lh-VD1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IdE-nH-pRx" secondAttribute="trailing" constant="-20" id="KsR-Hp-bL6"/>
@@ -1139,7 +1183,9 @@
                             <constraint firstItem="IdE-nH-pRx" firstAttribute="centerX" secondItem="ANO-7K-vn0" secondAttribute="centerX" id="PZb-fV-10P"/>
                             <constraint firstItem="K7H-YC-UtY" firstAttribute="top" secondItem="Np7-ff-g0D" secondAttribute="bottom" constant="10" id="Q1v-pZ-ZDT"/>
                             <constraint firstItem="i0F-jt-2bF" firstAttribute="top" secondItem="W5g-8J-tEe" secondAttribute="bottom" constant="13" id="TOb-B6-a8K"/>
+                            <constraint firstItem="mlw-Qx-NeL" firstAttribute="leading" secondItem="Nn5-Nu-OJd" secondAttribute="leading" id="TQe-Xj-DLK"/>
                             <constraint firstItem="i0F-jt-2bF" firstAttribute="leading" secondItem="ANO-7K-vn0" secondAttribute="leadingMargin" constant="5" id="UIl-eI-dXb"/>
+                            <constraint firstItem="Nn5-Nu-OJd" firstAttribute="top" secondItem="mlw-Qx-NeL" secondAttribute="bottom" constant="5" id="Vel-Jf-hL4"/>
                             <constraint firstItem="tT4-N5-FtD" firstAttribute="leading" secondItem="ANO-7K-vn0" secondAttribute="leadingMargin" constant="10" id="Xpa-tt-LBJ"/>
                             <constraint firstItem="Np7-ff-g0D" firstAttribute="centerX" secondItem="ANO-7K-vn0" secondAttribute="centerX" id="h21-TK-6Lj"/>
                             <constraint firstItem="EO8-Yg-x2A" firstAttribute="centerX" secondItem="ANO-7K-vn0" secondAttribute="centerX" id="iZb-8z-aQ2"/>
@@ -1158,11 +1204,15 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deadlineErrorLabel" destination="UpF-i1-zng" id="O0S-74-dZN"/>
                         <outlet property="deadlinePicker" destination="Np7-ff-g0D" id="mw2-ID-yyt"/>
                         <outlet property="deadlineTextField" destination="JLj-3p-fOd" id="G8A-EF-Cja"/>
+                        <outlet property="goalTextErrorLabel" destination="mlw-Qx-NeL" id="xHh-MM-BoQ"/>
                         <outlet property="goalTextView" destination="2dZ-nq-ROf" id="u89-wP-GkH"/>
+                        <outlet property="klaErrorLabel" destination="FrF-Yz-3ZL" id="SvG-sf-GfY"/>
                         <outlet property="klaPicker" destination="MhX-IN-lZ3" id="Ztf-Ha-gKs"/>
                         <outlet property="klaTextField" destination="xUC-WZ-PQp" id="RVo-MK-a2J"/>
+                        <segue destination="MCY-Hs-cjn" kind="unwind" identifier="unwindFromMGDVC" unwindAction="unwindFromMGDVC:" id="PCa-L4-cWf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLW-Xh-Pel" userLabel="First Responder" sceneMemberID="firstResponder"/>

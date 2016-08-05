@@ -34,10 +34,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         performSegueWithIdentifier(ADD_MONTHLY_GOAL_SEGUE, sender: self)
     }
     
-    @IBAction func unwindFromDetailView( segue: UIStoryboardSegue)
-    {
-        
-    }
+    
+    @IBAction func unwindFromMGDVC( segue: UIStoryboardSegue ){ }
     
     
     // MARK: - Methods
