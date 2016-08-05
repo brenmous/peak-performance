@@ -30,9 +30,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// The currently authenticated user.
     var currentUser: User?
     
-    /// The user's weekly goals.
-    var weeklyGoals = [WeeklyGoal]( )
-    
     /// This view controller's DataService instance.
     let dataService = DataService( )
     
@@ -143,6 +140,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     {
         guard let user = FIRAuth.auth()?.currentUser else
         {
+            //couldn't auth user -- handle it here
             return
         }
         print("LIVC: logged in")
@@ -250,12 +248,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         {
             let dvc = segue.destinationViewController as! TabBarViewController
             dvc.currentUser = self.currentUser
-            dvc.weeklyGoals = self.currentUser!.weeklyGoals
         }
         else if segue.identifier == GO_TO_SIGN_UP_SEGUE
         {
-            let dvc = segue.destinationViewController as! SignUpViewController
-            dvc.currentUser = self.currentUser
+            
         }
     }
     

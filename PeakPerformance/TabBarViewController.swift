@@ -14,13 +14,10 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     // MARK: - Properties
-    let dataService = DataService( )
     
     /// The currently authenticated user.
     var currentUser: User?
     
-    /// The user's weekly goals.
-    var weeklyGoals = [WeeklyGoal]( )
     
     
     // MARK: - Methods
@@ -41,23 +38,6 @@ class TabBarViewController: UITabBarController {
         
         //set default tab to weekly goals view
         self.selectedIndex = 2
-        
-
-       /* WIP
-        //load weekly goals
-        if let cu = currentUser
-        {
-            for wgid in cu.weeklyGoals
-            {
-                self.dataService.loadWeeklyGoal(wgid) {
-                    (weeklyGoal) in
-                    self.weeklyGoals.append( weeklyGoal )
-                }
-            }
-        } */
-        
-        
-        
     }
     
     /*

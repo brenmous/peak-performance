@@ -19,9 +19,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     /// The currently authenticated user.
     var currentUser: User?
     
-    /// The user's weekly goals.
-    var weeklyGoals = [WeeklyGoal]( )
-
+    /// This view controller's data service.
+    var dataService = DataService( )
     
     // MARK: - Actions
     
@@ -48,16 +47,23 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     func addNewGoal( weeklyGoal: WeeklyGoal )
     {
-        weeklyGoals.append(weeklyGoal)
-        let tbvc = self.tabBarController as! TabBarViewController
-        tbvc.weeklyGoals.append(weeklyGoal)
-        tbvc.dataService.saveGoal((currentUser?.uid)!, goal: weeklyGoal)
+        guard let cu = currentUser else
+        {
+            //user not available? handle it here
+            return
+        }
+        cu.weeklyGoals.append(weeklyGoal)
+        dataService.saveGoal(cu.uid, goal: weeklyGoal)
     }
     
     func saveModifiedGoal(weeklyGoal: WeeklyGoal)
     {
-        let tbvc = self.tabBarController as! TabBarViewController
-        tbvc.dataService.saveGoal((currentUser?.uid)!, goal: weeklyGoal)
+        guard let cu = currentUser else
+        {
+            //user not available handle it HANDLE IT!
+            return
+        }
+        dataService.saveGoal(cu.uid, goal: weeklyGoal)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -67,14 +73,14 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         //Get data from tab bar view controller
         let tbvc = self.tabBarController as! TabBarViewController
         
-        if let cu = tbvc.currentUser
+        guard let cu = tbvc.currentUser else
         {
-            self.currentUser = cu
+            //no user fix it man, goddamn you fix it what do i pay you for?!?!
+            return
         }
-        self.weeklyGoals = tbvc.weeklyGoals
+        self.currentUser = cu
         tableView.reloadData( )
-        print("WGVC: got user \(currentUser!.email) with \(weeklyGoals.count) weekly goals") //DEBUG
-        print("WGVC: \(tableView.numberOfRowsInSection(0)) rows in table") //DEBUG
+        print("WGVC: got user \(currentUser!.email) with \(cu.weeklyGoals.count) weekly goals") //DEBUG
         
         //disable editing in case user left view while in edit mode
         self.tableView.setEditing(false, animated: true)
@@ -99,12 +105,12 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return weeklyGoals.count
+        return currentUser!.weeklyGoals.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
-        let goal = weeklyGoals[indexPath.row]
+        let goal = currentUser!.weeklyGoals[indexPath.row]
         
         // Configure the cell...
         cell.textLabel!.text = goal.gid //whatever we want the goal to be called
@@ -134,20 +140,18 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         return true
     }
     
-
-    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete
         {
             // Delete the row from the data source
-            let tbvc = self.tabBarController as! TabBarViewController
-            if let cu = self.currentUser
+            guard let cu = self.currentUser else
             {
-                tbvc.dataService.removeGoal(cu.uid, goal: weeklyGoals[indexPath.row])
+                //no user! wuh oh!
+                return
             }
-            weeklyGoals.removeAtIndex(indexPath.row)
-            tbvc.weeklyGoals.removeAtIndex(indexPath.row)
+            dataService.removeGoal(cu.uid, goal: cu.weeklyGoals[indexPath.row])
+            cu.weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         else if editingStyle == .Insert
@@ -189,7 +193,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             dvc.currentUser = self.currentUser
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
-                dvc.currentGoal = weeklyGoals[indexPath.row]
+                dvc.currentGoal = currentUser!.weeklyGoals[indexPath.row]
             }
         }
     }

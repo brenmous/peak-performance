@@ -101,7 +101,6 @@ class DataService       //: SignUpDataService, LogInDataService
         let goalRef = goalsRef.child(uid).child(goal.gid)
         goalRef.child(GOALTEXT_REF_STRING).setValue(goal.goalText)
         goalRef.child(KLA_REF_STRING).setValue(goal.kla)
-        goalRef.child(UID_REF_STRING).setValue(uid)
         
         //converting deadline from NSDate to String
         let dateFormatter = NSDateFormatter( )

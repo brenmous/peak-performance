@@ -159,7 +159,7 @@ let DATE_FORMAT_STRING = "dd/MM/yyyy"
 let LOGGED_IN_SEGUE = "loggedIn"
 
 /// Segue for when a user logs in for the first time after signing up.
-let FT_LOG_IN_SEGUE = "firsTimeLogIn"
+let FT_LOG_IN_SEGUE = "firstTimeLogIn"
 
 /// Segue for when a user goes to the sign up view from the log in view.
 let GO_TO_SIGN_UP_SEGUE = "goToSignUp"

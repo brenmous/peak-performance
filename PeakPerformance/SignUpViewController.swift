@@ -92,19 +92,17 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     /// Attempts to create a new Firebase user account with supplied email and password.
     func signUp()
     {
-            FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
-                user, error in
-                if let error = error
-                {
-                    //Check for Firebase errors and inform user of error here somewhere
-                    print("SUVC: error creating account - " + error.localizedDescription) //DEBUG
-                }
-                else
-                {
-                    print("SUVC: account created") //DEBUG
-                    self.firstLogin()
-                }
-            })
+        FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
+            user, error in
+            guard let error = error else
+            {
+                print("SUVC: account created") //DEBUG
+                self.firstLogin()
+                return
+            }
+            //Check for Firebase errors and inform user of error here somewhere
+            print("SUVC: error creating account - " + error.localizedDescription) //DEBUG
+        })
     }
     
     //delegate this back to Login VC???
@@ -113,37 +111,36 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     {
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
-            
-            if let error = error
+            guard let error = error else
             {
-                //Check for Firebase errors and inform user here
-                print("SUVC: error logging in - " + error.localizedDescription) //DEBUG
-                if let errCode = FIRAuthErrorCode( rawValue: error.code )
-                {
-                    switch errCode
-                    {
-                    case .ErrorCodeNetworkError:
-                        self.signUpErrorLabel.text = NETWORK_ERR_MSG
-                        self.signUpErrorLabel.hidden = false
-                        
-                    case .ErrorCodeEmailAlreadyInUse:
-                        self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
-                        self.signUpErrorLabel.hidden = false
-                        
-                    default:
-                        print("SUVC: error case not currently covered") //DEBUG
-                    }
-                }
-
-            }
-            else
-            {
-                print("logged in")
+                print("SUVC: logged in")
                 self.createUser( )
                 //currently this segue goes to the TabBar view, but this where you would segue to the tutorial/initial setup
                 //feel free to change the segue in the storyboard (but keep the segue identifier, or change it here) when it's ready
                 self.performSegueWithIdentifier( FT_LOG_IN_SEGUE, sender: self )
+                return
             }
+            
+            //Check for Firebase errors and inform user here
+            print("SUVC: error logging in - " + error.localizedDescription) //DEBUG
+            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
+            {
+                return
+            }
+            switch errCode
+            {
+            case .ErrorCodeNetworkError:
+                self.signUpErrorLabel.text = NETWORK_ERR_MSG
+                self.signUpErrorLabel.hidden = false
+                
+            case .ErrorCodeEmailAlreadyInUse:
+                self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
+                self.signUpErrorLabel.hidden = false
+                
+            default:
+                print("SUVC: error case not currently covered") //DEBUG
+            }
+            
         })
         
     }
@@ -151,20 +148,23 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     /// Creates a new user and save details to database.
     func createUser( )
     {
-        if let user = FIRAuth.auth( )?.currentUser
+        guard let user = FIRAuth.auth()?.currentUser else
         {
-            //create new user object
-            let fname = self.firstNameField.text!
-            let lname = self.lastNameField.text!
-            let org = self.orgField.text!
-            //let username = self.userNameField.text!
-            let email = self.emailField.text!
-            let uid = user.uid as String
-            
-            self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid ) //weeklyGoals: [String]() )
-            
-            self.dataService.saveUser( self.currentUser! )
+            //couldn't auth user - handle it here
+            return
         }
+        //create new user object
+        let fname = self.firstNameField.text!
+        let lname = self.lastNameField.text!
+        let org = self.orgField.text!
+        //let username = self.userNameField.text!
+        let email = self.emailField.text!
+        let uid = user.uid as String
+        
+        self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid ) //weeklyGoals: [String]() )
+        
+        self.dataService.saveUser( self.currentUser! )
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
