@@ -22,6 +22,11 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     /// This view controller's data service.
     var dataService = DataService( )
     
+    
+    // MARK: UI Variables
+    
+    @IBOutlet weak var progressViewWG: UIProgressView!
+    
     // MARK: - Actions
     
     @IBAction func editButtonPressed(sender: AnyObject)
@@ -88,6 +93,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
 
@@ -105,8 +111,11 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        
         return currentUser!.weeklyGoals.count
     }
+    
+    
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
@@ -131,6 +140,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         //TODO: add checkbox in here somewhere
         
+        // Configure Font size
+        cell.textLabel!.font = UIFont.boldSystemFontOfSize(12.0)
         return cell
     }
     

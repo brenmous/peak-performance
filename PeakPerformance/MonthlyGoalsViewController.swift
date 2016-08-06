@@ -22,6 +22,10 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     /// This view controller's data service.
     var dataService = DataService( )
     
+    // MARK: - UI Variables
+    @IBOutlet weak var progressBarMG: UIProgressView!
+    
+    
     // MARK: - Actions
     
     @IBAction func editButtonPressed(sender: AnyObject)
@@ -109,6 +113,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         // Configure the cell...
         cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
+        cell.textLabel!.font = UIFont.boldSystemFontOfSize(12.0)
         
         //TODO: set image as KLA icon
         /*
