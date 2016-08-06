@@ -48,6 +48,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    @IBOutlet weak var activityIndicatorSU: UIActivityIndicatorView!
     
     //labels
     @IBOutlet weak var firstNameErrorLabel: UILabel!
@@ -77,6 +78,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     {
         print ("SUVC: validation successful") //DEBUG
         self.signUp()
+        activityIndicatorSU.startAnimating()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
@@ -239,7 +241,10 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         signUpErrorLabel.hidden = true
     }
     
-
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        activityIndicatorSU.stopAnimating()
+    }
     
     // MARK: - Navigation
     

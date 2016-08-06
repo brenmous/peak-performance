@@ -38,7 +38,7 @@ let SHORTPW_ERR_MSG = "Password must be a minimum of 6 characters."
 let LONGPW_ERR_MSG = "Password cannot be more than 32 characters."
 
 /// Bad password format.
-let BADPW_ERR_MSG = "Password must contain at least one uppercase letter and one number."
+let BADPW_ERR_MSG = "Must contain an uppercase letter & number."
 
 /// Password confirm field doesn't match.
 let CONPW_ERR_MSG = "Passwords must match."
