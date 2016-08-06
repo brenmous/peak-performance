@@ -13,6 +13,7 @@
 		4427EFEE1D4CED39005458DB /* monthly-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFED1D4CED39005458DB /* monthly-icon-25x25.png */; };
 		4427EFF01D4CED67005458DB /* history-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFEF1D4CED67005458DB /* history-icon.png */; };
 		4427EFF21D4CEE3A005458DB /* my-values-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */; };
+		446379A11D55968300BAE5B2 /* login_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 446379A01D55968300BAE5B2 /* login_background.jpg */; };
 		447E47821D461EDA00DF5351 /* SplashScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 447E47811D461EDA00DF5351 /* SplashScreen.jpg */; };
 		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
 		44DD923F1D520F8C00BD312D /* MIDatePicker in Resources */ = {isa = PBXBuildFile; fileRef = 44DD923E1D520F8C00BD312D /* MIDatePicker */; };
@@ -65,6 +66,7 @@
 		4427EFED1D4CED39005458DB /* monthly-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "monthly-icon-25x25.png"; sourceTree = "<group>"; };
 		4427EFEF1D4CED67005458DB /* history-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history-icon.png"; sourceTree = "<group>"; };
 		4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-values-icon-25x25.png"; sourceTree = "<group>"; };
+		446379A01D55968300BAE5B2 /* login_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_background.jpg; sourceTree = "<group>"; };
 		447E47811D461EDA00DF5351 /* SplashScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SplashScreen.jpg; sourceTree = "<group>"; };
 		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
 		44DD923E1D520F8C00BD312D /* MIDatePicker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MIDatePicker; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */,
+				446379A01D55968300BAE5B2 /* login_background.jpg */,
 				4427EFE71D4CD57B005458DB /* menu icon_25x17.png */,
 				4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */,
 				4427EFE91D4CED13005458DB /* dream-list-icon-25x25.png */,
@@ -366,6 +369,7 @@
 				B59EC4381D3FB45C00AF1297 /* Main.storyboard in Resources */,
 				44DD923F1D520F8C00BD312D /* MIDatePicker in Resources */,
 				4427EFEE1D4CED39005458DB /* monthly-icon-25x25.png in Resources */,
+				446379A11D55968300BAE5B2 /* login_background.jpg in Resources */,
 				B59EC4611D3FB50C00AF1297 /* GoogleService-Info.plist in Resources */,
 				4427EFEA1D4CED13005458DB /* dream-list-icon-25x25.png in Resources */,
 				4427EFF01D4CED67005458DB /* history-icon.png in Resources */,

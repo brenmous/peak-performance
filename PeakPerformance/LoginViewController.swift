@@ -43,6 +43,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     //labels
     @IBOutlet weak var logInErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
@@ -78,12 +79,14 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     {
         print ("LIVC: validation successful") //DEBUG
         self.login()
+        activityIndicator.startAnimating()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)])
     {
         print ("LIVC: validation failed") //DEBUG
+        activityIndicator.stopAnimating()
     }
 
     /// Attempts to authenticate a user using supplied details.
@@ -101,6 +104,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 self.fetchUser()
                 return
             }
+            self.activityIndicator.stopAnimating()
             print("LIVC: error logging in - " + error.localizedDescription) //DEBUG
             guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else {
                 return
@@ -229,6 +233,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         logInErrorLabel.hidden = true
         emailErrorLabel.hidden = true
         passwordErrorLabel.hidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        activityIndicator.stopAnimating()
     }
 
     override func didReceiveMemoryWarning() {
