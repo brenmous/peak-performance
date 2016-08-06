@@ -121,27 +121,49 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
         let goal = currentUser!.weeklyGoals[indexPath.row]
         
-        // Configure the cell...
-        cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
-
-        //TODO: set image as KLA icon
-        /*
-        //var klaIcon =
+        var klaIcon: String
         let kla = goal.kla
         switch kla
         {
             case KLA_FAMILY:
-                klaIcon = familyIcon
+                klaIcon = "F.png"
             
-            etc.
+            case KLA_WORKBUSINESS:
+                klaIcon = "W.png"
             
+            case KLA_PARTNER:
+                klaIcon = "P.png"
+            
+            case KLA_FINANCIAL:
+                klaIcon = "FI.png"
+            
+            case KLA_PERSONALDEV:
+                klaIcon = "PD.png"
+            
+            case KLA_EMOSPIRITUAL:
+                klaIcon = "ES.png"
+            
+            case KLA_HEALTHFITNESS:
+                klaIcon = "H.png"
+            
+            case KLA_FRIENDSSOCIAL:
+                klaIcon = "FR.png"
+            
+            default:
+                klaIcon = "F.png"
         }
-        */
+ 
+        // Configure the cell...
+        cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
+        cell.imageView!.image = UIImage(named: klaIcon)
+        
+        //TODO: set image as KLA icon
+        
         
         //TODO: add checkbox in here somewhere
         
         // Configure Font size
-        cell.textLabel!.font = UIFont.boldSystemFontOfSize(12.0)
+        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
         return cell
     }
     

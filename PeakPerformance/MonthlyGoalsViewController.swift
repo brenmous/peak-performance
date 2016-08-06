@@ -111,10 +111,41 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath)
         let goal = currentUser!.monthlyGoals[indexPath.row]
         
+        var klaIcon: String
+        let kla = goal.kla
+        switch kla
+        {
+        case KLA_FAMILY:
+            klaIcon = "F.png"
+            
+        case KLA_WORKBUSINESS:
+            klaIcon = "W.png"
+            
+        case KLA_PARTNER:
+            klaIcon = "P.png"
+            
+        case KLA_FINANCIAL:
+            klaIcon = "FI.png"
+            
+        case KLA_PERSONALDEV:
+            klaIcon = "PD.png"
+            
+        case KLA_EMOSPIRITUAL:
+            klaIcon = "ES.png"
+            
+        case KLA_HEALTHFITNESS:
+            klaIcon = "H.png"
+            
+        case KLA_FRIENDSSOCIAL:
+            klaIcon = "FR.png"
+            
+        default:
+            klaIcon = "F.png"
+        }
         // Configure the cell...
         cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
-        cell.textLabel!.font = UIFont.boldSystemFontOfSize(12.0)
-        
+        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
+        cell.imageView!.image = UIImage(named: klaIcon)
         //TODO: set image as KLA icon
         /*
          //var klaIcon =
