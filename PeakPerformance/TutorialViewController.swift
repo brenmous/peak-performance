@@ -10,14 +10,17 @@ import UIKit
 
 class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
+    var pageControl: UIPageControl!
     var pageViewController: UIPageViewController!
-    let pages = ["firstPageTutorial", "secondPageTutorial", "thirdPageTutorial" ]
+    let pages = ["firstPageTutorial", "secondPageTutorial", "thirdPageTutorial", "fourthPageTutorial" ]
+    var indexForPageControl: Int = 0
     
     // Mark: Protocols
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if let index = pages.indexOf(viewController.restorationIdentifier!) {
             if index > 0 {
                 return viewControllerAtIndex(index - 1)
+                
             }
         }
         return nil
@@ -33,6 +36,16 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         return nil
     }
     
+    // Page Control
+    
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return pages.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+                return 0
+    }
+    
     func viewControllerAtIndex(index: Int) -> UIViewController? {
         let vc = storyboard?.instantiateViewControllerWithIdentifier(pages[index])
         return vc
@@ -42,7 +55,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+
         if let vc = storyboard?.instantiateViewControllerWithIdentifier("tutorialPageViewController"){
             self.addChildViewController(vc)
             self.view.addSubview(vc.view)
