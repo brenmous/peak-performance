@@ -146,19 +146,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
         cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
         cell.imageView!.image = UIImage(named: klaIcon)
-        //TODO: set image as KLA icon
-        /*
-         //var klaIcon =
-         let kla = goal.kla
-         switch kla
-         {
-         case KLA_FAMILY:
-         klaIcon = familyIcon
-         
-         etc.
-         
-         }
-         */
+
         
         //TODO: add checkbox in here somewhere
         

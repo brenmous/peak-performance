@@ -106,7 +106,7 @@ let KLA_FRIENDSSOCIAL = "Friends & Social"
 let KLA_HEALTHFITNESS = "Health & Fitness"
 
 /// String for Emotional/Spritiual KLA.
-let KLA_EMOSPIRITUAL = "Emotional/Spritiual"
+let KLA_EMOSPIRITUAL = "Emotional/Spritual"
 
 /// String for Partnert KLA.
 let KLA_PARTNER = "Partner"
