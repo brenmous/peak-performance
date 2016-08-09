@@ -43,7 +43,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     func validationSuccessful()
     {
         print ("RPVC: validation successful") //DEBUG
-       // resetPassword( )
+        resetPassword( )
        // activityIndicator.startAnimating()
     }
     
@@ -65,6 +65,10 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
             guard let error = error else
             {
                 //No error, send email
+                print("RPVC: password reset successful")
+                self.resetPasswordErrorLabel.text = RESET_EMAIL_SENT
+                self.resetPasswordErrorLabel.hidden = false
+                self.resetPasswordButton.enabled = true
                 return
             }
             print("RPVC: error resetting password - " + error.localizedDescription ) // DEBUG

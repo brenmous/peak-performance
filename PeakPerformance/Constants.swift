@@ -64,6 +64,9 @@ let USER_DISABLED_ERROR = "This account has been disabled."
 /// Wrong password error.
 let WRONG_PW_ERROR = "Email and password do not match."
 
+/// Reset password email successfully sent.
+let RESET_EMAIL_SENT = "A reset password email has been sent to this account."
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.
