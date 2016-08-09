@@ -195,3 +195,6 @@ let UNWIND_FROM_WGDVC_SEGUE = "unwindFromWGDVC"
 
 /// Segue for unwinding from MG detail view.
 let UNWIND_FROM_MGDVC_SEGUE = "unwindFromMGDVC"
+
+/// Segue for going to reset password from log in.
+let GO_TO_RESET_PW_SEGUE = "goToResetPassword"

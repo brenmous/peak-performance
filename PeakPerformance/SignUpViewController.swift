@@ -121,7 +121,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.performSegueWithIdentifier( FT_LOG_IN_SEGUE, sender: self )
                 return
             }
-            
+            self.activityIndicatorSU.stopAnimating()
             //Check for Firebase errors and inform user here
             print("SUVC: error logging in - " + error.localizedDescription) //DEBUG
             guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else

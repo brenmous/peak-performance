@@ -67,6 +67,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     @IBAction func resetPasswordButtonPressed(sender: AnyObject)
     {
+        shouldPerformSegueWithIdentifier( GO_TO_RESET_PW_SEGUE, sender: self )
     }
     
     @IBAction func unwindFromSignUp(segue: UIStoryboardSegue){ }
