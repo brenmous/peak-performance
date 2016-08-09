@@ -92,7 +92,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         print ("WGDVC: validation failed") //DEBUG
     }
 
-    
+    /// Saves changes to an existing goal, or creates a new one if no goal currently exists.
     func saveChanges( )
     {
         //if there's no current goal, make a new one...
@@ -108,6 +108,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         performSegueWithIdentifier(UNWIND_FROM_MGDVC_SEGUE, sender: self)
     }
     
+    /// Creates a new weekly goal object with details from text fields. Calls delegate to save goal.
     func createNewGoal( )
     {
         let goalText = goalTextView.text!
@@ -118,6 +119,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         delegate?.addNewGoal(mg)
     }
     
+    /// Updates a currently existing goal with details from text fields. Calls delegate to save goal.
     func updateGoal( )
     {
         guard let cg = currentGoal else
@@ -136,6 +138,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         delegate?.saveModifiedGoal(cg)
     }
     
+    /// Updates text fields with details from the current goal (if available).
     func updateTextFields( )
     {
         guard let cg = currentGoal else

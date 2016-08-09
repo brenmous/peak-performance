@@ -100,6 +100,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         print ("WGDVC: validation failed") //DEBUG
     }
     
+    /// Saves changes to an existing goal, or creates a new one if no goal currently exists.
     func saveChanges( )
     {
         //if there's no current goal, make a new one...
@@ -115,6 +116,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         performSegueWithIdentifier(UNWIND_FROM_WGDVC_SEGUE, sender: self)
     }
     
+    /// Creates a new weekly goal object with details from text fields. Calls delegate to save goal.
     func createNewWeeklyGoal( )
     {
         let goalText = goalTextView.text!
@@ -125,6 +127,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         delegate?.addNewGoal(wg)
     }
     
+    /// Updates a currently existing goal with details from text fields. Calls delegate to save goal.
     func updateGoal( )
     {
         guard let cg = currentGoal else
@@ -143,6 +146,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         delegate?.saveModifiedGoal(cg)
     }
     
+    /// Updates text fields with details from the current goal (if available).
     func updateTextFields( )
     {
         guard let cg = currentGoal else
@@ -259,6 +263,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         klaPicker.hidden = true
     }
     
+    /// Work around for dismissing keyboard on text view.
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
         if text == "\n"

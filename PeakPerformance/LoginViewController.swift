@@ -51,9 +51,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     //buttons
     @IBOutlet weak var logInButton: UIButton!
-    
-    
-    
+
     
     // MARK: - Actions
     
@@ -178,23 +176,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             }
         }
     }
-    /*
-    /// This method fetches the user's weekly goals from the database sets it as the value of the weeklyGoals variable.
-    func fetchWeeklyGoals( weeklyGoalIDStrings: [String] )
-    {
-        //If the user has no goals then go straight to weekly goal view...
-        if weeklyGoalIDStrings.isEmpty
-        {
-            self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
-            return
-        }
-        self.dataService.loadWeeklyGoals(weeklyGoalIDStrings)
-            {
-            self.weeklyGoals.appendContentsOf($0)
-            self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
-        }
-    }
-    */
 
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {

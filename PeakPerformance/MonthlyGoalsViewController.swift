@@ -22,7 +22,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     /// This view controller's data service.
     var dataService = DataService( )
     
-    // MARK: - UI Variables
+    // MARK: - Outlets
+    //progress bar
     @IBOutlet weak var progressBarMG: UIProgressView!
     
     
@@ -44,6 +45,12 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     // MARK: - Methods
     
+    /**
+     Adds a new goal to the array and saves it to the database.
+     
+     - Parameters:
+     - weeklyGoal: the newly created weeklygoal
+     */
     func addNewGoal( monthlyGoal: MonthlyGoal )
     {
         guard let cu = currentUser else
@@ -55,6 +62,12 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         dataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
+    /**
+     Updates the values of the weekly goal that is currently being editied and saves it to the database.
+     
+     - Parameters:
+     - weeklyGoal: the edited weekly goal.
+     */
     func saveModifiedGoal(monthlyGoal: MonthlyGoal )
     {
         guard let cu = currentUser else
@@ -96,6 +109,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     
     // MARK: - Table view data source
+    
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
@@ -178,22 +192,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
     
     // MARK: - Navigation
     

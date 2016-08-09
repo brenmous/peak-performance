@@ -94,4 +94,5 @@
 09/08/2016 15:29 - 
 	- keyboard resignation
 	- password reset
-	- error handling for everything
+	- error handling for login/signup
+	- comments + cleaning up + formatting

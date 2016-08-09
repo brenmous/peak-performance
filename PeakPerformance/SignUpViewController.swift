@@ -47,7 +47,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     //@IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
-    
     @IBOutlet weak var activityIndicatorSU: UIActivityIndicatorView!
     
     //labels
@@ -72,8 +71,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         validator.validate(self)
     }
 
-    
-    
     
     // MARK: - Methods
     
@@ -106,7 +103,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         })
     }
     
-    //delegate this back to Login VC???
     /// Authenticates the user with the supplied details and if succesfull, creates the user object.
     func firstLogin( )
     {
@@ -248,7 +244,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         confirmPasswordField.delegate = self
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

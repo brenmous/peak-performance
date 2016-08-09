@@ -23,9 +23,11 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     var dataService = DataService( )
     
     
-    // MARK: UI Variables
+    // MARK: Outlets
     
+    //progress bar
     @IBOutlet weak var progressViewWG: UIProgressView!
+    
     
     // MARK: - Actions
     
@@ -50,6 +52,12 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     // MARK: - Methods
     
+    /**
+        Adds a new goal to the array and saves it to the database.
+        
+        - Parameters:
+            - weeklyGoal: the newly created weeklygoal
+    */
     func addNewGoal( weeklyGoal: WeeklyGoal )
     {
         guard let cu = currentUser else
@@ -61,6 +69,12 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         dataService.saveGoal(cu.uid, goal: weeklyGoal)
     }
     
+    /**
+        Updates the values of the weekly goal that is currently being editied and saves it to the database.
+ 
+        - Parameters:
+            - weeklyGoal: the edited weekly goal.
+    */
     func saveModifiedGoal(weeklyGoal: WeeklyGoal)
     {
         guard let cu = currentUser else
@@ -96,7 +110,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
     }
     
-
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -115,8 +128,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         return currentUser!.weeklyGoals.count
     }
     
-    
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
         let goal = currentUser!.weeklyGoals[indexPath.row]
@@ -192,22 +203,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 
@@ -231,5 +226,4 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         }
     }
     
-
 }
