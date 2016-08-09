@@ -15,7 +15,7 @@ protocol WeeklyGoalDetailViewControllerDelegate
     func saveModifiedGoal( weeklyGoal: WeeklyGoal )
 }
 
-class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate
+class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate, UITextViewDelegate
 {
     
     // MARK: - Properties
@@ -225,6 +225,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         //goal text view
         validator.registerField(goalTextView, errorLabel: goalTextErrorLabel, rules: [RequiredRule(message: REQUIRED_FIELD_ERR_MSG)])
         
+        //textfield & textview delegation
+        goalTextView.delegate = self
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -255,6 +258,21 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         klaTextField.text = keyLifeAreas[row]
         klaPicker.hidden = true
     }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        if text == "\n"
+        {
+            textView.resignFirstResponder( )
+            validator.validate(self)
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
+    
     
     // MARK: - Deadline picker
     

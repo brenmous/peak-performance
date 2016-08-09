@@ -67,7 +67,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         shouldPerformSegueWithIdentifier( GO_TO_SIGN_UP_SEGUE , sender: self )
     }
     
-    @IBAction func resetPasswordButtonPressed(sender: AnyObject) {}
+    @IBAction func resetPasswordButtonPressed(sender: AnyObject)
+    {
+    }
     
     @IBAction func unwindFromSignUp(segue: UIStoryboardSegue){ }
     
@@ -181,8 +183,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
 
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        //self.login()
         validator.validate( self )
+        textField.resignFirstResponder()
         return true
     }
     
@@ -221,8 +223,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         //set up text field delegates
         emailField.delegate = self
         passwordField.delegate = self
-
-    
     }
     
     override func viewWillAppear(animated: Bool)

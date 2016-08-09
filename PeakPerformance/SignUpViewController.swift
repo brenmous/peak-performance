@@ -167,6 +167,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         validator.validate(self)
+        textField.resignFirstResponder()
         return true
     }
     
@@ -219,6 +220,14 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         
         //confirm password field
         validator.registerField(confirmPasswordField, errorLabel: confirmPasswordErrorLabel, rules: [RequiredRule( message: REQUIRED_FIELD_ERR_MSG), ConfirmationRule( confirmField: passwordField, message: CONPW_ERR_MSG)])
+        
+        //textfield delegation
+        firstNameField.delegate = self
+        lastNameField.delegate = self
+        emailField.delegate = self
+        orgField.delegate = self
+        passwordField.delegate = self
+        confirmPasswordField.delegate = self
     }
 
     

@@ -15,7 +15,7 @@ protocol MonthlyGoalDetailViewControllerDelegate
     func saveModifiedGoal( monthlyGoal: MonthlyGoal )
 }
 
-class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate
+class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate, UITextViewDelegate
 {
     
     // MARK: - Properties
@@ -218,6 +218,9 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         //goal text view
         validator.registerField(goalTextView, errorLabel: goalTextErrorLabel, rules: [RequiredRule(message: REQUIRED_FIELD_ERR_MSG)])
         
+        //textfield & textview delegation
+        goalTextView.delegate = self
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -225,6 +228,22 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        if text == "\n"
+        {
+            textView.resignFirstResponder()
+            validator.validate(self)
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
+    
+    
     
     // MARK: - KLA Picker
     
