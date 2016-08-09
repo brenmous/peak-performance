@@ -268,8 +268,10 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         else if segue.identifier == FT_LOG_IN_SEGUE
         {
             //here is where you would segue to tutorial/inital setup when it's ready
-            let dvc = segue.destinationViewController as! TabBarViewController
+            let dvc = segue.destinationViewController as! TutorialViewController
             dvc.currentUser = self.currentUser
+//                let anotherDVC = GreetingViewController.self
+//                anotherDVC.currentUser = self.currentUser
         }
     }
     
