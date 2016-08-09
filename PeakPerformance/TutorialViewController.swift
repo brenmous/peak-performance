@@ -8,14 +8,34 @@
 
 import UIKit
 
-class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource,
+LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
+    
     var currentUser: User?
     var pageControl: UIPageControl!
     var pageViewController: UIPageViewController!
-    let pages = ["congratulationsPage", "firstPageTutorial", "secondPageTutorial", "thirdPageTutorial", "fourthPageTutorial" ]
     var indexForPageControl: Int = 0
+    var pages = ["congratulationsPage", "firstPageTutorial", "secondPageTutorial", "thirdPageTutorial", "fourthPageTutorial" ]
+    // Mark: IBActions
     
-    // Mark: Protocols
+    @IBAction func skipTutorial(sender: AnyObject) {
+        self.performSegueWithIdentifier( GO_TO_TAB_BAR, sender: self )
+        print("skip button")
+    }
+    
+    // Mark: Delegate Methods
+    
+    func lastPageDone() {
+        print("Last page done")
+        self.performSegueWithIdentifier( GO_TO_TAB_BAR, sender: self )
+    }
+    
+    func getFirstName() -> String {
+        print("function works")
+        return (currentUser?.fname)!
+    }
+
+    // Mark: Public functions for PageViewController
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if let index = pages.indexOf(viewController.restorationIdentifier!) {
             if index > 0 {
@@ -36,7 +56,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         return nil
     }
     
-    // Page Control
+    // Mark: Public Functions for Page Control
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return pages.count
@@ -46,16 +66,26 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
                 return 0
     }
     
+    
     func viewControllerAtIndex(index: Int) -> UIViewController? {
         let vc = storyboard?.instantiateViewControllerWithIdentifier(pages[index])
+        
+        if pages[index] == "fourthPageTutorial" {
+            (vc as! LastPageTutorialViewController).delegate = self
+        } else if pages[index] == "congratulationsPage" {
+            (vc as! GreetingViewController).delegate = self
+        }
         return vc
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-
+        
+        let vc = viewControllerAtIndex(0)
+        (vc as! GreetingViewController).delegate = self
+        
         if let vc = storyboard?.instantiateViewControllerWithIdentifier("tutorialPageViewController"){
             self.addChildViewController(vc)
             self.view.addSubview(vc.view)
@@ -66,7 +96,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
             
             pageViewController.setViewControllers([viewControllerAtIndex(0)!], direction: .Forward, animated: true, completion: nil)
             pageViewController.didMoveToParentViewController(self)
-            
+        
         }
         
     }
@@ -76,15 +106,21 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
+    
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == GO_TO_TAB_BAR
+        {
+            let dvc = segue.destinationViewController as! TabBarViewController
+            dvc.currentUser = self.currentUser
+        }
+        
     }
-    */
+ 
 
 }

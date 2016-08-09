@@ -24,11 +24,13 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var resetPasswordButton: UIButton!
     
+    @IBOutlet weak var activityIndicatorReset: UIActivityIndicatorView!
     // MARK: - Actions
    
     @IBAction func resetPasswordButtonPressed(sender: AnyObject)
     {
         validator.validate(self)
+        activityIndicatorReset.startAnimating()
     }
     
     @IBAction func logInButtonPressed(sender: AnyObject)
@@ -44,14 +46,14 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     {
         print ("RPVC: validation successful") //DEBUG
         resetPassword( )
-       // activityIndicator.startAnimating()
+        activityIndicatorReset.stopAnimating()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)])
     {
         print ("RPVC: validation failed") //DEBUG
-       // activityIndicator.stopAnimating()
+       
     }
     
     func resetPassword( )
@@ -66,6 +68,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
             {
                 //No error, send email
                 print("RPVC: password reset successful")
+                self.activityIndicatorReset.stopAnimating()
                 self.resetPasswordErrorLabel.text = RESET_EMAIL_SENT
                 self.resetPasswordErrorLabel.hidden = false
                 self.resetPasswordButton.enabled = true

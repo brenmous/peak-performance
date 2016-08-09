@@ -1,5 +1,5 @@
 //
-//  GreetingViewController.swift
+//  LastPageTutorialViewController.swift
 //  PeakPerformance
 //
 //  Created by Benjamin Chiong on 8/9/16.
@@ -8,20 +8,24 @@
 
 import UIKit
 
-protocol GreetingViewControllerDelegate {
-    func getFirstName() -> String
+protocol LastPageTutorialViewControllerDelegate {
+        func lastPageDone()
 }
 
-class GreetingViewController: UIViewController {
-    
-    var delegate: GreetingViewControllerDelegate?
+class LastPageTutorialViewController: UIViewController {
 
-    @IBOutlet weak var userName: UILabel!
+    // Mark: IBAction
+    var delegate: LastPageTutorialViewControllerDelegate?
+    @IBAction func tutorialFinished(sender: AnyObject) {
+        if delegate != nil {
+        delegate?.lastPageDone()
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       userName.text = delegate?.getFirstName()
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -42,5 +46,3 @@ class GreetingViewController: UIViewController {
     */
 
 }
-
-

@@ -272,7 +272,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //if identifier == "loggedIn" {}
+
         if segue.identifier == GO_TO_LOG_IN_SEGUE
         {
             let dvc = segue.destinationViewController as! LoginViewController
@@ -283,8 +283,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             //here is where you would segue to tutorial/inital setup when it's ready
             let dvc = segue.destinationViewController as! TutorialViewController
             dvc.currentUser = self.currentUser
-//                let anotherDVC = GreetingViewController.self
-//                anotherDVC.currentUser = self.currentUser
+
         }
     }
     
