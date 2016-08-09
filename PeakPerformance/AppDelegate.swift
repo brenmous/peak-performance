@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Set up Firebase framework
         FIRApp.configure( )
+        FIRDatabase.database( ).persistenceEnabled = true
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

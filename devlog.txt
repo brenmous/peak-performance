@@ -96,3 +96,4 @@
 	- password reset
 	- error handling for login/signup
 	- comments + cleaning up + formatting
+	- offline operation + testing
