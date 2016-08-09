@@ -422,6 +422,7 @@
                         <outlet property="orgField" destination="uJ6-a3-URf" id="qc3-eE-GT7"/>
                         <outlet property="passwordErrorLabel" destination="rYb-mz-ppc" id="Zkb-r1-bUl"/>
                         <outlet property="passwordField" destination="8fq-7X-SFN" id="8Dc-OP-DHb"/>
+                        <outlet property="signUpButton" destination="BXg-UV-UPm" id="rMg-am-gKk"/>
                         <outlet property="signUpErrorLabel" destination="Fgv-UW-LfC" id="Czi-Bo-3Wd"/>
                         <segue destination="lwI-fF-ehg" kind="show" identifier="firstTimeLogIn" id="LJD-Jg-731"/>
                     </connections>
@@ -1562,7 +1563,6 @@
         <image name="weekly-icon_75x75" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hGi-rQ-ckm"/>
         <segue reference="F0k-MP-t0R"/>
         <segue reference="RnB-wj-eoz"/>
     </inferredMetricsTieBreakers>

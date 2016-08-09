@@ -60,6 +60,10 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     @IBOutlet weak var signUpErrorLabel: UILabel!
     
+    //buttons
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    
     // MARK: - Actions
     
     @IBAction func signUpButtonPressed(sender: AnyObject)
@@ -106,6 +110,10 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     /// Authenticates the user with the supplied details and if succesfull, creates the user object.
     func firstLogin( )
     {
+        //reset error label
+        self.signUpErrorLabel.hidden = true
+        self.signUpErrorLabel.text = ""
+        self.signUpButton.enabled = false
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
             guard let error = error else
@@ -129,13 +137,23 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             case .ErrorCodeNetworkError:
                 self.signUpErrorLabel.text = NETWORK_ERR_MSG
                 self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
                 
             case .ErrorCodeEmailAlreadyInUse:
                 self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
                 self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
+                
+            case .ErrorCodeInternalError:
+                self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
+                self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
                 
             default:
                 print("SUVC: error case not currently covered") //DEBUG
+                self.signUpErrorLabel.text = "Error not currently covered."
+                self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
             }
             
         })

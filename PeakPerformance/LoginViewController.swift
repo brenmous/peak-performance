@@ -128,6 +128,21 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 self.logInErrorLabel.hidden = false
                 self.logInButton.enabled = true
                 
+            case .ErrorCodeInternalError:
+                self.logInErrorLabel.text = FIR_INTERNAL_ERROR
+                self.logInErrorLabel.hidden = false
+                self.logInButton.enabled = true
+                
+            case .ErrorCodeUserDisabled:
+                self.logInErrorLabel.text = USER_DISABLED_ERROR
+                self.logInErrorLabel.hidden = false
+                self.logInButton.enabled = true
+                
+            case .ErrorCodeWrongPassword:
+                self.logInErrorLabel.text = WRONG_PW_ERROR
+                self.logInErrorLabel.hidden = false
+                self.logInButton.enabled = true
+                
             default:
                 print("LIVC: error case not currently covered") //DEBUG
                 self.logInErrorLabel.text = "Error case not currently covered." //DEBUG

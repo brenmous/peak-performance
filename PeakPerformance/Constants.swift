@@ -55,6 +55,15 @@ let NETWORK_ERR_MSG = "Cannot connect to the network. Please wait and try again.
 /// Email already in use sign up error.
 let EMAIL_IN_USE_ERR_MSG = "An account already exists with this email address."
 
+/// Firebase internal error.
+let FIR_INTERNAL_ERROR = "An error occurred with Firebase. Please report to <EMAIL>"
+
+/// User account disabled error.
+let USER_DISABLED_ERROR = "This account has been disabled."
+
+/// Wrong password error.
+let WRONG_PW_ERROR = "Email and password do not match."
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.
