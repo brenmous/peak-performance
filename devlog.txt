@@ -91,7 +91,7 @@
 05/08/2016 00:20 - 01:10
 	- validation for weekly & monthly views
 
-09/08/2016 15:29 - 
+09/08/2016 15:29 - 18:12
 	- keyboard resignation
 	- password reset
 	- error handling for login/signup
