@@ -423,7 +423,7 @@
                         <outlet property="passwordErrorLabel" destination="rYb-mz-ppc" id="Zkb-r1-bUl"/>
                         <outlet property="passwordField" destination="8fq-7X-SFN" id="8Dc-OP-DHb"/>
                         <outlet property="signUpErrorLabel" destination="Fgv-UW-LfC" id="Czi-Bo-3Wd"/>
-                        <segue destination="dRR-os-Kvs" kind="show" identifier="firstTimeLogIn" id="wcf-iB-f4W"/>
+                        <segue destination="lwI-fF-ehg" kind="show" identifier="firstTimeLogIn" id="LJD-Jg-731"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tj8-jy-jx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -512,6 +512,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyI-zS-EQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2132" y="-1293"/>
+        </scene>
+        <!--Greeting View Controller-->
+        <scene sceneID="FJ7-Hi-wHD">
+            <objects>
+                <viewController storyboardIdentifier="congratulationsPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xo1-7S-Ibg" customClass="GreetingViewController" customModule="PeakPerformance" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fLd-TP-ltS"/>
+                        <viewControllerLayoutGuide type="bottom" id="M8P-tO-zTJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LZm-ug-EqW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="congratulations-page.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AEI-Hy-zkc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zy-K4-qNo">
+                                <rect key="frame" x="154" y="230" width="293" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="293" id="oun-Uf-kEK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="M8P-tO-zTJ" firstAttribute="top" secondItem="AEI-Hy-zkc" secondAttribute="bottom" id="0ws-5q-Osq"/>
+                            <constraint firstItem="AEI-Hy-zkc" firstAttribute="leading" secondItem="LZm-ug-EqW" secondAttribute="leadingMargin" constant="-20" id="NSb-av-x5u"/>
+                            <constraint firstItem="AEI-Hy-zkc" firstAttribute="centerX" secondItem="LZm-ug-EqW" secondAttribute="centerX" id="TkV-Z3-4kD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AEI-Hy-zkc" secondAttribute="trailing" constant="-20" id="byb-4t-D4L"/>
+                            <constraint firstItem="AEI-Hy-zkc" firstAttribute="top" secondItem="fLd-TP-ltS" secondAttribute="bottom" constant="-20" id="d8Z-GD-hC2"/>
+                            <constraint firstItem="5zy-K4-qNo" firstAttribute="centerX" secondItem="AEI-Hy-zkc" secondAttribute="centerX" id="kYz-AZ-n4R"/>
+                            <constraint firstItem="5zy-K4-qNo" firstAttribute="top" secondItem="fLd-TP-ltS" secondAttribute="bottom" constant="210" id="oLj-OO-BqC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="userName" destination="5zy-K4-qNo" id="o0g-Ns-75z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SLx-SK-uj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="-1293"/>
         </scene>
         <!--Weekly Goals-->
         <scene sceneID="mES-0m-MOx">
@@ -1504,6 +1548,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="congratulations-page.jpg" width="1070" height="1922"/>
         <image name="dream-list-icon-75x75" width="25" height="25"/>
         <image name="history-icon-75x82" width="25" height="27"/>
         <image name="login_background.jpg" width="1069" height="1926"/>
@@ -1517,7 +1562,6 @@
         <image name="weekly-icon_75x75" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wcf-iB-f4W"/>
         <segue reference="RnB-wj-eoz"/>
         <segue reference="F0k-MP-t0R"/>
     </inferredMetricsTieBreakers>

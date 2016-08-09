@@ -12,7 +12,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     var currentUser: User?
     var pageControl: UIPageControl!
     var pageViewController: UIPageViewController!
-    let pages = ["firstPageTutorial", "secondPageTutorial", "thirdPageTutorial", "fourthPageTutorial" ]
+    let pages = ["congratulationsPage", "firstPageTutorial", "secondPageTutorial", "thirdPageTutorial", "fourthPageTutorial" ]
     var indexForPageControl: Int = 0
     
     // Mark: Protocols
