@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lwI-fF-ehg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3ra-BT-UfF">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -465,6 +465,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2b-WW-js4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1059" y="68"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vNQ-b4-viE">
+            <objects>
+                <viewController storyboardIdentifier="fourthPageTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xaI-V9-WAu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Qq-G1-29C"/>
+                        <viewControllerLayoutGuide type="bottom" id="mMh-Pt-HEE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Teg-RF-aJA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial-kick.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fNk-my-B8H">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNj-MU-sau">
+                                <rect key="frame" x="261" y="550" width="78" height="30"/>
+                                <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="RDP-pN-xY3"/>
+                                </constraints>
+                                <state key="normal" title="Got it!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mMh-Pt-HEE" firstAttribute="top" secondItem="fNk-my-B8H" secondAttribute="bottom" id="201-BP-3CC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fNk-my-B8H" secondAttribute="trailing" constant="-20" id="Blm-hG-gqQ"/>
+                            <constraint firstItem="fNk-my-B8H" firstAttribute="leading" secondItem="Teg-RF-aJA" secondAttribute="leadingMargin" constant="-20" id="Ftn-KW-jzD"/>
+                            <constraint firstAttribute="bottom" secondItem="pNj-MU-sau" secondAttribute="bottom" constant="20" symbolic="YES" id="HnT-QS-i2z"/>
+                            <constraint firstItem="pNj-MU-sau" firstAttribute="centerX" secondItem="fNk-my-B8H" secondAttribute="centerX" id="Xl1-oQ-QMc"/>
+                            <constraint firstItem="fNk-my-B8H" firstAttribute="top" secondItem="9Qq-G1-29C" secondAttribute="bottom" constant="-20" id="frr-HW-TFA"/>
+                            <constraint firstItem="fNk-my-B8H" firstAttribute="centerX" secondItem="Teg-RF-aJA" secondAttribute="centerX" id="uu1-Pb-QFU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WyI-zS-EQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2132" y="-1293"/>
         </scene>
         <!--Weekly Goals-->
         <scene sceneID="mES-0m-MOx">
@@ -1334,7 +1381,23 @@
                     <view key="view" contentMode="scaleToFill" id="8ip-Rs-sY0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.68339131799999997" green="0.80000000000000004" blue="0.027107802010000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOn-eJ-fNS">
+                                <rect key="frame" x="535" y="570" width="58" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="qpz-PS-SgC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Skip &gt;">
+                                    <color key="titleColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.75686274509803919" green="0.78823529411764703" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="oOn-eJ-fNS" secondAttribute="trailing" constant="-13" id="EWL-Kd-tF0"/>
+                            <constraint firstItem="oOn-eJ-fNS" firstAttribute="bottom" secondItem="DwY-n0-8X5" secondAttribute="top" id="IAX-en-mWk"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pt-Cs-dMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1360,7 +1423,19 @@
                     <view key="view" contentMode="scaleToFill" id="XZf-1N-kC7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.55294117649999996" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial-execute.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="98w-p1-jMh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.74901960779999999" green="0.78823529410000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="98w-p1-jMh" secondAttribute="trailing" constant="-20" id="7OI-5o-kwf"/>
+                            <constraint firstItem="98w-p1-jMh" firstAttribute="centerX" secondItem="XZf-1N-kC7" secondAttribute="centerX" id="LAo-mc-pNq"/>
+                            <constraint firstItem="98w-p1-jMh" firstAttribute="top" secondItem="dtR-cd-zQh" secondAttribute="bottom" constant="-20" id="at4-DP-2XC"/>
+                            <constraint firstItem="drs-3i-jtI" firstAttribute="top" secondItem="98w-p1-jMh" secondAttribute="bottom" id="iLu-UQ-nd8"/>
+                            <constraint firstItem="98w-p1-jMh" firstAttribute="leading" secondItem="XZf-1N-kC7" secondAttribute="leadingMargin" constant="-20" id="uBI-sP-nRo"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2qd-ys-pmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1378,7 +1453,19 @@
                     <view key="view" contentMode="scaleToFill" id="zaD-xx-9Jt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial-actualreview.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="iSP-LQ-yBb">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.74901960779999999" green="0.78823529410000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="iSP-LQ-yBb" firstAttribute="centerX" secondItem="zaD-xx-9Jt" secondAttribute="centerX" id="Kc7-ff-c1U"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iSP-LQ-yBb" secondAttribute="trailing" constant="-20" id="LMW-jq-8Mg"/>
+                            <constraint firstItem="iSP-LQ-yBb" firstAttribute="leading" secondItem="zaD-xx-9Jt" secondAttribute="leadingMargin" constant="-20" id="VzV-xT-dyq"/>
+                            <constraint firstItem="uAY-9l-zmR" firstAttribute="top" secondItem="iSP-LQ-yBb" secondAttribute="bottom" id="sDR-zl-vdY"/>
+                            <constraint firstItem="iSP-LQ-yBb" firstAttribute="top" secondItem="wY2-g9-InK" secondAttribute="bottom" constant="-20" id="vuv-YW-00O"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8V-QM-G5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1396,30 +1483,24 @@
                     <view key="view" contentMode="scaleToFill" id="mGr-6H-Evx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial-preparation.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tdq-An-g0b">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="0.68339131797382546" green="0.80000000000000004" blue="0.027107802013422819" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="tdq-An-g0b" secondAttribute="trailing" constant="-20" id="J9A-Q0-Ji0"/>
+                            <constraint firstItem="tdq-An-g0b" firstAttribute="top" secondItem="ova-Wh-PId" secondAttribute="bottom" constant="-20" id="OyC-wn-R9H"/>
+                            <constraint firstItem="tdq-An-g0b" firstAttribute="leading" secondItem="mGr-6H-Evx" secondAttribute="leadingMargin" constant="-20" id="Ptz-9E-nKV"/>
+                            <constraint firstItem="4eo-P4-Nsv" firstAttribute="top" secondItem="tdq-An-g0b" secondAttribute="bottom" id="gGR-Ou-uUY"/>
+                            <constraint firstItem="tdq-An-g0b" firstAttribute="centerX" secondItem="mGr-6H-Evx" secondAttribute="centerX" id="o8o-mE-ueg"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pw9-lf-i7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852" y="-648"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="VI5-yI-PlR">
-            <objects>
-                <viewController storyboardIdentifier="fourthPageTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aVf-WF-Jmy" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xKQ-79-GVH"/>
-                        <viewControllerLayoutGuide type="bottom" id="59p-fl-jId"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rpM-mf-lRB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hut-pO-Dxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2138" y="-1293"/>
         </scene>
     </scenes>
     <resources>
@@ -1429,10 +1510,14 @@
         <image name="menu icon_25x17.png" width="25" height="14"/>
         <image name="monthly-icon-75x75" width="25" height="25"/>
         <image name="my-values-icon-75x75" width="25" height="25"/>
+        <image name="tutorial-actualreview.jpg" width="1085" height="1936"/>
+        <image name="tutorial-execute.jpg" width="1086" height="1939"/>
+        <image name="tutorial-kick.jpg" width="1082" height="1933"/>
+        <image name="tutorial-preparation.jpg" width="1081" height="1932"/>
         <image name="weekly-icon_75x75" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hGi-rQ-ckm"/>
+        <segue reference="wcf-iB-f4W"/>
         <segue reference="RnB-wj-eoz"/>
         <segue reference="F0k-MP-t0R"/>
     </inferredMetricsTieBreakers>

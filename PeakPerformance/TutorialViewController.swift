@@ -9,7 +9,7 @@
 import UIKit
 
 class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-
+    var currentUser: User?
     var pageControl: UIPageControl!
     var pageViewController: UIPageViewController!
     let pages = ["firstPageTutorial", "secondPageTutorial", "thirdPageTutorial", "fourthPageTutorial" ]
