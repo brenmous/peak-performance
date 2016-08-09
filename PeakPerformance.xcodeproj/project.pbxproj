@@ -14,8 +14,8 @@
 		4427EFF01D4CED67005458DB /* history-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFEF1D4CED67005458DB /* history-icon.png */; };
 		4427EFF21D4CEE3A005458DB /* my-values-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */; };
 		444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444447031D588F520029E3C6 /* TutorialViewController.swift */; };
-		44558EC51D5996B100F978D0 /* congratulations-page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44558EC41D5996B100F978D0 /* congratulations-page.jpg */; };
 		44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44558EC61D59981C00F978D0 /* GreetingViewController.swift */; };
+		44558EC91D59BD0400F978D0 /* congratulations-page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44558EC81D59BD0400F978D0 /* congratulations-page.jpg */; };
 		446379A11D55968300BAE5B2 /* login_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 446379A01D55968300BAE5B2 /* login_background.jpg */; };
 		446379BC1D56089900BAE5B2 /* ES.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379B41D56089900BAE5B2 /* ES.png */; };
 		446379BD1D56089900BAE5B2 /* F.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379B51D56089900BAE5B2 /* F.png */; };
@@ -83,8 +83,8 @@
 		4427EFEF1D4CED67005458DB /* history-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history-icon.png"; sourceTree = "<group>"; };
 		4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-values-icon-25x25.png"; sourceTree = "<group>"; };
 		444447031D588F520029E3C6 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		44558EC41D5996B100F978D0 /* congratulations-page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "congratulations-page.jpg"; path = "../../../stock photos/congratulations-page.jpg"; sourceTree = "<group>"; };
 		44558EC61D59981C00F978D0 /* GreetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
+		44558EC81D59BD0400F978D0 /* congratulations-page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "congratulations-page.jpg"; path = "../../../stock photos/congratulations-page.jpg"; sourceTree = "<group>"; };
 		446379A01D55968300BAE5B2 /* login_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_background.jpg; sourceTree = "<group>"; };
 		446379B41D56089900BAE5B2 /* ES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ES.png; sourceTree = "<group>"; };
 		446379B51D56089900BAE5B2 /* F.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F.png; sourceTree = "<group>"; };
@@ -179,8 +179,8 @@
 				446379B91D56089900BAE5B2 /* P.png */,
 				446379BA1D56089900BAE5B2 /* PD.png */,
 				446379BB1D56089900BAE5B2 /* W.png */,
+				44558EC81D59BD0400F978D0 /* congratulations-page.jpg */,
 				4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */,
-				44558EC41D5996B100F978D0 /* congratulations-page.jpg */,
 				44AA95E21D597C9E0020FBAF /* tutorial-actualreview.jpg */,
 				44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */,
 				44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */,
@@ -411,7 +411,7 @@
 			files = (
 				4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */,
 				446379C21D56089900BAE5B2 /* PD.png in Resources */,
-				44558EC51D5996B100F978D0 /* congratulations-page.jpg in Resources */,
+				44558EC91D59BD0400F978D0 /* congratulations-page.jpg in Resources */,
 				44AA95E81D597C9E0020FBAF /* tutorial-kick.jpg in Resources */,
 				446379BF1D56089900BAE5B2 /* FR.png in Resources */,
 				446379C01D56089900BAE5B2 /* H.png in Resources */,
