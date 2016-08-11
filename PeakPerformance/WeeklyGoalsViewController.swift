@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 
 /**
     Class that controls the weekly goals view.
@@ -21,7 +21,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     /// This view controller's data service.
     var dataService = DataService( )
-    
+    var indicator = 0
     
     // MARK: Outlets
     
@@ -42,6 +42,18 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     }
     
     @IBAction func menuButtonPressed(sender: AnyObject) {
+        
+//        let didSignOut = try! FIRAuth.auth()!.signOut()
+        
+        let alertController = UIAlertController(title: "Confirm Delete", message: "Do you want to sign out?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let signOut = UIAlertAction(title: "Sign out", style: UIAlertActionStyle.Cancel,handler: nil)
+        
+        let cancelSignOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil)
+    
+        alertController.addAction(signOut)
+        alertController.addAction(cancelSignOut)
+        self.presentViewController(alertController, animated: true, completion: nil)
+
     }
     
     @IBAction func unwindFromWGDVC( segue: UIStoryboardSegue)

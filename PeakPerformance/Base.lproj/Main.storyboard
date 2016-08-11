@@ -621,7 +621,7 @@
                         <barButtonItem key="leftBarButtonItem" image="menu icon_25x17.png" id="A6M-9o-uns">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="menuButtonPressed:" destination="BBa-rQ-l2w" id="1Md-7S-6nE"/>
+                                <action selector="menuButtonPressed:" destination="BBa-rQ-l2w" id="51L-hT-ipo"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
