@@ -204,3 +204,5 @@ let GO_TO_RESET_PW_SEGUE = "goToResetPassword"
 
 /// Segue for skipping tutorial
 let GO_TO_TAB_BAR = "skipTutorial"
+
+let GO_TO_LOG_IN = "logOut"

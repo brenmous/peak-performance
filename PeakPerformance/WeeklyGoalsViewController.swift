@@ -45,10 +45,10 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
 //        let didSignOut = try! FIRAuth.auth()!.signOut()
         
-        let alertController = UIAlertController(title: "Confirm Delete", message: "Do you want to sign out?", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        let signOut = UIAlertAction(title: "Sign out", style: UIAlertActionStyle.Cancel,handler: nil)
+        let alertController = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let signOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel,handler: nil)
         
-        let cancelSignOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil)
+        let cancelSignOut = UIAlertAction(title: "Sign out", style: UIAlertActionStyle.Default,handler: nil)
     
         alertController.addAction(signOut)
         alertController.addAction(cancelSignOut)
@@ -236,6 +236,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 dvc.currentGoal = currentUser!.weeklyGoals[indexPath.row]
             }
         }
+        
     }
     
 }
