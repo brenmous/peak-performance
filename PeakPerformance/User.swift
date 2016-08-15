@@ -34,6 +34,9 @@ class User
     /// User's monthly goals.
     var monthlyGoals: [MonthlyGoal]
     
+    /// User's dreams.
+    var dreams: [Dream]
+    
     /**
         Initialises a new user.
 
@@ -56,5 +59,6 @@ class User
         self.uid = uid
         self.weeklyGoals = [WeeklyGoal]( )
         self.monthlyGoals = [MonthlyGoal]( )
+        self.dreams = [Dream]( )
     }
 }

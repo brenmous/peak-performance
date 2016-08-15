@@ -45,6 +45,10 @@
 		B5791FF31D5493E50079A9CB /* MIDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5791FF21D5493E50079A9CB /* MIDatePicker.xib */; };
 		B5791FF61D5496FC0079A9CB /* MonthlyGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */; };
 		B5791FF81D5497140079A9CB /* MonthlyGoalsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */; };
+		B59C1F401D61E6AE005F18E1 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F3F1D61E6AE005F18E1 /* Dream.swift */; };
+		B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */; };
+		B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */; };
+		B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */; };
 		B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */; };
 		B59EC4381D3FB45C00AF1297 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4361D3FB45C00AF1297 /* Main.storyboard */; };
 		B59EC43A1D3FB45C00AF1297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4391D3FB45C00AF1297 /* Assets.xcassets */; };
@@ -116,6 +120,10 @@
 		B5791FF21D5493E50079A9CB /* MIDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MIDatePicker.xib; path = MIDatePicker/MIDatePicker.xib; sourceTree = "<group>"; };
 		B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalsViewController.swift; sourceTree = "<group>"; };
 		B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalsDetailViewController.swift; sourceTree = "<group>"; };
+		B59C1F3F1D61E6AE005F18E1 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
+		B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamCollectionViewCell.swift; sourceTree = "<group>"; };
+		B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamCollectionViewController.swift; sourceTree = "<group>"; };
+		B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamDetailViewController.swift; sourceTree = "<group>"; };
 		B59EC42F1D3FB45C00AF1297 /* PeakPerformance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeakPerformance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B59EC4371D3FB45C00AF1297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -209,6 +217,9 @@
 		B53B454E1D3FB78700F20D25 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */,
+				B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */,
+				B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */,
 				B53B455B1D3FB85500F20D25 /* LoginViewController.swift */,
 				444447031D588F520029E3C6 /* TutorialViewController.swift */,
 				44558EC61D59981C00F978D0 /* GreetingViewController.swift */,
@@ -227,6 +238,7 @@
 		B53B454F1D3FB78F00F20D25 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B59C1F3F1D61E6AE005F18E1 /* Dream.swift */,
 				B53B455D1D3FB85500F20D25 /* User.swift */,
 				B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */,
 				B50861BE1D4B316900901638 /* Goal.swift */,
@@ -514,7 +526,9 @@
 				B5B8D2CB1D44D9270072E50A /* WeeklyGoalsViewController.swift in Sources */,
 				B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */,
 				B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */,
+				B59C1F401D61E6AE005F18E1 /* Dream.swift in Sources */,
 				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
+				B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */,
 				B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */,
 				B50861C51D5060C100901638 /* WeeklyGoalDetailViewController.swift in Sources */,
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
@@ -524,6 +538,8 @@
 				B5791FF61D5496FC0079A9CB /* MonthlyGoalsViewController.swift in Sources */,
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */,
+				B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */,
+				B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */,
 				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
 				B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */,
 				B50861BF1D4B316900901638 /* Goal.swift in Sources */,

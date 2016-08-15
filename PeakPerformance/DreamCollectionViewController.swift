@@ -33,7 +33,7 @@ class DreamCollectionViewController: UICollectionViewController {
         }
         self.currentUser = cu
         collectionView?.reloadData( )
-        print("MGVC: got user \(currentUser!.email) with \(cu.dreams.count) dreams")
+        print("DVC: got user \(currentUser!.email) with \(cu.dreams.count) dreams")
     }
 
 
