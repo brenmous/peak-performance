@@ -227,6 +227,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         //set up text field delegates
         emailField.delegate = self
         passwordField.delegate = self
+        
+        //MARK: - Skip log in
+        //Comment these lines out to use other accounts
+        emailField.text = "test@test.com"
+        passwordField.text = "Test123"
+        validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)
