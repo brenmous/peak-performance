@@ -8,7 +8,7 @@
 
 import Foundation
 
-/* This class represents the user's dream. */
+/** This class represents the user's dream. */
 class Dream {
     
     ///This is the description of the user's dream.
@@ -20,7 +20,7 @@ class Dream {
     /// This is the unique ID of the dream.
     var did: String
     
-    /*
+    /**
      Initialises a new dream.
      
      - Parameters:
