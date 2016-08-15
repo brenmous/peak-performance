@@ -232,11 +232,13 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - keyboard stuff
+    /// Work around for dismissing keyboard on text view.
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
         if text == "\n"
         {
-            textView.resignFirstResponder()
+            textView.resignFirstResponder( )
             validator.validate(self)
             return false
         }
@@ -245,7 +247,11 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             return true
         }
     }
-    
+    //Dismisses keyboard when tap outside keyboard detected.
+    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    {
+        self.view.endEditing(true)
+    }
     
     
     // MARK: - KLA Picker
