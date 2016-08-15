@@ -10,6 +10,12 @@ import UIKit
 
 private let reuseIdentifier = "cell"
 
+protocol DreamDataService
+{
+    func saveDream(uid: String, dream: Dream)
+    func removeDream(uid: String, dream: Dream)
+}
+
 class DreamCollectionViewController: UICollectionViewController {
     
     

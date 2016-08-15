@@ -15,7 +15,7 @@ import Firebase
 
 //TODO: Create constants for Firebase DB reference strings.
 //TODO: Experiment with abstracting load/save methods for user content.
-class DataService       //: SignUpDataService, LogInDataService
+class DataService: DreamDataService  //: SignUpDataService, LogInDataService
 {
     // MARK: - Properties
     
@@ -206,5 +206,76 @@ class DataService       //: SignUpDataService, LogInDataService
         let goalRef = goalsRef.child(uid).child(goal.gid)
         goalRef.removeValue( )
     }
+    
+    // MARK: - Dream methods
+    
+    /**
+     Saves a dream to the database.
+     
+     - Parameters:
+     - uid: the user ID of the user the goal belongs to.
+     - dream: the goal being saved.
+     */
+    func saveDream( uid: String, dream: Dream )
+    {
+        let dreamsRef = baseRef.child(DREAMS_REF_STRING)
+        
+        let dreamRef = dreamsRef.child(uid).child(dream.did)
+        dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
+        
+        //convert NSURL to string
+        let urlString = dream.dreamImg.absoluteString
+        dreamRef.child(DREAMURL_REF_STRING).setValue(urlString)
+    }
+    
+    /**
+     Loads a user's dreams from the database (what a strange thing).
+     
+     - Parameters:
+     - uid: user ID that the goals belong.
+     - completion: the block that passes back the fetched goals.
+     */
+    func loadDreams( uid: String, completion: ( dreams: [Dream] ) -> Void )
+    {
+        
+        var dreams = [Dream]( )
+        let dreamsRef = baseRef.child(DREAMS_REF_STRING).child(uid)
+        dreamsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if snapshot.exists()
+            {
+                for dreamSnapshot in snapshot.children
+                {
+                    let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
+                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! NSURL
+                    let did = String(dreamSnapshot.key)
+                    let dream = Dream(dreamDesc: dreamText, dreamImg: dreamUrl, did: did)
+                    dreams.append(dream)
+                }
+                print("DS: fetched dreams") //DEBUG
+                completion( dreams: dreams )
+                
+            }
+            else
+            {
+                print("DS: no dreams to fetch") //DEBUG
+                completion( dreams: dreams )
+                
+            }
+        })
+    }
+    
+    /**
+     Removes a user's dream from the database.
+     
+     - Parameters:
+     - uid: ID of user that owns the weekly goal.
+     - dream: the dream being removed
+     */
+    func removeDream( uid: String, dream: Dream )
+    {
+        baseRef.child(DREAMS_REF_STRING).child(uid).child(dream.did).removeValue()
+    }
+    
+    
 
 }
