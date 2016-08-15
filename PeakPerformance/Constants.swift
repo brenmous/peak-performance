@@ -206,3 +206,9 @@ let GO_TO_RESET_PW_SEGUE = "goToResetPassword"
 let GO_TO_TAB_BAR = "skipTutorial"
 
 let GO_TO_LOG_IN = "logOut"
+
+/// Segue for adding a new dream.
+let ADD_DREAM_SEGUE = "addDream"
+
+/// Segue for editing a dream.
+let EDIT_DREAM_SEGUE = "editDream"

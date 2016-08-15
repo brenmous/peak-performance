@@ -24,11 +24,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     var currentDream: Dream?
     
     @IBOutlet weak var dreamLabel: UILabel!
-    
-    
     @IBOutlet weak var dreamText: UITextView!
-    
-   
     @IBOutlet weak var dreamImg: UIImageView!
     
     
