@@ -97,3 +97,12 @@
 	- error handling for login/signup
 	- comments + cleaning up + formatting
 	- offline operation + testing
+
+15/08/2016 22:00 - 23:33
+	- merged dream list files
+	- fixed congrats page/tutorial bug (readded image)
+	- keyboard now dismisses on tap outside keyboard
+	- dream dataservice methods
+	- experimented with fetchUser in DataService
+	- code for skipping login (comment out code to login to different
+		account)

@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     //var image: UIImage!
     var assetCollection: PHAssetCollection!
@@ -114,6 +114,9 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //text field delegates
+        dreamText.delegate = self
+        
         //createAlbum()
         // Do any additional setup after loading the view.
     }
@@ -122,6 +125,27 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - keyboard stuff
+    /// Work around for dismissing keyboard on text view.
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        if text == "\n"
+        {
+            textView.resignFirstResponder( )
+            //validator.validate(self)
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
+    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    {
+        self.view.endEditing(true)
+    }
+    
     
 
     /*

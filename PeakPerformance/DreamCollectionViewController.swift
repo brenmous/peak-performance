@@ -10,6 +10,12 @@ import UIKit
 
 private let reuseIdentifier = "cell"
 
+protocol DreamDataService
+{
+    func saveDream(uid: String, dream: Dream)
+    func removeDream(uid: String, dream: Dream)
+}
+
 class DreamCollectionViewController: UICollectionViewController {
 
     
@@ -33,7 +39,7 @@ class DreamCollectionViewController: UICollectionViewController {
         }
         self.currentUser = cu
         collectionView?.reloadData( )
-        print("MGVC: got user \(currentUser!.email) with \(cu.dreams.count) dreams")
+        print("DVC: got user \(currentUser!.email) with \(cu.dreams.count) dreams")
     }
 
 

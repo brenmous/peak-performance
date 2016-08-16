@@ -263,6 +263,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         klaPicker.hidden = true
     }
     
+    // MARK: - keyboard stuff
     /// Work around for dismissing keyboard on text view.
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
@@ -276,6 +277,11 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         {
             return true
         }
+    }
+    //Dismisses keyboard when tap outside keyboard detected.
+    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    {
+        self.view.endEditing(true)
     }
     
     

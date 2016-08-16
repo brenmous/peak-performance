@@ -34,7 +34,7 @@ class User
     /// User's monthly goals.
     var monthlyGoals: [MonthlyGoal]
     
-    /// User's monthly goals.
+    /// User's dreams.
     var dreams: [Dream]
     
     /**

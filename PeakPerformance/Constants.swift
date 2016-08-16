@@ -160,6 +160,15 @@ let UID_REF_STRING = "uid"
 /// Specifies monthly goal node in database.
 let MONTHLYGOALS_REF_STRING = "monthlyGoals"
 
+/// Specifies dreams node in database.
+let DREAMS_REF_STRING = "dreams"
+
+/// Specifies dream description node in database.
+let DREAMTEXT_REF_STRING = "text"
+
+/// Specifies dream URL node in database.
+let DREAMURL_REF_STRING = "url"
+
 
 // MARK: - Date Format Strings
 let DATE_FORMAT_STRING = "dd/MM/yyyy"

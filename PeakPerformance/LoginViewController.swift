@@ -178,11 +178,18 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         }
     }
 
+    // MARK: - keyboard stuff
+    //Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         validator.validate( self )
         textField.resignFirstResponder()
         return true
+    }
+    //Dismisses keyboard when tap outside keyboard detected.
+    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    {
+        self.view.endEditing(true)
     }
     
     override func viewDidLoad()
@@ -220,6 +227,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         //set up text field delegates
         emailField.delegate = self
         passwordField.delegate = self
+        
+        //MARK: - Skip log in
+        //Comment these lines out to use other accounts
+        emailField.text = "test@test.com"
+        passwordField.text = "Test123"
+        validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)
