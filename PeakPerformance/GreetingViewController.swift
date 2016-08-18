@@ -10,6 +10,7 @@ import UIKit
 
 protocol GreetingViewControllerDelegate {
     func getFirstName() -> String
+    func lastPageDone()
 }
 
 class GreetingViewController: UIViewController {
@@ -31,6 +32,12 @@ class GreetingViewController: UIViewController {
     }
     
 
+    @IBAction func tutorialDidSkip(sender: UIButton) {
+        if delegate != nil {
+            delegate?.lastPageDone()
+        }
+        
+    }
     /*
     // MARK: - Navigation
 

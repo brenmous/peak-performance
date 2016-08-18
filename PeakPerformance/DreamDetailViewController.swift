@@ -27,6 +27,8 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var dreamText: UITextView!
     @IBOutlet weak var dreamImg: UIImageView!
     
+
+
     
     @IBAction func savePressed(sender: AnyObject) {
         
@@ -82,7 +84,8 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+         self.dismissViewControllerAnimated(true, completion: nil)
+         // performSegueWithIdentifier("unwindFromDDVC", sender: self)
     }
  
     func createAlbum() {

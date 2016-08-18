@@ -144,6 +144,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
         let goal = currentUser!.weeklyGoals[indexPath.row]
         
+        //TODO: set image as KLA icon
         var klaIcon: String
         let kla = goal.kla
         switch kla
@@ -180,7 +181,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
         cell.imageView!.image = UIImage(named: klaIcon)
         
-        //TODO: set image as KLA icon
+        
         
         
         //TODO: add checkbox in here somewhere
@@ -206,7 +207,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 //no user! wuh oh!
                 return
             }
-            dataService.removeGoal(cu.uid, goal: cu.weeklyGoals[indexPath.row])
+            dataService.removeGoal(cu.uid, goal: cu.weeklyGoals[indexPath.row]) // remove goal
             cu.weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
