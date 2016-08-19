@@ -25,6 +25,9 @@ class Goal
     /// Unique ID of the goal.
     var gid: String
     
+    /// Whether the goal has been completed.
+    var complete: Bool
+    
     /**
      Initialises a new weekly goal.
      
@@ -32,15 +35,17 @@ class Goal
      - goalText: the text of the weekly goal.
      - kla: the key life area of the weekly goal.
      - deadline: the deadline of the weekly goal.
+     - compelte: whether the goal has been completed.
      
      - Returns: A weekly goal with the specified paramters.
      */
-    init ( goalText: String, kla: String, deadline: NSDate, gid: String )
+    init ( goalText: String, kla: String, deadline: NSDate, gid: String, complete: Bool = false)
     {
         self.goalText = goalText
         self.kla = kla
         self.deadline = deadline
         self.gid = gid
+        self.complete = complete
     }
     
     /**
@@ -53,11 +58,11 @@ class Goal
      
      - Returns: a weekly goal with the specified parameters.
      */
-    convenience init ( goalText: String, kla: String, deadline: String, gid: String )
+    convenience init ( goalText: String, kla: String, deadline: String, gid: String, complete: Bool = false )
     {
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let newDeadline = dateFormatter.dateFromString(deadline)
-        self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid )
+        self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete )
     }
 }

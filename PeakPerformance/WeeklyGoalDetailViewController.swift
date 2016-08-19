@@ -56,6 +56,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet weak var goalTextErrorLabel: UILabel!
     @IBOutlet weak var deadlineErrorLabel: UILabel!
     
+    //buttons
+    
+    
     
     
     // MARK: - Actions
@@ -160,6 +163,8 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         deadlineTextField.text = dateFormatter.stringFromDate(cg.deadline)
     }
     
+    // MARK: - Overridden methods
+
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)

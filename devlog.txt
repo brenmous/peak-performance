@@ -107,5 +107,9 @@
 	- code for skipping login (comment out code to login to different
 		account)
 
-17/08/2016 13:25 - 16:15,
+17/08/2016 13:25 - 16:15
 	- checking off weekly goals 
+
+18/08/2016 15:30 - 17:15
+	- weekly goal completion
+		- added complete property to goal class

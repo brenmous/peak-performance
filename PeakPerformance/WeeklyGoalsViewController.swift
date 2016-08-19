@@ -12,7 +12,7 @@ import Firebase
 /**
     Class that controls the weekly goals view.
   */
-class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewControllerDelegate {
+class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewControllerDelegate, GoalTableViewCellDelegate  {
 
     // MARK: - Properties
 
@@ -21,6 +21,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     /// This view controller's data service.
     var dataService = DataService( )
+    
     var indicator = 0
     
     // MARK: Outlets
@@ -49,9 +50,10 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let signOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel,handler: nil)
         
         let cancelSignOut = UIAlertAction(title: "Sign out", style: UIAlertActionStyle.Default,handler: nil)
-    
+        
         alertController.addAction(signOut)
         alertController.addAction(cancelSignOut)
+        
         self.presentViewController(alertController, animated: true, completion: nil)
 
     }
@@ -77,7 +79,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             //user not available? handle it here
             return
         }
-        cu.weeklyGoals.append(weeklyGoal)
+        cu.weeklyGoals.append( weeklyGoal )
         dataService.saveGoal(cu.uid, goal: weeklyGoal)
     }
     
@@ -97,6 +99,52 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         dataService.saveGoal(cu.uid, goal: weeklyGoal)
     }
     
+    /**
+        Marks a goal as complete, updates it in the database and organises the table to reflect change.
+
+        - Parameters:
+            - goal: the goal being completed.
+    */
+    func completeGoal( goal: WeeklyGoal )
+    {
+        goal.complete = true
+        self.saveModifiedGoal(goal)
+        print("WGVC: goal \(goal.gid) complete!")
+        
+        //sort completed goals and place them at end of array
+        guard let cu = currentUser else
+        {
+            return
+        }
+        cu.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+        self.tableView.reloadData()
+    }
+    
+    func completeButtonPressed( cell: WeeklyGoalTableViewCell )
+    {
+        //get weekly goal from cell
+        guard let indexPath = self.tableView.indexPathForCell(cell) else
+        {
+            //couldn't get index path of cell
+            return
+        }
+        guard let cu = self.currentUser else
+        {
+            //couldn't get user
+            return
+        }
+        let wg = cu.weeklyGoals[indexPath.row]
+        
+        //goal completion confirm alert controller
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .ActionSheet )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in self.completeGoal(wg) }
+        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
+        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel )
+        presentViewController(goalCompleteAlertController, animated: true, completion: nil )
+    }
+    
+    // MARK: - Overridden methods
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -110,16 +158,18 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             return
         }
         self.currentUser = cu
-        tableView.reloadData( )
         print("WGVC: got user \(currentUser!.email) with \(cu.weeklyGoals.count) weekly goals") //DEBUG
         
         //disable editing in case user left view while in edit mode
         self.tableView.setEditing(false, animated: true)
+        
+        //sort completed goals and place them at end of array
+        cu.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+        self.tableView.reloadData()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func didReceiveMemoryWarning()
@@ -140,11 +190,11 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         return currentUser!.weeklyGoals.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath)
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> WeeklyGoalTableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath) as! WeeklyGoalTableViewCell
         let goal = currentUser!.weeklyGoals[indexPath.row]
-        
-        //TODO: set image as KLA icon
+        print("WGVC: reconfiguring cells")
+        // Configure the cell...
         var klaIcon: String
         let kla = goal.kla
         switch kla
@@ -177,17 +227,27 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIcon = "F.png"
         }
  
-        // Configure the cell...
+        
         cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
+        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
         cell.imageView!.image = UIImage(named: klaIcon)
+        cell.delegate = self
         
-        
-        
-        
-        //TODO: add checkbox in here somewhere
+        if ( goal.complete )
+        {
+            cell.completeButton.hidden = true
+            cell.completeButton.enabled = false
+            cell.accessoryType = .Checkmark
+        }
+        else
+        {
+            cell.completeButton.hidden = false
+            cell.completeButton.enabled = true
+            cell.accessoryType = .None
+        }
         
         // Configure Font size
-        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
+        
         return cell
     }
     

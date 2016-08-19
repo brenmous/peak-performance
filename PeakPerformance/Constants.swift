@@ -151,6 +151,9 @@ let GOALTEXT_REF_STRING = "goalText"
 /// Specifies key life area node in database.
 let KLA_REF_STRING = "kla"
 
+/// Specifies complete node in database.
+let COMPLETE_REF_STRING = "complete"
+
 /// Specifies deadline node in database.
 let DEADLINE_REF_STRING = "deadline"
 
