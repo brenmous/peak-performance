@@ -18,6 +18,7 @@
 		444866541D6711C0009E96C9 /* doneicon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 444866531D6711C0009E96C9 /* doneicon.jpg */; };
 		444866561D673930009E96C9 /* splashcreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 444866551D673930009E96C9 /* splashcreen.jpg */; };
 		444866581D6748F0009E96C9 /* tutorial-actualreview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 444866571D6748F0009E96C9 /* tutorial-actualreview.jpg */; };
+		4448665A1D674B15009E96C9 /* tutorial-actualreview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 444866591D674B15009E96C9 /* tutorial-actualreview.jpg */; };
 		44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44558EC61D59981C00F978D0 /* GreetingViewController.swift */; };
 		446379A11D55968300BAE5B2 /* login_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 446379A01D55968300BAE5B2 /* login_background.jpg */; };
 		446379BC1D56089900BAE5B2 /* ES.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379B41D56089900BAE5B2 /* ES.png */; };
@@ -94,6 +95,7 @@
 		444866531D6711C0009E96C9 /* doneicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = doneicon.jpg; path = "../../../stock photos/doneicon.jpg"; sourceTree = "<group>"; };
 		444866551D673930009E96C9 /* splashcreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashcreen.jpg; path = "../../../stock photos/splashcreen.jpg"; sourceTree = "<group>"; };
 		444866571D6748F0009E96C9 /* tutorial-actualreview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "tutorial-actualreview.jpg"; path = "../../../stock photos/tutorial-actualreview.jpg"; sourceTree = "<group>"; };
+		444866591D674B15009E96C9 /* tutorial-actualreview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "tutorial-actualreview.jpg"; path = "../../../stock photos/tutorial-actualreview.jpg"; sourceTree = "<group>"; };
 		44558EC61D59981C00F978D0 /* GreetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
 		446379A01D55968300BAE5B2 /* login_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_background.jpg; sourceTree = "<group>"; };
 		446379B41D56089900BAE5B2 /* ES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ES.png; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				446379BB1D56089900BAE5B2 /* W.png */,
 				4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */,
 				444866571D6748F0009E96C9 /* tutorial-actualreview.jpg */,
+				444866591D674B15009E96C9 /* tutorial-actualreview.jpg */,
 				44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */,
 				444866551D673930009E96C9 /* splashcreen.jpg */,
 				44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */,
@@ -435,6 +438,7 @@
 				44AA95E81D597C9E0020FBAF /* tutorial-kick.jpg in Resources */,
 				446379BF1D56089900BAE5B2 /* FR.png in Resources */,
 				446379C01D56089900BAE5B2 /* H.png in Resources */,
+				4448665A1D674B15009E96C9 /* tutorial-actualreview.jpg in Resources */,
 				446379BE1D56089900BAE5B2 /* FI.png in Resources */,
 				B59EC43D1D3FB45C00AF1297 /* LaunchScreen.storyboard in Resources */,
 				44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */,
