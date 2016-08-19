@@ -240,3 +240,6 @@ let COMPLETION_ALERT_CONFIRM = "Confirm"
 
 /// Title for completion alert cancel action
 let COMPLETION_ALERT_CANCEL = "Cancel"
+
+/// Title for Kick it to the next level alert action
+let COMPLETION_ALERT_KICK = "Kick it to the next level"

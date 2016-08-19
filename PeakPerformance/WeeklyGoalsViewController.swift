@@ -136,10 +136,11 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let wg = cu.weeklyGoals[indexPath.row]
         
         //goal completion confirm alert controller
-        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .ActionSheet )
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
         let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in self.completeGoal(wg) }
         let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
-        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel )
+        let kick = UIAlertAction(title: COMPLETION_ALERT_KICK, style: .Default, handler: nil)
+        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel ); goalCompleteAlertController.addAction( kick )
         presentViewController(goalCompleteAlertController, animated: true, completion: nil )
     }
     
@@ -227,7 +228,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIcon = "F.png"
         }
  
-        
+        // Configure Font size        
         cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
         cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
         cell.imageView!.image = UIImage(named: klaIcon)
@@ -246,7 +247,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             cell.accessoryType = .None
         }
         
-        // Configure Font size
+
         
         return cell
     }
