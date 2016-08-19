@@ -229,9 +229,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         }
  
         // Configure Font size        
-//        cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
+//      cell.textLabel!.text = goal.goalText
         cell.goalTextLabel!.text = goal.goalText
-        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
         cell.imageView!.image = UIImage(named: klaIcon)
         cell.delegate = self
         
