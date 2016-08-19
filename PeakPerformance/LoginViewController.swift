@@ -171,8 +171,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 self.dataService.loadMonthlyGoals(user.uid) { ( monthlyGoals) in
                     user.monthlyGoals = monthlyGoals
                     
-                    print("LIVC: content fetched, going to home screen")
-                    self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    self.dataService.loadDreams(user.uid) { (dreams) in
+                        user.dreams = dreams
+                    
+                        print("LIVC: content fetched, going to home screen")
+                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    }
                 }
             }
         }

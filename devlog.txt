@@ -106,3 +106,6 @@
 	- experimented with fetchUser in DataService
 	- code for skipping login (comment out code to login to different
 		account)
+
+17/08/2016 13:25 - 16:15,
+	- checking off weekly goals 

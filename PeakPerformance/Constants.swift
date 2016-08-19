@@ -214,6 +214,7 @@ let GO_TO_RESET_PW_SEGUE = "goToResetPassword"
 /// Segue for skipping tutorial
 let GO_TO_TAB_BAR = "skipTutorial"
 
+
 let GO_TO_LOG_IN = "logOut"
 
 /// Segue for adding a new dream.
@@ -221,3 +222,18 @@ let ADD_DREAM_SEGUE = "addDream"
 
 /// Segue for editing a dream.
 let EDIT_DREAM_SEGUE = "editDream"
+
+
+// MARK: - Alert sheet strings
+
+/// Title for goal completion alert sheet
+let COMPLETION_ALERT_TITLE = "Goal Completion"
+
+/// Message for goal completion alert sheet
+let COMPLETION_ALERT_MSG = "Do you want to mark this goal as complete?"
+
+/// Title for completion alert confirm action
+let COMPLETION_ALERT_CONFIRM = "Confirm"
+
+/// Title for completion alert cancel action
+let COMPLETION_ALERT_CANCEL = "Cancel"
