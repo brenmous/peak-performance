@@ -71,13 +71,13 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     @IBAction func klaButtonPressed(sender: AnyObject)
     {
         klaPicker.hidden = false
-        //        kAreaPicker.show(inVC: self)
+
         
     }
-    
+    // - function that animates and shows MIDatePicker
     @IBAction func deadlineButtonPressed(sender: AnyObject)
     {
-        //        deadlinePicker.hidden = false
+        // deadlinePicker.hidden = false
         datePicker.show(inVC: self)
     }
     

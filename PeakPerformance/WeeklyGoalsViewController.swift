@@ -49,7 +49,18 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let alertController = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: UIAlertControllerStyle.ActionSheet)
         let signOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel,handler: nil)
         
-        let cancelSignOut = UIAlertAction(title: "Sign out", style: UIAlertActionStyle.Default,handler: nil)
+        let cancelSignOut = UIAlertAction(title: "Sign out", style: UIAlertActionStyle.Default, handler: {
+            (_)in
+            do {
+                try FIRAuth.auth()?.signOut()
+                print("user has signed out")
+                
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            self.performSegueWithIdentifier("unwindToLogin", sender: self)
+            
+            })
         
         alertController.addAction(signOut)
         alertController.addAction(cancelSignOut)
@@ -155,7 +166,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         guard let cu = tbvc.currentUser else
         {
-            //no user fix it man, goddamn you fix it what do i pay you for?!?!
+            //no user fix it man, goddamn you fix it what do i pay you for?!?! <- lol
             return
         }
         self.currentUser = cu

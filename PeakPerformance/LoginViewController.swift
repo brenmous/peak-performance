@@ -72,6 +72,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     @IBAction func unwindFromSignUp(segue: UIStoryboardSegue){ }
     
+    @IBAction func unwindFromWGVC( segue: UIStoryboardSegue)
+    {
+        
+    }
     
     // MARK: - Methods
     
@@ -236,7 +240,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         //Comment these lines out to use other accounts
         emailField.text = "ash.ketchum@pokemon.com"
         passwordField.text = "Password1"
-        validator.validate(self)
+//        validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)

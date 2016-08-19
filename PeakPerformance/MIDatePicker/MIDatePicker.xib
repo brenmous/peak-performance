@@ -81,6 +81,12 @@
                     <date key="date" timeIntervalSinceReferenceDate="487701374.86669898">
                         <!--2016-06-15 16:36:14 +0000-->
                     </date>
+                    <date key="minimumDate" timeIntervalSinceReferenceDate="473338800">
+                        <!--2016-01-01 11:00:00 +0000-->
+                    </date>
+                    <date key="maximumDate" timeIntervalSinceReferenceDate="631105200">
+                        <!--2020-12-31 11:00:00 +0000-->
+                    </date>
                 </datePicker>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

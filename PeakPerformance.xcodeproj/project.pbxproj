@@ -16,6 +16,8 @@
 		4427EFF21D4CEE3A005458DB /* my-values-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */; };
 		444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444447031D588F520029E3C6 /* TutorialViewController.swift */; };
 		444866541D6711C0009E96C9 /* doneicon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 444866531D6711C0009E96C9 /* doneicon.jpg */; };
+		444866561D673930009E96C9 /* splashcreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 444866551D673930009E96C9 /* splashcreen.jpg */; };
+		444866581D6748F0009E96C9 /* tutorial-actualreview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 444866571D6748F0009E96C9 /* tutorial-actualreview.jpg */; };
 		44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44558EC61D59981C00F978D0 /* GreetingViewController.swift */; };
 		446379A11D55968300BAE5B2 /* login_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 446379A01D55968300BAE5B2 /* login_background.jpg */; };
 		446379BC1D56089900BAE5B2 /* ES.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379B41D56089900BAE5B2 /* ES.png */; };
@@ -26,9 +28,7 @@
 		446379C11D56089900BAE5B2 /* P.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379B91D56089900BAE5B2 /* P.png */; };
 		446379C21D56089900BAE5B2 /* PD.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BA1D56089900BAE5B2 /* PD.png */; };
 		446379C31D56089900BAE5B2 /* W.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BB1D56089900BAE5B2 /* W.png */; };
-		447E47821D461EDA00DF5351 /* SplashScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 447E47811D461EDA00DF5351 /* SplashScreen.jpg */; };
 		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
-		44AA95E61D597C9E0020FBAF /* tutorial-actualreview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E21D597C9E0020FBAF /* tutorial-actualreview.jpg */; };
 		44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */; };
 		44AA95E81D597C9E0020FBAF /* tutorial-kick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */; };
 		44AA95E91D597C9E0020FBAF /* tutorial-preparation.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */; };
@@ -92,6 +92,8 @@
 		4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-values-icon-25x25.png"; sourceTree = "<group>"; };
 		444447031D588F520029E3C6 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		444866531D6711C0009E96C9 /* doneicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = doneicon.jpg; path = "../../../stock photos/doneicon.jpg"; sourceTree = "<group>"; };
+		444866551D673930009E96C9 /* splashcreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashcreen.jpg; path = "../../../stock photos/splashcreen.jpg"; sourceTree = "<group>"; };
+		444866571D6748F0009E96C9 /* tutorial-actualreview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "tutorial-actualreview.jpg"; path = "../../../stock photos/tutorial-actualreview.jpg"; sourceTree = "<group>"; };
 		44558EC61D59981C00F978D0 /* GreetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
 		446379A01D55968300BAE5B2 /* login_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_background.jpg; sourceTree = "<group>"; };
 		446379B41D56089900BAE5B2 /* ES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ES.png; sourceTree = "<group>"; };
@@ -102,9 +104,7 @@
 		446379B91D56089900BAE5B2 /* P.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P.png; sourceTree = "<group>"; };
 		446379BA1D56089900BAE5B2 /* PD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PD.png; sourceTree = "<group>"; };
 		446379BB1D56089900BAE5B2 /* W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = W.png; sourceTree = "<group>"; };
-		447E47811D461EDA00DF5351 /* SplashScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SplashScreen.jpg; sourceTree = "<group>"; };
 		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
-		44AA95E21D597C9E0020FBAF /* tutorial-actualreview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-actualreview.jpg"; sourceTree = "<group>"; };
 		44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-execute.jpg"; sourceTree = "<group>"; };
 		44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-kick.jpg"; sourceTree = "<group>"; };
 		44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-preparation.jpg"; sourceTree = "<group>"; };
@@ -196,15 +196,15 @@
 				446379BA1D56089900BAE5B2 /* PD.png */,
 				446379BB1D56089900BAE5B2 /* W.png */,
 				4427EFF11D4CEE3A005458DB /* my-values-icon-25x25.png */,
-				44AA95E21D597C9E0020FBAF /* tutorial-actualreview.jpg */,
+				444866571D6748F0009E96C9 /* tutorial-actualreview.jpg */,
 				44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */,
+				444866551D673930009E96C9 /* splashcreen.jpg */,
 				44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */,
 				44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */,
 				446379A01D55968300BAE5B2 /* login_background.jpg */,
 				4427EFE71D4CD57B005458DB /* menu icon_25x17.png */,
 				4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */,
 				4427EFE91D4CED13005458DB /* dream-list-icon-25x25.png */,
-				447E47811D461EDA00DF5351 /* SplashScreen.jpg */,
 				4427EFEF1D4CED67005458DB /* history-icon.png */,
 				4427EFED1D4CED39005458DB /* monthly-icon-25x25.png */,
 			);
@@ -226,17 +226,17 @@
 				B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */,
 				B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */,
 				B53B455B1D3FB85500F20D25 /* LoginViewController.swift */,
+				B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */,
+				B5A59C5F1D59BA1C00AFC6AB /* ResetPasswordViewController.swift */,
 				444447031D588F520029E3C6 /* TutorialViewController.swift */,
 				44558EC61D59981C00F978D0 /* GreetingViewController.swift */,
 				44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */,
-				B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */,
 				B5B8D2C21D43465F0072E50A /* TabBarViewController.swift */,
 				B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */,
 				B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */,
 				B5B46A8B1D66D5CB00FFA4F8 /* WeeklyGoalTableViewCell.swift */,
 				B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */,
 				B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */,
-				B5A59C5F1D59BA1C00AFC6AB /* ResetPasswordViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -436,7 +436,6 @@
 				446379BF1D56089900BAE5B2 /* FR.png in Resources */,
 				446379C01D56089900BAE5B2 /* H.png in Resources */,
 				446379BE1D56089900BAE5B2 /* FI.png in Resources */,
-				447E47821D461EDA00DF5351 /* SplashScreen.jpg in Resources */,
 				B59EC43D1D3FB45C00AF1297 /* LaunchScreen.storyboard in Resources */,
 				44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */,
 				B5AC10D51D61EE6D00996C47 /* congratulations-page.jpg in Resources */,
@@ -444,7 +443,8 @@
 				44AA95E91D597C9E0020FBAF /* tutorial-preparation.jpg in Resources */,
 				B59EC43A1D3FB45C00AF1297 /* Assets.xcassets in Resources */,
 				B5791FF31D5493E50079A9CB /* MIDatePicker.xib in Resources */,
-				44AA95E61D597C9E0020FBAF /* tutorial-actualreview.jpg in Resources */,
+				444866581D6748F0009E96C9 /* tutorial-actualreview.jpg in Resources */,
+				444866561D673930009E96C9 /* splashcreen.jpg in Resources */,
 				446379BC1D56089900BAE5B2 /* ES.png in Resources */,
 				4427EFE81D4CD57B005458DB /* menu icon_25x17.png in Resources */,
 				446379C31D56089900BAE5B2 /* W.png in Resources */,
