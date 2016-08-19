@@ -17,6 +17,7 @@ class WeeklyGoalTableViewCell: UITableViewCell {
 
     var delegate: GoalTableViewCellDelegate?
     
+    @IBOutlet weak var goalTextLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
   
     @IBAction func completeButtonPressed(sender: AnyObject)
