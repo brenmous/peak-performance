@@ -1,34 +1,31 @@
 //
-//  WeeklyGoalTableViewCell.swift
+//  MonthlyGoalTableViewCell.swift
 //  PeakPerformance
 //
-//  Created by Bren on 19/08/2016.
+//  Created by Bren on 20/08/2016.
 //  Copyright © 2016 derridale. All rights reserved.
 //
 
-//TODO: Rename this class to WeeklyGoalTableViewCell and carry out associated housekeeping. Currently xcode flips the fuck out when I try to do it so let's save it till later when I am not consumed with rage.
-
-protocol GoalTableViewCellDelegate
+protocol MonthlyGoalTableViewCellDelegate
 {
-    func completeButtonPressed( cell: GoalTableViewCell )
+    func completeButtonPressed( cell: MonthlyGoalTableViewCell )
 }
 
 import UIKit
 
-class GoalTableViewCell: UITableViewCell {
+class MonthlyGoalTableViewCell: UITableViewCell {
 
-    var delegate: GoalTableViewCellDelegate?
+    var delegate: MonthlyGoalTableViewCellDelegate?
     
     @IBOutlet weak var goalTextLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
-  
+    
     @IBAction func completeButtonPressed(sender: AnyObject)
     {
         delegate?.completeButtonPressed(self)
     }
     
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         // Initialization code
     }

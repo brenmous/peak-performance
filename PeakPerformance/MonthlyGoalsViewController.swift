@@ -12,7 +12,7 @@ import UIKit
 /**
  Class that controls the weekly goals view.
  */
-class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewControllerDelegate {
+class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewControllerDelegate, MonthlyGoalTableViewCellDelegate {
     
     // MARK: - Properties
     
@@ -78,6 +78,52 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         dataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
+    /**
+     Marks a goal as complete, updates it in the database and organises the table to reflect change.
+     
+     - Parameters:
+     - goal: the goal being completed.
+     */
+    func completeGoal( goal: MonthlyGoal )
+    {
+        goal.complete = true
+        self.saveModifiedGoal(goal)
+        print("MGVC: goal \(goal.gid) complete!")
+        
+        //sort completed goals and place them at end of array
+        guard let cu = currentUser else
+        {
+            return
+        }
+        cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+        self.tableView.reloadData()
+    }
+    
+    func completeButtonPressed( cell: MonthlyGoalTableViewCell )
+    {
+        //get weekly goal from cell
+        guard let indexPath = self.tableView.indexPathForCell(cell) else
+        {
+            //couldn't get index path of cell
+            return
+        }
+        guard let cu = self.currentUser else
+        {
+            //couldn't get user
+            return
+        }
+        let mg = cu.monthlyGoals[indexPath.row]
+        
+        //goal completion confirm alert controller
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in self.completeGoal(mg) }
+        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
+        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
+        presentViewController(goalCompleteAlertController, animated: true, completion: nil )
+    }
+    
+    // MARK: - Overridden methods
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -96,6 +142,10 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         //disable editing in case user left view while in edit mode
         self.tableView.setEditing(false, animated: true)
+        
+        //sort completed goals and place them at end of array
+        cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -122,9 +172,10 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath) as! MonthlyGoalTableViewCell
         let goal = currentUser!.monthlyGoals[indexPath.row]
         
+        //Configure the cell
         var klaIcon: String
         let kla = goal.kla
         switch kla
@@ -156,13 +207,24 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         default:
             klaIcon = "F.png"
         }
-        // Configure the cell...
-        cell.textLabel!.text = goal.goalText //whatever we want the goal to be called
-        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
+  
+        cell.goalTextLabel!.text = goal.goalText
         cell.imageView!.image = UIImage(named: klaIcon)
-
+        cell.delegate = self
         
-        //TODO: add checkbox in here somewhere
+        if ( goal.complete )
+        {
+            cell.completeButton.hidden = true
+            cell.completeButton.enabled = false
+            cell.accessoryType = .Checkmark
+        }
+        else
+        {
+            cell.completeButton.hidden = false
+            cell.completeButton.enabled = true
+            cell.accessoryType = .None
+        }
+        
         
         return cell
     }

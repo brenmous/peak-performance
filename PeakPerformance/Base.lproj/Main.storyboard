@@ -996,14 +996,41 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="monthlyGoalCell" rowHeight="44" id="Fcw-r0-Gy4">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="monthlyGoalCell" rowHeight="44" id="Fcw-r0-Gy4" customClass="MonthlyGoalTableViewCell" customModule="PeakPerformance" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fcw-r0-Gy4" id="W71-3E-BBb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xw-7Z-maC">
+                                            <rect key="frame" x="63" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0H-dT-ypZ">
+                                            <rect key="frame" x="570" y="10" width="22" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="22" id="3sa-n8-a94"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="doneicon.jpg"/>
+                                            <connections>
+                                                <action selector="completeButtonPressed:" destination="Fcw-r0-Gy4" eventType="touchUpInside" id="FyL-Or-olq"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="t0H-dT-ypZ" firstAttribute="top" secondItem="W71-3E-BBb" secondAttribute="topMargin" constant="2" id="7L0-7v-gHR"/>
+                                        <constraint firstItem="2xw-7Z-maC" firstAttribute="leading" secondItem="W71-3E-BBb" secondAttribute="leadingMargin" constant="55" id="DmQ-gr-nJV"/>
+                                        <constraint firstItem="t0H-dT-ypZ" firstAttribute="centerY" secondItem="W71-3E-BBb" secondAttribute="centerY" id="YPb-O4-Jt4"/>
+                                        <constraint firstItem="t0H-dT-ypZ" firstAttribute="trailing" secondItem="W71-3E-BBb" secondAttribute="trailingMargin" id="aVb-v9-bSF"/>
+                                        <constraint firstItem="t0H-dT-ypZ" firstAttribute="centerY" secondItem="2xw-7Z-maC" secondAttribute="centerY" id="rtF-XZ-oE1"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="completeButton" destination="t0H-dT-ypZ" id="AOh-mo-v8r"/>
+                                    <outlet property="goalTextLabel" destination="2xw-7Z-maC" id="R0h-6P-V1d"/>
                                     <segue destination="vq9-2F-l8P" kind="show" identifier="editMonthlyGoal" id="eQB-wO-zQv"/>
                                 </connections>
                             </tableViewCell>

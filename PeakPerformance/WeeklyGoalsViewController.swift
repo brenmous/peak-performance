@@ -238,8 +238,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIcon = "F.png"
         }
  
-        // Configure Font size        
-//      cell.textLabel!.text = goal.goalText
+
         cell.goalTextLabel!.text = goal.goalText
         cell.imageView!.image = UIImage(named: klaIcon)
         cell.delegate = self
