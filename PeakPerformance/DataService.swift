@@ -102,6 +102,7 @@ class DataService: DreamDataService  //: SignUpDataService, LogInDataService
         goalRef.child(GOALTEXT_REF_STRING).setValue(goal.goalText)
         goalRef.child(KLA_REF_STRING).setValue(goal.kla)
         goalRef.child(COMPLETE_REF_STRING).setValue(goal.complete)
+        goalRef.child(KICKIT_REF_STRING).setValue(goal.kickItText)
         
         //converting deadline from NSDate to String
         let dateFormatter = NSDateFormatter( )
@@ -130,9 +131,10 @@ class DataService: DreamDataService  //: SignUpDataService, LogInDataService
                     let goalText = goalSnapshot.value![GOALTEXT_REF_STRING] as! String
                     let keyLifeArea = goalSnapshot.value![KLA_REF_STRING] as! String
                     let complete = goalSnapshot.value![COMPLETE_REF_STRING] as! Bool
+                    let kickItText = goalSnapshot.value![KICKIT_REF_STRING] as! String
                     let deadline = goalSnapshot.value![DEADLINE_REF_STRING] as! String
                     let weeklyGoalID = String(goalSnapshot.key)
-                    let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID, complete: complete )
+                    let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID, complete: complete, kickItText: kickItText )
                     weeklyGoals.append(weeklyGoal)
                 }
                 print("DS: fetched weekly goals") //DEBUG
@@ -168,9 +170,10 @@ class DataService: DreamDataService  //: SignUpDataService, LogInDataService
                     let goalText = goalSnapshot.value![GOALTEXT_REF_STRING] as! String
                     let keyLifeArea = goalSnapshot.value![KLA_REF_STRING] as! String
                     let complete = goalSnapshot.value![COMPLETE_REF_STRING] as! Bool
+                    let kickItText = goalSnapshot.value![KICKIT_REF_STRING] as! String
                     let deadline = goalSnapshot.value![DEADLINE_REF_STRING] as! String
                     let gid = String(goalSnapshot.key)
-                    let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid, complete: complete )
+                    let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid, complete: complete, kickItText: kickItText )
                     monthlyGoals.append(monthlyGoal)
                 }
                 print("DS: fetched monthly goals") //DEBUG

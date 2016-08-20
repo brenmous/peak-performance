@@ -116,11 +116,12 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         - Parameters:
             - goal: the goal being completed.
     */
-    func completeGoal( goal: WeeklyGoal )
+    func completeGoal( goal: WeeklyGoal, kickItText: String )
     {
         goal.complete = true
+        goal.kickItText = kickItText
         self.saveModifiedGoal(goal)
-        print("WGVC: goal \(goal.gid) complete!")
+        print("WGVC: goal \(goal.gid) complete") //DEBUG
         
         //sort completed goals and place them at end of array
         guard let cu = currentUser else
@@ -148,11 +149,14 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         //goal completion confirm alert controller
         let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
-        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in self.completeGoal(wg) }
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in
+            let kickItTextField = goalCompleteAlertController.textFields![0] as UITextField
+            let kickItText = kickItTextField.text!
+            self.completeGoal(wg, kickItText: kickItText) }
         let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
         goalCompleteAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in
-            textField.placeholder = "I will..."
+            textField.placeholder = KICKIT_PLACEHOLDER_STRING
         }
         presentViewController(goalCompleteAlertController, animated: true, completion: nil )
     }
@@ -207,7 +211,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> GoalTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath) as! GoalTableViewCell
         let goal = currentUser!.weeklyGoals[indexPath.row]
-        print("WGVC: reconfiguring cells")
+        //print("WGVC: reconfiguring cells") //DEBUG
         // Configure the cell...
         var klaIcon: String
         let kla = goal.kla

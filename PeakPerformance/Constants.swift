@@ -151,6 +151,9 @@ let GOALTEXT_REF_STRING = "goalText"
 /// Specifies key life area node in database.
 let KLA_REF_STRING = "kla"
 
+/// Specifies kick text node in database.
+let KICKIT_REF_STRING = "kickItText"
+
 /// Specifies complete node in database.
 let COMPLETE_REF_STRING = "complete"
 
@@ -240,3 +243,6 @@ let COMPLETION_ALERT_CONFIRM = "Kick it!"
 
 /// Title for completion alert cancel action
 let COMPLETION_ALERT_CANCEL = "Cancel"
+
+/// Placeholder for kick it text field
+let KICKIT_PLACEHOLDER_STRING = "I will..."
