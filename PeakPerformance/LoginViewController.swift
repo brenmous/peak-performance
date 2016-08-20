@@ -200,6 +200,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         self.view.endEditing(true)
     }
     
+    
+    // MARK: - Overridden methods
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -236,11 +238,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         emailField.delegate = self
         passwordField.delegate = self
         
-        //MARK: - Skip log in
+    
         //Comment these lines out to use other accounts
-        emailField.text = "test@test.com"
-        passwordField.text = "Test123"
-        validator.validate(self)
+       // emailField.text = "test@test.com"
+       // passwordField.text = "Test123"
+       // validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)

@@ -6,7 +6,8 @@
 //  Copyright © 2016 derridale. All rights reserved.
 //
 
-//TODO: Rename this class to WeeklyGoalTableViewCell and carry out associated housekeeping. Currently xcode flips the fuck out when I try to do it so let's save it till later when I am not consumed with rage.
+//TODO: Rename this class to WeeklyGoalTableViewCell and carry out associated housekeeping. 
+//Currently xcode flips the fuck out when I try to do it so let's save it till later when I am not consumed with rage.
 
 protocol GoalTableViewCellDelegate
 {

@@ -230,16 +230,13 @@ let EDIT_DREAM_SEGUE = "editDream"
 // MARK: - Alert sheet strings
 
 /// Title for goal completion alert sheet
-let COMPLETION_ALERT_TITLE = "Goal Completion"
+let COMPLETION_ALERT_TITLE = "Congratulations!"
 
 /// Message for goal completion alert sheet
-let COMPLETION_ALERT_MSG = "Do you want to mark this goal as complete?"
+let COMPLETION_ALERT_MSG = "How would you take this task to the next level?"
 
 /// Title for completion alert confirm action
-let COMPLETION_ALERT_CONFIRM = "Confirm"
+let COMPLETION_ALERT_CONFIRM = "Kick it!"
 
 /// Title for completion alert cancel action
 let COMPLETION_ALERT_CANCEL = "Cancel"
-
-/// Title for Kick it to the next level alert action
-let COMPLETION_ALERT_KICK = "Kick it to the next level"

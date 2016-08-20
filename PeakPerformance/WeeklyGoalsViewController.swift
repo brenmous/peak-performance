@@ -151,6 +151,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in self.completeGoal(wg) }
         let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
+        goalCompleteAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in
+            textField.placeholder = "I will..."
+        }
         presentViewController(goalCompleteAlertController, animated: true, completion: nil )
     }
     
