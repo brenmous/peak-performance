@@ -150,8 +150,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
         let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in self.completeGoal(wg) }
         let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
-        let kick = UIAlertAction(title: COMPLETION_ALERT_KICK, style: .Default, handler: nil)
-        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel ); goalCompleteAlertController.addAction( kick )
+        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
         presentViewController(goalCompleteAlertController, animated: true, completion: nil )
     }
     
