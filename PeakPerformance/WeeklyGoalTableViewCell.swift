@@ -8,12 +8,12 @@
 
 protocol GoalTableViewCellDelegate
 {
-    func completeButtonPressed( cell: WeeklyGoalTableViewCell )
+    func completeButtonPressed( cell: GoalTableViewCell )
 }
 
 import UIKit
 
-class WeeklyGoalTableViewCell: UITableViewCell {
+class GoalTableViewCell: UITableViewCell {
 
     var delegate: GoalTableViewCellDelegate?
     

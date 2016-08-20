@@ -131,7 +131,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         self.tableView.reloadData()
     }
     
-    func completeButtonPressed( cell: WeeklyGoalTableViewCell )
+    func completeButtonPressed( cell: GoalTableViewCell )
     {
         //get weekly goal from cell
         guard let indexPath = self.tableView.indexPathForCell(cell) else
@@ -202,8 +202,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         return currentUser!.weeklyGoals.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> WeeklyGoalTableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath) as! WeeklyGoalTableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> GoalTableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath) as! GoalTableViewCell
         let goal = currentUser!.weeklyGoals[indexPath.row]
         print("WGVC: reconfiguring cells")
         // Configure the cell...
