@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
   - Firebase (3.3.0):
     - Firebase/Core (= 3.3.0)
   - Firebase/Analytics (3.3.0):
@@ -37,6 +38,7 @@ PODS:
   - SwiftValidator (3.0.1)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - Firebase
   - Firebase/Auth
   - Firebase/Core
@@ -54,6 +56,7 @@ CHECKOUT OPTIONS:
     :tag: 4.0.0
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
   FirebaseAnalytics: 0fd6532cb2c3d03cd5cf26ad295ccb091efd3104
   FirebaseAuth: 5efddc3fae47042b73585f083f956462be4f5b8e
@@ -66,6 +69,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
 
-PODFILE CHECKSUM: c833ab6c7673491f1971ea4caf0581d56e14c098
+PODFILE CHECKSUM: d6c38216f0ab9e4962b0b3dd4b30fcfc68b2c8db
 
 COCOAPODS: 1.0.1

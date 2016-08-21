@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
+import ActionSheetPicker_3_0
 
 protocol MonthlyGoalDetailViewControllerDelegate
 {
@@ -31,6 +32,8 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     /// Key life areas for the KLA picker.
     var keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
+    
+    var monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     
     /// SwiftValidator instance.
     let validator = Validator( )
@@ -65,15 +68,42 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     @IBAction func klaButtonPressed(sender: AnyObject)
     {
-        klaPicker.hidden = false
-        //        kAreaPicker.show(inVC: self)
+//        klaPicker.hidden = false
+        // - Key Life Area Picker
+        let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
+            picker, values, indexes in
+            
+            // trimming the index values
+            let newValue = String(values)
+            let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
+            let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let index = Int(trimmedSpaceWithNewValue)
+            // assign to textfield 
+            self.klaTextField.text = self.keyLifeAreas[index!]
+            return
+            }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
+        
+        acp.showActionSheetPicker()
         
     }
     
     @IBAction func deadlineButtonPressed(sender: AnyObject)
     {
-        //        deadlinePicker.hidden = false
-        datePicker.show(inVC: self)
+//        datePicker.show(inVC: self)
+        let acp = ActionSheetMultipleStringPicker(title: "Deadline", rows: [monthsOfTheYear], initialSelection: [5], doneBlock: {
+            picker, values, indexes in
+            
+            // trimming the index values
+            let newValue = String(values)
+            let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
+            let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let index = Int(trimmedSpaceWithNewValue)
+            // assign to textfield
+            self.deadlineTextField.text = self.monthsOfTheYear[index!]
+            return
+            }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
+        
+        acp.showActionSheetPicker()
     }
     
     
@@ -303,8 +333,6 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
 
 extension MonthlyGoalDetailViewController: MIDatePickerDelegate {
     func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
-        //        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
-        //        deadlineTextField.text = deadline
         let deadline = dateFormatter.stringFromDate(date)
         deadlineTextField.text = deadline
     }
