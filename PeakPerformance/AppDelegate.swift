@@ -26,10 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let UITabBar = UITabBarItem.appearance()
-//        let titleHighlightedColor: UIColor = UIColor.init(red: 190, green: 201, blue: 53, alpha: 1.0)
+
         UITabBar.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.init(red: 255, green: 201, blue: 255, alpha: 1.0)], forState: UIControlState.Highlighted)
-//
-//        UITabBar.setTitleTextAttributes([NSForegroundColorAttributeName: titleHighlightedColor], forState: UIControlState.Highlighted)
+
         return true
     }
 

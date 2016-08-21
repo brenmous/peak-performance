@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
+import ActionSheetPicker_3_0
 
 protocol WeeklyGoalDetailViewControllerDelegate
 {
@@ -70,15 +71,42 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func klaButtonPressed(sender: AnyObject)
     {
-        klaPicker.hidden = false
-
+//        klaPicker.hidden = false
+        let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
+                picker, values, indexes in
+            
+            // trimming the index values
+                let newValue = String(values)
+                let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
+                let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                let index = Int(trimmedSpaceWithNewValue)
+            // assign to textfield
+                self.klaTextField.text = self.keyLifeAreas[index!]
+                return
+            }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
         
+        acp.showActionSheetPicker()
     }
-    // - function that animates and shows MIDatePicker
+    
     @IBAction func deadlineButtonPressed(sender: AnyObject)
     {
-        // deadlinePicker.hidden = false
-        datePicker.show(inVC: self)
+//        datePicker.show(inVC: self)
+        let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
+            picker, value, index in
+            print("value = \(value)")
+            let newDate = value as? NSDate
+            print("newDate = \(newDate)")
+            self.deadlineTextField.text =  self.dateFormatter.stringFromDate(newDate!)
+            return
+            }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!!.superview)
+        
+        // sets up the interval for date picker in seconds
+        let secondsInWeek: NSTimeInterval = 7 * 24 * 60 * 60; // this can be changed depending on how many days are left in the week
+        datePicker.minimumDate = NSDate(timeInterval: 0, sinceDate: NSDate())
+        datePicker.maximumDate = NSDate(timeInterval: secondsInWeek, sinceDate: NSDate())
+        
+        datePicker.showActionSheetPicker()
+    
     }
     
     
@@ -294,11 +322,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func deadlinePickerActivated(sender: AnyObject)
     {
-        //        let dateFormatter = NSDateFormatter( )
-        //        dateFormatter.dateFormat = DATE_FORMAT_STRING
-        //        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
-        //        deadlineTextField.text = deadline
-        //        deadlinePicker.hidden = true
+
     }
     
     /*
@@ -316,8 +340,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
 
 extension WeeklyGoalDetailViewController: MIDatePickerDelegate {
     func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
-        //        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
-        //        deadlineTextField.text = deadline
         let deadline = dateFormatter.stringFromDate(date)
         deadlineTextField.text = deadline
     }
