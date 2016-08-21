@@ -80,6 +80,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
                 let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
                 let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                 let index = Int(trimmedSpaceWithNewValue)
+            
             // assign to textfield
                 self.klaTextField.text = self.keyLifeAreas[index!]
                 return
@@ -96,6 +97,8 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
             print("value = \(value)")
             let newDate = value as? NSDate
             print("newDate = \(newDate)")
+            
+            // assign to textfield
             self.deadlineTextField.text =  self.dateFormatter.stringFromDate(newDate!)
             return
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!!.superview)

@@ -69,6 +69,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     @IBAction func klaButtonPressed(sender: AnyObject)
     {
 //        klaPicker.hidden = false
+        // - Key Life Area Picker
         let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
             picker, values, indexes in
             
@@ -77,7 +78,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
             let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             let index = Int(trimmedSpaceWithNewValue)
-            // assign to textfield
+            // assign to textfield 
             self.klaTextField.text = self.keyLifeAreas[index!]
             return
             }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
@@ -332,8 +333,6 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
 
 extension MonthlyGoalDetailViewController: MIDatePickerDelegate {
     func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
-        //        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
-        //        deadlineTextField.text = deadline
         let deadline = dateFormatter.stringFromDate(date)
         deadlineTextField.text = deadline
     }
