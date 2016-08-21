@@ -116,7 +116,8 @@
 		- added complete button to table view
 		- sorting tableview based on completion
 
-20/08/2016 16:50 - 19:45, 20:30 - 
+20/08/2016 16:50 - 19:45, 20:30 - 21:05
 	- monthly goal completion
 	- added kick it text to alert controllers
 	- added kick it text property to goals
+	- time tracking
