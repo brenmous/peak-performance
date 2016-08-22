@@ -9,9 +9,13 @@
 import UIKit
 import Photos
 
+protocol DreamDetailViewControllerDelegate {
+    func addImage(image: NSData)
+}
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
-    //var image: UIImage!
+    //var image: UIImage!  
+    
     var assetCollection: PHAssetCollection!
     var albumCreated : Bool = false
     var photosAsset: PHFetchResult!
@@ -20,7 +24,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     var assetCollectionPlaceholder: PHObjectPlaceholder!
     
     var currentUser: User?
-    
+    var delegate: DreamDetailViewControllerDelegate?
     var currentDream: Dream?
     
     @IBOutlet weak var dreamLabel: UILabel!
@@ -31,12 +35,12 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
 
     
     @IBAction func savePressed(sender: AnyObject) {
-        
+       
     }
     
     @IBAction func getPhotoFromCamera(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
-            var imgPicker = UIImagePickerController()
+            let imgPicker = UIImagePickerController()
             imgPicker.delegate = self
             imgPicker.sourceType = UIImagePickerControllerSourceType.Camera;
             imgPicker.allowsEditing = false
@@ -47,21 +51,36 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func getPhotoFromCameraRoll(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
-            var imgPicker = UIImagePickerController()
+            let imgPicker = UIImagePickerController()
             imgPicker.delegate = self
             imgPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
             imgPicker.allowsEditing = false
             self.presentViewController(imgPicker, animated: true, completion: nil)
             
+            
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        dreamImg.image = image
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+//        
+//        dreamImg.image = image
+//        
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//        delegate?.addImage(image)
+//    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let imageData: NSData = UIImagePNGRepresentation(pickedImage)!
+
+            dreamImg.contentMode = .ScaleAspectFit
+            dreamImg.image = pickedImage
+            UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
+        }
+
+            dismissViewControllerAnimated(true, completion: nil)
     }
+
     
 //    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 //        
@@ -120,7 +139,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         //text field delegates
         dreamText.delegate = self
         
-        //createAlbum()
+        createAlbum()
         // Do any additional setup after loading the view.
     }
 

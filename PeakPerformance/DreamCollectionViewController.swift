@@ -16,7 +16,7 @@ protocol DreamDataService
     func removeDream(uid: String, dream: Dream)
 }
 
-class DreamCollectionViewController: UICollectionViewController {
+class DreamCollectionViewController: UICollectionViewController, DreamDetailViewControllerDelegate {
 
     
     /*@IBAction func addDreamPressed(sender: AnyObject?) {
@@ -25,7 +25,7 @@ class DreamCollectionViewController: UICollectionViewController {
     
     var currentUser: User?
     
-    
+    var Dreams = ["images/splashcreen.jpg"]
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -77,13 +77,18 @@ class DreamCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentUser!.dreams.count
+        //return currentUser!.dreams.count
+        return 2
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-    
+
         return cell
+    }
+    
+    func addImage(image: NSData) {
+        
     }
     
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
