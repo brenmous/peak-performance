@@ -29,13 +29,18 @@ class User
     var uid: String
     
     /// User's weekly goals.
-    var weeklyGoals: [WeeklyGoal]
+    var weeklyGoals = [WeeklyGoal]( )
     
     /// User's monthly goals.
-    var monthlyGoals: [MonthlyGoal]
+    var monthlyGoals = [MonthlyGoal]( )
     
     /// User's dreams.
-    var dreams: [Dream]
+    var dreams = [Dream]( )
+    
+    /// User's KLA values.
+    var values = [ KLA_FAMILY: "", KLA_WORKBUSINESS: "", KLA_PERSONALDEV: "", KLA_FINANCIAL: "",
+                   KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
+
     
     /**
         Initialises a new user.
@@ -57,8 +62,5 @@ class User
         self.org = org
         self.email = email
         self.uid = uid
-        self.weeklyGoals = [WeeklyGoal]( )
-        self.monthlyGoals = [MonthlyGoal]( )
-        self.dreams = [Dream]( )
     }
 }

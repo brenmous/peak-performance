@@ -283,5 +283,65 @@ class DataService: DreamDataService  //: SignUpDataService, LogInDataService
     }
     
     
-
+    // MARK: - MyValues methods
+    
+    /**
+     Saves user's values to the database.
+     
+     - Parameters:
+     - user: user whose values are being saved
+     */
+    func saveValues( user: User )
+    {
+        let ref = baseRef.child(VALUES_REF_STRING).child(user.uid)
+       
+        ref.child(KLA_FAMILY).setValue(user.values[KLA_FAMILY])
+        ref.child(KLA_FINANCIAL).setValue(user.values[KLA_FINANCIAL])
+        ref.child(KLA_PERSONALDEV).setValue(user.values[KLA_PERSONALDEV])
+        ref.child(KLA_FRIENDSSOCIAL).setValue(user.values[KLA_FRIENDSSOCIAL])
+        ref.child(KLA_HEALTHFITNESS).setValue(user.values[KLA_HEALTHFITNESS])
+        ref.child(KLA_WORKBUSINESS).setValue(user.values[KLA_WORKBUSINESS])
+        ref.child(KLA_EMOSPIRITUAL).setValue(user.values[KLA_EMOSPIRITUAL])
+        ref.child(KLA_PARTNER).setValue(user.values[KLA_PARTNER])
+    }
+    
+    /**
+     Loads a user's values from the database.
+     
+     - Parameters:
+     - uid: user ID that the goals belong.
+     - completion: the block that passes back the fetched goals.
+     */
+    func loadValues( uid: String, completion: ( values: [String:String] ) -> Void )
+    {
+        
+        var values = [ KLA_FAMILY: "", KLA_WORKBUSINESS: "", KLA_PERSONALDEV: "", KLA_FINANCIAL: "",
+                       KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
+        let ref = baseRef.child(VALUES_REF_STRING).child(uid)
+        ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if snapshot.exists()
+            {
+                for valueSnapshot in snapshot.children
+                {
+                    values[KLA_FAMILY] = valueSnapshot.value![KLA_FAMILY] as? String
+                    values[KLA_FINANCIAL] = valueSnapshot.value![KLA_FINANCIAL] as? String
+                    values[KLA_PERSONALDEV] = valueSnapshot.value![KLA_PERSONALDEV] as? String
+                    values[KLA_FRIENDSSOCIAL] = valueSnapshot.value![KLA_FRIENDSSOCIAL] as? String
+                    values[KLA_HEALTHFITNESS] = valueSnapshot.value![KLA_HEALTHFITNESS] as? String
+                    values[KLA_WORKBUSINESS] = valueSnapshot.value![KLA_WORKBUSINESS] as? String
+                    values[KLA_EMOSPIRITUAL] = valueSnapshot.value![KLA_EMOSPIRITUAL] as? String
+                    values[KLA_EMOSPIRITUAL] = valueSnapshot.value![KLA_EMOSPIRITUAL] as? String
+                    
+                }
+                print("DS: fetched values") //DEBUG
+                completion( values: values )
+                
+            }
+            else
+            {
+                print("DS: no values fetch") //DEBUG
+                completion( values: values )
+            }
+        })
+    }
 }

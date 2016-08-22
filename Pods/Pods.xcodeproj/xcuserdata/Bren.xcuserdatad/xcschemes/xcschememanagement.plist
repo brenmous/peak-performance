@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ActionSheetPicker-3.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-PeakPerformance.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8384FF935E210A2E997B71DB4A7914A1</key>
+		<key>053617A05C5A952CF2888B88D119FE01</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9BD8C84013C087E55E79847CF4BDDF33</key>
+		<key>37983BBAEBD2E115B5A73B977400B785</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A57D082DEF1971EABD506B0AFEFB893A</key>
+		<key>E54DE742ED19D4945C5D019E1F816541</key>
 		<dict>
 			<key>primary</key>
 			<true/>

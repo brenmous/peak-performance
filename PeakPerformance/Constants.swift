@@ -151,6 +151,9 @@ let GOALTEXT_REF_STRING = "goalText"
 /// Specifies key life area node in database.
 let KLA_REF_STRING = "kla"
 
+/// Specifies My Values node in database.
+let VALUES_REF_STRING = "values"
+
 /// Specifies kick text node in database.
 let KICKIT_REF_STRING = "kickItText"
 
