@@ -73,7 +73,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
         
         let imageView = cell.viewWithTag(1) as! UIImageView
+        let labelView = cell.viewWithTag(2) as! UILabel
         
+        labelView.text = "My Dream"
         imageView.image = Dreams[indexPath.row]
         
         return cell
