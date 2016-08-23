@@ -172,7 +172,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         guard let cu = tbvc.currentUser else
         {
-            //no user fix it man, goddamn you fix it what do i pay you for?!?! <- lol
+            //no user fix it man, goddamn you fix it what do i pay you for?!?!
             return
         }
         self.currentUser = cu
