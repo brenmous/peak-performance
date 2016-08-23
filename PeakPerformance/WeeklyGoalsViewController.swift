@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 /**
     Class that controls the weekly goals view.
@@ -42,10 +43,10 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
        performSegueWithIdentifier(ADD_WEEKLY_GOAL_SEGUE, sender: self)
     }
     
-    @IBAction func menuButtonPressed(sender: AnyObject) {
+    //@IBAction func menuButtonPressed(sender: AnyObject) {
         
         //let didSignOut = try! FIRAuth.auth()!.signOut()
-        
+        /*
         let alertController = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: UIAlertControllerStyle.ActionSheet)
         let signOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel,handler: nil)
         
@@ -66,8 +67,10 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         alertController.addAction(cancelSignOut)
         
         self.presentViewController(alertController, animated: true, completion: nil)
-
-    }
+        */
+        
+        //presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    //}
     
     @IBAction func unwindFromWGDVC( segue: UIStoryboardSegue)
     {
@@ -186,8 +189,17 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         self.tableView.reloadData()
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        /*
+        //Side Menu
+        let sideMenuLeft = UISideMenuNavigationController( )
+        sideMenuLeft.leftSide = true
+        let vc = [SideMenuViewController( )]
+        sideMenuLeft.setViewControllers(vc, animated: true)
+        SideMenuManager.menuLeftNavigationController = sideMenuLeft
+        */
     }
     
     override func didReceiveMemoryWarning()
