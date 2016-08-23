@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SideMenu-SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftValidator.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,12 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37983BBAEBD2E115B5A73B977400B785</key>
+		<key>26B51FA7A466594BCCF4B60345762E03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E54DE742ED19D4945C5D019E1F816541</key>
+		<key>72671E489FFCC207041B6489D8457C92</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8D4D56E9185F38DC40D63AABFC62F1DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F728AECB3174B0A1325677E23FABF45E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -23,9 +23,3 @@ extension UITextField: Validatable {
         return text ?? ""
     }
 }
-
-extension UITextView: Validatable {
-    public var validationText: String {
-        return text ?? ""
-    }
-}
