@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 protocol DreamDetailViewControllerDelegate {
-    func addImage(image: NSData)
+    func addImage(image: UIImage)
 }
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
@@ -26,7 +26,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     var currentUser: User?
     var delegate: DreamDetailViewControllerDelegate?
     var currentDream: Dream?
-    
+    var imageSet: UIImage!
     @IBOutlet weak var dreamLabel: UILabel!
     @IBOutlet weak var dreamText: UITextView!
     @IBOutlet weak var dreamImg: UIImageView!
@@ -35,7 +35,11 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
 
     
     @IBAction func savePressed(sender: AnyObject) {
-       
+        if let checkingImage = imageSet {
+        delegate?.addImage(checkingImage)   
+        } else {
+            print("no images")
+        }
     }
     
     @IBAction func getPhotoFromCamera(sender: AnyObject) {
@@ -72,15 +76,18 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let imageData: NSData = UIImagePNGRepresentation(pickedImage)!
-
+            imageSet = pickedImage
             dreamImg.contentMode = .ScaleAspectFit
             dreamImg.image = pickedImage
             UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
+//            delegate?.addImage(pickedImage)
         }
 
             dismissViewControllerAnimated(true, completion: nil)
+        
     }
 
+    
     
 //    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 //        

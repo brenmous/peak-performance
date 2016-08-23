@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "cell"
+private let reuseIdentifier = "Cell"
 
 protocol DreamDataService
 {
@@ -19,13 +19,10 @@ protocol DreamDataService
 class DreamCollectionViewController: UICollectionViewController, DreamDetailViewControllerDelegate {
 
     
-    /*@IBAction func addDreamPressed(sender: AnyObject?) {
-        prepareForSegue(ADD_DREAM_SEGUE, sender: self)
-    }*/
-    
     var currentUser: User?
     
-    var Dreams = ["images/splashcreen.jpg"]
+    var Dreams = [UIImage]()
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -54,20 +51,11 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     // MARK: IBAction
     
-    @IBAction func unwindFromDDVC( segue: UIStoryboardSegue)
+    @IBAction func unwindFromDDVC(segue: UIStoryboardSegue)
     {
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -77,38 +65,47 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return currentUser!.dreams.count
-        return 2
+//        return currentUser!.dreams.count
+            return Dreams.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
+        
+        let imageView = cell.viewWithTag(1) as! UIImageView
+        
+        imageView.image = Dreams[indexPath.row]
+        
         return cell
     }
     
-    func addImage(image: NSData) {
-        
+    func addImage(image: UIImage) {
+        print("image added")
+        print("Dream count \(Dreams.count)")
+
+        Dreams.append(image)
+//        performSegueWithIdentifier("unWindFromDDVC", sender: self)
+//        collectionView?.reloadData( )
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == ADD_DREAM_SEGUE
-//        {
-//            let dvc = segue.destinationViewController as! DreamDetailViewController
-//            dvc.delegate = self
-//            dvc.currentUser = self.currentUser
-//        }
-//        else if segue.identifier == EDIT_DREAM_SEGUE
-//        {
-//            let dvc = segue.destinationViewController as! DreamDetailViewController
-//            //dvc.delegate = self
-//            dvc.currentUser = self.currentUser
-//            if let indexPath = self.collectionView?.indexPathForCell
-//            {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == ADD_DREAM_SEGUE
+        {
+            let dvc = segue.destinationViewController as! DreamDetailViewController
+            dvc.delegate = self
+            dvc.currentUser = self.currentUser
+        }
+        else if segue.identifier == EDIT_DREAM_SEGUE
+        {
+            let dvc = segue.destinationViewController as! DreamDetailViewController
+            //dvc.delegate = self
+            dvc.currentUser = self.currentUser
+            if let indexPath = self.collectionView?.indexPathForCell
+            {
 //                dvc.currentDream = currentUser!.dreams[indexPath.cell]
-//            }
-//        }
-//    }
+            }
+        }
+    }
 
     // MARK: UICollectionViewDelegate
 
