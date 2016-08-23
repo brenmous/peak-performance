@@ -773,7 +773,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="PeZ-wI-8Hm">
-                                <rect key="frame" x="30" y="263" width="234" height="59"/>
+                                <rect key="frame" x="30" y="263" width="251" height="59"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pkQ-Vg-xgb">
                                         <rect key="frame" x="0.0" y="0.0" width="91" height="17"/>
@@ -787,22 +787,31 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0Ld-0F-0pI">
-                                        <rect key="frame" x="0.0" y="17" width="234" height="30"/>
+                                        <rect key="frame" x="0.0" y="17" width="251" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H68-T5-Epg">
-                                                <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="gIH-VX-qJm"/>
+                                                    <constraint firstAttribute="width" constant="170" id="gIH-VX-qJm"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pd-W1-ygA">
-                                                <rect key="frame" x="146" y="0.0" width="88" height="30"/>
+                                                <rect key="frame" x="176" y="0.0" width="75" height="30"/>
+                                                <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="uIn-XW-PzA"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Choose an area">
-                                                    <color key="titleColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Choose">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="klaButtonPressed:" destination="m6s-0q-9KL" eventType="touchUpInside" id="jNa-A8-jRn"/>
                                                 </connections>
@@ -827,7 +836,7 @@
                                 </connections>
                             </datePicker>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="pl8-F0-XOq">
-                                <rect key="frame" x="30" y="342" width="197" height="59"/>
+                                <rect key="frame" x="30" y="342" width="231" height="59"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2w-zR-Sdf">
                                         <rect key="frame" x="0.0" y="0.0" width="61" height="17"/>
@@ -840,23 +849,32 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-5E-4Id">
-                                        <rect key="frame" x="0.0" y="17" width="197" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-5E-4Id">
+                                        <rect key="frame" x="0.0" y="17" width="231" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dd/mm/yyyy" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-IY-rkV">
-                                                <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="h9T-4O-i53"/>
+                                                    <constraint firstAttribute="width" constant="170" id="h9T-4O-i53"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJR-Ps-XBU">
-                                                <rect key="frame" x="143" y="0.0" width="54" height="30"/>
+                                                <rect key="frame" x="176" y="0.0" width="55" height="30"/>
+                                                <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="55" id="Aca-AG-Onc"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Pick Date">
-                                                    <color key="titleColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Pick">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="deadlineButtonPressed:" destination="m6s-0q-9KL" eventType="touchUpInside" id="IS7-zm-hsI"/>
                                                 </connections>
@@ -902,9 +920,9 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Specific. Measurable. Achievable. Realistic. Time-based. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0T-yb-OCc">
-                                <rect key="frame" x="233" y="232" width="338" height="14"/>
+                                <rect key="frame" x="233" y="239" width="338" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="338" id="J5p-dH-ufq"/>
+                                    <constraint firstAttribute="width" constant="338" id="8jv-MM-eZP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -913,11 +931,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="y0T-yb-OCc" firstAttribute="trailing" secondItem="qxT-e6-oax" secondAttribute="trailing" id="3BE-xK-aM4"/>
                             <constraint firstItem="vj3-fX-x3D" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="5" id="3EJ-U8-V6k"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TqS-iu-q0d" secondAttribute="trailing" constant="-20" id="3cu-p4-uPB"/>
                             <constraint firstItem="qxT-e6-oax" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="8xH-Iv-ypy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qxT-e6-oax" secondAttribute="trailing" constant="9" id="992-HY-nu6"/>
-                            <constraint firstItem="y0T-yb-OCc" firstAttribute="trailing" secondItem="qxT-e6-oax" secondAttribute="trailing" id="CSL-Qa-Yva"/>
+                            <constraint firstItem="y0T-yb-OCc" firstAttribute="top" secondItem="qxT-e6-oax" secondAttribute="bottom" constant="1" id="ApO-a8-zAM"/>
                             <constraint firstItem="9br-DY-Qad" firstAttribute="top" secondItem="TqS-iu-q0d" secondAttribute="bottom" id="F1A-40-l6E"/>
                             <constraint firstItem="pl8-F0-XOq" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="10" id="Fqc-PJ-mYH"/>
                             <constraint firstItem="PeZ-wI-8Hm" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="10" id="Gqj-x7-leh"/>
@@ -928,7 +947,6 @@
                             <constraint firstItem="qxT-e6-oax" firstAttribute="leading" secondItem="fdd-fH-5hw" secondAttribute="leadingMargin" constant="10" id="Tgv-Tu-THj"/>
                             <constraint firstItem="FfN-AZ-977" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" id="UMz-1f-PZM"/>
                             <constraint firstItem="WAa-TF-82d" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="VUb-Ge-pgu"/>
-                            <constraint firstItem="PeZ-wI-8Hm" firstAttribute="top" secondItem="y0T-yb-OCc" secondAttribute="bottom" constant="17" id="WT6-we-ZoW"/>
                             <constraint firstItem="vj3-fX-x3D" firstAttribute="centerX" secondItem="fdd-fH-5hw" secondAttribute="centerX" id="WbB-9B-z8E"/>
                             <constraint firstItem="qxT-e6-oax" firstAttribute="top" secondItem="kgD-bp-QiQ" secondAttribute="bottom" constant="71" id="XOp-qb-DhH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FfN-AZ-977" secondAttribute="trailing" constant="-20" id="f41-Pm-lvH"/>
@@ -961,7 +979,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGC-qG-36f" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="quC-nb-aqH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3344" y="-610"/>
+            <point key="canvasLocation" x="3227" y="-617"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="h4V-Hx-YLh">
@@ -1633,7 +1651,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Nn5-Nu-OJd">
-                                <rect key="frame" x="30" y="263" width="234" height="59"/>
+                                <rect key="frame" x="30" y="263" width="251" height="59"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5l-4q-4qN">
                                         <rect key="frame" x="0.0" y="0.0" width="91" height="17"/>
@@ -1647,22 +1665,31 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-Pi-91U">
-                                        <rect key="frame" x="0.0" y="17" width="234" height="30"/>
+                                        <rect key="frame" x="0.0" y="17" width="251" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUC-WZ-PQp">
-                                                <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="Hy2-Ak-fvd"/>
+                                                    <constraint firstAttribute="width" constant="170" id="Hy2-Ak-fvd"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOn-B0-ziq">
-                                                <rect key="frame" x="146" y="0.0" width="88" height="30"/>
+                                                <rect key="frame" x="176" y="0.0" width="75" height="30"/>
+                                                <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="M7f-KF-h3J"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Choose an area">
-                                                    <color key="titleColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Choose">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="klaButtonPressed:" destination="vq9-2F-l8P" eventType="touchUpInside" id="fJf-B4-Zcw"/>
                                                 </connections>
@@ -1677,7 +1704,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Np7-ff-g0D">
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Np7-ff-g0D">
                                 <rect key="frame" x="0.0" y="330" width="600" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="491807529.48487997">
                                     <!--2016-08-02 05:12:09 +0000-->
@@ -1687,7 +1714,7 @@
                                 </connections>
                             </datePicker>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="tT4-N5-FtD">
-                                <rect key="frame" x="30" y="342" width="197" height="59"/>
+                                <rect key="frame" x="30" y="342" width="231" height="59"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNh-WZ-kmQ">
                                         <rect key="frame" x="0.0" y="0.0" width="61" height="17"/>
@@ -1700,23 +1727,32 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-7x-626">
-                                        <rect key="frame" x="0.0" y="17" width="197" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-7x-626">
+                                        <rect key="frame" x="0.0" y="17" width="231" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dd/mm/yyyy" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLj-3p-fOd">
-                                                <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="R8T-h2-a4K"/>
+                                                    <constraint firstAttribute="width" constant="170" id="R8T-h2-a4K"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiV-ws-vs1">
-                                                <rect key="frame" x="143" y="0.0" width="54" height="30"/>
+                                                <rect key="frame" x="176" y="0.0" width="55" height="30"/>
+                                                <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="55" id="DJx-Yq-TEY"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Pick Date">
-                                                    <color key="titleColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Pick">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="deadlineButtonPressed:" destination="vq9-2F-l8P" eventType="touchUpInside" id="hb9-kv-e2s"/>
                                                 </connections>
@@ -1745,15 +1781,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="IdE-nH-pRx" secondAttribute="trailing" constant="-20" id="KsR-Hp-bL6"/>
                             <constraint firstItem="IdE-nH-pRx" firstAttribute="top" secondItem="W5g-8J-tEe" secondAttribute="bottom" id="Nv8-w9-chu"/>
                             <constraint firstItem="IdE-nH-pRx" firstAttribute="centerX" secondItem="ANO-7K-vn0" secondAttribute="centerX" id="PZb-fV-10P"/>
-                            <constraint firstItem="K7H-YC-UtY" firstAttribute="top" secondItem="Np7-ff-g0D" secondAttribute="bottom" constant="10" id="Q1v-pZ-ZDT"/>
                             <constraint firstItem="i0F-jt-2bF" firstAttribute="top" secondItem="W5g-8J-tEe" secondAttribute="bottom" constant="13" id="TOb-B6-a8K"/>
                             <constraint firstItem="i0F-jt-2bF" firstAttribute="leading" secondItem="ANO-7K-vn0" secondAttribute="leadingMargin" constant="5" id="UIl-eI-dXb"/>
                             <constraint firstItem="tT4-N5-FtD" firstAttribute="leading" secondItem="ANO-7K-vn0" secondAttribute="leadingMargin" constant="10" id="Xpa-tt-LBJ"/>
-                            <constraint firstItem="Np7-ff-g0D" firstAttribute="centerX" secondItem="ANO-7K-vn0" secondAttribute="centerX" id="h21-TK-6Lj"/>
                             <constraint firstItem="EO8-Yg-x2A" firstAttribute="centerX" secondItem="ANO-7K-vn0" secondAttribute="centerX" id="iZb-8z-aQ2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Np7-ff-g0D" secondAttribute="trailing" constant="-20" id="pyK-Ki-5RZ"/>
                             <constraint firstItem="K7H-YC-UtY" firstAttribute="top" secondItem="MhX-IN-lZ3" secondAttribute="bottom" id="qsv-TK-MNp"/>
-                            <constraint firstItem="Np7-ff-g0D" firstAttribute="leading" secondItem="ANO-7K-vn0" secondAttribute="leadingMargin" constant="-20" id="s7i-At-6TV"/>
                             <constraint firstItem="tT4-N5-FtD" firstAttribute="top" secondItem="W5g-8J-tEe" secondAttribute="bottom" constant="278" id="xC1-qA-G21"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i0F-jt-2bF" secondAttribute="trailing" constant="5" id="zWX-Ku-mn6"/>
                         </constraints>
@@ -1780,7 +1812,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLW-Xh-Pel" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="MCY-Hs-cjn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3344" y="76"/>
+            <point key="canvasLocation" x="3362" y="76"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="UYv-X6-MRz">
