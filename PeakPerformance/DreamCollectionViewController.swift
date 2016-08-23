@@ -16,7 +16,7 @@ protocol DreamDataService
     func removeDream(uid: String, dream: Dream)
 }
 
-class DreamCollectionViewController: UICollectionViewController, DreamDetailViewControllerDelegate {
+class DreamCollectionViewController: UICollectionViewController, DreamDetailViewControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     
     var currentUser: User?
@@ -106,8 +106,22 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             }
         }
     }
+    
 
-    // MARK: UICollectionViewDelegate
+    
+    // MARK: Collection View Layout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let width = collectionView.frame.width / 2 - 1
+        return  CGSize(width: width, height: width)
+        
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1.0
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1.0
+    }
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
