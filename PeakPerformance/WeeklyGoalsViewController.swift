@@ -192,16 +192,23 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        /*
+        
         //Side Menu
-        let sideMenuLeft = UISideMenuNavigationController( )
-        sideMenuLeft.leftSide = true
-        let vc = [SideMenuViewController( )]
-        sideMenuLeft.setViewControllers(vc, animated: true)
-        SideMenuManager.menuLeftNavigationController = sideMenuLeft
-        */
+ 
+        //set up side menu
+        // Define the menus
+        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewControllerWithIdentifier("SideMenuNavigationController") as? UISideMenuNavigationController
+        
+        SideMenuManager.menuLeftNavigationController?.leftSide = true
+        
+        // Enable gestures. The left and/or right menus must be set up above for these to work.
+        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
+        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.menuPresentMode = .MenuSlideIn
+        
     }
-    
+ 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

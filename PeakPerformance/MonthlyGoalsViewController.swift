@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 
 /**
@@ -148,8 +149,10 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         self.tableView.reloadData()
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+    
     }
     
     

@@ -684,7 +684,7 @@
                         <barButtonItem key="leftBarButtonItem" image="menu icon_25x17.png" id="A6M-9o-uns">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="KQL-ZS-U2O" kind="presentation" id="cQg-pc-rn7"/>
+                                <segue destination="KQL-ZS-U2O" kind="presentation" identifier="sideMenu" id="cQg-pc-rn7"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -966,7 +966,7 @@
         <!--Side Menu Navigation Controller-->
         <scene sceneID="uJf-qb-whp">
             <objects>
-                <navigationController id="KQL-ZS-U2O" customClass="UISideMenuNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SideMenuNavigationController" id="KQL-ZS-U2O" customClass="UISideMenuNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4Q-dH-iFG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
