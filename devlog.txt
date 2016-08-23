@@ -129,3 +129,4 @@
 23/08/2016 15:50 - 
 	- fixed pods bug
 	- fixed monthly goals deadline
+	- fixed sign up errors not displaying

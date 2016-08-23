@@ -100,6 +100,38 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             }
             //Check for Firebase errors and inform user of error here somewhere
             print("SUVC: error creating account - " + error.localizedDescription) //DEBUG
+            self.activityIndicatorSU.stopAnimating()
+            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
+            {
+                return
+            }
+            switch errCode
+            {
+            case .ErrorCodeNetworkError:
+                self.signUpErrorLabel.text = NETWORK_ERR_MSG
+                self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
+              
+                
+            case .ErrorCodeEmailAlreadyInUse:
+                self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
+                self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
+               
+                
+            case .ErrorCodeInternalError:
+                self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
+                self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
+              
+                
+            default:
+                print("SUVC: error case not currently covered") //DEBUG
+                self.signUpErrorLabel.text = "Error not currently covered."
+                self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
+               
+            }
         })
     }
     
@@ -118,25 +150,31 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.createUser( )
                 //currently this segue goes to the TabBar view, but this where you would segue to the tutorial/initial setup
                 //feel free to change the segue in the storyboard (but keep the segue identifier, or change it here) when it's ready
+                self.activityIndicatorSU.stopAnimating()
                 self.performSegueWithIdentifier( FT_LOG_IN_SEGUE, sender: self )
                 return
             }
-            self.activityIndicatorSU.stopAnimating()
             //Check for Firebase errors and inform user here
             print("SUVC: error logging in - " + error.localizedDescription) //DEBUG
+            self.activityIndicatorSU.stopAnimating()
             guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
             {
                 return
             }
             switch errCode
             {
-            case .ErrorCodeNetworkError:
-                self.signUpErrorLabel.text = NETWORK_ERR_MSG
+            case .ErrorCodeUserNotFound:
+                self.signUpErrorLabel.text = LOGIN_ERR_MSG
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
                 
-            case .ErrorCodeEmailAlreadyInUse:
-                self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
+            case .ErrorCodeTooManyRequests:
+                self.signUpErrorLabel.text = REQUEST_ERR_MSG
+                self.signUpErrorLabel.hidden = false
+                self.signUpButton.enabled = true
+                
+            case .ErrorCodeNetworkError:
+                self.signUpErrorLabel.text = NETWORK_ERR_MSG
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
                 
@@ -146,8 +184,8 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.signUpButton.enabled = true
                 
             default:
-                print("SUVC: error case not currently covered") //DEBUG
-                self.signUpErrorLabel.text = "Error not currently covered."
+                print("LUVC: error case not currently covered") //DEBUG
+                self.signUpErrorLabel.text = "Error case not currently covered." //DEBUG
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
             }
