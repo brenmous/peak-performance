@@ -9,6 +9,7 @@
 import UIKit
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 import ActionSheetPicker_3_0
+import SideMenu
 
 protocol WeeklyGoalDetailViewControllerDelegate
 {
@@ -220,15 +221,19 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        //Picker stuff
         dateFormatter.dateFormat = "dd/MM/yyyy"
         klaPicker.dataSource = self
         klaPicker.delegate = self
         datePicker.delegate = self
+        
         //Check if user is authenticated
         if currentUser == nil
         {
             //handle error/reauthenticate
         }
+        
         // Do any additional setup after loading the view.
         goalTextView.layer.cornerRadius = 5
         goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
@@ -267,6 +272,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         
         //textfield & textview delegation
         goalTextView.delegate = self
+    
         
     }
     

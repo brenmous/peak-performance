@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 /**
     Class that controls the weekly goals view.
@@ -45,7 +46,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     @IBAction func menuButtonPressed(sender: AnyObject) {
         
         //let didSignOut = try! FIRAuth.auth()!.signOut()
-        
+        /*
         let alertController = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: UIAlertControllerStyle.ActionSheet)
         let signOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel,handler: nil)
         
@@ -66,7 +67,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         alertController.addAction(cancelSignOut)
         
         self.presentViewController(alertController, animated: true, completion: nil)
-
+        */
+        
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     @IBAction func unwindFromWGDVC( segue: UIStoryboardSegue)
@@ -186,10 +189,26 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         self.tableView.reloadData()
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
+        //Side Menu
+        SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
+        SideMenuManager.menuLeftNavigationController?.leftSide = true
+        let smvc = storyboard!.instantiateViewControllerWithIdentifier("SideMenu")
+        SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
+        SideMenuManager.menuFadeStatusBar = false
+        /*
+        // Enable gestures. The left and/or right menus must be set up above for these to work.
+        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
+        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.menuPresentMode = .MenuSlideIn
+        */
+        
     }
-    
+ 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

@@ -34,6 +34,7 @@
 		B50861BF1D4B316900901638 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861BE1D4B316900901638 /* Goal.swift */; };
 		B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C01D4B359A00901638 /* MonthlyGoal.swift */; };
 		B50861C51D5060C100901638 /* WeeklyGoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */; };
+		B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */; };
 		B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455A1D3FB85500F20D25 /* DataService.swift */; };
 		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
 		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
@@ -112,6 +113,7 @@
 		B50861BE1D4B316900901638 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		B50861C01D4B359A00901638 /* MonthlyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoal.swift; sourceTree = "<group>"; };
 		B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoalDetailViewController.swift; sourceTree = "<group>"; };
+		B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		B53B455A1D3FB85500F20D25 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */,
 				B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */,
 				B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */,
+				B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */,
 				B5B46A8C1D66D5CB00FFA4F8 /* GoalTableViewCell.swift in Sources */,
+				B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */,
 				B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */,
 				B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */,
 				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
