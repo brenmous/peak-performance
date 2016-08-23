@@ -106,7 +106,14 @@ class DataService: DreamDataService  //: SignUpDataService, LogInDataService
         
         //converting deadline from NSDate to String
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        if goal is WeeklyGoal
+        {
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+        }
+        else if goal is MonthlyGoal
+        {
+            dateFormatter.dateFormat = "MMMM"
+        }
         goalRef.child(DEADLINE_REF_STRING).setValue(dateFormatter.stringFromDate(goal.deadline) )
         print("DS: saved goal \(goal.gid) under gid" ) //DEBUG
     }
