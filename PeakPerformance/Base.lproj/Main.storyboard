@@ -975,7 +975,7 @@
                             <tableViewSection id="rnw-Nx-5GZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NIM-BD-5KQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NIM-BD-5KQ" id="8Ug-cx-kTS">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
