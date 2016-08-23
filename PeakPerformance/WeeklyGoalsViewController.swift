@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import SideMenu
+import SideMenu //github.com/jonkeykong/SideMenu
 
 /**
     Class that controls the weekly goals view.

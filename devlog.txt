@@ -126,7 +126,11 @@
 	- myvalues dict in User class
 	- dataservice methods
 
-23/08/2016 15:50 - 
+23/08/2016 15:50 - 21:25, 22:00 - 22:20
 	- fixed pods bug
 	- fixed monthly goals deadline
 	- fixed sign up errors not displaying
+	- side menu
+		- tried SWRevealViewController (spoilers: it sucks)
+		- trying out SideMenu (jonkeykong@github)
+	- SideMenu works well, implemented in weekly goals master view for now
