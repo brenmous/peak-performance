@@ -198,7 +198,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         SideMenuManager.menuLeftNavigationController?.leftSide = true
         let smvc = storyboard!.instantiateViewControllerWithIdentifier("SideMenu")
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
-        
         SideMenuManager.menuFadeStatusBar = false
         /*
         // Enable gestures. The left and/or right menus must be set up above for these to work.
