@@ -43,7 +43,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
        performSegueWithIdentifier(ADD_WEEKLY_GOAL_SEGUE, sender: self)
     }
     
-    //@IBAction func menuButtonPressed(sender: AnyObject) {
+    @IBAction func menuButtonPressed(sender: AnyObject) {
         
         //let didSignOut = try! FIRAuth.auth()!.signOut()
         /*
@@ -69,8 +69,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         self.presentViewController(alertController, animated: true, completion: nil)
         */
         
-        //presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-    //}
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
     
     @IBAction func unwindFromWGDVC( segue: UIStoryboardSegue)
     {
@@ -194,18 +194,19 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         super.viewDidLoad()
         
         //Side Menu
- 
-        //set up side menu
-        // Define the menus
-        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewControllerWithIdentifier("SideMenuNavigationController") as? UISideMenuNavigationController
-        
+        SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
         SideMenuManager.menuLeftNavigationController?.leftSide = true
+        let smvc = storyboard!.instantiateViewControllerWithIdentifier("SideMenu")
+        SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
         
+        SideMenuManager.menuFadeStatusBar = false
+        /*
         // Enable gestures. The left and/or right menus must be set up above for these to work.
         // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
         SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
         SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
         SideMenuManager.menuPresentMode = .MenuSlideIn
+        */
         
     }
  
