@@ -182,6 +182,8 @@ let DREAMURL_REF_STRING = "url"
 // MARK: - Date Format Strings
 let DATE_FORMAT_STRING = "dd/MM/yyyy"
 
+let MONTH_FORMAT_STRING = "MMMM"
+
 // MARK: - Segue identifiers
 
 /// Segue for when a user has logged in and all their details have been retrieved.

@@ -33,7 +33,8 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     /// Key life areas for the KLA picker.
     var keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
     
-    var monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    /// Months for date picker.
+    let monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     
     /// SwiftValidator instance.
     let validator = Validator( )
@@ -178,7 +179,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         goalTextView.text = cg.goalText
         klaTextField.text = cg.kla
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = DATE_FORMAT_STRING
+        dateFormatter.dateFormat = MONTH_FORMAT_STRING
         deadlineTextField.text = dateFormatter.stringFromDate(cg.deadline)
     }
     
