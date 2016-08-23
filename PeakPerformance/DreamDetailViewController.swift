@@ -10,7 +10,8 @@ import UIKit
 import Photos
 
 protocol DreamDetailViewControllerDelegate {
-    func addImage(image: UIImage)
+    func addDream(image: UIImage)
+    func updateDream(dream: Dream )
 }
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
@@ -36,7 +37,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func savePressed(sender: AnyObject) {
         if let checkingImage = imageSet {
-        delegate?.addImage(checkingImage)   
+        delegate?.addDream(checkingImage)
         } else {
             print("no images")
         }
@@ -58,7 +59,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             let imgPicker = UIImagePickerController()
             imgPicker.delegate = self
             imgPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-            imgPicker.allowsEditing = false
+            imgPicker.allowsEditing = false // Do we allow the user to edit images?
             self.presentViewController(imgPicker, animated: true, completion: nil)
             
             
@@ -80,7 +81,6 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             dreamImg.contentMode = .ScaleAspectFit
             dreamImg.image = pickedImage
             UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
-//            delegate?.addImage(pickedImage)
         }
 
             dismissViewControllerAnimated(true, completion: nil)
@@ -145,9 +145,16 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         //text field delegates
         dreamText.delegate = self
+        dreamImg.image = imageSet
         
         createAlbum()
         // Do any additional setup after loading the view.
+        
+        // text view UI configuration
+        dreamText.layer.cornerRadius = 5
+        dreamText.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
+        dreamText.layer.borderWidth = 1
+        dreamText.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {

@@ -71,17 +71,17 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func klaButtonPressed(sender: AnyObject)
     {
-//        klaPicker.hidden = false
+        // klaPicker.hidden = false
         let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
                 picker, values, indexes in
             
-            // trimming the index values
+        // trimming the index values
                 let newValue = String(values)
                 let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
                 let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                 let index = Int(trimmedSpaceWithNewValue)
             
-            // assign to textfield
+        // assign to textfield
                 self.klaTextField.text = self.keyLifeAreas[index!]
                 return
             }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
@@ -142,7 +142,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         {
             createNewWeeklyGoal( )
         }
-            //...otherwise modify the referenced goal
+        //...otherwise modify the referenced goal
         else
         {
             updateGoal( )
@@ -328,16 +328,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
 
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
 }
 
 

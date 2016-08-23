@@ -79,13 +79,17 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         return cell
     }
     
-    func addImage(image: UIImage) {
+    // MARK: Protocol Methods
+    
+    func addDream(image: UIImage) {
         print("image added")
         print("Dream count \(Dreams.count)")
 
         Dreams.append(image)
-//        performSegueWithIdentifier("unWindFromDDVC", sender: self)
-//        collectionView?.reloadData( )
+    }
+    
+    func updateDream(dream: Dream) {
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -98,11 +102,12 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         else if segue.identifier == EDIT_DREAM_SEGUE
         {
             let dvc = segue.destinationViewController as! DreamDetailViewController
-            //dvc.delegate = self
+            dvc.delegate = self
             dvc.currentUser = self.currentUser
             if let indexPath = self.collectionView?.indexPathForCell
             {
 //                dvc.currentDream = currentUser!.dreams[indexPath.cell]
+                dvc.imageSet = Dreams[0]
             }
         }
     }
