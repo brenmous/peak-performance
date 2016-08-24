@@ -216,6 +216,9 @@ let GO_TO_TUTORIAL_SEGUE = "goToTutorial"
 /// Segue for unwinding from WG detail view.
 let UNWIND_FROM_WGDVC_SEGUE = "unwindFromWGDVC"
 
+/// Segue for unwinding to login,
+let UNWIND_TO_LOGIN = "unwindFromWGVC"
+
 /// Segue for unwinding from MG detail view.
 let UNWIND_FROM_MGDVC_SEGUE = "unwindFromMGDVC"
 
@@ -251,3 +254,22 @@ let COMPLETION_ALERT_CANCEL = "Cancel"
 
 /// Placeholder for kick it text field
 let KICKIT_PLACEHOLDER_STRING = "I will..."
+
+/// Sign Out alert title
+let SIGNOUT_ALERT_TITLE = "Sign Out"
+
+/// Sign out alert msg
+let SIGNOUT_ALERT_MSG = "Do you want to sign out?"
+
+/// Sign out confirm
+let SIGNOUT_ALERT_CONFIRM = "Sign out"
+
+/// Sign out alert cancel
+let SIGNOUT_ALERT_CANCEL = "Cancel"
+
+
+
+// MARK: - Storyboard IDs
+
+/// Identifier for Sign Out side menu cell
+let SIGNOUT_CELL_ID = "signOut"

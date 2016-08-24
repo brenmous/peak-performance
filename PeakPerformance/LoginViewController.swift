@@ -257,6 +257,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         logInErrorLabel.hidden = true
         emailErrorLabel.hidden = true
         passwordErrorLabel.hidden = true
+        
+        //enable log in button
+        logInButton.enabled = true
     }
     
     override func viewWillDisappear(animated: Bool) {

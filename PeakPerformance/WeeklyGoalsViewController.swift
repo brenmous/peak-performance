@@ -45,30 +45,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     @IBAction func menuButtonPressed(sender: AnyObject) {
         
-        //let didSignOut = try! FIRAuth.auth()!.signOut()
-        /*
-        let alertController = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        let signOut = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel,handler: nil)
-        
-        let cancelSignOut = UIAlertAction(title: "Sign out", style: UIAlertActionStyle.Default, handler: {
-            (_)in
-            do {
-                try FIRAuth.auth()?.signOut()
-                print("user has signed out")
-                
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-            self.performSegueWithIdentifier("unwindToLogin", sender: self)
-            
-            })
-        
-        alertController.addAction(signOut)
-        alertController.addAction(cancelSignOut)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-        */
-        
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     

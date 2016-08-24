@@ -8,18 +8,42 @@
 
 import UIKit
 import SideMenu
+import Firebase
 
 class SideMenuViewController: UITableViewController
 {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    func signOut( )
+    {
+        let signOutAlertController = UIAlertController(title: SIGNOUT_ALERT_TITLE, message: SIGNOUT_ALERT_MSG, preferredStyle: .ActionSheet)
+        let signOut = UIAlertAction(title: SIGNOUT_ALERT_CANCEL, style: .Cancel, handler: nil )
+        let cancelSignOut = UIAlertAction(title: SIGNOUT_ALERT_CONFIRM, style: .Default ) { (action) in
+            do
+            {
+                try FIRAuth.auth()?.signOut()
+                print("SMVC: user has signed out") //DEBUG
+                
+            }
+            catch let error as NSError
+            {
+                print(error.localizedDescription)
+            }
+            self.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: self)
+            
+        }
+        signOutAlertController.addAction(signOut); signOutAlertController.addAction(cancelSignOut)
+        
+        self.presentViewController(signOutAlertController, animated: true, completion: nil)
+        
     }
-    */
-    
+  
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if cell?.reuseIdentifier == SIGNOUT_CELL_ID
+        {
+            self.signOut( )
+        }
+    }
     
   
 
