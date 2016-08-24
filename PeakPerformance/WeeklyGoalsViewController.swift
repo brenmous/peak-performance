@@ -23,8 +23,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     /// This view controller's data service.
     var dataService = DataService( )
     
-    var indicator = 0
-    
     // MARK: Outlets
     
     //progress bar

@@ -32,18 +32,19 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     var currentGoal: MonthlyGoal?
     
     /// Key life areas for the KLA picker.
-    var keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
+    let keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
     
     /// Months for date picker.
-    let monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] //Ben
     
     /// SwiftValidator instance.
     let validator = Validator( )
     
     // MARK: Date Picker Instance (retrieved from cocoapods)
-    var datePicker = MIDatePicker.getFromNib()
+    var datePicker = MIDatePicker.getFromNib() //Ben
+    
     //  var kAreaPicker = MIKLAPicker.getFromNib()
-    var dateFormatter = NSDateFormatter()
+    var dateFormatter = NSDateFormatter() //Ben
     
     // MARK: - Outlets
     
@@ -68,7 +69,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         validator.validate(self)
     }
     
-    @IBAction func klaButtonPressed(sender: AnyObject)
+    @IBAction func klaButtonPressed(sender: AnyObject) //Ben
     {
 //        klaPicker.hidden = false
         // - Key Life Area Picker
@@ -89,7 +90,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         
     }
     
-    @IBAction func deadlineButtonPressed(sender: AnyObject)
+    @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
 //        datePicker.show(inVC: self)
         let acp = ActionSheetMultipleStringPicker(title: "Deadline", rows: [monthsOfTheYear], initialSelection: [5], doneBlock: {
@@ -288,6 +289,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             return true
         }
     }
+    
     //Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
@@ -296,6 +298,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     
     // MARK: - KLA Picker
+    //Ben
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
     {
@@ -320,7 +323,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     // MARK: - Deadline picker
     
-    @IBAction func deadlinePickerActivated(sender: AnyObject)
+    @IBAction func deadlinePickerActivated(sender: AnyObject) //Ben
     {
         //        let dateFormatter = NSDateFormatter( )
         //        dateFormatter.dateFormat = DATE_FORMAT_STRING
@@ -341,7 +344,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
 }
 
-
+//Ben
 extension MonthlyGoalDetailViewController: MIDatePickerDelegate {
     func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
         let deadline = dateFormatter.stringFromDate(date)
