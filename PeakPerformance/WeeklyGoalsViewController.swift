@@ -194,19 +194,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         super.viewDidLoad()
         
         //Side Menu
-        SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
-        SideMenuManager.menuLeftNavigationController?.leftSide = true
-        let smvc = storyboard!.instantiateViewControllerWithIdentifier("SideMenu")
-        SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
-        SideMenuManager.menuFadeStatusBar = false
-        /*
-        // Enable gestures. The left and/or right menus must be set up above for these to work.
-        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
-        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        SideMenuManager.menuPresentMode = .MenuSlideIn
-        */
-        
+        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
     }
  
     override func didReceiveMemoryWarning()

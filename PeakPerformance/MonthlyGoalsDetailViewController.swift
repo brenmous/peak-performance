@@ -9,6 +9,7 @@
 import UIKit
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 import ActionSheetPicker_3_0
+import SideMenu
 
 protocol MonthlyGoalDetailViewControllerDelegate
 {
@@ -106,6 +107,12 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         
         acp.showActionSheetPicker()
     }
+    
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
     
     
     // MARK: - Methods
@@ -254,6 +261,9 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         
         //textfield & textview delegation
         goalTextView.delegate = self
+        
+        //Side Menu
+        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
         
     }
     

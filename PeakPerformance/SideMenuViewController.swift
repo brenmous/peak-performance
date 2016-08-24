@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class SideMenuViewController: UITableViewController
 {
@@ -18,5 +19,20 @@ class SideMenuViewController: UITableViewController
         // Drawing code
     }
     */
+    
+    
+  
 
+}
+
+extension SideMenuManager
+{
+    public class func setUpSideMenu( sb: UIStoryboard )
+    {
+        SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
+        SideMenuManager.menuLeftNavigationController?.leftSide = true
+        let smvc = sb.instantiateViewControllerWithIdentifier("SideMenu")
+        SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
+        SideMenuManager.menuFadeStatusBar = false
+    }
 }

@@ -113,6 +113,12 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     }
     
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil )
+    }
+    
+    
     
     // MARK: - Methods
     
@@ -272,6 +278,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         
         //textfield & textview delegation
         goalTextView.delegate = self
+        
+        //Side Menu
+        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
     
         
     }
