@@ -134,3 +134,8 @@
 		- tried SWRevealViewController (spoilers: it sucks)
 		- trying out SideMenu (jonkeykong@github)
 	- SideMenu works well, implemented in weekly goals master view for now
+
+24/08/2016 20:00 - 20:50
+	- SideMenu set up function
+	- sign out in side menu
+	- housekeeping (constants, refactoring)
