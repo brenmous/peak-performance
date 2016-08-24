@@ -55,7 +55,7 @@ extension SideMenuManager
     {
         SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
         SideMenuManager.menuLeftNavigationController?.leftSide = true
-        let smvc = sb.instantiateViewControllerWithIdentifier("SideMenu")
+        let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC)
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
         SideMenuManager.menuFadeStatusBar = false
     }

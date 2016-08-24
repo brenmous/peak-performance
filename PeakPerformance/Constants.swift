@@ -273,3 +273,6 @@ let SIGNOUT_ALERT_CANCEL = "Cancel"
 
 /// Identifier for Sign Out side menu cell
 let SIGNOUT_CELL_ID = "signOut"
+
+/// Storyboard identfier for Side Menu View Controller
+let SIDE_MENU_VC = "SideMenu"
