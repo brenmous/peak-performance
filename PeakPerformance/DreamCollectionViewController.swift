@@ -23,10 +23,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     var currentUser: User?
     
     var Dreams = [UIImage]()
-    
-<<<<<<< HEAD
+
     let dataService = DataService( )
-=======
     
     // MARK: IBAction
     
@@ -39,7 +37,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
->>>>>>> ea6a38edb4f42ec82ae7192bd9f8e6f37de5bd0b
     
     override func viewWillAppear(animated: Bool)
     {
