@@ -10,11 +10,11 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-protocol DreamDataService
-{
-    func saveDream(uid: String, dream: Dream)
-    func removeDream(uid: String, dream: Dream)
-}
+//protocol DreamDataService
+//{
+//    func saveDream(uid: String, dream: Dream)
+//    func removeDream(uid: String, dream: Dream)
+//}
 
 class DreamCollectionViewController: UICollectionViewController, DreamDetailViewControllerDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -22,6 +22,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     var currentUser: User?
     
     var Dreams = [UIImage]()
+    
+    let dataService = DataService( )
     
     override func viewWillAppear(animated: Bool)
     {
@@ -83,11 +85,20 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     // MARK: Protocol Methods
     
-    func addDream(image: UIImage) {
+    func addDream(dream: Dream) {
+        guard let cu = currentUser else
+        {
+            //user not available? handle it here
+            return
+        }
+        cu.dreams.append(dream)
+        
+        dataService.saveDream(cu.uid, dream: dream) 
+        
         print("image added")
         print("Dream count \(Dreams.count)")
-
-        Dreams.append(image)
+        self.collectionView?.reloadData()
+//        Dreams.append(image)
     }
     
     func updateDream(dream: Dream) {

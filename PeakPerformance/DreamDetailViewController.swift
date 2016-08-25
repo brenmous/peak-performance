@@ -9,8 +9,10 @@
 import UIKit
 import Photos
 
+
+
 protocol DreamDetailViewControllerDelegate {
-    func addDream(image: UIImage)
+    func addDream(dream: Dream)   // working method
     func updateDream(dream: Dream )
 }
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
@@ -36,11 +38,17 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
 
     
     @IBAction func savePressed(sender: AnyObject) {
-        if let checkingImage = imageSet {
-        delegate?.addDream(checkingImage)
-        } else {
-            print("no images")
-        }
+        
+        createNewDream( )
+    }
+    
+    func createNewDream( )
+    {
+        let dreamDescription = dreamText.text!
+        let did = NSUUID( ).UUIDString
+        let dreamURL = "http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg"
+        let dream = Dream(dreamDesc: dreamDescription, dreamImg: dreamURL, did: did)
+        delegate?.addDream(dream)
     }
     
     @IBAction func getPhotoFromCamera(sender: AnyObject) {

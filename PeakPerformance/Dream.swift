@@ -15,7 +15,8 @@ class Dream {
     var dreamDesc: String
     
     ///This is the image used for the user's dream.
-    var dreamImg: NSURL
+   // var dreamImg: NSURL
+    var dreamImg: String
     
     /// This is the unique ID of the dream.
     var did: String
@@ -30,11 +31,13 @@ class Dream {
      
      - Returns: A dream with the specified paramters.
      */
-    init ( dreamDesc: String, dreamImg: NSURL, did: String)
+    init ( dreamDesc: String, dreamImg: String, did: String)
     {
         self.dreamDesc = dreamDesc
         self.dreamImg = dreamImg
         self.did = did
     }
+    
+    //convenience init for NSURL to String and vice versa
     
 }

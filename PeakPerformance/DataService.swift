@@ -15,7 +15,7 @@ import Firebase
 
 //TODO: Create constants for Firebase DB reference strings.
 //TODO: Experiment with abstracting load/save methods for user content.
-class DataService: DreamDataService  //: SignUpDataService, LogInDataService
+class DataService  //: SignUpDataService, LogInDataService
 {
     // MARK: - Properties
     
@@ -237,8 +237,8 @@ class DataService: DreamDataService  //: SignUpDataService, LogInDataService
         dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
         
         //convert NSURL to string
-        let urlString = dream.dreamImg.absoluteString
-        dreamRef.child(DREAMURL_REF_STRING).setValue(urlString)
+        //let urlString = dream.dreamImg.absoluteString
+        dreamRef.child(DREAMURL_REF_STRING).setValue(dream.dreamImg)
     }
     
     /**
@@ -259,7 +259,7 @@ class DataService: DreamDataService  //: SignUpDataService, LogInDataService
                 for dreamSnapshot in snapshot.children
                 {
                     let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
-                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! NSURL
+                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! String
                     let did = String(dreamSnapshot.key)
                     let dream = Dream(dreamDesc: dreamText, dreamImg: dreamUrl, did: did)
                     dreams.append(dream)
