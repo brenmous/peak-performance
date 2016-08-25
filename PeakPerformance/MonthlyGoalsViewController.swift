@@ -6,6 +6,7 @@
 //  Copyright © 2016 derridale. All rights reserved.
 //
 
+
 import UIKit
 import SideMenu
 
@@ -40,6 +41,11 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         performSegueWithIdentifier(ADD_MONTHLY_GOAL_SEGUE, sender: self)
     }
     
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
+        //Side Menu
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
     
     @IBAction func unwindFromMGDVC( segue: UIStoryboardSegue ){ }
     
@@ -152,6 +158,9 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        //Side Menu
+        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
     
     }
     

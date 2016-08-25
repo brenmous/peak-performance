@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import SideMenu
 
 
 
@@ -33,6 +34,11 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var dreamLabel: UILabel!
     @IBOutlet weak var dreamText: UITextView!
     @IBOutlet weak var dreamImg: UIImageView!
+    
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
     
 
 
@@ -163,6 +169,9 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         dreamText.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
         dreamText.layer.borderWidth = 1
         dreamText.clipsToBounds = true
+        
+        //Side Menu
+        SideMenuManager.setUpSideMenu(self.storyboard!)
     }
 
     override func didReceiveMemoryWarning() {

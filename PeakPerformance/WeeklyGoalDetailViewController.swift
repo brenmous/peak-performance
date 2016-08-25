@@ -70,7 +70,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         validator.validate(self)
     }
     
-    @IBAction func klaButtonPressed(sender: AnyObject)
+    @IBAction func klaButtonPressed(sender: AnyObject) //Ben
     {
         // klaPicker.hidden = false
         let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
@@ -90,7 +90,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         acp.showActionSheetPicker()
     }
     
-    @IBAction func deadlineButtonPressed(sender: AnyObject)
+    @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
 //        datePicker.show(inVC: self)
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
@@ -112,6 +112,12 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         datePicker.showActionSheetPicker()
     
     }
+    
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil )
+    }
+    
     
     
     // MARK: - Methods
@@ -272,6 +278,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         
         //textfield & textview delegation
         goalTextView.delegate = self
+        
+        //Side Menu
+        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
     
         
     }
@@ -283,7 +292,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     // MARK: - KLA Picker
-    
+    //Ben
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
     {
         return 1
@@ -329,7 +338,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     // MARK: - Deadline picker
     
-    @IBAction func deadlinePickerActivated(sender: AnyObject)
+    @IBAction func deadlinePickerActivated(sender: AnyObject) //Ben
     {
 
     }
@@ -337,7 +346,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
 
 }
 
-
+//Ben
 extension WeeklyGoalDetailViewController: MIDatePickerDelegate {
     func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
         let deadline = dateFormatter.stringFromDate(date)

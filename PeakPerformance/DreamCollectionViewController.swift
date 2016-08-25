@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 private let reuseIdentifier = "Cell"
 
@@ -23,7 +24,22 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     var Dreams = [UIImage]()
     
+<<<<<<< HEAD
     let dataService = DataService( )
+=======
+    
+    // MARK: IBAction
+    
+    @IBAction func unwindFromDDVC(segue: UIStoryboardSegue)
+    {
+        
+    }
+    
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
+        self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+>>>>>>> ea6a38edb4f42ec82ae7192bd9f8e6f37de5bd0b
     
     override func viewWillAppear(animated: Bool)
     {
@@ -44,6 +60,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SideMenuManager.setUpSideMenu(self.storyboard!)
 
     }
 
@@ -51,12 +69,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: IBAction
+   
     
-    @IBAction func unwindFromDDVC(segue: UIStoryboardSegue)
-    {
-        
-    }
 
 
     // MARK: UICollectionViewDataSource
