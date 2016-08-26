@@ -30,7 +30,7 @@ class DateTracker
         return self.getDateComponents().day
     }
 
-    /// Get the current month as a string (dateComponents.month returns a non-zero indexed array of ints by default).
+    /// Get the current month as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
     func getCurrentMonthAsString( ) -> String
     {
         let dateComponents = self.getDateComponents()
