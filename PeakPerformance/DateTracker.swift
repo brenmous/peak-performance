@@ -59,14 +59,22 @@ class DateTracker
     }
     
     /// Get the value representing the user's progress through the month (currently an increment of the bar represents one day).
-    func getMonthlyProgress( ) -> Float
+    func getMonthlyProgressValue( ) -> Float
     {
         let increment = 100.0/Float(self.getNumberOfDaysInCurrentMonth( ) )
         return ( increment * Float(self.getCurrentDay()) ) / 100.0
     }
     
+    /// Returns the string for the monthly progress bar label.
+    func getMonthlyProgressString( ) -> String
+    {
+        let month = self.getCurrentMonthAsString()
+        let week = self.getCurrentWeek()
+        return "\(month) Week \(week)"
+    }
+    
     /// Get the value representing the user's progress through the week (currently an increment of the bar represents one day of the current week).
-    func getWeeklyProgress( ) -> Float
+    func getWeeklyProgressValue( ) -> Float
     {
         let week = self.getCurrentWeek()
         var increment: Float = 100.0/7.0
@@ -87,7 +95,13 @@ class DateTracker
             }
         }
         return ( increment * Float(self.getCurrentDayOfWeek()) ) / 100.0
-        
     }
     
+    /// Returns the string for the weekly progress bar label.
+    func getWeeklyProgressString( ) -> String
+    {
+        let week = self.getCurrentWeek()
+        let dayOfWeek = self.getCurrentDayOfWeek()
+        return "Week \(week) Day \(dayOfWeek)"
+    }
 }

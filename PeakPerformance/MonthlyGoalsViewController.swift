@@ -58,10 +58,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     /// Updates progress bar with the current date and progress value.
     func updateProgressBar( )
     {
-        let month = dateTracker.getCurrentMonthAsString()
-        let week = dateTracker.getCurrentWeek()
-        progressViewLabel.text = "\(month) Week \(week)"
-        progressBarMG.progress = dateTracker.getMonthlyProgress()
+        progressViewLabel.text = dateTracker.getMonthlyProgressString()
+        progressBarMG.progress = dateTracker.getMonthlyProgressValue()
     }
     
     /**
