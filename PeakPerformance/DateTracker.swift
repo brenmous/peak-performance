@@ -58,7 +58,7 @@ class DateTracker
         return week
     }
     
-    /// Get the value representing the user's progress through the month (currently an increment of the bar represents one day).
+    /// Get the value representing the user's progress through the month (currently an increment of the bar represents one day of the current month).
     func getMonthlyProgressValue( ) -> Float
     {
         let increment = 100.0/Float(self.getNumberOfDaysInCurrentMonth( ) )
