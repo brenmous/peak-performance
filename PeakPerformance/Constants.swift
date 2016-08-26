@@ -276,3 +276,14 @@ let SIGNOUT_CELL_ID = "signOut"
 
 /// Storyboard identfier for Side Menu View Controller
 let SIDE_MENU_VC = "SideMenu"
+
+
+// MARK: - Progress view
+
+/// Amount to increment progress bar for each week passed.
+let PV_WEEKLY_INCREMENT = 14.3
+
+/// Amount to increment progress bar for each month passed.
+let PV_MONTHLY_INCREMENT = 8.33
+
+
