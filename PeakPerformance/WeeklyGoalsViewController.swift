@@ -21,13 +21,15 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     var currentUser: User?
     
     /// This view controller's data service.
-    var dataService = DataService( )
+    let dataService = DataService( )
+    
+    let dateTracker = DateTracker( )
     
     // MARK: Outlets
     
     //progress bar
     @IBOutlet weak var progressViewWG: UIProgressView!
-    
+    @IBOutlet weak var progressViewLabel: UILabel!
     
     // MARK: - Actions
     
@@ -53,6 +55,16 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     
     // MARK: - Methods
+    
+    func updateProgressView( )
+    {
+        let week = dateTracker.getCurrentWeek()
+        let dayOfWeek = dateTracker.getCurrentDayOfWeek()
+        progressViewLabel.text = "Week \(week) Day \(dayOfWeek)"
+        progressViewWG.progress = dateTracker.getWeeklyProgress()
+        
+        
+    }
     
     /**
         Adds a new goal to the array and saves it to the database.
@@ -169,6 +181,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         //Side Menu
         SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
+        
+        updateProgressView()
     }
  
     override func didReceiveMemoryWarning()

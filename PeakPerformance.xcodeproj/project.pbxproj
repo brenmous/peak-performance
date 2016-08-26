@@ -64,6 +64,7 @@
 		B5B8D2CB1D44D9270072E50A /* WeeklyGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */; };
 		B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */; };
 		B5D74D691D6857060026EF07 /* MonthlyGoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */; };
+		B5F32ACE1D70181100B83B1E /* DateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F32ACD1D70181100B83B1E /* DateTracker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoalsViewController.swift; sourceTree = "<group>"; };
 		B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoal.swift; sourceTree = "<group>"; };
 		B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalTableViewCell.swift; sourceTree = "<group>"; };
+		B5F32ACD1D70181100B83B1E /* DateTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTracker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +299,7 @@
 				B53B454E1D3FB78700F20D25 /* ViewControllers */,
 				B53B454F1D3FB78F00F20D25 /* Models */,
 				B55652571D40DCE900E315A4 /* Constants.swift */,
+				B5F32ACD1D70181100B83B1E /* DateTracker.swift */,
 				B53B455A1D3FB85500F20D25 /* DataService.swift */,
 				B5791FF41D5493EF0079A9CB /* DatePicker */,
 				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
@@ -552,6 +555,7 @@
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */,
 				B5B46A8C1D66D5CB00FFA4F8 /* GoalTableViewCell.swift in Sources */,
+				B5F32ACE1D70181100B83B1E /* DateTracker.swift in Sources */,
 				B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */,
 				B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */,
 				B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */,

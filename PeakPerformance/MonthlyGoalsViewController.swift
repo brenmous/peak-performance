@@ -22,12 +22,15 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     var currentUser: User?
     
     /// This view controller's data service.
-    var dataService = DataService( )
+    let dataService = DataService( )
+    
+    /// This view controller's date tracker.
+    let dateTracker = DateTracker( )
     
     // MARK: - Outlets
     //progress bar
     @IBOutlet weak var progressBarMG: UIProgressView!
-    
+    @IBOutlet weak var progressViewLabel: UILabel!
     
     // MARK: - Actions
     
@@ -51,6 +54,15 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     
     // MARK: - Methods
+    
+    /// Updates progress bar with current date information.
+    func updateProgressBar( )
+    {
+        let month = dateTracker.getCurrentMonthAsString()
+        let week = dateTracker.getCurrentWeek()
+        progressViewLabel.text = "\(month) Week \(week)"
+        progressBarMG.progress = dateTracker.getMonthlyProgress()
+    }
     
     /**
      Adds a new goal to the array and saves it to the database.
@@ -161,6 +173,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         //Side Menu
         SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
+        
+        updateProgressBar()
     
     }
     

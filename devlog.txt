@@ -139,3 +139,7 @@
 	- SideMenu set up function
 	- sign out in side menu
 	- housekeeping (constants, refactoring)
+
+26/08/2016 16:15 - 17:35
+	- progress bar and date tracking
+	
