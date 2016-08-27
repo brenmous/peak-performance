@@ -11,19 +11,17 @@ import SideMenu
 
 private let reuseIdentifier = "Cell"
 
-//protocol DreamDataService
-//{
-//    func saveDream(uid: String, dream: Dream)
-//    func removeDream(uid: String, dream: Dream)
-//}
 
 class DreamCollectionViewController: UICollectionViewController, DreamDetailViewControllerDelegate, UICollectionViewDelegateFlowLayout {
 
+// MARK: - Properties
     
     var currentUser: User?
     
+    var currentDream: Dream?
+    
     var Dreams = [UIImage]()
-
+    
     let dataService = DataService( )
     
     // MARK: IBAction
@@ -78,8 +76,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return currentUser!.dreams.count
-            return Dreams.count
+        return currentUser!.dreams.count
+        
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -88,9 +86,10 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         let imageView = cell.viewWithTag(1) as! UIImageView
         let labelView = cell.viewWithTag(2) as! UILabel
         
-        labelView.text = "My Dream"
-        imageView.image = Dreams[indexPath.row]
-        
+        labelView.text = currentUser!.dreams[indexPath.row].dreamDesc
+//        imageView.image = Dreams[indexPath.row]
+        let userImageData = currentUser!.dreams[indexPath.row].dreamImg
+        imageView.image = UIImage(data: userImageData)
         return cell
     }
     
@@ -104,10 +103,10 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         cu.dreams.append(dream)
         
-        dataService.saveDream(cu.uid, dream: dream) 
+//        dataService.saveDream(cu.uid, dream: dream) 
         
         print("image added")
-        print("Dream count \(Dreams.count)")
+        print("Dream count \(currentUser!.dreams.count)")
         self.collectionView?.reloadData()
 //        Dreams.append(image)
     }
@@ -128,10 +127,11 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             let dvc = segue.destinationViewController as! DreamDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
-            if let indexPath = self.collectionView?.indexPathForCell
+            let cell = sender as! UICollectionViewCell
+            if let indexPath = self.collectionView?.indexPathForCell(cell)
             {
-//                dvc.currentDream = currentUser!.dreams[indexPath.cell]
-                dvc.imageSet = Dreams[0]
+                  dvc.currentDream = currentUser!.dreams[indexPath.row]
+
             }
         }
     }

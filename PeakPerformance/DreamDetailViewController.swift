@@ -13,24 +13,28 @@ import SideMenu
 
 
 protocol DreamDetailViewControllerDelegate {
-    func addDream(dream: Dream)   // working method
+    func addDream(dream: Dream)
     func updateDream(dream: Dream )
 }
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+
     
-    //var image: UIImage!  
-    
+// MARK: - Collection View Properties
     var assetCollection: PHAssetCollection!
     var albumCreated : Bool = false
     var photosAsset: PHFetchResult!
     var assetThumbnailSize:CGSize!
     var collection: PHAssetCollection!
     var assetCollectionPlaceholder: PHObjectPlaceholder!
-    
+
+// MARK: - User Properties
     var currentUser: User?
-    var delegate: DreamDetailViewControllerDelegate?
     var currentDream: Dream?
+    var delegate: DreamDetailViewControllerDelegate?
     var imageSet: UIImage!
+    var imageData: NSData!
+    
+// MARK: IBOutlets
     @IBOutlet weak var dreamLabel: UILabel!
     @IBOutlet weak var dreamText: UITextView!
     @IBOutlet weak var dreamImg: UIImageView!
@@ -40,21 +44,33 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-
-
-    
+// MARK: IBActions
     @IBAction func savePressed(sender: AnyObject) {
         
         createNewDream( )
     }
-    
+
+
     func createNewDream( )
     {
         let dreamDescription = dreamText.text!
         let did = NSUUID( ).UUIDString
-        let dreamURL = "http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg"
-        let dream = Dream(dreamDesc: dreamDescription, dreamImg: dreamURL, did: did)
+        let dream = Dream(dreamDesc: dreamDescription, dreamImg: imageData, did: did)
         delegate?.addDream(dream)
+    }
+    
+    /// Updates image and description if current dream is available
+    func updateImageandTextView( )
+    {
+        guard let cd = currentDream else
+        {
+            return
+        }
+        dreamText.text = cd.dreamDesc
+        let imageData = cd.dreamImg
+        dreamImg.image = UIImage(data: imageData)
+        
+
     }
     
     @IBAction func getPhotoFromCamera(sender: AnyObject) {
@@ -90,7 +106,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let imageData: NSData = UIImagePNGRepresentation(pickedImage)!
+            imageData = UIImagePNGRepresentation(pickedImage)!
             imageSet = pickedImage
             dreamImg.contentMode = .ScaleAspectFit
             dreamImg.image = pickedImage
@@ -153,13 +169,24 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             })
         }
     }
+
+    // MARK: - Overridden methods
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if currentDream != nil
+        {
+            self.updateImageandTextView()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //text field delegates
         dreamText.delegate = self
-        dreamImg.image = imageSet
+  
         
         createAlbum()
         // Do any additional setup after loading the view.

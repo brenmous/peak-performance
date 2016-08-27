@@ -259,7 +259,7 @@ class DataService  //: SignUpDataService, LogInDataService
                 for dreamSnapshot in snapshot.children
                 {
                     let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
-                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! String
+                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! NSData
                     let did = String(dreamSnapshot.key)
                     let dream = Dream(dreamDesc: dreamText, dreamImg: dreamUrl, did: did)
                     dreams.append(dream)
