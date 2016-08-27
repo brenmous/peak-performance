@@ -163,6 +163,9 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         //sort completed goals and place them at end of array
         cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
         self.tableView.reloadData()
+        
+        //update progress bar
+        updateProgressBar()
     }
     
     override func viewDidLoad()
@@ -171,8 +174,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         //Side Menu
         SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
-        
-        updateProgressBar()
     
     }
     
