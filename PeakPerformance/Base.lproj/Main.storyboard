@@ -1071,7 +1071,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fcw-r0-Gy4" id="W71-3E-BBb">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0H-dT-ypZ">
@@ -1084,19 +1084,20 @@
                                                 <action selector="completeButtonPressed:" destination="Fcw-r0-Gy4" eventType="touchUpInside" id="FyL-Or-olq"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xw-7Z-maC">
-                                            <rect key="frame" x="69" y="18" width="37" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xw-7Z-maC">
+                                            <rect key="frame" x="69" y="18" width="486" height="17"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="2xw-7Z-maC" firstAttribute="centerY" secondItem="W71-3E-BBb" secondAttribute="centerY" id="UQg-cG-wjl"/>
-                                        <constraint firstItem="2xw-7Z-maC" firstAttribute="centerY" secondItem="t0H-dT-ypZ" secondAttribute="centerY" id="ZX4-UR-GXJ"/>
+                                        <constraint firstItem="2xw-7Z-maC" firstAttribute="leading" secondItem="W71-3E-BBb" secondAttribute="leadingMargin" constant="61" id="JvY-1v-B8Z"/>
                                         <constraint firstItem="t0H-dT-ypZ" firstAttribute="top" secondItem="W71-3E-BBb" secondAttribute="topMargin" constant="7" id="eTH-Ze-EmU"/>
+                                        <constraint firstItem="2xw-7Z-maC" firstAttribute="centerY" secondItem="W71-3E-BBb" secondAttribute="centerY" id="h7H-CE-QAY"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="t0H-dT-ypZ" secondAttribute="trailing" constant="7" id="mqN-yT-FBI"/>
-                                        <constraint firstItem="2xw-7Z-maC" firstAttribute="leading" secondItem="W71-3E-BBb" secondAttribute="leadingMargin" constant="61" id="tCF-SI-SoU"/>
+                                        <constraint firstItem="t0H-dT-ypZ" firstAttribute="leading" secondItem="2xw-7Z-maC" secondAttribute="trailing" constant="8" symbolic="YES" id="q3n-DZ-rJm"/>
+                                        <constraint firstItem="2xw-7Z-maC" firstAttribute="centerY" secondItem="t0H-dT-ypZ" secondAttribute="centerY" id="rSM-of-EVG"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

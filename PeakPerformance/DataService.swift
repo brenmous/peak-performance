@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 
+
 /**
     This class handles read/write to the Firebase realtime database.
   */
@@ -229,16 +230,25 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: the user ID of the user the goal belongs to.
      - dream: the goal being saved.
      */
+    
+    // Firebase Class
     func saveDream( uid: String, dream: Dream )
     {
-        let dreamsRef = baseRef.child(DREAMS_REF_STRING)
+//        let dreamsRef = baseRef.child(DREAMS_REF_STRING)
+//        let dreamRef = dreamsRef.child(uid).child(dream.did)  // appends did to uid
+//        dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc) // text : "description"
+//        let firebase = Firebase(url: "https://peakperformance-d37a7.firebaseio.com/dreams/" + "\(uid)")
+        let firebase = FIRDatabase.database().referenceFromURL("https://peakperformance-d37a7.firebaseio.com/dreams/" + "\(uid)")
+        let data = dream.dreamImg
+        let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        let user: NSDictionary = ["Description":dream.dreamDesc, "photoBase64":base64String]
         
-        let dreamRef = dreamsRef.child(uid).child(dream.did)
-        dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
+        //add firebase child node
+        let profile = firebase.ref.child(dream.did)
+    
+        // Write data to Firebase
+        profile.setValue(user)
         
-        //convert NSURL to string
-        //let urlString = dream.dreamImg.absoluteString
-        dreamRef.child(DREAMURL_REF_STRING).setValue(dream.dreamImg)
     }
     
     /**
@@ -260,6 +270,7 @@ class DataService  //: SignUpDataService, LogInDataService
                 {
                     let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
                     let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! NSData
+                    // Converst string to NSData
                     let did = String(dreamSnapshot.key)
                     let dream = Dream(dreamDesc: dreamText, dreamImg: dreamUrl, did: did)
                     dreams.append(dream)

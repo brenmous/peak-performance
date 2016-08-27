@@ -92,7 +92,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
-//        datePicker.show(inVC: self)
+
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
             picker, value, index in
             print("value = \(value)")
@@ -232,7 +232,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         dateFormatter.dateFormat = "dd/MM/yyyy"
         klaPicker.dataSource = self
         klaPicker.delegate = self
-        datePicker.delegate = self
+
         
         //Check if user is authenticated
         if currentUser == nil
@@ -344,18 +344,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     }
     
 
-}
-
-//Ben
-extension WeeklyGoalDetailViewController: MIDatePickerDelegate {
-    func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
-        let deadline = dateFormatter.stringFromDate(date)
-        deadlineTextField.text = deadline
-    }
-    
-    func miDatePickerDidCancelSelection(amDatePicker: MIDatePicker) {
-        
-    }
 }
 
 
