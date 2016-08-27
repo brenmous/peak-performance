@@ -262,17 +262,18 @@ class DataService  //: SignUpDataService, LogInDataService
     {
         
         var dreams = [Dream]( )
-        let dreamsRef = baseRef.child(DREAMS_REF_STRING).child(uid)
-        dreamsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        let firebase = FIRDatabase.database().referenceFromURL("https://peakperformance-d37a7.firebaseio.com/dreams/" + "\(uid)")
+//        let dreamsRef = baseRef.child(DREAMS_REF_STRING).child(uid)
+        firebase.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
                 for dreamSnapshot in snapshot.children
                 {
-                    let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
-                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! NSData
-                    // Converst string to NSData
+                    let dreamText = dreamSnapshot.value!["Description"] as! String
+                    let photoBase64 = dreamSnapshot.value!["photoBase64"] as! String
+                    let decodedDreamUrl = NSData(base64EncodedString: photoBase64, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                     let did = String(dreamSnapshot.key)
-                    let dream = Dream(dreamDesc: dreamText, dreamImg: dreamUrl, did: did)
+                    let dream = Dream(dreamDesc: dreamText, dreamImg: decodedDreamUrl!, did: did)
                     dreams.append(dream)
                 }
                 print("DS: fetched dreams") //DEBUG
