@@ -2,7 +2,7 @@
 //  DreamDetailViewController.swift
 //  PeakPerformance
 //
-//  Created by Sai on 13/08/2016.
+//  Created by Sowmya on 13/08/2016.
 //  Copyright © 2016 derridale. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ import SideMenu
 
 protocol DreamDetailViewControllerDelegate {
     func addDream(dream: Dream)
-    func updateDream(dream: Dream )
+    func saveModifiedDream(dream: Dream )
 }
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -46,8 +46,20 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
 // MARK: IBActions
     @IBAction func savePressed(sender: AnyObject) {
+        //if there's no current dream, make a new one...
+        if currentDream == nil
+        {
+            createNewDream( )
+        }
+            //...otherwise modify the referenced goal
+        else
+        {
+            updateDream( )
+    
+            print("Update dream")
+        }
         
-        createNewDream( )
+        
     }
 
 
@@ -59,6 +71,17 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         delegate?.addDream(dream)
     }
     
+    func updateDream( )
+    {
+        guard let cd = currentDream else
+        {
+            return
+        }
+        cd.dreamDesc = dreamText.text!
+        imageData = UIImagePNGRepresentation(dreamImg.image!)!
+        cd.dreamImg = imageData!
+        delegate?.saveModifiedDream(cd)
+    }
     /// Updates image and description if current dream is available
     func updateImageandTextView( )
     {
@@ -70,7 +93,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         let imageData = cd.dreamImg
         dreamImg.image = UIImage(data: imageData)
         
-
+        // delegate?.saveModifiedDream(dream)
     }
     
     @IBAction func getPhotoFromCamera(sender: AnyObject) {
@@ -96,13 +119,6 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-//        
-//        dreamImg.image = image
-//        
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//        delegate?.addImage(image)
-//    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -119,29 +135,9 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
 
     
     
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//        
-//        //let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//        dreamImg.image = image
-//        
-//        PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-//            let assetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(image!)
-//            let assetPlaceholder = assetRequest.placeholderForCreatedAsset
-//            let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: self.assetCollection, assets: self.photosAsset)
-//            albumChangeRequest?.addAssets([assetPlaceholder!])
-//            }, completionHandler: { success, error in
-//                print("added image to album")
-//                print(error)
-//                
-//               //self.showImages()
-//        })
-//    }
-    
-    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
          self.dismissViewControllerAnimated(true, completion: nil)
-         // performSegueWithIdentifier("unwindFromDDVC", sender: self)
+
     }
  
     func createAlbum() {
@@ -187,7 +183,6 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         //text field delegates
         dreamText.delegate = self
   
-        
         createAlbum()
         // Do any additional setup after loading the view.
         

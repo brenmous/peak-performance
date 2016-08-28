@@ -218,7 +218,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         dateFormatter.dateFormat = "dd/MM/yyyy"
         klaPicker.dataSource = self
         klaPicker.delegate = self
-        datePicker.delegate = self
+
         //Check if user is authenticated
         if currentUser == nil
         {
@@ -321,16 +321,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         klaPicker.hidden = true
     }
     
-    // MARK: - Deadline picker
     
-    @IBAction func deadlinePickerActivated(sender: AnyObject) //Ben
-    {
-        //        let dateFormatter = NSDateFormatter( )
-        //        dateFormatter.dateFormat = DATE_FORMAT_STRING
-        //        let deadline = dateFormatter.stringFromDate(deadlinePicker.date)
-        //        deadlineTextField.text = deadline
-        //        deadlinePicker.hidden = true
-    }
     
     /*
      // MARK: - Navigation
@@ -344,15 +335,5 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
 }
 
-//Ben
-extension MonthlyGoalDetailViewController: MIDatePickerDelegate {
-    func miDatePicker(amDatePicker: MIDatePicker, didSelect date: NSDate) {
-        let deadline = dateFormatter.stringFromDate(date)
-        deadlineTextField.text = deadline
-    }
-    
-    func miDatePickerDidCancelSelection(amDatePicker: MIDatePicker) {
-        
-    }
-}
+
 

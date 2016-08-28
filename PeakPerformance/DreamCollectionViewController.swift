@@ -64,9 +64,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         super.didReceiveMemoryWarning()
     }
     
-   
-    
-
 
     // MARK: UICollectionViewDataSource
 
@@ -103,7 +100,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         cu.dreams.append(dream)
         
-//        dataService.saveDream(cu.uid, dream: dream) 
+        dataService.saveDream(cu.uid, dream: dream) 
         
         print("image added")
         print("Dream count \(currentUser!.dreams.count)")
@@ -111,8 +108,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
 //        Dreams.append(image)
     }
     
-    func updateDream(dream: Dream) {
-        
+    func saveModifiedDream(dream: Dream) {
+        print("\(dream.dreamDesc)")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
