@@ -49,12 +49,11 @@ class DateTracker
     func getCurrentWeek( ) -> Int
     {
         let day = self.getDateComponents().day
-        let week = (day/7) + 1
-       /* If we only want 4 weeks
-        if week > 4
+        var week = (day/7)+1
+        if day % 7 == 0
         {
-            return 4
-        } */
+            week = day/7
+        }
         return week
     }
     
