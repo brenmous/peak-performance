@@ -22,6 +22,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     var Dreams = [UIImage]()
     
+    /// Indicates the index path of the cell
+    var gloablindexPathForRow: Int?
+    
     let dataService = DataService( )
     
     // MARK: IBAction
@@ -35,7 +38,14 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
+   
     
+    @IBAction func cellLongPress(sender: AnyObject) {
+        print("long Pressed")
+    }
+    
+    
+    // MARK: Override functions
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -105,13 +115,30 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         print("image added")
         print("Dream count \(currentUser!.dreams.count)")
         self.collectionView?.reloadData()
-//        Dreams.append(image)
+
     }
     
     func saveModifiedDream(dream: Dream) {
-        print("\(dream.dreamDesc)")
+        print("\(dream.dreamDesc)") // DEBUG
+        guard let cu = currentUser else
+        {
+            //user not available handle it HANDLE IT!
+            return
+        }
+        
+        dataService.saveDream(cu.uid, dream: dream)
+        
     }
     
+    func deleteDream(dream: Dream) {
+        guard let cu = currentUser else
+        {
+            return
+        }
+        cu.dreams.removeAtIndex(gloablindexPathForRow!)
+        dataService.removeDream(cu.uid, dream: dream)
+        
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == ADD_DREAM_SEGUE
         {
@@ -128,7 +155,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             if let indexPath = self.collectionView?.indexPathForCell(cell)
             {
                   dvc.currentDream = currentUser!.dreams[indexPath.row]
-
+                  gloablindexPathForRow = indexPath.row
             }
         }
     }

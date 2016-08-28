@@ -14,7 +14,8 @@ import SideMenu
 
 protocol DreamDetailViewControllerDelegate {
     func addDream(dream: Dream)
-    func saveModifiedDream(dream: Dream )
+    func saveModifiedDream(dream: Dream)
+    func deleteDream(dream: Dream)
 }
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -59,6 +60,32 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             print("Update dream")
         }
         
+        
+    }
+    
+    
+    @IBAction func deleteButtonPressed(sender: AnyObject) {
+        let deleteDreamAlertController = UIAlertController(title: DELETE_DREAM_ALERT_TITLE, message: DELETE_DREAM_ALERT_MSG, preferredStyle: .Alert)
+        
+        let delete = UIAlertAction(title: DELETE_DREAM_ALERT, style: .Default ) { (action) in
+            guard let cd = self.currentDream else
+            {
+                return
+            }
+            self.delegate?.deleteDream(cd)
+            
+            if let nc = self.navigationController {
+                nc.popViewControllerAnimated(true)
+            } else {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        
+        let cancel = UIAlertAction(title: CANCEL_DREAM_ALERT, style: .Cancel, handler: nil)
+        
+        deleteDreamAlertController.addAction(delete)
+        deleteDreamAlertController.addAction(cancel)
+        presentViewController(deleteDreamAlertController, animated: true, completion: nil )
         
     }
 

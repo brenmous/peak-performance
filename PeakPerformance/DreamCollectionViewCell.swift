@@ -13,4 +13,6 @@ class DreamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellImg: UIImageView!
     
     @IBOutlet weak var dreamDesc: UILabel!
+    
+    
 }

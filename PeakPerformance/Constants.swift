@@ -270,6 +270,19 @@ let SIGNOUT_ALERT_CONFIRM = "Sign out"
 /// Sign out alert cancel
 let SIGNOUT_ALERT_CANCEL = "Cancel"
 
+/// Delete dream title
+let DELETE_DREAM_ALERT_TITLE = "Delete Dream"
+
+/// Message for deleting dream
+let DELETE_DREAM_ALERT_MSG = "Are you sure you want to delete this dream?"
+
+/// Delete the dream
+let DELETE_DREAM_ALERT = "Delete"
+
+/// Cancel dream deletion
+
+let CANCEL_DREAM_ALERT = "Cancel"
+
 
 
 // MARK: - Storyboard IDs

@@ -1071,7 +1071,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fcw-r0-Gy4" id="W71-3E-BBb">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="53"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0H-dT-ypZ">
@@ -1166,21 +1166,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="178" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bB8-sT-4HS">
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bB8-sT-4HS">
                                             <rect key="frame" x="0.0" y="0.0" width="178" height="178"/>
                                             <color key="backgroundColor" red="0.75686274509999996" green="0.78823529410000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZI4-oG-g9b">
-                                            <rect key="frame" x="0.0" y="128" width="178" height="50"/>
+                                            <rect key="frame" x="0.0" y="138" width="178" height="40"/>
                                             <color key="backgroundColor" red="0.52156862749999999" green="0.30980392159999998" blue="0.56470588239999997" alpha="0.79927262931034482" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw8-E1-YfU">
-                                            <rect key="frame" x="14" y="128" width="164" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw8-E1-YfU">
+                                            <rect key="frame" x="14" y="138" width="164" height="40"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="   Label">
                                                     <attributes>
                                                         <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue-Bold"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="2" headIndent="1" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -1191,15 +1191,16 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="bB8-sT-4HS" firstAttribute="centerY" secondItem="HhS-Ig-cuj" secondAttribute="centerY" id="2nY-CJ-TrY"/>
                                     <constraint firstItem="bB8-sT-4HS" firstAttribute="centerX" secondItem="HhS-Ig-cuj" secondAttribute="centerX" id="8MD-AF-uJi"/>
-                                    <constraint firstItem="mw8-E1-YfU" firstAttribute="top" secondItem="HhS-Ig-cuj" secondAttribute="topMargin" constant="120" id="AIf-WQ-2js"/>
+                                    <constraint firstItem="mw8-E1-YfU" firstAttribute="top" secondItem="HhS-Ig-cuj" secondAttribute="topMargin" constant="130" id="AIf-WQ-2js"/>
                                     <constraint firstItem="ZI4-oG-g9b" firstAttribute="width" secondItem="HhS-Ig-cuj" secondAttribute="width" id="CKd-KR-e2A"/>
                                     <constraint firstItem="mw8-E1-YfU" firstAttribute="leading" secondItem="HhS-Ig-cuj" secondAttribute="leadingMargin" constant="6" id="O75-mp-NiK"/>
                                     <constraint firstItem="bB8-sT-4HS" firstAttribute="width" secondItem="HhS-Ig-cuj" secondAttribute="width" id="Sm2-0f-rBX"/>
                                     <constraint firstItem="bB8-sT-4HS" firstAttribute="height" secondItem="HhS-Ig-cuj" secondAttribute="height" id="WIw-aO-Uhd"/>
-                                    <constraint firstItem="ZI4-oG-g9b" firstAttribute="top" secondItem="HhS-Ig-cuj" secondAttribute="topMargin" constant="120" id="gH3-x3-I8M"/>
+                                    <constraint firstItem="ZI4-oG-g9b" firstAttribute="top" secondItem="HhS-Ig-cuj" secondAttribute="topMargin" constant="130" id="gH3-x3-I8M"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="mw8-E1-YfU" secondAttribute="bottom" constant="-8" id="iC7-UD-v8U"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="mw8-E1-YfU" secondAttribute="trailing" constant="-8" id="lwd-gp-7Qh"/>
                                     <constraint firstItem="ZI4-oG-g9b" firstAttribute="leading" secondItem="HhS-Ig-cuj" secondAttribute="leadingMargin" constant="-8" id="mQ0-ZS-j1A"/>
@@ -1209,6 +1210,7 @@
                                 <connections>
                                     <outlet property="cellImg" destination="bB8-sT-4HS" id="gTR-r1-So9"/>
                                     <outlet property="dreamDesc" destination="mw8-E1-YfU" id="Vch-Ct-LTC"/>
+                                    <outletCollection property="gestureRecognizers" destination="NZF-vc-POD" appends="YES" id="9Jw-k2-7Po"/>
                                     <segue destination="Gmb-Gt-Rm0" kind="show" identifier="editDream" id="JF0-oC-QYt"/>
                                 </connections>
                             </collectionViewCell>
@@ -1235,6 +1237,11 @@
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jGh-jY-kKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="NZF-vc-POD">
+                    <connections>
+                        <action selector="cellLongPress:" destination="zop-2S-Sc0" id="ZNh-hz-EEQ"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3191" y="833"/>
         </scene>
@@ -1374,6 +1381,13 @@
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="Gmb-Gt-Rm0" id="LzM-jh-7LM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="cYM-ZZ-4B7">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-12" maxY="0.0"/>
+                            <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deleteButtonPressed:" destination="Gmb-Gt-Rm0" id="CHa-FW-5OF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2115,8 +2129,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hGi-rQ-ckm"/>
-        <segue reference="RnB-wj-eoz"/>
         <segue reference="F0k-MP-t0R"/>
-        <segue reference="JF0-oC-QYt"/>
+        <segue reference="mQN-NJ-Qii"/>
+        <segue reference="RnB-wj-eoz"/>
     </inferredMetricsTieBreakers>
 </document>
