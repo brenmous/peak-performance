@@ -23,8 +23,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     /// This view controller's data service.
     let dataService = DataService( )
     
-    let dateTracker = DateTracker( )
-    
     // MARK: Outlets
     
     //progress bar
@@ -59,6 +57,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     /// Updates the progress bar with the current date and progress value.
     func updateProgressView( )
     {
+        let dateTracker = DateTracker( )
         progressViewLabel.text = dateTracker.getWeeklyProgressString()
         progressViewWG.progress = dateTracker.getWeeklyProgressValue()
     }

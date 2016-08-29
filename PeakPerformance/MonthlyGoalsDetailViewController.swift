@@ -33,19 +33,10 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     /// Key life areas for the KLA picker.
     let keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
-    
-    /// Months for date picker.
-    let monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] //Ben
-    
+
     /// SwiftValidator instance.
     let validator = Validator( )
-    
-    // MARK: Date Picker Instance (retrieved from cocoapods)
-    var datePicker = MIDatePicker.getFromNib() //Ben
-    
-    //  var kAreaPicker = MIKLAPicker.getFromNib()
-    var dateFormatter = NSDateFormatter() //Ben
-    
+ 
     // MARK: - Outlets
     
     //text fields
@@ -71,8 +62,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     @IBAction func klaButtonPressed(sender: AnyObject) //Ben
     {
-//        klaPicker.hidden = false
-        // - Key Life Area Picker
+        
         let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
             picker, values, indexes in
             
@@ -92,8 +82,12 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
-//        datePicker.show(inVC: self)
-        let acp = ActionSheetMultipleStringPicker(title: "Deadline", rows: [monthsOfTheYear], initialSelection: [5], doneBlock: {
+        guard let cu = self.currentUser else
+        {
+            return
+        }
+        let monthsOfTheYear = DateTracker( ).getMonthlyDatePickerStringArray(cu.startDate)
+        let acp = ActionSheetMultipleStringPicker(title: "Deadline", rows: [monthsOfTheYear], initialSelection: [0], doneBlock: {
             picker, values, indexes in
             
             // trimming the index values
@@ -102,7 +96,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             let index = Int(trimmedSpaceWithNewValue)
             // assign to textfield
-            self.deadlineTextField.text = self.monthsOfTheYear[index!]
+            self.deadlineTextField.text = monthsOfTheYear[index!]
             return
             }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
         
@@ -128,7 +122,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)])
     {
-        print ("WGDVC: validation failed") //DEBUG
+        print ("MGDVC: validation failed") //DEBUG
     }
 
     /// Saves changes to an existing goal, or creates a new one if no goal currently exists.
@@ -215,16 +209,14 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        klaPicker.dataSource = self
-        klaPicker.delegate = self
-
+    
         //Check if user is authenticated
         if currentUser == nil
         {
             //handle error/reauthenticate
         }
-        // Do any additional setup after loading the view.
+        
+        // text view set up
         goalTextView.layer.cornerRadius = 5
         goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
         goalTextView.layer.borderWidth = 1
@@ -265,6 +257,10 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         
         //Side Menu
         SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
+        
+        //picker
+        klaPicker.dataSource = self
+        klaPicker.delegate = self
         
     }
     

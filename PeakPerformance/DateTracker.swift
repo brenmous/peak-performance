@@ -25,13 +25,13 @@ class DateTracker
     }
     
     /// Get the current day of the month.
-    func getCurrentDay( ) -> Int
+    private func getCurrentDay( ) -> Int
     {
         return self.getDateComponents().day
     }
 
     /// Get the current month as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
-    func getCurrentMonthAsString( ) -> String
+    private func getCurrentMonthAsString( ) -> String
     {
         let dateComponents = self.getDateComponents()
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -39,14 +39,14 @@ class DateTracker
     }
     
     /// Get the current day of the week.
-    func getCurrentDayOfWeek( ) -> Int
+    private func getCurrentDayOfWeek( ) -> Int
     {
         let week = self.getCurrentWeek()
         return self.getCurrentDay( ) - ( ( week - 1 ) * 7 )
     }
     
     /// Get the current week of the month.
-    func getCurrentWeek( ) -> Int
+    private func getCurrentWeek( ) -> Int
     {
         let day = self.getDateComponents().day
         var week = (day/7)+1
@@ -102,5 +102,56 @@ class DateTracker
         let week = self.getCurrentWeek()
         let dayOfWeek = self.getCurrentDayOfWeek()
         return "Week \(week) Day \(dayOfWeek)"
+    }
+    
+    /// Returns an NSDate for specifying max date of the weekly goal deadline picker.
+    func getWeeklyDatePickerMaxDate( ) -> NSDate
+    {
+        let dateComponents = self.getDateComponents()
+        dateComponents.day = self.getNumberOfDaysInCurrentMonth()
+        return NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
+    }
+    
+    /// Returns an array of months as strings ranging from [currentMonth...userStartMonth - 1]
+    func getMonthlyDatePickerStringArray( startDate: NSDate ) -> [String]
+    {
+        let startMonth = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: NSDate( ) ).month - 1
+        var endMonth = NSCalendar.currentCalendar().components([.Month], fromDate: startDate ).month - 2
+        if endMonth < 0
+        {
+            endMonth = 11
+        }
+        
+        print("DT: start month = \(startMonth), end month = \(endMonth)")
+        
+        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        
+        var monthlyDatePickerArray = [String]( )
+        
+        if endMonth < startMonth
+        {
+            for i in startMonth...months.count - 1
+            {
+                monthlyDatePickerArray.append(months[i])
+            }
+            
+            for i in 0...endMonth
+            {
+                monthlyDatePickerArray.append(months[i])
+            }
+        }
+        else if endMonth > startMonth
+        {
+            for i in startMonth...endMonth
+            {
+                monthlyDatePickerArray.append(months[i])
+            }
+        }
+        else if endMonth == startMonth
+        {
+            monthlyDatePickerArray.append(months[startMonth])
+        }
+        
+        return monthlyDatePickerArray
     }
 }

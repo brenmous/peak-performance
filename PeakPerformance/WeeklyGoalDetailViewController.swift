@@ -32,7 +32,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     var currentGoal: WeeklyGoal?
     
     /// Key life areas for the KLA picker.
-    var keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
+    let keyLifeAreas = [KLA_FAMILY, KLA_EMOSPIRITUAL, KLA_FINANCIAL, KLA_FRIENDSSOCIAL, KLA_HEALTHFITNESS, KLA_PARTNER, KLA_PERSONALDEV, KLA_WORKBUSINESS]
     
     /// Swift validator instance.
     let validator = Validator( )
@@ -92,7 +92,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     {
 
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "MMMM dd"
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
             picker, value, index in
             print("WGDVC: value = \(value)")
@@ -104,10 +104,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
             return
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!!.superview)
         
-        // sets up the interval for date picker in seconds
-        let secondsInWeek: NSTimeInterval = 7 * 24 * 60 * 60; // this can be changed depending on how many days are left in the week
-        datePicker.minimumDate = NSDate(timeInterval: 0, sinceDate: NSDate())
-        datePicker.maximumDate = NSDate(timeInterval: secondsInWeek, sinceDate: NSDate())
+        
+        datePicker.minimumDate = NSDate( )
+        datePicker.maximumDate = DateTracker( ).getWeeklyDatePickerMaxDate( )
         
         datePicker.showActionSheetPicker()
     

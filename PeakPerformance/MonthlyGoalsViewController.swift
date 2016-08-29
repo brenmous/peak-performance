@@ -24,9 +24,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     /// This view controller's data service.
     let dataService = DataService( )
     
-    /// This view controller's date tracker.
-    let dateTracker = DateTracker( )
-    
     // MARK: - Outlets
     //progress bar
     @IBOutlet weak var progressBarMG: UIProgressView!
@@ -58,6 +55,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     /// Updates progress bar with the current date and progress value.
     func updateProgressBar( )
     {
+        let dateTracker = DateTracker( )
         progressViewLabel.text = dateTracker.getMonthlyProgressString()
         progressBarMG.progress = dateTracker.getMonthlyProgressValue()
     }
