@@ -37,10 +37,8 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     /// Swift validator instance.
     let validator = Validator( )
     
-    // MARK: Date Picker Instance (retrieved from cocoapods)
-    var datePicker = MIDatePicker.getFromNib()
-    //  var kAreaPicker = MIKLAPicker.getFromNib()
-    var dateFormatter = NSDateFormatter()
+    /// Date Picker Instance (retrieved from cocoapods)
+    // let datePicker = MIDatePicker.getFromNib() <- Is this needed?
     
     // MARK: - Outlets
     
@@ -93,14 +91,16 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
 
+        let dateFormatter = NSDateFormatter( )
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
             picker, value, index in
-            print("value = \(value)")
+            print("WGDVC: value = \(value)")
             let newDate = value as? NSDate
-            print("newDate = \(newDate)")
+            print("WGDVC: newDate = \(newDate)")
             
             // assign to textfield
-            self.deadlineTextField.text =  self.dateFormatter.stringFromDate(newDate!)
+            self.deadlineTextField.text =  dateFormatter.stringFromDate(newDate!)
             return
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!!.superview)
         
@@ -228,8 +228,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     {
         super.viewDidLoad()
         
-        //Picker stuff
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        // Picker
         klaPicker.dataSource = self
         klaPicker.delegate = self
 

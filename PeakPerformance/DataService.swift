@@ -45,6 +45,14 @@ class DataService  //: SignUpDataService, LogInDataService
         userRef.child(LNAME_REF_STRING).setValue(user.lname)
         userRef.child(ORG_REF_STRING).setValue(user.org)
         userRef.child(EMAIL_REF_STRING).setValue(user.email)
+        
+        //convert startDate to string
+        let dateFormatter = NSDateFormatter( )
+        dateFormatter.dateFormat = STARTDATE_FORMAT_STRING
+        let startDateString = dateFormatter.stringFromDate(user.startDate)
+        
+        userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
+        
         print("DS: user stored in database") //DEBUG
         
     }
@@ -69,8 +77,35 @@ class DataService  //: SignUpDataService, LogInDataService
             let lname = snapshot.value![LNAME_REF_STRING] as! String
             let org = snapshot.value![ORG_REF_STRING] as! String
             let email = snapshot.value![EMAIL_REF_STRING] as! String
-
-            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid ) //weeklyGoals: weeklyGoalIDStrings )
+            
+            // TODO: - Temp code for test accounts created before start date implementation. Remove before release.
+            if !snapshot.hasChild(STARTDATE_REF_STRING)
+            {
+                print("DS: no start date in database - getting one now...")
+                let startDate = NSDate( )
+                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
+                
+                //convert startDate to string
+                let dateFormatter = NSDateFormatter( )
+                dateFormatter.dateFormat = STARTDATE_FORMAT_STRING
+                let startDateString = dateFormatter.stringFromDate(user.startDate)
+                userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
+                
+                completion( user: user )
+                return
+            }
+            
+            let startDateString = snapshot.value![STARTDATE_REF_STRING]
+            //convert startDateString to NSDate
+            let dateFormatter = NSDateFormatter( )
+            dateFormatter.dateFormat = STARTDATE_FORMAT_STRING
+            guard let startDate = dateFormatter.dateFromString(startDateString as! String) else
+            {
+                print("DS: could not convert user start date") //DEBUG
+                return
+            }
+        
+            let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
 
             completion( user: user ) //passing the created and user and content IDs back using the completion block
             

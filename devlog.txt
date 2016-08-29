@@ -143,3 +143,7 @@
 26/08/2016 16:15 - 17:35
 	- progress bar and date tracking
 	
+30/08/2016 01:50 - 
+	- user sign up date tracking
+	- DateTracker methods for date pickers
+	- cleaning up/refactoring

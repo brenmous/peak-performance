@@ -54,7 +54,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var lastNameErrorLabel: UILabel!
     @IBOutlet weak var orgErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
-   // @IBOutlet weak var userNameErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     @IBOutlet weak var signUpErrorLabel: UILabel!
@@ -83,15 +82,15 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)]) {
+    func validationFailed(errors: [(Validatable, ValidationError)])
+    {
         print ("SUVC: validation failed") //DEBUG
     }
     
     /// Attempts to create a new Firebase user account with supplied email and password.
     func signUp()
     {
-        FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
-            user, error in
+        FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
             guard let error = error else
             {
                 print("SUVC: account created") //DEBUG
@@ -112,19 +111,16 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
               
-                
             case .ErrorCodeEmailAlreadyInUse:
                 self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
                
-                
             case .ErrorCodeInternalError:
                 self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
               
-                
             default:
                 print("SUVC: error case not currently covered") //DEBUG
                 self.signUpErrorLabel.text = "Error not currently covered."
@@ -132,7 +128,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.signUpButton.enabled = true
                
             }
-        })
+        }
     }
     
     /// Authenticates the user with the supplied details and if succesfull, creates the user object.
@@ -142,8 +138,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         self.signUpErrorLabel.hidden = true
         self.signUpErrorLabel.text = ""
         self.signUpButton.enabled = false
-        FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
-            user, error in
+        FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text! ) { (user, error) in
             guard let error = error else
             {
                 print("SUVC: logged in")
@@ -190,7 +185,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.signUpButton.enabled = true
             }
             
-        })
+        }
         
     }
     
@@ -206,11 +201,11 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         let fname = self.firstNameField.text!
         let lname = self.lastNameField.text!
         let org = self.orgField.text!
-        //let username = self.userNameField.text!
         let email = self.emailField.text!
         let uid = user.uid as String
+        let startDate = NSDate( )
         
-        self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid ) //weeklyGoals: [String]() )
+        self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
         
         self.dataService.saveUser( self.currentUser! )
         

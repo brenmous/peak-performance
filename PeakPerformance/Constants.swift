@@ -142,6 +142,9 @@ let ORG_REF_STRING = "org"
 /// Specifies user email node in database.
 let EMAIL_REF_STRING = "email"
 
+/// Specifies user start date node in database.
+let STARTDATE_REF_STRING = "startDate"
+
 /// Specifies weekly goals node in database.
 let WEEKLYGOALS_REF_STRING = "weeklyGoals"
 
@@ -183,6 +186,8 @@ let DREAMURL_REF_STRING = "url"
 let DATE_FORMAT_STRING = "dd/MM/yyyy"
 
 let MONTH_FORMAT_STRING = "MMMM"
+
+let STARTDATE_FORMAT_STRING = "MMMM yyyy"
 
 // MARK: - Segue identifiers
 
@@ -293,13 +298,5 @@ let SIGNOUT_CELL_ID = "signOut"
 /// Storyboard identfier for Side Menu View Controller
 let SIDE_MENU_VC = "SideMenu"
 
-
-// MARK: - Progress view
-
-/// Amount to increment progress bar for each week passed.
-let PV_WEEKLY_INCREMENT = 14.3
-
-/// Amount to increment progress bar for each month passed.
-let PV_MONTHLY_INCREMENT = 8.33
 
 

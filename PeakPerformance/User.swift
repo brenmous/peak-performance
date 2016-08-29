@@ -40,6 +40,9 @@ class User
     /// User's KLA values.
     var values = [ KLA_FAMILY: "", KLA_WORKBUSINESS: "", KLA_PERSONALDEV: "", KLA_FINANCIAL: "",
                    KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
+    
+    /// Sign up date (MMMM yyyy e.g. "August 2016").
+    var startDate: NSDate
 
     
     /**
@@ -52,15 +55,17 @@ class User
             - email: user's email.
             - username: user's username.
             - uid: user's unique ID.
+            - startDate: month and year that user signed up.
      
         - Returns: A user with the specified parameters.
     */
-    init( fname: String, lname: String, org: String, email: String, uid: String )
+    init( fname: String, lname: String, org: String, email: String, uid: String, startDate: NSDate )
     {
         self.fname = fname
         self.lname = lname
         self.org = org
         self.email = email
         self.uid = uid
+        self.startDate = startDate
     }
 }

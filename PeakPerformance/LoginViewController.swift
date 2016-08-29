@@ -163,7 +163,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             //couldn't auth user -- handle it here
             return
         }
-        print("LIVC: authenticated")
+        print("LIVC: authenticated user \(user.uid)")
         
         //Fetch user and content
         self.dataService.loadUser( user.uid ) { (user) in
