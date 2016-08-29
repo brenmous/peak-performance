@@ -65,13 +65,19 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         validator.validate(self)
     }
     
     @IBAction func klaButtonPressed(sender: AnyObject) //Ben
     {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         // klaPicker.hidden = false
-        let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
+        let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [0], doneBlock: {
                 picker, values, indexes in
             
         // trimming the index values
@@ -90,7 +96,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
-
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = "MMMM dd"
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
@@ -114,6 +122,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func menuButtonPressed(sender: AnyObject)
     {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil )
     }
     

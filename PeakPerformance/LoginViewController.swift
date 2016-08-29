@@ -183,6 +183,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         
                             print("LIVC: content fetched, going to home screen")
                             self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                            
+                            //how many layers of indentation are you on
+                            //like maybe 6 or 7 right now my dude
                         }
                     }
                 }
@@ -244,9 +247,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
     
         //Comment these lines out to use other accounts
-//        emailField.text = "bjchiong@gmail.com"
-//        passwordField.text = "Password1"
-//        validator.validate(self)
+        //emailField.text = "bjchiong@gmail.com"
+        //passwordField.text = "Password1"
+        validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)

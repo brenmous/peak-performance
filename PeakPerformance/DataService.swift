@@ -269,7 +269,6 @@ class DataService  //: SignUpDataService, LogInDataService
     // Firebase Class
     func saveDream( uid: String, dream: Dream )
     {
-
         let firebase = FIRDatabase.database().referenceFromURL("https://peakperformance-d37a7.firebaseio.com/dreams/" + "\(uid)") // firebase file path to dreams/uid
         let data = dream.dreamImg
         let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength) // converts NSData to base64 string

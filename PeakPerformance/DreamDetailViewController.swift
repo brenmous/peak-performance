@@ -6,6 +6,11 @@
 //  Copyright © 2016 derridale. All rights reserved.
 //
 
+
+// TODO: - Change unmutated properties to constants ("let")
+// TODO: - Refactor properties that do not need to be global in class
+// TODOL - Comment properties and methods
+
 import UIKit
 import Photos
 import SideMenu
@@ -18,35 +23,41 @@ protocol DreamDetailViewControllerDelegate {
     func deleteDream(dream: Dream)
 }
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
-
     
-// MARK: - Collection View Properties
+    
+    // MARK: - Properties
+    // These need to be refactored and commented.
+    
     var assetCollection: PHAssetCollection!
     var albumCreated : Bool = false
     var photosAsset: PHFetchResult!
     var assetThumbnailSize:CGSize!
     var collection: PHAssetCollection!
     var assetCollectionPlaceholder: PHObjectPlaceholder!
-
-// MARK: - User Properties
     var currentUser: User?
     var currentDream: Dream?
     var delegate: DreamDetailViewControllerDelegate?
     var imageSet: UIImage!
     var imageData: NSData!
     
-// MARK: IBOutlets
+    // MARK: - Outlets
+    
     @IBOutlet weak var dreamLabel: UILabel!
     @IBOutlet weak var dreamText: UITextView!
     @IBOutlet weak var dreamImg: UIImageView!
+    
+    
+    // MARK: - Actions
     
     @IBAction func menuButtonPressed(sender: AnyObject)
     {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-// MARK: IBActions
     @IBAction func savePressed(sender: AnyObject) {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         //if there's no current dream, make a new one...
         if currentDream == nil
         {
@@ -56,15 +67,17 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         else
         {
             updateDream( )
-    
-            print("Update dream")
+            
+            print("DVC: Update dream") //DEBUG
         }
-        
-        
     }
     
     
-    @IBAction func deleteButtonPressed(sender: AnyObject) {
+    @IBAction func deleteButtonPressed(sender: AnyObject)
+    {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         let deleteDreamAlertController = UIAlertController(title: DELETE_DREAM_ALERT_TITLE, message: DELETE_DREAM_ALERT_MSG, preferredStyle: .Alert)
         
         let delete = UIAlertAction(title: DELETE_DREAM_ALERT, style: .Default ) { (action) in
@@ -88,41 +101,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         presentViewController(deleteDreamAlertController, animated: true, completion: nil )
         
     }
-
-
-    func createNewDream( )
-    {
-        let dreamDescription = dreamText.text!
-        let did = NSUUID( ).UUIDString
-        let dream = Dream(dreamDesc: dreamDescription, dreamImg: imageData, did: did)
-        delegate?.addDream(dream)
-    }
     
-    func updateDream( )
-    {
-        guard let cd = currentDream else
-        {
-            return
-        }
-        cd.dreamDesc = dreamText.text!
-        imageData = UIImagePNGRepresentation(dreamImg.image!)!
-        cd.dreamImg = imageData!
-        delegate?.saveModifiedDream(cd)
-    }
-    /// Updates image and description if current dream is available
-    func updateImageandTextView( )
-    {
-        guard let cd = currentDream else
-        {
-            return
-        }
-        dreamText.text = cd.dreamDesc
-    
-        let imageData = cd.dreamImg
-        dreamImg.image = UIImage(data: imageData)
-        
-        // delegate?.saveModifiedDream(dream)
-    }
     
     @IBAction func getPhotoFromCamera(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
@@ -148,6 +127,48 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
+    // MARK: - Methods
+    //These need to be commented.
+    
+    func createNewDream( )
+    {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
+        let dreamDescription = dreamText.text!
+        let did = NSUUID( ).UUIDString
+        let dream = Dream(dreamDesc: dreamDescription, dreamImg: imageData, did: did)
+        delegate?.addDream(dream)
+    }
+    
+    func updateDream( )
+    {
+        guard let cd = currentDream else
+        {
+            return
+        }
+        cd.dreamDesc = dreamText.text!
+        imageData = UIImagePNGRepresentation(dreamImg.image!)!
+        cd.dreamImg = imageData!
+        delegate?.saveModifiedDream(cd)
+    }
+    
+    /// Updates image and description if current dream is available
+    func updateImageandTextView( )
+    {
+        guard let cd = currentDream else
+        {
+            return
+        }
+        dreamText.text = cd.dreamDesc
+        
+        let imageData = cd.dreamImg
+        dreamImg.image = UIImage(data: imageData)
+        
+        // delegate?.saveModifiedDream(dream)
+    }
+
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageData = UIImagePNGRepresentation(pickedImage)!
@@ -156,29 +177,29 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             dreamImg.image = pickedImage
             UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
         }
-
-            dismissViewControllerAnimated(true, completion: nil)
+        
+        dismissViewControllerAnimated(true, completion: nil)
         
     }
-
+    
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-         self.dismissViewControllerAnimated(true, completion: nil)
-
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
- 
+    
     func createAlbum() {
-       
+        
         let fetchOptions = PHFetchOptions()
         fetchOptions.predicate = NSPredicate(format: "title = %@", "Peak Performance")
         let collection : PHFetchResult = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: fetchOptions)
-       
+        
         if let obj: AnyObject = collection.firstObject {
             self.albumCreated = true
             assetCollection = collection.firstObject as! PHAssetCollection
         } else {
-    
+            
             PHPhotoLibrary.sharedPhotoLibrary().performChanges({
                 let createAlbumRequest : PHAssetCollectionChangeRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle("Peak Performance")
                 self.assetCollectionPlaceholder = createAlbumRequest.placeholderForCreatedAssetCollection
@@ -193,7 +214,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             })
         }
     }
-
+    
     // MARK: - Overridden methods
     
     override func viewWillAppear(animated: Bool) {
@@ -210,7 +231,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         //text field delegates
         dreamText.delegate = self
-  
+        
         createAlbum()
         // Do any additional setup after loading the view.
         
@@ -223,7 +244,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         //Side Menu
         SideMenuManager.setUpSideMenu(self.storyboard!)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -250,15 +271,15 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

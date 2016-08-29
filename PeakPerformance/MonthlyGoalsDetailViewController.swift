@@ -57,11 +57,16 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         validator.validate(self)
     }
     
     @IBAction func klaButtonPressed(sender: AnyObject) //Ben
     {
+        //dismiss keyboard
+        self.view.endEditing(true)
         
         let acp = ActionSheetMultipleStringPicker(title: "Key Life Area", rows: [keyLifeAreas], initialSelection: [3], doneBlock: {
             picker, values, indexes in
@@ -82,6 +87,9 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         guard let cu = self.currentUser else
         {
             return
@@ -105,6 +113,9 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     @IBAction func menuButtonPressed(sender: AnyObject)
     {
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     

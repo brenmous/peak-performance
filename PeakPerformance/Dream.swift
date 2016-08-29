@@ -16,7 +16,7 @@ class Dream {
     
     ///This is the image used for the user's dream.
    // var dreamImg: NSURL
-    var dreamImg: NSData
+
     
     /// This is the unique ID of the dream.
     var did: String
