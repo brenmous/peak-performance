@@ -181,6 +181,11 @@ let DREAMTEXT_REF_STRING = "text"
 /// Specifies dream URL node in database.
 let DREAMURL_REF_STRING = "url"
 
+// MARK: - Firebase storage reference strings
+
+/// Base URL for storage bucket.
+let STORAGE_REF_BASE = "gs://peakperformance-d37a7.appspot.com"
+
 
 // MARK: - Date Format Strings
 let DATE_FORMAT_STRING = "dd/MM/yyyy"
@@ -297,6 +302,11 @@ let SIGNOUT_CELL_ID = "signOut"
 
 /// Storyboard identfier for Side Menu View Controller
 let SIDE_MENU_VC = "SideMenu"
+
+// MARK: - Image quality constant
+
+/// Constant for compression of JPEG UIImage representation.
+let JPEG_QUALITY: CGFloat = 0.25
 
 
 

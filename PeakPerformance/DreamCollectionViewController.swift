@@ -27,6 +27,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     let dataService = DataService( )
     
+    let storageService = StorageService( )
+    
     // MARK: - Actions
     
     @IBAction func unwindFromDDVC(segue: UIStoryboardSegue)
@@ -54,13 +56,20 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             //user not available? handle it here
             return
         }
+        
+        
+        storageService.saveDreamImage(cu, dream: dream) { () in
+            self.dataService.saveDream(cu.uid, dream: dream)
+        }
+        
+        
         cu.dreams.append(dream)
         
-        dataService.saveDream(cu.uid, dream: dream)
         
-        print("image added")
-        print("Dream count \(currentUser!.dreams.count)")
+        print("DVC: image added")
+        print("DVC: dream count \(self.currentUser!.dreams.count)")
         self.collectionView?.reloadData()
+        
         
     }
     
@@ -72,7 +81,12 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             return
         }
         
-        dataService.saveDream(cu.uid, dream: dream)
+        storageService.saveDreamImage(cu, dream: dream) { ()
+            self.dataService.saveDream(cu.uid, dream: dream)
+        }
+        
+        self.collectionView?.reloadData()
+        
         
     }
     
@@ -81,8 +95,10 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         {
             return
         }
-        cu.dreams.removeAtIndex(gloablindexPathForRow!)
+        storageService.removeDreamImage(cu, dream: dream)
         dataService.removeDream(cu.uid, dream: dream)
+        cu.dreams.removeAtIndex(gloablindexPathForRow!)
+        self.collectionView?.reloadData( )
         
     }
 
@@ -93,6 +109,12 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+      
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         //Get data from tab bar view controller
         let tbvc = self.tabBarController as! TabBarViewController
@@ -103,14 +125,13 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         self.currentUser = cu
         collectionView?.reloadData( )
-        print("DVC: got user \(currentUser!.email) with \(cu.dreams.count) dreams")
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        print("DVC: got user \(cu.email) with \(cu.dreams.count) dreams")
         
         SideMenuManager.setUpSideMenu(self.storyboard!)
+
+        self.storageService.loadDreamImages(cu) { ( ) in
+            self.collectionView?.reloadData()
+        }
         
     }
     
@@ -138,8 +159,12 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         let labelView = cell.viewWithTag(2) as! UILabel
         
         labelView.text = currentUser!.dreams[indexPath.row].dreamDesc
-        //        imageView.image = Dreams[indexPath.row]
-        let userImageData = currentUser!.dreams[indexPath.row].dreamImg
+        guard let userImageData = currentUser!.dreams[indexPath.row].imageData else
+        {
+            //set image as placeholder
+            imageView.image = UIImage(contentsOfFile: "business-cat.jpg")
+            return cell
+        }
         imageView.image = UIImage(data: userImageData)
         return cell
     }

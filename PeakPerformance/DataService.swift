@@ -33,7 +33,8 @@ class DataService  //: SignUpDataService, LogInDataService
         - Parameters:
             - user: the user being saved.
     */
-    func saveUser(user: User) {
+    func saveUser(user: User)
+    {
         
         //Create child references from baseRef to define the nodes that data will be stored under.
         // E.g. the two lines below specify "Base -> Users -> UserID"
@@ -64,7 +65,8 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: the user's unique ID.
      - completion: the completion block that passes back the completed user.
      */
-    func loadUser( uid: String, completion: ( user: User ) -> Void ) {
+    func loadUser( uid: String, completion: ( user: User ) -> Void )
+    {
         
         //As with saving, create references to the nodes we want to retrieve data from.
         let usersRef = baseRef.child(USERS_REF_STRING)
@@ -263,7 +265,7 @@ class DataService  //: SignUpDataService, LogInDataService
      
      - Parameters:
      - uid: the user ID of the user the goal belongs to.
-     - dream: the goal being saved.
+     - dream: the dream being saved.
      */
     func saveDream( uid: String, dream: Dream )
     {
@@ -273,8 +275,8 @@ class DataService  //: SignUpDataService, LogInDataService
         dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
         
         //convert NSURL to string
-        //let urlString = dream.dreamImg.absoluteString
-        dreamRef.child(DREAMURL_REF_STRING).setValue(dream.dreamImg)
+        let urlString = dream.imageURL!.absoluteString
+        dreamRef.child(DREAMURL_REF_STRING).setValue(urlString)
     }
     
     /**
@@ -295,9 +297,10 @@ class DataService  //: SignUpDataService, LogInDataService
                 for dreamSnapshot in snapshot.children
                 {
                     let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
-                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! NSData
+                    let dreamUrlString = dreamSnapshot.value![DREAMURL_REF_STRING] as! String
+                    let dreamUrl = NSURL(string: dreamUrlString)
                     let did = String(dreamSnapshot.key)
-                    let dream = Dream(dreamDesc: dreamText, dreamImg: dreamUrl, did: did)
+                    let dream = Dream(dreamDesc: dreamText, imageURL: dreamUrl, did: did)
                     dreams.append(dream)
                 }
                 print("DS: fetched dreams") //DEBUG

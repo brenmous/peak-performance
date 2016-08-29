@@ -11,13 +11,15 @@ import Foundation
 /* This class represents the user's dream. */
 class Dream {
     
-    ///This is the description of the user's dream.
+    /// This is the description of the user's dream.
     var dreamDesc: String
     
-    ///This is the image used for the user's dream.
-   // var dreamImg: NSURL
-
+    /// This is the image used for the user's dream.
+    var imageURL: NSURL?
     
+    /// This is the image data for a user's deam image.
+    var imageData: NSData?
+
     /// This is the unique ID of the dream.
     var did: String
     
@@ -31,11 +33,12 @@ class Dream {
      
      - Returns: A dream with the specified paramters.
      */
-    init ( dreamDesc: String, dreamImg: NSData, did: String)
+    init ( dreamDesc: String, imageURL: NSURL? = nil, did: String, imageData: NSData? = nil )
     {
         self.dreamDesc = dreamDesc
-        self.dreamImg = dreamImg
+        self.imageURL = imageURL
         self.did = did
+        self.imageData = imageData
     }
     
     //convenience init for NSURL to String and vice versa

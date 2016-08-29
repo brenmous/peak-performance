@@ -137,7 +137,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         let dreamDescription = dreamText.text!
         let did = NSUUID( ).UUIDString
-        let dream = Dream(dreamDesc: dreamDescription, dreamImg: imageData, did: did)
+        let dream = Dream(dreamDesc: dreamDescription, did: did, imageData: self.imageData)
         delegate?.addDream(dream)
     }
     
@@ -148,8 +148,8 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         cd.dreamDesc = dreamText.text!
-        imageData = UIImagePNGRepresentation(dreamImg.image!)!
-        cd.dreamImg = imageData!
+        imageData = UIImageJPEGRepresentation(dreamImg.image!, JPEG_QUALITY)
+        cd.imageData = imageData!
         delegate?.saveModifiedDream(cd)
     }
     
@@ -162,7 +162,11 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         }
         dreamText.text = cd.dreamDesc
         
-        let imageData = cd.dreamImg
+        guard let imageData = cd.imageData else
+        {
+            dreamImg.image = UIImage(contentsOfFile: "business-cat.jpg")
+            return
+        }
         dreamImg.image = UIImage(data: imageData)
         
         // delegate?.saveModifiedDream(dream)
@@ -171,7 +175,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageData = UIImagePNGRepresentation(pickedImage)!
+            imageData = UIImageJPEGRepresentation(pickedImage, JPEG_QUALITY)
             imageSet = pickedImage
             dreamImg.contentMode = .ScaleAspectFit
             dreamImg.image = pickedImage

@@ -9,6 +9,7 @@ target 'PeakPerformance' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
+	pod 'Firebase/Storage'
 	pod 'ActionSheetPicker-3.0'	
 	pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '4.0.0'
 	pod 'SideMenu'

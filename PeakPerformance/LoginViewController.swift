@@ -180,7 +180,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         
                         self.dataService.loadValues(user.uid) { (values) in
                             user.values = values
-                        
+                            
                             print("LIVC: content fetched, going to home screen")
                             self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                             
