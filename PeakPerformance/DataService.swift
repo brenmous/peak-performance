@@ -265,21 +265,16 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: the user ID of the user the goal belongs to.
      - dream: the goal being saved.
      */
-    
-    // Firebase Class
     func saveDream( uid: String, dream: Dream )
     {
-        let firebase = FIRDatabase.database().referenceFromURL("https://peakperformance-d37a7.firebaseio.com/dreams/" + "\(uid)") // firebase file path to dreams/uid
-        let data = dream.dreamImg
-        let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength) // converts NSData to base64 string
-        let user: NSDictionary = ["Description":dream.dreamDesc, "photoBase64":base64String]
+        let dreamsRef = baseRef.child(DREAMS_REF_STRING)
         
-        //add firebase child node
-        let profile = firebase.ref.child(dream.did)
-    
-        // Write data to Firebase
-        profile.setValue(user)
+        let dreamRef = dreamsRef.child(uid).child(dream.did)
+        dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
         
+        //convert NSURL to string
+        //let urlString = dream.dreamImg.absoluteString
+        dreamRef.child(DREAMURL_REF_STRING).setValue(dream.dreamImg)
     }
     
     /**
@@ -293,18 +288,16 @@ class DataService  //: SignUpDataService, LogInDataService
     {
         
         var dreams = [Dream]( )
-        let firebase = FIRDatabase.database().referenceFromURL("https://peakperformance-d37a7.firebaseio.com/dreams/" + "\(uid)") // firebase file path to dreams/uid
-
-        firebase.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        let dreamsRef = baseRef.child(DREAMS_REF_STRING).child(uid)
+        dreamsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
                 for dreamSnapshot in snapshot.children
                 {
-                    let dreamText = dreamSnapshot.value!["Description"] as! String
-                    let photoBase64 = dreamSnapshot.value!["photoBase64"] as! String
-                    let decodedDreamUrl = NSData(base64EncodedString: photoBase64, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                    let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
+                    let dreamUrl = dreamSnapshot.value![DREAMURL_REF_STRING] as! NSData
                     let did = String(dreamSnapshot.key)
-                    let dream = Dream(dreamDesc: dreamText, dreamImg: decodedDreamUrl!, did: did)
+                    let dream = Dream(dreamDesc: dreamText, dreamImg: dreamUrl, did: did)
                     dreams.append(dream)
                 }
                 print("DS: fetched dreams") //DEBUG
