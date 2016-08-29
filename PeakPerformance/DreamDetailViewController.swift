@@ -117,6 +117,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         dreamText.text = cd.dreamDesc
+    
         let imageData = cd.dreamImg
         dreamImg.image = UIImage(data: imageData)
         
