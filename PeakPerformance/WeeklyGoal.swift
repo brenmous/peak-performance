@@ -27,7 +27,7 @@ class WeeklyGoal: Goal
     convenience init ( goalText: String, kla: String, deadline: String, gid: String, complete: Bool = false, kickItText: String = "" )
     {
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = DATE_FORMAT_STRING
         let newDeadline = dateFormatter.dateFromString(deadline)
         self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText)
     }
