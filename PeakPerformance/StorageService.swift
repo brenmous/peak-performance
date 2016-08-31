@@ -85,6 +85,30 @@ class StorageService
     }
     
     /**
+     Loads image for user dream from the storage bucket.
+     
+     - Parameters:
+     - user: owner of the dream.
+     - dream: dream image to be loaded.
+     */
+    func loadDreamImage( user: User, dream: Dream, completion: () -> Void )
+    {
+        let dreamRef = baseRef.child(user.uid).child("\(dream.did).jpg")
+        dreamRef.dataWithMaxSize(2 * 1024 * 1024) { (data, error) -> Void in
+            guard error == nil else
+            {
+                //handle error
+                print("SS: error downloading image \(dream.did) - \(error!.localizedDescription)")
+                return
+            }
+            dream.imageData = data
+            completion( )
+            print("SS: download of \(dream.did) complete")
+        }
+        
+    }
+    
+    /**
      Removes dream image from the storage bucket.
      
      - Parameter:

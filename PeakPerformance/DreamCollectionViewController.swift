@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import Photos
 
 private let reuseIdentifier = "Cell"
 
@@ -124,15 +125,49 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             return
         }
         self.currentUser = cu
-        collectionView?.reloadData( )
+        
         print("DVC: got user \(cu.email) with \(cu.dreams.count) dreams")
         
         SideMenuManager.setUpSideMenu(self.storyboard!)
-
-        self.storageService.loadDreamImages(cu) { ( ) in
-            self.collectionView?.reloadData()
+        
+        for dream in cu.dreams
+        {
+            //If the image exists locally, get it from the photo library...
+            if let url = dream.imageLocalURL
+            {
+                let fetchResult = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil)
+                let photo = fetchResult.firstObject as! PHAsset
+                PHImageManager( ).requestImageDataForAsset(photo, options: nil) { (data, info, orientation, dict) in
+                        dream.imageData = data!
+                        print("DVC: got dream image \(dream.did) from photo library")
+                        self.collectionView?.reloadData( )
+                    }
+                
+                /*
+                print("DVC: got url for dream \(dream.did)")
+                if let imageData = NSData(contentsOfURL: url)
+                {
+                    dream.imageData = imageData
+                    print("DVC: got dream image \(dream.did) from photo library")
+                }
+                */
+                
+            }
+            //...else, get it from Firebase Storage.
+            else
+            {
+                self.storageService.loadDreamImage(cu, dream: dream){ () in
+                    self.collectionView?.reloadData()
+                    print("DVC: got dream image \(dream.did) from storage bucket")
+                }
+            }
         }
         
+        /*
+         self.storageService.loadDreamImages(cu){ () in
+         self.collectionView?.reloadData()
+         }
+         */
     }
     
     override func didReceiveMemoryWarning() {
