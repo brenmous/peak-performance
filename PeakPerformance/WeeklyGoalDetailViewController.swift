@@ -67,7 +67,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     {
         //dismiss keyboard
         self.view.endEditing(true)
-        
         validator.validate(self)
     }
     
@@ -100,7 +99,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         self.view.endEditing(true)
         
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = "MMMM dd"
+        dateFormatter.dateFormat = DATE_FORMAT_STRING
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
             picker, value, index in
             print("WGDVC: value = \(value)")

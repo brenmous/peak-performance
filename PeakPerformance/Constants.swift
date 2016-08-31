@@ -194,6 +194,8 @@ let MONTH_FORMAT_STRING = "MMMM"
 
 let STARTDATE_FORMAT_STRING = "MMMM yyyy"
 
+let WEEKLYDEADLINE_FORMAT_STRING = "MMMM dd"
+
 // MARK: - Segue identifiers
 
 /// Segue for when a user has logged in and all their details have been retrieved.
