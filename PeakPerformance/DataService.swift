@@ -274,9 +274,13 @@ class DataService  //: SignUpDataService, LogInDataService
         let dreamRef = dreamsRef.child(uid).child(dream.did)
         dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
         
-        //convert NSURL to string
+        //convert storage NSURL to string
         let urlString = dream.imageURL!.absoluteString
         dreamRef.child(DREAMURL_REF_STRING).setValue(urlString)
+        
+        //convert local NSURL to string
+        let localURLString = dream.imageLocalURL!.absoluteString
+        dreamRef.child(DREAMLOCALURL_REF_STRING).setValue(localURLString)
     }
     
     /**
@@ -297,10 +301,12 @@ class DataService  //: SignUpDataService, LogInDataService
                 for dreamSnapshot in snapshot.children
                 {
                     let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
-                    let dreamUrlString = dreamSnapshot.value![DREAMURL_REF_STRING] as! String
-                    let dreamUrl = NSURL(string: dreamUrlString)
+                    let dreamURLString = dreamSnapshot.value![DREAMURL_REF_STRING] as! String
+                    let dreamURL = NSURL(string: dreamURLString)
+                    let dreamLocalURLString = dreamSnapshot.value![DREAMLOCALURL_REF_STRING] as! String
+                    let dreamLocalURL = NSURL(string: dreamLocalURLString)
                     let did = String(dreamSnapshot.key)
-                    let dream = Dream(dreamDesc: dreamText, imageURL: dreamUrl, did: did)
+                    let dream = Dream(dreamDesc: dreamText, imageURL: dreamURL, imageLocalURL: dreamLocalURL, did: did)
                     dreams.append(dream)
                 }
                 print("DS: fetched dreams") //DEBUG

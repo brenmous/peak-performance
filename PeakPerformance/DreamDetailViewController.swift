@@ -7,7 +7,7 @@
 //
 
 
-// TODO: - Change unmutated properties to constants ("let")
+// TODO: - Change unmuted properties to constants ("let")
 // TODO: - Refactor properties that do not need to be global in class
 // TODOL - Comment properties and methods
 
@@ -39,6 +39,9 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     var delegate: DreamDetailViewControllerDelegate?
     var imageSet: UIImage!
     var imageData: NSData!
+    
+    let imgPicker = UIImagePickerController( )
+    var dreamImageLocalURL: NSURL?
     
     // MARK: - Outlets
     
@@ -105,24 +108,28 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func getPhotoFromCamera(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
-            let imgPicker = UIImagePickerController()
-            imgPicker.delegate = self
-            imgPicker.sourceType = UIImagePickerControllerSourceType.Camera;
-            imgPicker.allowsEditing = false
+            self.imgPicker.delegate = self
+            self.imgPicker.sourceType = .Camera
+            self.imgPicker.allowsEditing = false
             self.presentViewController(imgPicker, animated: true, completion: nil)
+        }
+        else
+        {
+            //handle error
         }
     }
     
     
     @IBAction func getPhotoFromCameraRoll(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
-            let imgPicker = UIImagePickerController()
-            imgPicker.delegate = self
-            imgPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-            imgPicker.allowsEditing = false // Do we allow the user to edit images?
+            self.imgPicker.delegate = self
+            self.imgPicker.sourceType = .PhotoLibrary
+            self.imgPicker.allowsEditing = false
             self.presentViewController(imgPicker, animated: true, completion: nil)
-            
-            
+        }
+        else
+        {
+            //handle error
         }
     }
     
@@ -137,7 +144,8 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         let dreamDescription = dreamText.text!
         let did = NSUUID( ).UUIDString
-        let dream = Dream(dreamDesc: dreamDescription, did: did, imageData: self.imageData)
+        let dream = Dream(dreamDesc: dreamDescription, imageLocalURL: self.dreamImageLocalURL, did: did, imageData: self.imageData)
+        print("DDVC: created image with local URL \(dream.imageLocalURL)")
         delegate?.addDream(dream)
     }
     
@@ -148,8 +156,15 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         cd.dreamDesc = dreamText.text!
-        imageData = UIImageJPEGRepresentation(dreamImg.image!, JPEG_QUALITY)
-        cd.imageData = imageData!
+        if let di = dreamImg.image
+        {
+            imageData = UIImageJPEGRepresentation(di, JPEG_QUALITY)
+            cd.imageData = imageData!
+        }
+        if self.dreamImageLocalURL != nil
+        {
+            cd.imageLocalURL = self.dreamImageLocalURL
+        }
         delegate?.saveModifiedDream(cd)
     }
     
@@ -179,13 +194,18 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             imageSet = pickedImage
             dreamImg.contentMode = .ScaleAspectFit
             dreamImg.image = pickedImage
-            UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
+            self.dreamImageLocalURL = info[UIImagePickerControllerReferenceURL] as? NSURL
+            print("DDVC: local URL of selected image is \(self.dreamImageLocalURL!.absoluteString)")
+            //if the user has taken a photo, then save it to the photo library
+            if imgPicker.sourceType == .Camera
+            {
+                UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
+            }
         }
         
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
-    
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

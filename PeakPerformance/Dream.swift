@@ -14,8 +14,11 @@ class Dream {
     /// This is the description of the user's dream.
     var dreamDesc: String
     
-    /// This is the image used for the user's dream.
+    /// This is the download URL for fetching the image from the Firebase Storage bucket.
     var imageURL: NSURL?
+    
+    /// This is the local URL of the photos location in the photo library.
+    var imageLocalURL: NSURL?
     
     /// This is the image data for a user's deam image.
     var imageData: NSData?
@@ -33,14 +36,12 @@ class Dream {
      
      - Returns: A dream with the specified paramters.
      */
-    init ( dreamDesc: String, imageURL: NSURL? = nil, did: String, imageData: NSData? = nil )
+    init ( dreamDesc: String, imageURL: NSURL? = nil, imageLocalURL: NSURL? = nil, did: String, imageData: NSData? = nil )
     {
         self.dreamDesc = dreamDesc
         self.imageURL = imageURL
+        self.imageLocalURL = imageLocalURL
         self.did = did
         self.imageData = imageData
     }
-    
-    //convenience init for NSURL to String and vice versa
-    
 }

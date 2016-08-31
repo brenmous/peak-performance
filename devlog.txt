@@ -148,3 +148,10 @@
 	- DateTracker methods for date pickers
 	- cleaning up/refactoring
 	- storage service for dream images
+
+31/08/2016 21:45 - 23:40
+	- dream list
+		- fixed duplicate photo bug
+		- fixed trying to get image from ImageView when no image available
+		- photos are retrieved from storage only if not avail locally
+		- fixed going to WG view after dismissing image picker

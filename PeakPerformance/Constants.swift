@@ -178,6 +178,9 @@ let DREAMS_REF_STRING = "dreams"
 /// Specifies dream description node in database.
 let DREAMTEXT_REF_STRING = "text"
 
+/// Specifies dream local URL node in database.
+let DREAMLOCALURL_REF_STRING = "localURL"
+
 /// Specifies dream URL node in database.
 let DREAMURL_REF_STRING = "url"
 
