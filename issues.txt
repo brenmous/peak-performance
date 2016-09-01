@@ -1,0 +1,9 @@
+~~~~known issues~~~~
+
+File: getDreamImages( ) - DreamCollectionViewController.swift
+Issue: Crashes if camera permission has been previously allowed, photos added to dream list
+	and then permission taken away. Occurs when trying to load photos from local URLs
+	(unwrapping PHAsset optional from PHFetchRequest).
+Date Found: 01/09/2016
+Solution:
+Date Fixed: 

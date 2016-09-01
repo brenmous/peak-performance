@@ -155,3 +155,7 @@
 		- fixed trying to get image from ImageView when no image available
 		- photos are retrieved from storage only if not avail locally
 		- fixed going to WG view after dismissing image picker
+
+01/09/2016 19:30 - 20:00
+	- user ref in SideMenuViewController
+	- created issue tracker text file
