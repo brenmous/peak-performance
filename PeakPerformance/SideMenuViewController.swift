@@ -81,7 +81,7 @@ extension SideMenuManager
     public class func setUpSideMenu( sb: UIStoryboard )
     {
         SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
-        SideMenuManager.menuLeftNavigationController?.navigationBarHidden = true
+        SideMenuManager.menuLeftNavigationController?.navigationBarHidden = true // hides the navigation bar
         SideMenuManager.menuLeftNavigationController?.leftSide = true
         let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC)
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
