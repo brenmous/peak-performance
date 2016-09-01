@@ -160,7 +160,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
         //set up text field delegates
         emailField.delegate = self
     }
-    
+    // MARK: Override Functions
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -174,5 +174,9 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
 }
