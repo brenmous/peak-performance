@@ -8,7 +8,8 @@
 
 import UIKit
 import SideMenu
-import Photos
+import Photos //for getting image using local URL
+import AssetsLibrary //for saving image and getting local URL
 
 private let reuseIdentifier = "Cell"
 
@@ -141,17 +142,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
                         dream.imageData = data!
                         print("DVC: got dream image \(dream.did) from photo library")
                         self.collectionView?.reloadData( )
-                    }
-                
-                /*
-                print("DVC: got url for dream \(dream.did)")
-                if let imageData = NSData(contentsOfURL: url)
-                {
-                    dream.imageData = imageData
-                    print("DVC: got dream image \(dream.did) from photo library")
                 }
-                */
-                
             }
             //...else, get it from Firebase Storage.
             else
@@ -159,15 +150,10 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
                 self.storageService.loadDreamImage(cu, dream: dream){ () in
                     self.collectionView?.reloadData()
                     print("DVC: got dream image \(dream.did) from storage bucket")
+                    //In here we can save the image back to the user's device but it's probably not a good idea.
                 }
             }
         }
-        
-        /*
-         self.storageService.loadDreamImages(cu){ () in
-         self.collectionView?.reloadData()
-         }
-         */
     }
     
     override func didReceiveMemoryWarning() {
