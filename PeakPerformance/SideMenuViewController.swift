@@ -89,7 +89,8 @@ extension SideMenuManager
         // Pan Gestures
 //        SideMenuManager.menuAddPanGestureToPresent(toView: (self.menuLeftNavigationController?.navigationBar)!)
 //        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: (self.menuLeftNavigationController?.view)!)
-        SideMenuManager.menuAnimationBackgroundColor = UIColor(red: 199/255, green: 210/255, blue: 37/255, alpha: 1)
+
+        // Customize side menu
         SideMenuManager.menuFadeStatusBar = false
         SideMenuManager.menuPresentMode = .MenuSlideIn
         SideMenuManager.menuShadowOpacity = 0.5

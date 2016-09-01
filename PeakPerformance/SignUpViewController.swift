@@ -309,6 +309,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         activityIndicatorSU.stopAnimating()
     }
     
+    // status bar invert color
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
