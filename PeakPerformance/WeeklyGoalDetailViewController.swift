@@ -240,13 +240,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         // Picker
         klaPicker.dataSource = self
         klaPicker.delegate = self
-
-        
-        //Check if user is authenticated
-        if currentUser == nil
-        {
-            //handle error/reauthenticate
-        }
         
         // Do any additional setup after loading the view.
         goalTextView.layer.cornerRadius = 5
@@ -288,7 +281,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         goalTextView.delegate = self
         
         //Side Menu
-        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
+        SideMenuManager.setUpSideMenu(self.storyboard!, user: self.currentUser!) //func declaration is in SideMenuViewController
     
         
     }

@@ -103,6 +103,39 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         self.collectionView?.reloadData( )
         
     }
+    
+    /// Attempts to fetch dream images from local photo library. If it can't, fetches them from Firebase Storage.
+    func getDreamImages( )
+    {
+        guard let cu = self.currentUser else
+        {
+            print("DVC: no user")
+            return
+        }
+        for dream in cu.dreams
+        {
+            //If the image exists locally, get it from the photo library...
+            if let url = dream.imageLocalURL
+            {
+                let fetchResult = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil)
+                let photo = fetchResult.firstObject as! PHAsset
+                PHImageManager( ).requestImageDataForAsset(photo, options: nil) { (data, info, orientation, dict) in
+                    dream.imageData = data!
+                    print("DVC: got dream image \(dream.did) from photo library")
+                    self.collectionView?.reloadData( )
+                }
+            }
+                //...else, get it from Firebase Storage.
+            else
+            {
+                self.storageService.loadDreamImage(cu, dream: dream){ () in
+                    self.collectionView?.reloadData()
+                    print("DVC: got dream image \(dream.did) from storage bucket")
+                    //In here we can save the image back to the user's device but it's probably not a good idea.
+                }
+            }
+        }
+    }
 
     
     
@@ -129,31 +162,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         
         print("DVC: got user \(cu.email) with \(cu.dreams.count) dreams")
         
-        SideMenuManager.setUpSideMenu(self.storyboard!)
+        self.getDreamImages()
         
-        for dream in cu.dreams
-        {
-            //If the image exists locally, get it from the photo library...
-            if let url = dream.imageLocalURL
-            {
-                let fetchResult = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil)
-                let photo = fetchResult.firstObject as! PHAsset
-                PHImageManager( ).requestImageDataForAsset(photo, options: nil) { (data, info, orientation, dict) in
-                        dream.imageData = data!
-                        print("DVC: got dream image \(dream.did) from photo library")
-                        self.collectionView?.reloadData( )
-                }
-            }
-            //...else, get it from Firebase Storage.
-            else
-            {
-                self.storageService.loadDreamImage(cu, dream: dream){ () in
-                    self.collectionView?.reloadData()
-                    print("DVC: got dream image \(dream.did) from storage bucket")
-                    //In here we can save the image back to the user's device but it's probably not a good idea.
-                }
-            }
-        }
+        SideMenuManager.setUpSideMenu(self.storyboard!, user: cu)
     }
     
     override func didReceiveMemoryWarning() {

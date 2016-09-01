@@ -221,12 +221,6 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     {
         super.viewDidLoad()
     
-        //Check if user is authenticated
-        if currentUser == nil
-        {
-            //handle error/reauthenticate
-        }
-        
         // text view set up
         goalTextView.layer.cornerRadius = 5
         goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
@@ -267,7 +261,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         goalTextView.delegate = self
         
         //Side Menu
-        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
+        SideMenuManager.setUpSideMenu(self.storyboard!, user: self.currentUser!) //func declaration is in SideMenuViewController
         
         //picker
         klaPicker.dataSource = self

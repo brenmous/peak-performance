@@ -60,7 +60,7 @@ class SideMenuViewController: UITableViewController
             // couldn't get user
         }
         emailProfileLabel.text = cu.email
-        print("\(cu.email)")
+        print("SMVC: \(cu.email)") //DEBUG
         
     }
     override func viewDidLoad()
@@ -78,12 +78,13 @@ class SideMenuViewController: UITableViewController
 
 extension SideMenuManager
 {
-    public class func setUpSideMenu( sb: UIStoryboard )
+    public class func setUpSideMenu( sb: UIStoryboard, user: User )
     {
         SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
         SideMenuManager.menuLeftNavigationController?.navigationBarHidden = true
         SideMenuManager.menuLeftNavigationController?.leftSide = true
-        let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC)
+        let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC) as! SideMenuViewController
+        smvc.currentUser = user
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
         
         // Pan Gestures
@@ -97,5 +98,6 @@ extension SideMenuManager
         SideMenuManager.menuBlurEffectStyle = .Light
         
     }
+
 }
 

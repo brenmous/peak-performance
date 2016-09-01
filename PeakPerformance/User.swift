@@ -11,7 +11,7 @@ import Foundation
 /**
     Class that represents a peak performance user
  */
-class User
+public class User
 {
     /// User's first name.
     var fname: String

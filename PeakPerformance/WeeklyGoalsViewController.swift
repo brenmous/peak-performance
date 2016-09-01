@@ -151,35 +151,40 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        
-        //Get data from tab bar view controller
-        let tbvc = self.tabBarController as! TabBarViewController
-        
-        guard let cu = tbvc.currentUser else
+      
+        if self.currentUser == nil
         {
-            //no user fix it man, goddamn you fix it what do i pay you for?!?!
-            return
+            //Get data from tab bar view controller
+            let tbvc = self.tabBarController as! TabBarViewController
+            
+            guard let cu = tbvc.currentUser else
+            {
+                //no user fix it man, goddamn you fix it what do i pay you for?!?!
+                return
+            }
+            self.currentUser = cu
+            print("WGVC: got user \(currentUser!.email) with \(cu.weeklyGoals.count) weekly goals") //DEBUG
         }
-        self.currentUser = cu
-        print("WGVC: got user \(currentUser!.email) with \(cu.weeklyGoals.count) weekly goals") //DEBUG
         
         //disable editing in case user left view while in edit mode
         self.tableView.setEditing(false, animated: true)
         
         //sort completed goals and place them at end of array
-        cu.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+        currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
         self.tableView.reloadData()
         
         //update progress bar
         updateProgressView()
+        
+        //set up side menu
+        SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
+        
+        
     }
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        //Side Menu
-        SideMenuManager.setUpSideMenu(self.storyboard!) //func declaration is in SideMenuViewController
     }
  
     override func didReceiveMemoryWarning()

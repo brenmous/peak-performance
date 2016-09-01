@@ -266,7 +266,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         dreamText.clipsToBounds = true
         
         //Side Menu
-        SideMenuManager.setUpSideMenu(self.storyboard!)
+        SideMenuManager.setUpSideMenu(self.storyboard!, user: self.currentUser!)
     }
     
     override func didReceiveMemoryWarning() {
