@@ -29,6 +29,7 @@
 		44A8EEB61D78317E001FB50D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A8EEB51D78317E001FB50D /* Assets.xcassets */; };
 		44A8EEBC1D783443001FB50D /* menu-150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A8EEBB1D783443001FB50D /* menu-150dpi.png */; };
 		44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */; };
+		44A8EEC01D78476D001FB50D /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBF1D78476D001FB50D /* ProgressView.swift */; };
 		44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */; };
 		44AA95E81D597C9E0020FBAF /* tutorial-kick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */; };
 		44AA95E91D597C9E0020FBAF /* tutorial-preparation.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */; };
@@ -112,6 +113,7 @@
 		44A8EEB51D78317E001FB50D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		44A8EEBB1D783443001FB50D /* menu-150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-150dpi.png"; path = "../../../stock photos/menu-150dpi.png"; sourceTree = "<group>"; };
 		44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyValuesTableViewController.swift; sourceTree = "<group>"; };
+		44A8EEBF1D78476D001FB50D /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-execute.jpg"; sourceTree = "<group>"; };
 		44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-kick.jpg"; sourceTree = "<group>"; };
 		44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-preparation.jpg"; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
 				44ED0A231D44E52100EEE743 /* images */,
 				44A8EEB51D78317E001FB50D /* Assets.xcassets */,
+				44A8EEBF1D78476D001FB50D /* ProgressView.swift */,
 				B59EC43B1D3FB45C00AF1297 /* LaunchScreen.storyboard */,
 				B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */,
 				B59EC43E1D3FB45C00AF1297 /* Info.plist */,
@@ -570,6 +573,7 @@
 				B5F32AD01D74B50300B83B1E /* StorageService.swift in Sources */,
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */,
+				44A8EEC01D78476D001FB50D /* ProgressView.swift in Sources */,
 				B5B46A8C1D66D5CB00FFA4F8 /* GoalTableViewCell.swift in Sources */,
 				B5F32ACE1D70181100B83B1E /* DateTracker.swift in Sources */,
 				B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */,
