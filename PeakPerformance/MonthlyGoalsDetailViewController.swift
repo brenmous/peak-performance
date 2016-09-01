@@ -262,7 +262,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         
         //goal text view
         validator.registerField(goalTextView, errorLabel: goalTextErrorLabel, rules: [RequiredRule(message: REQUIRED_FIELD_ERR_MSG)])
-        
+    
         //textfield & textview delegation
         goalTextView.delegate = self
         

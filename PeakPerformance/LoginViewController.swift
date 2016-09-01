@@ -247,9 +247,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
     
         //Comment these lines out to use other accounts
-        //emailField.text = "bjchiong@gmail.com"
-        //passwordField.text = "Password1"
-        //validator.validate(self)
+        emailField.text = "account1@gmail.com"
+        passwordField.text = "Password1"
+        validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -273,6 +273,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // status bar invert color
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     

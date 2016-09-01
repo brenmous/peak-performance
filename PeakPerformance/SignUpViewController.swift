@@ -284,6 +284,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         confirmPasswordField.delegate = self
     }
 
+    // MARK: Override functions
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -308,6 +309,10 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         activityIndicatorSU.stopAnimating()
     }
     
+    // status bar invert color
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

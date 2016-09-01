@@ -29,6 +29,7 @@
                             <constraint firstItem="QOp-Qq-73C" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="g9o-LN-99v"/>
                         </constraints>
                     </view>
+                    <keyCommands/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

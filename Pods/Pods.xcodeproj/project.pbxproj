@@ -125,7 +125,6 @@
 		31A0C0E78C6DE931F72CECA73C258593 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
 		32036354E122942E7C608DA40A232188 /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = Pickers/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
 		3A2A36162896BCD4054CC0D853A1DA77 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
-		3A3461590091605E777E1957BE521F5E /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseStorage.framework; path = Frameworks/frameworks/FirebaseStorage.framework; sourceTree = "<group>"; };
 		3A60B173B179A297F4801FB8FAA92AB5 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = Pickers/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
 		3BD0D480FF0459D7F7F442919A77F372 /* SwiftValidator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftValidator.modulemap; sourceTree = "<group>"; };
 		3CDA67395DE3652380019BB6DDB40820 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Pickers/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
@@ -158,6 +157,7 @@
 		86D86EEC99DB41324090467CE0258A83 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Pickers/ActionSheetStringPicker.m; sourceTree = "<group>"; };
 		87BB36B95B38BB764C71B76C4BD59CFB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		887A8B820521EC6E919488E77686F447 /* PasswordRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordRule.swift; path = SwiftValidator/Rules/PasswordRule.swift; sourceTree = "<group>"; };
+		890A74C5302747D321FDC6263284B4B3 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseStorage.framework; path = Frameworks/FirebaseStorage.framework; sourceTree = "<group>"; };
 		89BCDFAF9D83FE07BCCFA807B663F32F /* ResourceBundle-SideMenu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SideMenu-Info.plist"; sourceTree = "<group>"; };
 		8CFFC422CF220DE996200F3F3B8676DA /* SideMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SideMenu.modulemap; sourceTree = "<group>"; };
 		8D3E311ADEE8D9B91DEBC89E30CDC838 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -276,6 +276,14 @@
 			path = "Target Support Files/Pods-PeakPerformance";
 			sourceTree = "<group>";
 		};
+		133F3FE028CF4549C0D5E2D2424F179B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				890A74C5302747D321FDC6263284B4B3 /* FirebaseStorage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		224BFF394EC13F277AA33C239C255EAB /* GoogleNetworkingUtilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,7 +295,7 @@
 		241D8C8059983AFABD0F2847034DDF60 /* FirebaseStorage */ = {
 			isa = PBXGroup;
 			children = (
-				822A656107379A8B1DA13718A955B51B /* Frameworks */,
+				133F3FE028CF4549C0D5E2D2424F179B /* Frameworks */,
 			);
 			path = FirebaseStorage;
 			sourceTree = "<group>";
@@ -498,14 +506,6 @@
 			isa = PBXGroup;
 			children = (
 				6CB8144FC69295315DC7CAFBFC85BEA6 /* FirebaseDatabase.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		822A656107379A8B1DA13718A955B51B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3A3461590091605E777E1957BE521F5E /* FirebaseStorage.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
