@@ -57,6 +57,15 @@ extension SideMenuManager
         SideMenuManager.menuLeftNavigationController?.leftSide = true
         let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC)
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
+        
+        // Pan Gestures
+//        SideMenuManager.menuAddPanGestureToPresent(toView: (self.menuLeftNavigationController?.navigationBar)!)
+//        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: (self.menuLeftNavigationController?.view)!)
         SideMenuManager.menuFadeStatusBar = false
+        SideMenuManager.menuPresentMode = .MenuSlideIn
+        SideMenuManager.menuShadowOpacity = 0.5
+        SideMenuManager.menuBlurEffectStyle = .Light
+
     }
 }
+
