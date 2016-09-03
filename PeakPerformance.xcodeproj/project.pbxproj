@@ -26,13 +26,13 @@
 		446379C21D56089900BAE5B2 /* PD.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BA1D56089900BAE5B2 /* PD.png */; };
 		446379C31D56089900BAE5B2 /* W.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BB1D56089900BAE5B2 /* W.png */; };
 		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
-		44A8EEB61D78317E001FB50D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A8EEB51D78317E001FB50D /* Assets.xcassets */; };
 		44A8EEBC1D783443001FB50D /* menu-150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A8EEBB1D783443001FB50D /* menu-150dpi.png */; };
 		44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */; };
 		44A8EEC01D78476D001FB50D /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBF1D78476D001FB50D /* ProgressView.swift */; };
 		44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */; };
 		44AA95E81D597C9E0020FBAF /* tutorial-kick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */; };
 		44AA95E91D597C9E0020FBAF /* tutorial-preparation.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */; };
+		44AFA5C11D7A630A00B3E595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44AFA5C01D7A630A00B3E595 /* Assets.xcassets */; };
 		44DD923F1D520F8C00BD312D /* MIDatePicker in Resources */ = {isa = PBXBuildFile; fileRef = 44DD923E1D520F8C00BD312D /* MIDatePicker */; };
 		44E65A9B1D59EE1D008442F2 /* LastPageTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */; };
 		B50861BF1D4B316900901638 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861BE1D4B316900901638 /* Goal.swift */; };
@@ -110,13 +110,13 @@
 		446379BA1D56089900BAE5B2 /* PD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PD.png; sourceTree = "<group>"; };
 		446379BB1D56089900BAE5B2 /* W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = W.png; sourceTree = "<group>"; };
 		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
-		44A8EEB51D78317E001FB50D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		44A8EEBB1D783443001FB50D /* menu-150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-150dpi.png"; path = "../../../stock photos/menu-150dpi.png"; sourceTree = "<group>"; };
 		44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyValuesTableViewController.swift; sourceTree = "<group>"; };
 		44A8EEBF1D78476D001FB50D /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-execute.jpg"; sourceTree = "<group>"; };
 		44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-kick.jpg"; sourceTree = "<group>"; };
 		44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-preparation.jpg"; sourceTree = "<group>"; };
+		44AFA5C01D7A630A00B3E595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../2508/peak-performance/PeakPerformance/Assets.xcassets"; sourceTree = "<group>"; };
 		44DD923E1D520F8C00BD312D /* MIDatePicker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MIDatePicker; sourceTree = "<group>"; };
 		44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPageTutorialViewController.swift; sourceTree = "<group>"; };
 		733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,7 +318,7 @@
 				B5791FF41D5493EF0079A9CB /* DatePicker */,
 				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
 				44ED0A231D44E52100EEE743 /* images */,
-				44A8EEB51D78317E001FB50D /* Assets.xcassets */,
+				44AFA5C01D7A630A00B3E595 /* Assets.xcassets */,
 				44A8EEBF1D78476D001FB50D /* ProgressView.swift */,
 				B59EC43B1D3FB45C00AF1297 /* LaunchScreen.storyboard */,
 				B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */,
@@ -478,10 +478,10 @@
 				B59EC4611D3FB50C00AF1297 /* GoogleService-Info.plist in Resources */,
 				B5F32AD21D74C5E900B83B1E /* business-cat.jpg in Resources */,
 				4427EFEA1D4CED13005458DB /* dream-list-icon-25x25.png in Resources */,
+				44AFA5C11D7A630A00B3E595 /* Assets.xcassets in Resources */,
 				4427EFF01D4CED67005458DB /* history-icon.png in Resources */,
 				B5789A311D683B70000A3EEF /* doneicon.jpg in Resources */,
 				446379BD1D56089900BAE5B2 /* F.png in Resources */,
-				44A8EEB61D78317E001FB50D /* Assets.xcassets in Resources */,
 				4427EFF21D4CEE3A005458DB /* my-values-icon-25x25.png in Resources */,
 				B5789A2D1D6839D4000A3EEF /* tutorial-actualreview.jpg in Resources */,
 			);

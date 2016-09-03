@@ -1020,7 +1020,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="2Sa-iS-B6G">
-                            <rect key="frame" x="0.0" y="276" width="600" height="306"/>
+                            <rect key="frame" x="0.0" y="276" width="600" height="422"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -1031,7 +1031,7 @@
                                         <rect key="frame" x="0.0" y="117" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NIM-BD-5KQ" id="8Ug-cx-kTS">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signout" translatesAutoresizingMaskIntoConstraints="NO" id="aWR-YG-nky">
@@ -1065,7 +1065,7 @@
                                         <rect key="frame" x="0.0" y="170" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lUA-Xe-10J" id="Oqb-8t-M9q">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cog" translatesAutoresizingMaskIntoConstraints="NO" id="Rwe-2p-tVW">
@@ -1099,7 +1099,7 @@
                                         <rect key="frame" x="0.0" y="223" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i1R-Ye-gOU" id="ojb-oW-c46">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="monthly-icon-25x25.png" translatesAutoresizingMaskIntoConstraints="NO" id="hBI-XJ-GTp">
