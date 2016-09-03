@@ -221,7 +221,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         if let obj: AnyObject = collection.firstObject {
             self.albumCreated = true
-            assetCollection = collection.firstObject as! PHAssetCollection
+            assetCollection = obj as! PHAssetCollection
         } else {
             
             PHPhotoLibrary.sharedPhotoLibrary().performChanges({
