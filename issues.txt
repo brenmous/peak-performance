@@ -7,3 +7,8 @@ Issue: Crashes if camera permission has been previously allowed, photos added to
 Date Found: 01/09/2016
 Solution:
 Date Fixed: 
+
+File: DataService.swift 
+Issue: There is an error with firebase not recognizing FIRStorage.There is a fix on this but came up again after pulling today.
+Date Froun: 01/09/2016
+Solution: Take out the pods, install then put back the pods and reinstall. After which, data service won’t recognize validator pod for text view. The fix is to copy the extension of textfield to and make another one for text view.

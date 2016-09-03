@@ -1005,10 +1005,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-jz-ffV">
-                                    <rect key="frame" x="443" y="76" width="125" height="33"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="125" id="CGQ-AQ-a0E"/>
-                                    </constraints>
+                                    <rect key="frame" x="25" y="76" width="543" height="33"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -1016,9 +1013,10 @@
                             </subviews>
                             <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="6I1-jz-ffV" firstAttribute="bottom" secondItem="43d-sJ-KGF" secondAttribute="bottomMargin" id="7fW-ze-9Ij"/>
-                                <constraint firstAttribute="trailing" secondItem="6I1-jz-ffV" secondAttribute="trailing" constant="32" id="T6R-P8-nGH"/>
-                                <constraint firstItem="6I1-jz-ffV" firstAttribute="top" secondItem="43d-sJ-KGF" secondAttribute="top" constant="76" id="wPJ-6X-CWs"/>
+                                <constraint firstItem="6I1-jz-ffV" firstAttribute="bottom" secondItem="43d-sJ-KGF" secondAttribute="bottomMargin" id="OLc-qw-yQK"/>
+                                <constraint firstAttribute="trailing" secondItem="6I1-jz-ffV" secondAttribute="trailing" constant="32" id="RVr-FR-ExR"/>
+                                <constraint firstItem="6I1-jz-ffV" firstAttribute="top" secondItem="43d-sJ-KGF" secondAttribute="top" constant="76" id="csc-Wq-gnY"/>
+                                <constraint firstItem="6I1-jz-ffV" firstAttribute="leading" secondItem="43d-sJ-KGF" secondAttribute="leading" constant="25" id="tte-K3-rdh"/>
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="2Sa-iS-B6G">
