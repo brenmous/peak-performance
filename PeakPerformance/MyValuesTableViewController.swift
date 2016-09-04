@@ -15,10 +15,19 @@ class MyValuesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // text view UI configuration
+        myValuesTextView.layer.cornerRadius = 5
+        myValuesTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
+        myValuesTextView.layer.borderWidth = 1
+        myValuesTextView.clipsToBounds = true
 
 
     }
 
+// MARK: IBOutlet
+    
+    @IBOutlet weak var myValuesTextView: UITextView!
 
     @IBAction func menuButtonPressed(sender: UIBarButtonItem) {
                 presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
@@ -26,15 +35,15 @@ class MyValuesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
     
     /*
