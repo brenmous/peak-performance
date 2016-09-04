@@ -26,19 +26,19 @@
 		446379C21D56089900BAE5B2 /* PD.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BA1D56089900BAE5B2 /* PD.png */; };
 		446379C31D56089900BAE5B2 /* W.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BB1D56089900BAE5B2 /* W.png */; };
 		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
-		44A8EEBC1D783443001FB50D /* menu-150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A8EEBB1D783443001FB50D /* menu-150dpi.png */; };
 		44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */; };
 		44A8EEC01D78476D001FB50D /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBF1D78476D001FB50D /* ProgressView.swift */; };
 		44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */; };
 		44AA95E81D597C9E0020FBAF /* tutorial-kick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */; };
 		44AA95E91D597C9E0020FBAF /* tutorial-preparation.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */; };
-		44AFA5C11D7A630A00B3E595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44AFA5C01D7A630A00B3E595 /* Assets.xcassets */; };
 		44DD923F1D520F8C00BD312D /* MIDatePicker in Resources */ = {isa = PBXBuildFile; fileRef = 44DD923E1D520F8C00BD312D /* MIDatePicker */; };
 		44E65A9B1D59EE1D008442F2 /* LastPageTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */; };
 		B50861BF1D4B316900901638 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861BE1D4B316900901638 /* Goal.swift */; };
 		B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C01D4B359A00901638 /* MonthlyGoal.swift */; };
 		B50861C51D5060C100901638 /* WeeklyGoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */; };
 		B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */; };
+		B53132A51D7AB0330027F4F4 /* menu-150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = B53132A41D7AB0330027F4F4 /* menu-150dpi.png */; };
+		B53132A71D7AB0AE0027F4F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */; };
 		B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455A1D3FB85500F20D25 /* DataService.swift */; };
 		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
 		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
@@ -110,13 +110,11 @@
 		446379BA1D56089900BAE5B2 /* PD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PD.png; sourceTree = "<group>"; };
 		446379BB1D56089900BAE5B2 /* W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = W.png; sourceTree = "<group>"; };
 		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
-		44A8EEBB1D783443001FB50D /* menu-150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-150dpi.png"; path = "../../../stock photos/menu-150dpi.png"; sourceTree = "<group>"; };
 		44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyValuesTableViewController.swift; sourceTree = "<group>"; };
 		44A8EEBF1D78476D001FB50D /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-execute.jpg"; sourceTree = "<group>"; };
 		44AA95E41D597C9E0020FBAF /* tutorial-kick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-kick.jpg"; sourceTree = "<group>"; };
 		44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-preparation.jpg"; sourceTree = "<group>"; };
-		44AFA5C01D7A630A00B3E595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../2508/peak-performance/PeakPerformance/Assets.xcassets"; sourceTree = "<group>"; };
 		44DD923E1D520F8C00BD312D /* MIDatePicker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MIDatePicker; sourceTree = "<group>"; };
 		44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPageTutorialViewController.swift; sourceTree = "<group>"; };
 		733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +122,8 @@
 		B50861C01D4B359A00901638 /* MonthlyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoal.swift; sourceTree = "<group>"; };
 		B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoalDetailViewController.swift; sourceTree = "<group>"; };
 		B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		B53132A41D7AB0330027F4F4 /* menu-150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-150dpi.png"; sourceTree = "<group>"; };
+		B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B53B455A1D3FB85500F20D25 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 				446379B61D56089900BAE5B2 /* FI.png */,
 				446379B71D56089900BAE5B2 /* FR.png */,
 				446379B81D56089900BAE5B2 /* H.png */,
-				44A8EEBB1D783443001FB50D /* menu-150dpi.png */,
+				B53132A41D7AB0330027F4F4 /* menu-150dpi.png */,
 				446379B91D56089900BAE5B2 /* P.png */,
 				446379BA1D56089900BAE5B2 /* PD.png */,
 				446379BB1D56089900BAE5B2 /* W.png */,
@@ -318,7 +318,7 @@
 				B5791FF41D5493EF0079A9CB /* DatePicker */,
 				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
 				44ED0A231D44E52100EEE743 /* images */,
-				44AFA5C01D7A630A00B3E595 /* Assets.xcassets */,
+				B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */,
 				44A8EEBF1D78476D001FB50D /* ProgressView.swift */,
 				B59EC43B1D3FB45C00AF1297 /* LaunchScreen.storyboard */,
 				B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */,
@@ -459,7 +459,6 @@
 				44AA95E81D597C9E0020FBAF /* tutorial-kick.jpg in Resources */,
 				446379BF1D56089900BAE5B2 /* FR.png in Resources */,
 				446379C01D56089900BAE5B2 /* H.png in Resources */,
-				44A8EEBC1D783443001FB50D /* menu-150dpi.png in Resources */,
 				446379BE1D56089900BAE5B2 /* FI.png in Resources */,
 				B59EC43D1D3FB45C00AF1297 /* LaunchScreen.storyboard in Resources */,
 				44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */,
@@ -472,13 +471,14 @@
 				446379C31D56089900BAE5B2 /* W.png in Resources */,
 				B59EC4381D3FB45C00AF1297 /* Main.storyboard in Resources */,
 				44DD923F1D520F8C00BD312D /* MIDatePicker in Resources */,
+				B53132A51D7AB0330027F4F4 /* menu-150dpi.png in Resources */,
 				446379C11D56089900BAE5B2 /* P.png in Resources */,
 				4427EFEE1D4CED39005458DB /* monthly-icon-25x25.png in Resources */,
 				446379A11D55968300BAE5B2 /* login_background.jpg in Resources */,
 				B59EC4611D3FB50C00AF1297 /* GoogleService-Info.plist in Resources */,
 				B5F32AD21D74C5E900B83B1E /* business-cat.jpg in Resources */,
 				4427EFEA1D4CED13005458DB /* dream-list-icon-25x25.png in Resources */,
-				44AFA5C11D7A630A00B3E595 /* Assets.xcassets in Resources */,
+				B53132A71D7AB0AE0027F4F4 /* Assets.xcassets in Resources */,
 				4427EFF01D4CED67005458DB /* history-icon.png in Resources */,
 				B5789A311D683B70000A3EEF /* doneicon.jpg in Resources */,
 				446379BD1D56089900BAE5B2 /* F.png in Resources */,
