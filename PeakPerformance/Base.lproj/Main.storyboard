@@ -2122,6 +2122,71 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="" id="gjK-CH-zX2">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="51" id="kfd-q7-2Py">
+                                        <rect key="frame" x="0.0" y="1200" width="600" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfd-q7-2Py" id="teO-tA-W80">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES.png" translatesAutoresizingMaskIntoConstraints="NO" id="5UB-II-D7Q">
+                                                    <rect key="frame" x="13" y="8" width="37" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="37" id="fIg-uj-snb"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emotional and Spiritual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njp-i0-Bc8">
+                                                    <rect key="frame" x="58" y="15" width="165" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Njp-i0-Bc8" firstAttribute="centerY" secondItem="5UB-II-D7Q" secondAttribute="centerY" id="0Jt-z7-4Vd"/>
+                                                <constraint firstItem="Njp-i0-Bc8" firstAttribute="leading" secondItem="5UB-II-D7Q" secondAttribute="trailing" constant="8" symbolic="YES" id="4be-je-szW"/>
+                                                <constraint firstItem="5UB-II-D7Q" firstAttribute="centerY" secondItem="teO-tA-W80" secondAttribute="centerY" id="9LK-pK-1CK"/>
+                                                <constraint firstItem="5UB-II-D7Q" firstAttribute="leading" secondItem="teO-tA-W80" secondAttribute="leadingMargin" constant="5" id="GUS-wZ-lpE"/>
+                                                <constraint firstItem="Njp-i0-Bc8" firstAttribute="top" secondItem="teO-tA-W80" secondAttribute="topMargin" constant="7" id="RRK-BJ-Szs"/>
+                                                <constraint firstItem="5UB-II-D7Q" firstAttribute="top" secondItem="teO-tA-W80" secondAttribute="topMargin" id="y6Z-Jl-0Uf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="zna-JL-GVF">
+                                        <rect key="frame" x="0.0" y="1251" width="600" height="105"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zna-JL-GVF" id="SYp-4L-PVk">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dn4-Vr-YSf" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="8" width="563" height="89"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Dn4-Vr-YSf" secondAttribute="trailing" constant="15" id="NQt-w0-1gf"/>
+                                                <constraint firstItem="Dn4-Vr-YSf" firstAttribute="centerY" secondItem="SYp-4L-PVk" secondAttribute="centerY" id="XtM-uw-8jn"/>
+                                                <constraint firstItem="Dn4-Vr-YSf" firstAttribute="top" secondItem="SYp-4L-PVk" secondAttribute="topMargin" id="uzC-Kd-30t"/>
+                                                <constraint firstItem="Dn4-Vr-YSf" firstAttribute="leading" secondItem="SYp-4L-PVk" secondAttribute="leadingMargin" constant="6" id="yLf-ME-MEN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="wNQ-VY-Pru" id="hrk-kJ-OGe"/>
@@ -2135,17 +2200,23 @@
                                 <action selector="menuButtonPressed:" destination="wNQ-VY-Pru" id="NB7-Jp-MTg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="9nP-cO-8JA">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="9nP-cO-8JA">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="saveMyValues:" destination="wNQ-VY-Pru" id="QHs-XT-pku"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="myValuesTextView" destination="4LV-NM-PlH" id="rv9-B1-NMq"/>
-                        <outlet property="myValuesTextView2" destination="LmR-oh-Zo9" id="KvS-Q5-DyZ"/>
-                        <outlet property="myValuesTextView3" destination="jvD-WR-px4" id="qEy-yo-SPU"/>
-                        <outlet property="myValuesTextView4" destination="AQd-4Y-KRZ" id="fRD-9f-W3e"/>
-                        <outlet property="myValuesTextView5" destination="ZTS-Mt-UVi" id="ScY-aQ-4Hr"/>
-                        <outlet property="myValuesTextView6" destination="kVx-va-Jdr" id="QX1-jN-MmZ"/>
+                        <outlet property="myValueTextView2" destination="LmR-oh-Zo9" id="fUl-wd-zFB"/>
+                        <outlet property="myValuesTextView" destination="4LV-NM-PlH" id="vbR-4O-tdJ"/>
+                        <outlet property="myValuesTextView3" destination="jvD-WR-px4" id="ByB-T4-IZk"/>
+                        <outlet property="myValuesTextView4" destination="AQd-4Y-KRZ" id="oqp-NZ-EjM"/>
+                        <outlet property="myValuesTextView5" destination="ZTS-Mt-UVi" id="0GD-NY-Zid"/>
+                        <outlet property="myValuesTextView6" destination="kVx-va-Jdr" id="4Um-cf-oOX"/>
+                        <outlet property="myValuesTextView7" destination="dIb-gt-W0P" id="6W6-RI-pQg"/>
+                        <outlet property="myValuesTextView8" destination="Dn4-Vr-YSf" id="Fif-jq-PsH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9R-IF-Qyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2172,7 +2243,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55m-7g-igL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1842" y="846"/>
+            <point key="canvasLocation" x="1843" y="846"/>
         </scene>
         <!--Monthly Goals-->
         <scene sceneID="Rfn-6v-xop">
@@ -2734,6 +2805,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ES.png" width="211" height="211"/>
         <image name="F.png" width="211" height="211"/>
         <image name="FI.png" width="211" height="211"/>
         <image name="FR.png" width="211" height="211"/>
