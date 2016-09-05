@@ -1004,19 +1004,28 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-jz-ffV">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-jz-ffV">
                                     <rect key="frame" x="25" y="76" width="543" height="33"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" red="0.76055210828781128" green="0.60986578464508057" blue="0.78792858123779297" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPI-K6-EG8">
+                                    <rect key="frame" x="25" y="57" width="543" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="6I1-jz-ffV" firstAttribute="bottom" secondItem="43d-sJ-KGF" secondAttribute="bottomMargin" id="OLc-qw-yQK"/>
-                                <constraint firstAttribute="trailing" secondItem="6I1-jz-ffV" secondAttribute="trailing" constant="32" id="RVr-FR-ExR"/>
-                                <constraint firstItem="6I1-jz-ffV" firstAttribute="top" secondItem="43d-sJ-KGF" secondAttribute="top" constant="76" id="csc-Wq-gnY"/>
-                                <constraint firstItem="6I1-jz-ffV" firstAttribute="leading" secondItem="43d-sJ-KGF" secondAttribute="leading" constant="25" id="tte-K3-rdh"/>
+                                <constraint firstAttribute="bottom" secondItem="NPI-K6-EG8" secondAttribute="bottom" constant="39" id="Ff8-uM-yGK"/>
+                                <constraint firstAttribute="trailing" secondItem="NPI-K6-EG8" secondAttribute="trailing" constant="32" id="NTF-vI-TkY"/>
+                                <constraint firstItem="NPI-K6-EG8" firstAttribute="leading" secondItem="6I1-jz-ffV" secondAttribute="leading" id="oNu-NQ-vQH"/>
+                                <constraint firstItem="NPI-K6-EG8" firstAttribute="trailing" secondItem="6I1-jz-ffV" secondAttribute="trailing" id="rhf-Nr-cPc"/>
+                                <constraint firstItem="NPI-K6-EG8" firstAttribute="top" secondItem="43d-sJ-KGF" secondAttribute="top" constant="57" id="s24-nQ-iNU"/>
+                                <constraint firstItem="NPI-K6-EG8" firstAttribute="leading" secondItem="43d-sJ-KGF" secondAttribute="leading" constant="25" id="wKP-R2-Rqi"/>
+                                <constraint firstItem="6I1-jz-ffV" firstAttribute="bottom" secondItem="43d-sJ-KGF" secondAttribute="bottomMargin" id="yKk-qq-xDr"/>
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="2Sa-iS-B6G">
@@ -1137,6 +1146,7 @@
                     <navigationItem key="navigationItem" id="DdM-To-FBf"/>
                     <connections>
                         <outlet property="emailProfileLabel" destination="6I1-jz-ffV" id="g1a-av-2Vv"/>
+                        <outlet property="nameProfileLabel" destination="NPI-K6-EG8" id="lnS-sd-Ulo"/>
                         <segue destination="nzk-OW-G6R" kind="unwind" identifier="unwindFromWGVC" unwindAction="unwindFromWGVC:" id="JJJ-uh-d6s"/>
                     </connections>
                 </tableViewController>
@@ -1682,11 +1692,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4LV-NM-PlH">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4LV-NM-PlH" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -1742,11 +1760,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LmR-oh-Zo9">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LmR-oh-Zo9" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -1802,11 +1828,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jvD-WR-px4">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jvD-WR-px4" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -1862,11 +1896,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AQd-4Y-KRZ">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AQd-4Y-KRZ" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -1922,11 +1964,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTS-Mt-UVi">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTS-Mt-UVi" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -1979,11 +2029,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kVx-va-Jdr">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kVx-va-Jdr" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -2039,11 +2097,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIb-gt-W0P">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIb-gt-W0P" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.75"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>

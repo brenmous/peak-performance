@@ -14,6 +14,8 @@ class SideMenuViewController: UITableViewController
 {
     @IBOutlet weak var emailProfileLabel: UILabel!
     
+    @IBOutlet weak var nameProfileLabel: UILabel!
+    
     var currentUser: User?
     func signOut( )
     {
@@ -60,6 +62,7 @@ class SideMenuViewController: UITableViewController
             // couldn't get user
         }
         emailProfileLabel.text = cu.email
+        nameProfileLabel.text = cu.fname
         print("SMVC: \(cu.email)") //DEBUG
         
     }
@@ -87,16 +90,17 @@ extension SideMenuManager
         smvc.currentUser = user
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
         
-        // Pan Gestures
-//        SideMenuManager.menuAddPanGestureToPresent(toView: (self.menuLeftNavigationController?.navigationBar)!)
-//        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: (self.menuLeftNavigationController?.view)!)
+        // Pan Gestures 
+        
+        SideMenuManager.menuAddPanGestureToPresent(toView: (menuLeftNavigationController?.navigationBar)!)
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: (menuLeftNavigationController?.navigationBar)!)
 
         // Customize side menu
         SideMenuManager.menuFadeStatusBar = false
         SideMenuManager.menuPresentMode = .MenuSlideIn
         SideMenuManager.menuShadowOpacity = 0.5
-        SideMenuManager.menuBlurEffectStyle = .Light
-        
+        SideMenuManager.menuBlurEffectStyle = .Dark
+        SideMenuManager.menuAnimationFadeStrength = 0.5
     }
 
 }

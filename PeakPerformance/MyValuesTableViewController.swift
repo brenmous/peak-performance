@@ -31,13 +31,7 @@ class MyValuesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // text view UI configuration
-        // text view 1
-        myValuesTextView.layer.cornerRadius = 5
-        myValuesTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
-        myValuesTextView.layer.borderWidth = 1
-        myValuesTextView.clipsToBounds = true
+
 
     }
     
