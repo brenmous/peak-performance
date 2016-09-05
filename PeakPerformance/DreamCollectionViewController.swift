@@ -115,18 +115,24 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         for dream in cu.dreams
         {
             //If the image exists locally, get it from the photo library...
+            var photo: PHAsset? = nil
             if let url = dream.imageLocalURL
             {
                 let fetchResult = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil)
-                let photo = fetchResult.firstObject as! PHAsset
-                PHImageManager( ).requestImageDataForAsset(photo, options: nil) { (data, info, orientation, dict) in
-                    dream.imageData = data!
-                    print("DVC: got dream image \(dream.did) from photo library")
-                    self.collectionView?.reloadData( )
+            
+                photo = fetchResult.firstObject as? PHAsset
+                if photo != nil
+                {
+                    PHImageManager( ).requestImageDataForAsset(photo!, options: nil) { (data, info, orientation, dict) in
+                        dream.imageData = data!
+                        print("DVC: got dream image \(dream.did) from photo library")
+                        self.collectionView?.reloadData( )
+                    }
                 }
+                
             }
-                //...else, get it from Firebase Storage.
-            else
+            //...else, get it from Firebase Storage.
+            if dream.imageLocalURL == nil || photo == nil
             {
                 self.storageService.loadDreamImage(cu, dream: dream){ () in
                     self.collectionView?.reloadData()
@@ -135,10 +141,13 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
                 }
             }
         }
+        
     }
 
-    
-    
+
+
+
+
     // MARK: - Overriden functions
     
     override func viewWillAppear(animated: Bool)

@@ -194,13 +194,15 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             imageSet = pickedImage
             dreamImg.contentMode = .ScaleAspectFit
             dreamImg.image = pickedImage
-            self.dreamImageLocalURL = info[UIImagePickerControllerReferenceURL] as? NSURL
-            print("DDVC: local URL of selected image is \(self.dreamImageLocalURL!.absoluteString)")
+         
             //if the user has taken a photo, then save it to the photo library
             if imgPicker.sourceType == .Camera
             {
                 UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
             }
+            //TODO: - this is a problem, can't get URL of camera photo
+            self.dreamImageLocalURL = info[UIImagePickerControllerReferenceURL] as? NSURL
+            print("DDVC: local URL of selected image is \(self.dreamImageLocalURL!.absoluteString)")
         }
         
         self.dismissViewControllerAnimated(true, completion: nil)

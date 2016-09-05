@@ -126,6 +126,7 @@ class DataService  //: SignUpDataService, LogInDataService
     */
     func saveGoal( uid: String, goal: Goal )
     {
+        print("DS: saving goal")
         var goalsRef = FIRDatabaseReference()
         if goal is WeeklyGoal
         {

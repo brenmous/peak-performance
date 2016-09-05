@@ -147,6 +147,8 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             //...otherwise modify the referenced goal
         else
         {
+        
+            print("MGDVC: updating goal")
             updateGoal( )
         }
         performSegueWithIdentifier(UNWIND_FROM_MGDVC_SEGUE, sender: self)
@@ -168,6 +170,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     {
         guard let cg = currentGoal else
         {
+            print("MGDVC: no goal to update")
             return
         }
         cg.goalText = goalTextView.text!
@@ -176,6 +179,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         dateFormatter.dateFormat = DATE_FORMAT_STRING
         guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else
         {
+            print("WGDVC: could not format date")
             return
         }
         cg.deadline = dl
