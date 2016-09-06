@@ -308,6 +308,12 @@ let SIGNOUT_CELL_ID = "signOut"
 /// Storyboard identfier for Side Menu View Controller
 let SIDE_MENU_VC = "SideMenu"
 
+/// Identifier for Monthly Review side menu cell.
+let MONTHLYREVIEW_CELL_ID = "monthlyReview"
+
+/// Identifier for Monthly Review view controller.
+let MONTHLYREVIEW_VC = "MonthlyReview"
+
 // MARK: - Image quality constant
 
 /// Constant for compression of JPEG UIImage representation.
