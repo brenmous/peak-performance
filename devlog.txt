@@ -159,3 +159,8 @@
 01/09/2016 19:30 - 20:00
 	- user ref in SideMenuViewController
 	- created issue tracker text file
+
+06/09/2016 13:45 - 15:10,  
+	- monthly review
+		- created review View and class
+		- created MonthlySummary class

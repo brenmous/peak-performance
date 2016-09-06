@@ -38,8 +38,12 @@
 		B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C01D4B359A00901638 /* MonthlyGoal.swift */; };
 		B50861C51D5060C100901638 /* WeeklyGoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */; };
 		B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */; };
+		B51BD7931D7E8611003EA9AC /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */; };
+		B51BD7951D7E8634003EA9AC /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */; };
+		B51BD7971D7E95C4003EA9AC /* MonthlySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */; };
 		B53132A51D7AB0330027F4F4 /* menu-150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = B53132A41D7AB0330027F4F4 /* menu-150dpi.png */; };
 		B53132A71D7AB0AE0027F4F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */; };
+		B53132A91D7E74670027F4F4 /* MonthlyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */; };
 		B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455A1D3FB85500F20D25 /* DataService.swift */; };
 		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
 		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
@@ -124,8 +128,12 @@
 		B50861C01D4B359A00901638 /* MonthlyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoal.swift; sourceTree = "<group>"; };
 		B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoalDetailViewController.swift; sourceTree = "<group>"; };
 		B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlySummary.swift; sourceTree = "<group>"; };
 		B53132A41D7AB0330027F4F4 /* menu-150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-150dpi.png"; sourceTree = "<group>"; };
 		B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyReviewViewController.swift; sourceTree = "<group>"; };
 		B53B455A1D3FB85500F20D25 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +276,9 @@
 				B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */,
 				B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */,
 				44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */,
+				B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */,
+				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,
+				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -280,6 +291,7 @@
 				B50861BE1D4B316900901638 /* Goal.swift */,
 				B50861C01D4B359A00901638 /* MonthlyGoal.swift */,
 				32D794EA1D61D5A600134D01 /* Dream.swift */,
+				B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -575,7 +587,9 @@
 				B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */,
 				44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */,
 				B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */,
+				B53132A91D7E74670027F4F4 /* MonthlyReviewViewController.swift in Sources */,
 				B50861C51D5060C100901638 /* WeeklyGoalDetailViewController.swift in Sources */,
+				B51BD7971D7E95C4003EA9AC /* MonthlySummary.swift in Sources */,
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
 				32D794EB1D61D5A600134D01 /* Dream.swift in Sources */,
 				B5791FF11D5493E00079A9CB /* MIDatePicker.swift in Sources */,
@@ -592,7 +606,9 @@
 				B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */,
 				B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */,
 				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
+				B51BD7951D7E8634003EA9AC /* HistoryTableViewCell.swift in Sources */,
 				B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */,
+				B51BD7931D7E8611003EA9AC /* HistoryViewController.swift in Sources */,
 				B50861BF1D4B316900901638 /* Goal.swift in Sources */,
 				B55652581D40DCE900E315A4 /* Constants.swift in Sources */,
 				B5D74D691D6857060026EF07 /* MonthlyGoalTableViewCell.swift in Sources */,

@@ -10,6 +10,9 @@ import UIKit
 import SideMenu
 import Firebase
 
+/**
+    Class that controls the side menu. Also contains extension to SideMenu framework that handles set up.
+ */
 class SideMenuViewController: UITableViewController
 {
     @IBOutlet weak var emailProfileLabel: UILabel!
@@ -17,6 +20,10 @@ class SideMenuViewController: UITableViewController
     @IBOutlet weak var nameProfileLabel: UILabel!
     
     var currentUser: User?
+    
+    var sb: UIStoryboard?
+    
+    /// Present an alert asking the user if they want to sign out.
     func signOut( )
     {
         let signOutAlertController = UIAlertController(title: SIGNOUT_ALERT_TITLE, message: SIGNOUT_ALERT_MSG, preferredStyle: .ActionSheet)
@@ -40,13 +47,26 @@ class SideMenuViewController: UITableViewController
         self.presentViewController(signOutAlertController, animated: true, completion: nil)
         
     }
+    
+    func goToMonthlyReview( )
+    {
+        //ask user if they want to go to history view to complete monthly reviews
+    }
   
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        //determine selected cell and perform associated action.
         if cell?.reuseIdentifier == SIGNOUT_CELL_ID
         {
+            print("SMVC: sign out pressed")
             self.signOut( )
+        }
+        if cell?.reuseIdentifier == MONTHLYREVIEW_CELL_ID
+        {
+            print("SMVC: monthly review pressed")
+            self.goToMonthlyReview()
         }
     }
     
@@ -81,6 +101,7 @@ class SideMenuViewController: UITableViewController
 
 extension SideMenuManager
 {
+    /// Set up side menu in view controllers that should be able to display it.
     public class func setUpSideMenu( sb: UIStoryboard, user: User )
     {
         SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
@@ -88,6 +109,7 @@ extension SideMenuManager
         SideMenuManager.menuLeftNavigationController?.leftSide = true
         let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC) as! SideMenuViewController
         smvc.currentUser = user
+        smvc.sb = sb
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
         
         // Pan Gestures 
