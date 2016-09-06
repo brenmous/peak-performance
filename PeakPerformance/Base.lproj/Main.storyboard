@@ -2237,7 +2237,7 @@
                                 <action selector="menuButtonPressed:" destination="wNQ-VY-Pru" id="NB7-Jp-MTg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="9nP-cO-8JA">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="9nP-cO-8JA">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

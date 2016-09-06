@@ -32,6 +32,9 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var emotionalTextView: UITextView!
     
     @IBAction func saveMyValues(sender: AnyObject) {
+        
+        //dismiss keyboard
+        self.view.endEditing(true)
         saveValues( )
         
         let saveNotificationAlertController = UIAlertController(title: SAVED_VALUES, message: nil, preferredStyle: .Alert)
