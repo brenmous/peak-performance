@@ -374,18 +374,17 @@ class DataService  //: SignUpDataService, LogInDataService
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
-                for valueSnapshot in snapshot.children
-                {
-                    values[KLA_FAMILY] = valueSnapshot.value![KLA_FAMILY] as? String
-                    values[KLA_FINANCIAL] = valueSnapshot.value![KLA_FINANCIAL] as? String
-                    values[KLA_PERSONALDEV] = valueSnapshot.value![KLA_PERSONALDEV] as? String
-                    values[KLA_FRIENDSSOCIAL] = valueSnapshot.value![KLA_FRIENDSSOCIAL] as? String
-                    values[KLA_HEALTHFITNESS] = valueSnapshot.value![KLA_HEALTHFITNESS] as? String
-                    values[KLA_WORKBUSINESS] = valueSnapshot.value![KLA_WORKBUSINESS] as? String
-                    values[KLA_EMOSPIRITUAL] = valueSnapshot.value![KLA_EMOSPIRITUAL] as? String
-                    values[KLA_EMOSPIRITUAL] = valueSnapshot.value![KLA_EMOSPIRITUAL] as? String
-                    
-                }
+                values[KLA_FAMILY] = snapshot.value![KLA_FAMILY] as? String
+                values[KLA_FINANCIAL] = snapshot.value![KLA_FINANCIAL] as? String
+                values[KLA_PERSONALDEV] = snapshot.value![KLA_PERSONALDEV] as? String
+                values[KLA_FRIENDSSOCIAL] = snapshot.value![KLA_FRIENDSSOCIAL] as? String
+                values[KLA_HEALTHFITNESS] = snapshot.value![KLA_HEALTHFITNESS] as? String
+                values[KLA_WORKBUSINESS] = snapshot.value![KLA_WORKBUSINESS] as? String
+                values[KLA_PARTNER] = snapshot.value![KLA_PARTNER] as? String
+                values[KLA_EMOSPIRITUAL] = snapshot.value![KLA_EMOSPIRITUAL] as? String
+                
+                
+                
                 print("DS: fetched values") //DEBUG
                 completion( values: values )
                 
@@ -395,6 +394,8 @@ class DataService  //: SignUpDataService, LogInDataService
                 print("DS: no values fetch") //DEBUG
                 completion( values: values )
             }
+            
+            
         })
     }
 }

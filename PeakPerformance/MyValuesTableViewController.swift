@@ -20,7 +20,7 @@ class MyValuesTableViewController: UITableViewController {
     let dataService = DataService( )
     
 // MARK: IBOutlet
-    
+    //name these, poor maintainer gonna be like "was family number 2 or number 3?"
     @IBOutlet weak var myValuesTextView: UITextView!
     
     @IBOutlet weak var myValueTextView2: UITextView!
@@ -52,7 +52,7 @@ class MyValuesTableViewController: UITableViewController {
         }
         cu.values[KLA_FRIENDSSOCIAL] = myValueTextView2.text
         dataService.saveValues(cu)
-        print("This is my financial goal \(cu.values[KLA_FINANCIAL]!)")
+        print("MVVC: This is my financial goal \(cu.values[KLA_FINANCIAL]!)") //label debug strings please
     }
     
     @IBAction func menuButtonPressed(sender: UIBarButtonItem) {
@@ -74,7 +74,7 @@ class MyValuesTableViewController: UITableViewController {
         myValuesTextView6.text = cu.values[KLA_PERSONALDEV]
         myValuesTextView7.text = cu.values[KLA_FINANCIAL]
         myValuesTextView8.text = cu.values[KLA_EMOSPIRITUAL]
-        print("textviews updated \(cu.values[KLA_FRIENDSSOCIAL])")
+        print("MVVC: textviews updated \(cu.values[KLA_FRIENDSSOCIAL])")
     }
     // MARK: Overridden methods
     override func viewWillAppear(animated: Bool) {
@@ -96,7 +96,7 @@ class MyValuesTableViewController: UITableViewController {
         }
         self.currentUser = cu
         
-        print("DVC: got user \(cu.email) with \(cu.values.count) values")
+        print("MVVC: got user \(cu.email) with \(cu.values.count) values")
 
 
     }
