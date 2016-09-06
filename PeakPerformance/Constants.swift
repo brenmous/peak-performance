@@ -298,7 +298,13 @@ let DELETE_DREAM_ALERT = "Delete"
 
 let CANCEL_DREAM_ALERT = "Cancel"
 
+/// My Values Saved
 
+let SAVED_VALUES = "Values saved."
+
+/// Confirm saved values alert
+
+let CONFIRM_SAVE_VALUES =  "Confirm"
 
 // MARK: - Storyboard IDs
 

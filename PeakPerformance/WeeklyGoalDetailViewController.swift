@@ -339,10 +339,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     // MARK: - Deadline picker
     
-    @IBAction func deadlinePickerActivated(sender: AnyObject) //Ben
-    {
-
-    }
     
 
 }
