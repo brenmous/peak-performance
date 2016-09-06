@@ -103,7 +103,7 @@ let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.init(red: 199/255, green: 204/255, b
 let KLA_FAMILY = "Family"
 
 /// String for Work/Business KLA.
-let KLA_WORKBUSINESS = "Work/Business" // Firebase reads this as slash so it creates 2 nodes for work AND business - Ben
+let KLA_WORKBUSINESS = "Work & Business" // Firebase reads this as slash so it creates 2 nodes for work AND business - Ben
 
 /// String for Personal Development KLA.
 let KLA_PERSONALDEV = "Personal Development"
@@ -118,7 +118,7 @@ let KLA_FRIENDSSOCIAL = "Friends & Social"
 let KLA_HEALTHFITNESS = "Health & Fitness"
 
 /// String for Emotional/Spritiual KLA.
-let KLA_EMOSPIRITUAL = "Emotional/Spritual"
+let KLA_EMOSPIRITUAL = "Emotional & Spiritual"
 
 /// String for Partnert KLA.
 let KLA_PARTNER = "Partner"

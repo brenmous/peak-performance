@@ -387,6 +387,7 @@ class DataService  //: SignUpDataService, LogInDataService
                     
                 }
                 print("DS: fetched values") //DEBUG
+
                 completion( values: values )
                 
             }

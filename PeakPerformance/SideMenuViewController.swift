@@ -99,7 +99,7 @@ extension SideMenuManager
         SideMenuManager.menuFadeStatusBar = false
         SideMenuManager.menuPresentMode = .MenuSlideIn
         SideMenuManager.menuShadowOpacity = 0.5
-        SideMenuManager.menuBlurEffectStyle = .Dark
+        SideMenuManager.menuBlurEffectStyle = .Light
         SideMenuManager.menuAnimationFadeStrength = 0.5
     }
 

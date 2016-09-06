@@ -74,10 +74,11 @@ class MyValuesTableViewController: UITableViewController {
         myValuesTextView6.text = cu.values[KLA_PERSONALDEV]
         myValuesTextView7.text = cu.values[KLA_FINANCIAL]
         myValuesTextView8.text = cu.values[KLA_EMOSPIRITUAL]
-        print("textviews updated \(cu.values[KLA_FRIENDSSOCIAL])")
+        print("One of the values is \(cu.values[KLA_FRIENDSSOCIAL])")
     }
     // MARK: Overridden methods
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
         
         if currentUser != nil
