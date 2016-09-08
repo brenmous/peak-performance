@@ -169,3 +169,7 @@
 	- monthly review
 		- creation of monthly summaries
 		- alerting user to complete review
+
+08/09/2016 16:30 - 17:15
+	- fixing repo
+	
