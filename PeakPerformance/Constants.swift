@@ -255,6 +255,9 @@ let ADD_DREAM_SEGUE = "addDream"
 /// Segue for editing a dream.
 let EDIT_DREAM_SEGUE = "editDream"
 
+/// Segue for going from history view to review view
+let GO_TO_REVIEW_SEGUE = "goToMonthlyReview"
+
 
 // MARK: - Alert sheet strings
 
@@ -295,16 +298,25 @@ let DELETE_DREAM_ALERT_MSG = "Are you sure you want to delete this dream?"
 let DELETE_DREAM_ALERT = "Delete"
 
 /// Cancel dream deletion
-
 let CANCEL_DREAM_ALERT = "Cancel"
 
 /// My Values Saved
-
 let SAVED_VALUES = "Values saved."
 
 /// Confirm saved values alert
-
 let CONFIRM_SAVE_VALUES =  "Confirm"
+
+/// Review alert title
+let REVIEW_ALERT_TITLE = "Monthly Review Ready"
+
+/// Review alert message
+let REVIEW_ALERT_MSG = "You have a monthly review to complete. Would you like to do it now?"
+
+/// Review alert cancel
+let REVIEW_ALERT_CANCEL = "No thanks, later."
+
+/// Review alert confirm
+let REVIEW_ALERT_CONFIRM = "Sure."
 
 // MARK: - Storyboard IDs
 

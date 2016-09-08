@@ -14,6 +14,7 @@ class HistoryTableViewCell: UITableViewCell {
     // MARK: - Outlets
     
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var reviewReadyLabel: UILabel!
     
     
     override func awakeFromNib() {

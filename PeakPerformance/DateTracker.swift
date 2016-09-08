@@ -11,6 +11,7 @@ import Foundation
 /// Class that keeps track of the date and provides methods for getting monthly/weekly progress values.
 class DateTracker
 {
+    
     /// Get the day, month and year components of the current date.
     private func getDateComponents( ) -> NSDateComponents
     {
@@ -29,7 +30,7 @@ class DateTracker
     {
         return self.getDateComponents().day
     }
-
+    
     /// Get the current month as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
     private func getCurrentMonthAsString( ) -> String
     {

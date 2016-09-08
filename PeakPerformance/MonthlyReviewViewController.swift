@@ -10,9 +10,16 @@ import UIKit
 
 class MonthlyReviewViewController: UITableViewController {
 
+    /// The currently logged in user.
+    var currentUser: User?
+    
+    /// The summary being reviewed.
+    var summary: MonthlySummary?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("MRVC: i'm alive")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

@@ -160,7 +160,12 @@
 	- user ref in SideMenuViewController
 	- created issue tracker text file
 
-06/09/2016 13:45 - 15:10,  
+06/09/2016 13:45 - 15:10, 15:50 - 17:55  
 	- monthly review
 		- created review View and class
 		- created MonthlySummary class
+
+07/09/2016 11:40 - 13:45, 21:00 - 22:35
+	- monthly review
+		- creation of monthly summaries
+		- alerting user to complete review

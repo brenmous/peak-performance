@@ -171,13 +171,22 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         //sort completed goals and place them at end of array
         currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
-        self.tableView.reloadData()
         
         //update progress bar
         updateProgressView()
         
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
+
+        
+        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
+        if alert != nil
+        {
+            self.presentViewController(alert!, animated: true, completion: nil)
+        }
+        
+        //reload the view
+        self.tableView.reloadData()
         
         
     }
@@ -185,6 +194,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    
     }
  
     override func didReceiveMemoryWarning()

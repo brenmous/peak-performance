@@ -20,7 +20,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     let dataService = DataService( )
     
 // MARK: IBOutlet
-    //name these, poor maintainer gonna be like "was family number 2 or number 3?"
+
 
     @IBOutlet weak var familyTextView: UITextView!
     @IBOutlet weak var friendsTextView: UITextView!

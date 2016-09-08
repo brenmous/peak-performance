@@ -41,6 +41,7 @@
 		B51BD7931D7E8611003EA9AC /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */; };
 		B51BD7951D7E8634003EA9AC /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */; };
 		B51BD7971D7E95C4003EA9AC /* MonthlySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */; };
+		B51BD7991D7EA874003EA9AC /* MonthlyReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7981D7EA874003EA9AC /* MonthlyReviewHelper.swift */; };
 		B53132A51D7AB0330027F4F4 /* menu-150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = B53132A41D7AB0330027F4F4 /* menu-150dpi.png */; };
 		B53132A71D7AB0AE0027F4F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */; };
 		B53132A91D7E74670027F4F4 /* MonthlyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */; };
@@ -131,6 +132,7 @@
 		B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlySummary.swift; sourceTree = "<group>"; };
+		B51BD7981D7EA874003EA9AC /* MonthlyReviewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyReviewHelper.swift; sourceTree = "<group>"; };
 		B53132A41D7AB0330027F4F4 /* menu-150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-150dpi.png"; sourceTree = "<group>"; };
 		B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyReviewViewController.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				B5F32ACD1D70181100B83B1E /* DateTracker.swift */,
 				B5F32ACF1D74B50300B83B1E /* StorageService.swift */,
 				B53B455A1D3FB85500F20D25 /* DataService.swift */,
+				B51BD7981D7EA874003EA9AC /* MonthlyReviewHelper.swift */,
 				B5791FF41D5493EF0079A9CB /* DatePicker */,
 				B59EC4321D3FB45C00AF1297 /* AppDelegate.swift */,
 				44ED0A231D44E52100EEE743 /* images */,
@@ -584,6 +587,7 @@
 				B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */,
 				449618051D7D503100AD8C25 /* customizableTextView.swift in Sources */,
 				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
+				B51BD7991D7EA874003EA9AC /* MonthlyReviewHelper.swift in Sources */,
 				B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */,
 				44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */,
 				B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */,

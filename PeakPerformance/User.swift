@@ -43,6 +43,12 @@ public class User
     
     /// Sign up date (MMMM yyyy e.g. "August 2016").
     var startDate: NSDate
+    
+    /// Dictionary of monthly reviews/summaries.
+    var monthlySummaries: [String:MonthlySummary?] = ["January": nil, "February": nil, "March": nil, "April": nil,
+                                                      "May": nil, "June": nil, "July": nil, "August": nil, "September": nil,
+                                                      "October": nil, "November": nil, "December": nil]
+    
 
     
     /**

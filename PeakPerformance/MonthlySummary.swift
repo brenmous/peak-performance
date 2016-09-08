@@ -15,8 +15,8 @@ import Foundation
 class MonthlySummary
 {
     
-    /// The month of the summary.
-    var month: NSDate //maybe string
+    /// The date of the summary (MMMM yyyy e.g. "August 2016").
+    var date: NSDate //maybe string
     
     /// The weekly goals contained within the month.
     var weeklyGoals = [WeeklyGoal]( )
@@ -32,19 +32,22 @@ class MonthlySummary
     var whatIsNotWorking = ""
     
     /// Text of "What I have improved this month?" assessment.
-    var whatHaveIImporved = ""
+    var whatHaveIImproved = ""
     
     /// Text of "Do I have to change any of my..." assessment.
     var doIHaveToChange = ""
+    
+    /// Whether the user has reviewed this summary.
+    var reviewed = false
     
     /**
         Initialises a new MonthlySummary for the specified month.
         - Parameters: 
             - month: the month of the summary.
     */
-    init ( month: NSDate )
+    init ( date: NSDate )
     {
-        self.month = month
+        self.date = date
     }
     
 }
