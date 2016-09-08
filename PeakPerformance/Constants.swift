@@ -163,6 +163,9 @@ let KICKIT_REF_STRING = "kickItText"
 /// Specifies complete node in database.
 let COMPLETE_REF_STRING = "complete"
 
+/// Specifies summarised node in database.
+let SUMMARISED_REF_STRING = "summarised"
+
 /// Specifies deadline node in database.
 let DEADLINE_REF_STRING = "deadline"
 
@@ -184,6 +187,16 @@ let DREAMLOCALURL_REF_STRING = "localURL"
 /// Specifies dream URL node in database.
 let DREAMURL_REF_STRING = "url"
 
+//summary ref strings
+/// Specifies summary date in database.
+let SUMMARY_DATE_REF_STRING = "date"
+
+/// Specifies summary weekly goals in database.
+let SUMMARY_WG_REF_STRING = "weeklyGoals"
+
+/// Specifies summary monthly goals in database.
+let SUMMARY_MG_REF_STRING = "monthlyGoals"
+
 // MARK: - Firebase storage reference strings
 
 /// Base URL for storage bucket.
@@ -191,13 +204,13 @@ let STORAGE_REF_BASE = "gs://peakperformance-d37a7.appspot.com"
 
 
 // MARK: - Date Format Strings
-let DATE_FORMAT_STRING = "dd/MM/yyyy"
+let DAY_MONTH_YEAR_FORMAT_STRING = "dd/MM/yyyy"
 
 let MONTH_FORMAT_STRING = "MMMM"
 
-let STARTDATE_FORMAT_STRING = "MMMM yyyy"
+let MONTH_YEAR_FORMAT_STRING = "MMMM yyyy"
 
-let WEEKLYDEADLINE_FORMAT_STRING = "MMMM dd"
+let MONTH_DAY_FORMAT_STRING = "MMMM dd"
 
 // MARK: - Segue identifiers
 

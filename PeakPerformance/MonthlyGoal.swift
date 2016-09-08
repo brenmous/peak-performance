@@ -26,8 +26,8 @@ class MonthlyGoal: Goal
     convenience init ( goalText: String, kla: String, deadline: String, gid: String, complete: Bool = false, kickItText: String = "" )
     {
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = "MMMM"
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let newDeadline = dateFormatter.dateFromString(deadline)
-        self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText)
+        self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText )
     }
 }

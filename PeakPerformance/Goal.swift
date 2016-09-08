@@ -26,10 +26,10 @@ class Goal
     var gid: String
     
     /// Whether the goal has been completed.
-    var complete: Bool
+    var complete: Bool = false
     
     /// "Kick it to the next level" text
-    var kickItText: String
+    var kickItText: String = ""
     
     /**
      Initialises a new weekly goal.
@@ -42,7 +42,7 @@ class Goal
      
      - Returns: A weekly goal with the specified paramters.
      */
-    init ( goalText: String, kla: String, deadline: NSDate, gid: String, complete: Bool = false, kickItText: String = "")
+    init ( goalText: String, kla: String, deadline: NSDate, gid: String, complete: Bool = false, kickItText: String = "" )
     {
         self.goalText = goalText
         self.kla = kla

@@ -39,6 +39,11 @@ class DateTracker
         return months[dateComponents.month - 1]
     }
     
+    func getCurrentYearAsString( ) -> String
+    {
+        return String(self.getDateComponents().year)
+    }
+    
     /// Get the current day of the week.
     private func getCurrentDayOfWeek( ) -> Int
     {

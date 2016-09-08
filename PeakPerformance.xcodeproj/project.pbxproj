@@ -281,9 +281,9 @@
 				B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */,
 				44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */,
 				B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */,
+				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
 				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,
 				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
-				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
