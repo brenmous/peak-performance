@@ -258,6 +258,9 @@ let EDIT_DREAM_SEGUE = "editDream"
 /// Segue for going from history view to review view
 let GO_TO_REVIEW_SEGUE = "goToMonthlyReview"
 
+/// Segue for going from first MR view to second MR view
+let GO_TO_SECOND_REVIEW_SEGUE = "goToMonthlyReviewSecond"
+
 
 // MARK: - Alert sheet strings
 
