@@ -16,6 +16,11 @@ class HistoryViewController: UITableViewController {
     
     var monthlySummariesArray = [MonthlySummary]( )
     
+    // MARK: IBActions
+    @IBAction func menuButtonPressed(sender: AnyObject) {
+        self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
     // MARK: - Overridden methods
     
     override func viewWillAppear(animated: Bool)
