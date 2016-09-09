@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Class that keeps track of the date and provides methods for getting monthly/weekly progress values.
+/// Class that provides manipulations of NSDate to get various date components and Strings to assist with various tasks related to calendar dates.
 class DateTracker
 {
     
@@ -159,5 +159,55 @@ class DateTracker
         }
         
         return monthlyDatePickerArray
+    }
+    
+    /**
+     Gets array of months and years (as string "MMMM yyyy") that need to be checked for summaries.
+     - Returns: an array of months in string form that need to be checked.
+     */
+    func getDatesToCheckForSummaries( currentUser: User ) -> [String]
+    {
+        let calendar = NSCalendar.currentCalendar()
+        let currentDate = calendar.components([.Day, .Month, .Year], fromDate: NSDate( ))
+        let startDate = calendar.components([.Day, .Month, .Year], fromDate: currentUser.startDate )
+        if (currentDate.month == startDate.month) && (currentDate.year == startDate.year)
+        {
+            //still the first month so don't do anything
+            print("MRH: no summaries to create")
+            return [String]( )
+        }
+        //build an array of month strings representing dictionary keys to check in users monthlySummaries property
+        let monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        var monthsToCheck = [String]( )
+        
+        let startMonth = startDate.month - 1
+        let prevMonth = currentDate.month - 2
+        
+        print("start: \(monthsOfTheYear[startMonth])") //DEBUG
+        print("prev: \(monthsOfTheYear[prevMonth])") //DEBUG
+        
+        if startMonth == prevMonth
+        {
+            monthsToCheck.append("\(monthsOfTheYear[startMonth]) \(startDate.year)")
+        }
+        else if startMonth < prevMonth
+        {
+            for i in startMonth...prevMonth
+            {
+                monthsToCheck.append("\(monthsOfTheYear[i]) \(startDate.year)")
+            }
+        }
+        else
+        {
+            for i in startMonth...monthsOfTheYear.count-1
+            {
+                monthsToCheck.append("\(monthsOfTheYear[i]) \(startDate.year)")
+            }
+            for i in 0...prevMonth
+            {
+                monthsToCheck.append("\(monthsOfTheYear[i]) \(startDate.year+1)")
+            }
+        }
+        return monthsToCheck
     }
 }

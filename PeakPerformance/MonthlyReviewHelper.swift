@@ -21,55 +21,7 @@ class MonthlyReviewHelper
     /// Currently logged in user.
     let currentUser: User
   
-    /**
-        Gets array of months (as string) that need to be checked.
-        - Returns: an array of months in string form that need to be checked.
-    */
-    private func getMonthsToCheck( ) -> [String]
-    {
-        let calendar = NSCalendar.currentCalendar()
-        let currentDate = calendar.components([.Day, .Month, .Year], fromDate: NSDate( ))
-        let startDate = calendar.components([.Day, .Month, .Year], fromDate: currentUser.startDate )
-        if (currentDate.month == startDate.month) && (currentDate.year == startDate.year)
-        {
-            //still the first month so don't do anything
-            print("MRH: no summaries to create")
-            return [String]( )
-        }
-        //build an array of month strings representing dictionary keys to check in users monthlySummaries property
-        let monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        var monthsToCheck = [String]( )
-        
-        let startMonth = startDate.month - 1
-        let prevMonth = currentDate.month - 2
-        
-        print("start: \(monthsOfTheYear[startMonth])") //DEBUG
-        print("prev: \(monthsOfTheYear[prevMonth])") //DEBUG
-        
-        if startMonth == prevMonth
-        {
-            monthsToCheck.append(monthsOfTheYear[startMonth])
-        }
-        else if startMonth < prevMonth
-        {
-            for i in startMonth...prevMonth
-            {
-                monthsToCheck.append(monthsOfTheYear[i])
-            }
-        }
-        else
-        {
-            for i in startMonth...monthsOfTheYear.count-1
-            {
-                monthsToCheck.append(monthsOfTheYear[i])
-            }
-            for i in 0...prevMonth
-            {
-                monthsToCheck.append(monthsOfTheYear[i])
-            }
-        }
-        return monthsToCheck
-    }
+ 
     
     /**
         Checks a range of months from user.startMonth...currentMonth - 1 to see if those months have had their summaries created.
@@ -80,13 +32,15 @@ class MonthlyReviewHelper
     func checkMonthlyReview( ) -> UIAlertController?
     {
         
-        let monthsToCheck = self.getMonthsToCheck()
+        let datesToCheck = DateTracker( ).getDatesToCheckForSummaries( self.currentUser )
         //let calendar = NSCalendar.currentCalendar()
         var alertUserToReview = false
         
         //check user.monthlySummaries to see if monthlySummary has been completed for that month
-        for month in monthsToCheck
+        for date in datesToCheck
         {
+            let dateAr = date.componentsSeparatedByString(" ")
+            let month = dateAr[0]
             print("MRH: checking for summary for \(month)")
             if currentUser.monthlySummaries[month]! == nil
             {
@@ -94,8 +48,8 @@ class MonthlyReviewHelper
                 alertUserToReview = true
                 //no summary for this month, so create one
                 let dateFormatter = NSDateFormatter( )
-                dateFormatter.dateFormat = "MMMM" //TODO: - Add year for summaries
-                guard let date = dateFormatter.dateFromString(month) else
+                dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING //TODO: - Add year for summaries
+                guard let date = dateFormatter.dateFromString(date) else
                 {
                     print("MRH: could not create monthly summary date")
                     return nil
@@ -104,7 +58,8 @@ class MonthlyReviewHelper
                 self.moveWeeklyGoalsFromUserToSummary(monthlySummary)
                 self.moveMonthlyGoalsFromUserToSummary(monthlySummary)
                 self.currentUser.monthlySummaries[month] = monthlySummary
-                print("MRH: created summary for \(month)")
+                print("MRH: created summary for \(date)")
+                DataService( ).saveSummary(currentUser, summary: monthlySummary)
             }
         }
         if alertUserToReview

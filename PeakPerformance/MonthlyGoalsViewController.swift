@@ -10,7 +10,7 @@
 import UIKit
 import SideMenu
 
-
+//TODO: - change complete alert controller (no kick it)
 /**
  Class that controls the weekly goals view.
  */

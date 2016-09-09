@@ -175,7 +175,7 @@
 	- monthly review
 		- updating summary kla ratings with slider values
 		
-09/09/2016 03:00 -
+09/09/2016 03:00 - 5:15, 8:00 - 9:15, 13:55 -
 	- monthly review
 		
 	- changed date format string constants
