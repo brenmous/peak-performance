@@ -18,8 +18,11 @@ class MonthlySummary
     /// The date of the summary (MMMM yyyy e.g. "August 2016").
     var date: NSDate //maybe string
     
-    /// The weekly goals contained within the month.
+    /// The completed weekly goals for this month.
     var weeklyGoals = [WeeklyGoal]( )
+    
+    /// The completed monthly goals for this summary.
+    var monthlyGoals = [MonthlyGoal]( )
     
     /// Rating of each key life area.
     var klaRatings = [ KLA_FAMILY: 0.0, KLA_WORKBUSINESS: 0.0, KLA_PERSONALDEV: 0.0, KLA_FINANCIAL: 0.0,

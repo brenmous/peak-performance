@@ -10,15 +10,7 @@ import UIKit
 import Firebase
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
-/*
-/**
-    Protocol for specifying log in DataService requirements.
- */
-protocol LogInDataService
-{
-    func loadUser( uid: String ) -> User
-}
-*/
+//TODO: - Load summaries from database
 
 /**
     Class that controls the Log In view.

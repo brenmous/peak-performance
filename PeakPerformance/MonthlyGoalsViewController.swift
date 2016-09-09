@@ -201,6 +201,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath) as! MonthlyGoalTableViewCell
         let goal = currentUser!.monthlyGoals[indexPath.row]
         
+    
+        
         //Configure the cell
         var klaIcon: String
         let kla = goal.kla
@@ -250,7 +252,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             cell.completeButton.enabled = true
             cell.accessoryType = .None
         }
-        
         
         return cell
     }

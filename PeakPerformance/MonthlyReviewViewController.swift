@@ -31,6 +31,7 @@ class MonthlyReviewViewController: UITableViewController {
     
     @IBAction func nextButtonPushed(sender: AnyObject)
     {
+        print("don't push me cause i'm close to the edge")
         updateSummaryWithSliderValues( )
         
         for (key, val) in self.summary!.klaRatings
@@ -38,6 +39,7 @@ class MonthlyReviewViewController: UITableViewController {
             print("\(key) rated at \(val)")
         }
         //go to next view
+        performSegueWithIdentifier(GO_TO_SECOND_REVIEW_SEGUE, sender: self)
     }
     
     /// Get values from sliders and save to self.summary
@@ -71,14 +73,19 @@ class MonthlyReviewViewController: UITableViewController {
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == GO_TO_SECOND_REVIEW_SEGUE
+        {
+            let dvc = segue.destinationViewController as! SecondMonthlyReviewViewController
+            dvc.currentUser = self.currentUser
+            dvc.summary = self.summary
+        }
     }
-    */
+    
 
 }

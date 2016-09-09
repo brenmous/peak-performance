@@ -184,7 +184,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         {
             self.presentViewController(alert!, animated: true, completion: nil)
         }
-        
+
         //reload the view
         self.tableView.reloadData()
         
@@ -194,6 +194,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        DateTracker( ).getCurrentYearAsString()
     
     }
  
@@ -211,14 +213,15 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        
+        //only count goals with summarised = false
         return currentUser!.weeklyGoals.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> GoalTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath) as! GoalTableViewCell
         let goal = currentUser!.weeklyGoals[indexPath.row]
-        //print("WGVC: reconfiguring cells") //DEBUG
+    
+        
         // Configure the cell...
         var klaIcon: String
         let kla = goal.kla

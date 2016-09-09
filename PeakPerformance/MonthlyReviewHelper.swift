@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 //TODO: - save summaries to database
-//TODO: - save user goal changes to database
-//TODO: - monthly goals
+//TODO: - carry over incomplete goals and mark as overdue
+
 
 /**
     This class handles checking if monthly summaries have been created for months and creates them if not.
@@ -81,7 +81,7 @@ class MonthlyReviewHelper
     {
         
         let monthsToCheck = self.getMonthsToCheck()
-        let calendar = NSCalendar.currentCalendar()
+        //let calendar = NSCalendar.currentCalendar()
         var alertUserToReview = false
         
         //check user.monthlySummaries to see if monthlySummary has been completed for that month
@@ -101,34 +101,70 @@ class MonthlyReviewHelper
                     return nil
                 }
                 let monthlySummary = MonthlySummary(date: date)
-                
-                //check if user made any goals for this month
-                var numberOfGoalsRemoved = 0
-                for (index, goal) in currentUser.weeklyGoals.enumerate()
-                {
-                    let goalDate = calendar.components([.Month, .Year], fromDate: goal.deadline)
-                    let summaryDate = calendar.components([.Month, .Year], fromDate: monthlySummary.date)
-                    
-                    //place any goals for this month in the summary array and remove them from the user array
-                    //In theory, we shouldn't have to check the date. But in theory and shouldn't aren't a good mix so we should.
-                    if (goalDate.month == summaryDate.month) //TODO: - check year
-                    {
-                        monthlySummary.weeklyGoals.append(goal)
-                        currentUser.weeklyGoals.removeAtIndex(index - numberOfGoalsRemoved)
-                        numberOfGoalsRemoved += 1 //they deprecated ++, i can't believe it
-                    }
-                }
-            
+                self.moveWeeklyGoalsFromUserToSummary(monthlySummary)
+                self.moveMonthlyGoalsFromUserToSummary(monthlySummary)
                 self.currentUser.monthlySummaries[month] = monthlySummary
                 print("MRH: created summary for \(month)")
             }
         }
-        
         if alertUserToReview
         {
             return self.getReviewAlert( )
         }
         return nil
+    }
+    
+    /** 
+        Moves users weekly goals from the User objec to the MonthlySummary object.
+            - Parameters:
+                - monthlySummary: summary being dealt with.
+     */
+    func moveWeeklyGoalsFromUserToSummary( monthlySummary: MonthlySummary )
+    {
+        let calendar = NSCalendar.currentCalendar()
+        var numberOfGoalsRemoved = 0
+        for (index, goal) in currentUser.weeklyGoals.enumerate()
+        {
+            let goalDate = calendar.components([.Month, .Year], fromDate: goal.deadline)
+            let summaryDate = calendar.components([.Month, .Year], fromDate: monthlySummary.date)
+            
+            //place any goals for this month in the summary array and remove them from the user array
+            if (goalDate.month == summaryDate.month) //TODO: - check year (part of 12 month roll over, sprint 5)
+            {
+                monthlySummary.weeklyGoals.append(goal)
+                //If the goal is complete, we don't need it in the User's array anymore
+                if goal.complete
+                {
+                    self.currentUser.weeklyGoals.removeAtIndex(index - numberOfGoalsRemoved)
+                    numberOfGoalsRemoved += 1
+                }
+                //...if it isn't complete, carry it over and mark as overdue
+            }
+        }
+    }
+    
+    func moveMonthlyGoalsFromUserToSummary( monthlySummary: MonthlySummary )
+    {
+        let calendar = NSCalendar.currentCalendar()
+        var numberOfGoalsRemoved = 0
+        for (index ,goal) in currentUser.monthlyGoals.enumerate()
+        {
+            let goalDate = calendar.components([.Month], fromDate: goal.deadline)
+            let summaryDate = calendar.components([.Month], fromDate: monthlySummary.date)
+            
+            //place any goals for this month in the summary array and remove them from the user array
+            if ( goalDate.month == summaryDate.month ) //TODO: - Check year (12 month roll over)
+            {
+                monthlySummary.monthlyGoals.append(goal)
+                //If the goal is complete, we don't need it in the User's array anymore
+                if goal.complete
+                {
+                    self.currentUser.monthlyGoals.removeAtIndex(index - numberOfGoalsRemoved)
+                    numberOfGoalsRemoved += 1
+                }
+                //...if it isn't complete, carry it over and mark as overdue
+            }
+        }
     }
     
     /**

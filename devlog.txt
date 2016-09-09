@@ -170,6 +170,14 @@
 		- creation of monthly summaries
 		- alerting user to complete review
 
-08/09/2016 16:30 - 17:15
+08/09/2016 16:30 - 17:15, 18:10 - 19:00
 	- fixing repo
+	- monthly review
+		- updating summary kla ratings with slider values
+		
+09/09/2016 03:00 -
+	- monthly review
+		
+	- changed date format string constants
+	- fixed monthly goal deadline issue
 	

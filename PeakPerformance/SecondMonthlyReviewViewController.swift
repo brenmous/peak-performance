@@ -10,6 +10,45 @@ import UIKit
 
 class SecondMonthlyReviewViewController: UITableViewController {
 
+    /// The currently logged in user.
+    var currentUser: User?
+    
+    /// The summary being reviewed.
+    var summary: MonthlySummary?
+    
+    // MARK: - Outlets
+    @IBOutlet weak var whatIsWorkingTextView: UITextView!
+    @IBOutlet weak var whatIsNotWorkingTextView: UITextView!
+    @IBOutlet weak var whatHaveIImprovedTextView: UITextView!
+    @IBOutlet weak var doIHaveToChangeTextView: UITextView!
+    
+    // MARK: - Actions
+    @IBAction func doneButtonPressed(sender: AnyObject)
+    {
+        self.updateSummaryWithText( )
+        //DataService( ).saveSummary( user: User, summary: MonthlySummary )
+        //go back to history view
+        
+    }
+    
+    // MARK: - Methods
+    
+    /// Updates the summary being reviewed with text from the text views.
+    func updateSummaryWithText( )
+    {
+        guard let s = self.summary else
+        {
+            print("SMRVC: could not get summary")
+            return
+        }
+        s.whatIsWorking = self.whatIsWorkingTextView.text
+        s.whatIsNotWorking = self.whatIsNotWorkingTextView.text
+        s.whatHaveIImproved = self.whatHaveIImprovedTextView.text
+        s.doIHaveToChange = self.doIHaveToChangeTextView.text //TODO: - Temp. Make this radio buttons.
+    }
+    
+    // MARK: - Overriden methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

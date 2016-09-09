@@ -49,7 +49,7 @@ class DataService  //: SignUpDataService, LogInDataService
         
         //convert startDate to string
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = STARTDATE_FORMAT_STRING
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let startDateString = dateFormatter.stringFromDate(user.startDate)
         
         userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
@@ -89,7 +89,7 @@ class DataService  //: SignUpDataService, LogInDataService
                 
                 //convert startDate to string
                 let dateFormatter = NSDateFormatter( )
-                dateFormatter.dateFormat = STARTDATE_FORMAT_STRING
+                dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
                 let startDateString = dateFormatter.stringFromDate(user.startDate)
                 userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
                 
@@ -100,7 +100,7 @@ class DataService  //: SignUpDataService, LogInDataService
             let startDateString = snapshot.value![STARTDATE_REF_STRING]
             //convert startDateString to NSDate
             let dateFormatter = NSDateFormatter( )
-            dateFormatter.dateFormat = STARTDATE_FORMAT_STRING
+            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             guard let startDate = dateFormatter.dateFromString(startDateString as! String) else
             {
                 print("DS: could not convert user start date") //DEBUG
@@ -147,11 +147,11 @@ class DataService  //: SignUpDataService, LogInDataService
         let dateFormatter = NSDateFormatter( )
         if goal is WeeklyGoal
         {
-            dateFormatter.dateFormat = "dd/MM/yyyy"
+            dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
         }
         else if goal is MonthlyGoal
         {
-            dateFormatter.dateFormat = "MMMM"
+            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         }
         goalRef.child(DEADLINE_REF_STRING).setValue(dateFormatter.stringFromDate(goal.deadline) )
         print("DS: saved goal \(goal.gid) under gid" ) //DEBUG
@@ -180,7 +180,7 @@ class DataService  //: SignUpDataService, LogInDataService
                     let kickItText = goalSnapshot.value![KICKIT_REF_STRING] as! String
                     let deadline = goalSnapshot.value![DEADLINE_REF_STRING] as! String
                     let weeklyGoalID = String(goalSnapshot.key)
-                    let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID, complete: complete, kickItText: kickItText )
+                    let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID, complete: complete, kickItText: kickItText)
                     weeklyGoals.append(weeklyGoal)
                 }
                 print("DS: fetched weekly goals") //DEBUG
@@ -219,7 +219,7 @@ class DataService  //: SignUpDataService, LogInDataService
                     let kickItText = goalSnapshot.value![KICKIT_REF_STRING] as! String
                     let deadline = goalSnapshot.value![DEADLINE_REF_STRING] as! String
                     let gid = String(goalSnapshot.key)
-                    let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid, complete: complete, kickItText: kickItText )
+                    let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid, complete: complete, kickItText: kickItText)
                     monthlyGoals.append(monthlyGoal)
                 }
                 print("DS: fetched monthly goals") //DEBUG
@@ -399,4 +399,21 @@ class DataService  //: SignUpDataService, LogInDataService
             
         })
     }
+    
+    /*
+    // MARK: - Monthly summary methods
+    func saveSummary( user: User, summary: MonthlySummary )
+    {
+        let ref = baseRef.child(SUMMARIES_REF_STRING).child(user.uid)
+        //date: NSDATE
+        //weeklyGoals: [WeeklyGoals]
+        //monthlyGoals: [MonthlyGoals]
+        //kla Ratings: [String:Double]
+        //whatIsWorking: string
+        //whatIsNotWorking: string
+        //improved: String
+        //doIhaveToChange: string
+        //reviewed: bool
+    }
+ */
 }

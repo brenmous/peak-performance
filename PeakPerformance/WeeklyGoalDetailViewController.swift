@@ -99,7 +99,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         self.view.endEditing(true)
         
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = DATE_FORMAT_STRING
+        dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
             picker, value, index in
             print("WGDVC: value = \(value)")
@@ -187,7 +187,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         cg.goalText = goalTextView.text!
         cg.kla = klaTextField.text!
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = DATE_FORMAT_STRING
+        dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
         guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else
         {
             return
@@ -206,7 +206,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         goalTextView.text = cg.goalText
         klaTextField.text = cg.kla
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = DATE_FORMAT_STRING
+        dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
         deadlineTextField.text = dateFormatter.stringFromDate(cg.deadline)
     }
     

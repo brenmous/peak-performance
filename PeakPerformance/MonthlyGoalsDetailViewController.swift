@@ -159,7 +159,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     {
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
-        let deadline = deadlineTextField.text!
+        let deadline = ("\(deadlineTextField.text!) \(DateTracker().getCurrentYearAsString( ))")
         let gid = NSUUID( ).UUIDString
         let mg = MonthlyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(mg)
@@ -176,7 +176,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         cg.goalText = goalTextView.text!
         cg.kla = klaTextField.text!
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = DATE_FORMAT_STRING
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else
         {
             print("WGDVC: could not format date")
