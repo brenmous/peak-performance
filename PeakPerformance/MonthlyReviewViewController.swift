@@ -31,13 +31,8 @@ class MonthlyReviewViewController: UITableViewController {
     
     @IBAction func nextButtonPushed(sender: AnyObject)
     {
-        print("don't push me cause i'm close to the edge")
         updateSummaryWithSliderValues( )
-        
-        for (key, val) in self.summary!.klaRatings
-        {
-            print("\(key) rated at \(val)")
-        }
+    
         //go to next view
         performSegueWithIdentifier(GO_TO_SECOND_REVIEW_SEGUE, sender: self)
     }
@@ -59,8 +54,7 @@ class MonthlyReviewViewController: UITableViewController {
         s.klaRatings[KLA_FINANCIAL] = Double(self.financeSlider.value)
         s.klaRatings[KLA_EMOSPIRITUAL] = Double(self.emotionalSpiritualSlider.value)
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);

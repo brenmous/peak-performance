@@ -26,8 +26,19 @@ class SecondMonthlyReviewViewController: UITableViewController {
     @IBAction func doneButtonPressed(sender: AnyObject)
     {
         self.updateSummaryWithText( )
-        //DataService( ).saveSummary( user: User, summary: MonthlySummary )
-        //go back to history view
+        guard let s = self.summary else
+        {
+            print("SMRVC: error unwrapping summary")
+            return
+        }
+        guard let cu = self.currentUser else
+        {
+            print("SMRVC: error unwrapping user")
+            return
+        }
+        s.reviewed = true
+        DataService( ).saveSummary( cu, summary: s )
+        performSegueWithIdentifier( REVIEW_TO_HISTORY_UNWIND_SEGUE, sender: self)
         
     }
     
@@ -45,6 +56,27 @@ class SecondMonthlyReviewViewController: UITableViewController {
         s.whatIsNotWorking = self.whatIsNotWorkingTextView.text
         s.whatHaveIImproved = self.whatHaveIImprovedTextView.text
         s.doIHaveToChange = self.doIHaveToChangeTextView.text //TODO: - Temp. Make this radio buttons.
+    }
+    
+    // MARK: - keyboard stuff
+    /// Work around for dismissing keyboard on text view.
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        if text == "\n"
+        {
+            textView.resignFirstResponder( )
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
+    
+    //Dismisses keyboard when tap outside keyboard detected.
+    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    {
+        self.view.endEditing(true)
     }
     
     // MARK: - Overriden methods

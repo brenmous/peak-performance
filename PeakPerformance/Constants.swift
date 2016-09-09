@@ -295,6 +295,9 @@ let GO_TO_REVIEW_SEGUE = "goToMonthlyReview"
 /// Segue for going from first MR view to second MR view
 let GO_TO_SECOND_REVIEW_SEGUE = "goToMonthlyReviewSecond"
 
+/// Unwind segue from monthly review to history
+let REVIEW_TO_HISTORY_UNWIND_SEGUE = "unwindFromMonthlyReview"
+
 
 // MARK: - Alert sheet strings
 
