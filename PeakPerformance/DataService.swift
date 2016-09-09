@@ -501,6 +501,7 @@ class DataService  //: SignUpDataService, LogInDataService
                 {
                     
                     let dateString = String(s.key)
+                    print("DS: fetching summary for \(dateString)")
                     let dateFormatter = NSDateFormatter( )
                     dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
                     let date = dateFormatter.dateFromString(dateString)
@@ -510,14 +511,15 @@ class DataService  //: SignUpDataService, LogInDataService
                     summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
                     summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
                     summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
-                    summary.klaRatings[KLA_FAMILY] = Double(snapshot.value![KLA_FAMILY] as! String)
-                    summary.klaRatings[KLA_PARTNER] = Double(snapshot.value![KLA_PARTNER] as! String)
-                    summary.klaRatings[KLA_FINANCIAL] = Double(snapshot.value![KLA_FINANCIAL] as! String)
-                    summary.klaRatings[KLA_PERSONALDEV] = Double(snapshot.value![KLA_PERSONALDEV] as! String)
-                    summary.klaRatings[KLA_EMOSPIRITUAL] = Double(snapshot.value![KLA_EMOSPIRITUAL] as! String)
-                    summary.klaRatings[KLA_WORKBUSINESS] = Double(snapshot.value![KLA_WORKBUSINESS] as! String)
-                    summary.klaRatings[KLA_FRIENDSSOCIAL] = Double(snapshot.value![KLA_FRIENDSSOCIAL] as! String)
-                    summary.klaRatings[KLA_HEALTHFITNESS] = Double(snapshot.value![KLA_HEALTHFITNESS] as! String)
+                    summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
+                    summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
+                    summary.klaRatings[KLA_PARTNER] = Double(s.value![KLA_PARTNER] as! String)
+                    summary.klaRatings[KLA_FINANCIAL] = Double(s.value![KLA_FINANCIAL] as! String)
+                    summary.klaRatings[KLA_PERSONALDEV] = Double(s.value![KLA_PERSONALDEV] as! String)
+                    summary.klaRatings[KLA_EMOSPIRITUAL] = Double(s.value![KLA_EMOSPIRITUAL] as! String)
+                    summary.klaRatings[KLA_WORKBUSINESS] = Double(s.value![KLA_WORKBUSINESS] as! String)
+                    summary.klaRatings[KLA_FRIENDSSOCIAL] = Double(s.value![KLA_FRIENDSSOCIAL] as! String)
+                    summary.klaRatings[KLA_HEALTHFITNESS] = Double(s.value![KLA_HEALTHFITNESS] as! String)
                     
                     self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
                     
@@ -527,6 +529,7 @@ class DataService  //: SignUpDataService, LogInDataService
                     //let monthAsString = dateFormatter.stringFromDate(date!)
                     let dateStringArray = dateString.componentsSeparatedByString(" ")
                     let monthAsString = String(dateStringArray[0])
+                    print("DS: summary fetched for \(dateString)")
                     monthlySummaries[monthAsString] = summary
                 }
                 print("DS: summaries fetched")

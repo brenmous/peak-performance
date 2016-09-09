@@ -175,14 +175,15 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                             user.values = values
                             
                             self.dataService.loadSummaries(user) { (summaries) in
-                                    //user.summaries = summaries
-                                }
+                                user.monthlySummaries = summaries
+                                
                             
                             print("LIVC: content fetched, going to home screen")
                             self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                             
                             //how many layers of indentation are you on?
                             //like maybe 6 or 7 right now my dude
+                            }
                         }
                     }
                 }

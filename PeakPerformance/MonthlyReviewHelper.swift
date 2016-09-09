@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-//TODO: - save summaries to database
 //TODO: - carry over incomplete goals and mark as overdue
-
+//TODO: - remove completed and summarised user goals from user node in DB
 
 /**
     This class handles checking if monthly summaries have been created for months and creates them if not.
@@ -61,6 +60,10 @@ class MonthlyReviewHelper
                 print("MRH: created summary for \(date)")
                 DataService( ).saveSummary(currentUser, summary: monthlySummary)
             }
+            else
+            {
+                print("MRH: summary for \(month) exists")
+            }
         }
         if alertUserToReview
         {
@@ -90,6 +93,7 @@ class MonthlyReviewHelper
                 //If the goal is complete, we don't need it in the User's array anymore
                 if goal.complete
                 {
+                    DataService( ).removeGoal(self.currentUser.uid, goal: self.currentUser.weeklyGoals[index - numberOfGoalsRemoved])
                     self.currentUser.weeklyGoals.removeAtIndex(index - numberOfGoalsRemoved)
                     numberOfGoalsRemoved += 1
                 }
@@ -114,6 +118,7 @@ class MonthlyReviewHelper
                 //If the goal is complete, we don't need it in the User's array anymore
                 if goal.complete
                 {
+                    DataService( ).removeGoal(self.currentUser.uid, goal: self.currentUser.monthlyGoals[index - numberOfGoalsRemoved])
                     self.currentUser.monthlyGoals.removeAtIndex(index - numberOfGoalsRemoved)
                     numberOfGoalsRemoved += 1
                 }
