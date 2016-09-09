@@ -163,13 +163,21 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         //sort completed goals and place them at end of array
         currentUser!.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
-        self.tableView.reloadData()
+        
         
         //update progress bar
         updateProgressBar()
         
         //Side Menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: self.currentUser!) //func declaration is in SideMenuViewController
+        
+        //check if a monthly review is needed
+        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
+        if alert != nil
+        {
+            self.presentViewController(alert!, animated: true, completion: nil)
+        }
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad()

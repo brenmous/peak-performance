@@ -137,7 +137,10 @@ class MonthlyReviewHelper
         let cancel = UIAlertAction(title: REVIEW_ALERT_CANCEL, style: .Cancel, handler: nil )
         let confirm = UIAlertAction(title: REVIEW_ALERT_CONFIRM, style: .Default ) { (action) in
             //take user to history to complete review
-            print("MRH: go to history - work in progress")
+            print("MRH: go to history")
+            let controllerParent = reviewAlertController.parentViewController
+            controllerParent?.performSegueWithIdentifier(GO_TO_HISTORY_SEGUE, sender: controllerParent)
+            
         }
         reviewAlertController.addAction(confirm); reviewAlertController.addAction(cancel)
         return reviewAlertController

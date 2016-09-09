@@ -712,11 +712,9 @@
                     <connections>
                         <outlet property="progressViewLabel" destination="6ui-L7-GLp" id="y3a-Jh-tIJ"/>
                         <outlet property="progressViewWG" destination="zAo-br-fB2" id="w5a-28-0ci"/>
-                        <segue destination="m1w-Xs-sRr" kind="unwind" identifier="unwindToLogin" unwindAction="unwindFromWGVC:" id="q7a-c3-7oU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HS0-l7-ZTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="m1w-Xs-sRr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2504" y="144"/>
         </scene>
@@ -989,7 +987,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGC-qG-36f" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="quC-nb-aqH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3227" y="-617"/>
+            <point key="canvasLocation" x="3243" y="155"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="h4V-Hx-YLh">
@@ -2577,7 +2575,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLW-Xh-Pel" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="MCY-Hs-cjn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3362" y="76"/>
+            <point key="canvasLocation" x="3290" y="-572"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="UYv-X6-MRz">
@@ -3971,7 +3969,7 @@
                         <outlet property="whatHaveIImprovedTextView" destination="fJR-mq-tif" id="b8U-FK-775"/>
                         <outlet property="whatIsNotWorkingTextView" destination="kHr-E7-YeV" id="kvU-Qk-nYt"/>
                         <outlet property="whatIsWorkingTextView" destination="n5N-dw-Vwx" id="0Me-vu-apM"/>
-                        <segue destination="wto-Nt-Vnv" kind="unwind" identifier="unwindFromMonthlyReview" unwindAction="unwindFromMonthlyReview:" id="ZMJ-tr-Ufv"/>
+                        <segue destination="wto-Nt-Vnv" kind="unwind" identifier="unwindToHistory" unwindAction="unwindToHistory:" id="ZMJ-tr-Ufv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0m-hb-NN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4007,9 +4005,9 @@
         <image name="weekly-icon_75x75" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hGi-rQ-ckm"/>
-        <segue reference="RnB-wj-eoz"/>
-        <segue reference="F0k-MP-t0R"/>
         <segue reference="mQN-NJ-Qii"/>
+        <segue reference="hGi-rQ-ckm"/>
+        <segue reference="F0k-MP-t0R"/>
+        <segue reference="RnB-wj-eoz"/>
     </inferredMetricsTieBreakers>
 </document>

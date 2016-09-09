@@ -21,7 +21,7 @@ class HistoryViewController: UITableViewController {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    @IBAction func unwindFromMonthlyReview(sender: UIStoryboardSegue){}
+    @IBAction func unwindToHistory(sender: UIStoryboardSegue){}
     
     // MARK: - Overridden methods
     
@@ -65,15 +65,22 @@ class HistoryViewController: UITableViewController {
          self.presentViewController(alert!, animated: true, completion: nil)
          }*/
         
-        //reload the view
-        self.tableView.reloadData()
+        //check if a monthly review is needed
+        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
+        if alert != nil
+        {
+            self.presentViewController(alert!, animated: true, completion: nil)
+        }
+        self.tableView.reloadData( )
     }
     
+  
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
     }
+ 
 
     
     // MARK: - Table view data source

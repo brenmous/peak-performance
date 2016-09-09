@@ -296,7 +296,10 @@ let GO_TO_REVIEW_SEGUE = "goToMonthlyReview"
 let GO_TO_SECOND_REVIEW_SEGUE = "goToMonthlyReviewSecond"
 
 /// Unwind segue from monthly review to history
-let REVIEW_TO_HISTORY_UNWIND_SEGUE = "unwindFromMonthlyReview"
+let UNWIND_TO_HISTORY_SEGUE = "unwindToHistory"
+
+/// Go to history
+let GO_TO_HISTORY_SEGUE = "goToHistory"
 
 
 // MARK: - Alert sheet strings
