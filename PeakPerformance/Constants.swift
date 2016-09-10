@@ -188,6 +188,9 @@ let DREAMLOCALURL_REF_STRING = "localURL"
 let DREAMURL_REF_STRING = "url"
 
 //summary ref strings
+/// Specifies main summaries node in database.
+let SUMMARIES_REF_STRING = "summaries"
+
 /// Specifies summary date in database.
 let SUMMARY_DATE_REF_STRING = "date"
 
@@ -196,6 +199,24 @@ let SUMMARY_WG_REF_STRING = "weeklyGoals"
 
 /// Specifies summary monthly goals in database.
 let SUMMARY_MG_REF_STRING = "monthlyGoals"
+
+/// Specifies summary KLA ratings in databse.
+let SUMMARY_RATINGS_REF_STRING = "ratings"
+
+/// Specifies summary "whatIsWorking" text in database.
+let SUMMARY_WIW_REF_STRING = "working"
+
+/// Specifies summary "whatIsNotWorking" text in database.
+let SUMMARY_WINOTW_REF_STRING = "notWorking"
+
+/// Specifies summary "whatHaveIImproved" text in database.
+let SUMMARY_WHII_REF_STRING = "improved"
+
+/// Specifies summary "doIhaveToChange..." text in database. 
+let SUMMARY_DIHTC_REF_STRING = "needToChange"
+
+/// Specifies summary reviewed boolean in database.
+let SUMMARY_REVIEWED_REF_STRING = "reviewed"
 
 // MARK: - Firebase storage reference strings
 
@@ -273,6 +294,12 @@ let GO_TO_REVIEW_SEGUE = "goToMonthlyReview"
 
 /// Segue for going from first MR view to second MR view
 let GO_TO_SECOND_REVIEW_SEGUE = "goToMonthlyReviewSecond"
+
+/// Unwind segue from monthly review to history
+let UNWIND_TO_HISTORY_SEGUE = "unwindToHistory"
+
+/// Go to history
+let GO_TO_HISTORY_SEGUE = "goToHistory"
 
 
 // MARK: - Alert sheet strings

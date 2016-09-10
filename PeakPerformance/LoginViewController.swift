@@ -11,6 +11,7 @@ import Firebase
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
 //TODO: - Load summaries from database
+//TODO: - speed up initial load
 
 /**
     Class that controls the Log In view.
@@ -173,11 +174,16 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                         self.dataService.loadValues(user.uid) { (values) in
                             user.values = values
                             
+                            self.dataService.loadSummaries(user) { (summaries) in
+                                user.monthlySummaries = summaries
+                                
+                            
                             print("LIVC: content fetched, going to home screen")
                             self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                             
                             //how many layers of indentation are you on?
                             //like maybe 6 or 7 right now my dude
+                            }
                         }
                     }
                 }

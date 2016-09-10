@@ -96,6 +96,14 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         {
             self.updateTextViews( )
         }
+        
+        //check if a monthly review is needed
+        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
+        if alert != nil
+        {
+            self.presentViewController(alert!, animated: true, completion: nil)
+        }
+        self.tableView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +117,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         self.currentUser = cu
         
         print("MVVC: got user \(cu.email) with \(cu.values.count) values")
+        
 
     }
     

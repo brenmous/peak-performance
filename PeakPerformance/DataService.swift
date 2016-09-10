@@ -14,8 +14,8 @@ import Firebase
     This class handles read/write to the Firebase realtime database.
   */
 
-//TODO: Create constants for Firebase DB reference strings.
-//TODO: Experiment with abstracting load/save methods for user content.
+//TODO: - load goals in summary using existing methods
+//TODO: - fix summary reference (summaries->user->year->month)
 class DataService  //: SignUpDataService, LogInDataService
 {
     // MARK: - Properties
@@ -123,21 +123,29 @@ class DataService  //: SignUpDataService, LogInDataService
         - Parameters:
             - uid: the user ID of the user the goal belongs to.
             - goal: the goal being saved.
+            - summaryGoal: whether the goal is part of a summary (removes UID child ref).
     */
-    func saveGoal( uid: String, goal: Goal )
+    func saveGoal( uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "" )
     {
         print("DS: saving goal")
-        var goalsRef = FIRDatabaseReference()
+        var goalType = ""
         if goal is WeeklyGoal
         {
-            goalsRef = baseRef.child(WEEKLYGOALS_REF_STRING)
+           // goalsRef = baseRef.child(WEEKLYGOALS_REF_STRING)
+            goalType = WEEKLYGOALS_REF_STRING
         }
         else if goal is MonthlyGoal
         {
-            goalsRef = baseRef.child(MONTHLYGOALS_REF_STRING)
+            //goalsRef = baseRef.child(MONTHLYGOALS_REF_STRING)
+            goalType = MONTHLYGOALS_REF_STRING
         }
         
-        let goalRef = goalsRef.child(uid).child(goal.gid)
+        var goalRef = baseRef.child(goalType).child(uid).child(goal.gid)
+        //If the goal is part of a summary, we don't the need the UID child reference.
+        if summaryGoal
+        {
+            goalRef = baseRef.child(SUMMARIES_REF_STRING).child(uid).child(summaryDate).child(goalType).child(goal.gid)
+        }
         goalRef.child(GOALTEXT_REF_STRING).setValue(goal.goalText)
         goalRef.child(KLA_REF_STRING).setValue(goal.kla)
         goalRef.child(COMPLETE_REF_STRING).setValue(goal.complete)
@@ -164,11 +172,18 @@ class DataService  //: SignUpDataService, LogInDataService
             - uid: user ID that the goals belong.
             - completion: the block that passes back the fetched goals.
      */
-    func loadWeeklyGoals( uid: String, completion: ( weeklyGoals: [WeeklyGoal] ) -> Void )
+    func loadWeeklyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( weeklyGoals: [WeeklyGoal] ) -> Void)? )
     {
         
         var weeklyGoals = [WeeklyGoal]()
-        let weeklyGoalsRef = baseRef.child(WEEKLYGOALS_REF_STRING).child(uid)
+        var weeklyGoalsRef = baseRef.child(WEEKLYGOALS_REF_STRING).child(uid)
+        if summary != nil
+        {
+            let dateFormatter = NSDateFormatter( )
+            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+            let dateAsString = dateFormatter.stringFromDate(summary!.date)
+            weeklyGoalsRef = baseRef.child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(WEEKLYGOALS_REF_STRING)
+        }
         weeklyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
@@ -183,14 +198,25 @@ class DataService  //: SignUpDataService, LogInDataService
                     let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID, complete: complete, kickItText: kickItText)
                     weeklyGoals.append(weeklyGoal)
                 }
+                if summary != nil
+                {
+                    print("DS: fetched weekly goals for summary")
+                    summary?.weeklyGoals = weeklyGoals
+                    return
+                }
                 print("DS: fetched weekly goals") //DEBUG
-                completion( weeklyGoals: weeklyGoals )
+                completion!( weeklyGoals: weeklyGoals )
                 
             }
             else
             {
+                if summary != nil
+                {
+                    print("DS: no weekly goals for summary")
+                    return
+                }
                 print("DS: no weekly goals to fetch") //DEBUG
-                completion( weeklyGoals: weeklyGoals )
+                completion!( weeklyGoals: weeklyGoals )
                 
             }
         })
@@ -203,11 +229,18 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: user ID that the goals belong.
      - completion: the block that passes back the fetched goals.
      */
-    func loadMonthlyGoals( uid: String, completion: ( monthlyGoals: [MonthlyGoal] ) -> Void )
+    func loadMonthlyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( monthlyGoals: [MonthlyGoal] ) -> Void)? )
     {
 
         var monthlyGoals = [MonthlyGoal]( )
-        let monthlyGoalsRef = baseRef.child(MONTHLYGOALS_REF_STRING).child(uid)
+        var monthlyGoalsRef = baseRef.child(MONTHLYGOALS_REF_STRING).child(uid)
+        if summary != nil
+        {
+            let dateFormatter = NSDateFormatter( )
+            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+            let dateAsString = dateFormatter.stringFromDate(summary!.date)
+            monthlyGoalsRef = baseRef.child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(MONTHLYGOALS_REF_STRING)
+        }
         monthlyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
@@ -222,14 +255,25 @@ class DataService  //: SignUpDataService, LogInDataService
                     let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid, complete: complete, kickItText: kickItText)
                     monthlyGoals.append(monthlyGoal)
                 }
+                if summary != nil
+                {
+                    print("DS: fetched monthly goals for summary")
+                    summary?.monthlyGoals = monthlyGoals
+                    return
+                }
                 print("DS: fetched monthly goals") //DEBUG
-                completion( monthlyGoals: monthlyGoals )
+                completion!( monthlyGoals: monthlyGoals )
                 
             }
             else
             {
+                if summary != nil
+                {
+                    print("DS: no monthly goals for summary")
+                    return
+                }
                 print("DS: no monthly goals to fetch") //DEBUG
-                completion( monthlyGoals: monthlyGoals )
+                completion!( monthlyGoals: monthlyGoals )
                 
             }
         })
@@ -400,20 +444,106 @@ class DataService  //: SignUpDataService, LogInDataService
         })
     }
     
-    /*
+    
     // MARK: - Monthly summary methods
+    
     func saveSummary( user: User, summary: MonthlySummary )
     {
-        let ref = baseRef.child(SUMMARIES_REF_STRING).child(user.uid)
-        //date: NSDATE
-        //weeklyGoals: [WeeklyGoals]
-        //monthlyGoals: [MonthlyGoals]
-        //kla Ratings: [String:Double]
-        //whatIsWorking: string
-        //whatIsNotWorking: string
-        //improved: String
-        //doIhaveToChange: string
-        //reviewed: bool
+        let dateFormatter = NSDateFormatter( )
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+        let dateAsString = dateFormatter.stringFromDate(summary.date)
+        let ref = baseRef.child(SUMMARIES_REF_STRING).child(user.uid).child(dateAsString)
+        
+        ref.child(SUMMARY_WIW_REF_STRING).setValue(summary.whatIsWorking)
+        ref.child(SUMMARY_WINOTW_REF_STRING).setValue(summary.whatIsNotWorking)
+        ref.child(SUMMARY_WHII_REF_STRING).setValue(summary.whatHaveIImproved)
+        ref.child(SUMMARY_DIHTC_REF_STRING).setValue(summary.doIHaveToChange)
+        ref.child(SUMMARY_REVIEWED_REF_STRING).setValue(summary.reviewed)
+        
+        //save weekly goals
+        if !summary.weeklyGoals.isEmpty
+        {
+            for goal in summary.weeklyGoals
+            {
+                self.saveGoal(user.uid, goal: goal, summaryGoal: true, summaryDate: dateAsString )
+            }
+        }
+        
+        //save monthly goals
+        if !summary.monthlyGoals.isEmpty
+        {
+            for goal in summary.monthlyGoals
+            {
+                self.saveGoal(user.uid, goal: goal, summaryGoal: true, summaryDate: dateAsString )
+            }
+        }
+        
+        //save ratings
+        for (key,val) in summary.klaRatings
+        {
+            ref.child(key).setValue(String(val))
+        }
+        
+        print("DS: saved summary for \(dateAsString)")
+        
     }
- */
+    
+    func loadSummaries( user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void )
+    {
+        var monthlySummaries: [String: MonthlySummary?] =  ["January": nil, "February": nil, "March": nil, "April": nil,
+                                 "May": nil, "June": nil, "July": nil, "August": nil, "September": nil,
+                                 "October": nil, "November": nil, "December": nil]
+        let ref = baseRef.child(SUMMARIES_REF_STRING).child(user.uid)
+        ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if snapshot.exists()
+            {
+                for s in snapshot.children
+                {
+                    
+                    let dateString = String(s.key)
+                    print("DS: fetching summary for \(dateString)")
+                    let dateFormatter = NSDateFormatter( )
+                    dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+                    let date = dateFormatter.dateFromString(dateString)
+                    let summary = MonthlySummary(date: date!)
+                    summary.whatIsWorking = s.value![SUMMARY_WIW_REF_STRING] as! String
+                    summary.whatIsNotWorking = s.value![SUMMARY_WINOTW_REF_STRING] as! String
+                    summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
+                    summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
+                    summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
+                    summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
+                    summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
+                    summary.klaRatings[KLA_PARTNER] = Double(s.value![KLA_PARTNER] as! String)
+                    summary.klaRatings[KLA_FINANCIAL] = Double(s.value![KLA_FINANCIAL] as! String)
+                    summary.klaRatings[KLA_PERSONALDEV] = Double(s.value![KLA_PERSONALDEV] as! String)
+                    summary.klaRatings[KLA_EMOSPIRITUAL] = Double(s.value![KLA_EMOSPIRITUAL] as! String)
+                    summary.klaRatings[KLA_WORKBUSINESS] = Double(s.value![KLA_WORKBUSINESS] as! String)
+                    summary.klaRatings[KLA_FRIENDSSOCIAL] = Double(s.value![KLA_FRIENDSSOCIAL] as! String)
+                    summary.klaRatings[KLA_HEALTHFITNESS] = Double(s.value![KLA_HEALTHFITNESS] as! String)
+                    
+                    self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
+                    
+                    self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
+                    
+                    //dateFormatter.dateFormat = MONTH_FORMAT_STRING
+                    //let monthAsString = dateFormatter.stringFromDate(date!)
+                    let dateStringArray = dateString.componentsSeparatedByString(" ")
+                    let monthAsString = String(dateStringArray[0])
+                    print("DS: summary fetched for \(dateString)")
+                    monthlySummaries[monthAsString] = summary
+                }
+                print("DS: summaries fetched")
+                completion( summaries: monthlySummaries )
+            }
+            else
+            {
+                print("DS: no summaries to fetch")
+                completion( summaries: monthlySummaries )
+            }
+            
+        })
+    }
+    
+    
+    
 }

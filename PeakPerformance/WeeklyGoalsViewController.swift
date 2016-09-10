@@ -178,7 +178,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
 
-        
+        //check if a monthly review is needed
         let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
         if alert != nil
         {

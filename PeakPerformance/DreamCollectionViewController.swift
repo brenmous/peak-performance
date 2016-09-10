@@ -153,6 +153,16 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        
+        //check if a monthly review is needed
+        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
+        if alert != nil
+        {
+            self.presentViewController(alert!, animated: true, completion: nil)
+        }
+        
+        //reload the view
+        self.collectionView?.reloadData()
       
     }
     

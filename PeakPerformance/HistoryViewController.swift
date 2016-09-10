@@ -16,10 +16,12 @@ class HistoryViewController: UITableViewController {
     
     var monthlySummariesArray = [MonthlySummary]( )
     
-    // MARK: IBActions
+    // MARK: - Actions
     @IBAction func menuButtonPressed(sender: AnyObject) {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
+    
+    @IBAction func unwindToHistory(sender: UIStoryboardSegue){}
     
     // MARK: - Overridden methods
     
@@ -63,15 +65,22 @@ class HistoryViewController: UITableViewController {
          self.presentViewController(alert!, animated: true, completion: nil)
          }*/
         
-        //reload the view
-        self.tableView.reloadData()
+        //check if a monthly review is needed
+        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
+        if alert != nil
+        {
+            self.presentViewController(alert!, animated: true, completion: nil)
+        }
+        self.tableView.reloadData( )
     }
     
+  
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
     }
+ 
 
     
     // MARK: - Table view data source
@@ -94,20 +103,24 @@ class HistoryViewController: UITableViewController {
         // Configure the cell...
 
         //hide the "review ready" label (or icon or whatever)
-        cell.reviewReadyLabel.hidden = true
+        //cell.reviewReadyLabel.hidden = true
         
         //set month label
         let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = "MMMM"
+        dateFormatter.dateFormat = MONTH_FORMAT_STRING
         let monthAsString = dateFormatter.stringFromDate(summary.date)
         cell.monthLabel.text = monthAsString
         
         //set "review ready" label
         if summary.reviewed == false
         {
-            cell.reviewReadyLabel.text = "Review ready to complete!"
+            cell.reviewReadyLabel.text = "Review ready to complete!" //make constant
             cell.reviewReadyLabel.textColor = UIColor.magentaColor()
-            cell.reviewReadyLabel.hidden = false
+        }
+        else
+        {
+            cell.reviewReadyLabel.text = "Review complete - view summary" //make constant
+            cell.reviewReadyLabel.textColor = UIColor.blackColor( )
         }
         
         return cell

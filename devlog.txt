@@ -175,9 +175,12 @@
 	- monthly review
 		- updating summary kla ratings with slider values
 		
-09/09/2016 03:00 -
+09/09/2016 03:00 - 5:15, 8:00 - 9:15, 13:55 - 16:40
 	- monthly review
-		
+		- data service
+		- updating summary values on review view
+		- working on notifications/going to history view
+	- various bug fixes
 	- changed date format string constants
 	- fixed monthly goal deadline issue
 	
