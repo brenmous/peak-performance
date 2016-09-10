@@ -130,8 +130,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let mg = cu.monthlyGoals[indexPath.row]
         
         //goal completion confirm alert controller
-        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
-        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in self.completeGoal(mg) }
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG_MONTHLY, preferredStyle: .Alert )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM_MONTHLY, style: .Default ) { (action) in self.completeGoal(mg) }
         let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
         presentViewController(goalCompleteAlertController, animated: true, completion: nil )
@@ -250,12 +250,49 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         if ( goal.complete )
         {
+            cell.userInteractionEnabled = false
             cell.completeButton.hidden = true
             cell.completeButton.enabled = false
+            cell.tintColor = UIColor.darkGrayColor()
             cell.accessoryType = .Checkmark
+            cell.goalTextLabel.textColor = UIColor.lightGrayColor()
+
+            var klaIcon: String
+            let kla = goal.kla
+            switch kla
+            {
+            case KLA_FAMILY:
+                klaIcon = "F-done.png"
+                
+            case KLA_WORKBUSINESS:
+                klaIcon = "W-done.png"
+                
+            case KLA_PARTNER:
+                klaIcon = "P-done.png"
+                
+            case KLA_FINANCIAL:
+                klaIcon = "FI-done.png"
+                
+            case KLA_PERSONALDEV:
+                klaIcon = "PD-done.png"
+                
+            case KLA_EMOSPIRITUAL:
+                klaIcon = "ES-done.png"
+                
+            case KLA_HEALTHFITNESS:
+                klaIcon = "H-done.png"
+                
+            case KLA_FRIENDSSOCIAL:
+                klaIcon = "FR-done.png"
+                
+            default:
+                klaIcon = "F-done.png"
+            }
+            cell.imageView!.image = UIImage(named: klaIcon)
         }
         else
         {
+            cell.userInteractionEnabled = true
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.accessoryType = .None

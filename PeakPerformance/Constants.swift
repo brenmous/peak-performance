@@ -310,8 +310,14 @@ let COMPLETION_ALERT_TITLE = "Congratulations!"
 /// Message for goal completion alert sheet
 let COMPLETION_ALERT_MSG = "How would you take this task to the next level?"
 
+/// Message for goal completion alert sheet
+let COMPLETION_ALERT_MSG_MONTHLY = "Do you want to set this goal as complete?"
+
 /// Title for completion alert confirm action
 let COMPLETION_ALERT_CONFIRM = "Kick it!"
+
+/// Title for completion alert confirm action for Monthly
+let COMPLETION_ALERT_CONFIRM_MONTHLY = "Yes"
 
 /// Title for completion alert cancel action
 let COMPLETION_ALERT_CANCEL = "Cancel"
