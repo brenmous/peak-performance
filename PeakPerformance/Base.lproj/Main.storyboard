@@ -1004,28 +1004,39 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-jz-ffV">
-                                    <rect key="frame" x="25" y="76" width="543" height="33"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I1-jz-ffV">
+                                    <rect key="frame" x="15" y="66" width="543" height="18"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                     <color key="textColor" red="0.76055210828781128" green="0.60986578464508057" blue="0.78792858123779297" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPI-K6-EG8">
-                                    <rect key="frame" x="25" y="57" width="543" height="21"/>
+                                    <rect key="frame" x="15" y="44" width="543" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="RBP-gB-i0H"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUv-ju-osw">
+                                    <rect key="frame" x="15" y="86" width="510" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <color key="textColor" red="0.76055210829999997" green="0.60986578459999996" blue="0.78792858119999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="NPI-K6-EG8" secondAttribute="bottom" constant="39" id="Ff8-uM-yGK"/>
-                                <constraint firstAttribute="trailing" secondItem="NPI-K6-EG8" secondAttribute="trailing" constant="32" id="NTF-vI-TkY"/>
-                                <constraint firstItem="NPI-K6-EG8" firstAttribute="leading" secondItem="6I1-jz-ffV" secondAttribute="leading" id="oNu-NQ-vQH"/>
-                                <constraint firstItem="NPI-K6-EG8" firstAttribute="trailing" secondItem="6I1-jz-ffV" secondAttribute="trailing" id="rhf-Nr-cPc"/>
-                                <constraint firstItem="NPI-K6-EG8" firstAttribute="top" secondItem="43d-sJ-KGF" secondAttribute="top" constant="57" id="s24-nQ-iNU"/>
-                                <constraint firstItem="NPI-K6-EG8" firstAttribute="leading" secondItem="43d-sJ-KGF" secondAttribute="leading" constant="25" id="wKP-R2-Rqi"/>
-                                <constraint firstItem="6I1-jz-ffV" firstAttribute="bottom" secondItem="43d-sJ-KGF" secondAttribute="bottomMargin" id="yKk-qq-xDr"/>
+                                <constraint firstItem="jUv-ju-osw" firstAttribute="leading" secondItem="NPI-K6-EG8" secondAttribute="leading" id="0ui-ua-TZL"/>
+                                <constraint firstItem="jUv-ju-osw" firstAttribute="top" secondItem="6I1-jz-ffV" secondAttribute="bottom" constant="2" id="47D-8s-NHe"/>
+                                <constraint firstItem="6I1-jz-ffV" firstAttribute="trailing" secondItem="NPI-K6-EG8" secondAttribute="trailing" id="95k-Nm-D7D"/>
+                                <constraint firstAttribute="trailing" secondItem="NPI-K6-EG8" secondAttribute="trailing" constant="42" id="A4k-cY-V6P"/>
+                                <constraint firstAttribute="trailing" secondItem="jUv-ju-osw" secondAttribute="trailing" constant="75" id="D6w-Le-jN9"/>
+                                <constraint firstItem="6I1-jz-ffV" firstAttribute="top" secondItem="NPI-K6-EG8" secondAttribute="bottom" constant="1" id="Rqy-II-5aL"/>
+                                <constraint firstItem="NPI-K6-EG8" firstAttribute="top" secondItem="43d-sJ-KGF" secondAttribute="top" constant="44" id="S27-cP-V4B"/>
+                                <constraint firstItem="jUv-ju-osw" firstAttribute="leading" secondItem="6I1-jz-ffV" secondAttribute="leading" id="g17-e2-jib"/>
+                                <constraint firstItem="NPI-K6-EG8" firstAttribute="leading" secondItem="43d-sJ-KGF" secondAttribute="leading" constant="15" id="u9C-au-h4D"/>
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="2Sa-iS-B6G">
@@ -1147,6 +1158,7 @@
                     <connections>
                         <outlet property="emailProfileLabel" destination="6I1-jz-ffV" id="g1a-av-2Vv"/>
                         <outlet property="nameProfileLabel" destination="NPI-K6-EG8" id="lnS-sd-Ulo"/>
+                        <outlet property="startDateProfileLabel" destination="jUv-ju-osw" id="WdN-2o-hAn"/>
                         <segue destination="nzk-OW-G6R" kind="unwind" identifier="unwindFromWGVC" unwindAction="unwindFromWGVC:" id="JJJ-uh-d6s"/>
                     </connections>
                 </tableViewController>
@@ -1603,11 +1615,11 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="65" id="PkM-fj-6jT" customClass="HistoryTableViewCell" customModule="PeakPerformance" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="65" id="PkM-fj-6jT" customClass="HistoryTableViewCell" customModule="PeakPerformance" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="136" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PkM-fj-6jT" id="NPU-PP-U8W">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLA-XV-Bwb">

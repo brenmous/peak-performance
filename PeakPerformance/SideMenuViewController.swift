@@ -19,6 +19,7 @@ class SideMenuViewController: UITableViewController
     
     @IBOutlet weak var nameProfileLabel: UILabel!
     
+    @IBOutlet weak var startDateProfileLabel: UILabel!
     var currentUser: User?
     
     var sb: UIStoryboard?
@@ -83,6 +84,12 @@ class SideMenuViewController: UITableViewController
         }
         emailProfileLabel.text = cu.email
         nameProfileLabel.text = cu.fname
+        
+        //set month label
+        let dateFormatter = NSDateFormatter( )
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+        let monthAsString = dateFormatter.stringFromDate(cu.startDate)
+        startDateProfileLabel.text = "Started \(monthAsString)"
         print("SMVC: \(cu.email)") //DEBUG
         
     }

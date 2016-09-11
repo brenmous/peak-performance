@@ -115,12 +115,12 @@ class HistoryViewController: UITableViewController {
         if summary.reviewed == false
         {
             cell.reviewReadyLabel.text = "Review ready to complete!" //make constant
-            cell.reviewReadyLabel.textColor = UIColor.magentaColor()
+            cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
         }
         else
         {
             cell.reviewReadyLabel.text = "Review complete - view summary" //make constant
-            cell.reviewReadyLabel.textColor = UIColor.blackColor( )
+            cell.reviewReadyLabel.textColor = UIColor.grayColor()
         }
         
         return cell
