@@ -19,7 +19,7 @@ class DateTracker
     }
     
     /// Get the number of days in the current month (28, 30 or 31).
-    private func getNumberOfDaysInCurrentMonth( ) -> Int
+    func getNumberOfDaysInCurrentMonth( ) -> Int
     {
         let range = NSCalendar.currentCalendar().rangeOfUnit(.Day, inUnit: .Month, forDate: NSDate( ))
         return range.length
@@ -160,7 +160,7 @@ class DateTracker
         
         return monthlyDatePickerArray
     }
-    
+ 
     /**
      Gets array of months and years (as string "MMMM yyyy") that need to be checked for summaries.
      - Returns: an array of months in string form that need to be checked.

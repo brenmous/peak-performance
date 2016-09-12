@@ -19,10 +19,15 @@ class SummaryViewController: UITableViewController {
     @IBOutlet weak var whatHaveIImprovedTextView: UITextView!
     @IBOutlet weak var doINeedToChangeTextView: UITextView!
     
+    // MARK: - Actions
+    
+    @IBAction func weeklyButtonPressed(sender: AnyObject)
+    {
+        performSegueWithIdentifier(GO_TO_SECOND_SUMMARY_SEGUE, sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
         self.updateTextViews( )
     }
 
@@ -107,14 +112,19 @@ class SummaryViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == GO_TO_SECOND_SUMMARY_SEGUE
+        {
+            let dvc = segue.destinationViewController as! SecondSummaryViewController
+            dvc.summary = self.summary
+        }
+        
     }
-    */
+    
 
 }

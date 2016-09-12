@@ -304,6 +304,9 @@ let GO_TO_HISTORY_SEGUE = "goToHistory"
 /// Go to summary from history
 let GO_TO_SUMMARY_SEGUE = "goToSummary"
 
+/// Go to second summary view from first summary view.
+let GO_TO_SECOND_SUMMARY_SEGUE = "goToSummarySecond"
+
 
 // MARK: - Alert sheet strings
 

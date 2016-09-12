@@ -31,4 +31,20 @@ class WeeklyGoal: Goal
         let newDeadline = dateFormatter.dateFromString(deadline)
         self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText )
     }
+    
+    /** 
+        Gets what week of the month this goal falls in.
+ 
+        - Returns: an Int from 1 to 5 representing the week of the month the goal deadline falls in.
+    */
+    func getWeekOfGoal( ) -> Int
+    {
+        let day = NSCalendar.currentCalendar().component(.Day, fromDate: self.deadline)
+        var week = (day/7)+1
+        if day % 7 == 0
+        {
+            week = day/7
+        }
+        return week
+    }
 }

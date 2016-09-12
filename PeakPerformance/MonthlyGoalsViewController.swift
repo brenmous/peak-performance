@@ -234,53 +234,16 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
         
         //Configure the cell
-        var klaIcon: String
+        var klaIcon = ""
         let kla = goal.kla
-        switch kla
-        {
-        case KLA_FAMILY:
-            klaIcon = "F.png"
-            
-        case KLA_WORKBUSINESS:
-            klaIcon = "W.png"
-            
-        case KLA_PARTNER:
-            klaIcon = "P.png"
-            
-        case KLA_FINANCIAL:
-            klaIcon = "FI.png"
-            
-        case KLA_PERSONALDEV:
-            klaIcon = "PD.png"
-            
-        case KLA_EMOSPIRITUAL:
-            klaIcon = "ES.png"
-            
-        case KLA_HEALTHFITNESS:
-            klaIcon = "H.png"
-            
-        case KLA_FRIENDSSOCIAL:
-            klaIcon = "FR.png"
-            
-        default:
-            klaIcon = "F.png"
-        }
-  
-        cell.goalTextLabel!.text = goal.goalText
-        cell.imageView!.image = UIImage(named: klaIcon)
-        cell.delegate = self
         
         if ( goal.complete )
         {
-            cell.userInteractionEnabled = false
+            cell.selectionStyle = .None
             cell.completeButton.hidden = true
             cell.completeButton.enabled = false
-            cell.tintColor = UIColor.darkGrayColor()
             cell.accessoryType = .Checkmark
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
-
-            var klaIcon: String
-            let kla = goal.kla
             switch kla
             {
             case KLA_FAMILY:
@@ -310,16 +273,48 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             default:
                 klaIcon = "F-done.png"
             }
-            cell.imageView!.image = UIImage(named: klaIcon)
         }
         else
         {
-            cell.userInteractionEnabled = true
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
+            switch kla
+            {
+            case KLA_FAMILY:
+                klaIcon = "F.png"
+                
+            case KLA_WORKBUSINESS:
+                klaIcon = "W.png"
+                
+            case KLA_PARTNER:
+                klaIcon = "P.png"
+                
+            case KLA_FINANCIAL:
+                klaIcon = "FI.png"
+                
+            case KLA_PERSONALDEV:
+                klaIcon = "PD.png"
+                
+            case KLA_EMOSPIRITUAL:
+                klaIcon = "ES.png"
+                
+            case KLA_HEALTHFITNESS:
+                klaIcon = "H.png"
+                
+            case KLA_FRIENDSSOCIAL:
+                klaIcon = "FR.png"
+                
+            default:
+                klaIcon = "F.png"
+            }
+            
         }
+        
+        cell.goalTextLabel!.text = goal.goalText
+        cell.imageView!.image = UIImage(named: klaIcon)
+        cell.delegate = self
         
         return cell
     }
@@ -344,15 +339,31 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             cu.monthlyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
-        else if editingStyle == .Insert
-        {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
     }
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool
+    {
+        if identifier == EDIT_MONTHLY_GOAL_SEGUE
+        {
+            guard let indexPath = self.tableView.indexPathForSelectedRow else
+            {
+                print("WGVC: couldn't get index path")
+                return false
+            }
+            let goal = currentUser!.monthlyGoals[indexPath.row]
+            //don't segue to detail view if goal has been completed
+            if goal.complete
+            {
+                return false
+            }
+            
+        }
+        return true
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == ADD_MONTHLY_GOAL_SEGUE
         {

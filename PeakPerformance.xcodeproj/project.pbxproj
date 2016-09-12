@@ -53,6 +53,7 @@
 		B569FDFC1D815A230093A827 /* SecondMonthlyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */; };
 		B577EAE71D86B6A70039BB76 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */; };
 		B577EAE91D86BE230039BB76 /* SecondSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */; };
+		B577EAEB1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAEA1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift */; };
 		B5789A2D1D6839D4000A3EEF /* tutorial-actualreview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5789A2C1D6839D4000A3EEF /* tutorial-actualreview.jpg */; };
 		B5789A2F1D6839E2000A3EEF /* splashcreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5789A2E1D6839E2000A3EEF /* splashcreen.jpg */; };
 		B5789A311D683B70000A3EEF /* doneicon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5789A301D683B70000A3EEF /* doneicon.jpg */; };
@@ -147,6 +148,7 @@
 		B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondMonthlyReviewViewController.swift; sourceTree = "<group>"; };
 		B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSummaryViewController.swift; sourceTree = "<group>"; };
+		B577EAEA1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		B5789A2C1D6839D4000A3EEF /* tutorial-actualreview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-actualreview.jpg"; sourceTree = "<group>"; };
 		B5789A2E1D6839E2000A3EEF /* splashcreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = splashcreen.jpg; sourceTree = "<group>"; };
 		B5789A301D683B70000A3EEF /* doneicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doneicon.jpg; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
 				B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */,
 				B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */,
+				B577EAEA1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
 				B51BD7991D7EA874003EA9AC /* MonthlyReviewHelper.swift in Sources */,
 				B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */,
+				B577EAEB1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift in Sources */,
 				44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */,
 				B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */,
 				B53132A91D7E74670027F4F4 /* MonthlyReviewViewController.swift in Sources */,
