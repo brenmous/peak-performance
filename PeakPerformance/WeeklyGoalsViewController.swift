@@ -252,7 +252,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         if ( goal.complete )
         {
-            cell.selectionStyle = .None
+            cell.userInteractionEnabled = false
             cell.completeButton.hidden = true
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
@@ -357,26 +357,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     }
     
     // MARK: - Navigation
-
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool
-    {
-        if identifier == EDIT_WEEKLY_GOAL_SEGUE
-        {
-            guard let indexPath = self.tableView.indexPathForSelectedRow else
-            {
-                print("WGVC: couldn't get index path")
-                return false
-            }
-            let goal = currentUser!.weeklyGoals[indexPath.row]
-            //don't segue to detail view if goal has been completed
-            if goal.complete
-            {
-                return false
-            }
-            
-        }
-        return true
-    }
     
   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

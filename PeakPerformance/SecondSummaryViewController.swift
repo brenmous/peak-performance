@@ -15,8 +15,12 @@ class SecondSummaryViewController: UITableViewController {
     
     var weeklyGoalsByWeek = [[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal]()]
     
-    // MARK: - Actions
+    // MARK: - Overriden methods
     
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+    }
     
     override func viewDidLoad()
     {
@@ -43,11 +47,15 @@ class SecondSummaryViewController: UITableViewController {
             weeklyGoalsByWeek[goal.getWeekOfGoal() - 1].append(goal)
         }
         
-        //sort subarrays by goal completion
-        for var weekOfGoals in weeklyGoalsByWeek
+        //sort completed goals and place them at end of array
+        for index in 0...weeklyGoalsByWeek.count - 1
         {
-            weekOfGoals.sortInPlace({!$0.complete && $1.complete})
+            if !weeklyGoalsByWeek[index].isEmpty
+            {
+                weeklyGoalsByWeek[index].sortInPlace({$0.complete && !$1.complete})
+            }
         }
+        
         
     }
 
@@ -69,21 +77,52 @@ class SecondSummaryViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        //if there were no goals for that week, make a section for a "no goals" label
+        if self.weeklyGoalsByWeek[section].count == 0
+        {
+            return 1
+        }
+        
         // return number of goals in each week
         return self.weeklyGoalsByWeek[section].count
     }
-
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        if !self.weeklyGoalsByWeek[indexPath.section].isEmpty
+        {
+            let goal = self.weeklyGoalsByWeek[indexPath.section][indexPath.row]
+            if !goal.kickItText.isEmpty
+            {
+                return 130 //TODO: - Make row height constants
+            }
+        }
+        return 53
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> SecondSummaryTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("summaryCell", forIndexPath: indexPath) as! SecondSummaryTableViewCell
 
+        //no goals for this week so present "no goal" label
+        if self.weeklyGoalsByWeek[indexPath.section].isEmpty
+        {
+            cell.goalTextLabel.text = "No goals for this week." //TODO: - Make constant
+            cell.userInteractionEnabled = false
+            cell.selectionStyle = .None
+            return cell
+        }
+        
         let goal = self.weeklyGoalsByWeek[indexPath.section][indexPath.row]
         
         // Configure the cell...
+        
+        cell.kickItTextView.hidden = true
+        
         var klaIcon = ""
         let kla = goal.kla
         
-        if ( goal.complete )
+        if goal.complete
         {
             cell.accessoryType = .Checkmark
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
@@ -116,6 +155,14 @@ class SecondSummaryViewController: UITableViewController {
             default:
                 klaIcon = "F-done.png"
             }
+            
+            if !goal.kickItText.isEmpty
+            {
+                cell.kickItTextView.text = "Kick it to the next level: \(goal.kickItText)"
+                cell.kickItTextView.hidden = false
+            }
+         
+            
         }
         else
         {
@@ -154,57 +201,13 @@ class SecondSummaryViewController: UITableViewController {
             
         }
         
-        cell.goalTextLabel!.text = goal.goalText
-        cell.imageView!.image = UIImage(named: klaIcon)
+        cell.goalTextLabel.text = goal.goalText
+        cell.klaIconImageView.image = UIImage(named: klaIcon)
         cell.userInteractionEnabled = false
+        cell.selectionStyle = .None
         
         return cell
     }
-    
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

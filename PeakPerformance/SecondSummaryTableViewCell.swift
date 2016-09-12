@@ -11,6 +11,8 @@ import UIKit
 class SecondSummaryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var goalTextLabel: UILabel!
+    @IBOutlet weak var kickItTextView: UITextView!
+    @IBOutlet weak var klaIconImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
