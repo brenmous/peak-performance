@@ -193,9 +193,27 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     // MARK: - UICollectionViewDataSource
     
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        
+        var numOfSection: NSInteger = 0
+        
+        if (currentUser?.dreams.count) > 0 {
+            
+            self.collectionView!.backgroundView = nil
+            numOfSection = 1
+            
+            
+        } else {
+            
+            var dreamPlaceholderView : UIImageView
+            dreamPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.collectionView!.bounds.size.width, self.collectionView!.bounds.size.height));
+            dreamPlaceholderView.image = UIImage(named:DREAM_PLACEHOLDER)
+            self.collectionView?.backgroundView = dreamPlaceholderView
+        }
+        return numOfSection
     }
+
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

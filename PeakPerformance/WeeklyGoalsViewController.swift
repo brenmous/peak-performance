@@ -206,10 +206,34 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
     // MARK: - Table view data source
 
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return 1
+        var numOfSections: Int = 0
+        
+        
+        if (currentUser?.weeklyGoals.count) > 0 {
+            
+            self.tableView!.backgroundView = nil
+            numOfSections = 1
+            tableView.separatorStyle = .SingleLine
+            
+        } else {
+            
+            // Creating and editing label to display when there are no Weekly Goals
+            let weeklyGoalPlaceholderView: UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
+            weeklyGoalPlaceholderView.text = WEEKLY_GOALS_PLACEHOLDER;            weeklyGoalPlaceholderView.textColor = UIColor.grayColor()
+            weeklyGoalPlaceholderView.textAlignment = .Center
+            weeklyGoalPlaceholderView.numberOfLines = 0
+            weeklyGoalPlaceholderView.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+            self.tableView.backgroundView = weeklyGoalPlaceholderView
+            tableView.separatorStyle = .None
+            
+        }
+        
+        return numOfSections
     }
+
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {

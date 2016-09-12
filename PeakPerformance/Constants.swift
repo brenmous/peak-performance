@@ -367,6 +367,13 @@ let REVIEW_ALERT_CANCEL = "No thanks, later."
 /// Review alert confirm
 let REVIEW_ALERT_CONFIRM = "Sure."
 
+///Placeholder text for weekly goals
+let WEEKLY_GOALS_PLACEHOLDER = "Add some weekly goals so you can reach your Peak Performance!"
+
+///Placeholder text for monthly goals
+let MONTHLY_GOALS_PLACEHOLDER = "Add some monthly goals so you can reach your Peak Performance!"
+
+
 // MARK: - Storyboard IDs
 
 /// Identifier for Sign Out side menu cell
@@ -381,10 +388,13 @@ let MONTHLYREVIEW_CELL_ID = "monthlyReview"
 /// Identifier for Monthly Review view controller.
 let MONTHLYREVIEW_VC = "MonthlyReview"
 
-// MARK: - Image quality constant
+// MARK: - Image Related Stuff
 
 /// Constant for compression of JPEG UIImage representation.
 let JPEG_QUALITY: CGFloat = 0.25
+
+///Placeholder image for weekly goals
+let DREAM_PLACEHOLDER = "dream-placeholder.jpg"
 
 
 

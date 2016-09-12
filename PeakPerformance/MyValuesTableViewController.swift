@@ -124,7 +124,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        saveValues( )
+//        saveValues( )
         
     }
 
