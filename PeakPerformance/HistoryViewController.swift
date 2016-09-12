@@ -52,18 +52,13 @@ class HistoryViewController: UITableViewController {
             }
         }
 
-        //sort summaries by date with most oldest first
+        //sort summaries by date with oldest first
         //currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
         
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
         
-        /*
-         let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
-         if alert != nil
-         {
-         self.presentViewController(alert!, animated: true, completion: nil)
-         }*/
+        
         
         //check if a monthly review is needed
         let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
@@ -114,12 +109,12 @@ class HistoryViewController: UITableViewController {
         //set "review ready" label
         if summary.reviewed == false
         {
-            cell.reviewReadyLabel.text = "Review ready to complete!" //make constant
+            cell.reviewReadyLabel.text = "Review ready to complete!" //TODO: - make constant
             cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
         }
         else
         {
-            cell.reviewReadyLabel.text = "Review complete - view summary" //make constant
+            cell.reviewReadyLabel.text = "Review complete - view summary" //TODO: - make constant
             cell.reviewReadyLabel.textColor = UIColor.grayColor()
         }
         
@@ -139,7 +134,7 @@ class HistoryViewController: UITableViewController {
         else
         {
             //go to history for summary
-           // performSegueWithIdentifier(<#T##identifier: String##String#>, sender: <#T##AnyObject?#>)
+            performSegueWithIdentifier(GO_TO_SUMMARY_SEGUE, sender: self)
         }
     }
     
@@ -151,18 +146,6 @@ class HistoryViewController: UITableViewController {
         return true
     }
     
-    // Override to support editing the table view.
-    /*
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete
-        {
-            // Delete the row from the data source
-        }
-        else if editingStyle == .Insert
-        {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }*/
     
     // MARK: - Navigation
     
@@ -179,6 +162,15 @@ class HistoryViewController: UITableViewController {
                 dvc.summary = self.monthlySummariesArray[indexPath.row]
             }
             
+        }
+        else if segue.identifier == GO_TO_SUMMARY_SEGUE
+        {
+            print("HVC: going to summary view")
+            let dvc = segue.destinationViewController as! SummaryViewController
+            if let indexPath = self.tableView.indexPathForSelectedRow
+            {
+                dvc.summary = self.monthlySummariesArray[indexPath.row]
+            }
         }
     }
 

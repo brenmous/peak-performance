@@ -301,6 +301,9 @@ let UNWIND_TO_HISTORY_SEGUE = "unwindToHistory"
 /// Go to history
 let GO_TO_HISTORY_SEGUE = "goToHistory"
 
+/// Go to summary from history
+let GO_TO_SUMMARY_SEGUE = "goToSummary"
+
 
 // MARK: - Alert sheet strings
 

@@ -51,6 +51,8 @@
 		B53B45611D3FB85500F20D25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455D1D3FB85500F20D25 /* User.swift */; };
 		B55652581D40DCE900E315A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55652571D40DCE900E315A4 /* Constants.swift */; };
 		B569FDFC1D815A230093A827 /* SecondMonthlyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */; };
+		B577EAE71D86B6A70039BB76 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */; };
+		B577EAE91D86BE230039BB76 /* SecondSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */; };
 		B5789A2D1D6839D4000A3EEF /* tutorial-actualreview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5789A2C1D6839D4000A3EEF /* tutorial-actualreview.jpg */; };
 		B5789A2F1D6839E2000A3EEF /* splashcreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5789A2E1D6839E2000A3EEF /* splashcreen.jpg */; };
 		B5789A311D683B70000A3EEF /* doneicon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5789A301D683B70000A3EEF /* doneicon.jpg */; };
@@ -143,6 +145,8 @@
 		B53B455D1D3FB85500F20D25 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B55652571D40DCE900E315A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondMonthlyReviewViewController.swift; sourceTree = "<group>"; };
+		B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSummaryViewController.swift; sourceTree = "<group>"; };
 		B5789A2C1D6839D4000A3EEF /* tutorial-actualreview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-actualreview.jpg"; sourceTree = "<group>"; };
 		B5789A2E1D6839E2000A3EEF /* splashcreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = splashcreen.jpg; sourceTree = "<group>"; };
 		B5789A301D683B70000A3EEF /* doneicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doneicon.jpg; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
 				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,
 				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
+				B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */,
+				B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -585,6 +591,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B577EAE91D86BE230039BB76 /* SecondSummaryViewController.swift in Sources */,
 				B5B8D2CB1D44D9270072E50A /* WeeklyGoalsViewController.swift in Sources */,
 				B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */,
 				B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */,
@@ -606,6 +613,7 @@
 				B5F32AD01D74B50300B83B1E /* StorageService.swift in Sources */,
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */,
+				B577EAE71D86B6A70039BB76 /* SummaryViewController.swift in Sources */,
 				44A8EEC01D78476D001FB50D /* ProgressView.swift in Sources */,
 				B569FDFC1D815A230093A827 /* SecondMonthlyReviewViewController.swift in Sources */,
 				B5B46A8C1D66D5CB00FFA4F8 /* GoalTableViewCell.swift in Sources */,
