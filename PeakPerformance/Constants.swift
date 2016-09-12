@@ -352,8 +352,17 @@ let CANCEL_DREAM_ALERT = "Cancel"
 /// My Values Saved
 let SAVED_VALUES = "Values saved."
 
+/// Alerts user to save values
+let CONFIRM_TO_SAVE_VALUES = "Do you want to save your values?"
+
 /// Confirm saved values alert
-let CONFIRM_SAVE_VALUES =  "Confirm"
+let CONFIRM_SAVE_VALUES =  "Okay"
+
+/// Title for saved values alert
+let SAVE_VALUE_ALERT = "My Values"
+
+/// Cancel save values
+let CANCEL_SAVE_VALUES = "Cancel"
 
 /// Review alert title
 let REVIEW_ALERT_TITLE = "Monthly Review Ready"

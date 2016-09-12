@@ -123,9 +123,38 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
 //        saveValues( )
+       if familyTextView.text != currentUser!.values[KLA_FAMILY] {
+            showSaveAlert()
+       } else if friendsTextView.text != currentUser!.values[KLA_FRIENDSSOCIAL] {
+            showSaveAlert()
+       } else if partnerTextView.text != currentUser!.values[KLA_PARTNER] {
+            showSaveAlert()
+       } else if workTextView.text != currentUser!.values[KLA_WORKBUSINESS] {
+            showSaveAlert()
+       } else if healthTextView.text != currentUser!.values[KLA_HEALTHFITNESS] {
+            showSaveAlert()
+       } else if personalDevTextView.text != currentUser!.values[KLA_PERSONALDEV] {
+            showSaveAlert()
+       } else if financeTextView.text != currentUser!.values[KLA_FINANCIAL] {
+            showSaveAlert()
+       } else if emotionalTextView.text != currentUser!.values[KLA_EMOSPIRITUAL] {
+            showSaveAlert()
+        }
         
+    }
+    
+    func showSaveAlert() {
+            let saveNotificationAlertController = UIAlertController(title: SAVE_VALUE_ALERT, message: CONFIRM_TO_SAVE_VALUES, preferredStyle: .Alert)
+            
+            let confirmSave = UIAlertAction(title: CONFIRM_SAVE_VALUES, style: .Default) { (action) in
+                self.saveValues( )
+            }
+            let cancelSave = UIAlertAction(title: CANCEL_SAVE_VALUES, style: .Default, handler: nil)
+            saveNotificationAlertController.addAction(confirmSave)
+            saveNotificationAlertController.addAction(cancelSave)
+            presentViewController(saveNotificationAlertController, animated: true, completion: nil)
+
     }
 
     // MARK: - keyboard stuff
