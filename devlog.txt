@@ -184,3 +184,6 @@
 	- changed date format string constants
 	- fixed monthly goal deadline issue
 	
+12/09/2016 20:00 - 23:00
+	- history
+		- summary view for viewing completed reviews
