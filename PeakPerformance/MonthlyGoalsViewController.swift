@@ -243,6 +243,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             cell.completeButton.hidden = true
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
+            cell.tintColor = UIColor.darkGrayColor()  // this disappeared when I cloned on 14/09/16
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             switch kla
             {
