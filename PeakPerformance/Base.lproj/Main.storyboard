@@ -687,7 +687,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Weekly Goals" id="XhI-57-Qs6">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" id="A6M-9o-uns">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" id="A6M-9o-uns">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="BBa-rQ-l2w" id="gfN-HI-sTZ"/>
@@ -964,7 +964,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Weekly Goals" id="RET-rS-Dry">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" id="3B4-qr-hL9">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" id="3B4-qr-hL9">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="m6s-0q-9KL" id="6vA-m8-dVf"/>
@@ -1244,7 +1244,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Monthly Goals" id="L0N-Dt-2dF">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" width="5" id="rLa-hs-ssl">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" width="5" id="rLa-hs-ssl">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="M6r-l3-UrM" id="qZd-2R-ZjV"/>
@@ -1352,7 +1352,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Dream List" id="tga-zR-Ld8">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" id="Rv3-V5-7vy">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" id="Rv3-V5-7vy">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="zop-2S-Sc0" id="cxA-oR-f3p"/>
@@ -1508,7 +1508,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dream" id="WuO-OZ-al5">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" id="miu-0d-tdK">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" id="miu-0d-tdK">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="Gmb-Gt-Rm0" id="LzM-jh-7LM"/>
@@ -1662,7 +1662,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="History" id="2GW-Wx-OT4">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" id="wRh-31-6bw">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" id="wRh-31-6bw">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="4Jd-Y3-Y5f" id="AIc-cq-64j"/>
@@ -2282,7 +2282,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Values" id="Gxj-4G-wnZ">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" id="tzg-P4-FLR">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" id="tzg-P4-FLR">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="wNQ-VY-Pru" id="NB7-Jp-MTg"/>
@@ -2565,7 +2565,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Monthly Goals" id="XkW-7z-D1d">
-                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi.png" id="QnU-xK-ZEC">
+                        <barButtonItem key="leftBarButtonItem" image="menu-150dpi-2" id="QnU-xK-ZEC">
                             <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="vq9-2F-l8P" id="G4j-YG-Sx3"/>
@@ -4402,7 +4402,7 @@
         <image name="history-icon-75x82" width="25" height="27"/>
         <image name="improved-icon" width="82" height="82"/>
         <image name="login_background.jpg" width="1069" height="1926"/>
-        <image name="menu-150dpi.png" width="25" height="16"/>
+        <image name="menu-150dpi-2" width="25" height="16"/>
         <image name="monthly-icon-25x25.png" width="25" height="25"/>
         <image name="monthly-icon-75x75" width="25" height="25"/>
         <image name="my-values-icon-75x75" width="25" height="25"/>

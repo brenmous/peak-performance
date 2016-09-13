@@ -27,6 +27,7 @@
 		446379C31D56089900BAE5B2 /* W.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BB1D56089900BAE5B2 /* W.png */; };
 		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
 		449618051D7D503100AD8C25 /* customizableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449618041D7D503100AD8C25 /* customizableTextView.swift */; };
+		449D802C1D88570D00C0138A /* ENMBadgedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D802B1D88570D00C0138A /* ENMBadgedBarButtonItem.swift */; };
 		44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */; };
 		44A8EEC01D78476D001FB50D /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A8EEBF1D78476D001FB50D /* ProgressView.swift */; };
 		44AA95E71D597C9E0020FBAF /* tutorial-execute.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */; };
@@ -121,6 +122,7 @@
 		446379BB1D56089900BAE5B2 /* W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = W.png; sourceTree = "<group>"; };
 		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
 		449618041D7D503100AD8C25 /* customizableTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customizableTextView.swift; sourceTree = "<group>"; };
+		449D802B1D88570D00C0138A /* ENMBadgedBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENMBadgedBarButtonItem.swift; sourceTree = "<group>"; };
 		44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyValuesTableViewController.swift; sourceTree = "<group>"; };
 		44A8EEBF1D78476D001FB50D /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		44AA95E31D597C9E0020FBAF /* tutorial-execute.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-execute.jpg"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		449618031D7D500A00AD8C25 /* CustomizableUI */ = {
 			isa = PBXGroup;
 			children = (
+				449D802B1D88570D00C0138A /* ENMBadgedBarButtonItem.swift */,
 				449618041D7D503100AD8C25 /* customizableTextView.swift */,
 			);
 			name = CustomizableUI;
@@ -603,6 +606,7 @@
 				B51BD7991D7EA874003EA9AC /* MonthlyReviewHelper.swift in Sources */,
 				B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */,
 				B577EAEB1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift in Sources */,
+				449D802C1D88570D00C0138A /* ENMBadgedBarButtonItem.swift in Sources */,
 				44A8EEBE1D783641001FB50D /* MyValuesTableViewController.swift in Sources */,
 				B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */,
 				B53132A91D7E74670027F4F4 /* MonthlyReviewViewController.swift in Sources */,
