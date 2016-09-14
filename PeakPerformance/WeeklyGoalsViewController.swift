@@ -24,8 +24,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     let dataService = DataService( )
     
     /// Declare leftBarButton badge with counter
-    var leftBarButton: ENMBadgedBarButtonItem?
-    var count = 0
+    //var leftBarButton: ENMBadgedBarButtonItem?
+    //var count = 0
     
     // MARK: Outlets
     
@@ -200,7 +200,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         super.viewDidLoad()
         
         DateTracker( ).getCurrentYearAsString()
-        setUpLeftBarButtonItem( )
+        self.setUpLeftBarButtonItem( "1" )
+        
     
     }
  
@@ -388,7 +389,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     //  - Loads the burger icon with the badge if a monthly review is available
     //  - Sets up a UIImage and a Highlighted UIImage and a button and assigns it to leftBarButtonItem
     //  - ENMBadgedBarButtonItem is responsible for the badge
-    
+    /*
     func setUpLeftBarButtonItem( ) {
         
         let image = UIImage(named: "menu-150dpi-2")
@@ -414,9 +415,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         navigationItem.leftBarButtonItem = leftBarButton
     }
     
-    // function to BarButton item tap
+    function to BarButton item tap
     func leftButtonPressed(_sender: UIButton) {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
         navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGrayColor()
-    }
+    } */
 }

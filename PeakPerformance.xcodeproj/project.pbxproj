@@ -50,6 +50,8 @@
 		B53B455F1D3FB85500F20D25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455B1D3FB85500F20D25 /* LoginViewController.swift */; };
 		B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */; };
 		B53B45611D3FB85500F20D25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B455D1D3FB85500F20D25 /* User.swift */; };
+		B53E7EA91D88E9B000CFF4AB /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E7EA81D88E9B000CFF4AB /* UITableViewExtensions.swift */; };
+		B53E7EAB1D88EBCC00CFF4AB /* UICollectionViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E7EAA1D88EBCC00CFF4AB /* UICollectionViewControllerExtensions.swift */; };
 		B55652581D40DCE900E315A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55652571D40DCE900E315A4 /* Constants.swift */; };
 		B569FDFC1D815A230093A827 /* SecondMonthlyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */; };
 		B577EAE71D86B6A70039BB76 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */; };
@@ -146,6 +148,8 @@
 		B53B455B1D3FB85500F20D25 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B53B455D1D3FB85500F20D25 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B53E7EA81D88E9B000CFF4AB /* UITableViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
+		B53E7EAA1D88EBCC00CFF4AB /* UICollectionViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewControllerExtensions.swift; sourceTree = "<group>"; };
 		B55652571D40DCE900E315A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondMonthlyReviewViewController.swift; sourceTree = "<group>"; };
 		B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 				B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */,
 				B59EC43E1D3FB45C00AF1297 /* Info.plist */,
 				44DD923E1D520F8C00BD312D /* MIDatePicker */,
+				B53E7EA81D88E9B000CFF4AB /* UITableViewExtensions.swift */,
+				B53E7EAA1D88EBCC00CFF4AB /* UICollectionViewControllerExtensions.swift */,
 			);
 			path = PeakPerformance;
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */,
 				B53132A91D7E74670027F4F4 /* MonthlyReviewViewController.swift in Sources */,
 				B50861C51D5060C100901638 /* WeeklyGoalDetailViewController.swift in Sources */,
+				B53E7EAB1D88EBCC00CFF4AB /* UICollectionViewControllerExtensions.swift in Sources */,
 				B51BD7971D7E95C4003EA9AC /* MonthlySummary.swift in Sources */,
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
 				32D794EB1D61D5A600134D01 /* Dream.swift in Sources */,
@@ -618,6 +625,7 @@
 				44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */,
 				B5A59C601D59BA1C00AFC6AB /* ResetPasswordViewController.swift in Sources */,
 				B5791FF61D5496FC0079A9CB /* MonthlyGoalsViewController.swift in Sources */,
+				B53E7EA91D88E9B000CFF4AB /* UITableViewExtensions.swift in Sources */,
 				B5F32AD01D74B50300B83B1E /* StorageService.swift in Sources */,
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */,
