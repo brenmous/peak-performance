@@ -107,7 +107,10 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem("1")
+        
         let tbvc = self.tabBarController as! TabBarViewController
         
         guard let cu = tbvc.currentUser else

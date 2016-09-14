@@ -224,7 +224,10 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-    
+
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem("1")
+        
         // text view set up
         goalTextView.layer.cornerRadius = 5
         goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor

@@ -73,7 +73,8 @@ class HistoryViewController: UITableViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem("1")
     }
  
 

@@ -412,4 +412,8 @@ let JPEG_QUALITY: CGFloat = 0.25
 let DREAM_PLACEHOLDER = "dream-placeholder.jpg"
 
 
+/// Menu icon image
+let MENU_ICON_NAME = "menu-150dpi-2"
 
+/// Menu icon highlighted image
+let MENU_ICON_HIGHLIGHTED_NAME = "menu-150dpi-highlighted"

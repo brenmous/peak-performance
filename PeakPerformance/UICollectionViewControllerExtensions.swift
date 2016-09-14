@@ -17,11 +17,11 @@ extension UICollectionViewController
     //  - Sets up a UIImage and a Highlighted UIImage and a button and assigns it to leftBarButtonItem
     //  - ENMBadgedBarButtonItem is responsible for the badge
     
-    func setUpLeftBarButtonItem( number: String )
+    override func setUpLeftBarButtonItem( number: String )
     {
         
-        let image = UIImage(named: "menu-150dpi-2")
-        let highlightedImage = UIImage(named: "menu-150dpi-highlighted")
+        let image = UIImage(named: MENU_ICON_NAME)
+        let highlightedImage = UIImage(named: MENU_ICON_HIGHLIGHTED_NAME)
         let button = UIButton(type: .Custom)
         
         if let knownImage = image {
@@ -46,7 +46,7 @@ extension UICollectionViewController
 extension UICollectionViewController
 {
     // function to BarButton item tap
-    func leftButtonPressed(_sender: UIButton)
+    override func leftButtonPressed(_sender: UIButton)
     {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
         navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGrayColor()

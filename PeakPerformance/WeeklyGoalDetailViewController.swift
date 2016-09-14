@@ -237,6 +237,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     {
         super.viewDidLoad()
         
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem("1")
+        
         // Picker
         klaPicker.dataSource = self
         klaPicker.delegate = self

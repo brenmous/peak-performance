@@ -254,6 +254,9 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem("1")
         
         //text field delegates
         dreamText.delegate = self

@@ -170,6 +170,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem("1")
+        
         //Get data from tab bar view controller
         let tbvc = self.tabBarController as! TabBarViewController
         

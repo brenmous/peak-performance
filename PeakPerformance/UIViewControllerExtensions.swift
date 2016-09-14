@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 import SideMenu
 
-extension UITableViewController
+extension UIViewController
 {
     // MARK: - Menu Notification Badge
     //  - Loads the burger icon with the badge if a monthly review is available
     //  - Sets up a UIImage and a Highlighted UIImage and a button and assigns it to leftBarButtonItem
     //  - ENMBadgedBarButtonItem is responsible for the badge
     
-    override func setUpLeftBarButtonItem( number: String )
+    func setUpLeftBarButtonItem( number: String )
     {
         
         let image = UIImage(named: MENU_ICON_NAME)
@@ -43,10 +43,10 @@ extension UITableViewController
     }
 }
 
-extension UITableViewController
+extension UIViewController
 {
-    // function to BarButton item tap
-    override func leftButtonPressed(_sender: UIButton)
+    // function to Bar Button item tap
+    func leftButtonPressed(_sender: UIButton)
     {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
         navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGrayColor()
