@@ -106,31 +106,4 @@ class SideMenuViewController: UITableViewController
 
 }
 
-extension SideMenuManager
-{
-    /// Set up side menu in view controllers that should be able to display it.
-    public class func setUpSideMenu( sb: UIStoryboard, user: User )
-    {
-        SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
-        SideMenuManager.menuLeftNavigationController?.navigationBarHidden = true // hides the navigation bar
-        SideMenuManager.menuLeftNavigationController?.leftSide = true
-        let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC) as! SideMenuViewController
-        smvc.currentUser = user
-        smvc.sb = sb
-        SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
-        
-        // Pan Gestures 
-        
-        SideMenuManager.menuAddPanGestureToPresent(toView: (menuLeftNavigationController?.navigationBar)!)
-        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: (menuLeftNavigationController?.navigationBar)!)
-
-        // Customize side menu
-        SideMenuManager.menuFadeStatusBar = false
-        SideMenuManager.menuPresentMode = .MenuSlideIn
-        SideMenuManager.menuShadowOpacity = 0.5
-        SideMenuManager.menuBlurEffectStyle = .Light
-        SideMenuManager.menuAnimationFadeStrength = 0.5
-    }
-
-}
 
