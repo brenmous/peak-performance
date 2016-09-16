@@ -278,7 +278,13 @@ let UNWIND_FROM_DDVC_SEGUE = "unwindFromDDVC"
 let GO_TO_RESET_PW_SEGUE = "goToResetPassword"
 
 /// Segue for skipping tutorial
-let GO_TO_TAB_BAR = "skipTutorial"
+let GO_TO_INITIAL_SETUP = "goToInitialSetup"
+
+/// Segue for going from first Initial Setup view to second Initial Setup view
+let GO_TO_SECOND_INITIAL_SETUP = "goToInitialSetupSecond"
+
+/// Segue InitialSetup -> Tab Bar
+let GO_TO_TAB_BAR_SEGUE = "goToTabBar"
 
 
 let GO_TO_LOG_IN = "logOut"
@@ -402,6 +408,9 @@ let MONTHLYREVIEW_CELL_ID = "monthlyReview"
 
 /// Identifier for Monthly Review view controller.
 let MONTHLYREVIEW_VC = "MonthlyReview"
+
+/// Indetifier for Tab Bar View Contoller
+let TAB_BAR_VC = "TabBarViewController"
 
 // MARK: - Image Related Stuff
 

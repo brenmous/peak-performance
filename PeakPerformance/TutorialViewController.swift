@@ -15,11 +15,12 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     var pageControl: UIPageControl!
     var pageViewController: UIPageViewController!
     var indexForPageControl: Int = 0
-    var pages = ["congratulationsPage", "firstPageTutorial", "secondPageTutorial", "thirdPageTutorial", "fourthPageTutorial" ]
+    var pages = ["congratulationsPage", "firstPageTutorial", "secondPageTutorial",
+                 "thirdPageTutorial", "fourthPageTutorial", "fifthPageTutorial" ]
     // Mark: IBActions
     
     @IBAction func skipTutorial(sender: AnyObject) {
-        self.performSegueWithIdentifier( GO_TO_TAB_BAR, sender: self )
+        self.performSegueWithIdentifier( GO_TO_INITIAL_SETUP, sender: self )
         print("skip button")
     }
     
@@ -27,7 +28,9 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     
     func lastPageDone() {
         print("Last page done")
-        self.performSegueWithIdentifier( GO_TO_TAB_BAR, sender: self )
+        //TODO: segue to initial setup
+        self.performSegueWithIdentifier( GO_TO_INITIAL_SETUP, sender: self )
+        
     }
     
     func getFirstName() -> String {
@@ -70,7 +73,7 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     func viewControllerAtIndex(index: Int) -> UIViewController? {
         let vc = storyboard?.instantiateViewControllerWithIdentifier(pages[index])
         
-        if pages[index] == "fourthPageTutorial" {
+        if pages[index] == "fifthPageTutorial" {
             (vc as! LastPageTutorialViewController).delegate = self
         } else if pages[index] == "congratulationsPage" {
             (vc as! GreetingViewController).delegate = self
@@ -114,9 +117,10 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == GO_TO_TAB_BAR
+        if segue.identifier == GO_TO_INITIAL_SETUP
         {
-            let dvc = segue.destinationViewController as! TabBarViewController
+            let nav = segue.destinationViewController as! UINavigationController
+            let dvc = nav.topViewController as! InitialSetupViewController
             dvc.currentUser = self.currentUser
         }
         
