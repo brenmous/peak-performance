@@ -32,7 +32,7 @@ class MonthlyReviewHelper
     func checkMonthlyReview( ) -> UIAlertController?
     {
         
-        let datesToCheck = DateTracker( ).getDatesToCheckForSummaries( self.currentUser )
+        let datesToCheck = NSDate( ).getDatesToCheckForSummaries( self.currentUser )
         //let calendar = NSCalendar.currentCalendar()
         var alertUserToReview = false
         

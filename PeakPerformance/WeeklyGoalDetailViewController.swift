@@ -112,8 +112,8 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!!.superview)
         
         
-        datePicker.minimumDate = NSDate( )
-        datePicker.maximumDate = DateTracker( ).getWeeklyDatePickerMaxDate( )
+        datePicker.minimumDate = NSDate()
+        datePicker.maximumDate = NSDate().getWeeklyDatePickerMaxDate( )
         
         datePicker.showActionSheetPicker()
     

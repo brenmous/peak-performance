@@ -27,7 +27,7 @@ class SecondSummaryViewController: UITableViewController {
         super.viewDidLoad()
         
         //rearrange weekly goals into nested arrays representing weeks of the month
-        let daysInMonth = DateTracker( ).getNumberOfDaysInCurrentMonth()
+        let daysInMonth = NSDate( ).getNumberOfDaysInCurrentMonth()
         
         //default array is for five weeks, change to four if February and non leap year
         if daysInMonth == 28

@@ -94,7 +94,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         {
             return
         }
-        let monthsOfTheYear = DateTracker( ).getMonthlyDatePickerStringArray(cu.startDate)
+        let monthsOfTheYear = NSDate().getMonthlyDatePickerStringArray(cu.startDate)
         let acp = ActionSheetMultipleStringPicker(title: "Deadline", rows: [monthsOfTheYear], initialSelection: [0], doneBlock: {
             picker, values, indexes in
             
@@ -159,7 +159,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     {
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
-        let deadline = ("\(deadlineTextField.text!) \(DateTracker().getCurrentYearAsString( ))")
+        let deadline = ("\(deadlineTextField.text!) \(NSDate().getCurrentYearAsString( ))")
         let gid = NSUUID( ).UUIDString
         let mg = MonthlyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(mg)

@@ -79,7 +79,6 @@
 		B5B8D2CB1D44D9270072E50A /* WeeklyGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */; };
 		B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */; };
 		B5D74D691D6857060026EF07 /* MonthlyGoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */; };
-		B5F32ACE1D70181100B83B1E /* DateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F32ACD1D70181100B83B1E /* DateTracker.swift */; };
 		B5F32AD01D74B50300B83B1E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F32ACF1D74B50300B83B1E /* StorageService.swift */; };
 		B5F32AD21D74C5E900B83B1E /* business-cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5F32AD11D74C5E900B83B1E /* business-cat.jpg */; };
 /* End PBXBuildFile section */
@@ -182,7 +181,6 @@
 		B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoalsViewController.swift; sourceTree = "<group>"; };
 		B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoal.swift; sourceTree = "<group>"; };
 		B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalTableViewCell.swift; sourceTree = "<group>"; };
-		B5F32ACD1D70181100B83B1E /* DateTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTracker.swift; sourceTree = "<group>"; };
 		B5F32ACF1D74B50300B83B1E /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		B5F32AD11D74C5E900B83B1E /* business-cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "business-cat.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -355,7 +353,6 @@
 				B53B454F1D3FB78F00F20D25 /* Models */,
 				B55652571D40DCE900E315A4 /* Constants.swift */,
 				44D88C091D895B7E00F7C827 /* Extensions.swift */,
-				B5F32ACD1D70181100B83B1E /* DateTracker.swift */,
 				B5F32ACF1D74B50300B83B1E /* StorageService.swift */,
 				B53B455A1D3FB85500F20D25 /* DataService.swift */,
 				B51BD7981D7EA874003EA9AC /* MonthlyReviewHelper.swift */,
@@ -629,7 +626,6 @@
 				44A8EEC01D78476D001FB50D /* ProgressView.swift in Sources */,
 				B569FDFC1D815A230093A827 /* SecondMonthlyReviewViewController.swift in Sources */,
 				B5B46A8C1D66D5CB00FFA4F8 /* GoalTableViewCell.swift in Sources */,
-				B5F32ACE1D70181100B83B1E /* DateTracker.swift in Sources */,
 				B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */,
 				B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */,
 				B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */,

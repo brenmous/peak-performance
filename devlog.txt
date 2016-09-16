@@ -188,5 +188,7 @@
 	- history
 		- summary view for viewing completed reviews
 
-16/09/2016 14:00 - 
+16/09/2016 14:00 -  
 	- goal notifications
+	- refactoring
+		- DateTracker gone, methods now extensions to NSDate
