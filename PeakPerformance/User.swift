@@ -51,7 +51,7 @@ public class User
                                                       "October": nil, "November": nil, "December": nil]
     
     /// Current reality (initial) summary.
-    var currentRealitySummary = [CurrentRealitySummary]( )
+    var currentRealitySummary = CurrentRealitySummary( )
     
     /**
         Initialises a new user.

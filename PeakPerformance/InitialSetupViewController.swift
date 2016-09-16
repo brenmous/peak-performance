@@ -8,7 +8,6 @@
 
 import UIKit
 
-//TODO: - creating/updating/saving current reality summary
 
 class InitialSetupViewController: UITableViewController {
 

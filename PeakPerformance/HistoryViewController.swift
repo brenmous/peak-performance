@@ -10,13 +10,14 @@ import UIKit
 import SideMenu
 
 //TODO: - display cell for currenty reality summary
+//TODO: - display cells in yearly sections, preferably collapsible (12 month roll over)
 
 class HistoryViewController: UITableViewController {
 
     /// The currently logged in user.
     var currentUser: User?
     
-    var monthlySummariesArray = [MonthlySummary]( )
+    var monthlySummariesArray = [Summary]( )
     
     // MARK: - Actions
     @IBAction func menuButtonPressed(sender: AnyObject) {
@@ -45,7 +46,8 @@ class HistoryViewController: UITableViewController {
         
         //place summaries from user dictionary into array (required for table view)
         //TODO: - use observer to only update array when summaries are added
-        self.monthlySummariesArray = [MonthlySummary]( ) //this is pretty dirty
+        self.monthlySummariesArray.removeAll() //this is dirty, fix it
+        self.monthlySummariesArray.append(self.currentUser!.currentRealitySummary) //put the current reality summary first
         for (_, val) in self.currentUser!.monthlySummaries
         {
             if val != nil
@@ -98,28 +100,34 @@ class HistoryViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> HistoryTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath) as! HistoryTableViewCell
-        let summary = self.monthlySummariesArray[indexPath.row]
-        //print("WGVC: reconfiguring cells") //DEBUG
-        // Configure the cell...
+        let s = self.monthlySummariesArray[indexPath.row]
 
-        //hide the "review ready" label (or icon or whatever)
-        //cell.reviewReadyLabel.hidden = true
-        
-        //set month label
-        let dateFormatter = NSDateFormatter( )
-        dateFormatter.dateFormat = MONTH_FORMAT_STRING
-        let monthAsString = dateFormatter.stringFromDate(summary.date)
-        cell.monthLabel.text = monthAsString
-        
-        //set "review ready" label
-        if summary.reviewed == false
+        if s is MonthlySummary
         {
-            cell.reviewReadyLabel.text = "Review ready to complete!" //TODO: - make constant
-            cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
+            let summary = s as! MonthlySummary
+            //set month label
+            let dateFormatter = NSDateFormatter( )
+            dateFormatter.dateFormat = MONTH_FORMAT_STRING
+            let monthAsString = dateFormatter.stringFromDate(summary.date)
+            cell.monthLabel.text = monthAsString
+            
+            //set "review ready" label
+            if summary.reviewed == false
+            {
+                cell.reviewReadyLabel.text = "Review ready to complete!" //TODO: - make constant
+                cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
+            }
+            else
+            {
+                cell.reviewReadyLabel.text = "Review complete - view summary" //TODO: - make constant
+                cell.reviewReadyLabel.textColor = UIColor.grayColor()
+            }
         }
-        else
+        else if s is CurrentRealitySummary
         {
-            cell.reviewReadyLabel.text = "Review complete - view summary" //TODO: - make constant
+            //let summary = s as! CurrentRealitySummary
+            cell.reviewReadyLabel.text = "View summary"
+            cell.monthLabel.text = "Initial Review" //change this to whatever you want
             cell.reviewReadyLabel.textColor = UIColor.grayColor()
         }
         
@@ -128,19 +136,25 @@ class HistoryViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let summary = self.monthlySummariesArray[indexPath.row]
+        let s = self.monthlySummariesArray[indexPath.row]
         
-        //determine selected cell and perform associated action.
-        if summary.reviewed == false
+        if s is MonthlySummary
         {
-            //go to review for summary
-            performSegueWithIdentifier(GO_TO_REVIEW_SEGUE, sender: self)
+            let summary = s as! MonthlySummary
+            
+            //determine selected cell and perform associated action.
+            if summary.reviewed == false
+            {
+                //go to review for summary
+                performSegueWithIdentifier(GO_TO_REVIEW_SEGUE, sender: self)
+                return
+            }
+            else
+            {
+                performSegueWithIdentifier(GO_TO_SUMMARY_SEGUE, sender: self)
+            }
         }
-        else
-        {
-            //go to history for summary
-            performSegueWithIdentifier(GO_TO_SUMMARY_SEGUE, sender: self)
-        }
+       
     }
     
     
@@ -164,9 +178,8 @@ class HistoryViewController: UITableViewController {
             dvc.currentUser = self.currentUser
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
-                dvc.summary = self.monthlySummariesArray[indexPath.row]
+                dvc.summary = self.monthlySummariesArray[indexPath.row] as? MonthlySummary
             }
-            
         }
         else if segue.identifier == GO_TO_SUMMARY_SEGUE
         {
@@ -174,7 +187,7 @@ class HistoryViewController: UITableViewController {
             let dvc = segue.destinationViewController as! SummaryViewController
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
-                dvc.summary = self.monthlySummariesArray[indexPath.row]
+                dvc.summary = self.monthlySummariesArray[indexPath.row] as? MonthlySummary
             }
         }
     }

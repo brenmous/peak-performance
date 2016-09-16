@@ -8,8 +8,6 @@
 
 import UIKit
 
-//TODO: - Displaying current reality summary
-
 class SecondInitialSetupViewController: UITableViewController {
 
     /// The currently logged in user.
