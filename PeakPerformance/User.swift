@@ -50,6 +50,9 @@ public class User
                                                       "May": nil, "June": nil, "July": nil, "August": nil, "September": nil,
                                                       "October": nil, "November": nil, "December": nil]
     
+    /// Current reality (initial) summary.
+    var currentRealitySummary = [CurrentRealitySummary]( )
+    
     /**
         Initialises a new user.
 

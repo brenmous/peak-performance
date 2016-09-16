@@ -218,6 +218,9 @@ let SUMMARY_DIHTC_REF_STRING = "needToChange"
 /// Specifies summary reviewed boolean in database.
 let SUMMARY_REVIEWED_REF_STRING = "reviewed"
 
+/// Specifies current reality summary in database.
+let CURRENT_REALITY_SUMMARY_REF_STRING = "initial"
+
 // MARK: - Firebase storage reference strings
 
 /// Base URL for storage bucket.
@@ -393,6 +396,18 @@ let WEEKLY_GOALS_PLACEHOLDER = "Add some weekly goals so you can reach your Peak
 
 ///Placeholder text for monthly goals
 let MONTHLY_GOALS_PLACEHOLDER = "Add some monthly goals so you can reach your Peak Performance!"
+
+/// Initial setup rating reason alert controller title
+let INITIAL_SETUP_ALERT_TITLE = "Your Reason"
+
+/// Initial setup rating reason alert message
+let INITIAL_SETUP_ALERT_MSG = "Please specify the reason for your rating."
+
+/// Initial setup rating reason alert confirm
+let INITIAL_SETUP_ALERT_CONFIRM = "OK"
+
+/// Initial setup rating reason alert cancel 
+let INITIAL_SETUP_ALERT_CANCEL = "Cancel"
 
 
 // MARK: - Storyboard IDs

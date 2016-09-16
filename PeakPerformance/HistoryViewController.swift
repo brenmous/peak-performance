@@ -9,6 +9,8 @@
 import UIKit
 import SideMenu
 
+//TODO: - display cell for currenty reality summary
+
 class HistoryViewController: UITableViewController {
 
     /// The currently logged in user.

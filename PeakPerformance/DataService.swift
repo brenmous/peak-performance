@@ -16,6 +16,7 @@ import Firebase
 
 //TODO: - load goals in summary using existing methods
 //TODO: - fix summary reference (summaries->user->year->month)
+//TODO: - currenty reality save/load
 class DataService  //: SignUpDataService, LogInDataService
 {
     // MARK: - User Methods
@@ -440,6 +441,21 @@ class DataService  //: SignUpDataService, LogInDataService
     
     
     // MARK: - Monthly summary methods
+    static func saveCurrentRealitySummary( user: User, summary: CurrentRealitySummary )
+    {
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
+        
+        for (kla,reason) in summary.klaReasons
+        {
+            ref.child("\(kla)Reason").setValue(reason)
+        }
+        for (kla,rating) in summary.klaRatings
+        {
+            ref.child(kla).setValue(String(rating))
+        }
+        
+        print("DS: saved CR summary")
+    }
     
     static func saveSummary( user: User, summary: MonthlySummary )
     {
@@ -479,7 +495,24 @@ class DataService  //: SignUpDataService, LogInDataService
         }
         
         print("DS: saved summary for \(dateAsString)")
-        
+    }
+    
+    static func loadCurrentRealitySummary( user: User, completion: ( summary: CurrentRealitySummary ) -> Void )
+    {
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
+        let summary = CurrentRealitySummary( )
+        ref.observeEventType(.Value, withBlock: { (snapshot) in
+            if snapshot.exists()
+            {
+                //get both ratings and reasons
+                for (kla,_) in summary.klaRatings
+                {
+                    summary.klaRatings[kla] = Double(snapshot.value![kla] as! String)
+                    summary.klaReasons[kla] = snapshot.value!["\(kla)Reason"] as? String
+                }
+            }
+            
+        })
     }
     
     static func loadSummaries( user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void )
@@ -505,6 +538,13 @@ class DataService  //: SignUpDataService, LogInDataService
                     summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
                     summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
                     summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
+                    
+                    for (kla,_) in summary.klaRatings
+                    {
+                        summary.klaRatings[kla] = Double(s.value![kla] as! String)
+                    }
+                    
+                    /*
                     summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
                     summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
                     summary.klaRatings[KLA_PARTNER] = Double(s.value![KLA_PARTNER] as! String)
@@ -514,6 +554,7 @@ class DataService  //: SignUpDataService, LogInDataService
                     summary.klaRatings[KLA_WORKBUSINESS] = Double(s.value![KLA_WORKBUSINESS] as! String)
                     summary.klaRatings[KLA_FRIENDSSOCIAL] = Double(s.value![KLA_FRIENDSSOCIAL] as! String)
                     summary.klaRatings[KLA_HEALTHFITNESS] = Double(s.value![KLA_HEALTHFITNESS] as! String)
+                    */
                     
                     self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
                     

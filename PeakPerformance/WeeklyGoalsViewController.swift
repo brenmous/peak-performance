@@ -138,7 +138,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in
             let kickItTextField = goalCompleteAlertController.textFields![0] as UITextField
             let kickItText = kickItTextField.text!
-            self.completeGoal(wg, kickItText: kickItText) }
+            self.completeGoal(wg, kickItText: kickItText)
+        }
         let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
         goalCompleteAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in

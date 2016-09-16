@@ -12,7 +12,7 @@ import Foundation
     This class represents a summary of a user's monthly progress.
     Used for Monthly Review and History.
 */
-class MonthlySummary
+class MonthlySummary: Summary
 {
     
     /// The date of the summary (MMMM yyyy e.g. "August 2016").
@@ -23,10 +23,6 @@ class MonthlySummary
     
     /// The completed monthly goals for this summary.
     var monthlyGoals = [MonthlyGoal]( )
-    
-    /// Rating of each key life area.
-    var klaRatings = [ KLA_FAMILY: 0.0, KLA_WORKBUSINESS: 0.0, KLA_PERSONALDEV: 0.0, KLA_FINANCIAL: 0.0,
-                                    KLA_FRIENDSSOCIAL: 0.0, KLA_HEALTHFITNESS: 0.0, KLA_EMOSPIRITUAL: 0.0, KLA_PARTNER: 0.0 ]
     
     /// Text of "What is working?" assessment.
     var whatIsWorking = ""

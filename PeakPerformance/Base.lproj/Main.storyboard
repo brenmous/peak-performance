@@ -4391,6 +4391,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7q-qP-Jxg">
+                                                    <rect key="frame" x="519" y="10" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="Hdf-Wr-xV5"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -4504,6 +4511,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9O-rI-oF0">
+                                                    <rect key="frame" x="519" y="11" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="rSs-bT-QJv"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -4616,6 +4630,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NJ-oh-bWf">
+                                                    <rect key="frame" x="519" y="11" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="fFy-Ej-VdA"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -4729,6 +4750,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfJ-FQ-tbX">
+                                                    <rect key="frame" x="519" y="11" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="fqz-3l-fCY"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -4842,6 +4870,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYZ-u8-z5J">
+                                                    <rect key="frame" x="519" y="11" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="JSj-oR-7Lt"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -4954,6 +4989,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Hb-lf-lab">
+                                                    <rect key="frame" x="519" y="11" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="a7H-bG-Kra"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -5066,6 +5108,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOB-N3-th8">
+                                                    <rect key="frame" x="519" y="10" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="hRc-gQ-5RO"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -5179,6 +5228,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6m-22-6th">
+                                                    <rect key="frame" x="519" y="10" width="73" height="30"/>
+                                                    <state key="normal" title="Reason"/>
+                                                    <connections>
+                                                        <action selector="reasonButtonPuhsed:" destination="e5O-Lc-LDi" eventType="touchUpInside" id="jcj-tV-hEy"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -5273,6 +5329,7 @@
                             <outlet property="delegate" destination="e5O-Lc-LDi" id="AqQ-gP-IGe"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Current Reality" id="itB-d1-EuB">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="GnU-u1-GX8">
                             <connections>
@@ -5280,14 +5337,23 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="emotionalSpiritualReason" destination="i6m-22-6th" id="SDx-3i-9ai"/>
                         <outlet property="emotionalSpiritualSlider" destination="RH4-b5-ECa" id="xAI-bO-53N"/>
+                        <outlet property="familyReason" destination="h7q-qP-Jxg" id="1Q0-GL-fnu"/>
                         <outlet property="familySlider" destination="Enm-dt-zYE" id="o6I-kd-Ah2"/>
+                        <outlet property="financeReason" destination="yOB-N3-th8" id="FIC-dJ-NSb"/>
                         <outlet property="financeSlider" destination="qCk-sy-DIN" id="82Y-eu-ymy"/>
+                        <outlet property="friendsReason" destination="s9O-rI-oF0" id="iMU-uv-GyN"/>
                         <outlet property="friendsSlider" destination="q9X-BM-Tc8" id="oo7-Hl-Mou"/>
+                        <outlet property="healthReason" destination="IYZ-u8-z5J" id="9gS-w1-PtV"/>
                         <outlet property="healthSlider" destination="tJB-ZZ-6eP" id="KXp-ah-E60"/>
+                        <outlet property="partnerReason" destination="5NJ-oh-bWf" id="9im-YT-W4Q"/>
                         <outlet property="partnerSlider" destination="Swe-N1-u99" id="vhI-VA-Piv"/>
+                        <outlet property="personalDevelopmentReason" destination="8Hb-lf-lab" id="sjh-So-JuS"/>
                         <outlet property="personalDevelopmentSlider" destination="6By-um-sBD" id="tgC-vn-PNW"/>
+                        <outlet property="workReason" destination="hfJ-FQ-tbX" id="NId-jV-Ybt"/>
                         <outlet property="workSlider" destination="UDj-7F-pwB" id="3ka-w4-yCT"/>
                         <segue destination="2aL-Qr-L3w" kind="show" identifier="goToInitialSetupSecond" id="7xa-pj-yoW"/>
                     </connections>

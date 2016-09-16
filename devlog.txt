@@ -188,10 +188,12 @@
 	- history
 		- summary view for viewing completed reviews
 
-16/09/2016 14:00 - 16:00, 16:45 -   
+16/09/2016 14:00 - 16:00, 16:45 - 19:00  
 	- goal notifications
 	- refactoring
 		- DateTracker gone, methods now extensions to NSDate
 		- MonthlyReviewHelper gone, now part of User class
 		- DataService and StorageService methods now static
 	- removed ability to take photos for Dream List
+	- InitialSetup
+		- views, controllers and navigation

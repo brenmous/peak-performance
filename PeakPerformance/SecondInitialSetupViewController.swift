@@ -8,21 +8,32 @@
 
 import UIKit
 
+//TODO: - Displaying current reality summary
+
 class SecondInitialSetupViewController: UITableViewController {
 
     /// The currently logged in user.
     var currentUser: User?
     
     /// The summary being reviewed.
-    var summary: MonthlySummary?
+    var summary: CurrentRealitySummary?
     
     
     // MARK: - Outlets
-
+    
+    //*****these need to be hooked up******//
+    @IBOutlet weak var familyTextView: UITextView!
+    @IBOutlet weak var friendsTextView: UITextView!
+    @IBOutlet weak var partnerTextView: UITextView!
+    @IBOutlet weak var workTextView: UITextView!
+    @IBOutlet weak var healthTextView: UITextView!
+    @IBOutlet weak var personalTextView: UITextView!
+    @IBOutlet weak var financeTextView: UITextView!
+    @IBOutlet weak var emotionalTextView: UITextView!
+    
     // MARK: - Actions
     @IBAction func doneButtonPressed(sender: AnyObject)
     {
-        /*
         self.updateSummaryWithText( )
         guard let s = self.summary else
         {
@@ -34,10 +45,8 @@ class SecondInitialSetupViewController: UITableViewController {
             print("SMRVC: error unwrapping user")
             return
         }
-        s.reviewed = true
-        DataService.saveSummary( cu, summary: s )
-        */
-        //performSegueWithIdentifier( GO_TO_TAB_BAR_SEGUE, sender: self)
+        DataService.saveCurrentRealitySummary( cu, summary: s )
+
         let tbvc = self.storyboard?.instantiateViewControllerWithIdentifier(TAB_BAR_VC) as! TabBarViewController
         tbvc.currentUser = self.currentUser
         self.presentViewController(tbvc, animated: true, completion: nil)
@@ -45,7 +54,7 @@ class SecondInitialSetupViewController: UITableViewController {
     }
     
     // MARK: - Methods
-    /*
+    
     /// Updates the summary being reviewed with text from the text views.
     func updateSummaryWithText( )
     {
@@ -54,11 +63,15 @@ class SecondInitialSetupViewController: UITableViewController {
             print("SMRVC: could not get summary")
             return
         }
-        s.whatIsWorking = self.whatIsWorkingTextView.text
-        s.whatIsNotWorking = self.whatIsNotWorkingTextView.text
-        s.whatHaveIImproved = self.whatHaveIImprovedTextView.text
-        s.doIHaveToChange = self.doIHaveToChangeTextView.text //TODO: - Temp. Make this radio buttons.
-    } */
+        self.familyTextView.text = s.klaReasons[KLA_FAMILY]
+        self.friendsTextView.text = s.klaReasons[KLA_FRIENDSSOCIAL]
+        self.partnerTextView.text = s.klaReasons[KLA_PARTNER]
+        self.workTextView.text = s.klaReasons[KLA_WORKBUSINESS]
+        self.healthTextView.text = s.klaReasons[KLA_HEALTHFITNESS]
+        self.personalTextView.text = s.klaReasons[KLA_PERSONALDEV]
+        self.financeTextView.text = s.klaReasons[KLA_FINANCIAL]
+        self.emotionalTextView.text = s.klaReasons[KLA_EMOSPIRITUAL]
+    }
     
     // MARK: - keyboard stuff
     /// Work around for dismissing keyboard on text view.
@@ -97,22 +110,6 @@ class SecondInitialSetupViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - Table view data source
-    
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-     {
-        if segue.identifier == GO_TO_TAB_BAR_SEGUE
-        {
-            let dvc = segue.destinationViewController as! TabBarViewController
-            dvc.currentUser = self.currentUser
-        }
-     }
-    
     
 }
 

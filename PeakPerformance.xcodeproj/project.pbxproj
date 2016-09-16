@@ -52,6 +52,8 @@
 		B53E7EAF1D8BD0CA00CFF4AB /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E7EAE1D8BD0CA00CFF4AB /* InitialSetupViewController.swift */; };
 		B53E7EB11D8BD0DB00CFF4AB /* SecondInitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E7EB01D8BD0DB00CFF4AB /* SecondInitialSetupViewController.swift */; };
 		B55652581D40DCE900E315A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55652571D40DCE900E315A4 /* Constants.swift */; };
+		B567CE801D8BE8BE0033A8A1 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B567CE7F1D8BE8BE0033A8A1 /* Summary.swift */; };
+		B567CE821D8BE91F0033A8A1 /* CurrentRealitySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B567CE811D8BE91F0033A8A1 /* CurrentRealitySummary.swift */; };
 		B569FDFC1D815A230093A827 /* SecondMonthlyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */; };
 		B577EAE71D86B6A70039BB76 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */; };
 		B577EAE91D86BE230039BB76 /* SecondSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */; };
@@ -148,6 +150,8 @@
 		B53E7EAE1D8BD0CA00CFF4AB /* InitialSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
 		B53E7EB01D8BD0DB00CFF4AB /* SecondInitialSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondInitialSetupViewController.swift; sourceTree = "<group>"; };
 		B55652571D40DCE900E315A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B567CE7F1D8BE8BE0033A8A1 /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		B567CE811D8BE91F0033A8A1 /* CurrentRealitySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentRealitySummary.swift; sourceTree = "<group>"; };
 		B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondMonthlyReviewViewController.swift; sourceTree = "<group>"; };
 		B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSummaryViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 				B50861C01D4B359A00901638 /* MonthlyGoal.swift */,
 				32D794EA1D61D5A600134D01 /* Dream.swift */,
 				B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */,
+				B567CE7F1D8BE8BE0033A8A1 /* Summary.swift */,
+				B567CE811D8BE91F0033A8A1 /* CurrentRealitySummary.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 				B51BD7971D7E95C4003EA9AC /* MonthlySummary.swift in Sources */,
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
 				32D794EB1D61D5A600134D01 /* Dream.swift in Sources */,
+				B567CE821D8BE91F0033A8A1 /* CurrentRealitySummary.swift in Sources */,
 				B5791FF11D5493E00079A9CB /* MIDatePicker.swift in Sources */,
 				44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */,
 				B5A59C601D59BA1C00AFC6AB /* ResetPasswordViewController.swift in Sources */,
@@ -631,6 +638,7 @@
 				B53B455E1D3FB85500F20D25 /* DataService.swift in Sources */,
 				B51BD7951D7E8634003EA9AC /* HistoryTableViewCell.swift in Sources */,
 				B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */,
+				B567CE801D8BE8BE0033A8A1 /* Summary.swift in Sources */,
 				B51BD7931D7E8611003EA9AC /* HistoryViewController.swift in Sources */,
 				B50861BF1D4B316900901638 /* Goal.swift in Sources */,
 				B55652581D40DCE900E315A4 /* Constants.swift in Sources */,
