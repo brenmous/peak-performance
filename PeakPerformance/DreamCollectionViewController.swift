@@ -27,8 +27,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     /// Indicates the index path of the cell
     var gloablindexPathForRow: Int?
     
-    let storageService = StorageService( )
-    
     // MARK: - Actions
     
     @IBAction func unwindFromDDVC(segue: UIStoryboardSegue)

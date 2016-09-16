@@ -1388,11 +1388,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="po5-rl-5DK">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="po5-rl-5DK">
                                 <rect key="frame" x="0.0" y="64" width="600" height="49"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUZ-LF-Lnc">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUZ-LF-Lnc">
                                         <rect key="frame" x="29" y="10" width="39" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="39" id="KkE-sf-rib"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Back">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1401,14 +1404,17 @@
                                             <segue destination="PZz-Lu-o76" kind="unwind" unwindAction="unwindFromDDVC:" id="JRa-m9-DOd"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Edit My Dream" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qng-u7-nzG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit My Dream" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qng-u7-nzG">
                                         <rect key="frame" x="244" y="14" width="112" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Og0-2l-gbg">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Og0-2l-gbg">
                                         <rect key="frame" x="537" y="10" width="38" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="38" id="faj-T3-RgK"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Save">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1429,46 +1435,6 @@
                                     <constraint firstItem="vUZ-LF-Lnc" firstAttribute="leading" secondItem="po5-rl-5DK" secondAttribute="leading" constant="29" id="zro-n5-Yhx"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="C1F-zk-WWR">
-                                <rect key="frame" x="188" y="475" width="225" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91r-l2-ybZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
-                                        <color key="backgroundColor" red="0.95294117647058818" green="0.85882352941176465" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Camera">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="getPhotoFromCamera:" destination="Gmb-Gt-Rm0" eventType="touchUpInside" id="b39-JH-CmB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-5U-5X8">
-                                        <rect key="frame" x="115" y="0.0" width="110" height="30"/>
-                                        <color key="backgroundColor" red="0.95294117647058818" green="0.85882352941176465" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="Tgf-zF-sKQ"/>
-                                        </constraints>
-                                        <state key="normal" title="Camera Roll">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="getPhotoFromCameraRoll:" destination="Gmb-Gt-Rm0" eventType="touchUpInside" id="Fjc-sM-Sdc"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HCz-dx-h21">
                                 <rect key="frame" x="45" y="241" width="510" height="226"/>
                             </imageView>
@@ -1489,22 +1455,43 @@
                                     </textView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-5U-5X8">
+                                <rect key="frame" x="245" y="475" width="110" height="30"/>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.85882352941176465" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="Tgf-zF-sKQ"/>
+                                </constraints>
+                                <state key="normal" title="Camera Roll">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getPhotoFromCameraRoll:" destination="Gmb-Gt-Rm0" eventType="touchUpInside" id="Fjc-sM-Sdc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="GBY-l3-NMp" firstAttribute="top" secondItem="po5-rl-5DK" secondAttribute="bottom" constant="31" id="676-lh-fQQ"/>
                             <constraint firstItem="HCz-dx-h21" firstAttribute="top" secondItem="jjr-bW-4Py" secondAttribute="bottom" constant="177" id="A2O-wu-Jcr"/>
                             <constraint firstItem="HCz-dx-h21" firstAttribute="centerX" secondItem="AY9-lw-HT4" secondAttribute="centerX" id="Fdr-ti-dUR"/>
-                            <constraint firstItem="DX8-hF-iCg" firstAttribute="top" secondItem="C1F-zk-WWR" secondAttribute="bottom" constant="46" id="IsA-Wc-wsO"/>
-                            <constraint firstItem="C1F-zk-WWR" firstAttribute="centerX" secondItem="AY9-lw-HT4" secondAttribute="centerX" id="LZC-iP-gOh"/>
                             <constraint firstItem="po5-rl-5DK" firstAttribute="width" secondItem="AY9-lw-HT4" secondAttribute="width" id="Lji-Ur-9cT"/>
+                            <constraint firstItem="pZa-5U-5X8" firstAttribute="centerX" secondItem="po5-rl-5DK" secondAttribute="centerX" id="Ng4-Ge-Xe3"/>
+                            <constraint firstItem="pZa-5U-5X8" firstAttribute="centerX" secondItem="HCz-dx-h21" secondAttribute="centerX" id="Vw0-PG-FbY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HCz-dx-h21" secondAttribute="trailing" constant="25" id="ZMx-Eh-vRh"/>
-                            <constraint firstItem="91r-l2-ybZ" firstAttribute="top" secondItem="HCz-dx-h21" secondAttribute="bottom" constant="8" id="gDW-G6-D0k"/>
+                            <constraint firstItem="pZa-5U-5X8" firstAttribute="top" secondItem="HCz-dx-h21" secondAttribute="bottom" constant="8" symbolic="YES" id="b1F-PC-LFY"/>
                             <constraint firstItem="GBY-l3-NMp" firstAttribute="width" secondItem="HCz-dx-h21" secondAttribute="width" id="hNm-ux-ilo"/>
                             <constraint firstItem="HCz-dx-h21" firstAttribute="top" secondItem="GBY-l3-NMp" secondAttribute="bottom" constant="20" id="hU0-UL-kd6"/>
                             <constraint firstItem="GBY-l3-NMp" firstAttribute="centerX" secondItem="AY9-lw-HT4" secondAttribute="centerX" id="ieB-94-9HU"/>
                             <constraint firstItem="GBY-l3-NMp" firstAttribute="top" secondItem="jjr-bW-4Py" secondAttribute="bottom" constant="80" id="oAW-4a-f72"/>
                             <constraint firstItem="DX8-hF-iCg" firstAttribute="top" secondItem="HCz-dx-h21" secondAttribute="bottom" constant="84" id="ru9-RH-tYE"/>
                             <constraint firstItem="HCz-dx-h21" firstAttribute="leading" secondItem="AY9-lw-HT4" secondAttribute="leadingMargin" constant="25" id="yjd-WI-svj"/>
+                            <constraint firstItem="po5-rl-5DK" firstAttribute="top" secondItem="jjr-bW-4Py" secondAttribute="bottom" id="zeq-0n-qh0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dream" id="WuO-OZ-al5">

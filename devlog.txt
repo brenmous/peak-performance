@@ -194,3 +194,4 @@
 		- DateTracker gone, methods now extensions to NSDate
 		- MonthlyReviewHelper gone, now part of User class
 		- DataService and StorageService methods now static
+		

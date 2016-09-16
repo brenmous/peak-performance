@@ -104,22 +104,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         presentViewController(deleteDreamAlertController, animated: true, completion: nil )
         
     }
-    
-    
-    @IBAction func getPhotoFromCamera(sender: AnyObject) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
-            self.imgPicker.delegate = self
-            self.imgPicker.sourceType = .Camera
-            self.imgPicker.allowsEditing = false
-            self.presentViewController(imgPicker, animated: true, completion: nil)
-        }
-        else
-        {
-            //handle error
-        }
-    }
-    
-    
+
     @IBAction func getPhotoFromCameraRoll(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
             self.imgPicker.delegate = self
@@ -179,7 +164,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         guard let imageData = cd.imageData else
         {
-            dreamImg.image = UIImage(contentsOfFile: "business-cat.jpg")
+            //placeholder/file not found image
             return
         }
         dreamImg.image = UIImage(data: imageData)
