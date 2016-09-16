@@ -14,12 +14,6 @@ import Firebase
  */
 class StorageService
 {
-    // MARK: - Properties
-    
-    /// Base reference.
-    let baseRef = FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE)
-    
-    
     // MARK: - Methods
     
     /**
@@ -30,9 +24,9 @@ class StorageService
             - user: owner of the dream image.
             - dream: the dream being saved.
     */
-    func saveDreamImage( user: User, dream: Dream, completion: ( ) -> Void )
+    static func saveDreamImage( user: User, dream: Dream, completion: ( ) -> Void )
     {
-        let dreamRef = baseRef.child(user.uid).child("\(dream.did).jpg")
+        let dreamRef =   FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE).child(user.uid).child("\(dream.did).jpg")
         guard let imageData = dream.imageData else
         {
             print("SS: tried to save dream image that has no data")
@@ -58,7 +52,7 @@ class StorageService
         - Parameters:
             - user: owner of the dreams.
     */
-    func loadDreamImages( user: User, completion: () -> Void )
+    static func loadDreamImages( user: User, completion: () -> Void )
     {
         if user.dreams.isEmpty
         {
@@ -69,7 +63,7 @@ class StorageService
         for i in 0...user.dreams.count - 1
         {
             let dream = user.dreams[i]
-            let dreamRef = baseRef.child(user.uid).child("\(dream.did).jpg")
+            let dreamRef =   FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE).child(user.uid).child("\(dream.did).jpg")
             dreamRef.dataWithMaxSize(2 * 1024 * 1024) { (data, error) -> Void in
                 guard error == nil else
                 {
@@ -91,9 +85,9 @@ class StorageService
      - user: owner of the dream.
      - dream: dream image to be loaded.
      */
-    func loadDreamImage( user: User, dream: Dream, completion: () -> Void )
+    static func loadDreamImage( user: User, dream: Dream, completion: () -> Void )
     {
-        let dreamRef = baseRef.child(user.uid).child("\(dream.did).jpg")
+        let dreamRef =   FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE).child(user.uid).child("\(dream.did).jpg")
         dreamRef.dataWithMaxSize(2 * 1024 * 1024) { (data, error) -> Void in
             guard error == nil else
             {
@@ -115,9 +109,9 @@ class StorageService
         - user: owner of the dream.
         - dream: dream being removed.
      */
-    func removeDreamImage( user: User, dream: Dream )
+    static func removeDreamImage( user: User, dream: Dream )
     {
-        let dreamRef = baseRef.child(user.uid).child("\(dream.did).jpg")
+        let dreamRef =   FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE).child(user.uid).child("\(dream.did).jpg")
         dreamRef.deleteWithCompletion { (error) -> Void in
             guard error == nil else
             {

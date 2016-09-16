@@ -58,7 +58,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         
         
-        storageService.saveDreamImage(cu, dream: dream) { () in
+        StorageService.saveDreamImage(cu, dream: dream) { () in
             DataService.saveDream(cu.uid, dream: dream)
         }
         
@@ -81,7 +81,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             return
         }
         
-        storageService.saveDreamImage(cu, dream: dream) { ()
+        StorageService.saveDreamImage(cu, dream: dream) { ()
             DataService.saveDream(cu.uid, dream: dream)
         }
         
@@ -95,7 +95,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         {
             return
         }
-        storageService.removeDreamImage(cu, dream: dream)
+        StorageService.removeDreamImage(cu, dream: dream)
         DataService.removeDream(cu.uid, dream: dream)
         cu.dreams.removeAtIndex(gloablindexPathForRow!)
         self.collectionView?.reloadData( )
@@ -132,7 +132,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             //...else, get it from Firebase Storage.
             if dream.imageLocalURL == nil || photo == nil
             {
-                self.storageService.loadDreamImage(cu, dream: dream){ () in
+                StorageService.loadDreamImage(cu, dream: dream){ () in
                     self.collectionView?.reloadData()
                     print("DVC: got dream image \(dream.did) from storage bucket")
                     //In here we can save the image back to the user's device but it's probably not a good idea.
