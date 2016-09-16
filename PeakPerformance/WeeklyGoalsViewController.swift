@@ -163,7 +163,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             
             guard let cu = tbvc.currentUser else
             {
-                //no user fix it man, goddamn you fix it what do i pay you for?!?!
                 return
             }
             self.currentUser = cu
@@ -173,6 +172,16 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         //disable editing in case user left view while in edit mode
         self.tableView.setEditing(false, animated: true)
         
+        //check for due goals
+        for goal in self.currentUser!.weeklyGoals
+        {
+            goal.checkIfDue()
+            if goal.due
+            {
+                print("\(goal.goalText) is overdue")
+            }
+        }
+        
         //sort completed goals and place them at end of array
         currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
         
@@ -180,7 +189,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         updateProgressView()
         
         //set up side menu
-        SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
+        SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! )
 
         //check if a monthly review is needed
         let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
@@ -189,6 +198,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             self.presentViewController(alert!, animated: true, completion: nil)
         }
 
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
+        
         //reload the view
         self.tableView.reloadData()
         
@@ -198,10 +209,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        DateTracker( ).getCurrentYearAsString()
-        self.setUpLeftBarButtonItem( "1" )
-        
     
     }
  
@@ -256,7 +263,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         var klaIcon = ""
         let kla = goal.kla
         
-        if ( goal.complete )
+        if goal.complete
         {
             cell.userInteractionEnabled = false
             cell.completeButton.hidden = true
@@ -293,9 +300,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIcon = "F-done.png"
             }
         }
-        else
+        else if !goal.complete
         {
-            
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.accessoryType = .None
@@ -328,6 +334,11 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 
             default:
                 klaIcon = "F.png"
+            }
+            
+            if goal.due
+            {
+                //set your overdue label/icon/whatever here
             }
 
         }
@@ -384,40 +395,4 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         }
         
     }
-
-    // MARK: - Menu Notification Badge
-    //  - Loads the burger icon with the badge if a monthly review is available
-    //  - Sets up a UIImage and a Highlighted UIImage and a button and assigns it to leftBarButtonItem
-    //  - ENMBadgedBarButtonItem is responsible for the badge
-    /*
-    func setUpLeftBarButtonItem( ) {
-        
-        let image = UIImage(named: "menu-150dpi-2")
-        let highlightedImage = UIImage(named: "menu-150dpi-highlighted")
-        let button = UIButton(type: .Custom)
-        
-        if let knownImage = image {
-            button.frame = CGRectMake(0.0, 0.0, knownImage.size.width, knownImage.size.height)
-        } else {
-            button.frame = CGRectZero;
-        }
-        
-        button.setBackgroundImage(image, forState: UIControlState.Normal)
-        button.setBackgroundImage(highlightedImage, forState: .Highlighted)
-        button.addTarget(self,
-                         action: #selector(leftButtonPressed(_:)),
-                         forControlEvents: UIControlEvents.TouchUpInside)
-        button.adjustsImageWhenHighlighted = true
-        button.tintColor = UIColor.lightGrayColor()
-        let newBarButton = ENMBadgedBarButtonItem(customView: button, value: "1") // parameter value for the number inside the dot
-        leftBarButton = newBarButton
-        leftBarButton?.badgeValue = "1"  // sets the dot and the number inside
-        navigationItem.leftBarButtonItem = leftBarButton
-    }
-    
-    function to BarButton item tap
-    func leftButtonPressed(_sender: UIButton) {
-        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGrayColor()
-    } */
 }

@@ -48,22 +48,9 @@ class MonthlySummary
         - Parameters: 
             - month: the month of the summary.
     */
-    init ( date: NSDate )/*weeklyGoals: [WeeklyGoal] = [WeeklyGoal]( ), monthlyGoals: [MonthlyGoal] = [MonthlyGoal]( ),
-           klaRatings: [String:Double] = [ KLA_FAMILY: 0.0, KLA_WORKBUSINESS: 0.0, KLA_PERSONALDEV: 0.0, KLA_FINANCIAL: 0.0,
-        KLA_FRIENDSSOCIAL: 0.0, KLA_HEALTHFITNESS: 0.0, KLA_EMOSPIRITUAL: 0.0, KLA_PARTNER: 0.0 ],
-            whatIsWorking: String = "", whatIsNotWorking: String = "", whatHaveIImproved: String = "", doIHaveToChange: String = "", reviewed: Bool = false )*/
+    init ( date: NSDate )
     {
         self.date = date
-        /*
-        self.weeklyGoals = weeklyGoals
-        self.monthlyGoals = monthlyGoals
-        self.klaRatings = klaRatings
-        self.whatIsWorking = whatIsWorking
-        self.whatIsNotWorking = whatIsNotWorking
-        self.whatHaveIImproved = whatHaveIImproved
-        self.doIHaveToChange = doIHaveToChange
-        self.reviewed = reviewed
-        */
     }
     
 }

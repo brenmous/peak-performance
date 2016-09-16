@@ -103,13 +103,13 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         {
             self.presentViewController(alert!, animated: true, completion: nil)
         }
+        
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
         self.tableView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // set up badge and menu bar button item
-        self.setUpLeftBarButtonItem("1")
         
         let tbvc = self.tabBarController as! TabBarViewController
         

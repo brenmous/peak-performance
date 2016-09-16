@@ -47,4 +47,22 @@ class WeeklyGoal: Goal
         }
         return week
     }
+    
+    
+    /// Checks if this goal has reached its deadline and sets its "due" property if so.
+    func checkIfDue( )
+    {
+        //goal is complete so don't bother checking the due date
+        if self.complete
+        {
+            return
+        }
+        
+        //compare goal deadline with current date
+        let res = self.deadline.compare(NSDate( ))
+        if res == .OrderedAscending
+        {
+            self.due = true
+        }
+    }
 }

@@ -177,15 +177,16 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         {
             self.presentViewController(alert!, animated: true, completion: nil)
         }
+        
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
+        
         self.tableView.reloadData()
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-    
-        // set up badge and menu bar button item
-        self.setUpLeftBarButtonItem("1")
     }
     
     
@@ -277,7 +278,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 klaIcon = "F-done.png"
             }
         }
-        else
+        else if !goal.complete
         {
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
@@ -311,6 +312,11 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 
             default:
                 klaIcon = "F.png"
+            }
+            
+            if goal.due
+            {
+                //set overdue label/icon/whatever
             }
             
         }

@@ -74,4 +74,21 @@ public class User
         self.uid = uid
         self.startDate = startDate
     }
+    
+    /// Gets number of unreviewed summaries.
+    func numberOfUnreviwedSummaries( ) -> Int
+    {
+        var count = 0
+        for (_,val) in self.monthlySummaries
+        {
+            if let summary = val
+            {
+                if !summary.reviewed
+                {
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
 }

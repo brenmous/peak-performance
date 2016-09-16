@@ -187,6 +187,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         self.getDreamImages()
         
         SideMenuManager.setUpSideMenu(self.storyboard!, user: cu)
+        
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
     }
     
     override func didReceiveMemoryWarning() {

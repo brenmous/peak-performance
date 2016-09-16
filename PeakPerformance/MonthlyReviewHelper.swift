@@ -14,6 +14,7 @@ import UIKit
 
 /**
     This class handles checking if monthly summaries have been created for months and creates them if not.
+    Also checks if Monthly Goals have reached their deadline and sets them as "due" if so.
 */
 class MonthlyReviewHelper
 {
@@ -97,7 +98,7 @@ class MonthlyReviewHelper
                     self.currentUser.weeklyGoals.removeAtIndex(index - numberOfGoalsRemoved)
                     numberOfGoalsRemoved += 1
                 }
-                //...if it isn't complete, carry it over and mark as overdue
+                //...if it isn't complete, carry it over
             }
         }
     }
@@ -123,6 +124,10 @@ class MonthlyReviewHelper
                     numberOfGoalsRemoved += 1
                 }
                 //...if it isn't complete, carry it over and mark as overdue
+                else
+                {
+                    goal.due = true
+                }
             }
         }
     }

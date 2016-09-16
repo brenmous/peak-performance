@@ -66,6 +66,10 @@ class HistoryViewController: UITableViewController {
         {
             self.presentViewController(alert!, animated: true, completion: nil)
         }
+        
+        // set up badge and menu bar button item
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
+        
         self.tableView.reloadData( )
     }
     
@@ -73,8 +77,7 @@ class HistoryViewController: UITableViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // set up badge and menu bar button item
-        self.setUpLeftBarButtonItem("1")
+        
     }
  
 
