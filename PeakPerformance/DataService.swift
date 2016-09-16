@@ -18,11 +18,6 @@ import Firebase
 //TODO: - fix summary reference (summaries->user->year->month)
 class DataService  //: SignUpDataService, LogInDataService
 {
-    // MARK: - Properties
-    
-    /// Base reference to the Firebase DB.
-    let baseRef = FIRDatabase.database().reference()
-    
     // MARK: - User Methods
     
     /**
@@ -33,13 +28,12 @@ class DataService  //: SignUpDataService, LogInDataService
         - Parameters:
             - user: the user being saved.
     */
-    func saveUser(user: User)
+    static func saveUser(user: User)
     {
         
-        //Create child references from baseRef to define the nodes that data will be stored under.
-        // E.g. the two lines below specify "Base -> Users -> UserID"
-        let usersRef = baseRef.child(USERS_REF_STRING)
-        let userRef = usersRef.child(user.uid)
+        //Create child references from FIRDatabase.database().reference() to define the nodes that data will be stored under.
+        // E.g. "Base -> Users -> UserID"
+        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
         
         //Create child references for each property and use setValue to store the corresponding value.
         userRef.child(FNAME_REF_STRING).setValue(user.fname)
@@ -65,11 +59,11 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: the user's unique ID.
      - completion: the completion block that passes back the completed user.
      */
-    func loadUser( uid: String, completion: ( user: User ) -> Void )
+    static func loadUser( uid: String, completion: ( user: User ) -> Void )
     {
         
         //As with saving, create references to the nodes we want to retrieve data from.
-        let usersRef = baseRef.child(USERS_REF_STRING)
+        let usersRef = FIRDatabase.database().reference().child(USERS_REF_STRING)
         let userRef = usersRef.child(uid)
 
         userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
@@ -125,26 +119,26 @@ class DataService  //: SignUpDataService, LogInDataService
             - goal: the goal being saved.
             - summaryGoal: whether the goal is part of a summary (removes UID child ref).
     */
-    func saveGoal( uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "" )
+    static func saveGoal( uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "" )
     {
         print("DS: saving goal")
         var goalType = ""
         if goal is WeeklyGoal
         {
-           // goalsRef = baseRef.child(WEEKLYGOALS_REF_STRING)
+           // goalsRef = FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING)
             goalType = WEEKLYGOALS_REF_STRING
         }
         else if goal is MonthlyGoal
         {
-            //goalsRef = baseRef.child(MONTHLYGOALS_REF_STRING)
+            //goalsRef = FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING)
             goalType = MONTHLYGOALS_REF_STRING
         }
         
-        var goalRef = baseRef.child(goalType).child(uid).child(goal.gid)
+        var goalRef = FIRDatabase.database().reference().child(goalType).child(uid).child(goal.gid)
         //If the goal is part of a summary, we don't the need the UID child reference.
         if summaryGoal
         {
-            goalRef = baseRef.child(SUMMARIES_REF_STRING).child(uid).child(summaryDate).child(goalType).child(goal.gid)
+            goalRef = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(uid).child(summaryDate).child(goalType).child(goal.gid)
         }
         goalRef.child(GOALTEXT_REF_STRING).setValue(goal.goalText)
         goalRef.child(KLA_REF_STRING).setValue(goal.kla)
@@ -172,17 +166,17 @@ class DataService  //: SignUpDataService, LogInDataService
             - uid: user ID that the goals belong.
             - completion: the block that passes back the fetched goals.
      */
-    func loadWeeklyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( weeklyGoals: [WeeklyGoal] ) -> Void)? )
+    static func loadWeeklyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( weeklyGoals: [WeeklyGoal] ) -> Void)? )
     {
         
         var weeklyGoals = [WeeklyGoal]()
-        var weeklyGoalsRef = baseRef.child(WEEKLYGOALS_REF_STRING).child(uid)
+        var weeklyGoalsRef = FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING).child(uid)
         if summary != nil
         {
             let dateFormatter = NSDateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             let dateAsString = dateFormatter.stringFromDate(summary!.date)
-            weeklyGoalsRef = baseRef.child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(WEEKLYGOALS_REF_STRING)
+            weeklyGoalsRef = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(WEEKLYGOALS_REF_STRING)
         }
         weeklyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
@@ -229,17 +223,17 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: user ID that the goals belong.
      - completion: the block that passes back the fetched goals.
      */
-    func loadMonthlyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( monthlyGoals: [MonthlyGoal] ) -> Void)? )
+    static func loadMonthlyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( monthlyGoals: [MonthlyGoal] ) -> Void)? )
     {
 
         var monthlyGoals = [MonthlyGoal]( )
-        var monthlyGoalsRef = baseRef.child(MONTHLYGOALS_REF_STRING).child(uid)
+        var monthlyGoalsRef = FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING).child(uid)
         if summary != nil
         {
             let dateFormatter = NSDateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             let dateAsString = dateFormatter.stringFromDate(summary!.date)
-            monthlyGoalsRef = baseRef.child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(MONTHLYGOALS_REF_STRING)
+            monthlyGoalsRef = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(MONTHLYGOALS_REF_STRING)
         }
         monthlyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
@@ -287,16 +281,16 @@ class DataService  //: SignUpDataService, LogInDataService
             - uid: ID of user that owns the weekly goal.
             - goal: the goal being removed
      */
-    func removeGoal( uid: String, goal: Goal )
+    static func removeGoal( uid: String, goal: Goal )
     {
-        var goalsRef = FIRDatabaseReference( )
+        var goalsRef = FIRDatabase.database().reference()
         if goal is WeeklyGoal
         {
-            goalsRef = baseRef.child(WEEKLYGOALS_REF_STRING)
+            goalsRef = FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING)
         }
         else
         {
-            goalsRef = baseRef.child(MONTHLYGOALS_REF_STRING)
+            goalsRef = FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING)
         }
         
         let goalRef = goalsRef.child(uid).child(goal.gid)
@@ -312,9 +306,9 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: the user ID of the user the goal belongs to.
      - dream: the dream being saved.
      */
-    func saveDream( uid: String, dream: Dream )
+    static func saveDream( uid: String, dream: Dream )
     {
-        let dreamsRef = baseRef.child(DREAMS_REF_STRING)
+        let dreamsRef = FIRDatabase.database().reference().child(DREAMS_REF_STRING)
         
         let dreamRef = dreamsRef.child(uid).child(dream.did)
         dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
@@ -335,11 +329,11 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: user ID that the goals belong.
      - completion: the block that passes back the fetched goals.
      */
-    func loadDreams( uid: String, completion: ( dreams: [Dream] ) -> Void )
+    static func loadDreams( uid: String, completion: ( dreams: [Dream] ) -> Void )
     {
         
         var dreams = [Dream]( )
-        let dreamsRef = baseRef.child(DREAMS_REF_STRING).child(uid)
+        let dreamsRef = FIRDatabase.database().reference().child(DREAMS_REF_STRING).child(uid)
         dreamsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
@@ -374,9 +368,9 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: ID of user that owns the weekly goal.
      - dream: the dream being removed
      */
-    func removeDream( uid: String, dream: Dream )
+    static func removeDream( uid: String, dream: Dream )
     {
-        baseRef.child(DREAMS_REF_STRING).child(uid).child(dream.did).removeValue()
+        FIRDatabase.database().reference().child(DREAMS_REF_STRING).child(uid).child(dream.did).removeValue()
     }
     
     
@@ -388,9 +382,9 @@ class DataService  //: SignUpDataService, LogInDataService
      - Parameters:
      - user: user whose values are being saved
      */
-    func saveValues( user: User )
+    static func saveValues( user: User )
     {
-        let ref = baseRef.child(VALUES_REF_STRING).child(user.uid)
+        let ref = FIRDatabase.database().reference().child(VALUES_REF_STRING).child(user.uid)
        
         ref.child(KLA_FAMILY).setValue(user.values[KLA_FAMILY])
         ref.child(KLA_FINANCIAL).setValue(user.values[KLA_FINANCIAL])
@@ -409,12 +403,12 @@ class DataService  //: SignUpDataService, LogInDataService
      - uid: user ID that the goals belong.
      - completion: the block that passes back the fetched goals.
      */
-    func loadValues( uid: String, completion: ( values: [String:String] ) -> Void )
+    static func loadValues( uid: String, completion: ( values: [String:String] ) -> Void )
     {
         
         var values = [ KLA_FAMILY: "", KLA_WORKBUSINESS: "", KLA_PERSONALDEV: "", KLA_FINANCIAL: "",
                        KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
-        let ref = baseRef.child(VALUES_REF_STRING).child(uid)
+        let ref = FIRDatabase.database().reference().child(VALUES_REF_STRING).child(uid)
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
@@ -447,12 +441,12 @@ class DataService  //: SignUpDataService, LogInDataService
     
     // MARK: - Monthly summary methods
     
-    func saveSummary( user: User, summary: MonthlySummary )
+    static func saveSummary( user: User, summary: MonthlySummary )
     {
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let dateAsString = dateFormatter.stringFromDate(summary.date)
-        let ref = baseRef.child(SUMMARIES_REF_STRING).child(user.uid).child(dateAsString)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(dateAsString)
         
         ref.child(SUMMARY_WIW_REF_STRING).setValue(summary.whatIsWorking)
         ref.child(SUMMARY_WINOTW_REF_STRING).setValue(summary.whatIsNotWorking)
@@ -488,12 +482,12 @@ class DataService  //: SignUpDataService, LogInDataService
         
     }
     
-    func loadSummaries( user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void )
+    static func loadSummaries( user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void )
     {
         var monthlySummaries: [String: MonthlySummary?] =  ["January": nil, "February": nil, "March": nil, "April": nil,
                                  "May": nil, "June": nil, "July": nil, "August": nil, "September": nil,
                                  "October": nil, "November": nil, "December": nil]
-        let ref = baseRef.child(SUMMARIES_REF_STRING).child(user.uid)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid)
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {

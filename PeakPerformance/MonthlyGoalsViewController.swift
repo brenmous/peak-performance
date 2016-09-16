@@ -20,9 +20,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     /// The currently authenticated user.
     var currentUser: User?
-    
-    /// This view controller's data service.
-    let dataService = DataService( )
+
     
     // MARK: - Outlets
     //progress bar
@@ -73,7 +71,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             return
         }
         cu.monthlyGoals.append(monthlyGoal)
-        dataService.saveGoal(cu.uid, goal: monthlyGoal)
+        DataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
     /**
@@ -89,7 +87,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             //user not available handle it HANDLE IT!
             return
         }
-        dataService.saveGoal(cu.uid, goal: monthlyGoal)
+        DataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
     /**
@@ -163,6 +161,10 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         //sort completed goals and place them at end of array
         currentUser!.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
         
+        for goal in currentUser!.monthlyGoals
+        {
+            goal.checkIfDue()
+        }
         
         //update progress bar
         updateProgressBar()
@@ -171,10 +173,9 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         SideMenuManager.setUpSideMenu(self.storyboard!, user: self.currentUser!) //func declaration is in SideMenuViewController
         
         //check if a monthly review is needed
-        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
-        if alert != nil
+        if self.currentUser!.checkMonthlyReview()
         {
-            self.presentViewController(alert!, animated: true, completion: nil)
+            self.presentViewController(UIAlertController.getReviewAlert( ), animated: true, completion: nil)
         }
         
         // set up badge and menu bar button item
@@ -343,7 +344,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 //no user! wuh oh!
                 return
             }
-            dataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
+            DataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
             cu.monthlyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

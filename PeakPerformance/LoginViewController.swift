@@ -23,9 +23,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// The currently authenticated user.
     var currentUser: User?
     
-    /// This view controller's DataService instance.
-    let dataService = DataService( )
-    
     /// This view controller's SwiftValidator instance.
     let validator = Validator( )
     
@@ -158,31 +155,34 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         }
         print("LIVC: authenticated user \(user.uid)")
         
+        //how many layers of indentation are you on?
+        //like maybe 5 or 6 right now my dude
+        //you are like a baby, watch this
+
         //Fetch user and content
-        self.dataService.loadUser( user.uid ) { (user) in
+        DataService.loadUser( user.uid ) { (user) in
             self.currentUser = user
             
-            self.dataService.loadWeeklyGoals( user.uid ) { ( weeklyGoals ) in
+            DataService.loadWeeklyGoals( user.uid ) { ( weeklyGoals ) in
                 user.weeklyGoals = weeklyGoals
                 
-                self.dataService.loadMonthlyGoals(user.uid) { ( monthlyGoals) in
+                DataService.loadMonthlyGoals(user.uid) { ( monthlyGoals) in
                     user.monthlyGoals = monthlyGoals
                     
-                    self.dataService.loadDreams(user.uid) { (dreams) in
+                    DataService.loadDreams(user.uid) { (dreams) in
                         user.dreams = dreams
                         
-                        self.dataService.loadValues(user.uid) { (values) in
+                        DataService.loadValues(user.uid) { (values) in
                             user.values = values
                             
-                            self.dataService.loadSummaries(user) { (summaries) in
+                            DataService.loadSummaries(user) { (summaries) in
                                 user.monthlySummaries = summaries
                                 
                             
                             print("LIVC: content fetched, going to home screen")
                             self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                             
-                            //how many layers of indentation are you on?
-                            //like maybe 6 or 7 right now my dude
+                            
                             }
                         }
                     }

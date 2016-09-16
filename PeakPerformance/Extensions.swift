@@ -299,3 +299,24 @@ extension NSDate
     }
 }
 
+// MARK: - UIAlertController
+/**
+ Creates an alert controller informing the user to complete their monthly review.
+ - Returns: an alert controller.
+ */
+extension UIAlertController
+{
+    static func getReviewAlert( ) -> UIAlertController
+    {
+        let reviewAlertController = UIAlertController(title: REVIEW_ALERT_TITLE, message: REVIEW_ALERT_MSG, preferredStyle: .ActionSheet)
+        let cancel = UIAlertAction(title: REVIEW_ALERT_CANCEL, style: .Cancel, handler: nil )
+        let confirm = UIAlertAction(title: REVIEW_ALERT_CONFIRM, style: .Default ) { (action) in
+            //take user to history to complete review
+            print("MRH: go to history")
+            
+        }
+        reviewAlertController.addAction(confirm); reviewAlertController.addAction(cancel)
+        return reviewAlertController
+    }
+}
+

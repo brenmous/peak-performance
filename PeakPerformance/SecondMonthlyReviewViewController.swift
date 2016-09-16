@@ -37,7 +37,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
             return
         }
         s.reviewed = true
-        DataService( ).saveSummary( cu, summary: s )
+        DataService.saveSummary( cu, summary: s )
         performSegueWithIdentifier( UNWIND_TO_HISTORY_SEGUE, sender: self)
         
     }

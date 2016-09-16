@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit //UIAlertController
 
 /**
     Class that represents a peak performance user
@@ -49,8 +50,6 @@ public class User
                                                       "May": nil, "June": nil, "July": nil, "August": nil, "September": nil,
                                                       "October": nil, "November": nil, "December": nil]
     
-
-    
     /**
         Initialises a new user.
 
@@ -90,5 +89,112 @@ public class User
             }
         }
         return count
+    }
+    
+    /**
+     Checks a range of months from user.startMonth...currentMonth - 1 to see if those months have had their summaries created.
+     If not, creates summaries and the nessecary set up for it.
+     
+     - Returns: true if a review is required, false if otherwise.
+     */
+    func checkMonthlyReview( ) -> Bool
+    {
+        
+        let datesToCheck = NSDate( ).getDatesToCheckForSummaries( self )
+        //let calendar = NSCalendar.currentCalendar()
+        var alertUserToReview = false
+        
+        //check user.monthlySummaries to see if monthlySummary has been completed for that month
+        for date in datesToCheck
+        {
+            let dateAr = date.componentsSeparatedByString(" ")
+            let month = dateAr[0]
+            print("MRH: checking for summary for \(month)")
+            if self.monthlySummaries[month]! == nil
+            {
+                print("MRH: no summary for \(month), creating...")
+                alertUserToReview = true
+                //no summary for this month, so create one
+                let dateFormatter = NSDateFormatter( )
+                dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING //TODO: - Add year for summaries
+                guard let date = dateFormatter.dateFromString(date) else
+                {
+                    print("MRH: could not create monthly summary date")
+                    return false
+                }
+                let monthlySummary = MonthlySummary(date: date)
+                self.moveWeeklyGoalsFromUserToSummary(monthlySummary)
+                self.moveMonthlyGoalsFromUserToSummary(monthlySummary)
+                self.monthlySummaries[month] = monthlySummary
+                print("MRH: created summary for \(date)")
+                DataService.saveSummary(self, summary: monthlySummary)
+            }
+            else
+            {
+                print("MRH: summary for \(month) exists")
+            }
+        }
+        return alertUserToReview
+    }
+    
+    /**
+     Moves users weekly goals from the User object to the MonthlySummary object.
+     - Parameters:
+     - weeklySummary: summary being dealt with.
+     */
+    func moveWeeklyGoalsFromUserToSummary( monthlySummary: MonthlySummary )
+    {
+        let calendar = NSCalendar.currentCalendar()
+        var numberOfGoalsRemoved = 0
+        for (index, goal) in self.weeklyGoals.enumerate()
+        {
+            let goalDate = calendar.components([.Month, .Year], fromDate: goal.deadline)
+            let summaryDate = calendar.components([.Month, .Year], fromDate: monthlySummary.date)
+            
+            //place any goals for this month in the summary array and remove them from the user array
+            if (goalDate.month == summaryDate.month) //TODO: - check year (part of 12 month roll over, sprint 5)
+            {
+                monthlySummary.weeklyGoals.append(goal)
+                //If the goal is complete, we don't need it in the User's array anymore
+                if goal.complete
+                {
+                    DataService.removeGoal(self.uid, goal: self.weeklyGoals[index - numberOfGoalsRemoved])
+                    self.weeklyGoals.removeAtIndex(index - numberOfGoalsRemoved)
+                    numberOfGoalsRemoved += 1
+                }
+                //...if it isn't complete, carry it over
+            }
+        }
+    }
+    
+    /**
+     Moves users Monthly goals from the User object to the MonthlySummary object.
+     Also checks if monthly goal is due (yeah I know it should be part of
+     - Parameters:
+     - monthlySummary: summary being dealt with.
+     */
+    func moveMonthlyGoalsFromUserToSummary( monthlySummary: MonthlySummary )
+    {
+        let calendar = NSCalendar.currentCalendar()
+        var numberOfGoalsRemoved = 0
+        for (index ,goal) in self.monthlyGoals.enumerate()
+        {
+            let goalDate = calendar.components([.Month], fromDate: goal.deadline)
+            let summaryDate = calendar.components([.Month], fromDate: monthlySummary.date)
+            
+            //place any goals for this month in the summary array and remove them from the user array
+            if ( goalDate.month == summaryDate.month ) //TODO: - Check year (12 month roll over)
+            {
+                monthlySummary.monthlyGoals.append(goal)
+                //If the goal is complete, we don't need it in the User's array anymore
+                if goal.complete
+                {
+                    DataService.removeGoal(self.uid, goal: self.monthlyGoals[index - numberOfGoalsRemoved])
+                    self.monthlyGoals.removeAtIndex(index - numberOfGoalsRemoved)
+                    numberOfGoalsRemoved += 1
+                }
+                    //...if it isn't complete, carry it over
+            }
+        }
     }
 }

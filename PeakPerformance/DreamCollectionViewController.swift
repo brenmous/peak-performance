@@ -27,8 +27,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     /// Indicates the index path of the cell
     var gloablindexPathForRow: Int?
     
-    let dataService = DataService( )
-    
     let storageService = StorageService( )
     
     // MARK: - Actions
@@ -61,7 +59,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         
         
         storageService.saveDreamImage(cu, dream: dream) { () in
-            self.dataService.saveDream(cu.uid, dream: dream)
+            DataService.saveDream(cu.uid, dream: dream)
         }
         
         
@@ -84,7 +82,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         
         storageService.saveDreamImage(cu, dream: dream) { ()
-            self.dataService.saveDream(cu.uid, dream: dream)
+            DataService.saveDream(cu.uid, dream: dream)
         }
         
         self.collectionView?.reloadData()
@@ -98,7 +96,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             return
         }
         storageService.removeDreamImage(cu, dream: dream)
-        dataService.removeDream(cu.uid, dream: dream)
+        DataService.removeDream(cu.uid, dream: dream)
         cu.dreams.removeAtIndex(gloablindexPathForRow!)
         self.collectionView?.reloadData( )
         
@@ -155,10 +153,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         super.viewWillAppear(animated)
         
         //check if a monthly review is needed
-        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
-        if alert != nil
+        if self.currentUser!.checkMonthlyReview()
         {
-            self.presentViewController(alert!, animated: true, completion: nil)
+            self.presentViewController(UIAlertController.getReviewAlert( ), animated: true, completion: nil)
         }
         
         //reload the view

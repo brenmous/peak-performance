@@ -61,10 +61,9 @@ class HistoryViewController: UITableViewController {
         
         
         //check if a monthly review is needed
-        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
-        if alert != nil
+        if self.currentUser!.checkMonthlyReview()
         {
-            self.presentViewController(alert!, animated: true, completion: nil)
+            self.presentViewController(UIAlertController.getReviewAlert( ), animated: true, completion: nil)
         }
         
         // set up badge and menu bar button item

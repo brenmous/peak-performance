@@ -15,9 +15,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
 
     /// The currently authenticated user.
     var currentUser: User?
-    
-    /// This view controller's data service.
-    let dataService = DataService( )
+
     
 // MARK: IBOutlet
 
@@ -67,7 +65,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
             return
         }
         cu.values[KLA_FRIENDSSOCIAL] = friendsTextView.text
-        dataService.saveValues(cu)
+        DataService.saveValues(cu)
         print("MVVC: This is my financial goal \(cu.values[KLA_FINANCIAL]!)") //label debug strings please
     }
     /// Updates text views with details from the current my values (if available)
@@ -98,10 +96,9 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         }
         
         //check if a monthly review is needed
-        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
-        if alert != nil
+        if self.currentUser!.checkMonthlyReview()
         {
-            self.presentViewController(alert!, animated: true, completion: nil)
+            self.presentViewController(UIAlertController.getReviewAlert( ), animated: true, completion: nil)
         }
         
         // set up badge and menu bar button item

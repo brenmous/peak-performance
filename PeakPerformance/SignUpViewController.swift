@@ -30,9 +30,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     /// The currently authenticated user.
     var currentUser: User?
     
-    /// This view controller's DataService instance.
-    let dataService = DataService( )
-    
     /// This view controller's SwiftValidator instance.
     let validator = Validator( )
     
@@ -207,7 +204,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         
         self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
         
-        self.dataService.saveUser( self.currentUser! )
+        DataService.saveUser( self.currentUser! )
         
     }
     

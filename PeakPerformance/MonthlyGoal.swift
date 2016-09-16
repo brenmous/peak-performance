@@ -30,4 +30,21 @@ class MonthlyGoal: Goal
         let newDeadline = dateFormatter.dateFromString(deadline)
         self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText )
     }
+    
+    func checkIfDue( )
+    {
+        if self.complete || self.due
+        {
+            return
+        }
+        
+        let calendar = NSCalendar.currentCalendar()
+        let goalDate = calendar.components([.Month], fromDate: self.deadline)
+        let summaryDate = calendar.components([.Month], fromDate: NSDate( ) )
+
+        if ( goalDate.month == summaryDate.month )
+        {
+            self.complete = true
+        }
+    }
 }

@@ -19,9 +19,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
     /// The currently authenticated user.
     var currentUser: User?
-    
-    /// This view controller's data service.
-    let dataService = DataService( )
+  
     
     /// Declare leftBarButton badge with counter
     //var leftBarButton: ENMBadgedBarButtonItem?
@@ -79,7 +77,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             return
         }
         cu.weeklyGoals.append( weeklyGoal )
-        dataService.saveGoal(cu.uid, goal: weeklyGoal)
+        DataService.saveGoal(cu.uid, goal: weeklyGoal)
     }
     
     /**
@@ -95,7 +93,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             //user not available handle it HANDLE IT!
             return
         }
-        dataService.saveGoal(cu.uid, goal: weeklyGoal)
+        DataService.saveGoal(cu.uid, goal: weeklyGoal)
     }
     
     /**
@@ -191,10 +189,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! )
 
         //check if a monthly review is needed
-        let alert = MonthlyReviewHelper(user: self.currentUser!).checkMonthlyReview()
-        if alert != nil
+        if self.currentUser!.checkMonthlyReview()
         {
-            self.presentViewController(alert!, animated: true, completion: nil)
+            self.presentViewController(UIAlertController.getReviewAlert( ), animated: true, completion: nil)
         }
 
         self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
@@ -366,7 +363,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 //no user! wuh oh!
                 return
             }
-            dataService.removeGoal(cu.uid, goal: cu.weeklyGoals[indexPath.row]) // remove goal
+            DataService.removeGoal(cu.uid, goal: cu.weeklyGoals[indexPath.row]) // remove goal
             cu.weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
