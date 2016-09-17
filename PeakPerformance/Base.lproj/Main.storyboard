@@ -1214,7 +1214,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="due-icon" translatesAutoresizingMaskIntoConstraints="NO" id="qa4-Qx-wZa">
                                             <rect key="frame" x="549" y="-4" width="35" height="23"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="p3p-P2-s44"/>
+                                                <constraint firstAttribute="width" constant="35" id="jGf-cK-C1I"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0H-dT-ypZ">
@@ -1236,15 +1236,15 @@
                                     </subviews>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="qa4-Qx-wZa" firstAttribute="top" secondItem="W71-3E-BBb" secondAttribute="topMargin" constant="-12" id="1KC-73-y6u"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qa4-Qx-wZa" secondAttribute="bottom" constant="25.5" id="1LK-dZ-jw7"/>
                                         <constraint firstItem="t0H-dT-ypZ" firstAttribute="centerY" secondItem="2xw-7Z-maC" secondAttribute="centerY" id="1oq-8Z-OVP"/>
-                                        <constraint firstItem="qa4-Qx-wZa" firstAttribute="leading" secondItem="2xw-7Z-maC" secondAttribute="trailing" constant="8" symbolic="YES" id="3Et-hU-XMJ"/>
                                         <constraint firstItem="t0H-dT-ypZ" firstAttribute="centerY" secondItem="W71-3E-BBb" secondAttribute="centerY" id="3Gh-cA-zY5"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="qa4-Qx-wZa" secondAttribute="trailing" constant="8" id="DiZ-ZB-V9d"/>
                                         <constraint firstItem="t0H-dT-ypZ" firstAttribute="leading" secondItem="W71-3E-BBb" secondAttribute="leadingMargin" constant="13" id="E7e-JP-cTy"/>
                                         <constraint firstItem="t0H-dT-ypZ" firstAttribute="top" secondItem="W71-3E-BBb" secondAttribute="topMargin" constant="-1" id="G1a-0T-uPG"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qa4-Qx-wZa" secondAttribute="trailing" constant="8" id="Ht2-7s-Ke7"/>
                                         <constraint firstItem="2xw-7Z-maC" firstAttribute="leading" secondItem="t0H-dT-ypZ" secondAttribute="trailing" constant="8" symbolic="YES" id="JBI-N8-DKL"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="qa4-Qx-wZa" secondAttribute="bottom" constant="25.5" id="PIo-Uq-otH"/>
+                                        <constraint firstItem="qa4-Qx-wZa" firstAttribute="leading" secondItem="2xw-7Z-maC" secondAttribute="trailing" constant="8" symbolic="YES" id="Pyf-hy-hMK"/>
+                                        <constraint firstItem="qa4-Qx-wZa" firstAttribute="top" secondItem="W71-3E-BBb" secondAttribute="topMargin" constant="-12" id="W7O-zy-RMT"/>
                                         <constraint firstItem="2xw-7Z-maC" firstAttribute="top" secondItem="W71-3E-BBb" secondAttribute="top" id="bQe-7z-nN7"/>
                                     </constraints>
                                 </tableViewCellContentView>

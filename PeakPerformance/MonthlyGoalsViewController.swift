@@ -225,6 +225,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         return numOfSections
     }
     
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return currentUser!.monthlyGoals.count
@@ -238,58 +239,63 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         //Configure the cell
         var klaIcon = ""
+        var klaIconDone = ""
         var klaIconHighlighted = ""
         let kla = goal.kla
         
-        if ( goal.complete )
+        if  goal.complete
         {
             cell.userInteractionEnabled = false
             cell.completeButton.hidden = true
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
-            cell.tintColor = UIColor.darkGrayColor()  // this disappeared when I cloned on 14/09/16
+            cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueLabelIcon.hidden = true
+            
             switch kla
             {
             case KLA_FAMILY:
-                klaIcon = "F-done.png"
+                klaIconDone = "F-done.png"
                 
             case KLA_WORKBUSINESS:
-                klaIcon = "W-done.png"
+                klaIconDone = "W-done.png"
                 
             case KLA_PARTNER:
-                klaIcon = "P-done.png"
+                klaIconDone = "P-done.png"
                 
             case KLA_FINANCIAL:
-                klaIcon = "FI-done.png"
+                klaIconDone = "FI-done.png"
                 
             case KLA_PERSONALDEV:
-                klaIcon = "PD-done.png"
+                klaIconDone = "PD-done.png"
                 
             case KLA_EMOSPIRITUAL:
-                klaIcon = "ES-done.png"
+                klaIconDone = "ES-done.png"
                 
             case KLA_HEALTHFITNESS:
-                klaIcon = "H-done.png"
+                klaIconDone = "H-done.png"
                 
             case KLA_FRIENDSSOCIAL:
-                klaIcon = "FR-done.png"
+                klaIconDone = "FR-done.png"
                 
             default:
-                klaIcon = "F-done.png"
+                klaIconDone = "F-done.png"
             }
             
             // use image instead of the button
-            cell.iconImage.image = UIImage(named: klaIcon)
+            cell.iconImage.image = UIImage(named: klaIconDone)
         
         }
-        else if !goal.complete
+            
+        else
         {
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
+            cell.userInteractionEnabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
+            
             switch kla
             {
             case KLA_FAMILY:
@@ -332,23 +338,22 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             {
                 //show due image
                 cell.dueLabelIcon.hidden = false
-            } else {
+                
+            } else if !goal.due {
                 // hide image
                 cell.dueLabelIcon.hidden = true
             }
             
         }
         // Image button for normal and highlighted
-        
         let imageButton = UIImage(named: klaIcon)
         let highlightedImageButton = UIImage(named: klaIconHighlighted)
         cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
         cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
-        cell.completeButton.setImage(highlightedImageButton, forState: .Highlighted)
-        cell.goalTextLabel!.text = goal.goalText
-
-        cell.delegate = self
+//        cell.completeButton.setImage(highlightedImageButton, forState: .Highlighted)
         
+        cell.goalTextLabel!.text = goal.goalText
+        cell.delegate = self
         return cell
     }
     

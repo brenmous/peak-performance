@@ -305,6 +305,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         {
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
+            cell.userInteractionEnabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
             switch kla
@@ -347,7 +348,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             
             if goal.due
             {
-                //show due image
+                // show due image
                 cell.dueImageIcon.hidden = false
                 
             } else {
@@ -358,7 +359,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
         }
         // Image button for normal and highlighted
-        
         let imageButton = UIImage(named: klaIcon)
         let highlightedImageButton = UIImage(named: klaIconHighlighted)
         cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
