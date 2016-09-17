@@ -52,6 +52,8 @@ class SideMenuViewController: UITableViewController
     func goToMonthlyReview( )
     {
         //ask user if they want to go to history view to complete monthly reviews
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName("changeIndex", object: nil)
     }
   
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -67,6 +69,7 @@ class SideMenuViewController: UITableViewController
         if cell?.reuseIdentifier == MONTHLYREVIEW_CELL_ID
         {
             print("SMVC: monthly review pressed")
+            self.dismissViewControllerAnimated(true, completion: nil)
             self.goToMonthlyReview()
         }
     }

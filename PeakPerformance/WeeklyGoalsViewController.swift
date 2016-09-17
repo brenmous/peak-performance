@@ -21,10 +21,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     var currentUser: User?
   
     
-    /// Declare leftBarButton badge with counter
-    //var leftBarButton: ENMBadgedBarButtonItem?
-    //var count = 0
-    
     // MARK: Outlets
     
     //progress bar
@@ -149,7 +145,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     }
     
     // MARK: - Overridden methods
-    
+
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -232,7 +228,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             
             // Creating and editing label to display when there are no Weekly Goals
             let weeklyGoalPlaceholderView: UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
-            weeklyGoalPlaceholderView.text = WEEKLY_GOALS_PLACEHOLDER;            weeklyGoalPlaceholderView.textColor = UIColor.grayColor()
+            weeklyGoalPlaceholderView.text = WEEKLY_GOALS_PLACEHOLDER;
+            weeklyGoalPlaceholderView.textColor = UIColor.grayColor()
             weeklyGoalPlaceholderView.textAlignment = .Center
             weeklyGoalPlaceholderView.numberOfLines = 0
             weeklyGoalPlaceholderView.lineBreakMode = NSLineBreakMode.ByTruncatingTail
@@ -267,6 +264,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
+            cell.dueImageIcon.hidden = true
+
             switch kla
             {
             case KLA_FAMILY:
@@ -335,7 +334,13 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             
             if goal.due
             {
-                //set your overdue label/icon/whatever here
+                //show due image
+                cell.dueImageIcon.hidden = false
+                
+            } else {
+                // hide image
+                cell.dueImageIcon.hidden = true
+               
             }
 
         }
@@ -343,7 +348,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         cell.goalTextLabel!.text = goal.goalText
         cell.imageView!.image = UIImage(named: klaIcon)
         cell.delegate = self
-    
         return cell
     }
     

@@ -18,15 +18,19 @@ class TabBarViewController: UITabBarController {
     /// The currently authenticated user.
     var currentUser: User?
     
-    
+    /// The current select tab view
+    var currentSelectedIndex = 2
     
     // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: "setIndexNumber", name: "changeIndex", object: nil)
+        
         //set default tab to weekly goals view
-        self.selectedIndex = 2
+        self.selectedIndex = currentSelectedIndex
+        //set default tab to weekly goals view
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,7 +43,10 @@ class TabBarViewController: UITabBarController {
         super.viewWillAppear(animated)
     }
   
-    
+    func setIndexNumber( ) {
+        self.selectedIndex = 0
+        print("HVC: History View") // DEBUG
+    }
     /*
     // MARK: - Navigation
     

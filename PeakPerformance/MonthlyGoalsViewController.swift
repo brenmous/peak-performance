@@ -248,6 +248,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             cell.accessoryType = .Checkmark
             cell.tintColor = UIColor.darkGrayColor()  // this disappeared when I cloned on 14/09/16
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
+            cell.dueLabelIcon.hidden = true
             switch kla
             {
             case KLA_FAMILY:
@@ -316,13 +317,18 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             
             if goal.due
             {
-                //set overdue label/icon/whatever
+                //show due image
+                cell.dueLabelIcon.hidden = false
+            } else {
+                // hide image
+                cell.dueLabelIcon.hidden = true
             }
             
         }
         
         cell.goalTextLabel!.text = goal.goalText
-        cell.imageView!.image = UIImage(named: klaIcon)
+//        cell.imageView!.image = UIImage(named: klaIcon)
+        cell.iconImage.image = UIImage(named: klaIcon)
         cell.delegate = self
         
         return cell
