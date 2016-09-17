@@ -255,6 +255,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         // Configure the cell...
         var klaIcon = ""
+        var klaIconHighlighted = ""
         let kla = goal.kla
         
         if goal.complete
@@ -295,6 +296,10 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             default:
                 klaIcon = "F-done.png"
             }
+            
+            // use image instead of the button
+            cell.iconImage.image = UIImage(named: klaIcon)
+            
         }
         else if !goal.complete
         {
@@ -306,30 +311,38 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             {
             case KLA_FAMILY:
                 klaIcon = "F.png"
+                klaIconHighlighted = "F-highlighted"
                 
             case KLA_WORKBUSINESS:
                 klaIcon = "W.png"
+                klaIconHighlighted = "W-highlighted"
                 
             case KLA_PARTNER:
                 klaIcon = "P.png"
+                klaIconHighlighted = "P-highlighted"
                 
             case KLA_FINANCIAL:
                 klaIcon = "FI.png"
+                klaIconHighlighted = "FI-highlighted"
                 
             case KLA_PERSONALDEV:
                 klaIcon = "PD.png"
+                klaIconHighlighted = "PD-highlighted"
                 
             case KLA_EMOSPIRITUAL:
                 klaIcon = "ES.png"
-                
+                klaIconHighlighted = "ES-highlighted"
             case KLA_HEALTHFITNESS:
                 klaIcon = "H.png"
+                klaIconHighlighted = "H-highlighted"
                 
             case KLA_FRIENDSSOCIAL:
                 klaIcon = "FR.png"
+                klaIconHighlighted = "FR-highlighted"
                 
             default:
                 klaIcon = "F.png"
+                klaIconHighlighted = "F-highlighted"
             }
             
             if goal.due
@@ -344,9 +357,14 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             }
 
         }
+        // Image button for normal and highlighted
         
+        let imageButton = UIImage(named: klaIcon)
+        let highlightedImageButton = UIImage(named: klaIconHighlighted)
+        cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
+        cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
+    
         cell.goalTextLabel!.text = goal.goalText
-        cell.imageView!.image = UIImage(named: klaIcon)
         cell.delegate = self
         return cell
     }
