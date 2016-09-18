@@ -226,7 +226,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         super.viewDidLoad()
 
         // set up badge and menu bar button item
-        self.setUpLeftBarButtonItem("1")
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
         
         // text view set up
         goalTextView.layer.cornerRadius = 5

@@ -238,7 +238,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         super.viewDidLoad()
         
         // set up badge and menu bar button item
-        self.setUpLeftBarButtonItem("1")
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
         
         // Picker
         klaPicker.dataSource = self

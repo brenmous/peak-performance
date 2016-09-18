@@ -33,7 +33,7 @@ class MonthlyGoal: Goal
     
     func checkIfDue( )
     {
-        if self.complete || self.due
+        if self.complete
         {
             return
         }
@@ -44,7 +44,11 @@ class MonthlyGoal: Goal
 
         if ( goalDate.month == summaryDate.month )
         {
-            self.complete = true
+            self.due = true
+        }
+        else
+        {
+            self.due = false
         }
     }
 }
