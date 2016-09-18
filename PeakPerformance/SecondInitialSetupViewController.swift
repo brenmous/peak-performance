@@ -32,7 +32,7 @@ class SecondInitialSetupViewController: UITableViewController {
     // MARK: - Actions
     @IBAction func doneButtonPressed(sender: AnyObject)
     {
-        self.updateSummaryWithText( )
+        //self.updateSummaryWithText( )
         guard let s = self.summary else
         {
             print("SMRVC: error unwrapping summary")

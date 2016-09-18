@@ -241,13 +241,12 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
 
         // set up badge and menu bar button item
-        self.setUpLeftBarButtonItem("1")
+        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
         
         //text field delegates
         dreamText.delegate = self
         
-        createAlbum()
-        // Do any additional setup after loading the view.
+        //createAlbum()
         
         // text view UI configuration
         dreamText.layer.cornerRadius = 5
