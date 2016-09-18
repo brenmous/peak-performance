@@ -26,7 +26,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: "setIndexNumber", name: "changeIndex", object: nil)
+        nc.addObserver(self, selector: #selector(TabBarViewController.setIndexNumber), name: "changeIndex", object: nil)
         
         //set default tab to weekly goals view
         self.selectedIndex = currentSelectedIndex

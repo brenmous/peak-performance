@@ -52,8 +52,8 @@ class WeeklyGoal: Goal
     /// Checks if this goal has reached its deadline and sets its "due" property if so.
     func checkIfDue( )
     {
-        //goal is complete/aready due so don't bother checking the due date
-        if self.complete || self.due
+        //goal is complete so don't bother checking the due date
+        if self.complete
         {
             return
         }
@@ -63,6 +63,10 @@ class WeeklyGoal: Goal
         if res == .OrderedAscending
         {
             self.due = true
+        }
+        else
+        {
+            self.due = false
         }
     }
 }
