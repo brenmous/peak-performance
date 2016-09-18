@@ -47,7 +47,6 @@ class HistoryViewController: UITableViewController {
         //place summaries from user dictionary into array (required for table view)
         //TODO: - use observer to only update array when summaries are added
         self.monthlySummariesArray.removeAll() //this is dirty, fix it
-        self.monthlySummariesArray.append(self.currentUser!.currentRealitySummary) //put the current reality summary first
         for (_, val) in self.currentUser!.monthlySummaries
         {
             if val != nil
@@ -58,6 +57,8 @@ class HistoryViewController: UITableViewController {
 
         //sort summaries by date with oldest first
         //currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+        self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedAscending })
+        self.monthlySummariesArray.insert(self.currentUser!.currentRealitySummary, atIndex: 0)
         
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
