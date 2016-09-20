@@ -210,6 +210,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             var dreamPlaceholderView : UIImageView
             dreamPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.collectionView!.bounds.size.width, self.collectionView!.bounds.size.height));
             dreamPlaceholderView.image = UIImage(named:DREAM_PLACEHOLDER)
+            dreamPlaceholderView.contentMode = .ScaleAspectFill
             self.collectionView?.backgroundView = dreamPlaceholderView
         }
         return numOfSection

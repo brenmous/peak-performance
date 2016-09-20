@@ -392,10 +392,10 @@ let REVIEW_ALERT_CANCEL = "No thanks, later."
 let REVIEW_ALERT_CONFIRM = "Sure."
 
 ///Placeholder text for weekly goals
-let WEEKLY_GOALS_PLACEHOLDER = "Add some weekly goals so you can reach your Peak Performance!"
+let WEEKLY_GOALS_PLACEHOLDER = "Click the '+' icon to add some weekly goals so you can reach your Peak Performance!"
 
 ///Placeholder text for monthly goals
-let MONTHLY_GOALS_PLACEHOLDER = "Add some monthly goals so you can reach your Peak Performance!"
+let MONTHLY_GOALS_PLACEHOLDER = "Click the '+' icon to add some monthly goals so you can reach your Peak Performance!"
 
 /// Initial setup rating reason alert controller title
 let INITIAL_SETUP_ALERT_TITLE = "Your Reason"
@@ -432,9 +432,14 @@ let TAB_BAR_VC = "TabBarViewController"
 /// Constant for compression of JPEG UIImage representation.
 let JPEG_QUALITY: CGFloat = 0.25
 
-///Placeholder image for weekly goals
-let DREAM_PLACEHOLDER = "dream-placeholder.jpg"
+///Placeholder image for dream list
+let DREAM_PLACEHOLDER = "dream-list-placeholder"
 
+///Placeholder image for weekly
+let WEEK_PLACEHOLDER = "weekly-placeholder"
+
+///Placeholder image for monthly
+let MONTHLY_PLACEHOLDER = "monthly-placeholder"
 
 /// Menu icon image
 let MENU_ICON_NAME = "menu-150dpi-2"

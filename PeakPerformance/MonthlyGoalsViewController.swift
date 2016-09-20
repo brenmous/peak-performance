@@ -212,12 +212,11 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         } else {
             
             // Creating and editing label to display when there are no Weekly Goals
-            let monthlyGoalPlaceholderView: UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
-            monthlyGoalPlaceholderView.text = MONTHLY_GOALS_PLACEHOLDER;            monthlyGoalPlaceholderView.textColor = UIColor.grayColor()
-            monthlyGoalPlaceholderView.textAlignment = .Center
-            monthlyGoalPlaceholderView.numberOfLines = 0
-            monthlyGoalPlaceholderView.lineBreakMode = NSLineBreakMode.ByTruncatingTail
-            self.tableView.backgroundView = monthlyGoalPlaceholderView
+            var weeklyPlaceholderView : UIImageView
+            weeklyPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.tableView!.bounds.size.width, self.tableView!.bounds.size.height));
+            weeklyPlaceholderView.image = UIImage(named:MONTHLY_PLACEHOLDER)
+            weeklyPlaceholderView.contentMode = .ScaleAspectFill
+            self.tableView.backgroundView = weeklyPlaceholderView
             tableView.separatorStyle = .None
             
         }

@@ -227,15 +227,13 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         } else {
             
             // Creating and editing label to display when there are no Weekly Goals
-            let weeklyGoalPlaceholderView: UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
-            weeklyGoalPlaceholderView.text = WEEKLY_GOALS_PLACEHOLDER;
-            weeklyGoalPlaceholderView.textColor = UIColor.grayColor()
-            weeklyGoalPlaceholderView.textAlignment = .Center
-            weeklyGoalPlaceholderView.numberOfLines = 0
-            weeklyGoalPlaceholderView.lineBreakMode = NSLineBreakMode.ByTruncatingTail
-            self.tableView.backgroundView = weeklyGoalPlaceholderView
-            tableView.separatorStyle = .None
             
+            var weeklyPlaceholderView : UIImageView
+            weeklyPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.tableView!.bounds.size.width, self.tableView!.bounds.size.height));
+            weeklyPlaceholderView.image = UIImage(named:WEEK_PLACEHOLDER)
+            weeklyPlaceholderView.contentMode = .ScaleAspectFill
+            self.tableView.backgroundView = weeklyPlaceholderView
+            tableView.separatorStyle = .None
         }
         
         return numOfSections
