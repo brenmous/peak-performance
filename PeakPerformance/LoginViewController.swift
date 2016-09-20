@@ -158,7 +158,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         //how many layers of indentation are you on?
         //like maybe 5 or 6 right now my dude
         //you are like a baby, watch this
-
+        
         //Fetch user and content
         DataService.loadUser( user.uid ) { (user) in
             self.currentUser = user
@@ -242,7 +242,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         //set up text field delegates
         emailField.delegate = self
         passwordField.delegate = self
-        
     
         //Comment these lines out to use other accounts
 //        emailField.text = "laura.johnson@hmail.com"
