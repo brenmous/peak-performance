@@ -165,6 +165,9 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     {
         super.viewWillAppear(animated)
         
+        //clear field
+        self.emailField.text = ""
+        
         //hide error labels
         resetPasswordErrorLabel.hidden = true
         emailErrorLabel.hidden = true

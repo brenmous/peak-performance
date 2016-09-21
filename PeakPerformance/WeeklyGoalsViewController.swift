@@ -171,7 +171,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         {
             goal.checkIfDue()
         }
-        
+    
         //sort completed goals and place them at end of array
         currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
         

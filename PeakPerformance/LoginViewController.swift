@@ -253,6 +253,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     {
         super.viewWillAppear(animated)
         
+        //reset fields
+        self.emailField.text = ""
+        self.passwordField.text = ""
+        
         //hide error labels
         logInErrorLabel.hidden = true
         emailErrorLabel.hidden = true
