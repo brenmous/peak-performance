@@ -39,6 +39,9 @@ class MonthlySummary: Summary
     /// Whether the user has reviewed this summary.
     var reviewed = false
     
+    /// Whether the summary has been sent to the User's coach.
+    var sent = false
+    
     /**
         Initialises a new MonthlySummary for the specified month.
         - Parameters: 

@@ -119,7 +119,7 @@ extension NSDate
     }
     
     /// Get the month of a date as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
-    private func getMonthAsString( date: NSDate ) -> String
+    func getMonthAsString( date: NSDate ) -> String
     {
         let dateComponents = self.getDateComponents(date)
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

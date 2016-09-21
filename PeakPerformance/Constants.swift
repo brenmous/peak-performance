@@ -218,6 +218,9 @@ let SUMMARY_DIHTC_REF_STRING = "needToChange"
 /// Specifies summary reviewed boolean in database.
 let SUMMARY_REVIEWED_REF_STRING = "reviewed"
 
+/// Specifies summary sent boolean in database.
+let SUMMARY_SENT_REF_STRING = "sent"
+
 /// Specifies current reality summary in database.
 let CURRENT_REALITY_SUMMARY_REF_STRING = "initial"
 

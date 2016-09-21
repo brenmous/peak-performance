@@ -15,6 +15,7 @@ class HistoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var reviewReadyLabel: UILabel!
+    @IBOutlet weak var sendToCoachButton: UIButton!
     
     
     override func awakeFromNib() {
