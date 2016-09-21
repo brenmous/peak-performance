@@ -159,7 +159,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     {
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
-        let deadline = ("\(deadlineTextField.text!) \(NSDate().getCurrentYearAsString( ))")
+        let deadline = ("\(deadlineTextField.text!) \(NSDate().getYearAsString(NSDate()))")
         let gid = NSUUID( ).UUIDString
         let mg = MonthlyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(mg)

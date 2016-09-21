@@ -99,10 +99,10 @@ extension UITextView: Validatable {
 /// Class that provides manipulations of NSDate to get various date components and Strings to assist with various tasks related to calendar dates.
 extension NSDate
 {
-    /// Get the day, month and year components of the current date.
-    private func getDateComponents( ) -> NSDateComponents
+    /// Get the day, month and year components of a date.
+    func getDateComponents( date: NSDate ) -> NSDateComponents
     {
-        return NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
+        return NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: date)
     }
     
     /// Get the number of days in the current month (28, 30 or 31).
@@ -115,20 +115,21 @@ extension NSDate
     /// Get the current day of the month.
     private func getCurrentDay( ) -> Int
     {
-        return self.getDateComponents().day
+        return self.getDateComponents(NSDate( )).day
     }
     
-    /// Get the current month as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
-    private func getCurrentMonthAsString( ) -> String
+    /// Get the month of a date as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
+    private func getMonthAsString( date: NSDate ) -> String
     {
-        let dateComponents = self.getDateComponents()
+        let dateComponents = self.getDateComponents(date)
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         return months[dateComponents.month - 1]
     }
     
-    func getCurrentYearAsString( ) -> String
+    /// Get the year of a date as a string.
+    func getYearAsString( date: NSDate ) -> String
     {
-        return String(self.getDateComponents().year)
+        return String(self.getDateComponents(date).year)
     }
     
     /// Get the current day of the week.
@@ -141,7 +142,7 @@ extension NSDate
     /// Get the current week of the month.
     private func getCurrentWeek( ) -> Int
     {
-        let day = self.getDateComponents().day
+        let day = self.getDateComponents(NSDate( )).day
         var week = (day/7)+1
         if day % 7 == 0
         {
@@ -160,7 +161,7 @@ extension NSDate
     /// Returns the string for the monthly progress bar label.
     func getMonthlyProgressString( ) -> String
     {
-        let month = self.getCurrentMonthAsString()
+        let month = self.getMonthAsString(NSDate())
         let week = self.getCurrentWeek()
         return "\(month) Week \(week)"
     }
@@ -200,7 +201,7 @@ extension NSDate
     /// Returns an NSDate for specifying max date of the weekly goal deadline picker.
     func getWeeklyDatePickerMaxDate( ) -> NSDate
     {
-        let dateComponents = self.getDateComponents()
+        let dateComponents = self.getDateComponents(NSDate())
         dateComponents.day = self.getNumberOfDaysInCurrentMonth()
         return NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
     }
@@ -296,6 +297,16 @@ extension NSDate
             }
         }
         return monthsToCheck
+    }
+    
+    func getDaysBetweenTodayAndDeadline( deadline: NSDate ) -> Int
+    {
+        //get days between current date and deadline
+        let calendar = NSCalendar.currentCalendar()
+        let start = calendar.startOfDayForDate(deadline)
+        let end = calendar.startOfDayForDate(self)
+        let dateComponents = calendar.components([.Day], fromDate: start, toDate: end, options: [])
+        return dateComponents.day
     }
 }
 

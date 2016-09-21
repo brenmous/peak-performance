@@ -170,10 +170,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         for goal in self.currentUser!.weeklyGoals
         {
             goal.checkIfDue()
-            if goal.due
-            {
-                print("\(goal.goalText) is overdue")
-            }
         }
         
         //sort completed goals and place them at end of array
@@ -344,12 +340,18 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIconHighlighted = "F-highlighted"
             }
             
-            if goal.due
+            if goal.due == Goal.Due.overdue
             {
                 // show due image
                 cell.dueImageIcon.hidden = false
                 
-            } else {
+            }
+            else if goal.due == Goal.Due.soon
+            {
+                //show due soon image
+            }
+            else
+            {
                 // hide image
                 cell.dueImageIcon.hidden = true
                

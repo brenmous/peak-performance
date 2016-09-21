@@ -32,7 +32,14 @@ class Goal
     var kickItText: String = ""
     
     /// Whether the goal has reached its deadline.
-    var due: Bool = false
+    var due: Due = .notdue
+    
+    enum Due
+    {
+        case notdue
+        case soon
+        case overdue
+    }
     
     /**
      Initialises a new weekly goal.
@@ -45,7 +52,7 @@ class Goal
      
      - Returns: A weekly goal with the specified paramters.
      */
-    init ( goalText: String, kla: String, deadline: NSDate, gid: String, complete: Bool = false, kickItText: String = "", due: Bool = false )
+    init ( goalText: String, kla: String, deadline: NSDate, gid: String, complete: Bool = false, kickItText: String = "", due: Due = .notdue )
     {
         self.goalText = goalText
         self.kla = kla
