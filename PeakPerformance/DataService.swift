@@ -14,9 +14,8 @@ import Firebase
     This class handles read/write to the Firebase realtime database.
   */
 
-//TODO: - load goals in summary using existing methods
 //TODO: - fix summary reference (summaries->user->year->month)
-//TODO: - currenty reality save/load
+//TODO: - check if child exists before fetching data
 class DataService  //: SignUpDataService, LogInDataService
 {
     // MARK: - User Methods
@@ -539,7 +538,7 @@ class DataService  //: SignUpDataService, LogInDataService
                     summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
                     summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
                     summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
-                    summary.sent = s.value![SUMMARY_SENT_REF_STRING] as! Bool
+                    summary.sent = s.hasChild(SUMMARY_SENT_REF_STRING) ? s.value![SUMMARY_SENT_REF_STRING] as! Bool : false
                     
                     for (kla,_) in summary.klaRatings
                     {

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PDFGenerator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-PeakPerformance.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,22 +42,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>26B51FA7A466594BCCF4B60345762E03</key>
+		<key>45757391F1A1D07A7A9C8999740B20E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>72671E489FFCC207041B6489D8457C92</key>
+		<key>7A12B1193BD091DCBBD6B7C3EFD466DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D4D56E9185F38DC40D63AABFC62F1DF</key>
+		<key>AB57BD1A48FB257B67FDC4A6557AAFC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F728AECB3174B0A1325677E23FABF45E</key>
+		<key>F926DEB100A8330346CDB2E7A4FD34B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF29E8023BE103E631F5C5B85787D805</key>
 		<dict>
 			<key>primary</key>
 			<true/>

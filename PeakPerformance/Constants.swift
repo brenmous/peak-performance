@@ -430,6 +430,12 @@ let MONTHLYREVIEW_VC = "MonthlyReview"
 /// Indetifier for Tab Bar View Contoller
 let TAB_BAR_VC = "TabBarViewController"
 
+/// Identifier for History Summary view controller.
+let HISTORY_SUMMARY_VC = "HistorySummary"
+
+/// Indetifier for History Goals Summary view controller.
+let HISTORY_GOALS_VC = "HistoryGoals"
+
 // MARK: - Image Related Stuff
 
 /// Constant for compression of JPEG UIImage representation.
@@ -455,3 +461,8 @@ let DUE_SOON_ICON = "soon-icon"
 
 /// Icon to show when a goal is due
 let OVERDUE_ICON = "due-icon"
+
+// MARK: - File MIME type strings
+
+/// MIME type string for PDFs
+let PDF_MIME_TYPE = "application/pdf"
