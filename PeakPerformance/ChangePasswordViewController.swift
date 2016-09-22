@@ -79,7 +79,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
                     {
                         //inform user of password change success
                         print("CPVC - changePassword(): password change successful")
-                        self.presentViewController(UIAlertController.getChangePasswordAlert(), animated: true ) {
+                        self.presentViewController(UIAlertController.getChangePasswordAlert(self), animated: true ) {
                             self.currentPasswordField.text = ""
                             self.newPasswordField.text = ""
                             self.confirmPasswordField.text = ""

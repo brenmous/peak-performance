@@ -323,6 +323,7 @@ extension UIAlertController
         let cancel = UIAlertAction(title: REVIEW_ALERT_CANCEL, style: .Cancel, handler: nil )
         let confirm = UIAlertAction(title: REVIEW_ALERT_CONFIRM, style: .Default ) { (action) in
             //take user to history to complete review
+         
             print("MRH: go to history")
             
         }
@@ -330,10 +331,13 @@ extension UIAlertController
         return reviewAlertController
     }
     
-    static func getChangePasswordAlert( ) -> UIAlertController
+    static func getChangePasswordAlert(cpvc: UIViewController ) -> UIAlertController
     {
         let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default, handler: nil)
+        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default) { (action) in
+            cpvc.performSegueWithIdentifier(UNWIND_FROM_CHANGE_PW_SEGUE, sender: cpvc)
+        }
+        
         changePWAlertController.addAction(confirm)
         
         return changePWAlertController

@@ -13,6 +13,9 @@ class SettingsViewController: UITableViewController {
     // MARK: - Properties
     var currentUser: User?
     
+    // MARK: - Actions
+    @IBAction func unwindToSettings( sender: UIStoryboardSegue){}
+    
     // MARK: - Outlets
     @IBAction func backButtonPressed( sender: AnyObject )
     {

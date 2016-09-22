@@ -6186,9 +6186,11 @@
                         <outlet property="currentPasswordField" destination="cp5-0Z-vOW" id="R03-tp-LC0"/>
                         <outlet property="newPasswordErrorLabel" destination="2ES-4q-F3x" id="YEd-D1-Bu8"/>
                         <outlet property="newPasswordField" destination="Z9O-yG-tZs" id="D4k-Qi-XSI"/>
+                        <segue destination="myL-ho-h7l" kind="unwind" identifier="unwindToSettings" unwindAction="unwindToSettings:" id="zrz-s3-ps3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbb-I6-vmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="myL-ho-h7l" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6433" y="-1300"/>
         </scene>
