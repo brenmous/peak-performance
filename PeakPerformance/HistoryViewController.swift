@@ -20,6 +20,8 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     var monthlySummariesArray = [Summary]( )
     
+    var summaryToSend: MonthlySummary?
+    
     // MARK: - Actions
     @IBAction func menuButtonPressed(sender: AnyObject) {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
@@ -37,9 +39,13 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         let indexPath = self.tableView.indexPathForCell(cell)
         let summary = self.monthlySummariesArray[indexPath!.row] as! MonthlySummary
         let month = NSDate( ).getMonthAsString(summary.date)
-        let subject = "My monthly review for \(month)."
+        let subject = "My monthly review for \(month)." //TODO: make constant
         mailVC.setSubject(subject)
         
+        //mailVC.addAttachmentData(<#T##attachment: NSData##NSData#>, mimeType: <#T##String#>, fileName: <#T##String#>)
+        
+        self.summaryToSend = summary
+       
         if MFMailComposeViewController.canSendMail()
         {
             self.presentViewController(mailVC, animated: true, completion: nil)
@@ -55,8 +61,17 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     @IBAction func unwindToHistory(sender: UIStoryboardSegue){}
     
     // MARK: - Methods
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?)
+    {
         controller.dismissViewControllerAnimated(true, completion: nil)
+        if error == nil
+        {
+            //all is well
+            self.summaryToSend!.sent = true
+            DataService.saveSummary(self.currentUser!, summary: self.summaryToSend!)
+            self.summaryToSend = nil
+            self.tableView!.reloadData( )
+        }
     }
     
     // MARK: - Overridden methods
