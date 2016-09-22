@@ -68,6 +68,8 @@ class SideMenuViewController: UITableViewController
     {
         //self.performSegueWithIdentifier("goToSettings", sender: self)
         let nav = self.storyboard?.instantiateViewControllerWithIdentifier(SETTINGS_NAV) as! UINavigationController
+        let settingsVC = nav.viewControllers[0] as! SettingsViewController
+        settingsVC.currentUser = self.currentUser
         self.presentViewController(nav, animated: true, completion: nil)
     }
     

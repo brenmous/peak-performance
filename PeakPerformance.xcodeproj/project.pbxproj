@@ -67,6 +67,7 @@
 		B5791FF61D5496FC0079A9CB /* MonthlyGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */; };
 		B5791FF81D5497140079A9CB /* MonthlyGoalsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */; };
 		B590576F1D945A9100D12D2C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B590576E1D945A9100D12D2C /* SettingsViewController.swift */; };
+		B59057751D946C7E00D12D2C /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */; };
 		B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */; };
 		B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */; };
 		B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */; };
@@ -167,6 +168,7 @@
 		B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalsViewController.swift; sourceTree = "<group>"; };
 		B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalsDetailViewController.swift; sourceTree = "<group>"; };
 		B590576E1D945A9100D12D2C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamCollectionViewController.swift; sourceTree = "<group>"; };
 		B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamDetailViewController.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		B53B454E1D3FB78700F20D25 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B59057761D94809200D12D2C /* Settings */,
 				446C6FAB1D93F9480094FA55 /* Login-Signup */,
 				446C6FAA1D93F9080094FA55 /* MonthlyReview */,
 				446C6FA41D93F8600094FA55 /* DreamTab */,
@@ -371,7 +374,6 @@
 				446C6FA51D93F87A0094FA55 /* WeeklyTab */,
 				B5B8D2C21D43465F0072E50A /* TabBarViewController.swift */,
 				B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */,
-				B590576E1D945A9100D12D2C /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -398,6 +400,15 @@
 				B5791FF21D5493E50079A9CB /* MIDatePicker.xib */,
 			);
 			name = DatePicker;
+			sourceTree = "<group>";
+		};
+		B59057761D94809200D12D2C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B590576E1D945A9100D12D2C /* SettingsViewController.swift */,
+				B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		B59EC4261D3FB45C00AF1297 = {
@@ -718,6 +729,7 @@
 				B5791FF81D5497140079A9CB /* MonthlyGoalsDetailViewController.swift in Sources */,
 				44E65A9B1D59EE1D008442F2 /* LastPageTutorialViewController.swift in Sources */,
 				B53E7EAF1D8BD0CA00CFF4AB /* InitialSetupViewController.swift in Sources */,
+				B59057751D946C7E00D12D2C /* ChangePasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

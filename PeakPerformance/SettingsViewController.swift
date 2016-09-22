@@ -10,6 +10,9 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
 
+    // MARK: - Properties
+    var currentUser: User?
+    
     // MARK: - Outlets
     @IBAction func backButtonPressed( sender: AnyObject )
     {
@@ -30,5 +33,15 @@ class SettingsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == GO_TO_CHANGE_PASSWORD_SEGUE
+        {
+            let dvc = segue.destinationViewController as! ChangePasswordViewController
+            dvc.currentUser = self.currentUser
+        }
+    }
+    
 
 }

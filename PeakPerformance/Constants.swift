@@ -67,6 +67,9 @@ let WRONG_PW_ERROR = "Email and password do not match."
 /// Reset password email successfully sent.
 let RESET_EMAIL_SENT = "A reset password email has been sent to this account."
 
+/// Change password - wrong current password.
+let CHANGE_PW_ERROR = "Incorrect password. Please re-enter your current password."
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.
@@ -295,6 +298,12 @@ let GO_TO_TAB_BAR_SEGUE = "goToTabBar"
 /// Settings -> Tab Bar
 let UNWIND_FROM_SETTINGS_SEGUE = "unwindToTabBar"
 
+/// change password -> settings
+let UNWIND_FROM_CHANGE_PW_SEGUE = "unwindToSettings"
+
+/// settings -> change password
+let GO_TO_CHANGE_PASSWORD_SEGUE = "goToChangePassword"
+
 
 let GO_TO_LOG_IN = "logOut"
 
@@ -414,6 +423,15 @@ let INITIAL_SETUP_ALERT_CONFIRM = "OK"
 
 /// Initial setup rating reason alert cancel 
 let INITIAL_SETUP_ALERT_CANCEL = "Cancel"
+
+/// Change password alert title.
+let CHANGEPW_ALERT_TITLE = "Success!"
+
+/// Change password alert message.
+let CHANGEPW_ALERT_MSG = "Your password was successfully changed."
+
+/// Change password alert confirm.
+let CHANGEPW_ALERT_CONFIRM = "Ok."
 
 
 // MARK: - Storyboard IDs

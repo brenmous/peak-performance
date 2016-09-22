@@ -329,5 +329,14 @@ extension UIAlertController
         reviewAlertController.addAction(confirm); reviewAlertController.addAction(cancel)
         return reviewAlertController
     }
+    
+    static func getChangePasswordAlert( ) -> UIAlertController
+    {
+        let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
+        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default, handler: nil)
+        changePWAlertController.addAction(confirm)
+        
+        return changePWAlertController
+    }
 }
 
