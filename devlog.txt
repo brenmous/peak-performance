@@ -206,4 +206,10 @@
 	- sending mail to coach
 		- mail composer in History view, needs testing
 
-23/09/2016 03:25 - 
+23/09/2016 03:25 - 07:20
+	- sending mail to coach
+		- generate PDFs of summary
+		- attach to mail
+	- Settings
+		- created VC/view
+		- changed password working
