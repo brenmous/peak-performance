@@ -235,6 +235,8 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         {
             self.updateImageandTextView()
         }
+        
+        self.dreamText.textColor = UIColor.lightGrayColor()
     }
     
     override func viewDidLoad() {
@@ -262,6 +264,17 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - UITextView placeholder
+    func textViewDidBeginEditing(textView: UITextView)
+    {
+        if textView.textColor == UIColor.lightGrayColor()
+        {
+            textView.text = ""
+            textView.textColor = UIColor.blackColor( )
+        }
+    }
+    
     
     // MARK: - keyboard stuff
     /// Work around for dismissing keyboard on text view.

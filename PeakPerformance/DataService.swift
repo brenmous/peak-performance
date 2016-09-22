@@ -469,6 +469,7 @@ class DataService  //: SignUpDataService, LogInDataService
         ref.child(SUMMARY_WHII_REF_STRING).setValue(summary.whatHaveIImproved)
         ref.child(SUMMARY_DIHTC_REF_STRING).setValue(summary.doIHaveToChange)
         ref.child(SUMMARY_REVIEWED_REF_STRING).setValue(summary.reviewed)
+        ref.child(SUMMARY_SENT_REF_STRING).setValue(summary.sent)
         
         //save weekly goals
         if !summary.weeklyGoals.isEmpty
@@ -538,6 +539,7 @@ class DataService  //: SignUpDataService, LogInDataService
                     summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
                     summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
                     summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
+                    summary.sent = s.value![SUMMARY_SENT_REF_STRING] as! Bool
                     
                     for (kla,_) in summary.klaRatings
                     {

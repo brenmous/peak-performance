@@ -13,6 +13,9 @@ import Foundation
  */
 class MonthlyGoal: Goal
 {
+    /// Amount of weeks from goal's deadline for it be considered "due soon".
+    let weeksTillDueSoon = 1
+    
     /**
      Convenience initiliaser for creating a weekly goal with a deadline in String format. Used when loading goals from database.
      
@@ -31,24 +34,28 @@ class MonthlyGoal: Goal
         self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText )
     }
     
+    /// Checks if this goal has reached its deadline and sets its "due" property if so.
     func checkIfDue( )
     {
+        //goal is complete so don't bother checking the due date
         if self.complete
         {
             return
         }
         
-        let calendar = NSCalendar.currentCalendar()
-        let goalDate = calendar.components([.Month], fromDate: self.deadline)
-        let summaryDate = calendar.components([.Month], fromDate: NSDate( ) )
-
-        if ( goalDate.month == summaryDate.month )
+        //compare goal deadline with current date
+        let days = NSDate().getDaysBetweenTodayAndDeadline(self.deadline)
+        if days <= 0
         {
-            self.due = true
+            self.due = Due.overdue
+        }
+        else if days > 0 && days <= weeksTillDueSoon*7
+        {
+            self.due = Due.soon
         }
         else
         {
-            self.due = false
+            self.due = Due.notdue
         }
     }
 }

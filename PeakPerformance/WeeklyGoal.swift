@@ -14,6 +14,9 @@ import Foundation
 class WeeklyGoal: Goal
 {
     
+    /// Amount of days from a goal's deadline to consider it "due soon".
+    let daysTillDueSoon = 2
+    
     /**
      Convenience initiliaser for creating a weekly goal with a deadline in String format. Used when loading goals from database.
      
@@ -59,14 +62,18 @@ class WeeklyGoal: Goal
         }
         
         //compare goal deadline with current date
-        let res = self.deadline.compare(NSDate( ))
-        if res == .OrderedAscending
+        let days = NSDate().getDaysBetweenTodayAndDeadline(self.deadline)
+        if days <= 0
         {
-            self.due = true
+            self.due = Due.overdue
+        }
+        else if days > 0 && days <= daysTillDueSoon
+        {
+            self.due = Due.soon
         }
         else
         {
-            self.due = false
+            self.due = Due.notdue
         }
     }
 }

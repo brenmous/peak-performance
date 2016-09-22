@@ -198,3 +198,10 @@
 	- InitialSetup
 		- views, controllers and navigation
 		- functionality, saving, loading
+
+21/09/2016 15:40 - 18:30
+	- dream placeholder text fix
+	- changed goals "due" property to enum
+		- now has "due soon"
+	- sending mail to coach
+		- mail composer in History view, needs testing

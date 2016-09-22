@@ -290,6 +290,14 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        //clear fields
+        self.firstNameField.text = ""
+        self.lastNameField.text = ""
+        self.orgField.text = ""
+        self.emailField.text = ""
+        self.passwordField.text = ""
+        self.confirmPasswordField.text = ""
+        
         //hide error labels
         firstNameErrorLabel.hidden = true
         lastNameErrorLabel.hidden = true

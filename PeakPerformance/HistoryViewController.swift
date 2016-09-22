@@ -8,11 +8,12 @@
 
 import UIKit
 import SideMenu
+import MessageUI
 
 //TODO: - display cell for currenty reality summary
 //TODO: - display cells in yearly sections, preferably collapsible (12 month roll over)
 
-class HistoryViewController: UITableViewController {
+class HistoryViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
     /// The currently logged in user.
     var currentUser: User?
@@ -24,7 +25,39 @@ class HistoryViewController: UITableViewController {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
+    @IBAction func sendEmailToCoachPressed(sender: AnyObject )
+    {
+        let mailVC = MFMailComposeViewController( )
+        mailVC.mailComposeDelegate = self
+        mailVC.setToRecipients(["bmoush@gmail.com"]) //TODO: set to User's coach email
+        
+        //get month of selected summary and set as email subject
+        let button = sender as! UIButton
+        let cell = button.superview!.superview as! HistoryTableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        let summary = self.monthlySummariesArray[indexPath!.row] as! MonthlySummary
+        let month = NSDate( ).getMonthAsString(summary.date)
+        let subject = "My monthly review for \(month)."
+        mailVC.setSubject(subject)
+        
+        if MFMailComposeViewController.canSendMail()
+        {
+            self.presentViewController(mailVC, animated: true, completion: nil)
+        }
+        else
+        {
+            //show error alert
+            print("HVC: error with email")
+        }
+        
+    }
+    
     @IBAction func unwindToHistory(sender: UIStoryboardSegue){}
+    
+    // MARK: - Methods
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     // MARK: - Overridden methods
     
@@ -112,6 +145,16 @@ class HistoryViewController: UITableViewController {
             let monthAsString = dateFormatter.stringFromDate(summary.date)
             cell.monthLabel.text = monthAsString
             
+            //send to coach button
+            if !summary.sent
+            {
+                cell.sendToCoachButton.hidden = false
+            }
+            else
+            {
+                cell.sendToCoachButton.hidden = true
+            }
+            
             //set "review ready" label
             if summary.reviewed == false
             {
@@ -127,6 +170,7 @@ class HistoryViewController: UITableViewController {
         else if s is CurrentRealitySummary
         {
             //let summary = s as! CurrentRealitySummary
+            cell.sendToCoachButton.hidden = true
             cell.reviewReadyLabel.text = "View summary"
             cell.monthLabel.text = "Initial Review" //change this to whatever you want
             cell.reviewReadyLabel.textColor = UIColor.grayColor()
