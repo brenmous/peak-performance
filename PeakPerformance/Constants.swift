@@ -292,6 +292,9 @@ let GO_TO_SECOND_INITIAL_SETUP = "goToInitialSetupSecond"
 /// Segue InitialSetup -> Tab Bar
 let GO_TO_TAB_BAR_SEGUE = "goToTabBar"
 
+/// Settings -> Tab Bar
+let UNWIND_FROM_SETTINGS_SEGUE = "unwindToTabBar"
+
 
 let GO_TO_LOG_IN = "logOut"
 
@@ -435,6 +438,30 @@ let HISTORY_SUMMARY_VC = "HistorySummary"
 
 /// Indetifier for History Goals Summary view controller.
 let HISTORY_GOALS_VC = "HistoryGoals"
+
+/// Identifier for Settings side menu cell.
+let SETTINGS_CELL_ID = "settings"
+
+/// Identifier for Settings view controller
+let SETTINGS_VC = "SettingsVC"
+
+/// Identifier for Settings nav controller
+let SETTINGS_NAV = "SettingsNavController"
+
+/// Identifier for change password settings cell.
+let CHANGE_PW_CELL_ID = "changePasswordCell"
+
+/// Identifier for change coach email settings cell.
+let CHANGE_COACH_EMAIL_CELL_ID = "changeCoachEmailCell"
+
+/// Identifier for delete account settings cell.
+let DELETE_ACCOUNT_CELL_ID = "deleteAccountCell"
+
+/// Identifier for about settings cell.
+let ABOUT_CELL_ID = "aboutCell"
+
+/// Identfier for privacy policy settings cell.
+let PRIVACY_CELL_ID = "privacyPolicyCell"
 
 // MARK: - Image Related Stuff
 

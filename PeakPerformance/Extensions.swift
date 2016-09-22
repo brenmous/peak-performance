@@ -68,7 +68,7 @@ extension SideMenuManager
         smvc.currentUser = user
         smvc.sb = sb
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
-        
+
         // Pan Gestures
         
         SideMenuManager.menuAddPanGestureToPresent(toView: (menuLeftNavigationController?.navigationBar)!)
