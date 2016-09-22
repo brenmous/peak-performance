@@ -162,7 +162,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         //check if a monthly review is needed
         if self.currentUser!.checkMonthlyReview()
         {
-            self.presentViewController(UIAlertController.getReviewAlert( ), animated: true, completion: nil)
+            self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
         
         // set up badge and menu bar button item
