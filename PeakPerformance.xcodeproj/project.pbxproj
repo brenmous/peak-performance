@@ -25,6 +25,7 @@
 		446379C11D56089900BAE5B2 /* P.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379B91D56089900BAE5B2 /* P.png */; };
 		446379C21D56089900BAE5B2 /* PD.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BA1D56089900BAE5B2 /* PD.png */; };
 		446379C31D56089900BAE5B2 /* W.png in Resources */ = {isa = PBXBuildFile; fileRef = 446379BB1D56089900BAE5B2 /* W.png */; };
+		446C6FA31D93F41D0094FA55 /* CustomizableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446C6FA21D93F41D0094FA55 /* CustomizableLabel.swift */; };
 		4484A3BD1D49D31800650D6B /* weekly-icon_25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */; };
 		449618051D7D503100AD8C25 /* customizableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449618041D7D503100AD8C25 /* customizableTextView.swift */; };
 		449D802C1D88570D00C0138A /* ENMBadgedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D802B1D88570D00C0138A /* ENMBadgedBarButtonItem.swift */; };
@@ -122,6 +123,7 @@
 		446379B91D56089900BAE5B2 /* P.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P.png; sourceTree = "<group>"; };
 		446379BA1D56089900BAE5B2 /* PD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PD.png; sourceTree = "<group>"; };
 		446379BB1D56089900BAE5B2 /* W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = W.png; sourceTree = "<group>"; };
+		446C6FA21D93F41D0094FA55 /* CustomizableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableLabel.swift; sourceTree = "<group>"; };
 		4484A3BC1D49D31800650D6B /* weekly-icon_25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weekly-icon_25x25.png"; sourceTree = "<group>"; };
 		449618041D7D503100AD8C25 /* customizableTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customizableTextView.swift; sourceTree = "<group>"; };
 		449D802B1D88570D00C0138A /* ENMBadgedBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENMBadgedBarButtonItem.swift; sourceTree = "<group>"; };
@@ -224,11 +226,93 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		446C6FA41D93F8600094FA55 /* DreamTab */ = {
+			isa = PBXGroup;
+			children = (
+				B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */,
+				B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */,
+				B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */,
+			);
+			name = DreamTab;
+			sourceTree = "<group>";
+		};
+		446C6FA51D93F87A0094FA55 /* WeeklyTab */ = {
+			isa = PBXGroup;
+			children = (
+				B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */,
+				B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */,
+				B5B46A8B1D66D5CB00FFA4F8 /* GoalTableViewCell.swift */,
+			);
+			name = WeeklyTab;
+			sourceTree = "<group>";
+		};
+		446C6FA61D93F8A90094FA55 /* MonthlyTab */ = {
+			isa = PBXGroup;
+			children = (
+				B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */,
+				B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */,
+				B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */,
+			);
+			name = MonthlyTab;
+			sourceTree = "<group>";
+		};
+		446C6FA71D93F8BF0094FA55 /* HistoryTab */ = {
+			isa = PBXGroup;
+			children = (
+				B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */,
+				B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */,
+				B577EAEA1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift */,
+				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,
+				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
+			);
+			name = HistoryTab;
+			sourceTree = "<group>";
+		};
+		446C6FA81D93F8D50094FA55 /* MyValuesTab */ = {
+			isa = PBXGroup;
+			children = (
+				44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */,
+			);
+			name = MyValuesTab;
+			sourceTree = "<group>";
+		};
+		446C6FA91D93F8EC0094FA55 /* Tutorial-InititalSetup */ = {
+			isa = PBXGroup;
+			children = (
+				B53E7EAE1D8BD0CA00CFF4AB /* InitialSetupViewController.swift */,
+				B53E7EB01D8BD0DB00CFF4AB /* SecondInitialSetupViewController.swift */,
+				444447031D588F520029E3C6 /* TutorialViewController.swift */,
+				44558EC61D59981C00F978D0 /* GreetingViewController.swift */,
+				44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */,
+			);
+			name = "Tutorial-InititalSetup";
+			sourceTree = "<group>";
+		};
+		446C6FAA1D93F9080094FA55 /* MonthlyReview */ = {
+			isa = PBXGroup;
+			children = (
+				B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */,
+				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
+			);
+			name = MonthlyReview;
+			sourceTree = "<group>";
+		};
+		446C6FAB1D93F9480094FA55 /* Login-Signup */ = {
+			isa = PBXGroup;
+			children = (
+				B53B455B1D3FB85500F20D25 /* LoginViewController.swift */,
+				B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */,
+				B5A59C5F1D59BA1C00AFC6AB /* ResetPasswordViewController.swift */,
+			);
+			name = "Login-Signup";
+			sourceTree = "<group>";
+		};
 		449618031D7D500A00AD8C25 /* CustomizableUI */ = {
 			isa = PBXGroup;
 			children = (
 				449D802B1D88570D00C0138A /* ENMBadgedBarButtonItem.swift */,
 				449618041D7D503100AD8C25 /* customizableTextView.swift */,
+				446C6FA21D93F41D0094FA55 /* CustomizableLabel.swift */,
 			);
 			name = CustomizableUI;
 			sourceTree = "<group>";
@@ -275,33 +359,16 @@
 		B53B454E1D3FB78700F20D25 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */,
-				B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */,
-				B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */,
-				B53B455B1D3FB85500F20D25 /* LoginViewController.swift */,
-				B53B455C1D3FB85500F20D25 /* SignUpViewController.swift */,
-				B5A59C5F1D59BA1C00AFC6AB /* ResetPasswordViewController.swift */,
-				444447031D588F520029E3C6 /* TutorialViewController.swift */,
-				44558EC61D59981C00F978D0 /* GreetingViewController.swift */,
-				44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */,
+				446C6FAB1D93F9480094FA55 /* Login-Signup */,
+				446C6FAA1D93F9080094FA55 /* MonthlyReview */,
+				446C6FA41D93F8600094FA55 /* DreamTab */,
+				446C6FA91D93F8EC0094FA55 /* Tutorial-InititalSetup */,
+				446C6FA81D93F8D50094FA55 /* MyValuesTab */,
+				446C6FA71D93F8BF0094FA55 /* HistoryTab */,
+				446C6FA61D93F8A90094FA55 /* MonthlyTab */,
+				446C6FA51D93F87A0094FA55 /* WeeklyTab */,
 				B5B8D2C21D43465F0072E50A /* TabBarViewController.swift */,
-				B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */,
-				B50861C41D5060C100901638 /* WeeklyGoalDetailViewController.swift */,
-				B5B46A8B1D66D5CB00FFA4F8 /* GoalTableViewCell.swift */,
-				B5791FF51D5496FC0079A9CB /* MonthlyGoalsViewController.swift */,
-				B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */,
-				B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */,
 				B5113CAA1D6C5B8F006AABAD /* SideMenuViewController.swift */,
-				44A8EEBD1D783641001FB50D /* MyValuesTableViewController.swift */,
-				B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */,
-				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
-				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,
-				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
-				B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */,
-				B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */,
-				B577EAEA1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift */,
-				B53E7EAE1D8BD0CA00CFF4AB /* InitialSetupViewController.swift */,
-				B53E7EB01D8BD0DB00CFF4AB /* SecondInitialSetupViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -623,6 +690,7 @@
 				32D794EB1D61D5A600134D01 /* Dream.swift in Sources */,
 				B567CE821D8BE91F0033A8A1 /* CurrentRealitySummary.swift in Sources */,
 				B5791FF11D5493E00079A9CB /* MIDatePicker.swift in Sources */,
+				446C6FA31D93F41D0094FA55 /* CustomizableLabel.swift in Sources */,
 				44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */,
 				B5A59C601D59BA1C00AFC6AB /* ResetPasswordViewController.swift in Sources */,
 				B5791FF61D5496FC0079A9CB /* MonthlyGoalsViewController.swift in Sources */,

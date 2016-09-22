@@ -337,11 +337,12 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             {
                 //show due image
                 cell.dueLabelIcon.hidden = false
-                
+                cell.dueLabelIcon.image = UIImage(named: DUE_SOON_ICON)
             }
             else if goal.due == Goal.Due.soon
             {
                 //show soon image
+                cell.dueLabelIcon.hidden = false
             }
             else
             {

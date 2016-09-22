@@ -344,11 +344,14 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             {
                 // show due image
                 cell.dueImageIcon.hidden = false
-                
+                cell.dueImageIcon.image = UIImage(named: DUE_SOON_ICON)
+
             }
             else if goal.due == Goal.Due.soon
             {
                 //show due soon image
+                cell.dueImageIcon.hidden = false
+                
             }
             else
             {

@@ -449,3 +449,9 @@ let MENU_ICON_NAME = "menu-150dpi-2"
 
 /// Menu icon highlighted image
 let MENU_ICON_HIGHLIGHTED_NAME = "menu-150dpi-highlighted"
+
+/// Icon to show when a goal is due soon
+let DUE_SOON_ICON = "soon-icon"
+
+/// Icon to show when a goal is due
+let OVERDUE_ICON = "due-icon"

@@ -20,6 +20,10 @@ class SideMenuViewController: UITableViewController
     @IBOutlet weak var nameProfileLabel: UILabel!
     
     @IBOutlet weak var startDateProfileLabel: UILabel!
+    
+    @IBOutlet weak var monthlyCounterLabel: CustomizableLabelView!
+    
+    
     var currentUser: User?
     
     var sb: UIStoryboard?
@@ -95,6 +99,14 @@ class SideMenuViewController: UITableViewController
         startDateProfileLabel.text = "Started \(monthAsString)"
         print("SMVC: \(cu.email)") //DEBUG
         
+        // set month counter
+        let counter = self.currentUser!.numberOfUnreviwedSummaries()
+        
+        if counter == 0 {
+            monthlyCounterLabel.hidden = true
+        } else {
+           monthlyCounterLabel.text = String(self.currentUser!.numberOfUnreviwedSummaries())
+        }
     }
     override func viewDidLoad()
     {
