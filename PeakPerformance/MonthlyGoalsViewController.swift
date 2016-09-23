@@ -333,16 +333,16 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 klaIconHighlighted = "F-highlighted"
             }
             
+            cell.dueLabelIcon.hidden = false
             if goal.due == Goal.Due.overdue
             {
                 //show due image
-                cell.dueLabelIcon.hidden = false
-                cell.dueLabelIcon.image = UIImage(named: DUE_SOON_ICON)
+                cell.dueLabelIcon.image = UIImage(named: OVERDUE_ICON)
             }
             else if goal.due == Goal.Due.soon
             {
                 //show soon image
-                cell.dueLabelIcon.hidden = false
+                cell.dueLabelIcon.image = UIImage(named: DUE_SOON_ICON)
             }
             else
             {

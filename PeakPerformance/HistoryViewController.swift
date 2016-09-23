@@ -78,13 +78,26 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?)
     {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        if error == nil
+        switch result.rawValue
         {
-            //all is well
+        case 0: //cancelled 
+            print("HVC - mailComposeController(): cancelled")
+            
+        case 1: //saved as draft
+            print("HVC: - mailComposeController(): saved as draft")
+        
+        case 2: //sent
+            print("HVC: - mailComposeController(): queued to send")
             self.summaryToSend!.sent = true
             DataService.saveSummary(self.currentUser!, summary: self.summaryToSend!)
             self.summaryToSend = nil
             self.tableView!.reloadData( )
+            
+        case 3: //failed
+            print("HVC - mailComposeController(): send failed with error \(error?.localizedDescription)")
+        
+        default: //unknown
+            print("HVC - mailComposeController(): unknown result, this is Apple's problem")
         }
     }
     
