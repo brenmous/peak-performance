@@ -28,7 +28,8 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     @IBOutlet weak var changePasswordErrorLabel: UILabel!
     
-    @IBOutlet weak var changePasswordButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+//    @IBOutlet weak var changePasswordButton: UIButton!
     
     // MARK: - Actions
     @IBAction func changePasswordPressed( sender: AnyObject )
@@ -37,6 +38,9 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     }
     
     // MARK: - Methods
+    @IBAction func pressConfirmBarButton(sender: UIBarButtonItem) {
+        validator.validate(self)
+    }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
@@ -54,11 +58,12 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     /// Change a user's password.
     func changePassword( )
     {
+        activityIndicator.startAnimating()
         print("CPVC - changePassword(): attempting to change password...")
         //reset error label & disable button
         self.changePasswordErrorLabel.hidden = true
         self.changePasswordErrorLabel.text = ""
-        self.changePasswordButton.enabled = false
+//        self.changePasswordButton.enabled = false
         
         print("CPVC - changePassword(): attemping to reauthenticate user...")
         guard let cu = currentUser else
@@ -79,11 +84,12 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
                     {
                         //inform user of password change success
                         print("CPVC - changePassword(): password change successful")
+                        self.activityIndicator.stopAnimating()
                         self.presentViewController(UIAlertController.getChangePasswordAlert(self), animated: true ) {
                             self.currentPasswordField.text = ""
                             self.newPasswordField.text = ""
                             self.confirmPasswordField.text = ""
-                            self.changePasswordButton.enabled = true
+//                            self.changePasswordButton.enabled = true
                         }
                         return
                     }
@@ -103,7 +109,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
                         break
                     }
                     self.changePasswordErrorLabel.hidden = false
-                    self.changePasswordButton.enabled = true
+//                    self.changePasswordButton.enabled = true
                 }
                 return
             }
@@ -140,7 +146,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
                 self.changePasswordErrorLabel.text = "Error case not currently covered." //DEBUG
             }
             self.changePasswordErrorLabel.hidden = false
-            self.changePasswordButton.enabled = true
+//            self.changePasswordButton.enabled = true
         }
     }
     
@@ -212,7 +218,8 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        // Back button 
+        self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
             validationRule.errorLabel?.hidden = true
@@ -267,7 +274,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         self.changePasswordErrorLabel.hidden = true
         
         //enable change password button
-        self.changePasswordButton.enabled = true
+//        self.changePasswordButton.enabled = true
     }
     
 

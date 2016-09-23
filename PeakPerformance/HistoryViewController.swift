@@ -179,7 +179,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
     }
  
 
