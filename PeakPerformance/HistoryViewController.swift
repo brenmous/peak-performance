@@ -108,22 +108,25 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     func generatePDF( ) -> [NSData]
     {
         //Get summary view controllers for creating PDFs from views
+        print("HVC - generatePDF(): getting summary view")
         let vcSum = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_SUMMARY_VC) as! SummaryViewController
         vcSum.summary = self.summaryToSend
         vcSum.tableView!.reloadData()
         
+         print("HVC - generatePDF(): getting goal view")
         let vcGoals = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_GOALS_VC) as! SecondSummaryViewController
         vcGoals.summary = self.summaryToSend
         vcGoals.tableView!.reloadData()
         while(vcSum.viewIfLoaded == nil && vcGoals.viewIfLoaded == nil){} //wait for views to load
      
         var pdfs = [NSData]( )
-        
+        print("HVC - generatePDF(): attemping to generate PDFs")
         do
         {
             let pdfSum = try PDFGenerator.generate(vcSum.view)
             let pdfGoals = try PDFGenerator.generate(vcGoals.view)
             pdfs.insert(pdfSum, atIndex: 0); pdfs.insert(pdfGoals, atIndex: 1)
+            print("HVC - generatePDF(): PDFs generated")
         }
         catch (let error)
         {
