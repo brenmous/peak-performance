@@ -21,7 +21,16 @@ class TabBarViewController: UITabBarController {
     /// The current select tab view
     var currentSelectedIndex = 2
     
+    @IBAction func unwindToTabBar( sender: UIStoryboardSegue){ }
+    
     // MARK: - Methods
+    
+    func setIndexNumber( ) {
+        self.selectedIndex = 0
+        print("HVC: History View") // DEBUG
+    }
+    
+    //MARK: - Overriden methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +52,6 @@ class TabBarViewController: UITabBarController {
         super.viewWillAppear(animated)
     }
   
-    func setIndexNumber( ) {
-        self.selectedIndex = 0
-        print("HVC: History View") // DEBUG
-    }
     /*
     // MARK: - Navigation
     

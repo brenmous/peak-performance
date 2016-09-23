@@ -67,6 +67,9 @@ let WRONG_PW_ERROR = "Email and password do not match."
 /// Reset password email successfully sent.
 let RESET_EMAIL_SENT = "A reset password email has been sent to this account."
 
+/// Change password - wrong current password.
+let CHANGE_PW_ERROR = "Incorrect password. Please re-enter your current password."
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.
@@ -292,6 +295,15 @@ let GO_TO_SECOND_INITIAL_SETUP = "goToInitialSetupSecond"
 /// Segue InitialSetup -> Tab Bar
 let GO_TO_TAB_BAR_SEGUE = "goToTabBar"
 
+/// Settings -> Tab Bar
+let UNWIND_FROM_SETTINGS_SEGUE = "unwindToTabBar"
+
+/// change password -> settings
+let UNWIND_FROM_CHANGE_PW_SEGUE = "unwindToSettings"
+
+/// settings -> change password
+let GO_TO_CHANGE_PASSWORD_SEGUE = "goToChangePassword"
+
 
 let GO_TO_LOG_IN = "logOut"
 
@@ -412,6 +424,15 @@ let INITIAL_SETUP_ALERT_CONFIRM = "OK"
 /// Initial setup rating reason alert cancel 
 let INITIAL_SETUP_ALERT_CANCEL = "Cancel"
 
+/// Change password alert title.
+let CHANGEPW_ALERT_TITLE = "Success!"
+
+/// Change password alert message.
+let CHANGEPW_ALERT_MSG = "Your password was successfully changed."
+
+/// Change password alert confirm.
+let CHANGEPW_ALERT_CONFIRM = "Ok."
+
 
 // MARK: - Storyboard IDs
 
@@ -429,6 +450,36 @@ let MONTHLYREVIEW_VC = "MonthlyReview"
 
 /// Indetifier for Tab Bar View Contoller
 let TAB_BAR_VC = "TabBarViewController"
+
+/// Identifier for History Summary view controller.
+let HISTORY_SUMMARY_VC = "HistorySummary"
+
+/// Indetifier for History Goals Summary view controller.
+let HISTORY_GOALS_VC = "HistoryGoals"
+
+/// Identifier for Settings side menu cell.
+let SETTINGS_CELL_ID = "settings"
+
+/// Identifier for Settings view controller
+let SETTINGS_VC = "SettingsVC"
+
+/// Identifier for Settings nav controller
+let SETTINGS_NAV = "SettingsNavController"
+
+/// Identifier for change password settings cell.
+let CHANGE_PW_CELL_ID = "changePasswordCell"
+
+/// Identifier for change coach email settings cell.
+let CHANGE_COACH_EMAIL_CELL_ID = "changeCoachEmailCell"
+
+/// Identifier for delete account settings cell.
+let DELETE_ACCOUNT_CELL_ID = "deleteAccountCell"
+
+/// Identifier for about settings cell.
+let ABOUT_CELL_ID = "aboutCell"
+
+/// Identfier for privacy policy settings cell.
+let PRIVACY_CELL_ID = "privacyPolicyCell"
 
 // MARK: - Image Related Stuff
 
@@ -455,3 +506,8 @@ let DUE_SOON_ICON = "soon-icon"
 
 /// Icon to show when a goal is due
 let OVERDUE_ICON = "due-icon"
+
+// MARK: - File MIME type strings
+
+/// MIME type string for PDFs
+let PDF_MIME_TYPE = "application/pdf"

@@ -9,6 +9,7 @@
 import UIKit
 import SideMenu
 import MessageUI
+import PDFGenerator // github.com/sgr-ksmt/PDFGenerator
 
 //TODO: - display cell for currenty reality summary
 //TODO: - display cells in yearly sections, preferably collapsible (12 month roll over)
@@ -20,6 +21,8 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     var monthlySummariesArray = [Summary]( )
     
+    var summaryToSend: MonthlySummary?
+    
     // MARK: - Actions
     @IBAction func menuButtonPressed(sender: AnyObject) {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
@@ -27,19 +30,35 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     @IBAction func sendEmailToCoachPressed(sender: AnyObject )
     {
+        //get summary to send
+        let button = sender as! UIButton
+        let cell = button.superview!.superview as! HistoryTableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        let summary = self.monthlySummariesArray[indexPath!.row] as! MonthlySummary
+        self.summaryToSend = summary
+        
+        //set recipient (coach email)
         let mailVC = MFMailComposeViewController( )
         mailVC.mailComposeDelegate = self
         mailVC.setToRecipients(["bmoush@gmail.com"]) //TODO: set to User's coach email
         
         //get month of selected summary and set as email subject
-        let button = sender as! UIButton
-        let cell = button.superview!.superview as! HistoryTableViewCell
-        let indexPath = self.tableView.indexPathForCell(cell)
-        let summary = self.monthlySummariesArray[indexPath!.row] as! MonthlySummary
         let month = NSDate( ).getMonthAsString(summary.date)
-        let subject = "My monthly review for \(month)."
+        let subject = "My monthly review for \(month)." //TODO: make constant
         mailVC.setSubject(subject)
         
+        //attach monthly summary PDFs
+        let pdfs = self.generatePDF()
+        if pdfs.count < 2
+        {
+            print("HVC - sendEmailToCoachPressed(): error getting PDFs")
+        }
+        mailVC.addAttachmentData(pdfs[0], mimeType: PDF_MIME_TYPE, fileName: "\(currentUser!.email)_\(month)_summary.pdf")
+        mailVC.addAttachmentData(pdfs[1], mimeType: PDF_MIME_TYPE, fileName: "\(currentUser!.email)_\(month)_goals.pdf")
+        
+        //set email body
+        mailVC.setMessageBody("\(self.currentUser!.email)\n\(self.currentUser!.uid)", isHTML: false)
+       
         if MFMailComposeViewController.canSendMail()
         {
             self.presentViewController(mailVC, animated: true, completion: nil)
@@ -49,14 +68,56 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             //show error alert
             print("HVC: error with email")
         }
-        
     }
     
     @IBAction func unwindToHistory(sender: UIStoryboardSegue){}
     
     // MARK: - Methods
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    
+    /// Delegate function for MFMailComposeViewController. Handles dismissal of mail VC.
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?)
+    {
         controller.dismissViewControllerAnimated(true, completion: nil)
+        if error == nil
+        {
+            //all is well
+            self.summaryToSend!.sent = true
+            DataService.saveSummary(self.currentUser!, summary: self.summaryToSend!)
+            self.summaryToSend = nil
+            self.tableView!.reloadData( )
+        }
+    }
+    
+    /**
+        Generates PDFs of the summary selected to email to coach.
+        - Returns: An array of PDFs as NSData. Array will be empty if an error occurred.
+    */
+    func generatePDF( ) -> [NSData]
+    {
+        //Get summary view controllers for creating PDFs from views
+        let vcSum = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_SUMMARY_VC) as! SummaryViewController
+        vcSum.summary = self.summaryToSend
+        vcSum.tableView!.reloadData()
+        
+        let vcGoals = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_GOALS_VC) as! SecondSummaryViewController
+        vcGoals.summary = self.summaryToSend
+        vcGoals.tableView!.reloadData()
+        while(vcSum.viewIfLoaded == nil && vcGoals.viewIfLoaded == nil){} //wait for views to load
+     
+        var pdfs = [NSData]( )
+        
+        do
+        {
+            let pdfSum = try PDFGenerator.generate(vcSum.view)
+            let pdfGoals = try PDFGenerator.generate(vcGoals.view)
+            pdfs.insert(pdfSum, atIndex: 0); pdfs.insert(pdfGoals, atIndex: 1)
+        }
+        catch (let error)
+        {
+            //handle error
+            print("HVC - generatePDF(): \(error)")
+        }
+        return pdfs
     }
     
     // MARK: - Overridden methods
@@ -101,7 +162,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         //check if a monthly review is needed
         if self.currentUser!.checkMonthlyReview()
         {
-            self.presentViewController(UIAlertController.getReviewAlert( ), animated: true, completion: nil)
+            self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
         
         // set up badge and menu bar button item
@@ -146,7 +207,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             cell.monthLabel.text = monthAsString
             
             //send to coach button
-            if !summary.sent
+            if !summary.sent && summary.reviewed
             {
                 cell.sendToCoachButton.hidden = false
             }

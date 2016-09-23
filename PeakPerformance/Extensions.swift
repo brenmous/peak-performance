@@ -68,7 +68,7 @@ extension SideMenuManager
         smvc.currentUser = user
         smvc.sb = sb
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
-        
+
         // Pan Gestures
         
         SideMenuManager.menuAddPanGestureToPresent(toView: (menuLeftNavigationController?.navigationBar)!)
@@ -317,17 +317,29 @@ extension NSDate
  */
 extension UIAlertController
 {
-    static func getReviewAlert( ) -> UIAlertController
+    static func getReviewAlert(tbvc: TabBarViewController) -> UIAlertController
     {
         let reviewAlertController = UIAlertController(title: REVIEW_ALERT_TITLE, message: REVIEW_ALERT_MSG, preferredStyle: .ActionSheet)
         let cancel = UIAlertAction(title: REVIEW_ALERT_CANCEL, style: .Cancel, handler: nil )
         let confirm = UIAlertAction(title: REVIEW_ALERT_CONFIRM, style: .Default ) { (action) in
             //take user to history to complete review
-            print("MRH: go to history")
+            tbvc.selectedIndex = 0
             
         }
         reviewAlertController.addAction(confirm); reviewAlertController.addAction(cancel)
         return reviewAlertController
+    }
+    
+    static func getChangePasswordAlert(cpvc: UIViewController ) -> UIAlertController
+    {
+        let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
+        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default) { (action) in
+            cpvc.performSegueWithIdentifier(UNWIND_FROM_CHANGE_PW_SEGUE, sender: cpvc)
+        }
+        
+        changePWAlertController.addAction(confirm)
+        
+        return changePWAlertController
     }
 }
 

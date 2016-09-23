@@ -13,4 +13,5 @@ target 'PeakPerformance' do
 	pod 'ActionSheetPicker-3.0'	
 	pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '4.0.0'
 	pod 'SideMenu'
+	pod 'PDFGenerator', '~> 1.4.3'
 end

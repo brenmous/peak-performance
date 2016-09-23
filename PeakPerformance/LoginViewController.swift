@@ -108,40 +108,29 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             {
             case .ErrorCodeUserNotFound:
                 self.logInErrorLabel.text = LOGIN_ERR_MSG
-                self.logInErrorLabel.hidden = false
-                self.logInButton.enabled = true
                 
             case .ErrorCodeTooManyRequests:
                 self.logInErrorLabel.text = REQUEST_ERR_MSG
-                self.logInErrorLabel.hidden = false
-                self.logInButton.enabled = true
                 
             case .ErrorCodeNetworkError:
                 self.logInErrorLabel.text = NETWORK_ERR_MSG
-                self.logInErrorLabel.hidden = false
-                self.logInButton.enabled = true
                 
             case .ErrorCodeInternalError:
                 self.logInErrorLabel.text = FIR_INTERNAL_ERROR
-                self.logInErrorLabel.hidden = false
-                self.logInButton.enabled = true
                 
             case .ErrorCodeUserDisabled:
                 self.logInErrorLabel.text = USER_DISABLED_ERROR
-                self.logInErrorLabel.hidden = false
-                self.logInButton.enabled = true
                 
             case .ErrorCodeWrongPassword:
                 self.logInErrorLabel.text = WRONG_PW_ERROR
-                self.logInErrorLabel.hidden = false
-                self.logInButton.enabled = true
                 
             default:
                 print("LIVC: error case not currently covered") //DEBUG
                 self.logInErrorLabel.text = "Error case not currently covered." //DEBUG
-                self.logInErrorLabel.hidden = false
-                self.logInButton.enabled = true
             }
+            self.logInErrorLabel.hidden = false
+            self.logInButton.enabled = true
+            
         })
     }
     
@@ -192,14 +181,14 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
 
     // MARK: - keyboard stuff
-    //Dismisses keyboard when return is pressed.
+    /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         validator.validate( self )
         textField.resignFirstResponder()
         return true
     }
-    //Dismisses keyboard when tap outside keyboard detected.
+    /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
         self.view.endEditing(true)
@@ -244,9 +233,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         passwordField.delegate = self
     
         //Comment these lines out to use other accounts
-        emailField.text = "laura.johnson@hmail.com"
-        passwordField.text = "Password1"
-        validator.validate(self)
+        //emailField.text = "laura.johnson@hmail.com"
+        //passwordField.text = "Password1"
+        //validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)

@@ -15,6 +15,7 @@ import Firebase
  */
 class SideMenuViewController: UITableViewController
 {
+    // MARK: - Outlets
     @IBOutlet weak var emailProfileLabel: UILabel!
     
     @IBOutlet weak var nameProfileLabel: UILabel!
@@ -23,10 +24,12 @@ class SideMenuViewController: UITableViewController
     
     @IBOutlet weak var monthlyCounterLabel: CustomizableLabelView!
     
-    
+    // MARK: - Properties
     var currentUser: User?
     
     var sb: UIStoryboard?
+    
+    // MARK: - Methods
     
     /// Present an alert asking the user if they want to sign out.
     func signOut( )
@@ -53,6 +56,7 @@ class SideMenuViewController: UITableViewController
         
     }
     
+    /// Takes user to the History view
     func goToMonthlyReview( )
     {
         //ask user if they want to go to history view to complete monthly reviews
@@ -60,11 +64,45 @@ class SideMenuViewController: UITableViewController
         nc.postNotificationName("changeIndex", object: nil)
     }
   
+    func goToSettings( )
+    {
+        //self.performSegueWithIdentifier("goToSettings", sender: self)
+        let nav = self.storyboard?.instantiateViewControllerWithIdentifier(SETTINGS_NAV) as! UINavigationController
+        let settingsVC = nav.viewControllers[0] as! SettingsViewController
+        settingsVC.currentUser = self.currentUser
+        self.presentViewController(nav, animated: true, completion: nil)
+    }
+    
+    // MARK: - Overridden methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
+        guard let c = cell else
+        {
+            print("SMVC - tableView(): could not get selected cell")
+            return
+        }
+        
         //determine selected cell and perform associated action.
+        switch c.reuseIdentifier
+        {
+        case SIGNOUT_CELL_ID?:
+            self.signOut()
+            
+        case MONTHLYREVIEW_CELL_ID?:
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.goToMonthlyReview()
+            
+        case SETTINGS_CELL_ID?:
+            //go to settings view
+            self.goToSettings()
+            
+        default:
+            break
+        }
+        
+        /*
         if cell?.reuseIdentifier == SIGNOUT_CELL_ID
         {
             print("SMVC: sign out pressed")
@@ -76,6 +114,8 @@ class SideMenuViewController: UITableViewController
             self.dismissViewControllerAnimated(true, completion: nil)
             self.goToMonthlyReview()
         }
+        if cell?.reuseIdentifier ==
+        */
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -117,6 +157,15 @@ class SideMenuViewController: UITableViewController
         }
         emailProfileLabel.text = cu.email
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "goToSettings"
+        {
+            let dvc = segue.destinationViewController as! SettingsViewController
+        }
+    }
+    
   
 
 }
