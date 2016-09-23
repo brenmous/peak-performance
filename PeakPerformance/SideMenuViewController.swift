@@ -95,27 +95,11 @@ class SideMenuViewController: UITableViewController
             self.goToMonthlyReview()
             
         case SETTINGS_CELL_ID?:
-            //go to settings view
             self.goToSettings()
             
         default:
             break
         }
-        
-        /*
-        if cell?.reuseIdentifier == SIGNOUT_CELL_ID
-        {
-            print("SMVC: sign out pressed")
-            self.signOut( )
-        }
-        if cell?.reuseIdentifier == MONTHLYREVIEW_CELL_ID
-        {
-            print("SMVC: monthly review pressed")
-            self.dismissViewControllerAnimated(true, completion: nil)
-            self.goToMonthlyReview()
-        }
-        if cell?.reuseIdentifier ==
-        */
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -156,14 +140,6 @@ class SideMenuViewController: UITableViewController
             // couldn't get user
         }
         emailProfileLabel.text = cu.email
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if segue.identifier == "goToSettings"
-        {
-            let dvc = segue.destinationViewController as! SettingsViewController
-        }
     }
     
   

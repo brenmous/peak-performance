@@ -340,17 +340,17 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIconHighlighted = "F-highlighted"
             }
             
+            cell.dueImageIcon.hidden = false
             if goal.due == Goal.Due.overdue
             {
                 // show due image
-                cell.dueImageIcon.hidden = false
-                cell.dueImageIcon.image = UIImage(named: DUE_SOON_ICON)
+                cell.dueImageIcon.image = UIImage(named: OVERDUE_ICON)
 
             }
             else if goal.due == Goal.Due.soon
             {
                 //show due soon image
-                cell.dueImageIcon.hidden = false
+                cell.dueImageIcon.image = UIImage(named: DUE_SOON_ICON)
                 
             }
             else

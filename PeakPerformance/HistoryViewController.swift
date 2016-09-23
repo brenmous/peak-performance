@@ -82,13 +82,26 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?)
     {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        if error == nil
+        switch result.rawValue
         {
-            //all is well
+        case 0: //cancelled 
+            print("HVC - mailComposeController(): cancelled")
+            
+        case 1: //saved as draft
+            print("HVC: - mailComposeController(): saved as draft")
+        
+        case 2: //sent
+            print("HVC: - mailComposeController(): queued to send")
             self.summaryToSend!.sent = true
             DataService.saveSummary(self.currentUser!, summary: self.summaryToSend!)
             self.summaryToSend = nil
             self.tableView!.reloadData( )
+            
+        case 3: //failed
+            print("HVC - mailComposeController(): send failed with error \(error?.localizedDescription)")
+        
+        default: //unknown
+            print("HVC - mailComposeController(): unknown result, this is Apple's problem")
         }
     }
     
@@ -99,22 +112,25 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     func generatePDF( ) -> [NSData]
     {
         //Get summary view controllers for creating PDFs from views
+        print("HVC - generatePDF(): getting summary view")
         let vcSum = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_SUMMARY_VC) as! SummaryViewController
         vcSum.summary = self.summaryToSend
         vcSum.tableView!.reloadData()
         
+         print("HVC - generatePDF(): getting goal view")
         let vcGoals = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_GOALS_VC) as! SecondSummaryViewController
         vcGoals.summary = self.summaryToSend
         vcGoals.tableView!.reloadData()
         while(vcSum.viewIfLoaded == nil && vcGoals.viewIfLoaded == nil){} //wait for views to load
      
         var pdfs = [NSData]( )
-        
+        print("HVC - generatePDF(): attemping to generate PDFs")
         do
         {
             let pdfSum = try PDFGenerator.generate(vcSum.view)
             let pdfGoals = try PDFGenerator.generate(vcGoals.view)
             pdfs.insert(pdfSum, atIndex: 0); pdfs.insert(pdfGoals, atIndex: 1)
+            print("HVC - generatePDF(): PDFs generated")
         }
         catch (let error)
         {
