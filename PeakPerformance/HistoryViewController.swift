@@ -81,7 +81,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         switch result.rawValue
         {
         case 0: //cancelled 
-            print("HVC - mailComposeController(): cancelled")
+            print("HVC - mailComposeController(): cancelled, error \(error?.localizedDescription)")
             
         case 1: //saved as draft
             print("HVC: - mailComposeController(): saved as draft")
