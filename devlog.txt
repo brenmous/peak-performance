@@ -213,7 +213,3 @@
 	- Settings
 		- created VC/view
 		- changed password working
-
-24/09/2016 10:00 -
-	- Settings
-		- change email

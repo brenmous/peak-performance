@@ -51,13 +51,17 @@ Copyright 2016 Google
 
 ## FirebaseStorage
 
-Copyright 2016 Google
+Copyright 2016 Google Inc.
 
 ## GoogleInterchangeUtilities
 
 Copyright 2015 Google Inc.
 
 ## GoogleNetworkingUtilities
+
+Copyright 2015 Google Inc.
+
+## GoogleParsingUtilities
 
 Copyright 2015 Google Inc.
 
@@ -96,7 +100,7 @@ SOFTWARE.
 
 ## SideMenu
 
-Copyright (c) 2015 Jonathan Kent <contact@jonkent.me>
+Copyright (c) 2015 jonkykong <jpkent@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
