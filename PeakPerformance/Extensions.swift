@@ -311,12 +311,13 @@ extension NSDate
 }
 
 // MARK: - UIAlertController
-/**
- Creates an alert controller informing the user to complete their monthly review.
- - Returns: an alert controller.
- */
+
 extension UIAlertController
 {
+    /**
+     Creates an alert controller informing the user to complete their monthly review.
+     - Returns: an alert controller.
+     */
     static func getReviewAlert(tbvc: TabBarViewController) -> UIAlertController
     {
         let reviewAlertController = UIAlertController(title: REVIEW_ALERT_TITLE, message: REVIEW_ALERT_MSG, preferredStyle: .ActionSheet)
@@ -330,7 +331,11 @@ extension UIAlertController
         return reviewAlertController
     }
     
-    static func getChangePasswordAlert(cpvc: UIViewController ) -> UIAlertController
+    /**
+     Creates an alert controller informing the user that their password change was successful.
+     - Returns: an alert controller.
+     */
+    static func getChangePasswordAlert(cpvc: ChangePasswordViewController) -> UIAlertController
     {
         let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
         let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default) { (action) in
@@ -340,6 +345,50 @@ extension UIAlertController
         changePWAlertController.addAction(confirm)
         
         return changePWAlertController
+    }
+    
+    /**
+     Creates an alert controller asking user to confirm account deletion.
+     - Returns: an alert controller.
+     */
+    static func getDeleteAccountAlert(davc: DeleteAccountViewController) -> UIAlertController
+    {
+        let deleteAccountAlertController = UIAlertController(title: DELETE_ACCOUNT_ALERT_TITLE, message: DELETE_ACCOUNT_ALERT_MSG, preferredStyle: .ActionSheet)
+        let confirm = UIAlertAction(title: DELETE_ACCOUNT_ALERT_CONFIRM, style: .Destructive) { (action) in
+            davc.deleteAccount()
+        }
+        let cancel = UIAlertAction(title: DELETE_ACCOUNT_ALERT_CANCEL, style: .Cancel ) { (action) in
+            print("DAVC - deleteAccount(): user cancelled deletion")
+            davc.activityIndicator.stopAnimating()
+            davc.navigationItem.rightBarButtonItem?.enabled = true
+            davc.passwordField.text = ""
+            davc.confirmPasswordField.text = ""
+        }
+        
+        deleteAccountAlertController.addAction(confirm); deleteAccountAlertController.addAction(cancel)
+        
+        return deleteAccountAlertController
+    }
+    
+    /**
+     Creates an alert controller informing the user that account deletion was successful.
+     - Returns: an alert controller.
+     */
+    static func getDeleteAccountSuccessAlert(davc: DeleteAccountViewController) -> UIAlertController
+    {
+        let deleteAccountSuccessAlertController = UIAlertController(title: DELETE_ACCOUNT_SUCC_ALERT_TITLE, message: DELETE_ACCOUNT_SUCC_ALERT_MSG, preferredStyle: .ActionSheet)
+        let confirm = UIAlertAction(title: DELETE_ACCOUNT_SUCC_ALERT_CONFIRM, style: .Default) { (action) in
+            let smnav = davc.presentingViewController as! UISideMenuNavigationController
+            let sm = smnav.viewControllers[0]
+            sm.dismissViewControllerAnimated(false) {
+            
+                sm.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: sm)
+            }
+        }
+        
+        deleteAccountSuccessAlertController.addAction(confirm)
+        
+        return deleteAccountSuccessAlertController
     }
 }
 

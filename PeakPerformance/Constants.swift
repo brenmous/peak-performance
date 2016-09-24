@@ -244,6 +244,8 @@ let MONTH_DAY_FORMAT_STRING = "MMMM dd"
 
 // MARK: - Segue identifiers
 
+//TODO: - rename segues (SVC_TO_DVC_SEGUE and UNWIND_TO_DVC_SEGUE)
+
 /// Segue for when a user has logged in and all their details have been retrieved.
 let LOGGED_IN_SEGUE = "loggedIn"
 
@@ -330,6 +332,12 @@ let GO_TO_SUMMARY_SEGUE = "goToSummary"
 
 /// Go to second summary view from first summary view.
 let GO_TO_SECOND_SUMMARY_SEGUE = "goToSummarySecond"
+
+/// Delete Account -> Log in
+let UNWIND_FROM_DA_SEGUE = "unwindToLogIn"
+
+/// Settings -> Delete Account
+let SETTINGS_TO_DELETE_ACCOUNT_SEGUE = "settingsToDeleteAccountSegue"
 
 
 // MARK: - Alert sheet strings
@@ -431,7 +439,28 @@ let CHANGEPW_ALERT_TITLE = "Success!"
 let CHANGEPW_ALERT_MSG = "Your password was successfully changed."
 
 /// Change password alert confirm.
-let CHANGEPW_ALERT_CONFIRM = "Ok."
+let CHANGEPW_ALERT_CONFIRM = "OK"
+
+/// Delete account alert title.
+let DELETE_ACCOUNT_ALERT_TITLE = "Delete Account"
+
+/// Delete account alert message.
+let DELETE_ACCOUNT_ALERT_MSG = "Are you sure you want to delete your account? This can't be undone."
+
+/// Delete account alert confirm.
+let DELETE_ACCOUNT_ALERT_CONFIRM = "Confirm"
+
+/// Delete account alert cancel.
+let DELETE_ACCOUNT_ALERT_CANCEL = "Cancel"
+
+/// Delete account success alert title.
+let DELETE_ACCOUNT_SUCC_ALERT_TITLE = "Success!"
+
+/// Delete account success alert message.
+let DELETE_ACCOUNT_SUCC_ALERT_MSG = "Your account was successfully deleted."
+
+/// Delete account success alert confirm,
+let DELETE_ACCOUNT_SUCC_ALERT_CONFIRM = "OK"
 
 
 // MARK: - Storyboard IDs
