@@ -8,26 +8,41 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>PDFGenerator.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-PeakPerformance.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>SideMenu-SideMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>SideMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>SwiftValidator.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -42,7 +57,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>45757391F1A1D07A7A9C8999740B20E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>72671E489FFCC207041B6489D8457C92</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7A12B1193BD091DCBBD6B7C3EFD466DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +77,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AB57BD1A48FB257B67FDC4A6557AAFC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F728AECB3174B0A1325677E23FABF45E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F926DEB100A8330346CDB2E7A4FD34B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF29E8023BE103E631F5C5B85787D805</key>
 		<dict>
 			<key>primary</key>
 			<true/>

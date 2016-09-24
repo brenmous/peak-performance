@@ -28,6 +28,10 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
+    @IBAction func cellDidLongPress(sender: AnyObject) {
+        print("long pressed")
+    }
+    
     @IBAction func sendEmailToCoachPressed(sender: AnyObject )
     {
         //get summary to send
@@ -191,7 +195,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
     }
  
 
