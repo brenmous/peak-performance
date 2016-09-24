@@ -32,7 +32,8 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     
     // MARK: - Actions
     
-    @IBAction func pressConfirmBarButton(sender: UIBarButtonItem) {
+    @IBAction func pressConfirmBarButton(sender: UIBarButtonItem)
+    {
         validator.validate(self)
     }
     
@@ -160,8 +161,10 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         // Back button
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
+        
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
             validationRule.errorLabel?.hidden = true

@@ -49,6 +49,10 @@ class SettingsViewController: UITableViewController {
             let dvc = segue.destinationViewController as! DeleteAccountViewController
             dvc.currentUser = self.currentUser
             
+        case SETTINGS_TO_COACH_EMAIL_SEGUE:
+            let dvc = segue.destinationViewController as! CoachEmailViewController
+            dvc.currentUser = self.currentUser
+            
         default:
             return
         }

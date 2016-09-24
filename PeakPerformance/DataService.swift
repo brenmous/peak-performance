@@ -53,6 +53,21 @@ class DataService  //: SignUpDataService, LogInDataService
     }
     
     /**
+        Save's user's coach email to database.
+        
+        - Parameters:
+            - user: user whose coach email to save.
+    */
+    static func saveCoachEmail(user: User)
+    {
+        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
+        
+        userRef.child(COACH_EMAIL_REF_STRING).setValue(user.coachEmail)
+        
+        print("DS - saveCoachEmail(): \(user.coachEmail) saved")
+    }
+    
+    /**
      Loads a user from the database and creates a user object.
      
      - Parameters:
@@ -73,13 +88,14 @@ class DataService  //: SignUpDataService, LogInDataService
             let lname = snapshot.value![LNAME_REF_STRING] as! String
             let org = snapshot.value![ORG_REF_STRING] as! String
             let email = snapshot.value![EMAIL_REF_STRING] as! String
+            let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value![COACH_EMAIL_REF_STRING] as! String : ""
             
             // TODO: - Temp code for test accounts created before start date implementation. Remove before release.
             if !snapshot.hasChild(STARTDATE_REF_STRING)
             {
                 print("DS: no start date in database - getting one now...")
                 let startDate = NSDate( )
-                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
+                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail )
                 
                 //convert startDate to string
                 let dateFormatter = NSDateFormatter( )
@@ -101,7 +117,7 @@ class DataService  //: SignUpDataService, LogInDataService
                 return
             }
         
-            let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
+            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail)
 
             completion( user: user ) //passing the created and user and content IDs back using the completion block
             
@@ -539,53 +555,40 @@ class DataService  //: SignUpDataService, LogInDataService
             {
                 for s in snapshot.children
                 {
-                    if s.hasChild(SUMMARY_DATE_REF_STRING)
+                    if String(s.key) == "initial"
                     {
-                        
-                        let dateString = String(s.key)
-                        print("DS: fetching summary for \(dateString)")
-                        let dateFormatter = NSDateFormatter( )
-                        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-                        let date = dateFormatter.dateFromString(dateString)
-                        let summary = MonthlySummary(date: date!)
-                        summary.whatIsWorking = s.value![SUMMARY_WIW_REF_STRING] as! String
-                        summary.whatIsNotWorking = s.value![SUMMARY_WINOTW_REF_STRING] as! String
-                        summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
-                        summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
-                        summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
-                        summary.sent = s.hasChild(SUMMARY_SENT_REF_STRING) ? s.value![SUMMARY_SENT_REF_STRING] as! Bool : false
-                        
-                        for (kla,_) in summary.klaRatings
-                        {
-                            summary.klaRatings[kla] = Double(s.value![kla] as! String)
-                        }
-                        
-                        /*
-                         summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
-                         summary.klaRatings[KLA_FAMILY] = Double(s.value![KLA_FAMILY] as! String)
-                         summary.klaRatings[KLA_PARTNER] = Double(s.value![KLA_PARTNER] as! String)
-                         summary.klaRatings[KLA_FINANCIAL] = Double(s.value![KLA_FINANCIAL] as! String)
-                         summary.klaRatings[KLA_PERSONALDEV] = Double(s.value![KLA_PERSONALDEV] as! String)
-                         summary.klaRatings[KLA_EMOSPIRITUAL] = Double(s.value![KLA_EMOSPIRITUAL] as! String)
-                         summary.klaRatings[KLA_WORKBUSINESS] = Double(s.value![KLA_WORKBUSINESS] as! String)
-                         summary.klaRatings[KLA_FRIENDSSOCIAL] = Double(s.value![KLA_FRIENDSSOCIAL] as! String)
-                         summary.klaRatings[KLA_HEALTHFITNESS] = Double(s.value![KLA_HEALTHFITNESS] as! String)
-                         */
-                        
-                        self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
-                        
-                        self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
-                        
-                        //dateFormatter.dateFormat = MONTH_FORMAT_STRING
-                        //let monthAsString = dateFormatter.stringFromDate(date!)
-                        let dateStringArray = dateString.componentsSeparatedByString(" ")
-                        let monthAsString = String(dateStringArray[0])
-                        print("DS: summary fetched for \(dateString)")
-                        monthlySummaries[monthAsString] = summary
+                        continue
                     }
-                    print("DS: no summaries to fetch")
-                    completion(summaries: monthlySummaries)
-                    return
+                    
+                    let dateString = String(s.key)
+                    print("DS: fetching summary for \(dateString)")
+                    let dateFormatter = NSDateFormatter( )
+                    dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+                    let date = dateFormatter.dateFromString(dateString)
+                    let summary = MonthlySummary(date: date!)
+                    summary.whatIsWorking = s.value![SUMMARY_WIW_REF_STRING] as! String
+                    summary.whatIsNotWorking = s.value![SUMMARY_WINOTW_REF_STRING] as! String
+                    summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
+                    summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
+                    summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
+                    summary.sent = s.hasChild(SUMMARY_SENT_REF_STRING) ? s.value![SUMMARY_SENT_REF_STRING] as! Bool : false
+                    
+                    for (kla,_) in summary.klaRatings
+                    {
+                        summary.klaRatings[kla] = Double(s.value![kla] as! String)
+                    }
+                    
+                    self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
+                    
+                    self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
+                    
+                    //dateFormatter.dateFormat = MONTH_FORMAT_STRING
+                    //let monthAsString = dateFormatter.stringFromDate(date!)
+                    let dateStringArray = dateString.componentsSeparatedByString(" ")
+                    let monthAsString = String(dateStringArray[0])
+                    print("DS: summary fetched for \(dateString)")
+                    monthlySummaries[monthAsString] = summary
+                    
                 }
                 print("DS: summaries fetched")
                 completion( summaries: monthlySummaries )

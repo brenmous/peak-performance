@@ -34,44 +34,19 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     @IBAction func sendEmailToCoachPressed(sender: AnyObject )
     {
+        if self.currentUser!.coachEmail.isEmpty
+        {
+            self.presentViewController(UIAlertController.getNoCoachEmailAlert(self), animated: true, completion: nil)
+            return
+        }
+        
         //get summary to send
         let button = sender as! UIButton
         let cell = button.superview!.superview as! HistoryTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
         let summary = self.monthlySummariesArray[indexPath!.row] as! MonthlySummary
         self.summaryToSend = summary
-        
-        //set recipient (coach email)
-        let mailVC = MFMailComposeViewController( )
-        mailVC.mailComposeDelegate = self
-        mailVC.setToRecipients(["bmoush@gmail.com"]) //TODO: set to User's coach email
-        
-        //get month of selected summary and set as email subject
-        let month = NSDate( ).getMonthAsString(summary.date)
-        let subject = "My monthly review for \(month)." //TODO: make constant
-        mailVC.setSubject(subject)
-        
-        //attach monthly summary PDFs
-        let pdfs = self.generatePDF()
-        if pdfs.count < 2
-        {
-            print("HVC - sendEmailToCoachPressed(): error getting PDFs")
-        }
-        mailVC.addAttachmentData(pdfs[0], mimeType: PDF_MIME_TYPE, fileName: "\(currentUser!.email)_\(month)_summary.pdf")
-        mailVC.addAttachmentData(pdfs[1], mimeType: PDF_MIME_TYPE, fileName: "\(currentUser!.email)_\(month)_goals.pdf")
-        
-        //set email body
-        mailVC.setMessageBody("\(self.currentUser!.email)\n\(self.currentUser!.uid)", isHTML: false)
-       
-        if MFMailComposeViewController.canSendMail()
-        {
-            self.presentViewController(mailVC, animated: true, completion: nil)
-        }
-        else
-        {
-            //show error alert
-            print("HVC: error with email")
-        }
+        self.sendToCoach(summary)
     }
     
     @IBAction func unwindToHistory(sender: UIStoryboardSegue){}
@@ -102,6 +77,46 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         
         default: //unknown
             print("HVC - mailComposeController(): unknown result, this is Apple's problem")
+        }
+    }
+    
+    /**
+        Sends specified summary to coach.
+        - Parameters:
+            - summary: the summary to send.
+    */
+    func sendToCoach(summary: MonthlySummary)
+    {
+        //set recipient (coach email)
+        let mailVC = MFMailComposeViewController( )
+        mailVC.mailComposeDelegate = self
+        mailVC.setToRecipients([self.currentUser!.coachEmail])
+        
+        //get month of selected summary and set as email subject
+        let month = NSDate( ).getMonthAsString(summary.date)
+        let subject = "My monthly review for \(month)." //TODO: make constant
+        mailVC.setSubject(subject)
+        
+        //attach monthly summary PDFs
+        let pdfs = self.generatePDF()
+        if pdfs.count < 2
+        {
+            print("HVC - sendEmailToCoachPressed(): error getting PDFs")
+        }
+        mailVC.addAttachmentData(pdfs[0], mimeType: PDF_MIME_TYPE, fileName: "\(currentUser!.email)_\(month)_summary.pdf")
+        mailVC.addAttachmentData(pdfs[1], mimeType: PDF_MIME_TYPE, fileName: "\(currentUser!.email)_\(month)_goals.pdf")
+        
+        //set email body
+        mailVC.setMessageBody("\(self.currentUser!.email)\n\(self.currentUser!.uid)", isHTML: false)
+        
+        if MFMailComposeViewController.canSendMail()
+        {
+            self.presentViewController(mailVC, animated: true, completion: nil)
+        }
+        else
+        {
+            //show error alert
+            print("HVC: error with email")
         }
     }
     

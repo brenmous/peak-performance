@@ -85,6 +85,7 @@
 		B5B8D2CB1D44D9270072E50A /* WeeklyGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */; };
 		B5B8D2CD1D44E34D0072E50A /* WeeklyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */; };
 		B5D74D691D6857060026EF07 /* MonthlyGoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */; };
+		B5DA2B881D9727FE0091AA75 /* CoachEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA2B871D9727FE0091AA75 /* CoachEmailViewController.swift */; };
 		B5F32AD01D74B50300B83B1E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F32ACF1D74B50300B83B1E /* StorageService.swift */; };
 		B5F32AD21D74C5E900B83B1E /* business-cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5F32AD11D74C5E900B83B1E /* business-cat.jpg */; };
 /* End PBXBuildFile section */
@@ -193,6 +194,7 @@
 		B5B8D2CA1D44D9270072E50A /* WeeklyGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoalsViewController.swift; sourceTree = "<group>"; };
 		B5B8D2CC1D44E34D0072E50A /* WeeklyGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyGoal.swift; sourceTree = "<group>"; };
 		B5D74D681D6857060026EF07 /* MonthlyGoalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalTableViewCell.swift; sourceTree = "<group>"; };
+		B5DA2B871D9727FE0091AA75 /* CoachEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachEmailViewController.swift; sourceTree = "<group>"; };
 		B5F32ACF1D74B50300B83B1E /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		B5F32AD11D74C5E900B83B1E /* business-cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "business-cat.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -266,6 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */,
+				B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */,
+				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
 				B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */,
 				B577EAEA1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift */,
 				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,
@@ -292,15 +296,6 @@
 				44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */,
 			);
 			name = "Tutorial-InititalSetup";
-			sourceTree = "<group>";
-		};
-		446C6FAA1D93F9080094FA55 /* MonthlyReview */ = {
-			isa = PBXGroup;
-			children = (
-				B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */,
-				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
-			);
-			name = MonthlyReview;
 			sourceTree = "<group>";
 		};
 		446C6FAB1D93F9480094FA55 /* Login-Signup */ = {
@@ -367,7 +362,6 @@
 			children = (
 				B59057761D94809200D12D2C /* Settings */,
 				446C6FAB1D93F9480094FA55 /* Login-Signup */,
-				446C6FAA1D93F9080094FA55 /* MonthlyReview */,
 				446C6FA41D93F8600094FA55 /* DreamTab */,
 				446C6FA91D93F8EC0094FA55 /* Tutorial-InititalSetup */,
 				446C6FA81D93F8D50094FA55 /* MyValuesTab */,
@@ -410,6 +404,7 @@
 				B590576E1D945A9100D12D2C /* SettingsViewController.swift */,
 				B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */,
 				B59057771D96009000D12D2C /* DeleteAccountViewController.swift */,
+				B5DA2B871D9727FE0091AA75 /* CoachEmailViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -717,6 +712,7 @@
 				B5B8D2C31D43465F0072E50A /* TabBarViewController.swift in Sources */,
 				444447041D588F520029E3C6 /* TutorialViewController.swift in Sources */,
 				B577EAE71D86B6A70039BB76 /* SummaryViewController.swift in Sources */,
+				B5DA2B881D9727FE0091AA75 /* CoachEmailViewController.swift in Sources */,
 				B569FDFC1D815A230093A827 /* SecondMonthlyReviewViewController.swift in Sources */,
 				B5B46A8C1D66D5CB00FFA4F8 /* GoalTableViewCell.swift in Sources */,
 				B5113CAB1D6C5B8F006AABAD /* SideMenuViewController.swift in Sources */,
