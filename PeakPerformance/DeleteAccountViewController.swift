@@ -66,8 +66,15 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
                 self.presentViewController(UIAlertController.getDeleteAccountSuccessAlert(self), animated: true, completion: nil)
                 return
             }
-            DataService.saveUser(self.currentUser!)
+        
             //failure
+            
+            //delete fucked up but everything is gone from database
+            //if they try to log in app will fuck up
+            //maybe save everything again
+            //maybe let app fuck up
+            //maybe i just want to watch the world burn
+            
             guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
             {
                 print("DAVC - deleteAccount(): delete failed with error but couldn't get error code")

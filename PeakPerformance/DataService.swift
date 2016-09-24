@@ -133,8 +133,19 @@ class DataService  //: SignUpDataService, LogInDataService
      */
     static func removeUser(user: User)
     {
-        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
-        userRef.removeValue( )
+        let ref = FIRDatabase.database().reference()
+        let userRef = ref.child(USERS_REF_STRING).child(user.uid)
+        userRef.removeValue()
+        let dreamRef = ref.child(DREAMS_REF_STRING).child(user.uid)
+        dreamRef.removeValue()
+        let mgRef = ref.child(MONTHLYGOALS_REF_STRING).child(user.uid)
+        mgRef.removeValue()
+        let wgRef = ref.child(WEEKLYGOALS_REF_STRING).child(user.uid)
+        wgRef.removeValue()
+        let valuesRef = ref.child(VALUES_REF_STRING).child(user.uid)
+        valuesRef.removeValue()
+        let summariesRef = ref.child(SUMMARIES_REF_STRING).child(user.uid)
+        summariesRef.removeValue()
         print("DS - removeUser(): user \(user.email) removed from database")
     }
     
