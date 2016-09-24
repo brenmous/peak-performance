@@ -39,10 +39,18 @@ class SettingsViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == GO_TO_CHANGE_PASSWORD_SEGUE
+        switch segue.identifier!
         {
+        case GO_TO_CHANGE_PASSWORD_SEGUE:
             let dvc = segue.destinationViewController as! ChangePasswordViewController
             dvc.currentUser = self.currentUser
+            
+        case SETTINGS_TO_DELETE_ACCOUNT_SEGUE:
+            let dvc = segue.destinationViewController as! DeleteAccountViewController
+            dvc.currentUser = self.currentUser
+            
+        default:
+            return
         }
     }
     

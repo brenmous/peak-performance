@@ -68,6 +68,7 @@
 		B5791FF81D5497140079A9CB /* MonthlyGoalsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */; };
 		B590576F1D945A9100D12D2C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B590576E1D945A9100D12D2C /* SettingsViewController.swift */; };
 		B59057751D946C7E00D12D2C /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */; };
+		B59057781D96009000D12D2C /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59057771D96009000D12D2C /* DeleteAccountViewController.swift */; };
 		B59C1F441D61E6B6005F18E1 /* DreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */; };
 		B59C1F451D61E6B6005F18E1 /* DreamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */; };
 		B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */; };
@@ -169,6 +170,7 @@
 		B5791FF71D5497140079A9CB /* MonthlyGoalsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyGoalsDetailViewController.swift; sourceTree = "<group>"; };
 		B590576E1D945A9100D12D2C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		B59057771D96009000D12D2C /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
 		B59C1F411D61E6B6005F18E1 /* DreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		B59C1F421D61E6B6005F18E1 /* DreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamCollectionViewController.swift; sourceTree = "<group>"; };
 		B59C1F431D61E6B6005F18E1 /* DreamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamDetailViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			children = (
 				B590576E1D945A9100D12D2C /* SettingsViewController.swift */,
 				B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */,
+				B59057771D96009000D12D2C /* DeleteAccountViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				B53B45611D3FB85500F20D25 /* User.swift in Sources */,
 				32D794EB1D61D5A600134D01 /* Dream.swift in Sources */,
 				B567CE821D8BE91F0033A8A1 /* CurrentRealitySummary.swift in Sources */,
+				B59057781D96009000D12D2C /* DeleteAccountViewController.swift in Sources */,
 				B5791FF11D5493E00079A9CB /* MIDatePicker.swift in Sources */,
 				446C6FA31D93F41D0094FA55 /* CustomizableLabel.swift in Sources */,
 				44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */,
