@@ -227,6 +227,9 @@ let SUMMARY_SENT_REF_STRING = "sent"
 /// Specifies current reality summary in database.
 let CURRENT_REALITY_SUMMARY_REF_STRING = "initial"
 
+/// Specifies user's coach email node.
+let COACH_EMAIL_REF_STRING = "coachEmail"
+
 // MARK: - Firebase storage reference strings
 
 /// Base URL for storage bucket.
@@ -339,6 +342,12 @@ let UNWIND_FROM_DA_SEGUE = "unwindToLogIn"
 /// Settings -> Delete Account
 let SETTINGS_TO_DELETE_ACCOUNT_SEGUE = "settingsToDeleteAccountSegue"
 
+/// Settings -> Change coach email
+let SETTINGS_TO_COACH_EMAIL_SEGUE = "settingsToCoachEmailSegue"
+
+/// Change coach email -> Settings
+let UNWIND_FROM_COACH_EMAIL_SEGUE = "unwindToSettings"
+
 
 // MARK: - Alert sheet strings
 
@@ -448,7 +457,7 @@ let DELETE_ACCOUNT_ALERT_TITLE = "Delete Account"
 let DELETE_ACCOUNT_ALERT_MSG = "Are you sure you want to delete your account? This can't be undone."
 
 /// Delete account alert confirm.
-let DELETE_ACCOUNT_ALERT_CONFIRM = "Confirm"
+let DELETE_ACCOUNT_ALERT_CONFIRM = "Delete"
 
 /// Delete account alert cancel.
 let DELETE_ACCOUNT_ALERT_CANCEL = "Cancel"
@@ -461,6 +470,24 @@ let DELETE_ACCOUNT_SUCC_ALERT_MSG = "Your account was successfully deleted."
 
 /// Delete account success alert confirm,
 let DELETE_ACCOUNT_SUCC_ALERT_CONFIRM = "OK"
+
+/// Change coach email alert title.
+let COACH_EMAIL_SUCC_ALERT_TITLE = "Success!"
+
+/// Change coach email alert msg.
+let COACH_EMAIL_SUCC_ALERT_MSG = "Your coach's email was successfully changed."
+
+/// Change coach email alert confirm.
+let COACH_EMAIL_SUCC_ALERT_CONFIRM = "OK"
+
+/// No coach email alert title.
+let NO_COACH_EMAIL_ALERT_TITLE = "No Coach Email!"
+
+/// No coach email alert message.
+let NO_COACH_EMAIL_ALERT_MSG = "Please set your coach's email in Settings."
+
+/// No coach email confirm.
+let NO_COACH_EMAIL_ALERT_CONFIRM = "OK"
 
 
 // MARK: - Storyboard IDs

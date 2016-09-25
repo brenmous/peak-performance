@@ -53,6 +53,9 @@ public class User
     /// Current reality (initial) summary.
     var currentRealitySummary = CurrentRealitySummary( )
     
+    /// Coach email.
+    var coachEmail = ""
+    
     /**
         Initialises a new user.
 
@@ -67,7 +70,7 @@ public class User
      
         - Returns: A user with the specified parameters.
     */
-    init( fname: String, lname: String, org: String, email: String, uid: String, startDate: NSDate )
+    init( fname: String, lname: String, org: String, email: String, uid: String, startDate: NSDate, coachEmail: String = "" )
     {
         self.fname = fname
         self.lname = lname
@@ -75,6 +78,7 @@ public class User
         self.email = email
         self.uid = uid
         self.startDate = startDate
+        self.coachEmail = coachEmail
     }
     
     /// Gets number of unreviewed summaries.
