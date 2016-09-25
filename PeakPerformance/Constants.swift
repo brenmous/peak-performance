@@ -94,7 +94,7 @@ let TEXTFIELD_ERROR_BORDER_WIDTH = 1.0
 let TEXTFIELD_REGULAR_BORDER_COLOUR = UIColor.clearColor().CGColor
 
 //The text field border colour for indicating an error
-let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.init(red: 199/255, green: 204/255, blue: 31/255, alpha: 1).CGColor
+let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).CGColor
 
 
 
