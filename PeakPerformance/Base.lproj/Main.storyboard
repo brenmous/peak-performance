@@ -6261,7 +6261,7 @@
                             <constraint firstItem="uA2-o1-PjE" firstAttribute="bottom" secondItem="i6g-Nc-5Rq" secondAttribute="top" id="uPS-Jg-MMW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Change Password" id="9Mh-eR-ugU">
+                    <navigationItem key="navigationItem" title="Password" id="9Mh-eR-ugU">
                         <barButtonItem key="rightBarButtonItem" title="Confirm" id="8bv-Hq-hA8">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -6465,7 +6465,7 @@
                             <constraint firstItem="DvO-53-Ogf" firstAttribute="centerY" secondItem="hJ3-oA-WGC" secondAttribute="centerY" id="mY8-2p-hCl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Delete Account" id="q1z-om-f9B">
+                    <navigationItem key="navigationItem" title="Account" id="q1z-om-f9B">
                         <barButtonItem key="rightBarButtonItem" title="Delete" id="SJs-k3-72X">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
