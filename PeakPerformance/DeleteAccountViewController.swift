@@ -29,6 +29,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var loadScreenBackground: UIView!
     
     // MARK: - Actions
     
@@ -54,6 +55,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     
     func deleteAccount()
     {
+        self.loadScreenBackground.hidden = false
         self.activityIndicator.startAnimating()
         let user = FIRAuth.auth()?.currentUser
         DataService.removeUser(self.currentUser!)
@@ -89,6 +91,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     /// Reauthenticates the current user
     func reauthenticateUser()
     {
+        self.loadScreenBackground.hidden = false
         activityIndicator.startAnimating()
         //reset error label & disable button
         self.deleteAccountErrorLabel.hidden = true
@@ -109,6 +112,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
                 //reauth successful
                 print("CPVC - reauthUser(): auth successful")
                 self.activityIndicator.stopAnimating()
+                self.loadScreenBackground.hidden = true
                 
                 //show destructive alert
                 self.presentViewController(UIAlertController.getDeleteAccountAlert(self), animated: true, completion: nil)
@@ -121,7 +125,9 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
                 return
             }
             print("CPVC - reauthUser(): auth failed")
+            self.loadScreenBackground.hidden = true
             self.activityIndicator.stopAnimating()
+            
             switch errCode
             {
             case .ErrorCodeUserNotFound:
@@ -160,6 +166,8 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // Load Screen Background
+        loadScreenBackground.hidden = true
         // Back button
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
         //set up validator style transformer
