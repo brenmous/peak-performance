@@ -305,7 +305,7 @@ extension NSDate
         let calendar = NSCalendar.currentCalendar()
         let start = calendar.startOfDayForDate(deadline)
         let end = calendar.startOfDayForDate(self)
-        let dateComponents = calendar.components([.Day], fromDate: start, toDate: end, options: [])
+        let dateComponents = calendar.components([.Day], fromDate: end, toDate: start, options: [])
         return dateComponents.day
     }
 }
