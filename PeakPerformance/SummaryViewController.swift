@@ -14,13 +14,20 @@ class SummaryViewController: UITableViewController {
     
     // MARK: - Outlets
     
+//    @IBOutlet weak var whatIsWorkingTextView: UITextView!
+//    @IBOutlet weak var whatIsNotWorkingTextView: UITextView!
+//    @IBOutlet weak var whatHaveIImprovedTextView: UITextView!
+//    @IBOutlet weak var doINeedToChangeTextView: UITextView!
+    
     @IBOutlet weak var whatIsWorkingTextView: UITextView!
+    
     @IBOutlet weak var whatIsNotWorkingTextView: UITextView!
+
     @IBOutlet weak var whatHaveIImprovedTextView: UITextView!
+
     @IBOutlet weak var doINeedToChangeTextView: UITextView!
     
     // MARK: - Actions
-    
     @IBAction func weeklyButtonPressed(sender: AnyObject)
     {
         performSegueWithIdentifier(GO_TO_SECOND_SUMMARY_SEGUE, sender: self)

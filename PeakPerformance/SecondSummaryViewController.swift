@@ -25,6 +25,8 @@ class SecondSummaryViewController: UITableViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // Nav bar back button
+        self.navigationController!.navigationBar.tintColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
         
         //rearrange weekly goals into nested arrays representing weeks of the month
         let daysInMonth = NSDate( ).getNumberOfDaysInCurrentMonth()
@@ -71,6 +73,13 @@ class SecondSummaryViewController: UITableViewController {
         return "Week \(section + 1)"
     }
     
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let font = UIFont.systemFontOfSize(12, weight: UIFontWeightSemibold)
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = font
+        header.textLabel?.textColor = UIColor.darkGrayColor()
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // number of weeks in month
         return self.weeklyGoalsByWeek.count
@@ -107,7 +116,12 @@ class SecondSummaryViewController: UITableViewController {
         //no goals for this week so present "no goal" label
         if self.weeklyGoalsByWeek[indexPath.section].isEmpty
         {
+            var frame: CGRect = cell.goalTextLabel.frame
+            frame.origin.x = 20
+            cell.goalTextLabel.frame = frame
+            cell.goalTextLabel.translatesAutoresizingMaskIntoConstraints = true
             cell.goalTextLabel.text = "No goals for this week." //TODO: - Make constant
+            cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.userInteractionEnabled = false
             cell.selectionStyle = .None
             return cell

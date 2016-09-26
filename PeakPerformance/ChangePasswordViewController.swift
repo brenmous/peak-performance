@@ -27,6 +27,8 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     @IBOutlet weak var newPasswordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     @IBOutlet weak var changePasswordErrorLabel: UILabel!
+
+    @IBOutlet weak var loadScreenBackground: UIView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
@@ -56,6 +58,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     /// Change a user's password.
     func changePassword( )
     {
+        loadScreenBackground.hidden = false
         activityIndicator.startAnimating()
         print("CPVC - changePassword(): attempting to change password...")
         //reset error label & disable button
@@ -82,6 +85,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
                     {
                         //inform user of password change success
                         print("CPVC - changePassword(): password change successful")
+                        self.loadScreenBackground.hidden = true
                         self.activityIndicator.stopAnimating()
                         self.presentViewController(UIAlertController.getChangePasswordAlert(self), animated: true ) {
                             self.currentPasswordField.text = ""
@@ -154,6 +158,8 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // Screen
+        loadScreenBackground.hidden = true
         // Back button 
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
         //set up validator style transformer

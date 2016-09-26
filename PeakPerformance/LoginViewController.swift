@@ -307,9 +307,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         passwordField.delegate = self
     
         //Comment these lines out to use other accounts
-        //emailField.text = "laura.johnson@hmail.com"
-        //passwordField.text = "Password1"
-        //validator.validate(self)
+//        emailField.text = "monthly.review@email.com"
+//        passwordField.text = "Password1"
+//        validator.validate(self)
     }
     
     override func viewWillAppear(animated: Bool)
