@@ -177,7 +177,8 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         cg.kla = klaTextField.text!
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-        guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else
+        let deadline = ("\(deadlineTextField.text!) \(NSDate().getYearAsString(NSDate()))")
+        guard let dl = dateFormatter.dateFromString(deadline) else
         {
             print("WGDVC: could not format date")
             return
