@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SideMenu
 import SwiftValidator
+import Firebase
 
 // MARK: - UIViewController
 extension UIViewController
@@ -426,6 +427,74 @@ extension UIAlertController
         noCoachEmailAlertController.addAction(confirm)
         
         return noCoachEmailAlertController
+    }
+}
+
+extension FIRAuth
+{
+    /// Reauthenticates the current user
+    func reauthenticate(currentUser: User, password: String )
+    {
+        print("DAVC - deleteAccount(): attemping to reauthenticate user...")
+        guard let cu = currentUser else
+        {
+            return
+        }
+        
+        let user = FIRAuth.auth()?.currentUser
+        let credential = FIREmailPasswordAuthProvider.credentialWithEmail(currentUser.email, password: password)
+        user?.reauthenticateWithCredential(credential) { (error) in
+            guard let error = error else
+            {
+                //reauth successful
+                print("CPVC - reauthUser(): auth successful")
+                self.activityIndicator.stopAnimating()
+                self.loadScreenBackground.hidden = true
+                
+                //show destructive alert
+                self.presentViewController(UIAlertController.getDeleteAccountAlert(self), animated: true, completion: nil)
+                
+                return
+            }
+            //handle reauth error
+            guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
+            {
+                return
+            }
+            print("CPVC - reauthUser(): auth failed")
+            self.loadScreenBackground.hidden = true
+            self.activityIndicator.stopAnimating()
+            
+            switch errCode
+            {
+            case .ErrorCodeUserNotFound:
+                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
+                
+            case .ErrorCodeTooManyRequests:
+                self.deleteAccountErrorLabel.text = REQUEST_ERR_MSG
+                
+            case .ErrorCodeNetworkError:
+                self.deleteAccountErrorLabel.text = NETWORK_ERR_MSG
+                
+            case .ErrorCodeInternalError:
+                self.deleteAccountErrorLabel.text = FIR_INTERNAL_ERROR
+                
+            case .ErrorCodeUserDisabled:
+                self.deleteAccountErrorLabel.text = USER_DISABLED_ERROR
+                
+            case .ErrorCodeWrongPassword:
+                self.deleteAccountErrorLabel.text = CHANGE_PW_ERROR
+                
+            case .ErrorCodeUserMismatch:
+                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
+                
+            default:
+                print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
+                self.deleteAccountErrorLabel.text = "Error case not currently covered." //DEBUG
+            }
+            self.deleteAccountErrorLabel.hidden = false
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
     }
 }
 

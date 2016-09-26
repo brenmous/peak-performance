@@ -223,6 +223,6 @@
 		- change coach email
 		- delete account database fix
 
-26/09/2016 11:30 - 12:25, 12:40 - 
+26/09/2016 11:30 - 12:25, 12:40 - 1:40 
 	- "optimise" log in
-	- 12 month roll over/review
+	- bug fixeszzszs
