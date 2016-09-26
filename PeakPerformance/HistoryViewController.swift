@@ -93,7 +93,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         mailVC.setToRecipients([self.currentUser!.coachEmail])
         
         //get month of selected summary and set as email subject
-        let month = NSDate( ).getMonthAsString(summary.date)
+        let month = NSDate( ).monthAsString(summary.date)
         let subject = "My monthly review for \(month)." //TODO: make constant
         mailVC.setSubject(subject)
         
