@@ -309,6 +309,16 @@ extension NSDate
         let dateComponents = calendar.components([.Day], fromDate: end, toDate: start, options: [])
         return dateComponents.day
     }
+    
+    func userStartdateMonths(startDate: NSDate) -> Int
+    {
+        //get days between current date and deadline
+        let calendar = NSCalendar.currentCalendar()
+        let start = calendar.startOfDayForDate(startDate)
+        let end = calendar.startOfDayForDate(self)
+        let dateComponents = calendar.components([.Month], fromDate: end, toDate: start, options: [])
+        return dateComponents.month
+    }
 }
 
 // MARK: - UIAlertController
@@ -431,7 +441,7 @@ extension UIAlertController
 }
 
 extension FIRAuth
-{
+{ /*
     /// Reauthenticates the current user
     func reauthenticate(currentUser: User, password: String )
     {
@@ -495,6 +505,6 @@ extension FIRAuth
             self.deleteAccountErrorLabel.hidden = false
             self.navigationItem.rightBarButtonItem?.enabled = false
         }
-    }
+    } */
 }
 
