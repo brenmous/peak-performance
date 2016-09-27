@@ -19,15 +19,24 @@ class InitialSetupViewController: UITableViewController {
     
     // MARK: - Outlets
     
+//    @IBOutlet weak var familySlider: UISlider!
+//    @IBOutlet weak var friendsSlider: UISlider!
+//    @IBOutlet weak var partnerSlider: UISlider!
+//    @IBOutlet weak var workSlider: UISlider!
+//    @IBOutlet weak var healthSlider: UISlider!
+//    @IBOutlet weak var personalDevelopmentSlider: UISlider!
+//    @IBOutlet weak var financeSlider: UISlider!
+//    @IBOutlet weak var emotionalSpiritualSlider: UISlider!
+    
     @IBOutlet weak var familySlider: UISlider!
     @IBOutlet weak var friendsSlider: UISlider!
     @IBOutlet weak var partnerSlider: UISlider!
     @IBOutlet weak var workSlider: UISlider!
     @IBOutlet weak var healthSlider: UISlider!
     @IBOutlet weak var personalDevelopmentSlider: UISlider!
+    
     @IBOutlet weak var financeSlider: UISlider!
     @IBOutlet weak var emotionalSpiritualSlider: UISlider!
-    
     // MARK: - Actions
     @IBAction func nextButtonPushed(sender: AnyObject)
     {
