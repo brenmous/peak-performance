@@ -62,7 +62,8 @@ class WeeklyGoal: Goal
         }
         
         //compare goal deadline with current date
-        let days = NSDate().getDaysBetweenTodayAndDeadline(self.deadline)
+        let days = NSDate().daysBetweenTodayAndDate(self.deadline)
+        print("\(self.goalText) is \(days) days from deadline")
         if days <= 0
         {
             self.due = Due.overdue

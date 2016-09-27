@@ -94,7 +94,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         {
             return
         }
-        let monthsOfTheYear = NSDate().getMonthlyDatePickerStringArray(cu.startDate)
+        let monthsOfTheYear = NSDate().monthlyDatePickerStringArray(cu.startDate)
         let acp = ActionSheetMultipleStringPicker(title: "Deadline", rows: [monthsOfTheYear], initialSelection: [0], doneBlock: {
             picker, values, indexes in
             
@@ -159,7 +159,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     {
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
-        let deadline = ("\(deadlineTextField.text!) \(NSDate().getYearAsString(NSDate()))")
+        let deadline = ("\(deadlineTextField.text!) \(NSDate().yearAsString(NSDate()))")
         let gid = NSUUID( ).UUIDString
         let mg = MonthlyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(mg)
@@ -177,7 +177,8 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         cg.kla = klaTextField.text!
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-        guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else
+        let deadline = ("\(deadlineTextField.text!) \(NSDate().yearAsString(NSDate()))")
+        guard let dl = dateFormatter.dateFromString(deadline) else
         {
             print("WGDVC: could not format date")
             return

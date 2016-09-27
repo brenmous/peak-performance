@@ -222,3 +222,11 @@
 	- Settings
 		- change coach email
 		- delete account database fix
+
+26/09/2016 11:30 - 12:25, 12:40 - 1:40 
+	- "optimise" log in
+	- bug fixeszzszs
+
+27/09/2016 2:30 - 3:05
+	- refactor NSDate extensions
+	- experiementing with 12 month solutions

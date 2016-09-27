@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SideMenu
 import SwiftValidator
+import Firebase
 
 // MARK: - UIViewController
 extension UIViewController
@@ -100,49 +101,49 @@ extension UITextView: Validatable {
 extension NSDate
 {
     /// Get the day, month and year components of a date.
-    func getDateComponents( date: NSDate ) -> NSDateComponents
+    func dateComponents( date: NSDate ) -> NSDateComponents
     {
         return NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: date)
     }
     
     /// Get the number of days in the current month (28, 30 or 31).
-    func getNumberOfDaysInCurrentMonth( ) -> Int
+    func numberOfDaysInCurrentMonth( ) -> Int
     {
         let range = NSCalendar.currentCalendar().rangeOfUnit(.Day, inUnit: .Month, forDate: self)
         return range.length
     }
     
     /// Get the current day of the month.
-    private func getCurrentDay( ) -> Int
+    private func currentDayOfMonth( ) -> Int
     {
-        return self.getDateComponents(NSDate( )).day
+        return self.dateComponents(NSDate( )).day
     }
     
     /// Get the month of a date as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
-    func getMonthAsString( date: NSDate ) -> String
+    func monthAsString( date: NSDate ) -> String
     {
-        let dateComponents = self.getDateComponents(date)
+        let dateComponents = self.dateComponents(date)
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         return months[dateComponents.month - 1]
     }
     
     /// Get the year of a date as a string.
-    func getYearAsString( date: NSDate ) -> String
+    func yearAsString( date: NSDate ) -> String
     {
-        return String(self.getDateComponents(date).year)
+        return String(self.dateComponents(date).year)
     }
     
     /// Get the current day of the week.
-    private func getCurrentDayOfWeek( ) -> Int
+    private func currentDayOfWeek( ) -> Int
     {
-        let week = self.getCurrentWeek()
-        return self.getCurrentDay( ) - ( ( week - 1 ) * 7 )
+        let week = self.currentWeekOfMonth()
+        return self.currentDayOfMonth( ) - ( ( week - 1 ) * 7 )
     }
     
     /// Get the current week of the month.
-    private func getCurrentWeek( ) -> Int
+    private func currentWeekOfMonth( ) -> Int
     {
-        let day = self.getDateComponents(NSDate( )).day
+        let day = self.dateComponents(NSDate( )).day
         var week = (day/7)+1
         if day % 7 == 0
         {
@@ -152,30 +153,30 @@ extension NSDate
     }
     
     /// Get the value representing the user's progress through the month (currently an increment of the bar represents one day of the current month).
-    func getMonthlyProgressValue( ) -> Float
+    func monthlyProgressValue( ) -> Float
     {
-        let increment = 100.0/Float(self.getNumberOfDaysInCurrentMonth( ) )
-        return ( increment * Float(self.getCurrentDay()) ) / 100.0
+        let increment = 100.0/Float(self.numberOfDaysInCurrentMonth( ) )
+        return ( increment * Float(self.currentDayOfMonth()) ) / 100.0
     }
     
     /// Returns the string for the monthly progress bar label.
-    func getMonthlyProgressString( ) -> String
+    func monthlyProgressString( ) -> String
     {
-        let month = self.getMonthAsString(NSDate())
-        let week = self.getCurrentWeek()
+        let month = self.monthAsString(NSDate())
+        let week = self.currentWeekOfMonth()
         return "\(month) Week \(week)"
     }
     
     /// Get the value representing the user's progress through the week (currently an increment of the bar represents one day of the current week).
-    func getWeeklyProgressValue( ) -> Float
+    func weeklyProgressValue( ) -> Float
     {
-        let week = self.getCurrentWeek()
+        let week = self.currentWeekOfMonth()
         var increment: Float = 100.0/7.0
         //If it's the fifth (partial week)...
         if week == 5
         {
             //... if the month has 30 days (i.e. a 2 day week)
-            if self.getNumberOfDaysInCurrentMonth() == 30
+            if self.numberOfDaysInCurrentMonth() == 30
             {
                 //set progress to 1/2 per day.
                 increment = 50.0
@@ -187,27 +188,27 @@ extension NSDate
                 increment = Float(1/3)
             }
         }
-        return ( increment * Float(self.getCurrentDayOfWeek()) ) / 100.0
+        return ( increment * Float(self.currentDayOfWeek()) ) / 100.0
     }
     
     /// Returns the string for the weekly progress bar label.
-    func getWeeklyProgressString( ) -> String
+    func weeklyProgressString( ) -> String
     {
-        let week = self.getCurrentWeek()
-        let dayOfWeek = self.getCurrentDayOfWeek()
+        let week = self.currentWeekOfMonth()
+        let dayOfWeek = self.currentDayOfWeek()
         return "Week \(week) Day \(dayOfWeek)"
     }
     
     /// Returns an NSDate for specifying max date of the weekly goal deadline picker.
-    func getWeeklyDatePickerMaxDate( ) -> NSDate
+    func weeklyDatePickerMaxDate( ) -> NSDate
     {
-        let dateComponents = self.getDateComponents(NSDate())
-        dateComponents.day = self.getNumberOfDaysInCurrentMonth()
+        let dateComponents = self.dateComponents(NSDate())
+        dateComponents.day = self.numberOfDaysInCurrentMonth()
         return NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
     }
     
     /// Returns an array of months as strings ranging from [currentMonth...userStartMonth - 1]
-    func getMonthlyDatePickerStringArray( startDate: NSDate ) -> [String]
+    func monthlyDatePickerStringArray( startDate: NSDate ) -> [String]
     {
         let startMonth = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self ).month - 1
         var endMonth = NSCalendar.currentCalendar().components([.Month], fromDate: startDate ).month - 2
@@ -253,7 +254,7 @@ extension NSDate
      Gets array of months and years (as string "MMMM yyyy") that need to be checked for summaries.
      - Returns: an array of months in string form that need to be checked.
      */
-    func getDatesToCheckForSummaries( currentUser: User ) -> [String]
+    func datesToCheckForSummaries( currentUser: User ) -> [String]
     {
         let calendar = NSCalendar.currentCalendar()
         let currentDate = calendar.components([.Day, .Month, .Year], fromDate: self)
@@ -299,13 +300,13 @@ extension NSDate
         return monthsToCheck
     }
     
-    func getDaysBetweenTodayAndDeadline( deadline: NSDate ) -> Int
+    func daysBetweenTodayAndDate( date: NSDate ) -> Int
     {
         //get days between current date and deadline
         let calendar = NSCalendar.currentCalendar()
-        let start = calendar.startOfDayForDate(deadline)
+        let start = calendar.startOfDayForDate(date)
         let end = calendar.startOfDayForDate(self)
-        let dateComponents = calendar.components([.Day], fromDate: start, toDate: end, options: [])
+        let dateComponents = calendar.components([.Day], fromDate: end, toDate: start, options: [])
         return dateComponents.day
     }
 }
@@ -427,5 +428,73 @@ extension UIAlertController
         
         return noCoachEmailAlertController
     }
+}
+
+extension FIRAuth
+{ /*
+    /// Reauthenticates the current user
+    func reauthenticate(currentUser: User, password: String )
+    {
+        print("DAVC - deleteAccount(): attemping to reauthenticate user...")
+        guard let cu = currentUser else
+        {
+            return
+        }
+        
+        let user = FIRAuth.auth()?.currentUser
+        let credential = FIREmailPasswordAuthProvider.credentialWithEmail(currentUser.email, password: password)
+        user?.reauthenticateWithCredential(credential) { (error) in
+            guard let error = error else
+            {
+                //reauth successful
+                print("CPVC - reauthUser(): auth successful")
+                self.activityIndicator.stopAnimating()
+                self.loadScreenBackground.hidden = true
+                
+                //show destructive alert
+                self.presentViewController(UIAlertController.getDeleteAccountAlert(self), animated: true, completion: nil)
+                
+                return
+            }
+            //handle reauth error
+            guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
+            {
+                return
+            }
+            print("CPVC - reauthUser(): auth failed")
+            self.loadScreenBackground.hidden = true
+            self.activityIndicator.stopAnimating()
+            
+            switch errCode
+            {
+            case .ErrorCodeUserNotFound:
+                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
+                
+            case .ErrorCodeTooManyRequests:
+                self.deleteAccountErrorLabel.text = REQUEST_ERR_MSG
+                
+            case .ErrorCodeNetworkError:
+                self.deleteAccountErrorLabel.text = NETWORK_ERR_MSG
+                
+            case .ErrorCodeInternalError:
+                self.deleteAccountErrorLabel.text = FIR_INTERNAL_ERROR
+                
+            case .ErrorCodeUserDisabled:
+                self.deleteAccountErrorLabel.text = USER_DISABLED_ERROR
+                
+            case .ErrorCodeWrongPassword:
+                self.deleteAccountErrorLabel.text = CHANGE_PW_ERROR
+                
+            case .ErrorCodeUserMismatch:
+                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
+                
+            default:
+                print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
+                self.deleteAccountErrorLabel.text = "Error case not currently covered." //DEBUG
+            }
+            self.deleteAccountErrorLabel.hidden = false
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
+    } */
 }
 

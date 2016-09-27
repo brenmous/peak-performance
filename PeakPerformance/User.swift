@@ -106,8 +106,7 @@ public class User
      */
     func checkMonthlyReview( ) -> Bool
     {
-        
-        let datesToCheck = NSDate( ).getDatesToCheckForSummaries( self )
+        let datesToCheck = NSDate( ).datesToCheckForSummaries( self )
         //let calendar = NSCalendar.currentCalendar()
         var alertUserToReview = false
         

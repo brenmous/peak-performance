@@ -55,8 +55,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     /// Updates the progress bar with the current date and progress value.
     func updateProgressView( )
     {
-        progressViewLabel.text = NSDate().getWeeklyProgressString()
-        progressViewWG.progress = NSDate().getWeeklyProgressValue()
+        progressViewLabel.text = NSDate().weeklyProgressString()
+        progressViewWG.progress = NSDate().weeklyProgressValue()
     }
     
     /**

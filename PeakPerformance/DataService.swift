@@ -589,9 +589,15 @@ class DataService  //: SignUpDataService, LogInDataService
                         summary.klaRatings[kla] = Double(s.value![kla] as! String)
                     }
                     
-                    self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
+                    if s.hasChild(WEEKLYGOALS_REF_STRING)
+                    {
+                        self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
+                    }
                     
-                    self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
+                    if s.hasChild(MONTHLYGOALS_REF_STRING)
+                    {
+                        self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
+                    }
                     
                     //dateFormatter.dateFormat = MONTH_FORMAT_STRING
                     //let monthAsString = dateFormatter.stringFromDate(date!)

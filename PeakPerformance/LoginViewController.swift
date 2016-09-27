@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
-//TODO: - Load summaries from database
 //TODO: - speed up initial load
 
 /**
@@ -148,6 +147,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         //like maybe 5 or 6 right now my dude
         //you are like a baby, watch this
         
+        /*
+        let start = NSDate()
         //Fetch user and content
         DataService.loadUser( user.uid ) { (user) in
             self.currentUser = user
@@ -170,6 +171,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                             
                             print("LIVC: content fetched, going to home screen")
                             self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                            let end = NSDate()
+                            let time = end.timeIntervalSinceDate(start)
+                            print("******TIME: \(time)")
                             
                             
                             }
@@ -177,10 +181,79 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                     }
                 }
             }
+        } */
+    
+        var loadStatus = [false, false, false, false, false]
+        DataService.loadUser(user.uid) { (user) in
+            self.currentUser = user
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                
+                DataService.loadSummaries(user) { (summaries) in
+                    user.monthlySummaries = summaries
+                    loadStatus[4] = true
+                    print("s: \(loadStatus)")
+                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    {
+                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    }
+                }
+            });
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                DataService.loadWeeklyGoals(user.uid) { (weeklyGoals) in
+                    user.weeklyGoals = weeklyGoals
+                    loadStatus[0] = true
+                    print("wg: \(loadStatus)")
+                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    {
+                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    }
+                }
+            });
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                DataService.loadMonthlyGoals(user.uid) { (monthlyGoals) in
+                    user.monthlyGoals = monthlyGoals
+                    loadStatus[1] = true
+                    print("mg: \(loadStatus)")
+                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    {
+                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    }
+                }
+            });
+            
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                DataService.loadDreams(user.uid) { (dreams) in
+                    user.dreams = dreams
+                    loadStatus[2] = true
+                    print("d: \(loadStatus)")
+                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    {
+                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    }
+                }
+            });
+            
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                DataService.loadValues(user.uid) { (values) in
+                    user.values = values
+                    loadStatus[3] = true
+                    print("v: \(loadStatus)")
+                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    {
+                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    }
+                }
+            });
         }
     }
 
-    // MARK: - keyboard stuff
+    // MARK: - Keyboard
+    
     /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
@@ -188,6 +261,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         textField.resignFirstResponder()
         return true
     }
+    
     /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
