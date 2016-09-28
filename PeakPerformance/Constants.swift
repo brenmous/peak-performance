@@ -70,6 +70,9 @@ let RESET_EMAIL_SENT = "A reset password email has been sent to this account."
 /// Change password - wrong current password.
 let CHANGE_PW_ERROR = "Incorrect password. Please re-enter your current password."
 
+/// User.checkYearlyReview fatal error message - system time earlier than app expectation.
+let USER_YEARLY_REVIEW_FATAL_ERR_MSG = "User.checkYearlyReview(): system time has been set earlier than what the app expects. Please change system time back to current date"
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.
@@ -132,6 +135,9 @@ let KLA_PARTNER = "Partner"
 
 /// Specifies users node in database.
 let USERS_REF_STRING = "users"
+
+/// Specifies users year in database.
+let USER_YEAR_REF_STRING = "year"
 
 /// Specifies user firstname node in database.
 let FNAME_REF_STRING = "fname"

@@ -236,7 +236,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             let summary = s as! MonthlySummary
             //set month label
             let dateFormatter = NSDateFormatter( )
-            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+            dateFormatter.dateFormat = MONTH_FORMAT_STRING
             let dateAsString = dateFormatter.stringFromDate(summary.date)
             cell.monthLabel.text = dateAsString
             

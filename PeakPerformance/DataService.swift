@@ -67,6 +67,20 @@ class DataService  //: SignUpDataService, LogInDataService
         print("DS - saveCoachEmail(): \(user.coachEmail) saved")
     }
     
+    /** Save's user's current year of program to database.
+ 
+        - Parameters:
+            - user: owner of year being saved.
+    */
+    static func saveUserYear(user: User)
+    {
+        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
+        
+        userRef.child(USER_YEAR_REF_STRING).setValue(user.year)
+        
+        print("DS - saveUserYear(): \(user.year) saved")
+    }
+    
     /**
      Loads a user from the database and creates a user object.
      
@@ -88,6 +102,7 @@ class DataService  //: SignUpDataService, LogInDataService
             let lname = snapshot.value![LNAME_REF_STRING] as! String
             let org = snapshot.value![ORG_REF_STRING] as! String
             let email = snapshot.value![EMAIL_REF_STRING] as! String
+            let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value![USER_YEAR_REF_STRING] as! Int : 0
             let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value![COACH_EMAIL_REF_STRING] as! String : ""
             
             // TODO: - Temp code for test accounts created before start date implementation. Remove before release.
@@ -95,7 +110,7 @@ class DataService  //: SignUpDataService, LogInDataService
             {
                 print("DS: no start date in database - getting one now...")
                 let startDate = NSDate( )
-                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail )
+                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
                 
                 //convert startDate to string
                 let dateFormatter = NSDateFormatter( )
@@ -117,7 +132,7 @@ class DataService  //: SignUpDataService, LogInDataService
                 return
             }
         
-            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail)
+            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
 
             completion( user: user ) //passing the created and user and content IDs back using the completion block
             
@@ -569,10 +584,12 @@ class DataService  //: SignUpDataService, LogInDataService
                         continue
                     }
                     
-                    let dateString = String(s.key)
+                    let dateString = (String(s.key).componentsSeparatedByString(" "))[0]
                     print("DS: fetching summary for \(dateString)")
                     let dateFormatter = NSDateFormatter( )
-                    dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+                    //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
+                    dateFormatter.dateFormat = MONTH_FORMAT_STRING
+                    
                     let date = dateFormatter.dateFromString(dateString)
                     let summary = MonthlySummary(date: date!)
                     summary.whatIsWorking = s.value![SUMMARY_WIW_REF_STRING] as! String
