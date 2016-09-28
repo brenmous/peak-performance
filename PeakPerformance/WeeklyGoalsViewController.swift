@@ -180,24 +180,12 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! )
-
-        
-        //YEAR TEST
-        print("old user year: \(self.currentUser!.year)")
-        self.currentUser!.checkYearlyReview()
-        print("new user year: \(self.currentUser!.year)")
-        
-        //check if a monthly review is needed
-        if self.currentUser!.checkMonthlyReview()
-        {
-            self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
-        }
-        
         
         //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
         {
             //inform user review is needed
+            self.currentUser!.allMonthlyReviewsFromLastYear()
         }
         //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else

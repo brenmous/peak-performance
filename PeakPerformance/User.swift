@@ -118,7 +118,9 @@ public class User
         if yearsPassedSinceStart > self.year
         {
             self.yearlySummary = YearlySummary(year: self.year)
-            self.year = yearsPassedSinceStart
+            //if we want to set titles etc. with user's current year, then don't update their year till they complete the yearly review
+            //otherwise, do it here
+            //self.year = yearsPassedSinceStart
             return true
         }
         

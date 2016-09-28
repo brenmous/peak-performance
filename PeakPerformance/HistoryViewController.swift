@@ -23,6 +23,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     var summaryToSend: MonthlySummary?
     
+    // MARK: - Outlets
+    @IBOutlet weak var titleLabel: UILabel!
+    
     // MARK: - Actions
     @IBAction func menuButtonPressed(sender: AnyObject) {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
@@ -155,11 +158,35 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         return pdfs
     }
     
+    func setUpSummaryArray()
+    {
+        //place summaries from user dictionary into array (required for table view)
+        //TODO: - use observer to only update array when summaries are added
+        self.monthlySummariesArray.removeAll() //this is dirty, fix it
+        for (_, val) in self.currentUser!.monthlySummaries
+        {
+            if val != nil
+            {
+                self.monthlySummariesArray.append(val!)
+            }
+        }
+        
+        //sort summaries by date with newest first
+        self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
+        
+        //place initial summary at end of array if we're in the first 12 month period
+        if self.currentUser!.year == 0 { self.monthlySummariesArray.append(self.currentUser!.currentRealitySummary) }
+        
+        //place yearly summary at start of array
+        if self.currentUser!.yearlySummary != nil { self.monthlySummariesArray.insert(self.currentUser!.yearlySummary!, atIndex: 0) }
+    }
+    
     // MARK: - Overridden methods
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        
         
         if self.currentUser == nil
         {
@@ -173,31 +200,29 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             self.currentUser = cu
         }
         
-        //place summaries from user dictionary into array (required for table view)
-        //TODO: - use observer to only update array when summaries are added
-        self.monthlySummariesArray.removeAll() //this is dirty, fix it
-        for (_, val) in self.currentUser!.monthlySummaries
+        self.titleLabel.text = "Goal Summary for Year \(self.currentUser!.year + 1)"
+        
+        //check if a yearly review is needed
+        if self.currentUser!.checkYearlyReview()
         {
-            if val != nil
+            //inform user review is needed
+            self.currentUser!.allMonthlyReviewsFromLastYear()
+        }
+            //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
+        else
+        {
+            //check if a monthly review is needed
+            if self.currentUser!.checkMonthlyReview()
             {
-                self.monthlySummariesArray.append(val!)
+                self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
-
-        //sort summaries by date with newest first
-        self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
-        self.monthlySummariesArray.append(self.currentUser!.currentRealitySummary)
+        
+        self.setUpSummaryArray()
         
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
         
-        
-        
-        //check if a monthly review is needed
-        if self.currentUser!.checkMonthlyReview()
-        {
-            self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
-        }
         
         // set up badge and menu bar button item
         self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
@@ -270,6 +295,13 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             cell.monthLabel.text = "Initial Review" //change this to whatever you want
             cell.reviewReadyLabel.textColor = UIColor.grayColor()
         }
+        else if s is YearlySummary
+        {
+            cell.sendToCoachButton.hidden = true
+            cell.reviewReadyLabel.text = "Review ready to complete!"
+            cell.monthLabel.text = "Yearly Review"
+            cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
+        }
         
         return cell
     }
@@ -292,8 +324,15 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             else
             {
                 performSegueWithIdentifier(GO_TO_SUMMARY_SEGUE, sender: self)
+                return
             }
         }
+        else if s is YearlySummary
+        {
+            performSegueWithIdentifier(GO_TO_YEARLY_REVIEW_SEGUE, sender: self)
+            return
+        }
+        
        
     }
     
@@ -311,8 +350,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == GO_TO_REVIEW_SEGUE
+        switch segue.identifier!
         {
+        case GO_TO_REVIEW_SEGUE:
             print("HVC: going to review view")
             let dvc = segue.destinationViewController as! MonthlyReviewViewController
             dvc.currentUser = self.currentUser
@@ -320,15 +360,21 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             {
                 dvc.summary = self.monthlySummariesArray[indexPath.row] as? MonthlySummary
             }
-        }
-        else if segue.identifier == GO_TO_SUMMARY_SEGUE
-        {
+                
+        case GO_TO_SUMMARY_SEGUE:
             print("HVC: going to summary view")
             let dvc = segue.destinationViewController as! SummaryViewController
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
                 dvc.summary = self.monthlySummariesArray[indexPath.row] as? MonthlySummary
             }
+        
+        case GO_TO_YEARLY_REVIEW_SEGUE:
+            let dvc = segue.destinationViewController as! YearReviewViewController
+            dvc.currentUser = self.currentUser
+            
+        default:
+            return
         }
     }
 

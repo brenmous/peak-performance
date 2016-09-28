@@ -354,6 +354,9 @@ let SETTINGS_TO_COACH_EMAIL_SEGUE = "settingsToCoachEmailSegue"
 /// Change coach email -> Settings
 let UNWIND_FROM_COACH_EMAIL_SEGUE = "unwindToSettings"
 
+/// History -> Yearly Review
+let GO_TO_YEARLY_REVIEW_SEGUE = "goToYearlyReview"
+
 
 // MARK: - Alert sheet strings
 

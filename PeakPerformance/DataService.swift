@@ -632,6 +632,11 @@ class DataService  //: SignUpDataService, LogInDataService
         })
     }
     
+    static func removeAllMonthlySummaries(user: User)
+    {
+        FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).removeValue()
+    }
+    
     
     
 }
