@@ -3913,13 +3913,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="393" id="ciy-tc-Tks">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="393" id="ciy-tc-Tks">
                                         <rect key="frame" x="0.0" y="115" width="600" height="393"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ciy-tc-Tks" id="ns5-4p-EBT">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="392.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZsB-k6-L2s">
+                                                    <rect key="frame" x="0.0" y="0.5" width="600" height="392.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legend-klad" translatesAutoresizingMaskIntoConstraints="NO" id="iGy-rU-k7O">
                                                     <rect key="frame" x="249" y="278" width="102" height="98"/>
                                                     <constraints>
@@ -3943,7 +3947,7 @@
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZB-ts-Lt0" customClass="CustomizableLabelView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="220" y="70" width="160" height="160"/>
-                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.72941176470588232" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Tyk-C1-BpZ"/>
                                                     </constraints>
@@ -3969,16 +3973,137 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ld7-Eg-NqN">
+                                                    <rect key="frame" x="236" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="familyPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="Cf0-93-QyI"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOG-Hu-dwF">
+                                                    <rect key="frame" x="260" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" red="0.396078431372549" green="0.89803921568627454" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="friendPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="MFB-JG-TA4"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7O-5C-00n">
+                                                    <rect key="frame" x="306" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" red="0.74901960784313726" green="0.80000000000000004" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="healthPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="WZz-oH-rSQ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AuY-FO-Hb1">
+                                                    <rect key="frame" x="283" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="partnerPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="Uff-bE-XPK"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="525-pI-2eT">
+                                                    <rect key="frame" x="352" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" red="0.95686274509803915" green="0.8666666666666667" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="workPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="ihb-in-VH0"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yL9-iH-GF2">
+                                                    <rect key="frame" x="375" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="emotionalSpiritualPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="h0h-mT-CSg"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pu3-V6-MQM">
+                                                    <rect key="frame" x="213" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" red="0.18431372549019609" green="0.73725490196078436" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="financialPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="ShS-bg-spu"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dp4-Nj-QOQ">
+                                                    <rect key="frame" x="329" y="50" width="15" height="15"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.55294117649999996" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="7.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="personalDevelopmentPointPressed:" destination="NoS-jz-JAJ" eventType="touchUpInside" id="7dC-J7-Fol"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iGy-rU-k7O" firstAttribute="top" secondItem="l0A-Ev-6Iu" secondAttribute="bottom" constant="8" symbolic="YES" id="0iB-Np-6aX"/>
                                                 <constraint firstItem="iGy-rU-k7O" firstAttribute="centerX" secondItem="ns5-4p-EBT" secondAttribute="centerX" id="2bY-wh-df8"/>
                                                 <constraint firstItem="iGy-rU-k7O" firstAttribute="top" secondItem="bZB-ts-Lt0" secondAttribute="bottom" constant="48" id="2yH-Ye-Qj8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZsB-k6-L2s" secondAttribute="trailing" constant="-8" id="51D-Q0-4x6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="iGy-rU-k7O" secondAttribute="bottom" constant="8.5" id="AZK-jV-74v"/>
                                                 <constraint firstItem="6By-Z0-ywP" firstAttribute="centerX" secondItem="bZB-ts-Lt0" secondAttribute="centerX" id="DOu-0J-i91"/>
+                                                <constraint firstItem="ZsB-k6-L2s" firstAttribute="leading" secondItem="ns5-4p-EBT" secondAttribute="leadingMargin" constant="-8" id="RRK-pE-joI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ZsB-k6-L2s" secondAttribute="bottom" constant="-8.5" id="Zp8-lZ-gpl"/>
                                                 <constraint firstItem="bZB-ts-Lt0" firstAttribute="centerX" secondItem="l0A-Ev-6Iu" secondAttribute="centerX" id="aYp-jv-ZhO"/>
                                                 <constraint firstItem="l0A-Ev-6Iu" firstAttribute="centerX" secondItem="iGy-rU-k7O" secondAttribute="centerX" id="eCq-yo-aXc"/>
                                                 <constraint firstItem="bZB-ts-Lt0" firstAttribute="centerY" secondItem="l0A-Ev-6Iu" secondAttribute="centerY" id="fLO-xg-q7Y"/>
+                                                <constraint firstItem="ZsB-k6-L2s" firstAttribute="top" secondItem="ns5-4p-EBT" secondAttribute="topMargin" constant="-7.5" id="lYq-vz-rfr"/>
                                                 <constraint firstItem="6By-Z0-ywP" firstAttribute="centerY" secondItem="bZB-ts-Lt0" secondAttribute="centerY" id="s5G-0n-hSC"/>
                                                 <constraint firstItem="l0A-Ev-6Iu" firstAttribute="top" secondItem="ns5-4p-EBT" secondAttribute="topMargin" constant="22" id="t75-Zo-4AY"/>
                                                 <constraint firstItem="iGy-rU-k7O" firstAttribute="top" secondItem="6By-Z0-ywP" secondAttribute="bottom" constant="88" id="uZW-Fo-0gx"/>
@@ -4248,9 +4373,18 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doIHaveToChangeTextView" destination="6oU-P5-1Md" id="stX-iu-rRr"/>
+                        <outlet property="emotionalSpiritual" destination="yL9-iH-GF2" id="BAb-rM-hCb"/>
+                        <outlet property="familyPoint" destination="ld7-Eg-NqN" id="Ga4-gM-mJu"/>
+                        <outlet property="financialPoint" destination="Pu3-V6-MQM" id="b2a-E8-AeR"/>
+                        <outlet property="friendPoint" destination="eOG-Hu-dwF" id="quo-2C-WbB"/>
+                        <outlet property="healthPoint" destination="y7O-5C-00n" id="o5E-tQ-s4x"/>
+                        <outlet property="klaDiagramPeakPerformanceArea" destination="l0A-Ev-6Iu" id="e4e-7E-SoA"/>
+                        <outlet property="partnerPoint" destination="AuY-FO-Hb1" id="F7M-bh-rPL"/>
+                        <outlet property="personalDevelopmentPoint" destination="Dp4-Nj-QOQ" id="H3a-r6-qnL"/>
                         <outlet property="whatHaveIImprovedTextView" destination="Ppc-qx-kzP" id="aLb-S2-CBM"/>
                         <outlet property="whatIsNotWorkingTextView" destination="mU1-0f-d8C" id="vA0-fR-nIA"/>
                         <outlet property="whatIsWorkingTextView" destination="JCD-IP-7aA" id="kKh-iW-vbA"/>
+                        <outlet property="workPoint" destination="525-pI-2eT" id="zEs-mx-mHW"/>
                         <segue destination="sts-sq-THk" kind="unwind" identifier="unwindToHistory" unwindAction="unwindToHistory:" id="XeO-6I-McA"/>
                     </connections>
                 </tableViewController>
