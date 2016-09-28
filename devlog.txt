@@ -236,5 +236,9 @@
 		- review check can now span multiple years
 		- history view displays month + year of summaries
 
-29/09/2016 2:30 - 
-	- 
+29/09/2016 2:30 - 5:10  
+	- 12 month review
+		- review check only checks current 12 month period
+		- added User.year which tracks user's current 12 month period
+		- yearly review on history view
+		- completing yearly review resets summaries
