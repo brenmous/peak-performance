@@ -184,10 +184,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             }
         }
 
-        //sort summaries by date with oldest first
-        //currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
-        self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedAscending })
-        self.monthlySummariesArray.insert(self.currentUser!.currentRealitySummary, atIndex: 0)
+        //sort summaries by date with newest first
+        self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
+        self.monthlySummariesArray.append(self.currentUser!.currentRealitySummary)
         
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
@@ -237,9 +236,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             let summary = s as! MonthlySummary
             //set month label
             let dateFormatter = NSDateFormatter( )
-            dateFormatter.dateFormat = MONTH_FORMAT_STRING
-            let monthAsString = dateFormatter.stringFromDate(summary.date)
-            cell.monthLabel.text = monthAsString
+            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+            let dateAsString = dateFormatter.stringFromDate(summary.date)
+            cell.monthLabel.text = dateAsString
             
             //send to coach button
             if !summary.sent && summary.reviewed
