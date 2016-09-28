@@ -27,12 +27,13 @@ class YearReviewViewController: UITableViewController {
     // MARK: - Methods
     /// Resets user's monthly reviews/summaries, gets new summaries for current 12 month period. Sets yearly summary to nil.
     //if we want to send the yearly review to Paul/save it for user/whatever, that will happen here.
-    func yearlyCleanUp()
+    func yearlyCleanUp() //TOOD: - move to user class
     {
         let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self.currentUser!)
         self.currentUser!.year = yearsPassedSinceStart
         DataService.saveUserYear(self.currentUser!)
         self.currentUser!.monthlySummaries = [String:MonthlySummary]( )
+        DataService.removeAllMonthlySummaries(self.currentUser!)
         //get new summaries (if any months have passed in the new 12 month period)
         self.currentUser!.checkMonthlyReview()
         self.currentUser!.yearlySummary = nil
