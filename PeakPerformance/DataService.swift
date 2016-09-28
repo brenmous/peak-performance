@@ -557,9 +557,7 @@ class DataService  //: SignUpDataService, LogInDataService
     
     static func loadSummaries( user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void )
     {
-        var monthlySummaries: [String: MonthlySummary?] =  ["January": nil, "February": nil, "March": nil, "April": nil,
-                                                            "May": nil, "June": nil, "July": nil, "August": nil, "September": nil,
-                                                            "October": nil, "November": nil, "December": nil]
+        var monthlySummaries = [String: MonthlySummary?]( )
         let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid)
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
@@ -598,13 +596,9 @@ class DataService  //: SignUpDataService, LogInDataService
                     {
                         self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
                     }
-                    
-                    //dateFormatter.dateFormat = MONTH_FORMAT_STRING
-                    //let monthAsString = dateFormatter.stringFromDate(date!)
-                    let dateStringArray = dateString.componentsSeparatedByString(" ")
-                    let monthAsString = String(dateStringArray[0])
+                  
                     print("DS: summary fetched for \(dateString)")
-                    monthlySummaries[monthAsString] = summary
+                    monthlySummaries[dateString] = summary
                     
                 }
                 print("DS: summaries fetched")

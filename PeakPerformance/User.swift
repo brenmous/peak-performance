@@ -46,9 +46,7 @@ public class User
     var startDate: NSDate
     
     /// Dictionary of monthly reviews/summaries.
-    var monthlySummaries: [String:MonthlySummary?] = ["January": nil, "February": nil, "March": nil, "April": nil,
-                                                      "May": nil, "June": nil, "July": nil, "August": nil, "September": nil,
-                                                      "October": nil, "November": nil, "December": nil]
+    var monthlySummaries = [String:MonthlySummary?]( )
     
     /// Current reality (initial) summary.
     var currentRealitySummary = CurrentRealitySummary( )
@@ -113,31 +111,31 @@ public class User
         //check user.monthlySummaries to see if monthlySummary has been completed for that month
         for date in datesToCheck
         {
-            let dateAr = date.componentsSeparatedByString(" ")
-            let month = dateAr[0]
-            print("MRH: checking for summary for \(month)")
-            if self.monthlySummaries[month]! == nil
+            //let dateAr = date.componentsSeparatedByString(" ")
+            //let month = dateAr[0]
+            print("MRH: checking for summary for \(date)")
+            if self.monthlySummaries[date] == nil
             {
-                print("MRH: no summary for \(month), creating...")
+                print("MRH: no summary for \(date), creating...")
                 alertUserToReview = true
                 //no summary for this month, so create one
                 let dateFormatter = NSDateFormatter( )
                 dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING //TODO: - Add year for summaries
-                guard let date = dateFormatter.dateFromString(date) else
+                guard let d = dateFormatter.dateFromString(date) else
                 {
                     print("MRH: could not create monthly summary date")
                     return false
                 }
-                let monthlySummary = MonthlySummary(date: date)
+                let monthlySummary = MonthlySummary(date: d)
                 self.moveWeeklyGoalsFromUserToSummary(monthlySummary)
                 self.moveMonthlyGoalsFromUserToSummary(monthlySummary)
-                self.monthlySummaries[month] = monthlySummary
+                self.monthlySummaries[date] = monthlySummary
                 print("MRH: created summary for \(date)")
                 DataService.saveSummary(self, summary: monthlySummary)
             }
             else
             {
-                print("MRH: summary for \(month) exists")
+                print("MRH: summary for \(date) exists")
             }
         }
         return alertUserToReview

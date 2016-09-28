@@ -230,3 +230,6 @@
 27/09/2016 2:30 - 3:05
 	- refactor NSDate extensions
 	- experiementing with 12 month solutions
+
+28/09/2016 2:50 - 
+	- 12 month review

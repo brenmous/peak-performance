@@ -252,52 +252,33 @@ extension NSDate
     
     /**
      Gets array of months and years (as string "MMMM yyyy") that need to be checked for summaries.
-     - Returns: an array of months in string form that need to be checked.
+     - Returns: an array of dates in string form that need to be checked.
      */
     func datesToCheckForSummaries( currentUser: User ) -> [String]
     {
         let calendar = NSCalendar.currentCalendar()
-        let currentDate = calendar.components([.Day, .Month, .Year], fromDate: self)
-        let startDate = calendar.components([.Day, .Month, .Year], fromDate: currentUser.startDate )
-        if (currentDate.month == startDate.month) && (currentDate.year == startDate.year)
+        let currentDate = calendar.startOfDayForDate(self)
+        var lastMonth = currentDate
+        lastMonth = calendar.dateByAddingUnit(.Month, value: -1, toDate: lastMonth, options: [])!
+        let startDate = calendar.startOfDayForDate(currentUser.startDate)
+        var datesToCheck = [String]( )
+        if startDate == currentDate
         {
             //still the first month so don't do anything
             print("MRH: no summaries to create")
-            return [String]( )
+            return datesToCheck
         }
-        //build an array of month strings representing dictionary keys to check in users monthlySummaries property
-        let monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        var monthsToCheck = [String]( )
-        
-        let startMonth = startDate.month - 1
-        let prevMonth = currentDate.month - 2
-        
-        print("start: \(monthsOfTheYear[startMonth])") //DEBUG
-        print("prev: \(monthsOfTheYear[prevMonth])") //DEBUG
-        
-        if startMonth == prevMonth
+   
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+        var date = startDate
+        while date.compare(lastMonth) != .OrderedDescending
         {
-            monthsToCheck.append("\(monthsOfTheYear[startMonth]) \(startDate.year)")
+            datesToCheck.append(dateFormatter.stringFromDate(date))
+            date = calendar.dateByAddingUnit(.Month, value: 1, toDate: date, options: [])!
         }
-        else if startMonth < prevMonth
-        {
-            for i in startMonth...prevMonth
-            {
-                monthsToCheck.append("\(monthsOfTheYear[i]) \(startDate.year)")
-            }
-        }
-        else
-        {
-            for i in startMonth...monthsOfTheYear.count-1
-            {
-                monthsToCheck.append("\(monthsOfTheYear[i]) \(startDate.year)")
-            }
-            for i in 0...prevMonth
-            {
-                monthsToCheck.append("\(monthsOfTheYear[i]) \(startDate.year+1)")
-            }
-        }
-        return monthsToCheck
+        
+        return datesToCheck
     }
     
     func daysBetweenTodayAndDate( date: NSDate ) -> Int
@@ -308,6 +289,15 @@ extension NSDate
         let end = calendar.startOfDayForDate(self)
         let dateComponents = calendar.components([.Day], fromDate: end, toDate: start, options: [])
         return dateComponents.day
+    }
+    
+    func monthsBetweenTodayAndDate(date: NSDate) -> Int
+    {
+        let calendar = NSCalendar.currentCalendar()
+        let start = calendar.startOfDayForDate(date)
+        let end = calendar.startOfDayForDate(self)
+        let dateComponents = calendar.components([.Month], fromDate: end, toDate: start, options: [])
+        return dateComponents.month
     }
 }
 
