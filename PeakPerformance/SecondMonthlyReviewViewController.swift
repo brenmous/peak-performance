@@ -142,7 +142,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
         // origin
         let xmidpoint = (self.view.frame.size.width/2) - (familyPoint.frame.size.width/2)
         let ymidpoint = (klaDiagramPeakPerformanceArea.frame.midY) - (familyPoint.frame.size.width/2)
-        let increment: CGFloat = 120
+        let increment: CGFloat = 30
         
         // family point
         var familyFrame: CGRect = familyPoint.frame
@@ -208,8 +208,9 @@ class SecondMonthlyReviewViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         displayPoints( )
-//        super.view.userInteractionEnabled = false
+
      }
 
     override func didReceiveMemoryWarning() {
