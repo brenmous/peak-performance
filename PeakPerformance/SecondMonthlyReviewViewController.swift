@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class SecondMonthlyReviewViewController: UITableViewController {
 
@@ -159,8 +160,8 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         // friend point
         var friendFrame: CGRect = friendPoint.frame
-        friendFrame.origin.x = xmidpoint + increment
-        friendFrame.origin.y = ymidpoint + increment
+        friendFrame.origin.x = xmidpoint + ((sqrt(2)/2) * increment)
+        friendFrame.origin.y = ymidpoint + ((sqrt(2)/2) * increment)
         friendPoint.translatesAutoresizingMaskIntoConstraints = true
         friendPoint.frame = friendFrame
     
@@ -181,24 +182,24 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         // personal development point
         var personalDevelopmentFrame: CGRect = personalDevelopmentPoint.frame
-        personalDevelopmentFrame.origin.x = xmidpoint - increment
-        personalDevelopmentFrame.origin.y = ymidpoint - increment
+        personalDevelopmentFrame.origin.x = xmidpoint - ((sqrt(2)/2) * increment)
+        personalDevelopmentFrame.origin.y = ymidpoint - ((sqrt(2)/2) * increment)
         personalDevelopmentPoint.translatesAutoresizingMaskIntoConstraints = true
         personalDevelopmentPoint.frame = personalDevelopmentFrame
         
         
         // work point
         var workFrame: CGRect = workPoint.frame
-        workFrame.origin.x = xmidpoint + increment
-        workFrame.origin.y = ymidpoint - increment
+        workFrame.origin.x = xmidpoint + ((sqrt(2)/2) * increment)
+        workFrame.origin.y = ymidpoint - ((sqrt(2)/2) * increment)
         workPoint.translatesAutoresizingMaskIntoConstraints = true
         workPoint.frame = workFrame
         
         
         // emotional spiritual point
         var emotionalSpiritualFrame: CGRect = workPoint.frame
-        emotionalSpiritualFrame.origin.x = xmidpoint - increment
-        emotionalSpiritualFrame.origin.y = ymidpoint + increment
+        emotionalSpiritualFrame.origin.x = xmidpoint - ((sqrt(2)/2) * increment)
+        emotionalSpiritualFrame.origin.y = ymidpoint + ((sqrt(2)/2) * increment)
         emotionalSpiritual.translatesAutoresizingMaskIntoConstraints = true
         emotionalSpiritual.frame = emotionalSpiritualFrame
     }
