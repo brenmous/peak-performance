@@ -171,14 +171,21 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             }
         }
         
-        //sort summaries by date with newest first
+        //sort monthly summaries by date with newest first
         self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
         
-        //place initial summary at end of array if we're in the first 12 month period
-        if self.currentUser!.year == 0 { self.monthlySummariesArray.append(self.currentUser!.currentRealitySummary) }
-        
-        //place yearly summary at start of array
-        if self.currentUser!.yearlySummary != nil { self.monthlySummariesArray.insert(self.currentUser!.yearlySummary!, atIndex: 0) }
+        //handle once a year summaries
+        if let yearlySummary = self.currentUser?.yearlySummary
+        {
+            if yearlySummary is CurrentRealitySummary { self.monthlySummariesArray.append(yearlySummary) } //place initial review at bottom of table
+            
+            if yearlySummary is YearlySummary
+            {
+                let ys = yearlySummary as! YearlySummary
+                if !ys.reviewed { self.monthlySummariesArray.insert(self.currentUser!.yearlySummary!, atIndex: 0) } //place unreviewed annual review at top of table
+                if ys.reviewed { self.monthlySummariesArray.append(yearlySummary) } //place reviewed annual review at bottom of table
+            }
+        }
     }
     
     // MARK: - Overridden methods
@@ -214,7 +221,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             //check if a monthly review is needed
             if self.currentUser!.checkMonthlyReview()
             {
-                self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+                //self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
         
@@ -276,7 +283,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             }
             
             //set "review ready" label
-            if summary.reviewed == false
+            if !summary.reviewed
             {
                 cell.reviewReadyLabel.text = "Review ready to complete!" //TODO: - make constant
                 cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
@@ -297,10 +304,20 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         }
         else if s is YearlySummary
         {
+            let summary = s as! YearlySummary
             cell.sendToCoachButton.hidden = true
-            cell.reviewReadyLabel.text = "Review ready to complete!"
             cell.monthLabel.text = "Yearly Review"
-            cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
+            
+            if !summary.reviewed
+            {
+                cell.reviewReadyLabel.text = "Review ready to complete!"
+                cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
+            }
+            else
+            {
+                cell.reviewReadyLabel.text = "Review complete - view summary"
+                cell.reviewReadyLabel.textColor = UIColor.grayColor()
+            }
         }
         
         return cell

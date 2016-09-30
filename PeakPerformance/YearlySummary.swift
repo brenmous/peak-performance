@@ -10,12 +10,16 @@ import Foundation
 
 class YearlySummary: Summary
 {
-    /// The year of this summary (with year zero being "Year 1" of the user's program)
-    var year: Int
+    /// Whether summary has been reviewed.
+    var reviewed: Bool = false
     
-    init ( year: Int )
-    {
-        self.year = year
-    }
+    /// Text of "reasons for differences to plan" section
+    var reasonsForDifferencesText = ""
+    
+    /// Text of "what have I observed about my performance" section
+    var observedAboutPerformanceText = ""
+    
+    /// Text of "how have I changed my performance" section
+    var changedMyPerformanceText = ""
     
 }

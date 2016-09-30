@@ -242,3 +242,13 @@
 		- added User.year which tracks user's current 12 month period
 		- yearly review on history view
 		- completing yearly review resets summaries
+
+30/09/2016 14:40 - 15:36 
+	- 12 month review
+		- yearly review views
+		- resetting everything
+	- TODO:
+		- alert for yearly review
+		- viewing initial/yearly summaries
+		- automatic login
+		- authentication checks + reauth

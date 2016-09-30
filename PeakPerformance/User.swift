@@ -48,11 +48,11 @@ public class User
     /// Dictionary of monthly reviews/summaries.
     var monthlySummaries = [String:MonthlySummary?]( )
     
-    /// Yearly summary.
-    var yearlySummary = YearlySummary?()
+    /// Yearly summary. For the first year this is the initial review. In following years it is the annual review.
+    var yearlySummary = Summary?()
     
     /// Current reality (initial) summary.
-    var currentRealitySummary = CurrentRealitySummary( )
+    //var currentRealitySummary = CurrentRealitySummary( )
     
     /// Coach email.
     var coachEmail = ""
@@ -83,7 +83,7 @@ public class User
         self.uid = uid
         self.startDate = startDate
         self.coachEmail = coachEmail
-        self.year = 0
+        self.year = year
     }
     
     /// Gets number of unreviewed summaries.
@@ -117,7 +117,7 @@ public class User
         
         if yearsPassedSinceStart > self.year
         {
-            self.yearlySummary = YearlySummary(year: self.year)
+            self.yearlySummary = YearlySummary()
             //if we want to set titles etc. with user's current year, then don't update their year till they complete the yearly review
             //otherwise, do it here
             //self.year = yearsPassedSinceStart

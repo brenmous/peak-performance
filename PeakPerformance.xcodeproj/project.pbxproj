@@ -81,6 +81,7 @@
 		B59EC4611D3FB50C00AF1297 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */; };
 		B5A229591D9C31B50005FD29 /* YearlySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A229581D9C31B50005FD29 /* YearlySummary.swift */; };
 		B5A2295B1D9C44F50005FD29 /* YearReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2295A1D9C44F50005FD29 /* YearReviewViewController.swift */; };
+		B5A2295D1D9E2B8F0005FD29 /* SecondYearReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2295C1D9E2B8F0005FD29 /* SecondYearReviewViewController.swift */; };
 		B5A59C601D59BA1C00AFC6AB /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A59C5F1D59BA1C00AFC6AB /* ResetPasswordViewController.swift */; };
 		B5AC10D51D61EE6D00996C47 /* congratulations-page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5AC10D41D61EE6D00996C47 /* congratulations-page.jpg */; };
 		B5B46A8C1D66D5CB00FFA4F8 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B46A8B1D66D5CB00FFA4F8 /* GoalTableViewCell.swift */; };
@@ -193,6 +194,7 @@
 		B59EC4601D3FB50C00AF1297 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5A229581D9C31B50005FD29 /* YearlySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearlySummary.swift; sourceTree = "<group>"; };
 		B5A2295A1D9C44F50005FD29 /* YearReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearReviewViewController.swift; sourceTree = "<group>"; };
+		B5A2295C1D9E2B8F0005FD29 /* SecondYearReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondYearReviewViewController.swift; sourceTree = "<group>"; };
 		B5A59C5F1D59BA1C00AFC6AB /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		B5AC10D41D61EE6D00996C47 /* congratulations-page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "congratulations-page.jpg"; sourceTree = "<group>"; };
 		B5B46A8B1D66D5CB00FFA4F8 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,
 				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
 				B5A2295A1D9C44F50005FD29 /* YearReviewViewController.swift */,
+				B5A2295C1D9E2B8F0005FD29 /* SecondYearReviewViewController.swift */,
 			);
 			name = HistoryTab;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				B5791FF11D5493E00079A9CB /* MIDatePicker.swift in Sources */,
 				446C6FA31D93F41D0094FA55 /* CustomizableLabel.swift in Sources */,
 				44558EC71D59981C00F978D0 /* GreetingViewController.swift in Sources */,
+				B5A2295D1D9E2B8F0005FD29 /* SecondYearReviewViewController.swift in Sources */,
 				B5A2295B1D9C44F50005FD29 /* YearReviewViewController.swift in Sources */,
 				B5A59C601D59BA1C00AFC6AB /* ResetPasswordViewController.swift in Sources */,
 				B5791FF61D5496FC0079A9CB /* MonthlyGoalsViewController.swift in Sources */,

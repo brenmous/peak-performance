@@ -236,6 +236,20 @@ let CURRENT_REALITY_SUMMARY_REF_STRING = "initial"
 /// Specifies user's coach email node.
 let COACH_EMAIL_REF_STRING = "coachEmail"
 
+/// Specifies yearly summary node.
+let YEARLY_REVIEW_REF_STRING = "yearly"
+
+/// Specifies yearly summary "differences to plan" node.
+let YEARLY_REVIEW_DIFF_REF_STRING = "differences"
+
+/// Specifies yearly summary "observed about performance" node.
+let YEARLY_REVIEW_OBS_REF_STRING = "observations"
+
+/// Specifies yearly summary "changes to performance" node.
+let YEARLY_REVIEW_CHA_REF_STRING = "changes"
+
+
+
 // MARK: - Firebase storage reference strings
 
 /// Base URL for storage bucket.
