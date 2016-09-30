@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 class Summary
 {
     /// Rating of each key life area.
     var klaRatings = [ KLA_FAMILY: 0.0, KLA_WORKBUSINESS: 0.0, KLA_PERSONALDEV: 0.0, KLA_FINANCIAL: 0.0,
                        KLA_FRIENDSSOCIAL: 0.0, KLA_HEALTHFITNESS: 0.0, KLA_EMOSPIRITUAL: 0.0, KLA_PARTNER: 0.0 ]
+    
+//    var klaXaxis: [String: CGFloat] = [ KLA_FAMILY: 0.0, KLA_WORKBUSINESS: 0.0, KLA_PERSONALDEV: 0.0, KLA_FINANCIAL: 0.0,
+//                    KLA_FRIENDSSOCIAL: 0.0, KLA_HEALTHFITNESS: 0.0, KLA_EMOSPIRITUAL: 0.0, KLA_PARTNER: 0.0]
+//    
+//    var klaYaxis: [String: CGFloat] = [ KLA_FAMILY: 0.0, KLA_WORKBUSINESS: 0.0, KLA_PERSONALDEV: 0.0, KLA_FINANCIAL: 0.0,
+//                                        KLA_FRIENDSSOCIAL: 0.0, KLA_HEALTHFITNESS: 0.0, KLA_EMOSPIRITUAL: 0.0, KLA_PARTNER: 0.0]
     
 }
