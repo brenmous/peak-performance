@@ -67,6 +67,20 @@ class DataService  //: SignUpDataService, LogInDataService
         print("DS - saveCoachEmail(): \(user.coachEmail) saved")
     }
     
+    /** Save's user's current year of program to database.
+ 
+        - Parameters:
+            - user: owner of year being saved.
+    */
+    static func saveUserYear(user: User)
+    {
+        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
+        
+        userRef.child(USER_YEAR_REF_STRING).setValue(user.year)
+        
+        print("DS - saveUserYear(): \(user.year) saved")
+    }
+    
     /**
      Loads a user from the database and creates a user object.
      
@@ -88,6 +102,7 @@ class DataService  //: SignUpDataService, LogInDataService
             let lname = snapshot.value![LNAME_REF_STRING] as! String
             let org = snapshot.value![ORG_REF_STRING] as! String
             let email = snapshot.value![EMAIL_REF_STRING] as! String
+            let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value![USER_YEAR_REF_STRING] as! Int : 0
             let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value![COACH_EMAIL_REF_STRING] as! String : ""
             
             // TODO: - Temp code for test accounts created before start date implementation. Remove before release.
@@ -95,7 +110,7 @@ class DataService  //: SignUpDataService, LogInDataService
             {
                 print("DS: no start date in database - getting one now...")
                 let startDate = NSDate( )
-                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail )
+                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
                 
                 //convert startDate to string
                 let dateFormatter = NSDateFormatter( )
@@ -117,7 +132,7 @@ class DataService  //: SignUpDataService, LogInDataService
                 return
             }
         
-            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail)
+            let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
 
             completion( user: user ) //passing the created and user and content IDs back using the completion block
             
@@ -323,7 +338,7 @@ class DataService  //: SignUpDataService, LogInDataService
      */
     static func removeGoal( uid: String, goal: Goal )
     {
-        var goalsRef = FIRDatabase.database().reference()
+        var goalsRef : FIRDatabaseReference
         if goal is WeeklyGoal
         {
             goalsRef = FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING)
@@ -335,6 +350,12 @@ class DataService  //: SignUpDataService, LogInDataService
         
         let goalRef = goalsRef.child(uid).child(goal.gid)
         goalRef.removeValue( )
+    }
+    
+    static func removeAllGoals( uid: String )
+    {
+        FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING).child(uid).removeValue()
+        FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING).child(uid).removeValue()
     }
     
     // MARK: - Dream methods
@@ -496,6 +517,15 @@ class DataService  //: SignUpDataService, LogInDataService
         print("DS: saved CR summary")
     }
     
+    static func saveYearlySummary(user: User, summary: YearlySummary )
+    {
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
+        ref.child(YEARLY_REVIEW_OBS_REF_STRING).setValue(summary.observedAboutPerformanceText)
+        ref.child(YEARLY_REVIEW_CHA_REF_STRING).setValue(summary.changedMyPerformanceText)
+        ref.child(YEARLY_REVIEW_DIFF_REF_STRING).setValue(summary.reasonsForDifferencesText)
+        ref.child(SUMMARY_REVIEWED_REF_STRING).setValue(summary.reviewed)
+    }
+    
     static func saveSummary( user: User, summary: MonthlySummary )
     {
         let dateFormatter = NSDateFormatter( )
@@ -551,7 +581,23 @@ class DataService  //: SignUpDataService, LogInDataService
                     summary.klaReasons[kla] = snapshot.value!["\(kla)Reason"] as? String
                 }
             }
-            
+            completion( summary: summary )
+        })
+        
+    }
+    
+    static func loadYearlySummary( user: User, completion: ( summary: YearlySummary ) -> Void )
+    {
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
+        let summary = YearlySummary()
+        ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if snapshot.exists()
+            {
+                summary.reasonsForDifferencesText = snapshot.value![YEARLY_REVIEW_DIFF_REF_STRING] as! String
+                summary.changedMyPerformanceText = snapshot.value![YEARLY_REVIEW_CHA_REF_STRING] as! String
+                summary.observedAboutPerformanceText = snapshot.value![YEARLY_REVIEW_OBS_REF_STRING] as! String
+            }
+            completion( summary: summary )
         })
     }
     
@@ -564,15 +610,17 @@ class DataService  //: SignUpDataService, LogInDataService
             {
                 for s in snapshot.children
                 {
-                    if String(s.key) == "initial"
+                    if String(s.key) == "initial" || String(s.key) == "yearly"
                     {
                         continue
                     }
                     
-                    let dateString = String(s.key)
+                    let dateString = (String(s.key).componentsSeparatedByString(" "))[0]
                     print("DS: fetching summary for \(dateString)")
                     let dateFormatter = NSDateFormatter( )
-                    dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+                    //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
+                    dateFormatter.dateFormat = MONTH_FORMAT_STRING
+                    
                     let date = dateFormatter.dateFromString(dateString)
                     let summary = MonthlySummary(date: date!)
                     summary.whatIsWorking = s.value![SUMMARY_WIW_REF_STRING] as! String
@@ -613,6 +661,11 @@ class DataService  //: SignUpDataService, LogInDataService
             }
             
         })
+    }
+    
+    static func removeAllMonthlySummaries(user: User)
+    {
+        FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).removeValue()
     }
     
     

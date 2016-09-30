@@ -142,48 +142,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             return
         }
         print("LIVC: authenticated user \(user.uid)")
-        
-        //how many layers of indentation are you on?
-        //like maybe 5 or 6 right now my dude
-        //you are like a baby, watch this
-        
-        /*
-        let start = NSDate()
-        //Fetch user and content
-        DataService.loadUser( user.uid ) { (user) in
-            self.currentUser = user
-            
-            DataService.loadWeeklyGoals( user.uid ) { ( weeklyGoals ) in
-                user.weeklyGoals = weeklyGoals
-                
-                DataService.loadMonthlyGoals(user.uid) { ( monthlyGoals) in
-                    user.monthlyGoals = monthlyGoals
-                    
-                    DataService.loadDreams(user.uid) { (dreams) in
-                        user.dreams = dreams
-                        
-                        DataService.loadValues(user.uid) { (values) in
-                            user.values = values
-                            
-                            DataService.loadSummaries(user) { (summaries) in
-                                user.monthlySummaries = summaries
-                                
-                            
-                            print("LIVC: content fetched, going to home screen")
-                            self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
-                            let end = NSDate()
-                            let time = end.timeIntervalSinceDate(start)
-                            print("******TIME: \(time)")
-                            
-                            
-                            }
-                        }
-                    }
-                }
-            }
-        } */
-    
-        var loadStatus = [false, false, false, false, false]
+
+        let thingsToLoad = 6; var loadCount = 0
         DataService.loadUser(user.uid) { (user) in
             self.currentUser = user
             
@@ -191,9 +151,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 
                 DataService.loadSummaries(user) { (summaries) in
                     user.monthlySummaries = summaries
-                    loadStatus[4] = true
-                    print("s: \(loadStatus)")
-                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    loadCount += 1
+                    if loadCount == thingsToLoad
                     {
                         self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                     }
@@ -203,9 +162,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
                 DataService.loadWeeklyGoals(user.uid) { (weeklyGoals) in
                     user.weeklyGoals = weeklyGoals
-                    loadStatus[0] = true
-                    print("wg: \(loadStatus)")
-                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    loadCount += 1
+                    if loadCount == thingsToLoad
                     {
                         self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                     }
@@ -215,9 +173,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
                 DataService.loadMonthlyGoals(user.uid) { (monthlyGoals) in
                     user.monthlyGoals = monthlyGoals
-                    loadStatus[1] = true
-                    print("mg: \(loadStatus)")
-                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    loadCount += 1
+                    if loadCount == thingsToLoad
                     {
                         self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                     }
@@ -228,9 +185,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
                 DataService.loadDreams(user.uid) { (dreams) in
                     user.dreams = dreams
-                    loadStatus[2] = true
-                    print("d: \(loadStatus)")
-                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    loadCount += 1
+                    if loadCount == thingsToLoad
                     {
                         self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
                     }
@@ -241,11 +197,31 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
                 DataService.loadValues(user.uid) { (values) in
                     user.values = values
-                    loadStatus[3] = true
-                    print("v: \(loadStatus)")
-                    if loadStatus[0] && loadStatus[1] && loadStatus[2] && loadStatus[3] && loadStatus[4]
+                    loadCount += 1
+                    if loadCount == thingsToLoad
                     {
                         self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                    }
+                }
+            });
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                print("user is \(user.year), prepare to fuck up")
+                if user.year > 0
+                {
+                    DataService.loadYearlySummary(user) { (summary) in
+                        user.yearlySummary = summary
+                        loadCount += 1
+                        if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
+                    }
+                }
+                else
+                {
+                    DataService.loadCurrentRealitySummary(user) { (summary) in
+                        user.yearlySummary = summary
+                        print("cr loaded and saved in user object")
+                        loadCount += 1
+                        if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
                     }
                 }
             });

@@ -23,6 +23,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     var summaryToSend: MonthlySummary?
     
+    // MARK: - Outlets
+    @IBOutlet weak var titleLabel: UILabel!
+    
     // MARK: - Actions
     @IBAction func menuButtonPressed(sender: AnyObject) {
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
@@ -155,11 +158,42 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         return pdfs
     }
     
+    func setUpSummaryArray()
+    {
+        //place summaries from user dictionary into array (required for table view)
+        //TODO: - use observer to only update array when summaries are added
+        self.monthlySummariesArray.removeAll() //this is dirty, fix it
+        for (_, val) in self.currentUser!.monthlySummaries
+        {
+            if val != nil
+            {
+                self.monthlySummariesArray.append(val!)
+            }
+        }
+        
+        //sort monthly summaries by date with newest first
+        self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
+        
+        //handle once a year summaries
+        if let yearlySummary = self.currentUser?.yearlySummary
+        {
+            if yearlySummary is CurrentRealitySummary { self.monthlySummariesArray.append(yearlySummary) } //place initial review at bottom of table
+            
+            if yearlySummary is YearlySummary
+            {
+                let ys = yearlySummary as! YearlySummary
+                if !ys.reviewed { self.monthlySummariesArray.insert(self.currentUser!.yearlySummary!, atIndex: 0) } //place unreviewed annual review at top of table
+                if ys.reviewed { self.monthlySummariesArray.append(yearlySummary) } //place reviewed annual review at bottom of table
+            }
+        }
+    }
+    
     // MARK: - Overridden methods
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        
         
         if self.currentUser == nil
         {
@@ -173,31 +207,29 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             self.currentUser = cu
         }
         
-        //place summaries from user dictionary into array (required for table view)
-        //TODO: - use observer to only update array when summaries are added
-        self.monthlySummariesArray.removeAll() //this is dirty, fix it
-        for (_, val) in self.currentUser!.monthlySummaries
+        self.titleLabel.text = "Goal Summary for Year \(self.currentUser!.year + 1)"
+        
+        //check if a yearly review is needed
+        if self.currentUser!.checkYearlyReview()
         {
-            if val != nil
+            //inform user review is needed
+            self.currentUser!.allMonthlyReviewsFromLastYear()
+        }
+            //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
+        else
+        {
+            //check if a monthly review is needed
+            if self.currentUser!.checkMonthlyReview()
             {
-                self.monthlySummariesArray.append(val!)
+                //self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
-
-        //sort summaries by date with newest first
-        self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
-        self.monthlySummariesArray.append(self.currentUser!.currentRealitySummary)
+        
+        self.setUpSummaryArray()
         
         //set up side menu
         SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! ) //func declaration is in SideMenuViewController
         
-        
-        
-        //check if a monthly review is needed
-        if self.currentUser!.checkMonthlyReview()
-        {
-            self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
-        }
         
         // set up badge and menu bar button item
         self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
@@ -236,7 +268,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             let summary = s as! MonthlySummary
             //set month label
             let dateFormatter = NSDateFormatter( )
-            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+            dateFormatter.dateFormat = MONTH_FORMAT_STRING
             let dateAsString = dateFormatter.stringFromDate(summary.date)
             cell.monthLabel.text = dateAsString
             
@@ -251,7 +283,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             }
             
             //set "review ready" label
-            if summary.reviewed == false
+            if !summary.reviewed
             {
                 cell.reviewReadyLabel.text = "Review ready to complete!" //TODO: - make constant
                 cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
@@ -269,6 +301,23 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             cell.reviewReadyLabel.text = "View summary"
             cell.monthLabel.text = "Initial Review" //change this to whatever you want
             cell.reviewReadyLabel.textColor = UIColor.grayColor()
+        }
+        else if s is YearlySummary
+        {
+            let summary = s as! YearlySummary
+            cell.sendToCoachButton.hidden = true
+            cell.monthLabel.text = "Yearly Review"
+            
+            if !summary.reviewed
+            {
+                cell.reviewReadyLabel.text = "Review ready to complete!"
+                cell.reviewReadyLabel.textColor = UIColor.init(red: 143/255, green: 87/255, blue: 152/255, alpha: 1)
+            }
+            else
+            {
+                cell.reviewReadyLabel.text = "Review complete - view summary"
+                cell.reviewReadyLabel.textColor = UIColor.grayColor()
+            }
         }
         
         return cell
@@ -292,8 +341,15 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             else
             {
                 performSegueWithIdentifier(GO_TO_SUMMARY_SEGUE, sender: self)
+                return
             }
         }
+        else if s is YearlySummary
+        {
+            performSegueWithIdentifier(GO_TO_YEARLY_REVIEW_SEGUE, sender: self)
+            return
+        }
+        
        
     }
     
@@ -311,8 +367,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == GO_TO_REVIEW_SEGUE
+        switch segue.identifier!
         {
+        case GO_TO_REVIEW_SEGUE:
             print("HVC: going to review view")
             let dvc = segue.destinationViewController as! MonthlyReviewViewController
             dvc.currentUser = self.currentUser
@@ -320,15 +377,21 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             {
                 dvc.summary = self.monthlySummariesArray[indexPath.row] as? MonthlySummary
             }
-        }
-        else if segue.identifier == GO_TO_SUMMARY_SEGUE
-        {
+                
+        case GO_TO_SUMMARY_SEGUE:
             print("HVC: going to summary view")
             let dvc = segue.destinationViewController as! SummaryViewController
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
                 dvc.summary = self.monthlySummariesArray[indexPath.row] as? MonthlySummary
             }
+        
+        case GO_TO_YEARLY_REVIEW_SEGUE:
+            let dvc = segue.destinationViewController as! YearReviewViewController
+            dvc.currentUser = self.currentUser
+            
+        default:
+            return
         }
     }
 

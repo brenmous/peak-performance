@@ -48,11 +48,17 @@ public class User
     /// Dictionary of monthly reviews/summaries.
     var monthlySummaries = [String:MonthlySummary?]( )
     
+    /// Yearly summary. For the first year this is the initial review. In following years it is the annual review.
+    var yearlySummary = Summary?()
+    
     /// Current reality (initial) summary.
-    var currentRealitySummary = CurrentRealitySummary( )
+    //var currentRealitySummary = CurrentRealitySummary( )
     
     /// Coach email.
     var coachEmail = ""
+    
+    /// How many years user has been doing program.
+    var year = 0
     
     /**
         Initialises a new user.
@@ -68,7 +74,7 @@ public class User
      
         - Returns: A user with the specified parameters.
     */
-    init( fname: String, lname: String, org: String, email: String, uid: String, startDate: NSDate, coachEmail: String = "" )
+    init( fname: String, lname: String, org: String, email: String, uid: String, startDate: NSDate, coachEmail: String = "", year: Int = 0 )
     {
         self.fname = fname
         self.lname = lname
@@ -77,6 +83,7 @@ public class User
         self.uid = uid
         self.startDate = startDate
         self.coachEmail = coachEmail
+        self.year = year
     }
     
     /// Gets number of unreviewed summaries.
@@ -97,12 +104,80 @@ public class User
     }
     
     /**
+     Checks if more years have passed compared to the user's current year. If so, updates the user's current year and triggers
+        a yearly review.
+    
+    - Returns: true if a 12 month review is required, false if otherwise.
+    */
+    func checkYearlyReview() -> Bool
+    {
+        let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self)
+       
+        if yearsPassedSinceStart < self.year{ fatalError(USER_YEARLY_REVIEW_FATAL_ERR_MSG) }
+        
+        if yearsPassedSinceStart > self.year
+        {
+            self.yearlySummary = YearlySummary()
+            //if we want to set titles etc. with user's current year, then don't update their year till they complete the yearly review
+            //otherwise, do it here
+            //self.year = yearsPassedSinceStart
+            return true
+        }
+        
+        return false
+            
+    }
+    
+    /** 
+     Gets all monthly reviews for the previous 12 month period. Called if it's found the user has entered a new 12 month period
+     (in case they missed reviews from the previous year).
+    */
+    func allMonthlyReviewsFromLastYear()
+    {
+        let calendar = NSCalendar.currentCalendar()
+        
+        //check all summaries for the 12 month period
+        for month in 0...11
+        {
+            let dateFormatter = NSDateFormatter( )
+            dateFormatter.dateFormat = MONTH_FORMAT_STRING
+            
+            let date = dateFormatter.stringFromDate(calendar.dateByAddingUnit(.Month, value: month, toDate: self.startDate, options: [])!)
+            
+            print("MRH: checking for summary for \(date)")
+            if self.monthlySummaries[date] == nil
+            {
+                print("MRH: no summary for \(date), creating...")
+                //no summary for this month, so create one
+                guard let d = dateFormatter.dateFromString(date) else
+                {
+                    print("MRH: could not create monthly summary date")
+                    return
+                }
+                let monthlySummary = MonthlySummary(date: d)
+                self.moveWeeklyGoalsFromUserToSummary(monthlySummary)
+                self.moveMonthlyGoalsFromUserToSummary(monthlySummary)
+                self.monthlySummaries[date] = monthlySummary
+                print("MRH: created summary for \(date)")
+                DataService.saveSummary(self, summary: monthlySummary)
+            }
+            else
+            {
+                print("MRH: summary for \(date) exists")
+            }
+        }
+    }
+    
+    /**
      Checks a range of months from user.startMonth...currentMonth - 1 to see if those months have had their summaries created.
      If not, creates summaries and the nessecary set up for it.
      
+    - Parameters:
+        - allMonths: if true, get a full lot of reviews for a 12 month period.
+     
      - Returns: true if a review is required, false if otherwise.
      */
-    func checkMonthlyReview( ) -> Bool
+    func checkMonthlyReview() -> Bool
     {
         let datesToCheck = NSDate( ).datesToCheckForSummaries( self )
         //let calendar = NSCalendar.currentCalendar()
@@ -120,7 +195,8 @@ public class User
                 alertUserToReview = true
                 //no summary for this month, so create one
                 let dateFormatter = NSDateFormatter( )
-                dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING //TODO: - Add year for summaries
+                //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
+                dateFormatter.dateFormat = MONTH_FORMAT_STRING
                 guard let d = dateFormatter.dateFromString(date) else
                 {
                     print("MRH: could not create monthly summary date")

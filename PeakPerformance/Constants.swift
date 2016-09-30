@@ -70,6 +70,9 @@ let RESET_EMAIL_SENT = "A reset password email has been sent to this account."
 /// Change password - wrong current password.
 let CHANGE_PW_ERROR = "Incorrect password. Please re-enter your current password."
 
+/// User.checkYearlyReview fatal error message - system time earlier than app expectation.
+let USER_YEARLY_REVIEW_FATAL_ERR_MSG = "User.checkYearlyReview(): system time has been set earlier than what the app expects. Please change system time back to current date"
+
 
 // MARK: - Password parameters
 //Here's where we specify password min/max length and allowable characters.
@@ -132,6 +135,9 @@ let KLA_PARTNER = "Partner"
 
 /// Specifies users node in database.
 let USERS_REF_STRING = "users"
+
+/// Specifies users year in database.
+let USER_YEAR_REF_STRING = "year"
 
 /// Specifies user firstname node in database.
 let FNAME_REF_STRING = "fname"
@@ -229,6 +235,20 @@ let CURRENT_REALITY_SUMMARY_REF_STRING = "initial"
 
 /// Specifies user's coach email node.
 let COACH_EMAIL_REF_STRING = "coachEmail"
+
+/// Specifies yearly summary node.
+let YEARLY_REVIEW_REF_STRING = "yearly"
+
+/// Specifies yearly summary "differences to plan" node.
+let YEARLY_REVIEW_DIFF_REF_STRING = "differences"
+
+/// Specifies yearly summary "observed about performance" node.
+let YEARLY_REVIEW_OBS_REF_STRING = "observations"
+
+/// Specifies yearly summary "changes to performance" node.
+let YEARLY_REVIEW_CHA_REF_STRING = "changes"
+
+
 
 // MARK: - Firebase storage reference strings
 
@@ -347,6 +367,9 @@ let SETTINGS_TO_COACH_EMAIL_SEGUE = "settingsToCoachEmailSegue"
 
 /// Change coach email -> Settings
 let UNWIND_FROM_COACH_EMAIL_SEGUE = "unwindToSettings"
+
+/// History -> Yearly Review
+let GO_TO_YEARLY_REVIEW_SEGUE = "goToYearlyReview"
 
 
 // MARK: - Alert sheet strings

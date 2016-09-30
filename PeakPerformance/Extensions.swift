@@ -207,6 +207,7 @@ extension NSDate
         return NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
     }
     
+    //FIXME: - Do this better (add to date while comparing to current date)
     /// Returns an array of months as strings ranging from [currentMonth...userStartMonth - 1]
     func monthlyDatePickerStringArray( startDate: NSDate ) -> [String]
     {
@@ -251,6 +252,22 @@ extension NSDate
     }
     
     /**
+     Checks how many years the user has been doing the program.
+        - Returns: an int representing how many years the user has been doing the program.
+    */
+    func checkTwelveMonthPeriod(currentUser: User) -> Int
+    {
+        let calendar = NSCalendar.currentCalendar()
+        let startDate = calendar.startOfDayForDate(currentUser.startDate)
+        let currentDate = self.startOfMonthForDate(calendar.startOfDayForDate(NSDate())) //12AM 01/month/year
+        
+        
+        let dateComponents = calendar.components([.Year], fromDate: startDate, toDate: currentDate!, options: [])
+        //if this is negative then user has set their system time back and everything is fucked
+        return dateComponents.year
+    }
+    
+    /**
      Gets array of months and years (as string "MMMM yyyy") that need to be checked for summaries.
      - Returns: an array of dates in string form that need to be checked.
      */
@@ -260,7 +277,11 @@ extension NSDate
         let currentDate = calendar.startOfDayForDate(self)
         var lastMonth = currentDate
         lastMonth = calendar.dateByAddingUnit(.Month, value: -1, toDate: lastMonth, options: [])!
-        let startDate = calendar.startOfDayForDate(currentUser.startDate)
+        var startDate = calendar.startOfDayForDate(currentUser.startDate)
+        
+        //only get dates for current 12 month period, remove if we want all reviews ever
+        startDate = calendar.dateByAddingUnit(.Year, value: currentUser.year, toDate: startDate, options: [])!
+        
         var datesToCheck = [String]( )
         if startDate == currentDate
         {
@@ -270,7 +291,8 @@ extension NSDate
         }
    
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+        //change this to MONTH_YEAR_FORMAT_STRING if we want to have all reviews ever
+        dateFormatter.dateFormat = MONTH_FORMAT_STRING
         var date = startDate
         while date.compare(lastMonth) != .OrderedDescending
         {
@@ -298,6 +320,14 @@ extension NSDate
         let end = calendar.startOfDayForDate(self)
         let dateComponents = calendar.components([.Month], fromDate: end, toDate: start, options: [])
         return dateComponents.month
+    }
+    
+    private func startOfMonthForDate(date: NSDate) -> NSDate?
+    {
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day, .Month, .Year], fromDate: date)
+        components.day = 1
+        return calendar.dateFromComponents(components)
     }
 }
 

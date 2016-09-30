@@ -26,7 +26,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     @IBOutlet weak var newCoachEmailField: UITextField!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+ 
     // MARK: - Actions
     @IBAction func confirmButtonPressed(sender: UIBarButtonItem)
     {
