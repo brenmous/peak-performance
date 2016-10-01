@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-
+import AMPopTip
 
 class SecondMonthlyReviewViewController: UITableViewController {
 
@@ -17,6 +17,9 @@ class SecondMonthlyReviewViewController: UITableViewController {
     
     /// The summary being reviewed.
     var summary: MonthlySummary?
+    
+    /// Poptip
+    let popTip = AMPopTip()
     
     // MARK: - Outlets
     @IBOutlet weak var whatIsWorkingTextView: UITextView!
@@ -46,8 +49,14 @@ class SecondMonthlyReviewViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func familyPointPressed(sender: AnyObject) {
-    print("family button pressed")
-        
+//    let popTip = AMPopTip()
+        popTip.hide()
+        popTip.showText("Family", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: familyPoint.frame)
+        popTip.shouldDismissOnTap = true
+        popTip.shouldDismissOnTap = true
+        popTip.popoverColor = UIColor.whiteColor()
+        popTip.textColor = UIColor.blackColor()
+
     }
     
     @IBAction func friendPointPressed(sender: AnyObject) {
@@ -148,10 +157,10 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         // family point
         var familyFrame: CGRect = familyPoint.frame
-        familyFrame.origin.x = xmidpoint // x coordinate
+        familyFrame.origin.x = xmidpoint
         print("family x coord\(familyFrame.origin.x)")
 //      summary!.klaXaxis[KLA_FAMILY] = familyFrame.origin.x // assigns the coordinate to the klaXaxis dictionary
-        familyFrame.origin.y = ymidpoint + getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!) // y coordinate
+        familyFrame.origin.y = ymidpoint + getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
         print("family y coord\(familyFrame.origin.y)")
         familyPoint.translatesAutoresizingMaskIntoConstraints = true
         familyPoint.frame = familyFrame
@@ -261,6 +270,10 @@ class SecondMonthlyReviewViewController: UITableViewController {
         super.viewDidLoad()
         
         displayPoints( )
+        
+        // Poptip
+        popTip.offset = -50
+        popTip.arrowSize = CGSize(width: 10, height: 10)
 
      }
 

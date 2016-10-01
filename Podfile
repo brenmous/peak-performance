@@ -14,4 +14,5 @@ target 'PeakPerformance' do
 	pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '4.0.0'
 	pod 'SideMenu'
 	pod 'PDFGenerator', '~> 1.4.3'
+	pod 'AMPopTip'
 end
