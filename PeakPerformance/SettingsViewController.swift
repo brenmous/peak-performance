@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController
+{
 
     // MARK: - Properties
     var currentUser: User?
@@ -16,23 +17,37 @@ class SettingsViewController: UITableViewController {
     // MARK: - Actions
     @IBAction func unwindToSettings( sender: UIStoryboardSegue){}
     
-    // MARK: - Outlets
+    @IBAction func automaticLoginSwitched(sender: AnyObject)
+    {
+        let s = sender as! UISwitch
+        let userDefaults = NSUserDefaults()
+        userDefaults.setValue(s.on, forKey: USER_DEFAULTS_AUTO_LOGIN)
+    }
+    
     @IBAction func backButtonPressed( sender: AnyObject )
     {
         self.performSegueWithIdentifier(UNWIND_FROM_SETTINGS_SEGUE, sender: self)
     }
     
-    override func viewDidLoad() {
+    // MARK: - Outlets
+    
+    @IBOutlet weak var automaticLoginSwitch: UISwitch!
+    
+    // MARK: - Overriden methods
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool )
+    {
+        super.viewWillAppear(animated)
+        self.automaticLoginSwitch.on = NSUserDefaults().boolForKey(USER_DEFAULTS_AUTO_LOGIN)
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -57,6 +72,5 @@ class SettingsViewController: UITableViewController {
             return
         }
     }
-    
 
 }

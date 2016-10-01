@@ -5982,14 +5982,14 @@
                         <color key="separatorColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ELZ-r7-wC2">
-                            <rect key="frame" x="0.0" y="907" width="600" height="422"/>
+                            <rect key="frame" x="0.0" y="960" width="600" height="422"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <sections>
                             <tableViewSection headerTitle="My Account" id="PgL-Me-AsJ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="changePasswordCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="signOut" rowHeight="53" id="eGv-e6-wow">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="changePasswordCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="changePassword" rowHeight="53" id="eGv-e6-wow">
                                         <rect key="frame" x="0.0" y="50" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eGv-e6-wow" id="U9A-bJ-Dfv">
@@ -6023,7 +6023,7 @@
                                             <segue destination="iMh-FR-3t4" kind="show" identifier="goToChangePassword" id="Wvn-Jq-Iwm"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="changeCoachEmailCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" rowHeight="53" id="NMu-rc-3Nx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="changeCoachEmailCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="coachEmail" rowHeight="53" id="NMu-rc-3Nx">
                                         <rect key="frame" x="0.0" y="103" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NMu-rc-3Nx" id="hL5-Ep-Ko1">
@@ -6060,7 +6060,7 @@
                                             <segue destination="CpP-UF-G3q" kind="show" identifier="settingsToCoachEmailSegue" id="Z6M-Gq-JoG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" restorationIdentifier="deleteAccountCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="monthlyReview" rowHeight="53" id="fFt-FS-Ikw">
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" restorationIdentifier="deleteAccountCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="deleteAccount" rowHeight="53" id="fFt-FS-Ikw">
                                         <rect key="frame" x="0.0" y="156" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fFt-FS-Ikw" id="9Du-Ef-XFJ">
@@ -6097,12 +6097,41 @@
                                             <segue destination="uJf-6f-C5q" kind="show" identifier="settingsToDeleteAccountSegue" id="QLi-8R-exd"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" restorationIdentifier="autoLoginCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="autoLogin" rowHeight="53" id="k0j-Ea-bLD">
+                                        <rect key="frame" x="0.0" y="209" width="600" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k0j-Ea-bLD" id="OTN-lN-8yh">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automatic Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBm-7S-pa8">
+                                                    <rect key="frame" x="53" y="8" width="120" height="39"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4K0-4Q-sCq">
+                                                    <rect key="frame" x="543" y="10" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="automaticLoginSwitched:" destination="eKA-cr-RTf" eventType="valueChanged" id="dT0-s1-WmM"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jBm-7S-pa8" secondAttribute="bottom" constant="-3" id="0QJ-We-k0r"/>
+                                                <constraint firstItem="jBm-7S-pa8" firstAttribute="top" secondItem="OTN-lN-8yh" secondAttribute="topMargin" id="GNg-8E-n94"/>
+                                                <constraint firstItem="4K0-4Q-sCq" firstAttribute="centerY" secondItem="OTN-lN-8yh" secondAttribute="centerY" id="Pe5-qL-b6f"/>
+                                                <constraint firstItem="4K0-4Q-sCq" firstAttribute="trailing" secondItem="OTN-lN-8yh" secondAttribute="trailingMargin" id="SOa-3a-RIC"/>
+                                                <constraint firstItem="jBm-7S-pa8" firstAttribute="leading" secondItem="OTN-lN-8yh" secondAttribute="leadingMargin" constant="45" id="ZuD-Oq-MCb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="General" id="8yd-1F-lTd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="aboutCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="signOut" rowHeight="53" id="MEK-01-mPF">
-                                        <rect key="frame" x="0.0" y="260" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="313" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MEK-01-mPF" id="2IM-np-AFy">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="52"/>
@@ -6136,7 +6165,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="privacyPolicyCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" rowHeight="53" id="TR7-46-fSl">
-                                        <rect key="frame" x="0.0" y="313" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="366" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TR7-46-fSl" id="TVa-wD-6XY">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="52"/>
@@ -6170,7 +6199,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings" rowHeight="523" id="IuW-z6-gZe">
-                                        <rect key="frame" x="0.0" y="366" width="600" height="523"/>
+                                        <rect key="frame" x="0.0" y="419" width="600" height="523"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IuW-z6-gZe" id="cfH-7t-TZR">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="522"/>
@@ -6195,6 +6224,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="automaticLoginSwitch" destination="4K0-4Q-sCq" id="X8a-2i-prm"/>
                         <segue destination="pN4-N0-IYo" kind="unwind" identifier="unwindToTabBar" unwindAction="unwindToTabBar:" id="xC0-NY-PcZ"/>
                     </connections>
                 </tableViewController>

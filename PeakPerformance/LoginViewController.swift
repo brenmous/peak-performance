@@ -73,7 +73,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     {
         print ("LIVC: validation successful") //DEBUG
         self.login()
-        activityIndicator.startAnimating()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
@@ -86,6 +85,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Attempts to authenticate a user using supplied details.
     func login()
     {
+        activityIndicator.startAnimating()
         //reset login error label
         self.logInErrorLabel.hidden = true
         self.logInErrorLabel.text = ""
@@ -250,6 +250,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     {
         super.viewDidLoad()
         
+        
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
             validationRule.errorLabel?.hidden = true
@@ -282,10 +283,17 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         emailField.delegate = self
         passwordField.delegate = self
     
-        //Comment these lines out to use other accounts
-//        emailField.text = "monthly.review@email.com"
-//        passwordField.text = "Password1"
-//        validator.validate(self)
+        //Check if user is already authenticated and log in if so
+        let userDefaults = NSUserDefaults()
+        if userDefaults.boolForKey(USER_DEFAULTS_AUTO_LOGIN)
+        {
+            let user = FIRAuth.auth()?.currentUser
+            if user != nil { self.fetchUser(); self.activityIndicator.startAnimating() }
+            else
+            {
+                //tell user they need to reauthenticate
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool)
