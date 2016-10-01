@@ -288,8 +288,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         if userDefaults.boolForKey(USER_DEFAULTS_AUTO_LOGIN)
         {
             let user = FIRAuth.auth()?.currentUser
-            self.activityIndicator.startAnimating()
-            if user != nil { self.fetchUser() }
+            if user != nil { self.fetchUser(); self.activityIndicator.startAnimating() }
             else
             {
                 //tell user they need to reauthenticate
