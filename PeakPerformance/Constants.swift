@@ -602,3 +602,6 @@ let OVERDUE_ICON = "due-icon"
 
 /// MIME type string for PDFs
 let PDF_MIME_TYPE = "application/pdf"
+
+// MARK: - NSUserDefaults keys
+let USER_DEFAULTS_AUTO_LOGIN = "autoLogin"

@@ -22,7 +22,7 @@ class YearReviewViewController: UITableViewController {
     
     @IBOutlet weak var changedMyPerformance: UITextView!
     
-
+   
     
     // MARK: - Overriden Methods
 
