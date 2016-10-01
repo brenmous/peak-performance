@@ -512,6 +512,18 @@ let NO_COACH_EMAIL_ALERT_MSG = "Please set your coach's email in Settings."
 /// No coach email confirm.
 let NO_COACH_EMAIL_ALERT_CONFIRM = "OK"
 
+/// Annual review alert title.
+let ANNUAL_REVIEW_ALERT_MSG = "Your annual review is ready. Would you like to complete it now?"
+
+/// Annual review alert message.
+let ANNUAL_REVIEW_ALERT_TITLE = "Annual Review Ready"
+
+/// Annual review alert confirm.
+let ANNUAL_REVIEW_ALERT_CONFIRM = "Sure."
+
+/// Annual review alert cancel.
+let ANNUAL_REVIEW_ALERT_CANCEL = "No thanks, later."
+
 
 // MARK: - Storyboard IDs
 

@@ -147,7 +147,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             
             guard let cu = tbvc.currentUser else
             {
-                //no user fix it man, goddamn you fix it what do i pay you for?!?!
                 return
             }
             self.currentUser = cu
@@ -175,8 +174,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
         {
-            //inform user review is needed
             self.currentUser!.allMonthlyReviewsFromLastYear()
+            self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
             //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else

@@ -448,6 +448,25 @@ extension UIAlertController
         
         return noCoachEmailAlertController
     }
+    
+    /**
+    Creates an alert informing user that their 12 month review is ready.
+    - Parameters:
+        - tbvc: the tab bar view controller/
+    
+    - Returns: an alert controller.
+    */
+    static func AnnualReviewAlert(tbvc: TabBarViewController) -> UIAlertController
+    {
+        let annualReviewAlertController = UIAlertController(title: ANNUAL_REVIEW_ALERT_TITLE, message: ANNUAL_REVIEW_ALERT_MSG, preferredStyle: .ActionSheet)
+        let cancel = UIAlertAction(title: ANNUAL_REVIEW_ALERT_CANCEL, style: .Cancel, handler: nil)
+        let confirm = UIAlertAction(title: ANNUAL_REVIEW_ALERT_CONFIRM, style: .Default) { (action) in
+            //change tab bar index to take user to history view
+            tbvc.selectedIndex = 0
+        }
+        annualReviewAlertController.addAction(cancel) ; annualReviewAlertController.addAction(confirm)
+        return annualReviewAlertController
+    }
 }
 
 extension FIRAuth
