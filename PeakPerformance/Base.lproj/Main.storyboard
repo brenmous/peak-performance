@@ -3919,11 +3919,11 @@
                                         <rect key="frame" x="0.0" y="115" width="600" height="393"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ciy-tc-Tks" id="ns5-4p-EBT">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="393"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZsB-k6-L2s">
-                                                    <rect key="frame" x="0.0" y="1" width="600" height="392"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZsB-k6-L2s">
+                                                    <rect key="frame" x="0.0" y="1" width="600" height="393"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legend-klad" translatesAutoresizingMaskIntoConstraints="NO" id="iGy-rU-k7O">
@@ -3975,6 +3975,14 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5TG-yT-6sd" customClass="DrawKLALines" customModule="PeakPerformance" customModuleProvider="target">
+                                                    <rect key="frame" x="180" y="30" width="240" height="240"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="120"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ld7-Eg-NqN">
                                                     <rect key="frame" x="236" y="50" width="15" height="15"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4101,14 +4109,18 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="iGy-rU-k7O" secondAttribute="bottom" constant="8.5" id="AZK-jV-74v"/>
                                                 <constraint firstItem="6By-Z0-ywP" firstAttribute="centerX" secondItem="bZB-ts-Lt0" secondAttribute="centerX" id="DOu-0J-i91"/>
                                                 <constraint firstItem="ZsB-k6-L2s" firstAttribute="leading" secondItem="ns5-4p-EBT" secondAttribute="leadingMargin" constant="-8" id="RRK-pE-joI"/>
+                                                <constraint firstItem="5TG-yT-6sd" firstAttribute="leading" secondItem="l0A-Ev-6Iu" secondAttribute="leading" id="YT9-i6-JMi"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ZsB-k6-L2s" secondAttribute="bottom" constant="-8.5" id="Zp8-lZ-gpl"/>
                                                 <constraint firstItem="bZB-ts-Lt0" firstAttribute="centerX" secondItem="l0A-Ev-6Iu" secondAttribute="centerX" id="aYp-jv-ZhO"/>
                                                 <constraint firstItem="l0A-Ev-6Iu" firstAttribute="centerX" secondItem="iGy-rU-k7O" secondAttribute="centerX" id="eCq-yo-aXc"/>
+                                                <constraint firstItem="iGy-rU-k7O" firstAttribute="top" secondItem="5TG-yT-6sd" secondAttribute="bottom" constant="8" symbolic="YES" id="fIG-jm-NvF"/>
                                                 <constraint firstItem="bZB-ts-Lt0" firstAttribute="centerY" secondItem="l0A-Ev-6Iu" secondAttribute="centerY" id="fLO-xg-q7Y"/>
                                                 <constraint firstItem="ZsB-k6-L2s" firstAttribute="top" secondItem="ns5-4p-EBT" secondAttribute="topMargin" constant="-7.5" id="lYq-vz-rfr"/>
+                                                <constraint firstItem="5TG-yT-6sd" firstAttribute="top" secondItem="l0A-Ev-6Iu" secondAttribute="top" id="o3f-dW-2Le"/>
                                                 <constraint firstItem="6By-Z0-ywP" firstAttribute="centerY" secondItem="bZB-ts-Lt0" secondAttribute="centerY" id="s5G-0n-hSC"/>
                                                 <constraint firstItem="l0A-Ev-6Iu" firstAttribute="top" secondItem="ns5-4p-EBT" secondAttribute="topMargin" constant="22" id="t75-Zo-4AY"/>
                                                 <constraint firstItem="iGy-rU-k7O" firstAttribute="top" secondItem="6By-Z0-ywP" secondAttribute="bottom" constant="88" id="uZW-Fo-0gx"/>
+                                                <constraint firstItem="5TG-yT-6sd" firstAttribute="trailing" secondItem="l0A-Ev-6Iu" secondAttribute="trailing" id="uoa-Ud-kJR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -4116,7 +4128,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="dfU-yX-daL">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="Udk-ed-e06">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="Udk-ed-e06">
                                         <rect key="frame" x="0.0" y="508" width="600" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Udk-ed-e06" id="mxJ-Qb-o3y">
@@ -4177,7 +4189,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="SEw-yj-JdH">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="PfA-tA-3n4">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="PfA-tA-3n4">
                                         <rect key="frame" x="0.0" y="678" width="600" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PfA-tA-3n4" id="rqL-aP-NbW">
@@ -4238,7 +4250,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="5AC-gu-1sS">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="j8d-eL-rgC">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="j8d-eL-rgC">
                                         <rect key="frame" x="0.0" y="848" width="600" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j8d-eL-rgC" id="c19-v1-WVy">
@@ -4299,7 +4311,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="6Z6-LU-NmM">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="In2-Ti-nvR">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="In2-Ti-nvR">
                                         <rect key="frame" x="0.0" y="1018" width="600" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="In2-Ti-nvR" id="nNP-XS-KRo">
