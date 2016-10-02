@@ -3985,7 +3985,7 @@
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ld7-Eg-NqN">
                                                     <rect key="frame" x="236" y="50" width="15" height="15"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.12549019607843137" green="0.44313725490196076" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -4030,7 +4030,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AuY-FO-Hb1">
                                                     <rect key="frame" x="283" y="50" width="15" height="15"/>
-                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.75686274509803919" green="0.14117647058823529" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal">
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>

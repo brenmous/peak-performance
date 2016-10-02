@@ -49,43 +49,61 @@ class SecondMonthlyReviewViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func familyPointPressed(sender: AnyObject) {
-//    let popTip = AMPopTip()
         popTip.hide()
         popTip.showText("Family", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: familyPoint.frame)
-        popTip.shouldDismissOnTap = true
-        popTip.shouldDismissOnTap = true
-        popTip.popoverColor = UIColor.whiteColor()
-        popTip.textColor = UIColor.blackColor()
+        popTip.popoverColor = UIColor.init(red: 32/355, green: 113/255, blue: 201/255, alpha: 1)
+        popTip.textColor = UIColor.whiteColor()
 
     }
     
     @IBAction func friendPointPressed(sender: AnyObject) {
-    print("friend button pressed")
+        popTip.hide()
+        popTip.showText("Friend", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: friendPoint.frame)
+        popTip.popoverColor = UIColor.init(red: 101/355, green: 229/255, blue: 225/255, alpha: 1)
+        popTip.textColor = UIColor.blackColor()
     }
     
     @IBAction func healthPointPressed(sender: AnyObject) {
-    print("health button pressed")
+        popTip.hide()
+        popTip.showText("Health", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: healthPoint.frame)
+        popTip.popoverColor = UIColor.init(red: 191/355, green: 204/255, blue: 31/255, alpha: 1)
+        popTip.textColor = UIColor.blackColor()
         
     }
     
     @IBAction func partnerPointPressed(sender: AnyObject) {
-   print("partner button pressed")
+        popTip.hide()
+        popTip.showText("Partner", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: partnerPoint.frame)
+        popTip.popoverColor = UIColor.init(red: 193/355, green: 36/255, blue: 198/255, alpha: 1)
+        popTip.textColor = UIColor.whiteColor()
     }
     
     @IBAction func financialPointPressed(sender: AnyObject) {
-        print("financial button pressed")
+        popTip.hide()
+        popTip.showText("Financial", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: financialPoint.frame)
+        popTip.popoverColor = UIColor.init(red: 47/355, green: 188/255, blue: 184/255, alpha: 1)
+        popTip.textColor = UIColor.whiteColor()
     }
     
     @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
-        print("personal dev button pressed")
+        popTip.hide()
+        popTip.showText("Personal Development", direction: .Up, maxWidth: 90, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
+        popTip.popoverColor = UIColor.orangeColor()
+        popTip.textColor = UIColor.whiteColor()
     }
     
     @IBAction func workPointPressed(sender: AnyObject) {
-        print("work button pressed")
+        popTip.hide()
+        popTip.showText("Work", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: workPoint.frame)
+       popTip.popoverColor = UIColor.yellowColor()
+        popTip.textColor = UIColor.blackColor()
     }
 
     @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
-        print("emotional/spiritual button pressed")
+        popTip.hide()
+        popTip.showText("Emotional/Spiritual", direction: .Up, maxWidth: 90, inView: super.view, fromFrame: emotionalSpiritual.frame)
+       popTip.popoverColor = UIColor.init(red: 144/355, green: 85/255, blue: 153/255, alpha: 1)
+        popTip.textColor = UIColor.whiteColor()
     }
     @IBAction func doneButtonPressed(sender: AnyObject)
     {
@@ -274,7 +292,8 @@ class SecondMonthlyReviewViewController: UITableViewController {
         // Poptip
         popTip.offset = -50
         popTip.arrowSize = CGSize(width: 10, height: 10)
-
+        popTip.shouldDismissOnTap = true
+        popTip.shouldDismissOnTap = true
      }
 
     override func didReceiveMemoryWarning() {
