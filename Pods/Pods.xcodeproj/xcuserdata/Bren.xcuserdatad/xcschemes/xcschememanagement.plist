@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AMPopTip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ActionSheetPicker-3.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,27 +47,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>45757391F1A1D07A7A9C8999740B20E4</key>
+		<key>4ACF3FB7E5E2A928C49596205A6FDD9C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7A12B1193BD091DCBBD6B7C3EFD466DB</key>
+		<key>586E40C0BEBAB01A075A5E60359FA09D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB57BD1A48FB257B67FDC4A6557AAFC9</key>
+		<key>955230A268A668087C543DE146B4A09C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A15BE45D592E76F2A91935DD7C4B2B72</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E67730F691A17F6330E3A40DD8F2B11B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F926DEB100A8330346CDB2E7A4FD34B9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FF29E8023BE103E631F5C5B85787D805</key>
 		<dict>
 			<key>primary</key>
 			<true/>
