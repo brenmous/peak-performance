@@ -10,9 +10,9 @@
 import UIKit
 import SideMenu
 
-//TODO: - change complete alert controller (no kick it)
+
 /**
- Class that controls the weekly goals view.
+ Class that controls the monthly goals view.
  */
 class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewControllerDelegate, MonthlyGoalTableViewCellDelegate {
     
@@ -150,20 +150,23 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 return
             }
             self.currentUser = cu
-            tableView.reloadData( )
+            //tableView.reloadData( )
             print("MGVC: got user \(currentUser!.email) with \(cu.monthlyGoals.count) monthly goals") //DEBUG
         }
         
         //disable editing in case user left view while in edit mode
         self.tableView.setEditing(false, animated: true)
         
-        //sort completed goals and place them at end of array
-        currentUser!.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+       
         
         for goal in currentUser!.monthlyGoals
         {
             goal.checkIfDue()
         }
+        
+        //sort completed goals and place them at end of array
+        currentUser!.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+   
         
         //update progress bar
         updateProgressBar()
@@ -241,17 +244,17 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("configuring")
         let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath) as! MonthlyGoalTableViewCell
         let goal = currentUser!.monthlyGoals[indexPath.row]
+        
         
     
         
         //Configure the cell
-        var klaIcon = ""
-        var klaIconDone = ""
-        var klaIconHighlighted = ""
         let kla = goal.kla
-        
+        cell.goalTextLabel!.text = goal.goalText
+        cell.delegate = self
         if  goal.complete
         {
             cell.userInteractionEnabled = false
@@ -261,6 +264,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueLabelIcon.hidden = true
+                   var klaIconDone = ""
             
             switch kla
             {
@@ -291,19 +295,21 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             default:
                 klaIconDone = "F-done.png"
             }
-            
+     
             // use image instead of the button
             cell.iconImage.image = UIImage(named: klaIconDone)
         
         }
             
-        else
+        else if !goal.complete
         {
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
+            var klaIcon = ""
+            var klaIconHighlighted = ""
             
             switch kla
             {
@@ -342,6 +348,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 klaIcon = "F.png"
                 klaIconHighlighted = "F-highlighted"
             }
+    
             
             cell.dueLabelIcon.hidden = false
             if goal.due == Goal.Due.overdue
@@ -360,16 +367,13 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 cell.dueLabelIcon.hidden = true
             }
             
+            // Image button for normal and highlighted
+            let imageButton = UIImage(named: klaIcon)
+            let highlightedImageButton = UIImage(named: klaIconHighlighted)
+            cell.iconImage.hidden = true
+            cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
+            cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
         }
-        // Image button for normal and highlighted
-        let imageButton = UIImage(named: klaIcon)
-        let highlightedImageButton = UIImage(named: klaIconHighlighted)
-        cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
-        cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
-//        cell.completeButton.setImage(highlightedImageButton, forState: .Highlighted)
-        
-        cell.goalTextLabel!.text = goal.goalText
-        cell.delegate = self
         return cell
     }
     
