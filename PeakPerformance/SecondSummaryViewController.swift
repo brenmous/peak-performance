@@ -26,7 +26,7 @@ class SecondSummaryViewController: UITableViewController {
     {
         super.viewDidLoad()
         // Nav bar back button
-        self.navigationController!.navigationBar.tintColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
+        self.navigationController?.navigationBar.tintColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
         
         //rearrange weekly goals into nested arrays representing weeks of the month
         let daysInMonth = NSDate( ).numberOfDaysInCurrentMonth()
