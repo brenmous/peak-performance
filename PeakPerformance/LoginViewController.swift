@@ -283,12 +283,21 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         emailField.delegate = self
         passwordField.delegate = self
     
+        //Set automatic sign in to true if it has not been set
+        let ud = NSUserDefaults()
+        if ud.valueForKey(USER_DEFAULTS_AUTO_LOGIN) == nil
+        {
+            ud.setValue(true, forKey: USER_DEFAULTS_AUTO_LOGIN)
+        }
+        
         //Check if user is already authenticated and log in if so
-        let userDefaults = NSUserDefaults()
-        if userDefaults.boolForKey(USER_DEFAULTS_AUTO_LOGIN)
+        if ud.boolForKey(USER_DEFAULTS_AUTO_LOGIN)
         {
             let user = FIRAuth.auth()?.currentUser
-            if user != nil { self.fetchUser(); self.activityIndicator.startAnimating() }
+            if user != nil
+            {
+                self.fetchUser(); self.activityIndicator.startAnimating()
+            }
             else
             {
                 //tell user they need to reauthenticate
