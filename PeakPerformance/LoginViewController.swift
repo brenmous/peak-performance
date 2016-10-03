@@ -284,7 +284,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         passwordField.delegate = self
     
         //Check if user is already authenticated and log in if so
+       
         let userDefaults = NSUserDefaults()
+        userDefaults.setValue(true, forKey: USER_DEFAULTS_AUTO_LOGIN)
         if userDefaults.boolForKey(USER_DEFAULTS_AUTO_LOGIN)
         {
             let user = FIRAuth.auth()?.currentUser
@@ -311,6 +313,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
         //enable log in button
         logInButton.enabled = true
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
