@@ -253,7 +253,11 @@
 		- automatic login
 		- authentication checks + reauth
 
-31/09/2016 14:20 - 15:15 
- 
+01/10/2016 14:20 - 15:15 
 	- alert for yearly review
 	- automatic login
+
+03/10/2016 14:00 - 
+	- automatic sign set to "on" by default
+
+
