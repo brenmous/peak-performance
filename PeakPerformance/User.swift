@@ -159,7 +159,7 @@ public class User
                 self.moveMonthlyGoalsFromUserToSummary(monthlySummary)
                 self.monthlySummaries[date] = monthlySummary
                 print("MRH: created summary for \(date)")
-                DataService.saveSummary(self, summary: monthlySummary)
+                DataService().saveSummary(self, summary: monthlySummary)
             }
             else
             {
@@ -207,7 +207,7 @@ public class User
                 self.moveMonthlyGoalsFromUserToSummary(monthlySummary)
                 self.monthlySummaries[date] = monthlySummary
                 print("MRH: created summary for \(date)")
-                DataService.saveSummary(self, summary: monthlySummary)
+                DataService().saveSummary(self, summary: monthlySummary)
             }
             else
             {
@@ -238,7 +238,7 @@ public class User
                 //If the goal is complete, we don't need it in the User's array anymore
                 if goal.complete
                 {
-                    DataService.removeGoal(self.uid, goal: self.weeklyGoals[index - numberOfGoalsRemoved])
+                    DataService().removeGoal(self.uid, goal: self.weeklyGoals[index - numberOfGoalsRemoved])
                     self.weeklyGoals.removeAtIndex(index - numberOfGoalsRemoved)
                     numberOfGoalsRemoved += 1
                 }
@@ -269,7 +269,7 @@ public class User
                 //If the goal is complete, we don't need it in the User's array anymore
                 if goal.complete
                 {
-                    DataService.removeGoal(self.uid, goal: self.monthlyGoals[index - numberOfGoalsRemoved])
+                    DataService().removeGoal(self.uid, goal: self.monthlyGoals[index - numberOfGoalsRemoved])
                     self.monthlyGoals.removeAtIndex(index - numberOfGoalsRemoved)
                     numberOfGoalsRemoved += 1
                 }

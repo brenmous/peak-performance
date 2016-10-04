@@ -12,9 +12,9 @@ import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
 /*
 /**
-    Protocol for specifying Sign Up DataService.
+    Protocol for specifying Sign Up self.dataService.
  */
-protocol SignUpDataService
+protocol SignUpself.dataService
 {
     func saveUser( user: User )
 }
@@ -26,6 +26,8 @@ protocol SignUpDataService
 class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDelegate {
     
     // MARK: - Properties
+    
+    let dataService = DataService()
     
     /// The currently authenticated user.
     var currentUser: User?
@@ -204,7 +206,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         
         self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
         
-        DataService.saveUser( self.currentUser! )
+        self.dataService.saveUser( self.currentUser! )
         
     }
     
