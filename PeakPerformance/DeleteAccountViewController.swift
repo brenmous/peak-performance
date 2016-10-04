@@ -14,8 +14,10 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
 {
     
     // MARK: - Properties
-    var currentUser: User?
     
+    let dataService = DataService()
+    
+    var currentUser: User?
     
     let validator = Validator( )
     
@@ -59,7 +61,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
         self.loadScreenBackground.hidden = false
         self.activityIndicator.startAnimating()
         let user = FIRAuth.auth()?.currentUser
-        DataService.removeUser(self.currentUser!)
+        self.dataService.removeUser(self.currentUser!)
         user?.deleteWithCompletion { (error) in
             guard let error = error else
             {

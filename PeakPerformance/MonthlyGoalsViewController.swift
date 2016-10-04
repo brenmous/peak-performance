@@ -18,6 +18,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     // MARK: - Properties
     
+    let dataService = DataService()
+    
     /// The currently authenticated user.
     var currentUser: User?
 
@@ -71,7 +73,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             return
         }
         cu.monthlyGoals.append(monthlyGoal)
-        DataService.saveGoal(cu.uid, goal: monthlyGoal)
+        self.dataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
     /**
@@ -87,7 +89,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             //user not available handle it HANDLE IT!
             return
         }
-        DataService.saveGoal(cu.uid, goal: monthlyGoal)
+        self.dataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
     /**
@@ -257,6 +259,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         cell.delegate = self
         if  goal.complete
         {
+            cell.iconImage.hidden = false
             cell.userInteractionEnabled = false
             cell.completeButton.hidden = true
             cell.completeButton.enabled = false
@@ -303,6 +306,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             
         else if !goal.complete
         {
+            cell.iconImage.hidden = true
             cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
@@ -370,7 +374,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             // Image button for normal and highlighted
             let imageButton = UIImage(named: klaIcon)
             let highlightedImageButton = UIImage(named: klaIconHighlighted)
-            cell.iconImage.hidden = true
             cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
             cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
         }
@@ -393,7 +396,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 //no user! wuh oh!
                 return
             }
-            DataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
+            self.dataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
             cu.monthlyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

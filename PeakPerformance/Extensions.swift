@@ -537,3 +537,72 @@ extension FIRAuth
     } */
 }
 
+// MARK: UILocalNotification
+
+extension UILocalNotification
+{
+    /**
+        Schedules an iOS local notification that alerts user when a weekly goal is due soon.
+    
+        - Parameters:
+            - weeklyGoal: the goal to create a notification for.
+    */
+    static func createWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
+    {
+        let notification = UILocalNotification()
+        notification.alertBody = WG_NOTIFICATION_BODY(weeklyGoal)
+        
+        /* Notification for due soon
+        let calendar = NSCalendar.currentCalendar()
+        notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
+        */
+ 
+        notification.fireDate = weeklyGoal.deadline
+        notification.userInfo = [WG_NOTIFICATION_ID: weeklyGoal.gid]
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    /**
+        Deschedules the iOS local notification for a specified weekly goal.
+        
+        - Parameters:
+            - weeklyGoal: the goal to remove the notification for.
+    */
+    static func removeWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
+    {
+        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        for notification in notifications
+        {
+            if notification.userInfo![WG_NOTIFICATION_ID] as! String == weeklyGoal.gid
+            {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                return
+            }
+        }
+    }
+    
+    /**
+        Updates a weekly goal notification's fire date.
+        
+        - Parameters:
+            - weeklyGoal: the goal to update the notification for.
+    */
+    static func updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal: WeeklyGoal)
+    {
+        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        for notification in notifications
+        {
+            if notification.userInfo![WG_NOTIFICATION_ID] as! String == weeklyGoal.gid
+            {
+                /* Notification for due soon
+                let calendar = NSCalendar.currentCalendar()
+                notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
+                */
+                
+                notification.fireDate = weeklyGoal.deadline
+                return
+            }
+        }
+    }
+}
+

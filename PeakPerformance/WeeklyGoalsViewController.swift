@@ -13,22 +13,28 @@ import SideMenu //github.com/jonkeykong/SideMenu
 /**
     Class that controls the weekly goals view.
   */
-class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewControllerDelegate, GoalTableViewCellDelegate  {
+class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewControllerDelegate, GoalTableViewCellDelegate
+{
 
     // MARK: - Properties
 
+    let dataService = DataService()
+    
     /// The currently authenticated user.
     var currentUser: User?
   
     
     // MARK: Outlets
     
-    //progress bar
+    /// Progress bar.
     @IBOutlet weak var progressViewWG: UIProgressView!
+    
+    /// Progress bar label.
     @IBOutlet weak var progressViewLabel: UILabel!
     
     // MARK: - Actions
     
+    /// Toggle editing (for deleting goals).
     @IBAction func editButtonPressed(sender: AnyObject)
     {
         self.tableView.setEditing(tableView.editing != true, animated: true) // :)
@@ -39,21 +45,19 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
        performSegueWithIdentifier(ADD_WEEKLY_GOAL_SEGUE, sender: self)
     }
     
-    @IBAction func menuButtonPressed(sender: AnyObject) {
+    @IBAction func menuButtonPressed(sender: AnyObject)
+    {
         
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    @IBAction func unwindFromWGDVC( segue: UIStoryboardSegue)
-    {
-    
-    }
+    @IBAction func unwindFromWGDVC( segue: UIStoryboardSegue){}
     
     
     // MARK: - Methods
     
     /// Updates the progress bar with the current date and progress value.
-    func updateProgressView( )
+    func updateProgressView()
     {
         progressViewLabel.text = NSDate().weeklyProgressString()
         progressViewWG.progress = NSDate().weeklyProgressValue()
@@ -65,15 +69,12 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         - Parameters:
             - weeklyGoal: the newly created weeklygoal
     */
-    func addNewGoal( weeklyGoal: WeeklyGoal )
+    func addNewGoal(weeklyGoal: WeeklyGoal)
     {
-        guard let cu = currentUser else
-        {
-            //user not available? handle it here
-            return
-        }
-        cu.weeklyGoals.append( weeklyGoal )
-        DataService.saveGoal(cu.uid, goal: weeklyGoal)
+        guard let cu = currentUser else { return }
+        cu.weeklyGoals.append(weeklyGoal)
+        self.dataService.saveGoal(cu.uid, goal: weeklyGoal)
+        UILocalNotification.createWeeklyGoalDueSoonNotification(weeklyGoal)
     }
     
     /**
@@ -84,12 +85,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     */
     func saveModifiedGoal(weeklyGoal: WeeklyGoal)
     {
-        guard let cu = currentUser else
-        {
-            //user not available handle it HANDLE IT!
-            return
-        }
-        DataService.saveGoal(cu.uid, goal: weeklyGoal)
+        guard let cu = currentUser else { return }
+        self.dataService.saveGoal(cu.uid, goal: weeklyGoal)
+        UILocalNotification.updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal)
     }
     
     /**
@@ -98,7 +96,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         - Parameters:
             - goal: the goal being completed.
     */
-    func completeGoal( goal: WeeklyGoal, kickItText: String )
+    func completeGoal(goal: WeeklyGoal, kickItText: String)
     {
         goal.complete = true
         goal.kickItText = kickItText
@@ -114,21 +112,20 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         self.tableView.reloadData()
     }
     
+    /**
+        Presents a view controller asking user to confirm goal completion.
+ 
+        - Parameters:
+            - cell: the selected table view cell.
+    */
     func completeButtonPressed( cell: GoalTableViewCell )
     {
         //get weekly goal from cell
-        guard let indexPath = self.tableView.indexPathForCell(cell) else
-        {
-            //couldn't get index path of cell
-            return
-        }
-        guard let cu = self.currentUser else
-        {
-            //couldn't get user
-            return
-        }
+        guard let indexPath = self.tableView.indexPathForCell(cell) else { return }
+        guard let cu = self.currentUser else { return }
         let wg = cu.weeklyGoals[indexPath.row]
-        
+    
+        //TODO: place in UIAlertController extensions
         //goal completion confirm alert controller
         let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
         let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in
@@ -152,13 +149,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
       
         if self.currentUser == nil
         {
-            //Get data from tab bar view controller
             let tbvc = self.tabBarController as! TabBarViewController
-            
-            guard let cu = tbvc.currentUser else
-            {
-                return
-            }
+            guard let cu = tbvc.currentUser else { return }
             self.currentUser = cu
             print("WGVC: got user \(currentUser!.email) with \(cu.weeklyGoals.count) weekly goals") //DEBUG
         }
@@ -166,92 +158,66 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         //disable editing in case user left view while in edit mode
         self.tableView.setEditing(false, animated: true)
         
-        //check for due goals
         for goal in self.currentUser!.weeklyGoals
         {
             goal.checkIfDue()
         }
-    
-        //sort completed goals and place them at end of array
+  
         currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
         
-        //update progress bar
         updateProgressView()
+
+        SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser!)
         
-        //set up side menu
-        SideMenuManager.setUpSideMenu(self.storyboard!, user: currentUser! )
+        self.setUpLeftBarButtonItem(String(self.currentUser!.numberOfUnreviwedSummaries()))
         
-        //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
         {
             self.currentUser!.allMonthlyReviewsFromLastYear()
             self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
-        //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else
         {
-            //check if a monthly review is needed
             if self.currentUser!.checkMonthlyReview()
             {
                 self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
-    
-        self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
-        
-        //reload the view
         self.tableView.reloadData()
-        
-        
     }
-
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
     
-    }
- 
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-
+    
     // MARK: - Table view data source
 
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        var numOfSections: Int = 0
-        
-        
-        if (currentUser?.weeklyGoals.count) > 0 {
+        var numOfSections = 0
+        if (currentUser?.weeklyGoals.count) > 0
+        {
             
             self.tableView!.backgroundView = nil
             numOfSections = 1
             tableView.separatorStyle = .SingleLine
             
-        } else {
-            
-            // Creating and editing label to display when there are no Weekly Goals
-            
-            var weeklyPlaceholderView : UIImageView
-            weeklyPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.tableView!.bounds.size.width, self.tableView!.bounds.size.height));
+        }
+        else
+        {
+            let weeklyPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.tableView!.bounds.size.width, self.tableView!.bounds.size.height));
             weeklyPlaceholderView.image = UIImage(named:WEEK_PLACEHOLDER)
             weeklyPlaceholderView.contentMode = .ScaleAspectFill
             self.tableView.backgroundView = weeklyPlaceholderView
             tableView.separatorStyle = .None
         }
-        
         return numOfSections
     }
 
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        //only count goals with summarised == false
         return currentUser!.weeklyGoals.count
     }
     
+    //TODO: Refactor
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> GoalTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath) as! GoalTableViewCell
         let goal = currentUser!.weeklyGoals[indexPath.row]
@@ -383,7 +349,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     }
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
         // Return false if you do not want the specified item to be editable.
         return true
     }
@@ -394,26 +361,25 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         if editingStyle == .Delete
         {
             // Delete the row from the data source
-            guard let cu = self.currentUser else
-            {
-                //no user! wuh oh!
-                return
-            }
-            DataService.removeGoal(cu.uid, goal: cu.weeklyGoals[indexPath.row]) // remove goal
+            guard let cu = self.currentUser else { return }
+            let goal = cu.weeklyGoals[indexPath.row]
+            self.dataService.removeGoal(cu.uid, goal: goal) // remove goal
             cu.weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            UILocalNotification.removeWeeklyGoalDueSoonNotification(goal)
         }
     }
     
     // MARK: - Navigation
     
-  
+    //TODO: Change if to switch
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == ADD_WEEKLY_GOAL_SEGUE
         {
             let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
+            return
         }
         else if segue.identifier == EDIT_WEEKLY_GOAL_SEGUE
         {
@@ -423,6 +389,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
                 dvc.currentGoal = currentUser!.weeklyGoals[indexPath.row]
+                return
             }
         }
         

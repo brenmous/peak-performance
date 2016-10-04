@@ -257,7 +257,10 @@
 	- alert for yearly review
 	- automatic login
 
-03/10/2016 14:00 - 
+03/10/2016 14:00 - 15:10 
 	- automatic sign set to "on" by default
+	- fix monthly goal icon bug
 
-
+04/10/2016 12:50 - 15:15 
+	- local notifications for when weekly goals are due
+	- go online/offline to reduce concurrent firebase users
