@@ -261,3 +261,4 @@
 	- automatic sign set to "on" by default
 	- fix monthly goal icon bug
 
+04/10/2016 12:50 - 

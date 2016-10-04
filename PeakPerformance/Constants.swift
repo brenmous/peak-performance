@@ -605,3 +605,11 @@ let PDF_MIME_TYPE = "application/pdf"
 
 // MARK: - NSUserDefaults keys
 let USER_DEFAULTS_AUTO_LOGIN = "autoLogin"
+
+
+// MARK: - UILocalNotification strings
+
+/// Body of WG due soon local notification
+func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "\"\(goal.goalText)\" is due." }
+
+let WG_NOTIFICATION_ID = "GID"
