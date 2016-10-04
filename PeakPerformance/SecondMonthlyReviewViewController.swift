@@ -177,8 +177,10 @@ class SecondMonthlyReviewViewController: UITableViewController {
         var familyFrame: CGRect = familyPoint.frame
         familyFrame.origin.x = xmidpoint
         print("family x coord\(familyFrame.origin.x)")
+        print("coord x \(familyFrame.origin.x)")
 //      summary!.klaXaxis[KLA_FAMILY] = familyFrame.origin.x // assigns the coordinate to the klaXaxis dictionary
         familyFrame.origin.y = ymidpoint + getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
+        print("coord y \(familyFrame.origin.y)")
         print("family y coord\(familyFrame.origin.y)")
         familyPoint.translatesAutoresizingMaskIntoConstraints = true
         familyPoint.frame = familyFrame
