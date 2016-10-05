@@ -74,7 +74,7 @@ class SecondSummaryViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let font = UIFont.systemFontOfSize(12, weight: UIFontWeightSemibold)
+        let font = UIFont.systemFontOfSize(14, weight: UIFontWeightSemibold)
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.font = font
         header.textLabel?.textColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);

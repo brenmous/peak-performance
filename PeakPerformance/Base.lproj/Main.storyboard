@@ -373,8 +373,8 @@
                                                     <action selector="signUpButtonPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="mNZ-N0-LJc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
-                                                <rect key="frame" x="201" y="39" width="109" height="28"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
+                                                <rect key="frame" x="201" y="39" width="109" height="29"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Go back to Login">
@@ -1660,9 +1660,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ajq-49-o9J">
-                                            <rect key="frame" x="551" y="18" width="32" height="34"/>
+                                            <rect key="frame" x="551" y="18" width="32" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="Ydq-sf-jrH"/>
+                                                <constraint firstAttribute="width" constant="32" id="o06-aa-WwW"/>
                                             </constraints>
                                             <state key="normal" backgroundImage="send-coach">
                                                 <color key="titleShadowColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
@@ -1673,10 +1673,10 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Ajq-49-o9J" secondAttribute="bottom" constant="4.5" id="6YZ-4Z-owb"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Ajq-49-o9J" secondAttribute="trailing" constant="9" id="KML-V6-uSc"/>
-                                        <constraint firstItem="Ajq-49-o9J" firstAttribute="top" secondItem="NPU-PP-U8W" secondAttribute="topMargin" constant="10" id="grW-bZ-jue"/>
-                                        <constraint firstItem="Ajq-49-o9J" firstAttribute="leading" secondItem="TLA-XV-Bwb" secondAttribute="trailing" constant="1" id="reM-p0-wWT"/>
+                                        <constraint firstItem="Ajq-49-o9J" firstAttribute="leading" secondItem="TLA-XV-Bwb" secondAttribute="trailing" constant="1" id="WS9-BA-7OG"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ajq-49-o9J" secondAttribute="bottom" constant="5.5" id="ljU-Kv-2ig"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ajq-49-o9J" secondAttribute="trailing" constant="9" id="uwf-NR-GKn"/>
+                                        <constraint firstItem="Ajq-49-o9J" firstAttribute="top" secondItem="NPU-PP-U8W" secondAttribute="topMargin" constant="10" id="wlf-4q-HbA"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -4529,7 +4529,7 @@
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfE-0a-h7A" customClass="CustomizableLabelView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="220" y="70" width="160" height="160"/>
-                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.72941176470000002" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="6Md-B1-pgz"/>
                                                     </constraints>
@@ -4555,6 +4555,123 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxH-IB-FgG">
+                                                    <rect key="frame" x="290" y="187" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.12549019610000001" green="0.4431372549" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="familyPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="V1r-xP-f4c"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2V-Qy-bc5">
+                                                    <rect key="frame" x="365" y="187" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.74901960779999999" green="0.80000000000000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="healthPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="WCb-K4-jHg"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvU-kz-mns">
+                                                    <rect key="frame" x="232" y="145" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.75686274509999996" green="0.14117647059999999" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="partnerPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="yYw-bY-BUP"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq4-UV-JHW">
+                                                    <rect key="frame" x="365" y="145" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.95686274510000002" green="0.86666666670000003" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="workPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="tFv-E5-1tQ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJ1-Sf-qql">
+                                                    <rect key="frame" x="331" y="145" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="emotionalSpiritualPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="7mE-AF-fMA"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWm-U0-fiG">
+                                                    <rect key="frame" x="270" y="145" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.1843137255" green="0.73725490199999999" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="financialPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="ywp-ZB-ugt"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmC-j6-W9d">
+                                                    <rect key="frame" x="298" y="145" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.55294117649999996" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="personalDevelopmentPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="5fT-Vk-rIX"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rD1-YQ-dWg">
+                                                    <rect key="frame" x="393" y="145" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.39607843139999999" green="0.8980392157" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="friendPointPressed:" destination="a7S-Xo-IML" eventType="touchUpInside" id="Hes-kn-HI5"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vfE-0a-h7A" firstAttribute="centerY" secondItem="ClY-Vp-0j1" secondAttribute="centerY" id="3tc-F0-adE"/>
@@ -4829,9 +4946,18 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doINeedToChangeTextView" destination="TAx-H1-X2p" id="dvo-0L-vMw"/>
+                        <outlet property="emotionalSpiritualPoint" destination="RJ1-Sf-qql" id="yxI-cg-9jZ"/>
+                        <outlet property="familyPoint" destination="gxH-IB-FgG" id="sGU-P0-ev1"/>
+                        <outlet property="financialPoint" destination="SWm-U0-fiG" id="ab8-VP-JGX"/>
+                        <outlet property="friendPoint" destination="rD1-YQ-dWg" id="wix-Vu-RyV"/>
+                        <outlet property="healthPoint" destination="Q2V-Qy-bc5" id="Ire-Yb-iHF"/>
+                        <outlet property="klaDiagramPeakPerformanceArea" destination="ClY-Vp-0j1" id="xkS-f0-WQY"/>
+                        <outlet property="partnerPoint" destination="XvU-kz-mns" id="FQ6-if-Btq"/>
+                        <outlet property="personalDevelopmentPoint" destination="gmC-j6-W9d" id="Cmo-Eq-dAv"/>
                         <outlet property="whatHaveIImprovedTextView" destination="B4x-sd-dVB" id="e9p-cJ-nyn"/>
                         <outlet property="whatIsNotWorkingTextView" destination="gj7-IB-ZWm" id="GLu-WF-i87"/>
                         <outlet property="whatIsWorkingTextView" destination="j3u-Qt-r4q" id="hDF-Kc-gUA"/>
+                        <outlet property="workPoint" destination="Iq4-UV-JHW" id="D8j-yE-TSj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5h-tR-3wN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4878,6 +5004,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6M-Hs-5eg">
+                                                    <rect key="frame" x="494" y="11" width="87" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <state key="normal" title="Add Reason">
+                                                        <color key="titleColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -5770,7 +5903,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SNV-AJ-Jyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="367" y="-610"/>
+            <point key="canvasLocation" x="398" y="-610"/>
         </scene>
         <!--Current Reality-->
         <scene sceneID="DXI-uO-NbS">
@@ -5812,7 +5945,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="393" id="3fh-Dm-Ujs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="393" id="3fh-Dm-Ujs">
                                         <rect key="frame" x="0.0" y="115" width="600" height="393"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3fh-Dm-Ujs" id="rg2-0k-pyl">
@@ -5842,7 +5975,7 @@
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFE-eF-pL1" customClass="CustomizableLabelView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="220" y="70" width="160" height="160"/>
-                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.72941176470000002" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="WMN-fN-7Y8"/>
                                                     </constraints>
@@ -5868,6 +6001,123 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWt-Fg-frW">
+                                                    <rect key="frame" x="318" y="140" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.39607843139999999" green="0.8980392157" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="friendPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="qzI-VT-Ygr"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYp-2C-hAj">
+                                                    <rect key="frame" x="290" y="140" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.74901960779999999" green="0.80000000000000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="healthPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="dXn-bK-fjY"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqv-cX-v5f">
+                                                    <rect key="frame" x="260" y="140" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.75686274509999996" green="0.14117647059999999" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="partnerPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="Lde-ne-nT2"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ba1-u5-VhQ">
+                                                    <rect key="frame" x="333" y="112" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.95686274510000002" green="0.86666666670000003" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="workPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="Krc-tj-wZm"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghf-tw-6G7">
+                                                    <rect key="frame" x="305" y="112" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="emotionalSpiritualPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="T0f-61-79d"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uh3-fT-4hS">
+                                                    <rect key="frame" x="277" y="112" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.1843137255" green="0.73725490199999999" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="financialPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="SVb-YN-6EE"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBI-es-Qib">
+                                                    <rect key="frame" x="249" y="112" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.55294117649999996" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="personalDevPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="FVs-tM-ExS"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n63-nF-Zqt">
+                                                    <rect key="frame" x="290" y="176" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.12549019610000001" green="0.4431372549" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="familyPointPressed:" destination="2aL-Qr-L3w" eventType="touchUpInside" id="wZo-VW-Zgv"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="aFE-eF-pL1" firstAttribute="centerX" secondItem="Eea-hL-pwA" secondAttribute="centerX" id="5PI-cA-dHe"/>
@@ -5899,6 +6149,17 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emotionalSpiritualPoint" destination="ghf-tw-6G7" id="IW7-Go-0qy"/>
+                        <outlet property="familyPoint" destination="n63-nF-Zqt" id="OWs-Fn-GXS"/>
+                        <outlet property="financialPoint" destination="Uh3-fT-4hS" id="Ybr-5B-6r1"/>
+                        <outlet property="friendPoint" destination="IWt-Fg-frW" id="dmd-dG-dlU"/>
+                        <outlet property="healthPoint" destination="FYp-2C-hAj" id="T5B-hn-TbJ"/>
+                        <outlet property="klaDiagramPeakPerformanceArea" destination="Eea-hL-pwA" id="bdz-Oc-xc4"/>
+                        <outlet property="partnerPoint" destination="eqv-cX-v5f" id="e9O-ZO-FiQ"/>
+                        <outlet property="personalDevPoint" destination="NBI-es-Qib" id="uXL-X1-SY5"/>
+                        <outlet property="workPoint" destination="ba1-u5-VhQ" id="b1Z-Ch-iEw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8z-y7-WHw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

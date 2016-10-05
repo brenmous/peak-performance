@@ -53,6 +53,54 @@ extension UIViewController
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
         navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGrayColor()
     }
+    
+}
+
+extension UITableViewController
+{
+    // Returns an incremental value in CGFloat for the dot to move from the origin
+    // - Parameter: Rating from Summary KLA Rating dictionary
+    
+    static func getIncrementFromRating(rating: Double) -> CGFloat {
+        
+        let decimal = rating * 10
+        var increment: CGFloat = 0
+        if (decimal < 1.25 && decimal >= 0) {
+            
+            increment = 15
+            
+        } else if (decimal <= 2.5 && decimal > 1.25) {
+            
+            increment = 30
+            
+        } else if (decimal <= 3.85 && decimal > 2.5) {
+            
+            increment = 45
+            
+        } else if (decimal <= 5.0 && decimal > 3.85) {
+            
+            increment = 60
+            
+        } else if (decimal <= 6.35 && decimal > 5.0) {
+            
+            increment = 75
+            
+        } else if (decimal <= 7.55 && decimal > 6.35) {
+            
+            increment = 90
+            
+        } else if (decimal <= 8.80 && decimal > 7.55) {
+            
+            increment = 105
+            
+        } else if (decimal <= 10.0 && decimal > 8.8) {
+            
+            increment = 120
+            
+        }
+        
+        return increment
+    }
 }
 
 
@@ -479,6 +527,7 @@ extension FIRAuth
     } */
 }
 
+
 // MARK: UILocalNotification
 
 extension UILocalNotification
@@ -522,6 +571,7 @@ extension UILocalNotification
             }
         }
     }
+    
     
     /**
         Updates a weekly goal notification's fire date.
