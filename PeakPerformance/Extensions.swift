@@ -400,44 +400,6 @@ extension UIAlertController
         return reviewAlertController
     }
 
-
-    
-    /**
-    Creates an alert controller informing user that change of coach email was successful.
-    - Parameters:
-        - cevc: the change coach email view controller.
- 
-    - Returns: an alert controller.
-    */
-    static func getChangeCoachEmailSuccessAlert(cevc: CoachEmailViewController) -> UIAlertController
-    {
-        let changeCoachEmailSucccessAlertController = UIAlertController(title: COACH_EMAIL_SUCC_ALERT_TITLE, message: COACH_EMAIL_SUCC_ALERT_MSG, preferredStyle: .ActionSheet)
-        
-        let confirm = UIAlertAction(title: COACH_EMAIL_SUCC_ALERT_CONFIRM, style: .Default) { (action) in
-            cevc.performSegueWithIdentifier(UNWIND_FROM_COACH_EMAIL_SEGUE, sender: cevc)
-        }
-        
-        changeCoachEmailSucccessAlertController.addAction(confirm)
-        
-        return changeCoachEmailSucccessAlertController
-    }
-    
-    /**
-    Creates an alert informing user that mail can't be sent because no coach email has been supplied.
-    - Parameters:
-        - hvc: the History view controller.
-    
-    - Returns: an alert controller
-    */
-    static func getNoCoachEmailAlert(hvc: HistoryViewController) -> UIAlertController
-    {
-        let noCoachEmailAlertController = UIAlertController(title: NO_COACH_EMAIL_ALERT_TITLE, message: NO_COACH_EMAIL_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: NO_COACH_EMAIL_ALERT_CONFIRM, style: .Default, handler: nil)
-        
-        noCoachEmailAlertController.addAction(confirm)
-        
-        return noCoachEmailAlertController
-    }
     
     /**
     Creates an alert informing user that their 12 month review is ready.

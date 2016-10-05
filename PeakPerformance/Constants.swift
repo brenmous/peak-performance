@@ -196,7 +196,6 @@ let DREAMLOCALURL_REF_STRING = "localURL"
 /// Specifies dream URL node in database.
 let DREAMURL_REF_STRING = "url"
 
-//summary ref strings
 /// Specifies main summaries node in database.
 let SUMMARIES_REF_STRING = "summaries"
 
@@ -329,7 +328,7 @@ let UNWIND_FROM_CHANGE_PW_SEGUE = "unwindToSettings"
 /// settings -> change password
 let GO_TO_CHANGE_PASSWORD_SEGUE = "goToChangePassword"
 
-
+/// Settings -> Log in
 let GO_TO_LOG_IN = "logOut"
 
 /// Segue for adding a new dream.
@@ -572,6 +571,7 @@ let ABOUT_CELL_ID = "aboutCell"
 /// Identfier for privacy policy settings cell.
 let PRIVACY_CELL_ID = "privacyPolicyCell"
 
+
 // MARK: - Image Related Stuff
 
 /// Constant for compression of JPEG UIImage representation.
@@ -598,6 +598,7 @@ let DUE_SOON_ICON = "soon-icon"
 /// Icon to show when a goal is due
 let OVERDUE_ICON = "due-icon"
 
+
 // MARK: - File MIME type strings
 
 /// MIME type string for PDFs
@@ -613,3 +614,6 @@ let USER_DEFAULTS_AUTO_LOGIN = "autoLogin"
 func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "\"\(goal.goalText)\" is due." }
 
 let WG_NOTIFICATION_ID = "GID"
+
+// MARK: - Coach email strings
+let NO_COACH_EMAIL_MESSAGE = "No coach!"

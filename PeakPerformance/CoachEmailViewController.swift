@@ -7,27 +7,33 @@
 //
 
 import UIKit
-import SwiftValidator
+import SwiftValidator // https://github.com/jpotts18/SwiftValidator
 
 class CoachEmailViewController: UIViewController, UITextFieldDelegate, ValidationDelegate {
 
     // MARK: - Properties
     
+    /// DataService instance for Firebase Database interactions.
     let dataService = DataService()
     
+    /// The currently authenticated user.
     var currentUser: User?
     
+    /// SwiftValidator instance.
     let validator = Validator( )
     
     // MARK: - Outlets
     
+    // Labels
     @IBOutlet weak var currentCoachEmailLabel: UILabel!
     @IBOutlet weak var newCoachEmailErrorLabel: UILabel!
     @IBOutlet weak var changeCoachEmailErrorLabel: UILabel!
     
+    // Text fields
     @IBOutlet weak var newCoachEmailField: UITextField!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    // Load indicators
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! // BEN
  
     // MARK: - Actions
     @IBAction func confirmButtonPressed(sender: UIBarButtonItem)
@@ -59,7 +65,45 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
         self.currentUser?.coachEmail = self.newCoachEmailField.text!
         self.dataService.saveCoachEmail(self.currentUser!)
         self.activityIndicator.stopAnimating()
-        self.presentViewController(UIAlertController.getChangeCoachEmailSuccessAlert(self), animated: true, completion: nil)
+        self.presentViewController(getChangeCoachEmailSuccessAlert(), animated: true, completion: nil)
+    }
+    
+    // MARK: - Alert controllers
+    /**
+     Creates an alert controller informing user that change of coach email was successful.
+     - Parameters:
+     - cevc: the change coach email view controller.
+     
+     - Returns: an alert controller.
+     */
+    func getChangeCoachEmailSuccessAlert() -> UIAlertController
+    {
+        let changeCoachEmailSucccessAlertController = UIAlertController(title: COACH_EMAIL_SUCC_ALERT_TITLE, message: COACH_EMAIL_SUCC_ALERT_MSG, preferredStyle: .ActionSheet)
+        
+        let confirm = UIAlertAction(title: COACH_EMAIL_SUCC_ALERT_CONFIRM, style: .Default) { (action) in
+            self.performSegueWithIdentifier(UNWIND_FROM_COACH_EMAIL_SEGUE, sender: self)
+        }
+        
+        changeCoachEmailSucccessAlertController.addAction(confirm)
+        
+        return changeCoachEmailSucccessAlertController
+    }
+    
+    /**
+     Creates an alert informing user that mail can't be sent because no coach email has been supplied.
+     - Parameters:
+     - hvc: the History view controller.
+     
+     - Returns: an alert controller
+     */
+    func getNoCoachEmailAlert() -> UIAlertController
+    {
+        let noCoachEmailAlertController = UIAlertController(title: NO_COACH_EMAIL_ALERT_TITLE, message: NO_COACH_EMAIL_ALERT_MSG, preferredStyle: .ActionSheet)
+        let confirm = UIAlertAction(title: NO_COACH_EMAIL_ALERT_CONFIRM, style: .Default, handler: nil)
+        
+        noCoachEmailAlertController.addAction(confirm)
+        
+        return noCoachEmailAlertController
     }
     
     // MARK: - Overridden methods
@@ -67,8 +111,10 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // BEN //
         // Back button
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
+        // END BEN //
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
@@ -109,7 +155,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
         self.changeCoachEmailErrorLabel.hidden = true
         
         let ce = self.currentUser!.coachEmail
-        self.currentCoachEmailLabel.text =  ce.isEmpty ? "No coach!" : ce
+        self.currentCoachEmailLabel.text =  ce.isEmpty ? NO_COACH_EMAIL_MESSAGE : ce
         
     }
 
@@ -121,7 +167,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     
     // MARK: - Keyboard
     
-    //Dismisses keyboard when return is pressed.
+    /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         validator.validate( self )
@@ -129,7 +175,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
         return true
     }
     
-    //Dismisses keyboard when tap outside keyboard detected.
+    /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
         self.view.endEditing(true)
