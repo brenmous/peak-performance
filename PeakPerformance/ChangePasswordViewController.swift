@@ -55,7 +55,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         print ("CPVC - validation failed")
     }
     
-    //FIXME: - refactor reauth out as an extension
+    //FIXME: - refactor reauth out
     /// Change a user's password.
     func changePassword( )
     {

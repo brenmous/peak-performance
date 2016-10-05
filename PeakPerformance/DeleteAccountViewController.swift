@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 import FirebaseAuth
 import SwiftValidator // https://github.com/jpotts18/SwiftValidator
 
@@ -20,7 +21,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     var currentUser: User?
     
     let validator = Validator( )
-    
+
     // MARK: - Outlets
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
@@ -46,16 +47,13 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("DAVC - validation successful") //DEBUG
         self.reauthenticateUser()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
-    {
-        print ("DAVC - validation failed")
-    }
+    func validationFailed(errors: [(Validatable, ValidationError)]){}
     
+    /// Deletes the currently authenticated user's account.
     func deleteAccount()
     {
         self.loadScreenBackground.hidden = false
@@ -65,14 +63,10 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
         user?.deleteWithCompletion { (error) in
             guard let error = error else
             {
-                //success
                 self.activityIndicator.stopAnimating()
-                self.presentViewController(UIAlertController.getDeleteAccountSuccessAlert(self), animated: true, completion: nil)
+                self.presentViewController(self.getDeleteAccountSuccessAlert(), animated: true, completion: nil)
                 return
             }
-        
-            //failure
-            
             guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
             {
                 print("DAVC - deleteAccount(): delete failed with error but couldn't get error code")
@@ -92,22 +86,15 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
         }
     }
     
-    //func reauthenticateFailed(){}
-    
-    //func reauthenticateSucceeded(){}
-    
-    
     /// Reauthenticates the current user
     func reauthenticateUser()
     {
         self.loadScreenBackground.hidden = false
-        activityIndicator.startAnimating()
-        //reset error label & disable button
+        self.activityIndicator.startAnimating()
         self.deleteAccountErrorLabel.hidden = true
         self.deleteAccountErrorLabel.text = ""
         self.navigationItem.rightBarButtonItem?.enabled = false
         
-        print("DAVC - deleteAccount(): attemping to reauthenticate user...")
         guard let cu = currentUser else
         {
             return
@@ -118,57 +105,108 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
         user?.reauthenticateWithCredential(credential) { (error) in
             guard let error = error else
             {
-                //reauth successful
-                print("CPVC - reauthUser(): auth successful")
-                self.activityIndicator.stopAnimating()
-                self.loadScreenBackground.hidden = true
-                
-                //show destructive alert
-                self.presentViewController(UIAlertController.getDeleteAccountAlert(self), animated: true, completion: nil)
-                
+                self.reauthSuccess()
                 return
             }
-            //handle reauth error
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
-            {
-                return
-            }
-            print("CPVC - reauthUser(): auth failed")
-            self.loadScreenBackground.hidden = true
-            self.activityIndicator.stopAnimating()
-            
-            switch errCode
-            {
-            case .ErrorCodeUserNotFound:
-                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
-                
-            case .ErrorCodeTooManyRequests:
-                self.deleteAccountErrorLabel.text = REQUEST_ERR_MSG
-                
-            case .ErrorCodeNetworkError:
-                self.deleteAccountErrorLabel.text = NETWORK_ERR_MSG
-                
-            case .ErrorCodeInternalError:
-                self.deleteAccountErrorLabel.text = FIR_INTERNAL_ERROR
-                
-            case .ErrorCodeUserDisabled:
-                self.deleteAccountErrorLabel.text = USER_DISABLED_ERROR
-                
-            case .ErrorCodeWrongPassword:
-                self.deleteAccountErrorLabel.text = CHANGE_PW_ERROR
-                
-            case .ErrorCodeUserMismatch:
-                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
-                
-            default:
-                print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
-                self.deleteAccountErrorLabel.text = "Error case not currently covered." //DEBUG
-            }
-            self.deleteAccountErrorLabel.hidden = false
-            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.reauthFailure(error)
+            return
         }
     }
     
+    /// Called when a user successfully reauthenticates.
+    func reauthSuccess()
+    {
+        self.activityIndicator.stopAnimating()
+        self.loadScreenBackground.hidden = true
+        self.presentViewController(getDeleteAccountAlert(), animated: true, completion: nil)
+    }
+    
+    /// Called when a user fails to reauthenticate.
+    func reauthFailure(error: NSError)
+    {
+        self.loadScreenBackground.hidden = true
+        self.activityIndicator.stopAnimating()
+        guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
+        {
+            print("CPVC - reauthUser(): auth failed but could not get error code.")
+            return
+        }
+        switch errCode
+        {
+        case .ErrorCodeUserNotFound:
+            self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
+            return
+            
+        case .ErrorCodeTooManyRequests:
+            self.deleteAccountErrorLabel.text = REQUEST_ERR_MSG
+            
+        case .ErrorCodeNetworkError:
+            self.deleteAccountErrorLabel.text = NETWORK_ERR_MSG
+            
+        case .ErrorCodeInternalError:
+            self.deleteAccountErrorLabel.text = FIR_INTERNAL_ERROR
+            
+        case .ErrorCodeUserDisabled:
+            self.deleteAccountErrorLabel.text = USER_DISABLED_ERROR
+            
+        case .ErrorCodeWrongPassword:
+            self.deleteAccountErrorLabel.text = CHANGE_PW_ERROR
+            
+        case .ErrorCodeUserMismatch:
+            self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
+            
+        default:
+            print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
+            self.deleteAccountErrorLabel.text = "Error case not currently covered." //DEBUG
+        }
+        self.deleteAccountErrorLabel.hidden = false
+        self.navigationItem.rightBarButtonItem?.enabled = false
+    }
+    
+    // MARK: - Alert controllers
+    /**
+        Creates an alert controller asking user to confirm account deletion.
+            - Returns: an alert controller.
+     */
+    func getDeleteAccountAlert() -> UIAlertController
+    {
+        let deleteAccountAlertController = UIAlertController(title: DELETE_ACCOUNT_ALERT_TITLE, message: DELETE_ACCOUNT_ALERT_MSG, preferredStyle: .ActionSheet)
+        let confirm = UIAlertAction(title: DELETE_ACCOUNT_ALERT_CONFIRM, style: .Destructive) { (action) in
+            self.deleteAccount()
+        }
+        
+        let cancel = UIAlertAction(title: DELETE_ACCOUNT_ALERT_CANCEL, style: .Cancel ) { (action) in
+            self.activityIndicator.stopAnimating()
+            self.navigationItem.rightBarButtonItem?.enabled = true
+            self.passwordField.text = ""
+            self.confirmPasswordField.text = ""
+        }
+        
+        deleteAccountAlertController.addAction(confirm); deleteAccountAlertController.addAction(cancel)
+        
+        return deleteAccountAlertController
+    }
+    
+    /**
+        Creates an alert controller informing the user that account deletion was successful.
+            - Returns: an alert controller.
+     */
+    func getDeleteAccountSuccessAlert() -> UIAlertController
+    {
+        let deleteAccountSuccessAlertController = UIAlertController(title: DELETE_ACCOUNT_SUCC_ALERT_TITLE, message: DELETE_ACCOUNT_SUCC_ALERT_MSG, preferredStyle: .ActionSheet)
+        
+        let confirm = UIAlertAction(title: DELETE_ACCOUNT_SUCC_ALERT_CONFIRM, style: .Default) { (action) in
+            let smnav = self.presentingViewController as! UISideMenuNavigationController
+            let sm = smnav.viewControllers[0]
+            sm.dismissViewControllerAnimated(false) {
+                sm.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: sm)
+            }
+        }
+        
+        deleteAccountSuccessAlertController.addAction(confirm)
+        
+        return deleteAccountSuccessAlertController
+    }
     
     // MARK: - Overridden methods
     
@@ -232,7 +270,6 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     // MARK: - Keyboard
     

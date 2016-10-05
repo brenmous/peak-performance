@@ -30,22 +30,27 @@ class DataService
     */
     func saveUser(user: User)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
+        
+        //Create child references from FIRDatabase.database().reference() to define the nodes that data will be stored under.
+        // E.g. "Base -> Users -> UserID"
         let userRef = self.database.reference().child(USERS_REF_STRING).child(user.uid)
 
+        //Create child references for each property and use setValue to store the corresponding value.
         userRef.child(FNAME_REF_STRING).setValue(user.fname)
         userRef.child(LNAME_REF_STRING).setValue(user.lname)
         userRef.child(ORG_REF_STRING).setValue(user.org)
         userRef.child(EMAIL_REF_STRING).setValue(user.email)
         
+        //convert startDate to string
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let startDateString = dateFormatter.stringFromDate(user.startDate)
         
         userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -56,12 +61,12 @@ class DataService
     */
     func saveCoachEmail(user: User)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let userRef = self.database.reference().child(USERS_REF_STRING).child(user.uid)
         userRef.child(COACH_EMAIL_REF_STRING).setValue(user.coachEmail)
 
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /** 
@@ -72,12 +77,12 @@ class DataService
     */
     func saveUserYear(user: User)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let userRef = self.database.reference().child(USERS_REF_STRING).child(user.uid)
         userRef.child(USER_YEAR_REF_STRING).setValue(user.year)
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -89,8 +94,9 @@ class DataService
      */
     func loadUser(uid: String, completion: (user: User) -> Void)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
+        //As with saving, create references to the nodes we want to retrieve data from.
         let usersRef = self.database.reference().child(USERS_REF_STRING)
         let userRef = usersRef.child(uid)
 
@@ -102,6 +108,7 @@ class DataService
             let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value![USER_YEAR_REF_STRING] as! Int : 0
             let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value![COACH_EMAIL_REF_STRING] as! String : ""
             
+            //convert start date to string
             let startDateString = snapshot.value![STARTDATE_REF_STRING]
             let dateFormatter = NSDateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
@@ -115,7 +122,7 @@ class DataService
 
             completion( user: user )
         })
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -126,7 +133,7 @@ class DataService
      */
     func removeUser(user: User)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let ref = self.database.reference()
         let userRef = ref.child(USERS_REF_STRING).child(user.uid)
@@ -142,7 +149,7 @@ class DataService
         let summariesRef = ref.child(SUMMARIES_REF_STRING).child(user.uid)
         summariesRef.removeValue()
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     
@@ -158,7 +165,7 @@ class DataService
     */
     func saveGoal(uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "")
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         var goalType = ""
         if goal is WeeklyGoal
@@ -171,7 +178,7 @@ class DataService
         }
         
         var goalRef = self.database.reference().child(goalType).child(uid).child(goal.gid)
-
+        //If the goal is part of a summary, we don't the need the UID child reference.
         if summaryGoal
         {
             goalRef = self.database.reference().child(SUMMARIES_REF_STRING).child(uid).child(summaryDate).child(goalType).child(goal.gid)
@@ -181,7 +188,7 @@ class DataService
         goalRef.child(COMPLETE_REF_STRING).setValue(goal.complete)
         goalRef.child(KICKIT_REF_STRING).setValue(goal.kickItText)
         
-
+        //convert deadline from NSDate to String
         let dateFormatter = NSDateFormatter( )
         if goal is WeeklyGoal
         {
@@ -193,7 +200,7 @@ class DataService
         }
         goalRef.child(DEADLINE_REF_STRING).setValue(dateFormatter.stringFromDate(goal.deadline) )
       
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -206,7 +213,7 @@ class DataService
      */
     func loadWeeklyGoals(uid: String, summary: MonthlySummary? = nil, completion: (( weeklyGoals: [WeeklyGoal] ) -> Void)?)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         var weeklyGoals = [WeeklyGoal]()
         var weeklyGoalsRef = self.database.reference().child(WEEKLYGOALS_REF_STRING).child(uid)
@@ -250,7 +257,7 @@ class DataService
             }
         })
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -263,7 +270,7 @@ class DataService
      */
     func loadMonthlyGoals(uid: String, summary: MonthlySummary? = nil, completion: (( monthlyGoals: [MonthlyGoal] ) -> Void)?)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         var monthlyGoals = [MonthlyGoal]( )
         var monthlyGoalsRef = self.database.reference().child(MONTHLYGOALS_REF_STRING).child(uid)
@@ -307,7 +314,7 @@ class DataService
             }
         })
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     
@@ -320,7 +327,7 @@ class DataService
      */
     func removeGoal(uid: String, goal: Goal)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         var goalsRef : FIRDatabaseReference
         if goal is WeeklyGoal
@@ -335,7 +342,7 @@ class DataService
         let goalRef = goalsRef.child(uid).child(goal.gid)
         goalRef.removeValue( )
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -346,12 +353,12 @@ class DataService
     */
     func removeAllGoals( uid: String )
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         self.database.reference().child(WEEKLYGOALS_REF_STRING).child(uid).removeValue()
         self.database.reference().child(MONTHLYGOALS_REF_STRING).child(uid).removeValue()
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     // MARK: - Dream methods
@@ -365,7 +372,7 @@ class DataService
      */
     func saveDream(uid: String, dream: Dream)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let dreamsRef = self.database.reference().child(DREAMS_REF_STRING)
         
@@ -380,7 +387,7 @@ class DataService
         let localURLString = dream.imageLocalURL!.absoluteString
         dreamRef.child(DREAMLOCALURL_REF_STRING).setValue(localURLString)
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -392,7 +399,7 @@ class DataService
      */
     func loadDreams(uid: String, completion: ( dreams: [Dream] ) -> Void)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         var dreams = [Dream]()
         let dreamsRef = self.database.reference().child(DREAMS_REF_STRING).child(uid)
@@ -420,7 +427,7 @@ class DataService
             }
         })
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -432,9 +439,9 @@ class DataService
      */
     func removeDream( uid: String, dream: Dream )
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         self.database.reference().child(DREAMS_REF_STRING).child(uid).child(dream.did).removeValue()
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     
@@ -448,7 +455,7 @@ class DataService
      */
     func saveValues( user: User )
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let ref = self.database.reference().child(VALUES_REF_STRING).child(user.uid)
        
@@ -461,7 +468,7 @@ class DataService
         ref.child(KLA_EMOSPIRITUAL).setValue(user.values[KLA_EMOSPIRITUAL])
         ref.child(KLA_PARTNER).setValue(user.values[KLA_PARTNER])
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -473,7 +480,7 @@ class DataService
      */
     func loadValues(uid: String, completion: ( values: [String:String] ) -> Void)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         var values = [ KLA_FAMILY: "", KLA_WORKBUSINESS: "", KLA_PERSONALDEV: "", KLA_FINANCIAL: "",
                        KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
@@ -499,7 +506,7 @@ class DataService
             }
         })
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     
@@ -514,7 +521,7 @@ class DataService
     */
     func saveCurrentRealitySummary(user: User, summary: CurrentRealitySummary)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
         
@@ -527,7 +534,7 @@ class DataService
             ref.child(kla).setValue(String(rating))
         }
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -539,7 +546,7 @@ class DataService
     */
     func saveYearlySummary(user: User, summary: YearlySummary )
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
         ref.child(YEARLY_REVIEW_OBS_REF_STRING).setValue(summary.observedAboutPerformanceText)
@@ -547,7 +554,7 @@ class DataService
         ref.child(YEARLY_REVIEW_DIFF_REF_STRING).setValue(summary.reasonsForDifferencesText)
         ref.child(SUMMARY_REVIEWED_REF_STRING).setValue(summary.reviewed)
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -559,7 +566,7 @@ class DataService
     */
     func saveSummary(user: User, summary: MonthlySummary)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
@@ -597,7 +604,7 @@ class DataService
             ref.child(key).setValue(String(val))
         }
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -609,7 +616,7 @@ class DataService
     */
     func loadCurrentRealitySummary(user: User, completion: ( summary: CurrentRealitySummary ) -> Void)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
         let summary = CurrentRealitySummary( )
@@ -626,7 +633,7 @@ class DataService
             completion( summary: summary )
         })
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -638,7 +645,7 @@ class DataService
     */
     func loadYearlySummary(user: User, completion: ( summary: YearlySummary ) -> Void)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
         let summary = YearlySummary()
@@ -652,7 +659,7 @@ class DataService
             completion( summary: summary )
         })
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -664,7 +671,7 @@ class DataService
     */
     func loadSummaries(user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         
         var monthlySummaries = [String: MonthlySummary?]( )
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid)
@@ -720,7 +727,7 @@ class DataService
             }
         })
         
-        self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -731,8 +738,8 @@ class DataService
     */
     func removeAllMonthlySummaries(user: User)
     {
-        self.database.goOnline()
+        //self.database.goOnline()
         self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).removeValue()
-        self.database.goOffline()
+        //self.database.goOffline()
     }
 }

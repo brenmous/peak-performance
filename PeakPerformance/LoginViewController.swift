@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import Firebase
-import SwiftValidator //https://github.com/jpotts18/SwiftValidator
-
-//TODO: - speed up initial load
+import Firebase // https://firebase.google.com
+import SwiftValidator // https://github.com/jpotts18/SwiftValidator
 
 /**
     Class that controls the Log In view.
@@ -25,7 +23,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     var currentUser: User?
     
     /// This view controller's SwiftValidator instance.
-    let validator = Validator( )
+    let validator = Validator()
     
     
     // MARK: - Outlets
@@ -53,18 +51,18 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     @IBAction func signUpButtonPressed(sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier( GO_TO_SIGN_UP_SEGUE , sender: self )
+        shouldPerformSegueWithIdentifier(GO_TO_SIGN_UP_SEGUE, sender: self )
     }
     
     @IBAction func resetPasswordButtonPressed(sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier( GO_TO_RESET_PW_SEGUE, sender: self )
+        shouldPerformSegueWithIdentifier(GO_TO_RESET_PW_SEGUE, sender: self )
     }
     
     // FIXME: - change these two unwind segues to the single "unwindToLogIn" segue
     @IBAction func unwindFromSignUp(segue: UIStoryboardSegue){}
     
-    @IBAction func unwindFromWGVC( segue: UIStoryboardSegue){}
+    @IBAction func unwindFromWGVC(segue: UIStoryboardSegue){}
     
     @IBAction func unwindToLogIn(segue: UIStoryboardSegue){}
     
@@ -73,14 +71,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("LIVC: validation successful") //DEBUG
         self.login()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)])
     {
-        print ("LIVC: validation failed") //DEBUG
         activityIndicator.stopAnimating()
     }
 
@@ -88,20 +84,19 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     func login()
     {
         activityIndicator.startAnimating()
-        //reset login error label
-        self.logInErrorLabel.hidden = true
-        self.logInErrorLabel.text = ""
-        self.logInButton.enabled = false
+        logInErrorLabel.hidden = true
+        logInErrorLabel.text = ""
+        logInButton.enabled = false
         
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
-            guard let error = error else {
-                //Auth successful so fetch user and content
+            guard let error = error else
+            {
                 self.fetchUser()
                 return
             }
             self.activityIndicator.stopAnimating()
-            print("LIVC: error logging in - " + error.localizedDescription) //DEBUG
+            print("LIVC: error logging in - " + error.localizedDescription)
             guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else {
                 return
             }
@@ -126,8 +121,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 self.logInErrorLabel.text = WRONG_PW_ERROR
                 
             default:
-                print("LIVC: error case not currently covered") //DEBUG
-                self.logInErrorLabel.text = "Error case not currently covered." //DEBUG
+                self.logInErrorLabel.text = FIR_INTERNAL_ERROR
             }
             self.logInErrorLabel.hidden = false
             self.logInButton.enabled = true
@@ -140,13 +134,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     {
         guard let user = FIRAuth.auth()?.currentUser else
         {
-            //couldn't auth user -- handle it here
             return
         }
-        print("LIVC: authenticated user \(user.uid)")
 
         let thingsToLoad = 6; var loadCount = 0
-        self.dataService.loadUser(user.uid) { (user) in
+        dataService.loadUser(user.uid) { (user) in
             self.currentUser = user
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
@@ -208,7 +200,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             });
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                print("user is \(user.year), prepare to fuck up")
                 if user.year > 0
                 {
                     self.dataService.loadYearlySummary(user) { (summary) in
@@ -221,7 +212,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 {
                     self.dataService.loadCurrentRealitySummary(user) { (summary) in
                         user.yearlySummary = summary
-                        print("cr loaded and saved in user object")
                         loadCount += 1
                         if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
                     }
@@ -235,7 +225,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        validator.validate( self )
+        validator.validate(self)
         textField.resignFirstResponder()
         return true
     }
@@ -251,7 +241,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
@@ -301,11 +290,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             let user = FIRAuth.auth()?.currentUser
             if user != nil
             {
-                self.fetchUser(); self.activityIndicator.startAnimating()
-            }
-            else
-            {
-                //tell user they need to reauthenticate
+                activityIndicator.startAnimating()
+                logInErrorLabel.hidden = true
+                logInErrorLabel.text = ""
+                logInButton.enabled = false
+                fetchUser()
             }
         }
     }
@@ -315,8 +304,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         super.viewWillAppear(animated)
         
         //reset fields
-        self.emailField.text = ""
-        self.passwordField.text = ""
+        emailField.text = ""
+        passwordField.text = ""
         
         //hide error labels
         logInErrorLabel.hidden = true
@@ -325,6 +314,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
         //enable log in button
         logInButton.enabled = true
+        
+        activityIndicator.stopAnimating()
         
     }
     
@@ -338,7 +329,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         // Dispose of any resources that can be recreated.
     }
     
-    // status bar invert color
+    /// status bar invert color
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
@@ -359,6 +350,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             
         }
     }
+    
     
 
 }
