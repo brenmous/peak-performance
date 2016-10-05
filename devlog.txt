@@ -267,3 +267,6 @@
 
 05/10/2016 9:10 - 10:30, 16:00 - 18:05
 	- bug fixing/refactoring/comments
+
+06/10/2016 00:15 - 
+	- reworking yearly review to keep goals

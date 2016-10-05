@@ -14,7 +14,7 @@ import SideMenu
 protocol MonthlyGoalDetailViewControllerDelegate
 {
     func addNewGoal( monthlyGoal: MonthlyGoal )
-    func saveModifiedGoal( monthlyGoal: MonthlyGoal )
+    func saveModifiedGoal( monthlyGoal: MonthlyGoal)
 }
 
 class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate, UITextViewDelegate

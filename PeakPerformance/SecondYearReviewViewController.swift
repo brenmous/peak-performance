@@ -54,20 +54,10 @@ class SecondYearReviewViewController: UIViewController {
         self.dataService.saveYearlySummary(self.currentUser!, summary: self.currentUser!.yearlySummary! as! YearlySummary)
         
         //Reset weekly and monthly goals
+        /*
         self.currentUser!.weeklyGoals = [WeeklyGoal]()
         self.currentUser!.monthlyGoals = [MonthlyGoal]()
         self.dataService.removeAllGoals(self.currentUser!.uid)
+        */
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

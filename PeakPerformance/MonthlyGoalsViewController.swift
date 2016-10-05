@@ -22,7 +22,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     /// The currently authenticated user.
     var currentUser: User?
-
     
     // MARK: - Outlets
     //progress bar
@@ -73,7 +72,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             return
         }
         cu.monthlyGoals.append(monthlyGoal)
-        self.dataService.saveGoal(cu.uid, goal: monthlyGoal)
+        dataService.saveGoal(cu.uid, goal: monthlyGoal)
+        createMonthlyGoalDueSoonNotification(monthlyGoal)
     }
     
     /**
@@ -82,7 +82,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
      - Parameters:
      - weeklyGoal: the edited weekly goal.
      */
-    func saveModifiedGoal(monthlyGoal: MonthlyGoal )
+    func saveModifiedGoal(monthlyGoal: MonthlyGoal)
     {
         guard let cu = currentUser else
         {
@@ -90,6 +90,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             return
         }
         self.dataService.saveGoal(cu.uid, goal: monthlyGoal)
+        removeMonthlyGoalDueSoonNotification(monthlyGoal)
     }
     
     /**
@@ -102,14 +103,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     {
         goal.complete = true
         self.saveModifiedGoal(goal)
-        print("MGVC: goal \(goal.gid) complete!")
-        
-        //sort completed goals and place them at end of array
-        guard let cu = currentUser else
-        {
-            return
-        }
-        cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+        removeMonthlyGoalDueSoonNotification(goal)
+        sortMonthlyGoals()
         self.tableView.reloadData()
     }
     
@@ -135,6 +130,79 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
         presentViewController(goalCompleteAlertController, animated: true, completion: nil )
     }
+    
+    /// Sorts the user's monthly goal array.
+    func sortMonthlyGoals()
+    {
+        guard let cu = currentUser else { return }
+        cu.monthlyGoals.sortInPlace({$0.deadline.compare($1.deadline) == .OrderedAscending})
+        cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+    }
+    
+    // MARK: - Local notifications
+    
+    /**
+        Sechedules an iOS local notification that alerts user when monthly goals are close to due.
+ 
+        - Parameters:
+            - monthlyGoal: the goal to create a notification for.
+    */
+    func createMonthlyGoalDueSoonNotification(monthlyGoal: MonthlyGoal)
+    {
+        let notification = UILocalNotification()
+        notification.alertBody = MG_NOTIFICATION_BODY(monthlyGoal)
+        let calendar = NSCalendar.currentCalendar()
+        // - FIXME:
+        notification.fireDate = calendar.dateByAddingUnit(.Day, value: 25, toDate: monthlyGoal.deadline, options: [])
+        notification.userInfo = [MG_NOTIFICATION_ID: monthlyGoal.gid]
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        //DEBUG
+        print("created notification: \(notification.alertBody) for date \(notification.fireDate)")
+    }
+    
+    /**
+        Deschedules the iOS local notification for a speicifed monthly goal.
+ 
+        - Parameters:
+            - monthlyGoal: goal to remove notification for.
+     */
+    func removeMonthlyGoalDueSoonNotification(monthlyGoal: MonthlyGoal)
+    {
+        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        for notification in notifications
+        {
+            guard let key = notification.userInfo![MG_NOTIFICATION_ID] else { continue }
+            if key as! String == monthlyGoal.gid
+            {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                return
+            }
+        }
+    }
+    
+    /**
+        Updates a monthly goal notification's fire date.
+    
+        - Parameters:
+            - monthlyGoal: the goal to update the notification for.
+    */
+    func updateMonthlyGoalDueSoonNotificationFireDate(monthlyGoal: MonthlyGoal)
+    {
+        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        for notification in notifications
+        {
+            guard let key = notification.userInfo![MG_NOTIFICATION_ID] else { continue }
+            if key as! String == monthlyGoal.gid
+            {
+                let calendar = NSCalendar.currentCalendar()
+                // - FIXME:
+                notification.fireDate = calendar.dateByAddingUnit(.Day, value: 25, toDate: monthlyGoal.deadline, options: [])
+                return
+            }
+        }
+    }
+    
     
     // MARK: - Overridden methods
     
@@ -166,8 +234,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             goal.checkIfDue()
         }
         
-        //sort completed goals and place them at end of array
-        currentUser!.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+        sortMonthlyGoals()
    
         
         //update progress bar

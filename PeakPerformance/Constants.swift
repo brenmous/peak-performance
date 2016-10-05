@@ -611,9 +611,18 @@ let USER_DEFAULTS_AUTO_LOGIN = "autoLogin"
 // MARK: - UILocalNotification strings
 
 /// Body of WG due soon local notification
-func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "\"\(goal.goalText)\" is due." }
+func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "Weekly goal \"\(goal.goalText)\" is due." }
 
+/// Key for ID in weekly goal notification.userSettings
 let WG_NOTIFICATION_ID = "GID"
 
+/// Body of MG due soon local notification
+func MG_NOTIFICATION_BODY(monthlyGoal: MonthlyGoal) -> String { return "Monthly goal \(monthlyGoal.goalText) is due soon." }
+
+/// Key for ID in monthly goal notification.userSettings
+let MG_NOTIFICATION_ID = "MONTH"
+
+
 // MARK: - Coach email strings
+
 let NO_COACH_EMAIL_MESSAGE = "No coach!"

@@ -89,23 +89,6 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
         return changeCoachEmailSucccessAlertController
     }
     
-    /**
-     Creates an alert informing user that mail can't be sent because no coach email has been supplied.
-     - Parameters:
-     - hvc: the History view controller.
-     
-     - Returns: an alert controller
-     */
-    func getNoCoachEmailAlert() -> UIAlertController
-    {
-        let noCoachEmailAlertController = UIAlertController(title: NO_COACH_EMAIL_ALERT_TITLE, message: NO_COACH_EMAIL_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: NO_COACH_EMAIL_ALERT_CONFIRM, style: .Default, handler: nil)
-        
-        noCoachEmailAlertController.addAction(confirm)
-        
-        return noCoachEmailAlertController
-    }
-    
     // MARK: - Overridden methods
     
     override func viewDidLoad() {
