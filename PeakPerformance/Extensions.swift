@@ -351,22 +351,7 @@ extension UIAlertController
         reviewAlertController.addAction(confirm); reviewAlertController.addAction(cancel)
         return reviewAlertController
     }
-    
-    /**
-     Creates an alert controller informing the user that their password change was successful.
-     - Returns: an alert controller.
-     */
-    static func getChangePasswordAlert(cpvc: ChangePasswordViewController) -> UIAlertController
-    {
-        let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default) { (action) in
-            cpvc.performSegueWithIdentifier(UNWIND_FROM_CHANGE_PW_SEGUE, sender: cpvc)
-        }
-        
-        changePWAlertController.addAction(confirm)
-        
-        return changePWAlertController
-    }
+
 
     
     /**
