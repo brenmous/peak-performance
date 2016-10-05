@@ -277,9 +277,9 @@
 		446C6FA71D93F8BF0094FA55 /* HistoryTab */ = {
 			isa = PBXGroup;
 			children = (
-				B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */,
 				B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */,
 				B569FDFB1D815A230093A827 /* SecondMonthlyReviewViewController.swift */,
+				B577EAE61D86B6A70039BB76 /* SummaryViewController.swift */,
 				B577EAE81D86BE230039BB76 /* SecondSummaryViewController.swift */,
 				B577EAEA1D86C8B50039BB76 /* SecondSummaryTableViewCell.swift */,
 				B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */,

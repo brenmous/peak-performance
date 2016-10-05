@@ -166,7 +166,6 @@ class SecondMonthlyReviewViewController: UITableViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: - Overriden methods
 
     // Function to diplay the points of 8 key life areas;
     // Derives the origin (0,0) from the midpoint of the parent view and the biggest circle
@@ -181,10 +180,11 @@ class SecondMonthlyReviewViewController: UITableViewController {
         // family point
         var familyFrame: CGRect = familyPoint.frame
         familyFrame.origin.x = xmidpoint
-        print("family x coord\(familyFrame.origin.x)")
-        print("coord x \(familyFrame.origin.x)")
-//      summary!.klaXaxis[KLA_FAMILY] = familyFrame.origin.x // assigns the coordinate to the klaXaxis dictionary
-        familyFrame.origin.y = ymidpoint + getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
+        
+        print("SVC: family x coord\(familyFrame.origin.x)") // DEBUG
+        print("SVC: family y coord\(familyFrame.origin.x)")  // DEBUG
+
+        familyFrame.origin.y = ymidpoint + UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
         print("coord y \(familyFrame.origin.y)")
         print("family y coord\(familyFrame.origin.y)")
         familyPoint.translatesAutoresizingMaskIntoConstraints = true
@@ -192,28 +192,28 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         // financial point
         var financialFrame: CGRect = financialPoint.frame
-        financialFrame.origin.x = xmidpoint - getIncrementFromRating(summary!.klaRatings[KLA_FINANCIAL]!)
+        financialFrame.origin.x = xmidpoint - UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FINANCIAL]!)
         financialFrame.origin.y = ymidpoint
         financialPoint.translatesAutoresizingMaskIntoConstraints = true
         financialPoint.frame = financialFrame
         
         // friend point
         var friendFrame: CGRect = friendPoint.frame
-        friendFrame.origin.x = xmidpoint + ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_FRIENDSSOCIAL]!))
-        friendFrame.origin.y = ymidpoint + ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_FRIENDSSOCIAL]!))
+        friendFrame.origin.x = xmidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FRIENDSSOCIAL]!))
+        friendFrame.origin.y = ymidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FRIENDSSOCIAL]!))
         friendPoint.translatesAutoresizingMaskIntoConstraints = true
         friendPoint.frame = friendFrame
     
         // health point
         var healthFrame: CGRect = healthPoint.frame
         healthFrame.origin.x = xmidpoint
-        healthFrame.origin.y = ymidpoint - getIncrementFromRating(summary!.klaRatings[KLA_HEALTHFITNESS]!)
+        healthFrame.origin.y = ymidpoint - UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_HEALTHFITNESS]!)
         healthPoint.translatesAutoresizingMaskIntoConstraints = true
         healthPoint.frame = healthFrame
         
         // partner point
         var partnerFrame: CGRect = partnerPoint.frame
-        partnerFrame.origin.x = xmidpoint + getIncrementFromRating(summary!.klaRatings[KLA_PARTNER]!)
+        partnerFrame.origin.x = xmidpoint + UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_PARTNER]!)
         partnerFrame.origin.y = ymidpoint
         partnerPoint.translatesAutoresizingMaskIntoConstraints = true
         partnerPoint.frame = partnerFrame
@@ -221,75 +221,31 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         // personal development point
         var personalDevelopmentFrame: CGRect = personalDevelopmentPoint.frame
-        personalDevelopmentFrame.origin.x = xmidpoint - ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_PERSONALDEV]!))
-        personalDevelopmentFrame.origin.y = ymidpoint - ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_PERSONALDEV]!))
+        personalDevelopmentFrame.origin.x = xmidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_PERSONALDEV]!))
+        personalDevelopmentFrame.origin.y = ymidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_PERSONALDEV]!))
         personalDevelopmentPoint.translatesAutoresizingMaskIntoConstraints = true
         personalDevelopmentPoint.frame = personalDevelopmentFrame
         
         
         // work point
         var workFrame: CGRect = workPoint.frame
-        workFrame.origin.x = xmidpoint + ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_WORKBUSINESS]!))
-        workFrame.origin.y = ymidpoint - ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_WORKBUSINESS]!))
+        workFrame.origin.x = xmidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_WORKBUSINESS]!))
+        workFrame.origin.y = ymidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_WORKBUSINESS]!))
         workPoint.translatesAutoresizingMaskIntoConstraints = true
         workPoint.frame = workFrame
         
         
         // emotional spiritual point
         var emotionalSpiritualFrame: CGRect = workPoint.frame
-        emotionalSpiritualFrame.origin.x = xmidpoint - ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
-        emotionalSpiritualFrame.origin.y = ymidpoint + ((sqrt(2)/2) * getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
+        emotionalSpiritualFrame.origin.x = xmidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
+        emotionalSpiritualFrame.origin.y = ymidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
         emotionalSpiritual.translatesAutoresizingMaskIntoConstraints = true
         emotionalSpiritual.frame = emotionalSpiritualFrame
     
  
     }
     
- 
-
-    // Returns an incremental value in CGFloat for the dot to move from the origin
-    // - Parameter: Rating from Summary KLA Rating dictionary
-    
-    func getIncrementFromRating(rating: Double) -> CGFloat {
-        
-        let decimal = rating * 10
-        var increment: CGFloat = 0
-        if (decimal < 1.25 && decimal >= 0) {
-    
-            increment = 15
-    
-        } else if (decimal <= 2.5 && decimal > 1.25) {
-            
-            increment = 30
-            
-        } else if (decimal <= 3.85 && decimal > 2.5) {
-            
-            increment = 45
-            
-        } else if (decimal <= 5.0 && decimal > 3.85) {
-            
-            increment = 60
-            
-        } else if (decimal <= 6.35 && decimal > 5.0) {
-            
-            increment = 75
-            
-        } else if (decimal <= 7.55 && decimal > 6.35) {
-            
-            increment = 90
-            
-        } else if (decimal <= 8.80 && decimal > 7.55) {
-            
-            increment = 105
-            
-        } else if (decimal <= 10.0 && decimal > 8.8) {
-            
-            increment = 120
-            
-        }
-        
-        return increment
-    }
+        // MARK: - Overriden methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -299,7 +255,6 @@ class SecondMonthlyReviewViewController: UITableViewController {
         // Poptip
         popTip.offset = -50
         popTip.arrowSize = CGSize(width: 10, height: 10)
-        popTip.shouldDismissOnTap = true
         popTip.shouldDismissOnTap = true
      }
 

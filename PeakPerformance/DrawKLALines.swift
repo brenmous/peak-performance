@@ -26,8 +26,8 @@ class DrawKLALines: UIView {
         
 //        let xcoord = summary?.klaXaxis[KLA_FAMILY]
         
-        CGContextMoveToPoint(context, 120, 180) // start of the line
-        CGContextAddLineToPoint(context, 80, 50)
+//        CGContextMoveToPoint(context, 120, 180) // start of the line
+//        CGContextAddLineToPoint(context, 80, 50)
 //        CGContextAddLineToPoint(context, 120, 50) // end of the line
 
         // Actually draw the path
