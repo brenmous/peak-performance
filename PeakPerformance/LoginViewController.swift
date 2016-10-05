@@ -73,14 +73,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("LIVC: validation successful") //DEBUG
         self.login()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
     func validationFailed(errors: [(Validatable, ValidationError)])
     {
-        print ("LIVC: validation failed") //DEBUG
         activityIndicator.stopAnimating()
     }
 
@@ -100,7 +98,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 return
             }
             self.activityIndicator.stopAnimating()
-            print("LIVC: error logging in - " + error.localizedDescription) //DEBUG
+            print("LIVC: error logging in - " + error.localizedDescription)
             guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else {
                 return
             }
@@ -125,8 +123,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 self.logInErrorLabel.text = WRONG_PW_ERROR
                 
             default:
-                print("LIVC: error case not currently covered") //DEBUG
-                self.logInErrorLabel.text = "Error case not currently covered." //DEBUG
+                self.logInErrorLabel.text = FIR_INTERNAL_ERROR
             }
             self.logInErrorLabel.hidden = false
             self.logInButton.enabled = true
@@ -139,10 +136,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     {
         guard let user = FIRAuth.auth()?.currentUser else
         {
-            //couldn't auth user -- handle it here
             return
         }
-        print("LIVC: authenticated user \(user.uid)")
 
         let thingsToLoad = 6; var loadCount = 0
         self.dataService.loadUser(user.uid) { (user) in
@@ -248,7 +243,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
