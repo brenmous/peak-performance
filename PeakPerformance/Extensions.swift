@@ -272,28 +272,30 @@ extension NSDate
         
         var monthlyDatePickerArray = [String]( )
         
+        let currentYear = NSDate().yearAsString(NSDate())
+        let nextYear = NSDate().yearAsString(NSCalendar.currentCalendar().dateByAddingUnit(.Year, value: 1, toDate: NSDate(), options: [])!)
         if endMonth < startMonth
         {
             for i in startMonth...months.count - 1
             {
-                monthlyDatePickerArray.append(months[i])
+                monthlyDatePickerArray.append("\(months[i]) \(currentYear)")
             }
             
             for i in 0...endMonth
             {
-                monthlyDatePickerArray.append(months[i])
+                monthlyDatePickerArray.append("\(months[i]) \(nextYear)")
             }
         }
         else if endMonth > startMonth
         {
             for i in startMonth...endMonth
             {
-                monthlyDatePickerArray.append(months[i])
+                monthlyDatePickerArray.append("\(months[i]) \(currentYear)")
             }
         }
         else if endMonth == startMonth
         {
-            monthlyDatePickerArray.append(months[startMonth])
+            monthlyDatePickerArray.append("\(months[startMonth]) \(currentYear)")
         }
         
         return monthlyDatePickerArray
