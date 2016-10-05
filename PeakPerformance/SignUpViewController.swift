@@ -3,22 +3,13 @@
 //  PeakPerformance
 //
 //  Created by Bren on 17/07/2016.
-//  Copyright © 2016 Bren. All rights reserved.
+//  Copyright © 2016 CtrlAltDesign. All rights reserved.
 //
 
 import UIKit
-import Firebase
+import Firebase // https://firebase.google.com
 import SwiftValidator //https://github.com/jpotts18/SwiftValidator
 
-/*
-/**
-    Protocol for specifying Sign Up self.dataService.
- */
-protocol SignUpself.dataService
-{
-    func saveUser( user: User )
-}
-*/
 
 /**
     Class that controls the Sign Up view.
@@ -27,6 +18,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     
     // MARK: - Properties
     
+    /// DataService instance for interacting with Firebase database.
     let dataService = DataService()
     
     /// The currently authenticated user.
@@ -43,10 +35,11 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var orgField: UITextField!
     @IBOutlet weak var emailField: UITextField!
-    //@IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
-    @IBOutlet weak var activityIndicatorSU: UIActivityIndicatorView!
+    
+    //load indicators
+    @IBOutlet weak var activityIndicatorSU: UIActivityIndicatorView! //BEN
     
     //labels
     @IBOutlet weak var firstNameErrorLabel: UILabel!
@@ -65,7 +58,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     
     @IBAction func signUpButtonPressed(sender: AnyObject)
     {
-        //self.signUp()
         validator.validate(self)
     }
 
@@ -75,16 +67,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("SUVC: validation successful") //DEBUG
-        self.signUp()
+        signUp()
         activityIndicatorSU.startAnimating()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
-    {
-        print ("SUVC: validation failed") //DEBUG
-    }
+    func validationFailed(errors: [(Validatable, ValidationError)]){}
     
     /// Attempts to create a new Firebase user account with supplied email and password.
     func signUp()
@@ -92,14 +80,13 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
             guard let error = error else
             {
-                print("SUVC: account created") //DEBUG
                 self.firstLogin()
                 return
             }
             //Check for Firebase errors and inform user of error here somewhere
-            print("SUVC: error creating account - " + error.localizedDescription) //DEBUG
+            print("SUVC - signUp(): " + error.localizedDescription)
             self.activityIndicatorSU.stopAnimating()
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
+            guard let errCode = FIRAuthErrorCode(rawValue: error.code) else
             {
                 return
             }
@@ -121,8 +108,8 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.signUpButton.enabled = true
               
             default:
-                print("SUVC: error case not currently covered") //DEBUG
-                self.signUpErrorLabel.text = "Error not currently covered."
+                print("SUVC - signUp(): " + error.localizedDescription)
+                self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
                
@@ -130,28 +117,24 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         }
     }
     
-    /// Authenticates the user with the supplied details and if succesfull, creates the user object.
-    func firstLogin( )
+    /// Authenticates the user with the supplied details and if succesful, creates the user object.
+    func firstLogin()
     {
         //reset error label
-        self.signUpErrorLabel.hidden = true
-        self.signUpErrorLabel.text = ""
-        self.signUpButton.enabled = false
+        signUpErrorLabel.hidden = true
+        signUpErrorLabel.text = ""
+        signUpButton.enabled = false
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text! ) { (user, error) in
             guard let error = error else
             {
-                print("SUVC: logged in")
                 self.createUser( )
-                //currently this segue goes to the TabBar view, but this where you would segue to the tutorial/initial setup
-                //feel free to change the segue in the storyboard (but keep the segue identifier, or change it here) when it's ready
                 self.activityIndicatorSU.stopAnimating()
-                self.performSegueWithIdentifier( FT_LOG_IN_SEGUE, sender: self )
+                self.performSegueWithIdentifier(FT_LOG_IN_SEGUE, sender: self)
                 return
             }
-            //Check for Firebase errors and inform user here
-            print("SUVC: error logging in - " + error.localizedDescription) //DEBUG
+            print("SUVC - firstLogin(): " + error.localizedDescription)
             self.activityIndicatorSU.stopAnimating()
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
+            guard let errCode = FIRAuthErrorCode(rawValue: error.code) else
             {
                 return
             }
@@ -178,51 +161,38 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                 self.signUpButton.enabled = true
                 
             default:
-                print("LUVC: error case not currently covered") //DEBUG
-                self.signUpErrorLabel.text = "Error case not currently covered." //DEBUG
+                print("LUVC - firstLogin(): " + error.localizedDescription)
+                self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
                 self.signUpErrorLabel.hidden = false
                 self.signUpButton.enabled = true
             }
-            
         }
-        
     }
     
     /// Creates a new user and save details to database.
-    func createUser( )
+    func createUser()
     {
         guard let user = FIRAuth.auth()?.currentUser else
         {
-            //couldn't auth user - handle it here
+            // - FIXME: Inform user of firebase error and kick them to root view
             return
         }
-        //create new user object
-        let fname = self.firstNameField.text!
-        let lname = self.lastNameField.text!
-        let org = self.orgField.text!
-        let email = self.emailField.text!
+        
+        let fname = firstNameField.text!
+        let lname = lastNameField.text!
+        let org = orgField.text!
+        let email = emailField.text!
         let uid = user.uid as String
-        let startDate = NSDate( )
+        let startDate = NSDate()
         
-        self.currentUser = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate )
+        self.currentUser = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate)
         
-        self.dataService.saveUser( self.currentUser! )
+        self.dataService.saveUser(self.currentUser!)
         
     }
     
-    // MARK: - keyboard stuff
-    //Dismisses keyboard when return is pressed.
-    func textFieldShouldReturn(textField: UITextField) -> Bool
-    {
-        validator.validate( self )
-        textField.resignFirstResponder()
-        return true
-    }
-    //Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
-    {
-        self.view.endEditing(true)
-    }
+    
+    // MARK: - Overriden methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -246,7 +216,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
                     textField.layer.borderColor = TEXTFIELD_ERROR_BORDER_COLOUR
                     textField.layer.borderWidth = CGFloat( TEXTFIELD_ERROR_BORDER_WIDTH )
                 }
-            })
+        })
         
         //Registering fields to be validated by SwiftValidator.
         //Params for registration are the text field, the label to display the error and an array of validation rules which can also each take an error message as an argument.
@@ -282,62 +252,84 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         passwordField.delegate = self
         confirmPasswordField.delegate = self
     }
-
-    // MARK: Override functions
-    override func didReceiveMemoryWarning() {
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
         
         //clear fields
-        self.firstNameField.text = ""
-        self.lastNameField.text = ""
-        self.orgField.text = ""
-        self.emailField.text = ""
-        self.passwordField.text = ""
-        self.confirmPasswordField.text = ""
+        firstNameField.text = ""
+        lastNameField.text = ""
+        orgField.text = ""
+        emailField.text = ""
+        passwordField.text = ""
+        confirmPasswordField.text = ""
         
         //hide error labels
         firstNameErrorLabel.hidden = true
         lastNameErrorLabel.hidden = true
         orgErrorLabel.hidden = true
         emailErrorLabel.hidden = true
-        //userNameErrorLabel.hidden = true
         passwordErrorLabel.hidden = true
         confirmPasswordErrorLabel.hidden = true
         signUpErrorLabel.hidden = true
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(animated: Bool)
+    {
         super.viewWillDisappear(animated)
         activityIndicatorSU.stopAnimating()
     }
     
-    // status bar invert color
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    // BEN //
+    // Inverts colour of the status bar.
+    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    {
         return UIStatusBarStyle.LightContent
     }
+    // END BEN //
+    
+    
+    // MARK: - keyboard stuff
+    
+    /// Dismisses keyboard when return is pressed.
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        validator.validate(self)
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    /// Dismisses keyboard when tap outside keyboard detected.
+    override func touchesBegan(touchers: Set<UITouch>, withEvent event: UIEvent?)
+    {
+        self.view.endEditing(true)
+    }
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        if segue.identifier == GO_TO_LOG_IN_SEGUE
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        switch segue.identifier!
         {
+        case GO_TO_LOG_IN_SEGUE:
             let dvc = segue.destinationViewController as! LoginViewController
             dvc.currentUser = self.currentUser
-        }
-        else if segue.identifier == FT_LOG_IN_SEGUE
-        {
-            //here is where you would segue to tutorial/inital setup when it's ready
+            
+        case FT_LOG_IN_SEGUE:
             let dvc = segue.destinationViewController as! TutorialViewController
             dvc.currentUser = self.currentUser
-
+            
+        default:
+            return
         }
     }
-    
-
 }

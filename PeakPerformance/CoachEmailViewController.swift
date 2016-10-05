@@ -3,7 +3,7 @@
 //  PeakPerformance
 //
 //  Created by Bren on 25/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 CtrlAltDesign. All rights reserved.
 //
 
 import UIKit
