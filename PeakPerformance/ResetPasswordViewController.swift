@@ -7,9 +7,12 @@
 //
 
 import UIKit
-import SwiftValidator
-import Firebase
+import SwiftValidator // https://github.com/jpotts18/SwiftValidator
+import Firebase // https://firebase.google.com
 
+/**
+    Class that handles the reset password view.
+ */
 class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextFieldDelegate
 {
     
@@ -18,13 +21,21 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     /// SwiftValidator instance.
     let validator = Validator( )
     
+    
     // MARK: - Outlets
+    
+    //Labels
     @IBOutlet weak var resetPasswordErrorLabel: UILabel!
-    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var resetPasswordButton: UIButton!
     
-    @IBOutlet weak var activityIndicatorReset: UIActivityIndicatorView!
+    //Fields
+    @IBOutlet weak var emailField: UITextField!
+    
+    //Load indicators
+    @IBOutlet weak var activityIndicatorReset: UIActivityIndicatorView! //BEN
+    
+    
     // MARK: - Actions
    
     @IBAction func resetPasswordButtonPressed(sender: AnyObject)
@@ -33,10 +44,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
         activityIndicatorReset.startAnimating()
     }
     
-    @IBAction func logInButtonPressed(sender: AnyObject)
-    {
-        //unwind to log in (storyboard)
-    }
+    @IBAction func logInButtonPressed(sender: AnyObject){} //unwind to login (storyboard segue)
     
     
     // MARK: - Methods
@@ -45,7 +53,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     func validationSuccessful()
     {
         print ("RPVC: validation successful") //DEBUG
-        resetPassword( )
+        resetPassword()
         activityIndicatorReset.stopAnimating()
     }
     
@@ -56,26 +64,25 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
        
     }
     
-    func resetPassword( )
+    /// Sends a reset password email to the currently authenticated user.
+    func resetPassword()
     {
         //reset error label
-        self.resetPasswordErrorLabel.hidden = true
-        self.resetPasswordErrorLabel.text = ""
-        self.resetPasswordButton.enabled = false
+        resetPasswordErrorLabel.hidden = true
+        resetPasswordErrorLabel.text = ""
+        resetPasswordButton.enabled = false
         FIRAuth.auth( )?.sendPasswordResetWithEmail(emailField.text!, completion: {
             error in
             guard let error = error else
             {
-                //No error, send email
-                print("RPVC: password reset successful")
                 self.activityIndicatorReset.stopAnimating()
                 self.resetPasswordErrorLabel.text = RESET_EMAIL_SENT
                 self.resetPasswordErrorLabel.hidden = false
                 self.resetPasswordButton.enabled = true
                 return
             }
-            print("RPVC: error resetting password - " + error.localizedDescription ) // DEBUG
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
+            print("RPVC - resetPassword() " + error.localizedDescription)
+            guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
             {
                 return
             }
@@ -107,8 +114,8 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
                 self.resetPasswordButton.enabled = true
                 
             default:
-                print("RPVC: error case not currently covered") //DEBUG
-                self.resetPasswordErrorLabel.text = "Error case not currently covered." //DEBUG
+                print("RPVC - resetPassword() " + error.localizedDescription)
+                self.resetPasswordErrorLabel.text = FIR_INTERNAL_ERROR
                 self.resetPasswordErrorLabel.hidden = false
                 self.resetPasswordButton.enabled = true
             }
@@ -116,15 +123,16 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     }
     
     // MARK: - keyboard stuff
-    //Dismisses keyboard when return is pressed.
+    /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        validator.validate( self )
+        validator.validate(self)
         textField.resignFirstResponder()
         return true
     }
-    //Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    
+    /// Dismisses keyboard when tap outside keyboard detected.
+    override func touchesBegan(touchers: Set<UITouch>, withEvent event: UIEvent?)
     {
         self.view.endEditing(true)
     }
@@ -160,13 +168,14 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
         //set up text field delegates
         emailField.delegate = self
     }
+    
     // MARK: Override Functions
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
         //clear field
-        self.emailField.text = ""
+        emailField.text = ""
         
         //hide error labels
         resetPasswordErrorLabel.hidden = true
@@ -179,7 +188,11 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
         // Dispose of any resources that can be recreated.
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    // BEN //
+    /// Inverts the status bar colour.
+    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    {
         return UIStatusBarStyle.LightContent
     }
+    // END BEN //
 }
