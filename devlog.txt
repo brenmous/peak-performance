@@ -265,5 +265,6 @@
 	- local notifications for when weekly goals are due
 	- go online/offline to reduce concurrent firebase users
 
-05/10/2016 9:10 - 10:30
+05/10/2016 9:10 - 10:30, 16:00 - 
 	- bug fixing/refactoring/comments
+
