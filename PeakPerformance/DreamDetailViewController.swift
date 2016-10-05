@@ -3,13 +3,9 @@
 //  PeakPerformance
 //
 //  Created by Sowmya on 13/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 CtrlAltDesign All rights reserved.
 //
 
-
-// TODO: - Change unmuted properties to constants ("let")
-// TODO: - Refactor properties that do not need to be global in class
-// TODOL - Comment properties and methods
 
 import UIKit
 import Photos
@@ -26,7 +22,6 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     
     // MARK: - Properties
-    // These need to be refactored and commented.
     
     var assetCollection: PHAssetCollection!
     var albumCreated : Bool = false
@@ -120,7 +115,6 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     
     // MARK: - Methods
-    //These need to be commented.
     
     func createNewDream( )
     {
