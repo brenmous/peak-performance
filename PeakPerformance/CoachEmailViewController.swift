@@ -13,8 +13,6 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
 
     // MARK: - Properties
     
-    let dataService = DataService()
-    
     var currentUser: User?
     
     let validator = Validator( )
@@ -57,7 +55,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     func changeCoachEmail()
     {
         self.currentUser?.coachEmail = self.newCoachEmailField.text!
-        self.dataService.saveCoachEmail(self.currentUser!)
+        DataService.saveCoachEmail(self.currentUser!)
         self.activityIndicator.stopAnimating()
         self.presentViewController(UIAlertController.getChangeCoachEmailSuccessAlert(self), animated: true, completion: nil)
     }

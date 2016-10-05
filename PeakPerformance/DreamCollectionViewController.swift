@@ -18,8 +18,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     // MARK: - Properties
     
-    let dataService = DataService()
-    
     var currentUser: User?
     
     var currentDream: Dream?
@@ -79,7 +77,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         
         
         StorageService.saveDreamImage(cu, dream: dream) { () in
-            self.dataService.saveDream(cu.uid, dream: dream)
+            DataService.saveDream(cu.uid, dream: dream)
         }
         
         
@@ -102,7 +100,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         
         StorageService.saveDreamImage(cu, dream: dream) { ()
-            self.dataService.saveDream(cu.uid, dream: dream)
+            DataService.saveDream(cu.uid, dream: dream)
         }
         
         self.collectionView?.reloadData()
@@ -116,7 +114,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             return
         }
         StorageService.removeDreamImage(cu, dream: dream)
-        self.dataService.removeDream(cu.uid, dream: dream)
+        DataService.removeDream(cu.uid, dream: dream)
         cu.dreams.removeAtIndex(globalindexPathForRow!)
         self.collectionView?.reloadData( )
         

@@ -19,8 +19,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
  
     // MARK: - Properties
     
-    let dataService = DataService()
-    
     /// The currently authenticated user.
     var currentUser: User?
     
@@ -146,12 +144,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         print("LIVC: authenticated user \(user.uid)")
 
         let thingsToLoad = 6; var loadCount = 0
-        self.dataService.loadUser(user.uid) { (user) in
+        DataService.loadUser(user.uid) { (user) in
             self.currentUser = user
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
                 
-                self.dataService.loadSummaries(user) { (summaries) in
+                DataService.loadSummaries(user) { (summaries) in
                     user.monthlySummaries = summaries
                     loadCount += 1
                     if loadCount == thingsToLoad
@@ -162,7 +160,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             });
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                self.dataService.loadWeeklyGoals(user.uid) { (weeklyGoals) in
+                DataService.loadWeeklyGoals(user.uid) { (weeklyGoals) in
                     user.weeklyGoals = weeklyGoals
                     loadCount += 1
                     if loadCount == thingsToLoad
@@ -173,7 +171,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             });
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                self.dataService.loadMonthlyGoals(user.uid) { (monthlyGoals) in
+                DataService.loadMonthlyGoals(user.uid) { (monthlyGoals) in
                     user.monthlyGoals = monthlyGoals
                     loadCount += 1
                     if loadCount == thingsToLoad
@@ -185,7 +183,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                self.dataService.loadDreams(user.uid) { (dreams) in
+                DataService.loadDreams(user.uid) { (dreams) in
                     user.dreams = dreams
                     loadCount += 1
                     if loadCount == thingsToLoad
@@ -197,7 +195,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                self.dataService.loadValues(user.uid) { (values) in
+                DataService.loadValues(user.uid) { (values) in
                     user.values = values
                     loadCount += 1
                     if loadCount == thingsToLoad
@@ -211,7 +209,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 print("user is \(user.year), prepare to fuck up")
                 if user.year > 0
                 {
-                    self.dataService.loadYearlySummary(user) { (summary) in
+                    DataService.loadYearlySummary(user) { (summary) in
                         user.yearlySummary = summary
                         loadCount += 1
                         if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
@@ -219,7 +217,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 }
                 else
                 {
-                    self.dataService.loadCurrentRealitySummary(user) { (summary) in
+                    DataService.loadCurrentRealitySummary(user) { (summary) in
                         user.yearlySummary = summary
                         print("cr loaded and saved in user object")
                         loadCount += 1

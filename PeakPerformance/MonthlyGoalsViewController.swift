@@ -18,8 +18,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     // MARK: - Properties
     
-    let dataService = DataService()
-    
     /// The currently authenticated user.
     var currentUser: User?
 
@@ -73,7 +71,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             return
         }
         cu.monthlyGoals.append(monthlyGoal)
-        self.dataService.saveGoal(cu.uid, goal: monthlyGoal)
+        DataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
     /**
@@ -89,7 +87,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             //user not available handle it HANDLE IT!
             return
         }
-        self.dataService.saveGoal(cu.uid, goal: monthlyGoal)
+        DataService.saveGoal(cu.uid, goal: monthlyGoal)
     }
     
     /**
@@ -396,7 +394,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 //no user! wuh oh!
                 return
             }
-            self.dataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
+            DataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
             cu.monthlyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

@@ -12,10 +12,6 @@ import AMPopTip
 
 class SecondMonthlyReviewViewController: UITableViewController {
 
-    // MARK: - Properties 
-    
-    let dataService = DataService()
-    
     /// The currently logged in user.
     var currentUser: User?
     
@@ -24,7 +20,6 @@ class SecondMonthlyReviewViewController: UITableViewController {
     
     /// Poptip
     let popTip = AMPopTip()
-    
     
     // MARK: - Outlets
     @IBOutlet weak var whatIsWorkingTextView: UITextView!
@@ -124,7 +119,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
             return
         }
         s.reviewed = true
-        self.dataService.saveSummary( cu, summary: s )
+        DataService.saveSummary( cu, summary: s )
         performSegueWithIdentifier( UNWIND_TO_HISTORY_SEGUE, sender: self)
         
     }

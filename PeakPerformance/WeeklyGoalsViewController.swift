@@ -18,8 +18,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
     // MARK: - Properties
 
-    let dataService = DataService()
-    
     /// The currently authenticated user.
     var currentUser: User?
   
@@ -73,7 +71,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     {
         guard let cu = currentUser else { return }
         cu.weeklyGoals.append(weeklyGoal)
-        self.dataService.saveGoal(cu.uid, goal: weeklyGoal)
+        DataService.saveGoal(cu.uid, goal: weeklyGoal)
         UILocalNotification.createWeeklyGoalDueSoonNotification(weeklyGoal)
     }
     
@@ -86,7 +84,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     func saveModifiedGoal(weeklyGoal: WeeklyGoal)
     {
         guard let cu = currentUser else { return }
-        self.dataService.saveGoal(cu.uid, goal: weeklyGoal)
+        DataService.saveGoal(cu.uid, goal: weeklyGoal)
         UILocalNotification.updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal)
     }
     
@@ -363,7 +361,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             // Delete the row from the data source
             guard let cu = self.currentUser else { return }
             let goal = cu.weeklyGoals[indexPath.row]
-            self.dataService.removeGoal(cu.uid, goal: goal) // remove goal
+            DataService.removeGoal(cu.uid, goal: goal) // remove goal
             cu.weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             UILocalNotification.removeWeeklyGoalDueSoonNotification(goal)

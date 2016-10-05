@@ -11,9 +11,6 @@ import UIKit
 class SecondYearReviewViewController: UIViewController {
 
     // MARK: - Properties
-    
-    let dataService = DataService()
-    
     var currentUser: User?
     
     
@@ -44,19 +41,19 @@ class SecondYearReviewViewController: UIViewController {
         //Update user's year property
         let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self.currentUser!)
         self.currentUser!.year = yearsPassedSinceStart
-        self.dataService.saveUserYear(self.currentUser!)
+        DataService.saveUserYear(self.currentUser!)
         
         //Wipe all the user's monthly summaries from the previous year
         self.currentUser!.monthlySummaries = [String:MonthlySummary]( )
-        self.dataService.removeAllMonthlySummaries(self.currentUser!)
+        DataService.removeAllMonthlySummaries(self.currentUser!)
         
         //Save the completed yearly summary
-        self.dataService.saveYearlySummary(self.currentUser!, summary: self.currentUser!.yearlySummary! as! YearlySummary)
+        DataService.saveYearlySummary(self.currentUser!, summary: self.currentUser!.yearlySummary! as! YearlySummary)
         
         //Reset weekly and monthly goals
         self.currentUser!.weeklyGoals = [WeeklyGoal]()
         self.currentUser!.monthlyGoals = [MonthlyGoal]()
-        self.dataService.removeAllGoals(self.currentUser!.uid)
+        DataService.removeAllGoals(self.currentUser!.uid)
     }
     
     

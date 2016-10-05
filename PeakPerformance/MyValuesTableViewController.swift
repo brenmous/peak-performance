@@ -13,8 +13,6 @@ import Firebase
 
 class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
 
-    let dataService = DataService()
-    
     /// The currently authenticated user.
     var currentUser: User?
 
@@ -67,7 +65,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
             return
         }
         cu.values[KLA_FRIENDSSOCIAL] = friendsTextView.text
-        self.dataService.saveValues(cu)
+        DataService.saveValues(cu)
         print("MVVC: This is my financial goal \(cu.values[KLA_FINANCIAL]!)") //label debug strings please
     }
     /// Updates text views with details from the current my values (if available)

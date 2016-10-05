@@ -13,39 +13,43 @@ import Firebase
 /**
     This class handles read/write to the Firebase realtime database.
   */
-class DataService
-{
-    // MARK: - Properties
-    let database = FIRDatabase.database()
 
-    
+//TODO: - fix summary reference (summaries->user->year->month)
+//TODO: - check if child exists before fetching data
+class DataService  //: SignUpDataService, LogInDataService
+{
     // MARK: - User Methods
     
     /**
         Saves a user's details to the database.
         This method is used only when creating a user for the first time at sign up and only saves personal info.
+        Depending on if we allow users to change their details, then this will also be used in that situation.
 
         - Parameters:
             - user: the user being saved.
     */
-    func saveUser(user: User)
+    static func saveUser(user: User)
     {
-        self.database.goOnline()
         
-        let userRef = self.database.reference().child(USERS_REF_STRING).child(user.uid)
-
+        //Create child references from FIRDatabase.database().reference() to define the nodes that data will be stored under.
+        // E.g. "Base -> Users -> UserID"
+        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
+        
+        //Create child references for each property and use setValue to store the corresponding value.
         userRef.child(FNAME_REF_STRING).setValue(user.fname)
         userRef.child(LNAME_REF_STRING).setValue(user.lname)
         userRef.child(ORG_REF_STRING).setValue(user.org)
         userRef.child(EMAIL_REF_STRING).setValue(user.email)
         
+        //convert startDate to string
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let startDateString = dateFormatter.stringFromDate(user.startDate)
         
         userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
         
-        self.database.goOffline()
+        print("DS: user stored in database") //DEBUG
+        
     }
     
     /**
@@ -54,47 +58,46 @@ class DataService
         - Parameters:
             - user: user whose coach email to save.
     */
-    func saveCoachEmail(user: User)
+    static func saveCoachEmail(user: User)
     {
-        self.database.goOnline()
+        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
         
-        let userRef = self.database.reference().child(USERS_REF_STRING).child(user.uid)
         userRef.child(COACH_EMAIL_REF_STRING).setValue(user.coachEmail)
-
-        self.database.goOffline()
+        
+        print("DS - saveCoachEmail(): \(user.coachEmail) saved")
     }
     
-    /** 
-        Save's user's current year of program to database.
+    /** Save's user's current year of program to database.
  
         - Parameters:
             - user: owner of year being saved.
     */
-    func saveUserYear(user: User)
+    static func saveUserYear(user: User)
     {
-        self.database.goOnline()
+        let userRef = FIRDatabase.database().reference().child(USERS_REF_STRING).child(user.uid)
         
-        let userRef = self.database.reference().child(USERS_REF_STRING).child(user.uid)
         userRef.child(USER_YEAR_REF_STRING).setValue(user.year)
         
-        self.database.goOffline()
+        print("DS - saveUserYear(): \(user.year) saved")
     }
     
     /**
-        Loads a user from the database and creates a user object.
+     Loads a user from the database and creates a user object.
      
-        - Parameters:
-            - uid: the user's unique ID.
-            - completion: the completion block that passes back the completed user.
+     - Parameters:
+     - uid: the user's unique ID.
+     - completion: the completion block that passes back the completed user.
      */
-    func loadUser(uid: String, completion: (user: User) -> Void)
+    static func loadUser( uid: String, completion: ( user: User ) -> Void )
     {
-        self.database.goOnline()
         
-        let usersRef = self.database.reference().child(USERS_REF_STRING)
+        //As with saving, create references to the nodes we want to retrieve data from.
+        let usersRef = FIRDatabase.database().reference().child(USERS_REF_STRING)
         let userRef = usersRef.child(uid)
 
         userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            print( "DS: fetching user" ) //DEBUG
             let fname = snapshot.value![FNAME_REF_STRING] as! String
             let lname = snapshot.value![LNAME_REF_STRING] as! String
             let org = snapshot.value![ORG_REF_STRING] as! String
@@ -102,7 +105,25 @@ class DataService
             let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value![USER_YEAR_REF_STRING] as! Int : 0
             let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value![COACH_EMAIL_REF_STRING] as! String : ""
             
+            // TODO: - Temp code for test accounts created before start date implementation. Remove before release.
+            if !snapshot.hasChild(STARTDATE_REF_STRING)
+            {
+                print("DS: no start date in database - getting one now...")
+                let startDate = NSDate( )
+                let user = User( fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
+                
+                //convert startDate to string
+                let dateFormatter = NSDateFormatter( )
+                dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
+                let startDateString = dateFormatter.stringFromDate(user.startDate)
+                userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
+                
+                completion( user: user )
+                return
+            }
+            
             let startDateString = snapshot.value![STARTDATE_REF_STRING]
+            //convert startDateString to NSDate
             let dateFormatter = NSDateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             guard let startDate = dateFormatter.dateFromString(startDateString as! String) else
@@ -113,22 +134,21 @@ class DataService
         
             let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
 
-            completion( user: user )
+            completion( user: user ) //passing the created and user and content IDs back using the completion block
+            
+            print( "DS: user \(user.email) fetched" ) //DEBUG
         })
-        self.database.goOffline()
     }
     
     /**
-        Removes a user's information from the database.
+     Removes a user's information from the database.
      
-        - Parameters:
-            - user: the user to remove.
+     - Parameters:
+     - user: the user to remove.
      */
-    func removeUser(user: User)
+    static func removeUser(user: User)
     {
-        self.database.goOnline()
-        
-        let ref = self.database.reference()
+        let ref = FIRDatabase.database().reference()
         let userRef = ref.child(USERS_REF_STRING).child(user.uid)
         userRef.removeValue()
         let dreamRef = ref.child(DREAMS_REF_STRING).child(user.uid)
@@ -141,8 +161,7 @@ class DataService
         valuesRef.removeValue()
         let summariesRef = ref.child(SUMMARIES_REF_STRING).child(user.uid)
         summariesRef.removeValue()
-        
-        self.database.goOffline()
+        print("DS - removeUser(): user \(user.email) removed from database")
     }
     
     
@@ -154,34 +173,34 @@ class DataService
             - uid: the user ID of the user the goal belongs to.
             - goal: the goal being saved.
             - summaryGoal: whether the goal is part of a summary (removes UID child ref).
-            - summaryDate: date of the summary for summary goals.
     */
-    func saveGoal(uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "")
+    static func saveGoal( uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "" )
     {
-        self.database.goOnline()
-        
+        print("DS: saving goal")
         var goalType = ""
         if goal is WeeklyGoal
         {
+           // goalsRef = FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING)
             goalType = WEEKLYGOALS_REF_STRING
         }
         else if goal is MonthlyGoal
         {
+            //goalsRef = FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING)
             goalType = MONTHLYGOALS_REF_STRING
         }
         
-        var goalRef = self.database.reference().child(goalType).child(uid).child(goal.gid)
-
+        var goalRef = FIRDatabase.database().reference().child(goalType).child(uid).child(goal.gid)
+        //If the goal is part of a summary, we don't the need the UID child reference.
         if summaryGoal
         {
-            goalRef = self.database.reference().child(SUMMARIES_REF_STRING).child(uid).child(summaryDate).child(goalType).child(goal.gid)
+            goalRef = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(uid).child(summaryDate).child(goalType).child(goal.gid)
         }
         goalRef.child(GOALTEXT_REF_STRING).setValue(goal.goalText)
         goalRef.child(KLA_REF_STRING).setValue(goal.kla)
         goalRef.child(COMPLETE_REF_STRING).setValue(goal.complete)
         goalRef.child(KICKIT_REF_STRING).setValue(goal.kickItText)
         
-
+        //converting deadline from NSDate to String
         let dateFormatter = NSDateFormatter( )
         if goal is WeeklyGoal
         {
@@ -192,8 +211,7 @@ class DataService
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         }
         goalRef.child(DEADLINE_REF_STRING).setValue(dateFormatter.stringFromDate(goal.deadline) )
-      
-        self.database.goOffline()
+        print("DS: saved goal \(goal.gid) under gid" ) //DEBUG
     }
     
     /**
@@ -201,21 +219,19 @@ class DataService
      
         - Parameters:
             - uid: user ID that the goals belong.
-            - summary: the summary that the goals belong to. Nil if not part of a summary.
             - completion: the block that passes back the fetched goals.
      */
-    func loadWeeklyGoals(uid: String, summary: MonthlySummary? = nil, completion: (( weeklyGoals: [WeeklyGoal] ) -> Void)?)
+    static func loadWeeklyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( weeklyGoals: [WeeklyGoal] ) -> Void)? )
     {
-        self.database.goOnline()
         
         var weeklyGoals = [WeeklyGoal]()
-        var weeklyGoalsRef = self.database.reference().child(WEEKLYGOALS_REF_STRING).child(uid)
+        var weeklyGoalsRef = FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING).child(uid)
         if summary != nil
         {
             let dateFormatter = NSDateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             let dateAsString = dateFormatter.stringFromDate(summary!.date)
-            weeklyGoalsRef = self.database.reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(WEEKLYGOALS_REF_STRING)
+            weeklyGoalsRef = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(WEEKLYGOALS_REF_STRING)
         }
         weeklyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
@@ -233,9 +249,11 @@ class DataService
                 }
                 if summary != nil
                 {
+                    print("DS: fetched weekly goals for summary")
                     summary?.weeklyGoals = weeklyGoals
                     return
                 }
+                print("DS: fetched weekly goals") //DEBUG
                 completion!( weeklyGoals: weeklyGoals )
                 
             }
@@ -243,36 +261,34 @@ class DataService
             {
                 if summary != nil
                 {
+                    print("DS: no weekly goals for summary")
                     return
                 }
+                print("DS: no weekly goals to fetch") //DEBUG
                 completion!( weeklyGoals: weeklyGoals )
                 
             }
         })
-        
-        self.database.goOffline()
     }
     
     /**
-        Loads a user's monthly goals from the database.
+     Loads a user's monthly goals from the database.
      
-        - Parameters:
-            - uid: user ID that the goals belong.
-            - summary: the summary the goals belong to. Nil if goals are not part of a summary.
-            - completion: the block that passes back the fetched goals.
+     - Parameters:
+     - uid: user ID that the goals belong.
+     - completion: the block that passes back the fetched goals.
      */
-    func loadMonthlyGoals(uid: String, summary: MonthlySummary? = nil, completion: (( monthlyGoals: [MonthlyGoal] ) -> Void)?)
+    static func loadMonthlyGoals( uid: String, summary: MonthlySummary? = nil, completion: (( monthlyGoals: [MonthlyGoal] ) -> Void)? )
     {
-        self.database.goOnline()
-        
+
         var monthlyGoals = [MonthlyGoal]( )
-        var monthlyGoalsRef = self.database.reference().child(MONTHLYGOALS_REF_STRING).child(uid)
+        var monthlyGoalsRef = FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING).child(uid)
         if summary != nil
         {
             let dateFormatter = NSDateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             let dateAsString = dateFormatter.stringFromDate(summary!.date)
-            monthlyGoalsRef = self.database.reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(MONTHLYGOALS_REF_STRING)
+            monthlyGoalsRef = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(MONTHLYGOALS_REF_STRING)
         }
         monthlyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
@@ -290,9 +306,11 @@ class DataService
                 }
                 if summary != nil
                 {
+                    print("DS: fetched monthly goals for summary")
                     summary?.monthlyGoals = monthlyGoals
                     return
                 }
+                print("DS: fetched monthly goals") //DEBUG
                 completion!( monthlyGoals: monthlyGoals )
                 
             }
@@ -300,14 +318,14 @@ class DataService
             {
                 if summary != nil
                 {
+                    print("DS: no monthly goals for summary")
                     return
                 }
+                print("DS: no monthly goals to fetch") //DEBUG
                 completion!( monthlyGoals: monthlyGoals )
                 
             }
         })
-        
-        self.database.goOffline()
     }
     
     
@@ -318,56 +336,40 @@ class DataService
             - uid: ID of user that owns the weekly goal.
             - goal: the goal being removed
      */
-    func removeGoal(uid: String, goal: Goal)
+    static func removeGoal( uid: String, goal: Goal )
     {
-        self.database.goOnline()
-        
         var goalsRef : FIRDatabaseReference
         if goal is WeeklyGoal
         {
-            goalsRef = self.database.reference().child(WEEKLYGOALS_REF_STRING)
+            goalsRef = FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING)
         }
         else
         {
-            goalsRef = self.database.reference().child(MONTHLYGOALS_REF_STRING)
+            goalsRef = FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING)
         }
         
         let goalRef = goalsRef.child(uid).child(goal.gid)
         goalRef.removeValue( )
-        
-        self.database.goOffline()
     }
     
-    /**
-        Removes all of a user's goals (weekly and monthly) from the database.
-        
-        - Parameters:
-            - uid: ID of the user whose goals are being removed.
-    */
-    func removeAllGoals( uid: String )
+    static func removeAllGoals( uid: String )
     {
-        self.database.goOnline()
-        
-        self.database.reference().child(WEEKLYGOALS_REF_STRING).child(uid).removeValue()
-        self.database.reference().child(MONTHLYGOALS_REF_STRING).child(uid).removeValue()
-        
-        self.database.goOffline()
+        FIRDatabase.database().reference().child(WEEKLYGOALS_REF_STRING).child(uid).removeValue()
+        FIRDatabase.database().reference().child(MONTHLYGOALS_REF_STRING).child(uid).removeValue()
     }
     
     // MARK: - Dream methods
     
     /**
-        Saves a dream to the database.
+     Saves a dream to the database.
      
-        - Parameters:
-            - uid: the user ID of the user the goal belongs to.
-            - dream: the dream being saved.
+     - Parameters:
+     - uid: the user ID of the user the goal belongs to.
+     - dream: the dream being saved.
      */
-    func saveDream(uid: String, dream: Dream)
+    static func saveDream( uid: String, dream: Dream )
     {
-        self.database.goOnline()
-        
-        let dreamsRef = self.database.reference().child(DREAMS_REF_STRING)
+        let dreamsRef = FIRDatabase.database().reference().child(DREAMS_REF_STRING)
         
         let dreamRef = dreamsRef.child(uid).child(dream.did)
         dreamRef.child(DREAMTEXT_REF_STRING).setValue(dream.dreamDesc)
@@ -379,23 +381,20 @@ class DataService
         //convert local NSURL to string
         let localURLString = dream.imageLocalURL!.absoluteString
         dreamRef.child(DREAMLOCALURL_REF_STRING).setValue(localURLString)
-        
-        self.database.goOffline()
     }
     
     /**
-        Loads a user's dreams from the database.
+     Loads a user's dreams from the database (what a strange thing).
      
-        - Parameters:
-            - uid: user ID that the goals belong.
-            - completion: the block that passes back the fetched goals.
+     - Parameters:
+     - uid: user ID that the goals belong.
+     - completion: the block that passes back the fetched goals.
      */
-    func loadDreams(uid: String, completion: ( dreams: [Dream] ) -> Void)
+    static func loadDreams( uid: String, completion: ( dreams: [Dream] ) -> Void )
     {
-        self.database.goOnline()
         
-        var dreams = [Dream]()
-        let dreamsRef = self.database.reference().child(DREAMS_REF_STRING).child(uid)
+        var dreams = [Dream]( )
+        let dreamsRef = FIRDatabase.database().reference().child(DREAMS_REF_STRING).child(uid)
         dreamsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
@@ -410,47 +409,43 @@ class DataService
                     let dream = Dream(dreamDesc: dreamText, imageURL: dreamURL, imageLocalURL: dreamLocalURL, did: did)
                     dreams.append(dream)
                 }
+                print("DS: fetched dreams") //DEBUG
                 completion( dreams: dreams )
                 
             }
             else
             {
+                print("DS: no dreams to fetch") //DEBUG
                 completion( dreams: dreams )
                 
             }
         })
-        
-        self.database.goOffline()
     }
     
     /**
-        Removes a user's dream from the database.
+     Removes a user's dream from the database.
      
-        - Parameters:
-            - uid: ID of user that owns the weekly goal.
-            - dream: the dream being removed
+     - Parameters:
+     - uid: ID of user that owns the weekly goal.
+     - dream: the dream being removed
      */
-    func removeDream( uid: String, dream: Dream )
+    static func removeDream( uid: String, dream: Dream )
     {
-        self.database.goOnline()
-        self.database.reference().child(DREAMS_REF_STRING).child(uid).child(dream.did).removeValue()
-        self.database.goOffline()
+        FIRDatabase.database().reference().child(DREAMS_REF_STRING).child(uid).child(dream.did).removeValue()
     }
     
     
     // MARK: - MyValues methods
     
     /**
-        Saves user's values to the database.
+     Saves user's values to the database.
      
-        - Parameters:
-            - user: user whose values are being saved
+     - Parameters:
+     - user: user whose values are being saved
      */
-    func saveValues( user: User )
+    static func saveValues( user: User )
     {
-        self.database.goOnline()
-        
-        let ref = self.database.reference().child(VALUES_REF_STRING).child(user.uid)
+        let ref = FIRDatabase.database().reference().child(VALUES_REF_STRING).child(user.uid)
        
         ref.child(KLA_FAMILY).setValue(user.values[KLA_FAMILY])
         ref.child(KLA_FINANCIAL).setValue(user.values[KLA_FINANCIAL])
@@ -460,24 +455,21 @@ class DataService
         ref.child(KLA_WORKBUSINESS).setValue(user.values[KLA_WORKBUSINESS])
         ref.child(KLA_EMOSPIRITUAL).setValue(user.values[KLA_EMOSPIRITUAL])
         ref.child(KLA_PARTNER).setValue(user.values[KLA_PARTNER])
-        
-        self.database.goOffline()
     }
     
     /**
-        Loads a user's values from the database.
+     Loads a user's values from the database.
      
-        - Parameters:
-            - uid: user ID that the goals belong.
-            - completion: the block that passes back the fetched goals.
+     - Parameters:
+     - uid: user ID that the goals belong.
+     - completion: the block that passes back the fetched goals.
      */
-    func loadValues(uid: String, completion: ( values: [String:String] ) -> Void)
+    static func loadValues( uid: String, completion: ( values: [String:String] ) -> Void )
     {
-        self.database.goOnline()
         
         var values = [ KLA_FAMILY: "", KLA_WORKBUSINESS: "", KLA_PERSONALDEV: "", KLA_FINANCIAL: "",
                        KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
-        let ref = self.database.reference().child(VALUES_REF_STRING).child(uid)
+        let ref = FIRDatabase.database().reference().child(VALUES_REF_STRING).child(uid)
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
@@ -489,34 +481,29 @@ class DataService
                 values[KLA_WORKBUSINESS] = snapshot.value![KLA_WORKBUSINESS] as? String
                 values[KLA_PARTNER] = snapshot.value![KLA_PARTNER] as? String
                 values[KLA_EMOSPIRITUAL] = snapshot.value![KLA_EMOSPIRITUAL] as? String
+                
+                
+                
+                print("DS: fetched values") //DEBUG
 
                 completion( values: values )
                 
             }
             else
             {
+                print("DS: no values fetch") //DEBUG
                 completion( values: values )
             }
+            
+            
         })
-        
-        self.database.goOffline()
     }
     
     
     // MARK: - Monthly summary methods
-    
-    /**
-        Saves user's initial summary ("current reality").
- 
-        - Parameters:
-            - user: the user whose summary is being saved.
-            - summary: the summary to save.
-    */
-    func saveCurrentRealitySummary(user: User, summary: CurrentRealitySummary)
+    static func saveCurrentRealitySummary( user: User, summary: CurrentRealitySummary )
     {
-        self.database.goOnline()
-        
-        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
         
         for (kla,reason) in summary.klaReasons
         {
@@ -527,44 +514,24 @@ class DataService
             ref.child(kla).setValue(String(rating))
         }
         
-        self.database.goOffline()
+        print("DS: saved CR summary")
     }
     
-    /**
-        Save's a users 12 month summary to the database.
-        
-        - Parameters:
-            - user: the user whose summary is being saved.
-            - summary: the summary to save.
-    */
-    func saveYearlySummary(user: User, summary: YearlySummary )
+    static func saveYearlySummary(user: User, summary: YearlySummary )
     {
-        self.database.goOnline()
-        
-        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
         ref.child(YEARLY_REVIEW_OBS_REF_STRING).setValue(summary.observedAboutPerformanceText)
         ref.child(YEARLY_REVIEW_CHA_REF_STRING).setValue(summary.changedMyPerformanceText)
         ref.child(YEARLY_REVIEW_DIFF_REF_STRING).setValue(summary.reasonsForDifferencesText)
         ref.child(SUMMARY_REVIEWED_REF_STRING).setValue(summary.reviewed)
-        
-        self.database.goOffline()
     }
     
-    /**
-        Save's a user's monthly summary to the database.
-        
-        - Parameters:
-            - user: the user whose summary is being saved.
-            - summary: the summary to save.
-    */
-    func saveSummary(user: User, summary: MonthlySummary)
+    static func saveSummary( user: User, summary: MonthlySummary )
     {
-        self.database.goOnline()
-        
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let dateAsString = dateFormatter.stringFromDate(summary.date)
-        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(dateAsString)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(dateAsString)
         
         ref.child(SUMMARY_WIW_REF_STRING).setValue(summary.whatIsWorking)
         ref.child(SUMMARY_WINOTW_REF_STRING).setValue(summary.whatIsNotWorking)
@@ -597,21 +564,12 @@ class DataService
             ref.child(key).setValue(String(val))
         }
         
-        self.database.goOffline()
+        print("DS: saved summary for \(dateAsString)")
     }
     
-    /**
-        Loads a user's initial summary ("current reality") from the database.
-        
-        - Parameters: 
-            - user: the user whose summary is being loaded.
-            - completion: completion block for passing back the loaded summary.
-    */
-    func loadCurrentRealitySummary(user: User, completion: ( summary: CurrentRealitySummary ) -> Void)
+    static func loadCurrentRealitySummary( user: User, completion: ( summary: CurrentRealitySummary ) -> Void )
     {
-        self.database.goOnline()
-        
-        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
         let summary = CurrentRealitySummary( )
         ref.observeEventType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
@@ -626,21 +584,11 @@ class DataService
             completion( summary: summary )
         })
         
-        self.database.goOffline()
     }
     
-    /**
-        Loads a user's 12 month summary from the database.
-        
-        - Parameters:
-            - user: the user whose summary is being loaded.
-            - completion: completion block for passing back the loaded summary.
-    */
-    func loadYearlySummary(user: User, completion: ( summary: YearlySummary ) -> Void)
+    static func loadYearlySummary( user: User, completion: ( summary: YearlySummary ) -> Void )
     {
-        self.database.goOnline()
-        
-        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
         let summary = YearlySummary()
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
@@ -651,23 +599,12 @@ class DataService
             }
             completion( summary: summary )
         })
-        
-        self.database.goOffline()
     }
     
-    /**
-        Loads a user's monthly summaries from the database.
-        
-        - Parameters:
-            - user: the user whose summaries are being loaded.
-            - completion: block for passing back the loaded summaries.
-    */
-    func loadSummaries(user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void)
+    static func loadSummaries( user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void )
     {
-        self.database.goOnline()
-        
         var monthlySummaries = [String: MonthlySummary?]( )
-        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid)
+        let ref = FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid)
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
@@ -707,32 +644,30 @@ class DataService
                     {
                         self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
                     }
+                  
+                    print("DS: summary fetched for \(dateString)")
                     monthlySummaries[dateString] = summary
                     
                 }
+                print("DS: summaries fetched")
                 completion( summaries: monthlySummaries )
                 return
             }
             else
             {
+                print("DS: no summaries to fetch")
                 completion( summaries: monthlySummaries )
                 return
             }
+            
         })
-        
-        self.database.goOffline()
     }
     
-    /**
-        Removes all of a user's summaries from the database.
-        
-        - Parameters: 
-            - user: the user whose summaries are being removed.
-    */
-    func removeAllMonthlySummaries(user: User)
+    static func removeAllMonthlySummaries(user: User)
     {
-        self.database.goOnline()
-        self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).removeValue()
-        self.database.goOffline()
+        FIRDatabase.database().reference().child(SUMMARIES_REF_STRING).child(user.uid).removeValue()
     }
+    
+    
+    
 }
