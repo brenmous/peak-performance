@@ -88,7 +88,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     func login()
     {
         activityIndicator.startAnimating()
-        //reset login error label
         self.logInErrorLabel.hidden = true
         self.logInErrorLabel.text = ""
         self.logInButton.enabled = false
@@ -301,7 +300,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             let user = FIRAuth.auth()?.currentUser
             if user != nil
             {
-                self.fetchUser(); self.activityIndicator.startAnimating()
+                activityIndicator.startAnimating()
+                self.logInErrorLabel.hidden = true
+                self.logInErrorLabel.text = ""
+                self.logInButton.enabled = false
+                self.fetchUser()
             }
             else
             {
