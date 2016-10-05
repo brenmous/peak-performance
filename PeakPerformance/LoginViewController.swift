@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import Firebase
-import SwiftValidator //https://github.com/jpotts18/SwiftValidator
-
-//TODO: - speed up initial load
+import Firebase // https://firebase.google.com
+import SwiftValidator // https://github.com/jpotts18/SwiftValidator
 
 /**
     Class that controls the Log In view.
@@ -25,7 +23,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     var currentUser: User?
     
     /// This view controller's SwiftValidator instance.
-    let validator = Validator( )
+    let validator = Validator()
     
     
     // MARK: - Outlets
@@ -53,18 +51,18 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     @IBAction func signUpButtonPressed(sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier( GO_TO_SIGN_UP_SEGUE , sender: self )
+        shouldPerformSegueWithIdentifier(GO_TO_SIGN_UP_SEGUE, sender: self )
     }
     
     @IBAction func resetPasswordButtonPressed(sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier( GO_TO_RESET_PW_SEGUE, sender: self )
+        shouldPerformSegueWithIdentifier(GO_TO_RESET_PW_SEGUE, sender: self )
     }
     
     // FIXME: - change these two unwind segues to the single "unwindToLogIn" segue
     @IBAction func unwindFromSignUp(segue: UIStoryboardSegue){}
     
-    @IBAction func unwindFromWGVC( segue: UIStoryboardSegue){}
+    @IBAction func unwindFromWGVC(segue: UIStoryboardSegue){}
     
     @IBAction func unwindToLogIn(segue: UIStoryboardSegue){}
     
@@ -86,14 +84,14 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     func login()
     {
         activityIndicator.startAnimating()
-        self.logInErrorLabel.hidden = true
-        self.logInErrorLabel.text = ""
-        self.logInButton.enabled = false
+        logInErrorLabel.hidden = true
+        logInErrorLabel.text = ""
+        logInButton.enabled = false
         
         FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
             user, error in
-            guard let error = error else {
-                //Auth successful so fetch user and content
+            guard let error = error else
+            {
                 self.fetchUser()
                 return
             }
@@ -140,7 +138,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         }
 
         let thingsToLoad = 6; var loadCount = 0
-        self.dataService.loadUser(user.uid) { (user) in
+        dataService.loadUser(user.uid) { (user) in
             self.currentUser = user
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
@@ -227,7 +225,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        validator.validate( self )
+        validator.validate(self)
         textField.resignFirstResponder()
         return true
     }
@@ -293,14 +291,10 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             if user != nil
             {
                 activityIndicator.startAnimating()
-                self.logInErrorLabel.hidden = true
-                self.logInErrorLabel.text = ""
-                self.logInButton.enabled = false
-                self.fetchUser()
-            }
-            else
-            {
-                //tell user they need to reauthenticate
+                logInErrorLabel.hidden = true
+                logInErrorLabel.text = ""
+                logInButton.enabled = false
+                fetchUser()
             }
         }
     }
@@ -310,8 +304,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         super.viewWillAppear(animated)
         
         //reset fields
-        self.emailField.text = ""
-        self.passwordField.text = ""
+        emailField.text = ""
+        passwordField.text = ""
         
         //hide error labels
         logInErrorLabel.hidden = true
@@ -320,6 +314,8 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
         //enable log in button
         logInButton.enabled = true
+        
+        activityIndicator.stopAnimating()
         
     }
     
@@ -333,7 +329,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         // Dispose of any resources that can be recreated.
     }
     
-    // status bar invert color
+    /// status bar invert color
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
@@ -354,6 +350,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             
         }
     }
+    
     
 
 }
