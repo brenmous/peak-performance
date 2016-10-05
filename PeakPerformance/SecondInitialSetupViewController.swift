@@ -10,6 +10,10 @@ import UIKit
 
 class SecondInitialSetupViewController: UITableViewController {
 
+    // MARK: - Properties
+    
+    let dataService = DataService()
+    
     /// The currently logged in user.
     var currentUser: User?
     
@@ -44,7 +48,7 @@ class SecondInitialSetupViewController: UITableViewController {
             return
         }
         cu.yearlySummary = s
-        DataService.saveCurrentRealitySummary( cu, summary: s )
+        self.dataService.saveCurrentRealitySummary( cu, summary: s )
         let tbvc = self.storyboard?.instantiateViewControllerWithIdentifier(TAB_BAR_VC) as! TabBarViewController
         tbvc.currentUser = self.currentUser
         self.presentViewController(tbvc, animated: true, completion: nil)

@@ -11,16 +11,19 @@ import SideMenu
 import MessageUI
 import PDFGenerator // github.com/sgr-ksmt/PDFGenerator
 
-//TODO: - display cell for currenty reality summary
-//TODO: - display cells in yearly sections, preferably collapsible (12 month roll over)
-
 class HistoryViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
+    // MARK: - Properties
+    
+    let dataService = DataService()
+    
     /// The currently logged in user.
     var currentUser: User?
     
+    /// Table view data source array.
     var monthlySummariesArray = [Summary]( )
     
+    /// Summary selected to send to coach.
     var summaryToSend: MonthlySummary?
     
     // MARK: - Outlets
@@ -71,7 +74,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         case 2: //sent
             print("HVC: - mailComposeController(): queued to send")
             self.summaryToSend!.sent = true
-            DataService.saveSummary(self.currentUser!, summary: self.summaryToSend!)
+            self.dataService.saveSummary(self.currentUser!, summary: self.summaryToSend!)
             self.summaryToSend = nil
             self.tableView!.reloadData( )
             
