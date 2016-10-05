@@ -207,7 +207,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             });
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                print("user is \(user.year), prepare to fuck up")
                 if user.year > 0
                 {
                     self.dataService.loadYearlySummary(user) { (summary) in
@@ -220,7 +219,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
                 {
                     self.dataService.loadCurrentRealitySummary(user) { (summary) in
                         user.yearlySummary = summary
-                        print("cr loaded and saved in user object")
                         loadCount += 1
                         if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
                     }

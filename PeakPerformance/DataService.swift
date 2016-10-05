@@ -30,22 +30,27 @@ class DataService
     */
     func saveUser(user: User)
     {
-        ////self.database.goOnline()
+        //self.database.goOnline()
         
+        
+        //Create child references from FIRDatabase.database().reference() to define the nodes that data will be stored under.
+        // E.g. "Base -> Users -> UserID"
         let userRef = self.database.reference().child(USERS_REF_STRING).child(user.uid)
 
+        //Create child references for each property and use setValue to store the corresponding value.
         userRef.child(FNAME_REF_STRING).setValue(user.fname)
         userRef.child(LNAME_REF_STRING).setValue(user.lname)
         userRef.child(ORG_REF_STRING).setValue(user.org)
         userRef.child(EMAIL_REF_STRING).setValue(user.email)
         
+        //convert startDate to string
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let startDateString = dateFormatter.stringFromDate(user.startDate)
         
         userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
         
-        ////self.database.goOffline()
+        //self.database.goOffline()
     }
     
     /**
@@ -91,6 +96,7 @@ class DataService
     {
         //self.database.goOnline()
         
+        //As with saving, create references to the nodes we want to retrieve data from.
         let usersRef = self.database.reference().child(USERS_REF_STRING)
         let userRef = usersRef.child(uid)
 
@@ -102,6 +108,7 @@ class DataService
             let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value![USER_YEAR_REF_STRING] as! Int : 0
             let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value![COACH_EMAIL_REF_STRING] as! String : ""
             
+            //convert start date to string
             let startDateString = snapshot.value![STARTDATE_REF_STRING]
             let dateFormatter = NSDateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
@@ -171,7 +178,7 @@ class DataService
         }
         
         var goalRef = self.database.reference().child(goalType).child(uid).child(goal.gid)
-
+        //If the goal is part of a summary, we don't the need the UID child reference.
         if summaryGoal
         {
             goalRef = self.database.reference().child(SUMMARIES_REF_STRING).child(uid).child(summaryDate).child(goalType).child(goal.gid)
@@ -181,7 +188,7 @@ class DataService
         goalRef.child(COMPLETE_REF_STRING).setValue(goal.complete)
         goalRef.child(KICKIT_REF_STRING).setValue(goal.kickItText)
         
-
+        //convert deadline from NSDate to String
         let dateFormatter = NSDateFormatter( )
         if goal is WeeklyGoal
         {
