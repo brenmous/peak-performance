@@ -84,28 +84,28 @@ class InitialSetupViewController: UITableViewController {
         let cancel = UIAlertAction(title: INITIAL_SETUP_ALERT_CANCEL, style: .Cancel, handler: nil )
         let confirm = UIAlertAction(title: INITIAL_SETUP_ALERT_CONFIRM, style: .Default ) { (action) in
             let reasonTextField = reasonAlertController.textFields![0] as UITextField
-            reason = reasonTextField.text!
+            reason = "- \(reasonTextField.text!) \n"
             print("\(reason)")
             let tag = sender.tag
             
             switch tag
             {
             case 0: //family
-                self.summary.klaReasons[KLA_FAMILY] = reason
+                self.summary.klaReasons[KLA_FAMILY] = "\(reason)\(self.summary.klaReasons[KLA_FAMILY]!)"
             case 1: //friends
-                self.summary.klaReasons[KLA_FRIENDSSOCIAL] = reason
+                self.summary.klaReasons[KLA_FRIENDSSOCIAL] = "\(reason)\(self.summary.klaReasons[KLA_FRIENDSSOCIAL]!)"
             case 2: //partner
-                self.summary.klaReasons[KLA_PARTNER] = reason
+                self.summary.klaReasons[KLA_PARTNER] = "\(reason)\(self.summary.klaReasons[KLA_PARTNER]!)"
             case 3: //work
-                self.summary.klaReasons[KLA_WORKBUSINESS] = reason
+                self.summary.klaReasons[KLA_WORKBUSINESS] = "\(reason)\(self.summary.klaReasons[KLA_WORKBUSINESS]!)"
             case 4: //health
-                self.summary.klaReasons[KLA_HEALTHFITNESS] = reason
+                self.summary.klaReasons[KLA_HEALTHFITNESS] = "\(reason)\(self.summary.klaReasons[KLA_HEALTHFITNESS]!)"
             case 5: //personal dev
-                self.summary.klaReasons[KLA_PERSONALDEV] = reason
+                self.summary.klaReasons[KLA_PERSONALDEV] = "\(reason)\(self.summary.klaReasons[KLA_PERSONALDEV]!)"
             case 6: //finance
-                self.summary.klaReasons[KLA_FINANCIAL] = reason
+                self.summary.klaReasons[KLA_FINANCIAL] = "\(reason)\(self.summary.klaReasons[KLA_FINANCIAL]!)"
             case 7: //emotional
-                self.summary.klaReasons[KLA_EMOSPIRITUAL] = reason
+                self.summary.klaReasons[KLA_EMOSPIRITUAL] = "\(reason)\(self.summary.klaReasons[KLA_EMOSPIRITUAL]!)"
             default:
                 print("ISVC: tag out of range or some whack computer shit happened, I dunno I ain't getting paid for this")
                 return
