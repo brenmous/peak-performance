@@ -29,18 +29,24 @@ class SecondInitialSetupViewController: UITableViewController {
     
     //*****these need to be hooked up******//
     @IBOutlet weak var familyTextView: UITextView!
+
     @IBOutlet weak var friendsTextView: UITextView!
+    
     @IBOutlet weak var partnerTextView: UITextView!
-    @IBOutlet weak var workTextView: UITextView!
+    
     @IBOutlet weak var healthTextView: UITextView!
+    
     @IBOutlet weak var personalTextView: UITextView!
+    
     @IBOutlet weak var financeTextView: UITextView!
+   
     @IBOutlet weak var emotionalTextView: UITextView!
     
     
     /// KLA Diagram
     @IBOutlet weak var klaDiagramPeakPerformanceArea: CustomizableLabelView!
     
+    @IBOutlet weak var workTextView: UITextView!
     
     /// KLA Points
     @IBOutlet weak var personalDevPoint: UIButton!
@@ -243,8 +249,8 @@ class SecondInitialSetupViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       displayPoints( )
+        self.updateSummaryWithText( )
+        displayPoints( )
 
         // Poptip
         popTip.offset = -50

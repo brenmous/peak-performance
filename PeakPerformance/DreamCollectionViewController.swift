@@ -172,6 +172,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     {
         super.viewWillAppear(animated)
         
+        self.setUpLeftBarButtonItem(String(self.currentUser!.numberOfUnreviwedSummaries()))
+        
         //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
         {

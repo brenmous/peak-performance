@@ -446,6 +446,9 @@ let REVIEW_ALERT_CANCEL = "No thanks, later."
 /// Review alert confirm
 let REVIEW_ALERT_CONFIRM = "Sure."
 
+/// Add Reason placeholder string
+let ADDREASON_PLACEHOLDER_STRING = "Reason for rating."
+
 ///Placeholder text for weekly goals
 let WEEKLY_GOALS_PLACEHOLDER = "Click the '+' icon to add some weekly goals so you can reach your Peak Performance!"
 

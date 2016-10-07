@@ -19,7 +19,6 @@ class InitialSetupViewController: UITableViewController {
     
     // MARK: - Outlets
     
-    
     @IBOutlet weak var familySlider: UISlider!
     @IBOutlet weak var friendsSlider: UISlider!
     @IBOutlet weak var partnerSlider: UISlider!
@@ -29,6 +28,10 @@ class InitialSetupViewController: UITableViewController {
     
     @IBOutlet weak var financeSlider: UISlider!
     @IBOutlet weak var emotionalSpiritualSlider: UISlider!
+    
+    
+    
+    
     // MARK: - Actions
     @IBAction func nextButtonPushed(sender: AnyObject)
     {
@@ -38,44 +41,83 @@ class InitialSetupViewController: UITableViewController {
         performSegueWithIdentifier(GO_TO_SECOND_INITIAL_SETUP, sender: self)
     }
     
-    @IBAction func reasonButtonPuhsed( sender: UIButton )
-    {
+    @IBAction func reasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+        }
+    
+    @IBAction func friendAddReasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+    }
+    
+    @IBAction func partnerAddReasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+    }
+
+    @IBAction func workAddReasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+    }
+    
+    @IBAction func healthAddReasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+    }
+    
+    @IBAction func personalDevAddReasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+    }
+    
+    @IBAction func financialAddReasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+    }
+    
+    
+    @IBAction func emotionalAddReasonButtonPushed(sender: AnyObject) {
+        showAlertBox(sender)
+    }
+    
+
+    /// Add reason alert box
+    func showAlertBox(sender: AnyObject) {
+        print("add reason pushed from sender \(sender.tag)")
         var reason = ""
         
-        let reasonAlertController = UIAlertController(title: INITIAL_SETUP_ALERT_TITLE, message: INITIAL_SETUP_ALERT_MSG, preferredStyle: .ActionSheet)
+        let reasonAlertController = UIAlertController(title: INITIAL_SETUP_ALERT_TITLE, message: INITIAL_SETUP_ALERT_MSG, preferredStyle: .Alert)
         let cancel = UIAlertAction(title: INITIAL_SETUP_ALERT_CANCEL, style: .Cancel, handler: nil )
         let confirm = UIAlertAction(title: INITIAL_SETUP_ALERT_CONFIRM, style: .Default ) { (action) in
             let reasonTextField = reasonAlertController.textFields![0] as UITextField
             reason = reasonTextField.text!
+            print("\(reason)")
+            let tag = sender.tag
+            
+            switch tag
+            {
+            case 0: //family
+                self.summary.klaReasons[KLA_FAMILY] = reason
+            case 1: //friends
+                self.summary.klaReasons[KLA_FRIENDSSOCIAL] = reason
+            case 2: //partner
+                self.summary.klaReasons[KLA_PARTNER] = reason
+            case 3: //work
+                self.summary.klaReasons[KLA_WORKBUSINESS] = reason
+            case 4: //health
+                self.summary.klaReasons[KLA_HEALTHFITNESS] = reason
+            case 5: //personal dev
+                self.summary.klaReasons[KLA_PERSONALDEV] = reason
+            case 6: //finance
+                self.summary.klaReasons[KLA_FINANCIAL] = reason
+            case 7: //emotional
+                self.summary.klaReasons[KLA_EMOSPIRITUAL] = reason
+            default:
+                print("ISVC: tag out of range or some whack computer shit happened, I dunno I ain't getting paid for this")
+                return
+            }
         }
         reasonAlertController.addAction(confirm); reasonAlertController.addAction(cancel)
-        
-        let tag = sender.tag
-        switch tag
-        {
-        case 0: //family
-            self.summary.klaReasons[KLA_FAMILY] = reason
-        case 1: //friends 
-            self.summary.klaReasons[KLA_FRIENDSSOCIAL] = reason
-        case 2: //partner
-            self.summary.klaReasons[KLA_PARTNER] = reason
-        case 3: //work
-            self.summary.klaReasons[KLA_WORKBUSINESS] = reason
-        case 4: //health
-            self.summary.klaReasons[KLA_HEALTHFITNESS] = reason
-        case 5: //personal dev
-            self.summary.klaReasons[KLA_PERSONALDEV] = reason
-        case 6: //finance 
-            self.summary.klaReasons[KLA_FINANCIAL] = reason
-        case 7: //emotional
-            self.summary.klaReasons[KLA_EMOSPIRITUAL] = reason
-        default:
-            print("ISVC: tag out of range or some whack computer shit happened, I dunno I ain't getting paid for this")
-            return
+        reasonAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in
+            textField.placeholder = ADDREASON_PLACEHOLDER_STRING
         }
-        
+        presentViewController(reasonAlertController, animated: true, completion: nil )
+
     }
-    
     
     /// Get values from sliders and save to self.summary
     func updateSummaryWithSliderValues( )
