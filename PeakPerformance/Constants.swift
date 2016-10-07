@@ -238,6 +238,7 @@ let COACH_EMAIL_REF_STRING = "coachEmail"
 /// Specifies yearly summary node.
 let YEARLY_REVIEW_REF_STRING = "yearly"
 
+
 /// Specifies yearly summary "differences to plan" node.
 let YEARLY_REVIEW_DIFF_REF_STRING = "differences"
 

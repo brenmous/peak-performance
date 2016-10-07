@@ -336,19 +336,20 @@ extension NSDate
         if startDate == currentDate
         {
             //still the first month so don't do anything
-            print("MRH: no summaries to create")
             return datesToCheck
         }
    
         let dateFormatter = NSDateFormatter()
         //change this to MONTH_YEAR_FORMAT_STRING if we want to have all reviews ever
-        dateFormatter.dateFormat = MONTH_FORMAT_STRING
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         var date = startDate
         while date.compare(lastMonth) != .OrderedDescending
         {
             datesToCheck.append(dateFormatter.stringFromDate(date))
             date = calendar.dateByAddingUnit(.Month, value: 1, toDate: date, options: [])!
         }
+        
+        print("CHECK THESE DATES: \(datesToCheck)")
         
         return datesToCheck
     }

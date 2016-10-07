@@ -101,7 +101,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         if self.currentUser!.checkYearlyReview()
         {
             //inform user review is needed
-            self.currentUser!.allMonthlyReviewsFromLastYear()
+            //self.currentUser!.allMonthlyReviewsFromLastYear()
             self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
             //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews

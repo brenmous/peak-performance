@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         }
 
         //Counter for determining when load has completed.
-        let thingsToLoad = 6; var loadCount = 0
+        let thingsToLoad = 7; var loadCount = 0
         
         dataService.loadUser(user.uid) { (user) in
             self.currentUser = user
@@ -205,21 +205,20 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             });
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                if user.year > 0
-                {
-                    self.dataService.loadYearlySummary(user) { (summary) in
-                        user.yearlySummary = summary
+                
+                    self.dataService.loadYearlySummaries(user) { (summaries) in
+                        user.yearlySummary = summaries
                         loadCount += 1
                         if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
                     }
-                }
-                else
-                {
-                    self.dataService.loadCurrentRealitySummary(user) { (summary) in
-                        user.yearlySummary = summary
-                        loadCount += 1
-                        if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
-                    }
+            });
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                
+                self.dataService.loadCurrentRealitySummary(user) { (summary) in
+                    user.initialSummary = summary
+                    loadCount += 1
+                    if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
                 }
             });
         }

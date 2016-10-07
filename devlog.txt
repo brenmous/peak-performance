@@ -271,3 +271,6 @@
 06/10/2016 00:15 - 1:45 
 	- reworking yearly review to keep goals
 	- iOS local notifications for monthly goals
+
+07/10/2016 12:50 - 
+	- 

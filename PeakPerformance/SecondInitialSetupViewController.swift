@@ -140,7 +140,7 @@ class SecondInitialSetupViewController: UITableViewController {
             print("SMRVC: error unwrapping user")
             return
         }
-        cu.yearlySummary = s
+        cu.initialSummary = s
         self.dataService.saveCurrentRealitySummary( cu, summary: s )
         let tbvc = self.storyboard?.instantiateViewControllerWithIdentifier(TAB_BAR_VC) as! TabBarViewController
         tbvc.currentUser = self.currentUser

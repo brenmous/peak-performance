@@ -177,16 +177,16 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         //sort monthly summaries by date with newest first
         self.monthlySummariesArray.sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
         
+        self.monthlySummariesArray.append(currentUser!.initialSummary)
+        
         //handle once a year summaries
-        if let yearlySummary = self.currentUser?.yearlySummary
+        for year in 0...currentUser!.year
         {
-            if yearlySummary is CurrentRealitySummary { self.monthlySummariesArray.append(yearlySummary) } //place initial review at bottom of table
-            
-            if yearlySummary is YearlySummary
+            if let yearlySummary = self.currentUser!.yearlySummary[year]
             {
-                let ys = yearlySummary as! YearlySummary
-                if !ys.reviewed { self.monthlySummariesArray.insert(self.currentUser!.yearlySummary!, atIndex: 0) } //place unreviewed annual review at top of table
-                if ys.reviewed { self.monthlySummariesArray.append(yearlySummary) } //place reviewed annual review at bottom of table
+                guard let ys = yearlySummary else { continue }
+                if !ys.reviewed { self.monthlySummariesArray.insert(ys, atIndex: 0) } //place unreviewed annual review at top of table
+                if ys.reviewed { self.monthlySummariesArray.append(ys) } //place reviewed annual review at bottom of table
             }
         }
     }
@@ -211,6 +211,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         }
         
         self.titleLabel.text = "Goal Summary for Year \(self.currentUser!.year + 1)"
+        
         
         //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
@@ -288,7 +289,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             let summary = s as! MonthlySummary
             //set month label
             let dateFormatter = NSDateFormatter( )
-            dateFormatter.dateFormat = MONTH_FORMAT_STRING
+            dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             let dateAsString = dateFormatter.stringFromDate(summary.date)
             cell.monthLabel.text = dateAsString
             
