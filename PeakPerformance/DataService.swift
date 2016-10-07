@@ -119,6 +119,7 @@ class DataService
             }
         
             let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
+            print("ar size \(user.yearlySummary.count)")
 
             completion( user: user )
         })
@@ -548,7 +549,7 @@ class DataService
     {
         //self.database.goOnline()
         
-        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
+        let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING).child(String(user.year))
         ref.child(YEARLY_REVIEW_OBS_REF_STRING).setValue(summary.observedAboutPerformanceText)
         ref.child(YEARLY_REVIEW_CHA_REF_STRING).setValue(summary.changedMyPerformanceText)
         ref.child(YEARLY_REVIEW_DIFF_REF_STRING).setValue(summary.reasonsForDifferencesText)
@@ -643,20 +644,27 @@ class DataService
             - user: the user whose summary is being loaded.
             - completion: completion block for passing back the loaded summary.
     */
-    func loadYearlySummary(user: User, completion: ( summary: YearlySummary ) -> Void)
+    func loadYearlySummaries(user: User, completion: ( summaries: [Int:YearlySummary?] ) -> Void)
     {
         //self.database.goOnline()
         
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
-        let summary = YearlySummary()
+        var summaries = [Int:YearlySummary?]()
         ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if snapshot.exists()
             {
-                summary.reasonsForDifferencesText = snapshot.value![YEARLY_REVIEW_DIFF_REF_STRING] as! String
-                summary.changedMyPerformanceText = snapshot.value![YEARLY_REVIEW_CHA_REF_STRING] as! String
-                summary.observedAboutPerformanceText = snapshot.value![YEARLY_REVIEW_OBS_REF_STRING] as! String
+                for s in snapshot.children
+                {
+                    let summary = YearlySummary()
+                    summary.reasonsForDifferencesText = s.value![YEARLY_REVIEW_DIFF_REF_STRING] as! String
+                    summary.changedMyPerformanceText = s.value![YEARLY_REVIEW_CHA_REF_STRING] as! String
+                    summary.observedAboutPerformanceText = s.value![YEARLY_REVIEW_OBS_REF_STRING] as! String
+                    summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
+                    summaries[Int(s.key)!] = summary
+                    print("DS - loadYearlySummaries(): fetched summary for year \(Int(s.key)!), reviewed = \(summary.reviewed), changes = \(summary.changedMyPerformanceText)")
+                }
             }
-            completion( summary: summary )
+                completion(summaries: summaries)
         })
         
         //self.database.goOffline()
@@ -685,11 +693,11 @@ class DataService
                         continue
                     }
                     
-                    let dateString = (String(s.key).componentsSeparatedByString(" "))[0]
+                    let dateString = (String(s.key))
                     print("DS: fetching summary for \(dateString)")
                     let dateFormatter = NSDateFormatter( )
                     //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
-                    dateFormatter.dateFormat = MONTH_FORMAT_STRING
+                    dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
                     
                     let date = dateFormatter.dateFromString(dateString)
                     let summary = MonthlySummary(date: date!)

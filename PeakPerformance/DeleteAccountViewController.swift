@@ -3,12 +3,12 @@
 //  PeakPerformance
 //
 //  Created by Bren on 23/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 CtrlAltDesign. All rights reserved.
 //
 
 import UIKit
-import SideMenu
-import FirebaseAuth
+import SideMenu // https://github.com/jonkykong/SideMenu
+import FirebaseAuth // https://firebase.google.com
 import SwiftValidator // https://github.com/jpotts18/SwiftValidator
 
 class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextFieldDelegate
@@ -16,23 +16,29 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     
     // MARK: - Properties
     
+    /// DataService instance for Firebase database interaction.
     let dataService = DataService()
     
+    /// The currently authenticated user.
     var currentUser: User?
     
+    /// SwiftValidator instance.
     let validator = Validator( )
 
     // MARK: - Outlets
+    
+    // Text fields
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
   
+    // Error labels
     @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     @IBOutlet weak var deleteAccountErrorLabel: UILabel!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    @IBOutlet weak var loadScreenBackground: UIView!
+    // Load indicators
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! //BEN
+    @IBOutlet weak var loadScreenBackground: UIView! //BEN
     
     // MARK: - Actions
     
@@ -64,6 +70,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
             guard let error = error else
             {
                 self.activityIndicator.stopAnimating()
+                self.loadScreenBackground.hidden = true
                 self.presentViewController(self.getDeleteAccountSuccessAlert(), animated: true, completion: nil)
                 return
             }
@@ -75,12 +82,13 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
             switch errCode
             {
             case .ErrorCodeRequiresRecentLogin:
-                print("DAVC - deleteAccount(): delete failed, requires recent login - handled by reauth")
+                print("DAVC - deleteAccount(): invalid credential, user alerted in reauthUser()")
                 
             default:
                 break
             }
             self.activityIndicator.stopAnimating()
+            self.loadScreenBackground.hidden = true
             self.deleteAccountErrorLabel.hidden = false
             self.navigationItem.rightBarButtonItem?.enabled = false
         }
@@ -160,7 +168,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
             self.deleteAccountErrorLabel.text = "Error case not currently covered." //DEBUG
         }
         self.deleteAccountErrorLabel.hidden = false
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.navigationItem.rightBarButtonItem?.enabled = true
     }
     
     // MARK: - Alert controllers
@@ -213,10 +221,13 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        // BEN //
         // Load Screen Background
         loadScreenBackground.hidden = true
         // Back button
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
+        // END BEN //
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
@@ -264,7 +275,6 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
         self.deleteAccountErrorLabel.hidden = true
     }
     
-    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -273,7 +283,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
     
     // MARK: - Keyboard
     
-    //Dismisses keyboard when return is pressed.
+    /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         validator.validate( self )
@@ -281,7 +291,7 @@ class DeleteAccountViewController: UIViewController, ValidationDelegate, UITextF
         return true
     }
     
-    //Dismisses keyboard when tap outside keyboard detected.
+    /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
         self.view.endEditing(true)

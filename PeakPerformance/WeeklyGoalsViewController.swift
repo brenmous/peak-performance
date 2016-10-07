@@ -73,8 +73,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     {
         guard let cu = currentUser else { return }
         cu.weeklyGoals.append(weeklyGoal)
-        self.dataService.saveGoal(cu.uid, goal: weeklyGoal)
-        UILocalNotification.createWeeklyGoalDueSoonNotification(weeklyGoal)
+        dataService.saveGoal(cu.uid, goal: weeklyGoal)
+        createWeeklyGoalDueSoonNotification(weeklyGoal)
     }
     
     /**
@@ -87,7 +87,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     {
         guard let cu = currentUser else { return }
         self.dataService.saveGoal(cu.uid, goal: weeklyGoal)
-        UILocalNotification.updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal)
+        updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal)
     }
     
     /**
@@ -100,15 +100,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     {
         goal.complete = true
         goal.kickItText = kickItText
-        self.saveModifiedGoal(goal)
-        print("WGVC: goal \(goal.gid) complete") //DEBUG
-        
-        //sort completed goals and place them at end of array
-        guard let cu = currentUser else
-        {
-            return
-        }
-        cu.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+        saveModifiedGoal(goal)
+        removeWeeklyGoalDueSoonNotification(goal)
+        sortWeeklyGoals()
         self.tableView.reloadData()
     }
     
@@ -141,6 +135,85 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         presentViewController(goalCompleteAlertController, animated: true, completion: nil )
     }
     
+    /// Sorts user's weekly goals.
+    func sortWeeklyGoals()
+    {
+        guard let cu = currentUser else { return }
+        cu.weeklyGoals.sortInPlace({$0.deadline.compare($1.deadline) == .OrderedAscending})
+        cu.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+    }
+    
+    // MARK: - Local notifications
+    /**
+     Schedules an iOS local notification that alerts user when a weekly goal is due soon.
+     
+     - Parameters:
+     - weeklyGoal: the goal to create a notification for.
+     */
+    func createWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
+    {
+        let notification = UILocalNotification()
+        notification.alertBody = WG_NOTIFICATION_BODY(weeklyGoal)
+        
+        /* Notification for due soon
+         let calendar = NSCalendar.currentCalendar()
+         notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
+         */
+        
+        notification.fireDate = weeklyGoal.deadline
+        notification.userInfo = [WG_NOTIFICATION_ID: weeklyGoal.gid]
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        //DEBUG
+        print("created notification: \(notification.alertBody) for date \(notification.fireDate)")
+    }
+    
+    /**
+     Deschedules the iOS local notification for a specified weekly goal.
+     
+     - Parameters:
+     - weeklyGoal: the goal to remove the notification for.
+     */
+    func removeWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
+    {
+        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        for notification in notifications
+        {
+            guard let key = notification.userInfo![WG_NOTIFICATION_ID] else { continue }
+            if key as! String == weeklyGoal.gid
+            {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                return
+            }
+        }
+    }
+    
+    
+    /**
+     Updates a weekly goal notification's fire date.
+     
+     - Parameters:
+     - weeklyGoal: the goal to update the notification for.
+     */
+    func updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal: WeeklyGoal)
+    {
+        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        for notification in notifications
+        {
+            guard let key = notification.userInfo![WG_NOTIFICATION_ID] else { continue }
+            if key as! String == weeklyGoal.gid
+            {
+                /* Notification for due soon
+                 let calendar = NSCalendar.currentCalendar()
+                 notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
+                 */
+                
+                notification.fireDate = weeklyGoal.deadline
+                return
+            }
+        }
+    }
+    
     // MARK: - Overridden methods
 
     override func viewWillAppear(animated: Bool)
@@ -163,7 +236,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             goal.checkIfDue()
         }
   
-        currentUser!.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+        sortWeeklyGoals()
         
         updateProgressView()
 
@@ -171,18 +244,22 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         self.setUpLeftBarButtonItem(String(self.currentUser!.numberOfUnreviwedSummaries()))
         
+        //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
         {
             self.currentUser!.allMonthlyReviewsFromLastYear()
             self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
+            //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else
         {
+            //check if a monthly review is needed
             if self.currentUser!.checkMonthlyReview()
             {
                 self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
+        
         self.tableView.reloadData()
     }
     
@@ -366,7 +443,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             self.dataService.removeGoal(cu.uid, goal: goal) // remove goal
             cu.weeklyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            UILocalNotification.removeWeeklyGoalDueSoonNotification(goal)
+            removeWeeklyGoalDueSoonNotification(goal)
         }
     }
     

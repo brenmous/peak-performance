@@ -272,28 +272,30 @@ extension NSDate
         
         var monthlyDatePickerArray = [String]( )
         
+        let currentYear = NSDate().yearAsString(NSDate())
+        let nextYear = NSDate().yearAsString(NSCalendar.currentCalendar().dateByAddingUnit(.Year, value: 1, toDate: NSDate(), options: [])!)
         if endMonth < startMonth
         {
             for i in startMonth...months.count - 1
             {
-                monthlyDatePickerArray.append(months[i])
+                monthlyDatePickerArray.append("\(months[i]) \(currentYear)")
             }
             
             for i in 0...endMonth
             {
-                monthlyDatePickerArray.append(months[i])
+                monthlyDatePickerArray.append("\(months[i]) \(nextYear)")
             }
         }
         else if endMonth > startMonth
         {
             for i in startMonth...endMonth
             {
-                monthlyDatePickerArray.append(months[i])
+                monthlyDatePickerArray.append("\(months[i]) \(currentYear)")
             }
         }
         else if endMonth == startMonth
         {
-            monthlyDatePickerArray.append(months[startMonth])
+            monthlyDatePickerArray.append("\(months[startMonth]) \(currentYear)")
         }
         
         return monthlyDatePickerArray
@@ -334,19 +336,20 @@ extension NSDate
         if startDate == currentDate
         {
             //still the first month so don't do anything
-            print("MRH: no summaries to create")
             return datesToCheck
         }
    
         let dateFormatter = NSDateFormatter()
         //change this to MONTH_YEAR_FORMAT_STRING if we want to have all reviews ever
-        dateFormatter.dateFormat = MONTH_FORMAT_STRING
+        dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         var date = startDate
         while date.compare(lastMonth) != .OrderedDescending
         {
             datesToCheck.append(dateFormatter.stringFromDate(date))
             date = calendar.dateByAddingUnit(.Month, value: 1, toDate: date, options: [])!
         }
+        
+        print("CHECK THESE DATES: \(datesToCheck)")
         
         return datesToCheck
     }
@@ -399,60 +402,7 @@ extension UIAlertController
         reviewAlertController.addAction(confirm); reviewAlertController.addAction(cancel)
         return reviewAlertController
     }
-    
-    /**
-     Creates an alert controller informing the user that their password change was successful.
-     - Returns: an alert controller.
-     */
-    static func getChangePasswordAlert(cpvc: ChangePasswordViewController) -> UIAlertController
-    {
-        let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default) { (action) in
-            cpvc.performSegueWithIdentifier(UNWIND_FROM_CHANGE_PW_SEGUE, sender: cpvc)
-        }
-        
-        changePWAlertController.addAction(confirm)
-        
-        return changePWAlertController
-    }
 
-    
-    /**
-    Creates an alert controller informing user that change of coach email was successful.
-    - Parameters:
-        - cevc: the change coach email view controller.
- 
-    - Returns: an alert controller.
-    */
-    static func getChangeCoachEmailSuccessAlert(cevc: CoachEmailViewController) -> UIAlertController
-    {
-        let changeCoachEmailSucccessAlertController = UIAlertController(title: COACH_EMAIL_SUCC_ALERT_TITLE, message: COACH_EMAIL_SUCC_ALERT_MSG, preferredStyle: .ActionSheet)
-        
-        let confirm = UIAlertAction(title: COACH_EMAIL_SUCC_ALERT_CONFIRM, style: .Default) { (action) in
-            cevc.performSegueWithIdentifier(UNWIND_FROM_COACH_EMAIL_SEGUE, sender: cevc)
-        }
-        
-        changeCoachEmailSucccessAlertController.addAction(confirm)
-        
-        return changeCoachEmailSucccessAlertController
-    }
-    
-    /**
-    Creates an alert informing user that mail can't be sent because no coach email has been supplied.
-    - Parameters:
-        - hvc: the History view controller.
-    
-    - Returns: an alert controller
-    */
-    static func getNoCoachEmailAlert(hvc: HistoryViewController) -> UIAlertController
-    {
-        let noCoachEmailAlertController = UIAlertController(title: NO_COACH_EMAIL_ALERT_TITLE, message: NO_COACH_EMAIL_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: NO_COACH_EMAIL_ALERT_CONFIRM, style: .Default, handler: nil)
-        
-        noCoachEmailAlertController.addAction(confirm)
-        
-        return noCoachEmailAlertController
-    }
     
     /**
     Creates an alert informing user that their 12 month review is ready.
@@ -543,73 +493,5 @@ extension FIRAuth
 }
 
 
-// MARK: UILocalNotification
 
-extension UILocalNotification
-{
-    /**
-        Schedules an iOS local notification that alerts user when a weekly goal is due soon.
-    
-        - Parameters:
-            - weeklyGoal: the goal to create a notification for.
-    */
-    static func createWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
-    {
-        let notification = UILocalNotification()
-        notification.alertBody = WG_NOTIFICATION_BODY(weeklyGoal)
-        
-        /* Notification for due soon
-        let calendar = NSCalendar.currentCalendar()
-        notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
-        */
- 
-        notification.fireDate = weeklyGoal.deadline
-        notification.userInfo = [WG_NOTIFICATION_ID: weeklyGoal.gid]
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-    }
-    
-    /**
-        Deschedules the iOS local notification for a specified weekly goal.
-        
-        - Parameters:
-            - weeklyGoal: the goal to remove the notification for.
-    */
-    static func removeWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
-    {
-        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
-        for notification in notifications
-        {
-            if notification.userInfo![WG_NOTIFICATION_ID] as! String == weeklyGoal.gid
-            {
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
-                return
-            }
-        }
-    }
-    
-    
-    /**
-        Updates a weekly goal notification's fire date.
-        
-        - Parameters:
-            - weeklyGoal: the goal to update the notification for.
-    */
-    static func updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal: WeeklyGoal)
-    {
-        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
-        for notification in notifications
-        {
-            if notification.userInfo![WG_NOTIFICATION_ID] as! String == weeklyGoal.gid
-            {
-                /* Notification for due soon
-                let calendar = NSCalendar.currentCalendar()
-                notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
-                */
-                
-                notification.fireDate = weeklyGoal.deadline
-                return
-            }
-        }
-    }
-}
 

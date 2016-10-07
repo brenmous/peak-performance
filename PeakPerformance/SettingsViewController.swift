@@ -3,7 +3,7 @@
 //  PeakPerformance
 //
 //  Created by Bren on 23/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 CtrlAltDesign. All rights reserved.
 //
 
 import UIKit
@@ -26,7 +26,7 @@ class SettingsViewController: UITableViewController
     
     @IBAction func backButtonPressed( sender: AnyObject )
     {
-        self.performSegueWithIdentifier(UNWIND_FROM_SETTINGS_SEGUE, sender: self)
+        performSegueWithIdentifier(UNWIND_FROM_SETTINGS_SEGUE, sender: self)
     }
     
     // MARK: - Outlets
@@ -43,7 +43,7 @@ class SettingsViewController: UITableViewController
     override func viewWillAppear(animated: Bool )
     {
         super.viewWillAppear(animated)
-        self.automaticLoginSwitch.on = NSUserDefaults().boolForKey(USER_DEFAULTS_AUTO_LOGIN)
+        automaticLoginSwitch.on = NSUserDefaults().boolForKey(USER_DEFAULTS_AUTO_LOGIN)
     }
 
     override func didReceiveMemoryWarning()
@@ -58,15 +58,15 @@ class SettingsViewController: UITableViewController
         {
         case GO_TO_CHANGE_PASSWORD_SEGUE:
             let dvc = segue.destinationViewController as! ChangePasswordViewController
-            dvc.currentUser = self.currentUser
+            dvc.currentUser = currentUser
             
         case SETTINGS_TO_DELETE_ACCOUNT_SEGUE:
             let dvc = segue.destinationViewController as! DeleteAccountViewController
-            dvc.currentUser = self.currentUser
+            dvc.currentUser = currentUser
             
         case SETTINGS_TO_COACH_EMAIL_SEGUE:
             let dvc = segue.destinationViewController as! CoachEmailViewController
-            dvc.currentUser = self.currentUser
+            dvc.currentUser = currentUser
             
         default:
             return

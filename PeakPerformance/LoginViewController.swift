@@ -3,7 +3,7 @@
 //  PeakPerformance
 //
 //  Created by Bren on 17/07/2016.
-//  Copyright © 2016 Bren. All rights reserved.
+//  Copyright © 2016 CtrlAltDesign. All rights reserved.
 //
 
 import UIKit
@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
  
     // MARK: - Properties
     
+    /// DataService instance for interacting with Firebase database.
     let dataService = DataService()
     
     /// The currently authenticated user.
@@ -32,7 +33,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    //load indicator
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! //BEN
+    
     //labels
     @IBOutlet weak var logInErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
@@ -71,7 +74,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        self.login()
+        login()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
@@ -137,7 +140,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             return
         }
 
-        let thingsToLoad = 6; var loadCount = 0
+        //Counter for determining when load has completed.
+        let thingsToLoad = 7; var loadCount = 0
+        
         dataService.loadUser(user.uid) { (user) in
             self.currentUser = user
             
@@ -200,21 +205,20 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             });
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
-                if user.year > 0
-                {
-                    self.dataService.loadYearlySummary(user) { (summary) in
-                        user.yearlySummary = summary
+                
+                    self.dataService.loadYearlySummaries(user) { (summaries) in
+                        user.yearlySummary = summaries
                         loadCount += 1
                         if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
                     }
-                }
-                else
-                {
-                    self.dataService.loadCurrentRealitySummary(user) { (summary) in
-                        user.yearlySummary = summary
-                        loadCount += 1
-                        if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
-                    }
+            });
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                
+                self.dataService.loadCurrentRealitySummary(user) { (summary) in
+                    user.initialSummary = summary
+                    loadCount += 1
+                    if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
                 }
             });
         }
@@ -282,7 +286,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         }
         
         //Check if user is already authenticated and log in if so
-       
         let userDefaults = NSUserDefaults()
         userDefaults.setValue(true, forKey: USER_DEFAULTS_AUTO_LOGIN)
         if userDefaults.boolForKey(USER_DEFAULTS_AUTO_LOGIN)
@@ -319,18 +322,21 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(animated: Bool)
+    {
         super.viewWillDisappear(animated)
         activityIndicator.stopAnimating()
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    /// status bar invert color
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    /// Inverts the colour of the status bar.
+    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    {
         return UIStatusBarStyle.LightContent
     }
     
@@ -339,15 +345,16 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == LOGGED_IN_SEGUE
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        switch segue.identifier!
         {
+        case LOGGED_IN_SEGUE:
             let dvc = segue.destinationViewController as! TabBarViewController
-            dvc.currentUser = self.currentUser
-        }
-        else if segue.identifier == GO_TO_SIGN_UP_SEGUE
-        {
+            dvc.currentUser = currentUser
             
+        default:
+            return
         }
     }
     

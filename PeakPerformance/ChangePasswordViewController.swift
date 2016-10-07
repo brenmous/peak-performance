@@ -3,39 +3,46 @@
 //  PeakPerformance
 //
 //  Created by Bren on 23/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 CtrlAltDesign. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
+import FirebaseAuth // https://firebase.google.com
 import SwiftValidator // https://github.com/jpotts18/SwiftValidator
 
 class ChangePasswordViewController: UIViewController, ValidationDelegate, UITextFieldDelegate
 {
 
     // MARK: - Properties
+    
+    /// The currently authenticated user.
     var currentUser: User?
     
+    /// SwiftValidator instance.
     let validator = Validator( )
     
     // MARK: - Outlets
+    
+    // Text fields
     @IBOutlet weak var currentPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    // Error labels
     @IBOutlet weak var currentPasswordErrorLabel: UILabel!
     @IBOutlet weak var newPasswordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     @IBOutlet weak var changePasswordErrorLabel: UILabel!
 
-    @IBOutlet weak var loadScreenBackground: UIView!
-    
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    // Load indicators
+    @IBOutlet weak var loadScreenBackground: UIView! //BEN
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! //BEN
 
     
     // MARK: - Actions
 
-    @IBAction func pressConfirmBarButton(sender: UIBarButtonItem) {
+    @IBAction func pressConfirmBarButton(sender: UIBarButtonItem)
+    {
         validator.validate(self)
     }
     
@@ -45,29 +52,63 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("CPVC - validation successful") //DEBUG
-        self.changePassword()
+        reauthenticateUser()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
-    {
-        print ("CPVC - validation failed")
-    }
+    func validationFailed(errors: [(Validatable, ValidationError)]){}
     
-    //FIXME: - refactor reauth out
-    /// Change a user's password.
+    /// Change the currently authenticated user's password.
     func changePassword( )
     {
         loadScreenBackground.hidden = false
         activityIndicator.startAnimating()
-        print("CPVC - changePassword(): attempting to change password...")
-        //reset error label & disable button
+        changePasswordErrorLabel.hidden = true
+        changePasswordErrorLabel.text = ""
+        let user = FIRAuth.auth()?.currentUser
+        self.navigationItem.rightBarButtonItem?.enabled = false
+        user?.updatePassword(self.newPasswordField.text!) { (error) in
+            guard let error = error else
+            {
+                self.loadScreenBackground.hidden = true
+                self.activityIndicator.stopAnimating()
+                self.presentViewController(self.getChangePasswordAlert(), animated: true) {
+                    self.currentPasswordField.text = ""
+                    self.newPasswordField.text = ""
+                    self.confirmPasswordField.text = ""
+                    self.navigationItem.rightBarButtonItem?.enabled = false
+                }
+                return
+            }
+            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
+            {
+                print("CPVC - changePassword(): change password failed with error but couldn't get error code")
+                return
+            }
+            switch errCode
+            {
+            case .ErrorCodeInvalidCredential:
+                print("CPVC - changePassword(): invalid credential, user alerted in reauthUser()")
+                
+            default:
+                break
+            }
+            self.activityIndicator.stopAnimating()
+            self.loadScreenBackground.hidden = true
+            self.changePasswordErrorLabel.hidden = false
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
+    }
+    
+    /// Reauthenticates the current user
+    func reauthenticateUser()
+    {
+        self.loadScreenBackground.hidden = false
+        self.activityIndicator.startAnimating()
         self.changePasswordErrorLabel.hidden = true
         self.changePasswordErrorLabel.text = ""
         self.navigationItem.rightBarButtonItem?.enabled = false
         
-        print("CPVC - changePassword(): attemping to reauthenticate user...")
         guard let cu = currentUser else
         {
             return
@@ -76,93 +117,98 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         let user = FIRAuth.auth()?.currentUser
         let credential = FIREmailPasswordAuthProvider.credentialWithEmail(cu.email, password: self.currentPasswordField.text!)
         user?.reauthenticateWithCredential(credential) { (error) in
-            //handle reauth error
             guard let error = error else
             {
-                //reauth successful
-                print("CPVC - reauthUser(): auth successful")
-                user?.updatePassword(self.newPasswordField.text!) { (error) in
-                    guard let error = error else
-                    {
-                        //inform user of password change success
-                        print("CPVC - changePassword(): password change successful")
-                        self.loadScreenBackground.hidden = true
-                        self.activityIndicator.stopAnimating()
-                        self.presentViewController(UIAlertController.getChangePasswordAlert(self), animated: true ) {
-                            self.currentPasswordField.text = ""
-                            self.newPasswordField.text = ""
-                            self.confirmPasswordField.text = ""
-                            self.navigationItem.rightBarButtonItem?.enabled = false
-                        }
-                        return
-                    }
-                    //handle pw change error
-                    print("CPVC - changePassword(): failed to change password")
-                    guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
-                    {
-                        print("CPVC - changePassword(): got FIRAuth error, but no error code")
-                        return
-                    }
-                    switch errCode
-                    {
-                    case .ErrorCodeInvalidCredential:
-                        print("CPVC - changePassword(): invalid credential, user alerted in reauthUser()")
-                        
-                    default:
-                        break
-                    }
-                    self.changePasswordErrorLabel.hidden = false
-                    self.navigationItem.rightBarButtonItem?.enabled = false                }
+                self.reauthSuccess()
                 return
             }
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
-            {
-                return
-            }
-            print("CPVC - reauthUser(): auth failed")
-            self.activityIndicator.stopAnimating()
-            switch errCode
-            {
-            case .ErrorCodeUserNotFound:
-                self.changePasswordErrorLabel.text = LOGIN_ERR_MSG
-                
-            case .ErrorCodeTooManyRequests:
-                self.changePasswordErrorLabel.text = REQUEST_ERR_MSG
-                
-            case .ErrorCodeNetworkError:
-                self.changePasswordErrorLabel.text = NETWORK_ERR_MSG
-                
-            case .ErrorCodeInternalError:
-                self.changePasswordErrorLabel.text = FIR_INTERNAL_ERROR
-                
-            case .ErrorCodeUserDisabled:
-                self.changePasswordErrorLabel.text = USER_DISABLED_ERROR
-                
-            case .ErrorCodeWrongPassword:
-                self.changePasswordErrorLabel.text = CHANGE_PW_ERROR
-                
-            case .ErrorCodeUserMismatch:
-                self.changePasswordErrorLabel.text = LOGIN_ERR_MSG
-                
-            default:
-                print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
-                self.changePasswordErrorLabel.text = "Error case not currently covered." //DEBUG
-            }
-            self.changePasswordErrorLabel.hidden = false
-            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.reauthFailure(error)
+            return
         }
     }
     
+    /// Called when a user successfully reauthenticates.
+    func reauthSuccess()
+    {
+        self.activityIndicator.stopAnimating()
+        self.loadScreenBackground.hidden = true
+        changePassword()
+    }
+    
+    /// Called when a user fails to reauthenticate.
+    func reauthFailure(error: NSError)
+    {
+        self.loadScreenBackground.hidden = true
+        self.activityIndicator.stopAnimating()
+        guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
+        {
+            print("CPVC - reauthUser(): auth failed but could not get error code.")
+            return
+        }
+        switch errCode
+        {
+        case .ErrorCodeUserNotFound:
+            self.changePasswordErrorLabel.text = LOGIN_ERR_MSG
+            return
+            
+        case .ErrorCodeTooManyRequests:
+            self.changePasswordErrorLabel.text = REQUEST_ERR_MSG
+            
+        case .ErrorCodeNetworkError:
+            self.changePasswordErrorLabel.text = NETWORK_ERR_MSG
+            
+        case .ErrorCodeInternalError:
+            self.changePasswordErrorLabel.text = FIR_INTERNAL_ERROR
+            
+        case .ErrorCodeUserDisabled:
+            self.changePasswordErrorLabel.text = USER_DISABLED_ERROR
+            
+        case .ErrorCodeWrongPassword:
+            self.changePasswordErrorLabel.text = CHANGE_PW_ERROR
+            
+        case .ErrorCodeUserMismatch:
+            self.changePasswordErrorLabel.text = LOGIN_ERR_MSG
+            
+        default:
+            print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
+            self.changePasswordErrorLabel.text = "Error case not currently covered." //DEBUG
+        }
+        self.changePasswordErrorLabel.hidden = false
+        self.navigationItem.rightBarButtonItem?.enabled = true
+    }
+
+    
+    // MARK: - Alert controllers
+    
+    /**
+        Creates an alert controller informing the user that their password change was successful.
+     
+        - Returns: an alert controller.
+     */
+    func getChangePasswordAlert() -> UIAlertController
+    {
+        let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
+        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default) { (action) in
+            self.performSegueWithIdentifier(UNWIND_FROM_CHANGE_PW_SEGUE, sender: self)
+        }
+        
+        changePWAlertController.addAction(confirm)
+        
+        return changePWAlertController
+    }
     
     // MARK: - Overridden methods
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Screen
+        
+        // BEN //
         loadScreenBackground.hidden = true
         // Back button 
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
+        // END BEN //
+        
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
             validationRule.errorLabel?.hidden = true
@@ -229,7 +275,8 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     
 
     // MARK: - keyboard stuff
-    //Dismisses keyboard when return is pressed.
+    
+    /// Dismisses keyboard when return is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         validator.validate( self )
@@ -237,7 +284,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         return true
     }
     
-    //Dismisses keyboard when tap outside keyboard detected.
+    /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
         self.view.endEditing(true)

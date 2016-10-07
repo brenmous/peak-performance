@@ -265,6 +265,13 @@
 	- local notifications for when weekly goals are due
 	- go online/offline to reduce concurrent firebase users
 
-05/10/2016 9:10 - 10:30, 16:00 - 
+05/10/2016 9:10 - 10:30, 16:00 - 18:05
 	- bug fixing/refactoring/comments
 
+06/10/2016 00:15 - 1:45 
+	- reworking yearly review to keep goals
+	- iOS local notifications for monthly goals
+
+07/10/2016 12:50 - 14:30, 14:45 -  
+	- annual review: keep summaries + more rework (kill me)
+		- history sorted in yearly sections

@@ -15,20 +15,25 @@ class SecondYearReviewViewController: UIViewController {
     let dataService = DataService()
     
     var currentUser: User?
-    
+
+    var summary: YearlySummary?
     
     // MARK: - Actions
     @IBAction func resetButtonPressed(sender: AnyObject)
     {
-        (self.currentUser!.yearlySummary as! YearlySummary).reviewed = true
+        summary!.reviewed = true
         self.yearlyCleanUp()
         self.performSegueWithIdentifier(UNWIND_TO_HISTORY_SEGUE, sender: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-  
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        self.summary = currentUser!.yearlySummary[currentUser!.year]!! //FIXME: shebangbangbangbangbang
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,33 +46,23 @@ class SecondYearReviewViewController: UIViewController {
     //if we want to send the yearly review to Paul/save it for user/whatever, that will happen here.
     func yearlyCleanUp() //TOOD: - move to user class
     {
+        //Save the completed yearly summary
+        self.dataService.saveYearlySummary(self.currentUser!, summary: summary!)
+
         //Update user's year property
         let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self.currentUser!)
         self.currentUser!.year = yearsPassedSinceStart
         self.dataService.saveUserYear(self.currentUser!)
         
         //Wipe all the user's monthly summaries from the previous year
-        self.currentUser!.monthlySummaries = [String:MonthlySummary]( )
-        self.dataService.removeAllMonthlySummaries(self.currentUser!)
-        
-        //Save the completed yearly summary
-        self.dataService.saveYearlySummary(self.currentUser!, summary: self.currentUser!.yearlySummary! as! YearlySummary)
-        
+        //self.currentUser!.monthlySummaries = [String:MonthlySummary]( )
+        //self.dataService.removeAllMonthlySummaries(self.currentUser!)
+       
         //Reset weekly and monthly goals
+        /*
         self.currentUser!.weeklyGoals = [WeeklyGoal]()
         self.currentUser!.monthlyGoals = [MonthlyGoal]()
         self.dataService.removeAllGoals(self.currentUser!.uid)
+        */
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

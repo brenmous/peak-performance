@@ -196,7 +196,6 @@ let DREAMLOCALURL_REF_STRING = "localURL"
 /// Specifies dream URL node in database.
 let DREAMURL_REF_STRING = "url"
 
-//summary ref strings
 /// Specifies main summaries node in database.
 let SUMMARIES_REF_STRING = "summaries"
 
@@ -238,6 +237,7 @@ let COACH_EMAIL_REF_STRING = "coachEmail"
 
 /// Specifies yearly summary node.
 let YEARLY_REVIEW_REF_STRING = "yearly"
+
 
 /// Specifies yearly summary "differences to plan" node.
 let YEARLY_REVIEW_DIFF_REF_STRING = "differences"
@@ -329,7 +329,7 @@ let UNWIND_FROM_CHANGE_PW_SEGUE = "unwindToSettings"
 /// settings -> change password
 let GO_TO_CHANGE_PASSWORD_SEGUE = "goToChangePassword"
 
-
+/// Settings -> Log in
 let GO_TO_LOG_IN = "logOut"
 
 /// Segue for adding a new dream.
@@ -575,6 +575,7 @@ let ABOUT_CELL_ID = "aboutCell"
 /// Identfier for privacy policy settings cell.
 let PRIVACY_CELL_ID = "privacyPolicyCell"
 
+
 // MARK: - Image Related Stuff
 
 /// Constant for compression of JPEG UIImage representation.
@@ -601,6 +602,7 @@ let DUE_SOON_ICON = "soon-icon"
 /// Icon to show when a goal is due
 let OVERDUE_ICON = "due-icon"
 
+
 // MARK: - File MIME type strings
 
 /// MIME type string for PDFs
@@ -613,6 +615,18 @@ let USER_DEFAULTS_AUTO_LOGIN = "autoLogin"
 // MARK: - UILocalNotification strings
 
 /// Body of WG due soon local notification
-func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "\"\(goal.goalText)\" is due." }
+func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "Weekly goal \"\(goal.goalText)\" is due." }
 
+/// Key for ID in weekly goal notification.userSettings
 let WG_NOTIFICATION_ID = "GID"
+
+/// Body of MG due soon local notification
+func MG_NOTIFICATION_BODY(monthlyGoal: MonthlyGoal) -> String { return "Monthly goal \(monthlyGoal.goalText) is due soon." }
+
+/// Key for ID in monthly goal notification.userSettings
+let MG_NOTIFICATION_ID = "MONTH"
+
+
+// MARK: - Coach email strings
+
+let NO_COACH_EMAIL_MESSAGE = "No coach!"

@@ -14,7 +14,7 @@ import SideMenu
 protocol MonthlyGoalDetailViewControllerDelegate
 {
     func addNewGoal( monthlyGoal: MonthlyGoal )
-    func saveModifiedGoal( monthlyGoal: MonthlyGoal )
+    func saveModifiedGoal( monthlyGoal: MonthlyGoal)
 }
 
 class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate, UITextViewDelegate
@@ -159,7 +159,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     {
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
-        let deadline = ("\(deadlineTextField.text!) \(NSDate().yearAsString(NSDate()))")
+        let deadline = deadlineTextField.text!
         let gid = NSUUID( ).UUIDString
         let mg = MonthlyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(mg)
@@ -177,7 +177,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         cg.kla = klaTextField.text!
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-        let deadline = ("\(deadlineTextField.text!) \(NSDate().yearAsString(NSDate()))")
+        let deadline = deadlineTextField.text!
         guard let dl = dateFormatter.dateFromString(deadline) else
         {
             print("WGDVC: could not format date")
