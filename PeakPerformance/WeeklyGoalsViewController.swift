@@ -247,7 +247,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
         {
-            //self.currentUser!.allMonthlyReviewsFromLastYear()
+            self.currentUser!.allMonthlyReviewsFromLastYear()
             self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
             //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews

@@ -272,5 +272,6 @@
 	- reworking yearly review to keep goals
 	- iOS local notifications for monthly goals
 
-07/10/2016 12:50 - 
-	- 
+07/10/2016 12:50 - 14:30, 14:45 -  
+	- annual review: keep summaries + more rework (kill me)
+

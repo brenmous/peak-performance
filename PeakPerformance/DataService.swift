@@ -656,10 +656,12 @@ class DataService
                 for s in snapshot.children
                 {
                     let summary = YearlySummary()
-                    summary.reasonsForDifferencesText = snapshot.value![YEARLY_REVIEW_DIFF_REF_STRING] as! String
-                    summary.changedMyPerformanceText = snapshot.value![YEARLY_REVIEW_CHA_REF_STRING] as! String
-                    summary.observedAboutPerformanceText = snapshot.value![YEARLY_REVIEW_OBS_REF_STRING] as! String
+                    summary.reasonsForDifferencesText = s.value![YEARLY_REVIEW_DIFF_REF_STRING] as! String
+                    summary.changedMyPerformanceText = s.value![YEARLY_REVIEW_CHA_REF_STRING] as! String
+                    summary.observedAboutPerformanceText = s.value![YEARLY_REVIEW_OBS_REF_STRING] as! String
+                    summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
                     summaries[Int(s.key)!] = summary
+                    print("DS - loadYearlySummaries(): fetched summary for year \(Int(s.key)!), reviewed = \(summary.reviewed), changes = \(summary.changedMyPerformanceText)")
                 }
             }
                 completion(summaries: summaries)
@@ -691,11 +693,11 @@ class DataService
                         continue
                     }
                     
-                    let dateString = (String(s.key).componentsSeparatedByString(" "))[0]
+                    let dateString = (String(s.key))
                     print("DS: fetching summary for \(dateString)")
                     let dateFormatter = NSDateFormatter( )
                     //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
-                    dateFormatter.dateFormat = MONTH_FORMAT_STRING
+                    dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
                     
                     let date = dateFormatter.dateFromString(dateString)
                     let summary = MonthlySummary(date: date!)
