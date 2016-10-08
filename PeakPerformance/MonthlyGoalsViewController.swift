@@ -350,65 +350,66 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let kla = goal.kla
         cell.goalTextLabel!.text = goal.goalText
         cell.delegate = self
+        var klaIconDone = ""
+        var klaIcon = ""
+        var klaIconHighlighted = ""
         if  goal.complete
         {
+            
             print("goal \(goal.goalText) is complete")
-            cell.iconImage.hidden = false
+            //cell.iconImage.hidden = false
             cell.userInteractionEnabled = false
-            cell.completeButton.hidden = false
+            //cell.completeButton.hidden = false
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
             cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueLabelIcon.hidden = true
-            
-            var klaIconDone = ""
-            
+        
             switch kla
             {
             case KLA_FAMILY:
-                klaIconDone = "F-done.png"
+                klaIcon = "F-done.png"
                 
             case KLA_WORKBUSINESS:
-                klaIconDone = "W-done.png"
+                klaIcon = "W-done.png"
                 
             case KLA_PARTNER:
-                klaIconDone = "P-done.png"
+                klaIcon = "P-done.png"
                 
             case KLA_FINANCIAL:
-                klaIconDone = "FI-done.png"
+                klaIcon = "FI-done.png"
                 
             case KLA_PERSONALDEV:
-                klaIconDone = "PD-done.png"
+                klaIcon = "PD-done.png"
                 
             case KLA_EMOSPIRITUAL:
-                klaIconDone = "ES-done.png"
+                klaIcon = "ES-done.png"
                 
             case KLA_HEALTHFITNESS:
-                klaIconDone = "H-done.png"
+                klaIcon = "H-done.png"
                 
             case KLA_FRIENDSSOCIAL:
-                klaIconDone = "FR-done.png"
+                klaIcon = "FR-done.png"
                 
             default:
-                klaIconDone = "F-done.png"
+                klaIcon = "F-done.png"
             }
      
             // use image instead of the button
-            cell.iconImage.image = UIImage(named: klaIconDone)
+            //cell.iconImage.image = UIImage(named: klaIconDone)
         
         }
             
         else if !goal.complete
         {
+            
             cell.iconImage.hidden = true
-            cell.completeButton.hidden = false
+            //cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
-            var klaIcon = ""
-            var klaIconHighlighted = ""
             
             switch kla
             {
@@ -465,13 +466,14 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 // hide image
                 cell.dueLabelIcon.hidden = true
             }
-            
-            // Image button for normal and highlighted
-            let imageButton = UIImage(named: klaIcon)
-            let highlightedImageButton = UIImage(named: klaIconHighlighted)
-            cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
-            cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
+           
         }
+        
+        // Image button for normal and highlighted
+        let imageButton = UIImage(named: klaIcon)
+        let highlightedImageButton = UIImage(named: klaIconHighlighted)
+        cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
+        cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
         return cell
     }
     
