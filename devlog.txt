@@ -276,6 +276,9 @@
 	- annual review: keep summaries + more rework (kill me)
 		- history sorted in yearly sections
 
-08/10/2016 12:40 - 
+08/10/2016 12:40 - 15:15
 	- social media integration
 		- twitter
+	- bug fixes
+		- monthly goals icon
+		- signup -> login segue
