@@ -12,7 +12,7 @@ import UIKit
 class InitialReviewSummaryTableViewController: UITableViewController {
 
     var currentUser: User?
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 

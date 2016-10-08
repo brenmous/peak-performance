@@ -161,6 +161,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         return pdfs
     }
     
+    //FIXME: get rid of magic numbers
     func setUpSummaryArray()
     {
         summariesArray = [[Summary]](count: currentUser!.year+1, repeatedValue: [Summary]())
@@ -436,7 +437,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             let dvc = segue.destinationViewController as! YearReviewViewController
             dvc.currentUser = self.currentUser
         
-        // TODO: Add case GO_TO_INITIAL_REVIEW_SEGUE:
+        case GO_TO_INITIAL_REVIEW_SEGUE:
+            let dvc = segue.destinationViewController as! InitialReviewSummaryTableViewController
+            dvc.currentUser = self.currentUser
 
             
         default:
