@@ -300,7 +300,7 @@ let GO_TO_TUTORIAL_SEGUE = "goToTutorial"
 let UNWIND_FROM_WGDVC_SEGUE = "unwindFromWGDVC"
 
 /// Segue for unwinding to login,
-let UNWIND_TO_LOGIN = "unwindFromWGVC"
+let UNWIND_TO_LOGIN = "unwindToLogin"
 
 /// Segue for unwinding from MG detail view.
 let UNWIND_FROM_MGDVC_SEGUE = "unwindFromMGDVC"
@@ -648,4 +648,4 @@ let NO_COACH_EMAIL_MESSAGE = "No coach!"
 func TWITTER_MESSAGE_WEEKLY_GOAL(goal: Goal) -> String { return "I completed my goal \"\(goal.goalText)\"! #PeakPerformance"}
 
 /// Default body text for twitter posts about monthly goals
-func TWITTER_MESSAGE_MONTHLY_GOAL(goal: Goal) -> String { return "I completed my monthly goal \"\(goal.goalText)\"!"}
+func TWITTER_MESSAGE_MONTHLY_GOAL(goal: Goal) -> String { return "I completed my monthly goal \"\(goal.goalText)\"! #PeakPerformance"}

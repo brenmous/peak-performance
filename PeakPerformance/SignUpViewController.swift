@@ -60,6 +60,11 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     {
         validator.validate(self)
     }
+    
+    @IBAction func backToLoginPressed(sender: AnyObject?)
+    {
+        self.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: self)
+    }
 
     
     // MARK: - Methods
@@ -320,10 +325,6 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     {
         switch segue.identifier!
         {
-        case GO_TO_LOG_IN_SEGUE:
-            let dvc = segue.destinationViewController as! LoginViewController
-            dvc.currentUser = self.currentUser
-            
         case FT_LOG_IN_SEGUE:
             let dvc = segue.destinationViewController as! TutorialViewController
             dvc.currentUser = self.currentUser

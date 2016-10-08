@@ -387,7 +387,7 @@
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="rLy-Wh-DnS" kind="unwind" unwindAction="unwindFromSignUp:" id="3NQ-cJ-eL3"/>
+                                                    <action selector="backToLoginPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="JPs-yt-Uwv"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -442,12 +442,13 @@
                         <outlet property="signUpButton" destination="BXg-UV-UPm" id="rMg-am-gKk"/>
                         <outlet property="signUpErrorLabel" destination="Fgv-UW-LfC" id="Czi-Bo-3Wd"/>
                         <segue destination="lwI-fF-ehg" kind="show" identifier="firstTimeLogIn" id="LJD-Jg-731"/>
+                        <segue destination="rLy-Wh-DnS" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogIn:" id="Dbl-MM-9NH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tj8-jy-jx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rLy-Wh-DnS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="252" y="68"/>
+            <point key="canvasLocation" x="276" y="108"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="VUB-jd-Qov">
@@ -1176,7 +1177,7 @@
                         <outlet property="monthlyCounterLabel" destination="RBX-K1-RcD" id="9LK-2i-uAo"/>
                         <outlet property="nameProfileLabel" destination="NPI-K6-EG8" id="lnS-sd-Ulo"/>
                         <outlet property="startDateProfileLabel" destination="jUv-ju-osw" id="WdN-2o-hAn"/>
-                        <segue destination="nzk-OW-G6R" kind="unwind" identifier="unwindFromWGVC" unwindAction="unwindFromWGVC:" id="JJJ-uh-d6s"/>
+                        <segue destination="nzk-OW-G6R" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogIn:" id="Naw-nf-3lc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDO-oM-cEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1249,9 +1250,6 @@
                                                 <action selector="completeButtonPressed:" destination="Fcw-r0-Gy4" eventType="touchUpInside" id="FyL-Or-olq"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8RL-Zc-h93">
-                                            <rect key="frame" x="-76" y="-2" width="29" height="91"/>
-                                        </imageView>
                                     </subviews>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -1271,7 +1269,6 @@
                                     <outlet property="completeButton" destination="t0H-dT-ypZ" id="AOh-mo-v8r"/>
                                     <outlet property="dueLabelIcon" destination="qa4-Qx-wZa" id="hyD-Nf-gux"/>
                                     <outlet property="goalTextLabel" destination="2xw-7Z-maC" id="R0h-6P-V1d"/>
-                                    <outlet property="iconImage" destination="8RL-Zc-h93" id="gam-JZ-hKx"/>
                                     <segue destination="vq9-2F-l8P" kind="show" identifier="editMonthlyGoal" id="eQB-wO-zQv"/>
                                 </connections>
                             </tableViewCell>
@@ -2840,7 +2837,6 @@
                                                         <connections>
                                                             <action selector="logInButtonPressed:" destination="Xff-XV-rpI" eventType="touchUpInside" id="ccx-vP-v8B"/>
                                                             <action selector="resetPasswordButtonPressed:" destination="Xff-XV-rpI" eventType="touchUpInside" id="MKM-yz-HU3"/>
-                                                            <segue destination="b0e-8Q-hXB" kind="unwind" unwindAction="unwindFromSignUp:" id="bU3-hb-sYK"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -2890,6 +2886,7 @@
                         <outlet property="emailField" destination="pL7-pB-3RO" id="SjO-mK-FKu"/>
                         <outlet property="resetPasswordButton" destination="1AS-Va-MOw" id="dbl-VA-A7A"/>
                         <outlet property="resetPasswordErrorLabel" destination="cKF-nH-HPO" id="VgI-9k-MJJ"/>
+                        <segue destination="b0e-8Q-hXB" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogIn:" id="qHB-of-7ze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYK-yH-cSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -9016,8 +9013,8 @@
         <image name="whatworked_icon" width="82" height="82"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F0k-MP-t0R"/>
-        <segue reference="RnB-wj-eoz"/>
         <segue reference="mQN-NJ-Qii"/>
+        <segue reference="RnB-wj-eoz"/>
+        <segue reference="eQB-wO-zQv"/>
     </inferredMetricsTieBreakers>
 </document>

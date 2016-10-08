@@ -63,10 +63,6 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
     
     // FIXME: - change these two unwind segues to the single "unwindToLogIn" segue
-    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue){}
-    
-    @IBAction func unwindFromWGVC(segue: UIStoryboardSegue){}
-    
     @IBAction func unwindToLogIn(segue: UIStoryboardSegue){}
     
     // MARK: - Methods

@@ -350,16 +350,12 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let kla = goal.kla
         cell.goalTextLabel!.text = goal.goalText
         cell.delegate = self
-        var klaIconDone = ""
         var klaIcon = ""
         var klaIconHighlighted = ""
+        
         if  goal.complete
         {
-            
-            print("goal \(goal.goalText) is complete")
-            //cell.iconImage.hidden = false
             cell.userInteractionEnabled = false
-            //cell.completeButton.hidden = false
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
             cell.tintColor = UIColor.darkGrayColor()
@@ -395,21 +391,14 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             default:
                 klaIcon = "F-done.png"
             }
-     
-            // use image instead of the button
-            //cell.iconImage.image = UIImage(named: klaIconDone)
-        
         }
-            
         else if !goal.complete
         {
-            
-            cell.iconImage.hidden = true
-            //cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
+            cell.dueLabelIcon.hidden = false
             
             switch kla
             {
@@ -449,8 +438,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 klaIconHighlighted = "F-highlighted"
             }
     
-            
-            cell.dueLabelIcon.hidden = false
             if goal.due == Goal.Due.overdue
             {
                 //show due image
@@ -466,7 +453,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 // hide image
                 cell.dueLabelIcon.hidden = true
             }
-           
         }
         
         // Image button for normal and highlighted
