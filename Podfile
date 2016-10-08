@@ -15,4 +15,7 @@ target 'PeakPerformance' do
 	pod 'SideMenu'
 	pod 'PDFGenerator', '~> 1.4.3'
 	pod 'AMPopTip'
+	pod 'Fabric'
+	pod 'TwitterKit'
+	pod 'TwitterCore'
 end

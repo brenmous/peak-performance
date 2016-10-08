@@ -275,3 +275,7 @@
 07/10/2016 12:50 - 14:30, 14:45 -  
 	- annual review: keep summaries + more rework (kill me)
 		- history sorted in yearly sections
+
+08/10/2016 12:40 - 
+	- social media integration
+		- twitter

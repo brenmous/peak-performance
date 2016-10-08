@@ -368,6 +368,9 @@ let SETTINGS_TO_DELETE_ACCOUNT_SEGUE = "settingsToDeleteAccountSegue"
 /// Settings -> Change coach email
 let SETTINGS_TO_COACH_EMAIL_SEGUE = "settingsToCoachEmailSegue"
 
+/// Settings -> Sharing
+let SETTINGS_TO_SHARING_SEGUE = "settingsToSharingSegue"
+
 /// Change coach email -> Settings
 let UNWIND_FROM_COACH_EMAIL_SEGUE = "unwindToSettings"
 
@@ -612,7 +615,12 @@ let OVERDUE_ICON = "due-icon"
 let PDF_MIME_TYPE = "application/pdf"
 
 // MARK: - NSUserDefaults keys
+
+/// Key for NSUserDefaults automatic login setting
 let USER_DEFAULTS_AUTO_LOGIN = "autoLogin"
+
+/// Key for NSUserDefaults twitter integration setting
+let USER_DEFAULTS_TWITTER = "twitter"
 
 
 // MARK: - UILocalNotification strings

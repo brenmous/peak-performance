@@ -1,6 +1,7 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - AMPopTip (1.3.0)
+  - Fabric (1.6.8)
   - Firebase (3.4.0):
     - Firebase/Core (= 3.4.0)
   - Firebase/Analytics (3.4.0):
@@ -45,10 +46,15 @@ PODS:
   - PDFGenerator (1.4.3)
   - SideMenu (1.1.9)
   - SwiftValidator (3.0.1)
+  - TwitterCore (2.4.0):
+    - Fabric
+  - TwitterKit (2.4.0):
+    - TwitterCore (= 2.4.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
   - AMPopTip
+  - Fabric
   - Firebase
   - Firebase/Auth
   - Firebase/Core
@@ -57,6 +63,8 @@ DEPENDENCIES:
   - PDFGenerator (~> 1.4.3)
   - SideMenu
   - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, tag `4.0.0`)
+  - TwitterCore
+  - TwitterKit
 
 EXTERNAL SOURCES:
   SwiftValidator:
@@ -71,6 +79,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   AMPopTip: b810a33c120feacafce170cc9ddcaa8ce3a8389d
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   Firebase: 754562547af419cc2f4b15247fee419081924bc2
   FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
@@ -85,7 +94,9 @@ SPEC CHECKSUMS:
   PDFGenerator: 8e28213b0b36e41f667b474e24ab7c84c8cee303
   SideMenu: e4ecb0f1061e19230e53079edb2b300081446f80
   SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
+  TwitterCore: a139904c80805ad3dde9eef1100704f96f646d1d
+  TwitterKit: 1cf9742edf9d182c1518cfdd6aaac0dfe313b38b
 
-PODFILE CHECKSUM: d44a698a64913e52d0fb8e51946ed1c09b3a4ac5
+PODFILE CHECKSUM: 783e07b501cfe972117a12e3c0c31e76cbc55891
 
 COCOAPODS: 1.0.1

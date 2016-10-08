@@ -46,6 +46,7 @@
 		B51BD7931D7E8611003EA9AC /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */; };
 		B51BD7951D7E8634003EA9AC /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */; };
 		B51BD7971D7E95C4003EA9AC /* MonthlySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */; };
+		B527F7D61DA898C200EC1077 /* SocialMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527F7D51DA898C200EC1077 /* SocialMediaViewController.swift */; };
 		B53132A51D7AB0330027F4F4 /* menu-150dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = B53132A41D7AB0330027F4F4 /* menu-150dpi.png */; };
 		B53132A71D7AB0AE0027F4F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */; };
 		B53132A91D7E74670027F4F4 /* MonthlyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */; };
@@ -155,6 +156,7 @@
 		B51BD7921D7E8611003EA9AC /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlySummary.swift; sourceTree = "<group>"; };
+		B527F7D51DA898C200EC1077 /* SocialMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMediaViewController.swift; sourceTree = "<group>"; };
 		B53132A41D7AB0330027F4F4 /* menu-150dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-150dpi.png"; sourceTree = "<group>"; };
 		B53132A61D7AB0AE0027F4F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B53132A81D7E74670027F4F4 /* MonthlyReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyReviewViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				B59057741D946C7E00D12D2C /* ChangePasswordViewController.swift */,
 				B59057771D96009000D12D2C /* DeleteAccountViewController.swift */,
 				B5DA2B871D9727FE0091AA75 /* CoachEmailViewController.swift */,
+				B527F7D51DA898C200EC1077 /* SocialMediaViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				B59EC42D1D3FB45C00AF1297 /* Resources */,
 				C81F536572CBE575810D38AC /* [CP] Embed Pods Frameworks */,
 				18F1B469A8521A7AC8E2D017 /* [CP] Copy Pods Resources */,
+				B527F7D41DA895C000EC1077 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -663,6 +667,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B527F7D41DA895C000EC1077 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" b9e2208d7f032f0cabdd1f9d2f680a72f928b75d 43656b3d55054878aa1a4e95269d40af64f318c2c6caf114e372276f1f492b90";
+		};
 		C81F536572CBE575810D38AC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -708,6 +725,7 @@
 				B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */,
 				449618051D7D503100AD8C25 /* customizableTextView.swift in Sources */,
 				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
+				B527F7D61DA898C200EC1077 /* SocialMediaViewController.swift in Sources */,
 				B53E7EB11D8BD0DB00CFF4AB /* SecondInitialSetupViewController.swift in Sources */,
 				B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */,
 				B590576F1D945A9100D12D2C /* SettingsViewController.swift in Sources */,

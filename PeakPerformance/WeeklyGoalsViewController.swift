@@ -119,20 +119,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         guard let cu = self.currentUser else { return }
         let wg = cu.weeklyGoals[indexPath.row]
     
-        //TODO: place in UIAlertController extensions
         //goal completion confirm alert controller
-        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
-        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in
-            let kickItTextField = goalCompleteAlertController.textFields![0] as UITextField
-            let kickItText = kickItTextField.text!
-            self.completeGoal(wg, kickItText: kickItText)
-        }
-        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
-        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
-        goalCompleteAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in
-            textField.placeholder = KICKIT_PLACEHOLDER_STRING
-        }
-        presentViewController(goalCompleteAlertController, animated: true, completion: nil )
+        
+        presentViewController(goalCompleteAlertController(wg), animated: true, completion: nil)
     }
     
     /// Sorts user's weekly goals.
@@ -212,6 +201,23 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 return
             }
         }
+    }
+    
+    // MARK: - Alert controllers
+    func goalCompleteAlertController(goal: WeeklyGoal) -> UIAlertController
+    {
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in
+            let kickItTextField = goalCompleteAlertController.textFields![0] as UITextField
+            let kickItText = kickItTextField.text!
+            self.completeGoal(goal, kickItText: kickItText)
+        }
+        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
+        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
+        goalCompleteAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in
+            textField.placeholder = KICKIT_PLACEHOLDER_STRING
+        }
+        return goalCompleteAlertController
     }
     
     // MARK: - Overridden methods

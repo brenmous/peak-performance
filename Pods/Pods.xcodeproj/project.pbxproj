@@ -7,98 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0080EC2F2982853EFE711FDBE69CDDA8 /* EmailRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3B0648C89C2E2B7E88F33E706841D /* EmailRule.swift */; };
-		09776CB9FE61BE3250AFA43EF921C655 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEA4B91DB5B835106602EBE123CFB99 /* ValidationError.swift */; };
-		098769B5C2FEECE3762BF097029466C6 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC0476E85C453E95E0F7635A833BA46 /* ActionSheetMultipleStringPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		0C021559C3A13D3B77BC7561F15590DE /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 00B5464428202E7EE584C933E59D09B5 /* Info.plist */; };
-		162BAA0A5D35592A031A4CFE076ED493 /* RequiredRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A0DDCB56F39894D9322FC6111D053D /* RequiredRule.swift */; };
-		168FF3DA8C8DD1160D4B748C1A6F0058 /* AMPopTip+Draw.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED97878C367C533BFF9D5E77874E2D /* AMPopTip+Draw.m */; };
-		1CAEEBC4F132DA53C8DB6B4461608D70 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9623DD51FB2A08072977C1FB4FA9F5D0 /* ActionSheetDistancePicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1CC9E081387D99D2B70909751C22AA30 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB248D5EC6B597378F313CE798AE9E6 /* DistancePickerView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1F85900C7EFF5029BC4046E400A7B7AA /* ValidationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054E172AE09BFBFE0AE44BC7F43CB26B /* ValidationRule.swift */; };
-		2481738B8BC9F83B6C891ADDA2B0D3A3 /* MinLengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D480F099CFBD9ADA7B69BE6C3599 /* MinLengthRule.swift */; };
-		2799077CCB251E9369F43685C67B8CAF /* CharacterSetRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCEF807BFCEF2D32FF65AB4F3642E9D /* CharacterSetRule.swift */; };
-		27E375DD07AA8B31FCEA67C94C95E828 /* ExactLengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8116E3D24E3AC1D43A21AB3D93C5F /* ExactLengthRule.swift */; };
-		2F233F5C9237D1F03231FCB3656BA118 /* SideMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 089B9D033C17C9F4EF838C8D5172CAF2 /* SideMenu-dummy.m */; };
-		31BD0C9241E08549B6864F0026EDF5DE /* AMPopTip.h in Headers */ = {isa = PBXBuildFile; fileRef = 3835B99F6E40427EF359E753BFBBB02F /* AMPopTip.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32106583E2D939FF400A7FBC86DE99DA /* MaxLengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2655AEF842EEFD82BBE6202BE58E5 /* MaxLengthRule.swift */; };
+		0080EC2F2982853EFE711FDBE69CDDA8 /* EmailRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085D449B17676EF4A25F5A4B98B85F0 /* EmailRule.swift */; };
+		09776CB9FE61BE3250AFA43EF921C655 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA34BA945A0C2E91BF9BC412DA95FB3 /* ValidationError.swift */; };
+		098769B5C2FEECE3762BF097029466C6 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B255ABC1D664069B6B51B2495DB97D /* ActionSheetMultipleStringPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0C021559C3A13D3B77BC7561F15590DE /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 44939DE4D287B10FFE79C1ECA7DB8A5A /* Info.plist */; };
+		162BAA0A5D35592A031A4CFE076ED493 /* RequiredRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A8EFCA50A8D994E3C2438DD1181B2 /* RequiredRule.swift */; };
+		168FF3DA8C8DD1160D4B748C1A6F0058 /* AMPopTip+Draw.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2CFB5B5CBAF8DF6951B3313F568235 /* AMPopTip+Draw.m */; };
+		1CAEEBC4F132DA53C8DB6B4461608D70 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1C08EF5BAD121F88E2A784EDC40028 /* ActionSheetDistancePicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1CC9E081387D99D2B70909751C22AA30 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5269419003E60FC67CF1F9BE19351DC1 /* DistancePickerView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1F85900C7EFF5029BC4046E400A7B7AA /* ValidationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E49CBE67E2708F5948D208877F99B /* ValidationRule.swift */; };
+		2481738B8BC9F83B6C891ADDA2B0D3A3 /* MinLengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE7E3794CFA82ED3E2BAC6CE9B6D0E /* MinLengthRule.swift */; };
+		2799077CCB251E9369F43685C67B8CAF /* CharacterSetRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEDA842A1B1D3944367433C98102BE /* CharacterSetRule.swift */; };
+		27E375DD07AA8B31FCEA67C94C95E828 /* ExactLengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A36C58FD8AEE2B691A6EC287A16AE /* ExactLengthRule.swift */; };
+		2F233F5C9237D1F03231FCB3656BA118 /* SideMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F397CA27AD5D395DFEE66EF465788D0C /* SideMenu-dummy.m */; };
+		31BD0C9241E08549B6864F0026EDF5DE /* AMPopTip.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E7AE664E5F89A17223FCEADD294115B /* AMPopTip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32106583E2D939FF400A7FBC86DE99DA /* MaxLengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7652E4C3FF6CED93D74EF9D729449F03 /* MaxLengthRule.swift */; };
 		33594929D88F3FB598C2F386253BFE28 /* Pods-PeakPerformance-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D82533124B50C7FCCFD22BBCFC1C75DC /* Pods-PeakPerformance-dummy.m */; };
-		33C34C9DA9402F8B3457B4112EC0539E /* PDFGenerator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 179C3E116D9620F19FBA1B7C62525E9A /* PDFGenerator-dummy.m */; };
-		33EE7806A0AD0C0AFD362E1AD550EA6A /* AMPopTip+Draw.h in Headers */ = {isa = PBXBuildFile; fileRef = D8E6CA5E681F460BBA6B008F6BC5CAE8 /* AMPopTip+Draw.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3605B742811405EB6C273DBF3E60BA65 /* ActionSheetCustomPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = BC5D11837496BA87CC9F75A956B68BDB /* ActionSheetCustomPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33C34C9DA9402F8B3457B4112EC0539E /* PDFGenerator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F450B19087FB298B86AC80B87C46AB75 /* PDFGenerator-dummy.m */; };
+		33EE7806A0AD0C0AFD362E1AD550EA6A /* AMPopTip+Draw.h in Headers */ = {isa = PBXBuildFile; fileRef = EBE956011C46563FD776A8B6BF6567F9 /* AMPopTip+Draw.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3605B742811405EB6C273DBF3E60BA65 /* ActionSheetCustomPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = BDD9E688EC812EF820B0C6586F98F3CD /* ActionSheetCustomPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37A8FC955ED4481012CB3922643B25C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF1F6D671C390DBB91C8E5A9AEC130 /* Foundation.framework */; };
 		3E70A5A3709545C90CCFD66EC85FAFDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF1F6D671C390DBB91C8E5A9AEC130 /* Foundation.framework */; };
-		3F9369B0E219E307FD1FC012DCAFCC8A /* AMPopTip+Entrance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A703FF62152EBE80B54904307361A2 /* AMPopTip+Entrance.m */; };
-		409A1BD79370BB3F3B809ACAB8B14AA8 /* ActionSheetPicker-3.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D9CDFECBE82D0152EF21CD4812594 /* ActionSheetPicker-3.0-dummy.m */; };
-		53E0825DC621F2555B3FA9A8687CF7B4 /* DistancePickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 86BCB7ADC010DCECE4790D004755F5EF /* DistancePickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		594FC51BE92E0D6E9A912BC24AA01642 /* AMPopTip+Animation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DC92FC649E8BAFF243A9639E2DD711A /* AMPopTip+Animation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F9369B0E219E307FD1FC012DCAFCC8A /* AMPopTip+Entrance.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8144B0B936174179F9F69FA935BDA4 /* AMPopTip+Entrance.m */; };
+		409A1BD79370BB3F3B809ACAB8B14AA8 /* ActionSheetPicker-3.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA32F1856A5EA7A0F5FE7CE4FDB23569 /* ActionSheetPicker-3.0-dummy.m */; };
+		53E0825DC621F2555B3FA9A8687CF7B4 /* DistancePickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACE7D6CC77470FA3E8BB6832CA94FCE /* DistancePickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		594FC51BE92E0D6E9A912BC24AA01642 /* AMPopTip+Animation.h in Headers */ = {isa = PBXBuildFile; fileRef = BF56FA43F1F1EC0CF5EB3886E34F3842 /* AMPopTip+Animation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B8617002B88563B29BE29C6DF23F56A /* SideMenu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F36E13B5E3F356AA62218E57566A356 /* SideMenu.bundle */; };
-		5D4602F4C935962CB9A17B91D4759EDE /* IPV4Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E5C709AD3CF4E6155A1B8F2EDED2 /* IPV4Rule.swift */; };
-		5FEE0A02C001742DFFBAF052985A194E /* AMPopTip+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9358249358AF7D0D5EDB9AD350011CBA /* AMPopTip+Animation.m */; };
-		6058C40D9AFABF7CFB162DA72B192392 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B5B4041BC5AA4193303C56528CA336 /* ActionSheetDatePicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		613FDA1ECFB3C76E034752C671952CFD /* AlphaNumericRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB930740D076D092065F17CF562D96D /* AlphaNumericRule.swift */; };
-		627A79010BA75672F25EA6B97520FA07 /* ActionSheetDistancePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B98BE8C4F613DE911BD961A1FF506C90 /* ActionSheetDistancePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		683C54E51546341B3AF902BE93E7E88C /* UISideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E518C25549AD04A9645906224791F4F /* UISideMenuNavigationController.swift */; };
-		68FB561B4E31FF535A983D289E8659CA /* SWActionSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 04710C1BE626EF4860AE8DA588CCF2A8 /* SWActionSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D4602F4C935962CB9A17B91D4759EDE /* IPV4Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA47726BC99013A0B2117FCA6BEA4B6 /* IPV4Rule.swift */; };
+		5FEE0A02C001742DFFBAF052985A194E /* AMPopTip+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5C1BA396FAB54457B01DF3B8E15ED /* AMPopTip+Animation.m */; };
+		6058C40D9AFABF7CFB162DA72B192392 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 069BC7C610F02BEBE3920CC2E47607F9 /* ActionSheetDatePicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		613FDA1ECFB3C76E034752C671952CFD /* AlphaNumericRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCFCD01F4CC28CB509B6C5807C74FCE /* AlphaNumericRule.swift */; };
+		627A79010BA75672F25EA6B97520FA07 /* ActionSheetDistancePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE3FC004AB89B6A1D77167F6CBF268 /* ActionSheetDistancePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		683C54E51546341B3AF902BE93E7E88C /* UISideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8084F19BBDC47B2E4887ED255F690F43 /* UISideMenuNavigationController.swift */; };
+		68FB561B4E31FF535A983D289E8659CA /* SWActionSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = A4B9ADC0C307E6A8BDAEB366886B314F /* SWActionSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		694063C959AF45FA362F7F24638AE46F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF1F6D671C390DBB91C8E5A9AEC130 /* Foundation.framework */; };
-		6AE8964E5A81FDE5FAF7EA27D7D8AE54 /* SideMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7FDC08818785179820C6A8846A7E6B8 /* SideMenu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B59492DD15DFA7636FFEB16264BF85C /* PDFPageRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EFAE54270293AE6D3CD188552462A /* PDFPageRenderable.swift */; };
+		6AE8964E5A81FDE5FAF7EA27D7D8AE54 /* SideMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C8BAE9FE0D9BFE05098D839AE300B6 /* SideMenu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B59492DD15DFA7636FFEB16264BF85C /* PDFPageRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A058012DEE5CACF5353B3D138DF284A /* PDFPageRenderable.swift */; };
 		6EB7511DD7067B09B26134E39A452479 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF1F6D671C390DBB91C8E5A9AEC130 /* Foundation.framework */; };
-		708FB515E35DF0D2F37F2495CD29FF6D /* ConfirmRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9803D542EE7C62B9E0F7FE73EEACFE11 /* ConfirmRule.swift */; };
-		71519D67CEDB6B0E2B0D11215DC4964C /* PhoneNumberRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA9B1EA36720E45FCDF6A2BBF8E7CA /* PhoneNumberRule.swift */; };
-		75A794C91A2AB93BF38279819BADCD8C /* ActionSheetCustomPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D1728E4BCE248DED4EFE864B629A3D63 /* ActionSheetCustomPickerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		770BEFACCB678FBCD001529D16DC7D97 /* ActionSheetLocalePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B639CCF7E7823C0DD51F02645CA8B5EA /* ActionSheetLocalePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7E12B74950B365215A5A89834E94C424 /* SwiftValidator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A78E119F041C072E7DAAFABF8E42D1AA /* SwiftValidator-dummy.m */; };
-		7E4B31A52AA9ABF5F04E83B724AC4776 /* AutoreleasepoolTry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76DC05346FD0521B78D67874698D4F /* AutoreleasepoolTry.swift */; };
-		7EF915FA08181452D59D4469A92D3EC4 /* AMPopTip+Exit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF9DB3D2E1976F7F25329F700C0DFA /* AMPopTip+Exit.m */; };
+		708FB515E35DF0D2F37F2495CD29FF6D /* ConfirmRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B047829C3DBDA40FDEFDAC7F020F4865 /* ConfirmRule.swift */; };
+		71519D67CEDB6B0E2B0D11215DC4964C /* PhoneNumberRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFBE4D87F1F92D8B01DBFC45AF49033 /* PhoneNumberRule.swift */; };
+		75A794C91A2AB93BF38279819BADCD8C /* ActionSheetCustomPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4832EACBF7EA82C00194701AB41C4ECF /* ActionSheetCustomPickerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		770BEFACCB678FBCD001529D16DC7D97 /* ActionSheetLocalePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F54D64281DB6E34B4D42C5691ECF9BB7 /* ActionSheetLocalePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E12B74950B365215A5A89834E94C424 /* SwiftValidator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BE41090C47FF9107185D05B41845D9 /* SwiftValidator-dummy.m */; };
+		7E4B31A52AA9ABF5F04E83B724AC4776 /* AutoreleasepoolTry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067F7B7F43C2C01113D06DC79C1F4DB /* AutoreleasepoolTry.swift */; };
+		7EF915FA08181452D59D4469A92D3EC4 /* AMPopTip+Exit.m in Sources */ = {isa = PBXBuildFile; fileRef = 492829BFA473F1C66CFCF6C7EDC14218 /* AMPopTip+Exit.m */; };
 		7FCFFBEBAB23900F6A527EAF93EFF29F /* Pods-PeakPerformance-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEBADE7A04103738AEDA7E25DDE35CF /* Pods-PeakPerformance-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		839328726543A0451E1219781C57BE90 /* DPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9B5D0ABE66F3FE41D4CC82A0A9B0A5 /* DPIType.swift */; };
-		848C447B17BB93A8BC6757BB8DD4EC99 /* ActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = A3D8F17F55172465056AA2511851F82A /* ActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		85E6D00D0715E22B12E82A35A1B3BBA6 /* AMPopTip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5E5EBCBB55D52715B6EE5DC0750C24 /* AMPopTip-dummy.m */; };
-		8604F9A80F34D21870FCB70BF030722B /* ActionSheetDatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D5298F89A0E5FB33A56DAF63B28E3BB /* ActionSheetDatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		87147C42437C5623BBFCE2F4BE735A3F /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F0A5C060679CF7B408D857F0E8DCC /* PDFGenerator.swift */; };
-		8788E6C37FC208307940C72AAA6F63CF /* PDFPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C3BE527A299D2B9722B34068F19F2 /* PDFPage.swift */; };
-		891A465A992A8E27B56F8CCBD0E722CA /* ISBNRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DA0532F4535F2692A86B707175A40E /* ISBNRule.swift */; };
-		89A920F5185F4D025D0284F8A1026E13 /* FullNameRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CD223E58ACADF29727AE7B0294DF0 /* FullNameRule.swift */; };
-		8A8984980AF6D9BDC21E1DF91AD422E7 /* PDFGenerateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CDAB0F29B8F9027E5BA5F2567B9089 /* PDFGenerateError.swift */; };
-		8BA847E95780BE13D1290D889B98BD57 /* AlphaRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FDE668D10511BF0F8DBBD0981E39D5 /* AlphaRule.swift */; };
-		92B7CE642B2E8F1BB25FA8BC9D80FB06 /* ValidatorDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF8D03C0FEDD2FEC007FD873AE863DA /* ValidatorDictionary.swift */; };
-		92FE7EBEF0EFE9FC9AC62C6C3D0CA0C0 /* ZipCodeRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CCB7F612494EC66891C73EF78F9C2 /* ZipCodeRule.swift */; };
+		839328726543A0451E1219781C57BE90 /* DPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0DE20D668EFE547E48454FB1EE1282 /* DPIType.swift */; };
+		848C447B17BB93A8BC6757BB8DD4EC99 /* ActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7375DC2032020F06EBDE5548A1DEEEB9 /* ActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85E6D00D0715E22B12E82A35A1B3BBA6 /* AMPopTip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C3809352DAAC4C7FDF7E36DFADC854 /* AMPopTip-dummy.m */; };
+		8604F9A80F34D21870FCB70BF030722B /* ActionSheetDatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C6C9FE4D6E268EB22B8941F6379A89 /* ActionSheetDatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87147C42437C5623BBFCE2F4BE735A3F /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611CC676A2328179BD3BDD315964E27 /* PDFGenerator.swift */; };
+		8788E6C37FC208307940C72AAA6F63CF /* PDFPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B39C85BC838F9D5FA1D03363C0DB /* PDFPage.swift */; };
+		891A465A992A8E27B56F8CCBD0E722CA /* ISBNRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F02A20619F2B07A5F596ABAD800BB5 /* ISBNRule.swift */; };
+		89A920F5185F4D025D0284F8A1026E13 /* FullNameRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8DE7D1D2FDBC882EE8FDB0344AB599 /* FullNameRule.swift */; };
+		8A8984980AF6D9BDC21E1DF91AD422E7 /* PDFGenerateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C53929E0019E6AE6F09560A20EB2F7 /* PDFGenerateError.swift */; };
+		8BA847E95780BE13D1290D889B98BD57 /* AlphaRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12A76B6B36C7A28FDCA2753C9138C3F /* AlphaRule.swift */; };
+		92B7CE642B2E8F1BB25FA8BC9D80FB06 /* ValidatorDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907314CC3EFDF118BEF4285D17E625EE /* ValidatorDictionary.swift */; };
+		92FE7EBEF0EFE9FC9AC62C6C3D0CA0C0 /* ZipCodeRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4171CB0697C1C0BEA6A384A6A0160 /* ZipCodeRule.swift */; };
 		946BE30AE64E103328C2C6390B662779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B160F6609E6234C51167B6A9333928E3 /* UIKit.framework */; };
 		99234DCFC61DD8C380E414B2478FA9C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B160F6609E6234C51167B6A9333928E3 /* UIKit.framework */; };
 		9B5BAA5F29A08F5338602898EA110C9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF1F6D671C390DBB91C8E5A9AEC130 /* Foundation.framework */; };
-		9CA21846EB596294EEA9166C5123102E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E3921317DD74828E4463F55D49D3B /* AbstractActionSheetPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9CFC15086D52329109370E2D7A0105CC /* SwiftValidator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 93CCBC07AE04FC4855155A40FD022147 /* SwiftValidator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D35A78E05E56CA2D298C6524C353D8F /* AbstractActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F7002E8EC167964633224FBD14944CB2 /* AbstractActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A4133EF011FB5D93E99EB1EF68340C0A /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16565CA83B8D986A6C24B852E9FE5481 /* SideMenuManager.swift */; };
-		A7CB7FE8CCFED212419B8AA0E372EE23 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FBFFF63E22A5D0075002CBB140F0F /* Rule.swift */; };
-		A8F94E288388E5E2455D0D7DF46D0588 /* HexColorRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFA14FABBFD552C61ECBD0A0F671491 /* HexColorRule.swift */; };
-		ABBF380D4804467E4D7CB1604E701515 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC7EB6281F2A13AD29A13EB8E4AB53C /* ActionSheetLocalePicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B0207EECB6B4D6D28CFC9ACFCDA215C8 /* FloatRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7342C795A5FF9DEC2F9746DAF9CE33E6 /* FloatRule.swift */; };
-		B0BB57516C3CEC4EE42E3FE727292187 /* ActionSheetPicker-3.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8262059F6E8A2306FBE1B0BB144A7C15 /* ActionSheetPicker-3.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B0E524E526AEB46867FC321D7D452587 /* AMPopTip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9134079E12F3888FF1BB93DFCA22BC4F /* AMPopTip-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B640015FD6F6684CB649C15A87933AF6 /* ActionSheetMultipleStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B32D35628BC1834AC55C9638E11BF5 /* ActionSheetMultipleStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B81290AA0A4825D12C26DF81BE932B59 /* PDFGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = AD5F16EF9A95167F93A596C172A0F689 /* PDFGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B9C591521644B9ECEE3AD415D995CAC9 /* RegexRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79FBAFF790389DE6939DF8D51C5D77A /* RegexRule.swift */; };
-		C593597EAA0D1105FB8C136225349ABB /* PDFPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117FBE2D5A1AEED1AFF87677AAF0632D /* PDFPassword.swift */; };
-		C7E0E82461930580E3A6D2E7851985C2 /* PDFGenerator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 94D71DF45200C7EAC475E14CA9827BDF /* PDFGenerator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CAD6335F8822646861904FF84F742A81 /* AMPopTipDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CECF8BC9900E56BAA4F6B03038F2628 /* AMPopTipDefaults.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CEA3240572C6DC666437DBDD3415ABDD /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 977063AA19A5A998D97964676CFF913D /* ActionSheetStringPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D084AE5876843A226CC40DA8EDFD9E24 /* AMPopTip.m in Sources */ = {isa = PBXBuildFile; fileRef = E60F2EEE1307EBF24C235FCA7A6EBE13 /* AMPopTip.m */; };
-		D3F26F54B9333EC0DE81CA192E83875B /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 28060AB379F75FDBA1224527B7543D69 /* ActionSheetCustomPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D4447FF472FB1BB8EEC77B7694DA3C7F /* ActionSheetStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = DFD33C5F824206B556ECC57B6971B089 /* ActionSheetStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D45F25F50FABBF25D06AF7D6566E878F /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6F1AD37061E5A3BFE4A82C396951B /* Validatable.swift */; };
-		D46B90A4AADAA830AD7BF5C7DE81308C /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C6D680AD5C1A1ABFD65681838CB45D /* UITableViewVibrantCell.swift */; };
-		D51764B6DB245D25E2BAB845C2D72639 /* ValidationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4810111ED15CB1CDE4E77ECAE92D2E90 /* ValidationDelegate.swift */; };
+		9CA21846EB596294EEA9166C5123102E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F005C40C2A2318E951C038603BAD7CA2 /* AbstractActionSheetPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9CFC15086D52329109370E2D7A0105CC /* SwiftValidator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D314D93F3F48DEBD528AFE91FC6C67 /* SwiftValidator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D35A78E05E56CA2D298C6524C353D8F /* AbstractActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9DEDD443F49205924AE2CA209DBA74 /* AbstractActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4133EF011FB5D93E99EB1EF68340C0A /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E348B84F26D2BA9103A655882621960 /* SideMenuManager.swift */; };
+		A7CB7FE8CCFED212419B8AA0E372EE23 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5940199D7A0C153E987E33E8470361AA /* Rule.swift */; };
+		A8F94E288388E5E2455D0D7DF46D0588 /* HexColorRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EAB4AF4063170C857A2821B9B95F01 /* HexColorRule.swift */; };
+		ABBF380D4804467E4D7CB1604E701515 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D580128E8976D81C260BD478D339C523 /* ActionSheetLocalePicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B0207EECB6B4D6D28CFC9ACFCDA215C8 /* FloatRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93011FBEFC04349A78CD54A36A044166 /* FloatRule.swift */; };
+		B0BB57516C3CEC4EE42E3FE727292187 /* ActionSheetPicker-3.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 82944423E14F6C1769C71D724A3812E9 /* ActionSheetPicker-3.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0E524E526AEB46867FC321D7D452587 /* AMPopTip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F3CB5DCD9EDDEB27A1E921A739702E4D /* AMPopTip-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B640015FD6F6684CB649C15A87933AF6 /* ActionSheetMultipleStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 007275BBCEBD14261E50D109BCBF7CEA /* ActionSheetMultipleStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B81290AA0A4825D12C26DF81BE932B59 /* PDFGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 39ED2DEE596BABFC99E5E625973875DD /* PDFGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B9C591521644B9ECEE3AD415D995CAC9 /* RegexRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712AA7FFEE844343ECF912FC6DC5DBD /* RegexRule.swift */; };
+		C593597EAA0D1105FB8C136225349ABB /* PDFPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CF448D5A6C96B013C0F0E202784681 /* PDFPassword.swift */; };
+		C7E0E82461930580E3A6D2E7851985C2 /* PDFGenerator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CD39CDF68E6A4F661DCACAE2761B683F /* PDFGenerator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CAD6335F8822646861904FF84F742A81 /* AMPopTipDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = C06F4840BB817E8A558DCEB59D1E1700 /* AMPopTipDefaults.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEA3240572C6DC666437DBDD3415ABDD /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ABEF81609883A85E4439881CFF9C6D /* ActionSheetStringPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D084AE5876843A226CC40DA8EDFD9E24 /* AMPopTip.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E1F70911FE3AE366008144EB618987 /* AMPopTip.m */; };
+		D3F26F54B9333EC0DE81CA192E83875B /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213A239F8E7B28278BAA33308A6D6CC /* ActionSheetCustomPicker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D4447FF472FB1BB8EEC77B7694DA3C7F /* ActionSheetStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = C5A91F1B040845AC89005CB59299D105 /* ActionSheetStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D45F25F50FABBF25D06AF7D6566E878F /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F535C03D90C88081D6A9833291D855A5 /* Validatable.swift */; };
+		D46B90A4AADAA830AD7BF5C7DE81308C /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079861B0CDDBF2CCC169B1BD62078A2A /* UITableViewVibrantCell.swift */; };
+		D51764B6DB245D25E2BAB845C2D72639 /* ValidationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032656336B2DCBFC8CFB1FE1661A8068 /* ValidationDelegate.swift */; };
 		DD42A1E0B30060D57774B79F15C0A8C6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD3A1838491CCD00DBC7211D9F6A0D7 /* WebKit.framework */; };
-		E4F0178B7A435993B710E78B8A35E0DF /* FilePathConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA6EA85F66C5CF6299F09A46E6F3F6 /* FilePathConvertible.swift */; };
-		E9F339DE75CB68B1AC97BB659A4A25CF /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A8069B1CD9256197DAB1ED9C713EFD /* SWActionSheet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		F1C6E9895A6463F866EA04C2DCB5E3D3 /* AMPopTip+Entrance.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C773692AE6B3DDD66DB7B90F468F21A /* AMPopTip+Entrance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5CF034358ED23A4D8B9FBB5775C0062 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FD3D09C57FB6A8B4B6936A6BA3AFB4 /* Validator.swift */; };
+		E4F0178B7A435993B710E78B8A35E0DF /* FilePathConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C4828522FAA4EB8F361E8E7E078892 /* FilePathConvertible.swift */; };
+		E9F339DE75CB68B1AC97BB659A4A25CF /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF5A0FA3D37DA6F076B66FF6A3556EA /* SWActionSheet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F1C6E9895A6463F866EA04C2DCB5E3D3 /* AMPopTip+Entrance.h in Headers */ = {isa = PBXBuildFile; fileRef = F4D5B86B1240F13C578C65905BDAB8C4 /* AMPopTip+Entrance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5CF034358ED23A4D8B9FBB5775C0062 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09C0DAF4DBCC779DAB41E72B8ECA9AF /* Validator.swift */; };
 		F5F7A3F78C22EE96C57D06E5C7ED019B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF1F6D671C390DBB91C8E5A9AEC130 /* Foundation.framework */; };
-		F830964FB4E54EA277AB5ED99920F5AA /* AMPopTip+Exit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A3DCFDB14A0CA60F0F579F88D18E74D /* AMPopTip+Exit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FD71044DF333E304438C0B3393AA38AB /* PasswordRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1720240974FE810014DD615206D9559 /* PasswordRule.swift */; };
-		FFE3FD8D3D0733297A35B321FB3633A5 /* SideMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E91D452F5FC83B7D78C3E2EF9C1108 /* SideMenuTransition.swift */; };
+		F830964FB4E54EA277AB5ED99920F5AA /* AMPopTip+Exit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E458E55E5DC1B05D20DF7FE52430D8C /* AMPopTip+Exit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD71044DF333E304438C0B3393AA38AB /* PasswordRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32CD5980689AFB59E16E8AFD876592F /* PasswordRule.swift */; };
+		FFE3FD8D3D0733297A35B321FB3633A5 /* SideMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83538D7FBBBE96AE85626D32E535D9D /* SideMenuTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,139 +148,145 @@
 
 /* Begin PBXFileReference section */
 		0004A4923A6ED98191AFC52F79EC5385 /* Pods-PeakPerformance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeakPerformance.release.xcconfig"; sourceTree = "<group>"; };
-		00B5464428202E7EE584C933E59D09B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PDFGenerator/Info.plist; sourceTree = "<group>"; };
-		02B5B4041BC5AA4193303C56528CA336 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDatePicker.m; path = Pickers/ActionSheetDatePicker.m; sourceTree = "<group>"; };
-		02D88773F7716DA4DFE7A0EB4C62EA15 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseStorage.framework; path = Frameworks/FirebaseStorage.framework; sourceTree = "<group>"; };
-		045F70665E8CF01CA934F1784AD37694 /* ActionSheetPicker-3.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-prefix.pch"; sourceTree = "<group>"; };
-		04710C1BE626EF4860AE8DA588CCF2A8 /* SWActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Pickers/SWActionSheet.h; sourceTree = "<group>"; };
-		054E172AE09BFBFE0AE44BC7F43CB26B /* ValidationRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidationRule.swift; path = SwiftValidator/Rules/ValidationRule.swift; sourceTree = "<group>"; };
-		068CD223E58ACADF29727AE7B0294DF0 /* FullNameRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FullNameRule.swift; path = SwiftValidator/Rules/FullNameRule.swift; sourceTree = "<group>"; };
-		089B9D033C17C9F4EF838C8D5172CAF2 /* SideMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SideMenu-dummy.m"; sourceTree = "<group>"; };
-		0CECF8BC9900E56BAA4F6B03038F2628 /* AMPopTipDefaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPopTipDefaults.h; path = Source/AMPopTipDefaults.h; sourceTree = "<group>"; };
-		0D8D9CDFECBE82D0152EF21CD4812594 /* ActionSheetPicker-3.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ActionSheetPicker-3.0-dummy.m"; sourceTree = "<group>"; };
-		0DC92FC649E8BAFF243A9639E2DD711A /* AMPopTip+Animation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Animation.h"; path = "Source/AMPopTip+Animation.h"; sourceTree = "<group>"; };
-		117FBE2D5A1AEED1AFF87677AAF0632D /* PDFPassword.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFPassword.swift; path = PDFGenerator/PDFPassword.swift; sourceTree = "<group>"; };
-		12F3B0648C89C2E2B7E88F33E706841D /* EmailRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmailRule.swift; path = SwiftValidator/Rules/EmailRule.swift; sourceTree = "<group>"; };
-		16565CA83B8D986A6C24B852E9FE5481 /* SideMenuManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuManager.swift; path = Pod/Classes/SideMenuManager.swift; sourceTree = "<group>"; };
+		007275BBCEBD14261E50D109BCBF7CEA /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetMultipleStringPicker.h; path = Pickers/ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		02B255ABC1D664069B6B51B2495DB97D /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = Pickers/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
+		032656336B2DCBFC8CFB1FE1661A8068 /* ValidationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidationDelegate.swift; path = SwiftValidator/Core/ValidationDelegate.swift; sourceTree = "<group>"; };
+		05ABEF81609883A85E4439881CFF9C6D /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Pickers/ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		069BC7C610F02BEBE3920CC2E47607F9 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDatePicker.m; path = Pickers/ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		079861B0CDDBF2CCC169B1BD62078A2A /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewVibrantCell.swift; path = Pod/Classes/UITableViewVibrantCell.swift; sourceTree = "<group>"; };
+		0AC1B639FEA2345698A44BBC75D3C1FF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		114052E4BB8BE840BF57C469B7D07A6A /* SideMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.xcconfig; sourceTree = "<group>"; };
+		14B0D926794F6D4DB4A87BA0A99AF8AB /* SideMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SideMenu.modulemap; sourceTree = "<group>"; };
+		1611CC676A2328179BD3BDD315964E27 /* PDFGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFGenerator.swift; path = PDFGenerator/PDFGenerator.swift; sourceTree = "<group>"; };
+		169E49CBE67E2708F5948D208877F99B /* ValidationRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidationRule.swift; path = SwiftValidator/Rules/ValidationRule.swift; sourceTree = "<group>"; };
 		173F9F7986284F931F82CA63ADFC6603 /* Pods-PeakPerformance-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PeakPerformance-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1780E39169F85D67367F76EF47E1359C /* SwiftValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		179C3E116D9620F19FBA1B7C62525E9A /* PDFGenerator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PDFGenerator-dummy.m"; sourceTree = "<group>"; };
-		18A0DDCB56F39894D9322FC6111D053D /* RequiredRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequiredRule.swift; path = SwiftValidator/Rules/RequiredRule.swift; sourceTree = "<group>"; };
-		1A3E3921317DD74828E4463F55D49D3B /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = Pickers/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
-		1C773692AE6B3DDD66DB7B90F468F21A /* AMPopTip+Entrance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Entrance.h"; path = "Source/AMPopTip+Entrance.h"; sourceTree = "<group>"; };
+		18E2BA321601D2A2DE0091E34EA56B41 /* AMPopTip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AMPopTip.modulemap; sourceTree = "<group>"; };
+		19527F762451971E804E482BA2BD7888 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Analytics/Sources/Firebase.h; sourceTree = "<group>"; };
+		198682EDA2F9EAC0532CC10952764758 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19EE7E3794CFA82ED3E2BAC6CE9B6D0E /* MinLengthRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinLengthRule.swift; path = SwiftValidator/Rules/MinLengthRule.swift; sourceTree = "<group>"; };
+		1A0DE20D668EFE547E48454FB1EE1282 /* DPIType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPIType.swift; path = PDFGenerator/DPIType.swift; sourceTree = "<group>"; };
+		1E7AE664E5F89A17223FCEADD294115B /* AMPopTip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPopTip.h; path = Source/AMPopTip.h; sourceTree = "<group>"; };
 		1E90A3DB8AFC99E1F723E374A337C646 /* Pods-PeakPerformance-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PeakPerformance-frameworks.sh"; sourceTree = "<group>"; };
-		1EB930740D076D092065F17CF562D96D /* AlphaNumericRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlphaNumericRule.swift; path = SwiftValidator/Rules/AlphaNumericRule.swift; sourceTree = "<group>"; };
 		1F36E13B5E3F356AA62218E57566A356 /* SideMenu.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideMenu.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FD12EBAF71208B1329B07B6F6FFC8BA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22C6D680AD5C1A1ABFD65681838CB45D /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewVibrantCell.swift; path = Pod/Classes/UITableViewVibrantCell.swift; sourceTree = "<group>"; };
+		237A2F1F1A06140FFAF90F38EB08D733 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Frameworks/FirebaseDatabase.framework; sourceTree = "<group>"; };
 		2593EDA061580B57A10D7D8AA06326EC /* Pods-PeakPerformance-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PeakPerformance-resources.sh"; sourceTree = "<group>"; };
-		27A8433BB75C2776BB051B15F379F1A7 /* PDFGenerator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PDFGenerator.modulemap; sourceTree = "<group>"; };
-		28060AB379F75FDBA1224527B7543D69 /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetCustomPicker.m; path = Pickers/ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		264A36C58FD8AEE2B691A6EC287A16AE /* ExactLengthRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExactLengthRule.swift; path = SwiftValidator/Rules/ExactLengthRule.swift; sourceTree = "<group>"; };
+		285BA551C6189441E2F92A784BBB7DEF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		2A7435A7717CE8843504232F8BAAE2D6 /* AMPopTip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AMPopTip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B3FBFFF63E22A5D0075002CBB140F0F /* Rule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = SwiftValidator/Rules/Rule.swift; sourceTree = "<group>"; };
+		2CBE9DEEB67713828A783D2DC7AF84A1 /* SideMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-prefix.pch"; sourceTree = "<group>"; };
 		2EEBADE7A04103738AEDA7E25DDE35CF /* Pods-PeakPerformance-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PeakPerformance-umbrella.h"; sourceTree = "<group>"; };
-		30801CA37EC41513E86E76B536FB4EEC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30AF1F6D671C390DBB91C8E5A9AEC130 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3213A239F8E7B28278BAA33308A6D6CC /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetCustomPicker.m; path = Pickers/ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		34BE41090C47FF9107185D05B41845D9 /* SwiftValidator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftValidator-dummy.m"; sourceTree = "<group>"; };
 		350C47C8B6D445D96FC6FEADBC7016CD /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		36074EAD4A1859F315F89F375D09B785 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
-		3835B99F6E40427EF359E753BFBBB02F /* AMPopTip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPopTip.h; path = Source/AMPopTip.h; sourceTree = "<group>"; };
+		3648B41F0D4BB1802184096B2BCE6159 /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Sources/FIRInstanceID.h; sourceTree = "<group>"; };
+		365719D8BEBD9D83BD16ECAE434EFFFA /* SwiftValidator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftValidator.xcconfig; sourceTree = "<group>"; };
+		39ED2DEE596BABFC99E5E625973875DD /* PDFGenerator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDFGenerator.h; path = PDFGenerator/PDFGenerator.h; sourceTree = "<group>"; };
+		3ACE7D6CC77470FA3E8BB6832CA94FCE /* DistancePickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DistancePickerView.h; path = Pickers/DistancePickerView.h; sourceTree = "<group>"; };
+		3AF5F094DC117A77B15E2B826F134DDE /* ActionSheetPicker-3.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-prefix.pch"; sourceTree = "<group>"; };
 		3D1DB12CE354A9329337C8E9F4845B2D /* Pods-PeakPerformance-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PeakPerformance-acknowledgements.plist"; sourceTree = "<group>"; };
-		3DA1E5C709AD3CF4E6155A1B8F2EDED2 /* IPV4Rule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IPV4Rule.swift; path = SwiftValidator/Rules/IPV4Rule.swift; sourceTree = "<group>"; };
 		3E1E3DDAF7879570EA067F16426A080D /* PDFGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PDFGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E348B84F26D2BA9103A655882621960 /* SideMenuManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuManager.swift; path = Pod/Classes/SideMenuManager.swift; sourceTree = "<group>"; };
 		426E8E5199E119EDE57CF792B0A9F0DC /* SideMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		456CCB7F612494EC66891C73EF78F9C2 /* ZipCodeRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipCodeRule.swift; path = SwiftValidator/Rules/ZipCodeRule.swift; sourceTree = "<group>"; };
-		4618643F7A41F22F696CA9646CBF7DEA /* GoogleParsingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleParsingUtilities.framework; path = Frameworks/GoogleParsingUtilities.framework; sourceTree = "<group>"; };
-		4810111ED15CB1CDE4E77ECAE92D2E90 /* ValidationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidationDelegate.swift; path = SwiftValidator/Core/ValidationDelegate.swift; sourceTree = "<group>"; };
-		4A3DCFDB14A0CA60F0F579F88D18E74D /* AMPopTip+Exit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Exit.h"; path = "Source/AMPopTip+Exit.h"; sourceTree = "<group>"; };
-		4C9B5D0ABE66F3FE41D4CC82A0A9B0A5 /* DPIType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPIType.swift; path = PDFGenerator/DPIType.swift; sourceTree = "<group>"; };
-		50E45E2A4D5D8833C51FEFE6F9144AB3 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Analytics/Sources/Firebase.h; sourceTree = "<group>"; };
-		52B2655AEF842EEFD82BBE6202BE58E5 /* MaxLengthRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaxLengthRule.swift; path = SwiftValidator/Rules/MaxLengthRule.swift; sourceTree = "<group>"; };
-		52DA0532F4535F2692A86B707175A40E /* ISBNRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ISBNRule.swift; path = SwiftValidator/Rules/ISBNRule.swift; sourceTree = "<group>"; };
-		52ED97878C367C533BFF9D5E77874E2D /* AMPopTip+Draw.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Draw.m"; path = "Source/AMPopTip+Draw.m"; sourceTree = "<group>"; };
-		58CDAB0F29B8F9027E5BA5F2567B9089 /* PDFGenerateError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFGenerateError.swift; path = PDFGenerator/PDFGenerateError.swift; sourceTree = "<group>"; };
-		5B1B81D301583ABC4849914AA536E58E /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		65007C3FB743E7D77FEBEA32383099C6 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
-		69FD3D09C57FB6A8B4B6936A6BA3AFB4 /* Validator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = SwiftValidator/Core/Validator.swift; sourceTree = "<group>"; };
-		6B76DC05346FD0521B78D67874698D4F /* AutoreleasepoolTry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoreleasepoolTry.swift; path = PDFGenerator/AutoreleasepoolTry.swift; sourceTree = "<group>"; };
-		6DB248D5EC6B597378F313CE798AE9E6 /* DistancePickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = Pickers/DistancePickerView.m; sourceTree = "<group>"; };
-		6FEA4B91DB5B835106602EBE123CFB99 /* ValidationError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidationError.swift; path = SwiftValidator/Core/ValidationError.swift; sourceTree = "<group>"; };
-		70A8069B1CD9256197DAB1ED9C713EFD /* SWActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Pickers/SWActionSheet.m; sourceTree = "<group>"; };
-		7342C795A5FF9DEC2F9746DAF9CE33E6 /* FloatRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatRule.swift; path = SwiftValidator/Rules/FloatRule.swift; sourceTree = "<group>"; };
-		7ACF9DB3D2E1976F7F25329F700C0DFA /* AMPopTip+Exit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Exit.m"; path = "Source/AMPopTip+Exit.m"; sourceTree = "<group>"; };
-		7D5298F89A0E5FB33A56DAF63B28E3BB /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDatePicker.h; path = Pickers/ActionSheetDatePicker.h; sourceTree = "<group>"; };
-		7F14D2C00F3D81FCEBB35A0E2FEAE65F /* ActionSheetPicker-3.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.xcconfig"; sourceTree = "<group>"; };
-		8262059F6E8A2306FBE1B0BB144A7C15 /* ActionSheetPicker-3.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-umbrella.h"; sourceTree = "<group>"; };
-		82B32D35628BC1834AC55C9638E11BF5 /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetMultipleStringPicker.h; path = Pickers/ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		44939DE4D287B10FFE79C1ECA7DB8A5A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PDFGenerator/Info.plist; sourceTree = "<group>"; };
+		4832EACBF7EA82C00194701AB41C4ECF /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = Pickers/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		492829BFA473F1C66CFCF6C7EDC14218 /* AMPopTip+Exit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Exit.m"; path = "Source/AMPopTip+Exit.m"; sourceTree = "<group>"; };
+		4DE6384B3B3B979996B95AC2ED1EF956 /* AMPopTip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AMPopTip.xcconfig; sourceTree = "<group>"; };
+		5085D449B17676EF4A25F5A4B98B85F0 /* EmailRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmailRule.swift; path = SwiftValidator/Rules/EmailRule.swift; sourceTree = "<group>"; };
+		5269419003E60FC67CF1F9BE19351DC1 /* DistancePickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = Pickers/DistancePickerView.m; sourceTree = "<group>"; };
+		53D314D93F3F48DEBD528AFE91FC6C67 /* SwiftValidator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftValidator-umbrella.h"; sourceTree = "<group>"; };
+		56B7CDE00604FE1FCEA955A46CEF06C7 /* ActionSheetPicker-3.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.xcconfig"; sourceTree = "<group>"; };
+		5940199D7A0C153E987E33E8470361AA /* Rule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = SwiftValidator/Rules/Rule.swift; sourceTree = "<group>"; };
+		59CC62F03939BB25D394F206AA74114F /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = iOS/TwitterCore.framework; sourceTree = "<group>"; };
+		5A00411AB8B23033506057D347EEF1BD /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
+		5D1DA9DF2CAA89FE037C095DB6B6C263 /* PDFGenerator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PDFGenerator.xcconfig; sourceTree = "<group>"; };
+		5E98D3D8B7246FC579A994AEF6CB5EAF /* SwiftValidator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftValidator.modulemap; sourceTree = "<group>"; };
+		5F2EE7193A369816E1E7DE2A1D3EFFA6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6052E0614BE1AB4DE8B9DF8586CB0329 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
+		60DE3FC004AB89B6A1D77167F6CBF268 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDistancePicker.h; path = Pickers/ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		61C4828522FAA4EB8F361E8E7E078892 /* FilePathConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FilePathConvertible.swift; path = PDFGenerator/FilePathConvertible.swift; sourceTree = "<group>"; };
+		696C9D32E72FEE017C7BC6BA323B5608 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
+		6AB8B39C85BC838F9D5FA1D03363C0DB /* PDFPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFPage.swift; path = PDFGenerator/PDFPage.swift; sourceTree = "<group>"; };
+		6AC5C1BA396FAB54457B01DF3B8E15ED /* AMPopTip+Animation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Animation.m"; path = "Source/AMPopTip+Animation.m"; sourceTree = "<group>"; };
+		6E458E55E5DC1B05D20DF7FE52430D8C /* AMPopTip+Exit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Exit.h"; path = "Source/AMPopTip+Exit.h"; sourceTree = "<group>"; };
+		70C3809352DAAC4C7FDF7E36DFADC854 /* AMPopTip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AMPopTip-dummy.m"; sourceTree = "<group>"; };
+		7375DC2032020F06EBDE5548A1DEEEB9 /* ActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = Pickers/ActionSheetPicker.h; sourceTree = "<group>"; };
+		755130D24E44FE012BBF7E9FA4F2BCCD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7652E4C3FF6CED93D74EF9D729449F03 /* MaxLengthRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaxLengthRule.swift; path = SwiftValidator/Rules/MaxLengthRule.swift; sourceTree = "<group>"; };
+		79AEDA842A1B1D3944367433C98102BE /* CharacterSetRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CharacterSetRule.swift; path = SwiftValidator/Rules/CharacterSetRule.swift; sourceTree = "<group>"; };
+		7A5E84DE056E6A86B57A9133CA05DBDB /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		7C4340D7CE52C0F353D032EBDA78584C /* SwiftValidator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftValidator-prefix.pch"; sourceTree = "<group>"; };
+		8084F19BBDC47B2E4887ED255F690F43 /* UISideMenuNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UISideMenuNavigationController.swift; path = Pod/Classes/UISideMenuNavigationController.swift; sourceTree = "<group>"; };
+		82944423E14F6C1769C71D724A3812E9 /* ActionSheetPicker-3.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-umbrella.h"; sourceTree = "<group>"; };
+		83C8BAE9FE0D9BFE05098D839AE300B6 /* SideMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-umbrella.h"; sourceTree = "<group>"; };
 		83EA2C6BBCC42C3A4AF211A4CC55C31B /* Pods-PeakPerformance.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PeakPerformance.modulemap"; sourceTree = "<group>"; };
-		86BCB7ADC010DCECE4790D004755F5EF /* DistancePickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DistancePickerView.h; path = Pickers/DistancePickerView.h; sourceTree = "<group>"; };
-		8BD8116E3D24E3AC1D43A21AB3D93C5F /* ExactLengthRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExactLengthRule.swift; path = SwiftValidator/Rules/ExactLengthRule.swift; sourceTree = "<group>"; };
+		883FC808A14DE6F8D703C3D1D74058FD /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = Frameworks/frameworks/FirebaseAuth.framework; sourceTree = "<group>"; };
+		88C53929E0019E6AE6F09560A20EB2F7 /* PDFGenerateError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFGenerateError.swift; path = PDFGenerator/PDFGenerateError.swift; sourceTree = "<group>"; };
+		88E4171CB0697C1C0BEA6A384A6A0160 /* ZipCodeRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipCodeRule.swift; path = SwiftValidator/Rules/ZipCodeRule.swift; sourceTree = "<group>"; };
+		8ABCEA08078CDD50708C51A34E719C74 /* PDFGenerator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PDFGenerator.modulemap; sourceTree = "<group>"; };
+		8BCFCD01F4CC28CB509B6C5807C74FCE /* AlphaNumericRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlphaNumericRule.swift; path = SwiftValidator/Rules/AlphaNumericRule.swift; sourceTree = "<group>"; };
 		8D0C8A6150629B05032651D0AE8AB571 /* ActionSheetPicker_3_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActionSheetPicker_3_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3E311ADEE8D9B91DEBC89E30CDC838 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9134079E12F3888FF1BB93DFCA22BC4F /* AMPopTip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMPopTip-umbrella.h"; sourceTree = "<group>"; };
-		9358249358AF7D0D5EDB9AD350011CBA /* AMPopTip+Animation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Animation.m"; path = "Source/AMPopTip+Animation.m"; sourceTree = "<group>"; };
-		9396C581C2024C6EFBD3F801F45ACEB4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		907314CC3EFDF118BEF4285D17E625EE /* ValidatorDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidatorDictionary.swift; path = SwiftValidator/Core/ValidatorDictionary.swift; sourceTree = "<group>"; };
+		92A7BD0E6463C089DE1B6302616ACA1E /* PDFGenerator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PDFGenerator-prefix.pch"; sourceTree = "<group>"; };
+		93011FBEFC04349A78CD54A36A044166 /* FloatRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatRule.swift; path = SwiftValidator/Rules/FloatRule.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		93CCBC07AE04FC4855155A40FD022147 /* SwiftValidator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftValidator-umbrella.h"; sourceTree = "<group>"; };
-		94D71DF45200C7EAC475E14CA9827BDF /* PDFGenerator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PDFGenerator-umbrella.h"; sourceTree = "<group>"; };
-		9623DD51FB2A08072977C1FB4FA9F5D0 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDistancePicker.m; path = Pickers/ActionSheetDistancePicker.m; sourceTree = "<group>"; };
-		977063AA19A5A998D97964676CFF913D /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Pickers/ActionSheetStringPicker.m; sourceTree = "<group>"; };
-		9803D542EE7C62B9E0F7FE73EEACFE11 /* ConfirmRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfirmRule.swift; path = SwiftValidator/Rules/ConfirmRule.swift; sourceTree = "<group>"; };
-		990A90E512685012A60E27DC47CA0732 /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Sources/FIRInstanceID.h; sourceTree = "<group>"; };
-		9B1E7F0E77F449CB5F7E69323AF2F837 /* SideMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-prefix.pch"; sourceTree = "<group>"; };
-		9C05800037EC08B26D0467D771383E26 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CA6F1AD37061E5A3BFE4A82C396951B /* Validatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validatable.swift; path = SwiftValidator/Core/Validatable.swift; sourceTree = "<group>"; };
-		9E518C25549AD04A9645906224791F4F /* UISideMenuNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UISideMenuNavigationController.swift; path = Pod/Classes/UISideMenuNavigationController.swift; sourceTree = "<group>"; };
-		A1A703FF62152EBE80B54904307361A2 /* AMPopTip+Entrance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Entrance.m"; path = "Source/AMPopTip+Entrance.m"; sourceTree = "<group>"; };
-		A3D8F17F55172465056AA2511851F82A /* ActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = Pickers/ActionSheetPicker.h; sourceTree = "<group>"; };
-		A78E119F041C072E7DAAFABF8E42D1AA /* SwiftValidator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftValidator-dummy.m"; sourceTree = "<group>"; };
-		A79FBAFF790389DE6939DF8D51C5D77A /* RegexRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RegexRule.swift; path = SwiftValidator/Rules/RegexRule.swift; sourceTree = "<group>"; };
-		AC9063DE1159E41831BB873B3FE45405 /* SwiftValidator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftValidator.modulemap; sourceTree = "<group>"; };
-		AD5F16EF9A95167F93A596C172A0F689 /* PDFGenerator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDFGenerator.h; path = PDFGenerator/PDFGenerator.h; sourceTree = "<group>"; };
-		ADC7EB6281F2A13AD29A13EB8E4AB53C /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetLocalePicker.m; path = Pickers/ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		95F02A20619F2B07A5F596ABAD800BB5 /* ISBNRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ISBNRule.swift; path = SwiftValidator/Rules/ISBNRule.swift; sourceTree = "<group>"; };
+		99EAB4AF4063170C857A2821B9B95F01 /* HexColorRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HexColorRule.swift; path = SwiftValidator/Rules/HexColorRule.swift; sourceTree = "<group>"; };
+		9A058012DEE5CACF5353B3D138DF284A /* PDFPageRenderable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFPageRenderable.swift; path = PDFGenerator/PDFPageRenderable.swift; sourceTree = "<group>"; };
+		9B88E517C8BD4646AE921D66D395811B /* ResourceBundle-SideMenu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SideMenu-Info.plist"; sourceTree = "<group>"; };
+		A067F7B7F43C2C01113D06DC79C1F4DB /* AutoreleasepoolTry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoreleasepoolTry.swift; path = PDFGenerator/AutoreleasepoolTry.swift; sourceTree = "<group>"; };
+		A4B9ADC0C307E6A8BDAEB366886B314F /* SWActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Pickers/SWActionSheet.h; sourceTree = "<group>"; };
+		A6CF448D5A6C96B013C0F0E202784681 /* PDFPassword.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFPassword.swift; path = PDFGenerator/PDFPassword.swift; sourceTree = "<group>"; };
+		AE8F34247B28667C1B4F07C6A36DB1E9 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		AF141CA1C8CAC88645AD9400291AD929 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		AFF5058BDE2DCA6F987732B8BE93AB46 /* GoogleParsingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleParsingUtilities.framework; path = Frameworks/GoogleParsingUtilities.framework; sourceTree = "<group>"; };
+		B047829C3DBDA40FDEFDAC7F020F4865 /* ConfirmRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfirmRule.swift; path = SwiftValidator/Rules/ConfirmRule.swift; sourceTree = "<group>"; };
+		B12A76B6B36C7A28FDCA2753C9138C3F /* AlphaRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlphaRule.swift; path = SwiftValidator/Rules/AlphaRule.swift; sourceTree = "<group>"; };
 		B160F6609E6234C51167B6A9333928E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B23E6FE725E20926FF1C94D23620C6C8 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
-		B639CCF7E7823C0DD51F02645CA8B5EA /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetLocalePicker.h; path = Pickers/ActionSheetLocalePicker.h; sourceTree = "<group>"; };
-		B98BE8C4F613DE911BD961A1FF506C90 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDistancePicker.h; path = Pickers/ActionSheetDistancePicker.h; sourceTree = "<group>"; };
-		BC5D11837496BA87CC9F75A956B68BDB /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = Pickers/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
-		BD74D66278FA78E9E8776DFFE17C2CC6 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
-		C57AD414394AB3DCDA16EA65B4B5E0AC /* AMPopTip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AMPopTip.modulemap; sourceTree = "<group>"; };
-		C7FDC08818785179820C6A8846A7E6B8 /* SideMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-umbrella.h"; sourceTree = "<group>"; };
-		C9FA9B1EA36720E45FCDF6A2BBF8E7CA /* PhoneNumberRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhoneNumberRule.swift; path = SwiftValidator/Rules/PhoneNumberRule.swift; sourceTree = "<group>"; };
-		CBA0D480F099CFBD9ADA7B69BE6C3599 /* MinLengthRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinLengthRule.swift; path = SwiftValidator/Rules/MinLengthRule.swift; sourceTree = "<group>"; };
-		CBA6880B01EAFC96F5FBF5E2B80BF259 /* SideMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.xcconfig; sourceTree = "<group>"; };
-		CC5E5EBCBB55D52715B6EE5DC0750C24 /* AMPopTip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AMPopTip-dummy.m"; sourceTree = "<group>"; };
-		CCC0476E85C453E95E0F7635A833BA46 /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = Pickers/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
-		CD04EDF48889E20E1ED7A9618CFA4344 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDCEF807BFCEF2D32FF65AB4F3642E9D /* CharacterSetRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CharacterSetRule.swift; path = SwiftValidator/Rules/CharacterSetRule.swift; sourceTree = "<group>"; };
-		CF23118BD1C81986604C24DF5F2DB7EA /* SwiftValidator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftValidator-prefix.pch"; sourceTree = "<group>"; };
-		D1728E4BCE248DED4EFE864B629A3D63 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = Pickers/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		B32CD5980689AFB59E16E8AFD876592F /* PasswordRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordRule.swift; path = SwiftValidator/Rules/PasswordRule.swift; sourceTree = "<group>"; };
+		B3E1F70911FE3AE366008144EB618987 /* AMPopTip.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMPopTip.m; path = Source/AMPopTip.m; sourceTree = "<group>"; };
+		BA32F1856A5EA7A0F5FE7CE4FDB23569 /* ActionSheetPicker-3.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ActionSheetPicker-3.0-dummy.m"; sourceTree = "<group>"; };
+		BA8DE7D1D2FDBC882EE8FDB0344AB599 /* FullNameRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FullNameRule.swift; path = SwiftValidator/Rules/FullNameRule.swift; sourceTree = "<group>"; };
+		BCA47726BC99013A0B2117FCA6BEA4B6 /* IPV4Rule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IPV4Rule.swift; path = SwiftValidator/Rules/IPV4Rule.swift; sourceTree = "<group>"; };
+		BDD9E688EC812EF820B0C6586F98F3CD /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = Pickers/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
+		BEBFEEBFB7763BE79FA8A46E0143F19B /* AMPopTip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMPopTip-prefix.pch"; sourceTree = "<group>"; };
+		BF3942E5A73EA3CF4A5EB0E29592923E /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		BF56FA43F1F1EC0CF5EB3886E34F3842 /* AMPopTip+Animation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Animation.h"; path = "Source/AMPopTip+Animation.h"; sourceTree = "<group>"; };
+		BFFBE4D87F1F92D8B01DBFC45AF49033 /* PhoneNumberRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhoneNumberRule.swift; path = SwiftValidator/Rules/PhoneNumberRule.swift; sourceTree = "<group>"; };
+		C06F4840BB817E8A558DCEB59D1E1700 /* AMPopTipDefaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPopTipDefaults.h; path = Source/AMPopTipDefaults.h; sourceTree = "<group>"; };
+		C5A91F1B040845AC89005CB59299D105 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = Pickers/ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		C83D4927ED147E53C127E7FCA03B5DD3 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseStorage.framework; path = Frameworks/FirebaseStorage.framework; sourceTree = "<group>"; };
+		CBA34BA945A0C2E91BF9BC412DA95FB3 /* ValidationError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidationError.swift; path = SwiftValidator/Core/ValidationError.swift; sourceTree = "<group>"; };
+		CD39CDF68E6A4F661DCACAE2761B683F /* PDFGenerator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PDFGenerator-umbrella.h"; sourceTree = "<group>"; };
+		D580128E8976D81C260BD478D339C523 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetLocalePicker.m; path = Pickers/ActionSheetLocalePicker.m; sourceTree = "<group>"; };
 		D82533124B50C7FCCFD22BBCFC1C75DC /* Pods-PeakPerformance-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PeakPerformance-dummy.m"; sourceTree = "<group>"; };
-		D8E6CA5E681F460BBA6B008F6BC5CAE8 /* AMPopTip+Draw.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Draw.h"; path = "Source/AMPopTip+Draw.h"; sourceTree = "<group>"; };
+		D83538D7FBBBE96AE85626D32E535D9D /* SideMenuTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuTransition.swift; path = Pod/Classes/SideMenuTransition.swift; sourceTree = "<group>"; };
+		DC5C5616C2521C0FCBBD27E623DB8E32 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDD3A1838491CCD00DBC7211D9F6A0D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
-		DE65E690779DFCF6D8E46A32D4B2ECF4 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
-		DFD33C5F824206B556ECC57B6971B089 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = Pickers/ActionSheetStringPicker.h; sourceTree = "<group>"; };
-		E1720240974FE810014DD615206D9559 /* PasswordRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordRule.swift; path = SwiftValidator/Rules/PasswordRule.swift; sourceTree = "<group>"; };
+		DE49EFB3E6262AA8AAD819A075F62B01 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = iOS/TwitterKit.framework; sourceTree = "<group>"; };
+		E09C0DAF4DBCC779DAB41E72B8ECA9AF /* Validator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = SwiftValidator/Core/Validator.swift; sourceTree = "<group>"; };
+		E1C6C9FE4D6E268EB22B8941F6379A89 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDatePicker.h; path = Pickers/ActionSheetDatePicker.h; sourceTree = "<group>"; };
 		E3CD1A078A5827EBFAEAEF6272CF52FA /* Pods-PeakPerformance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeakPerformance.debug.xcconfig"; sourceTree = "<group>"; };
-		E60F2EEE1307EBF24C235FCA7A6EBE13 /* AMPopTip.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMPopTip.m; path = Source/AMPopTip.m; sourceTree = "<group>"; };
-		E690ADE25CC520126E3FC0ADA578202C /* AMPopTip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMPopTip-prefix.pch"; sourceTree = "<group>"; };
-		E9DA607265095BF83F9E8CD8E9424B21 /* ResourceBundle-SideMenu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SideMenu-Info.plist"; sourceTree = "<group>"; };
-		EB2F0A5C060679CF7B408D857F0E8DCC /* PDFGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFGenerator.swift; path = PDFGenerator/PDFGenerator.swift; sourceTree = "<group>"; };
-		EBFA14FABBFD552C61ECBD0A0F671491 /* HexColorRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HexColorRule.swift; path = SwiftValidator/Rules/HexColorRule.swift; sourceTree = "<group>"; };
-		EC6F5FDFB1298E99410C16E93F6B4870 /* SideMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SideMenu.modulemap; sourceTree = "<group>"; };
-		ECCA6EA85F66C5CF6299F09A46E6F3F6 /* FilePathConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FilePathConvertible.swift; path = PDFGenerator/FilePathConvertible.swift; sourceTree = "<group>"; };
-		EE3731B692EE5E8FDBFCDC6B7CF72762 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
-		F2E91D452F5FC83B7D78C3E2EF9C1108 /* SideMenuTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuTransition.swift; path = Pod/Classes/SideMenuTransition.swift; sourceTree = "<group>"; };
-		F34C3BE527A299D2B9722B34068F19F2 /* PDFPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFPage.swift; path = PDFGenerator/PDFPage.swift; sourceTree = "<group>"; };
-		F45E3B26346CC4712DFAC099BECD7C7C /* SwiftValidator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftValidator.xcconfig; sourceTree = "<group>"; };
-		F537850C5D7DDA59D201689EC965A8A6 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = Frameworks/frameworks/FirebaseAuth.framework; sourceTree = "<group>"; };
-		F5BB6EA07007F942CEF0B7F1CE16B3FD /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Frameworks/FirebaseDatabase.framework; sourceTree = "<group>"; };
-		F5CFF604C614626049E87FC9233F30DC /* AMPopTip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AMPopTip.xcconfig; sourceTree = "<group>"; };
-		F6FDE668D10511BF0F8DBBD0981E39D5 /* AlphaRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlphaRule.swift; path = SwiftValidator/Rules/AlphaRule.swift; sourceTree = "<group>"; };
-		F7002E8EC167964633224FBD14944CB2 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Pickers/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
-		FA6EFAE54270293AE6D3CD188552462A /* PDFPageRenderable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PDFPageRenderable.swift; path = PDFGenerator/PDFPageRenderable.swift; sourceTree = "<group>"; };
-		FCAB77F139EE7629272BCBA46BAFF587 /* PDFGenerator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PDFGenerator.xcconfig; sourceTree = "<group>"; };
-		FF41C2392E5D749C46C0355B27EA63AA /* PDFGenerator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PDFGenerator-prefix.pch"; sourceTree = "<group>"; };
-		FFF8D03C0FEDD2FEC007FD873AE863DA /* ValidatorDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidatorDictionary.swift; path = SwiftValidator/Core/ValidatorDictionary.swift; sourceTree = "<group>"; };
+		E64D53892ECA13F534B534F18F62CF4E /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		E712AA7FFEE844343ECF912FC6DC5DBD /* RegexRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RegexRule.swift; path = SwiftValidator/Rules/RegexRule.swift; sourceTree = "<group>"; };
+		EA9DEDD443F49205924AE2CA209DBA74 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Pickers/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		EBE956011C46563FD776A8B6BF6567F9 /* AMPopTip+Draw.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Draw.h"; path = "Source/AMPopTip+Draw.h"; sourceTree = "<group>"; };
+		ECF5A0FA3D37DA6F076B66FF6A3556EA /* SWActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Pickers/SWActionSheet.m; sourceTree = "<group>"; };
+		ED2CFB5B5CBAF8DF6951B3313F568235 /* AMPopTip+Draw.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Draw.m"; path = "Source/AMPopTip+Draw.m"; sourceTree = "<group>"; };
+		F005C40C2A2318E951C038603BAD7CA2 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = Pickers/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		F034CF7AA100134C952608124776F171 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
+		F2AABFC80E999B80404E3351C8CD6029 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		F397CA27AD5D395DFEE66EF465788D0C /* SideMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SideMenu-dummy.m"; sourceTree = "<group>"; };
+		F3CB5DCD9EDDEB27A1E921A739702E4D /* AMPopTip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMPopTip-umbrella.h"; sourceTree = "<group>"; };
+		F450B19087FB298B86AC80B87C46AB75 /* PDFGenerator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PDFGenerator-dummy.m"; sourceTree = "<group>"; };
+		F4D5B86B1240F13C578C65905BDAB8C4 /* AMPopTip+Entrance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Entrance.h"; path = "Source/AMPopTip+Entrance.h"; sourceTree = "<group>"; };
+		F535C03D90C88081D6A9833291D855A5 /* Validatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validatable.swift; path = SwiftValidator/Core/Validatable.swift; sourceTree = "<group>"; };
+		F54D64281DB6E34B4D42C5691ECF9BB7 /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetLocalePicker.h; path = Pickers/ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		FB1A8EFCA50A8D994E3C2438DD1181B2 /* RequiredRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequiredRule.swift; path = SwiftValidator/Rules/RequiredRule.swift; sourceTree = "<group>"; };
+		FB8144B0B936174179F9F69FA935BDA4 /* AMPopTip+Entrance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Entrance.m"; path = "Source/AMPopTip+Entrance.m"; sourceTree = "<group>"; };
+		FC1C08EF5BAD121F88E2A784EDC40028 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDistancePicker.m; path = Pickers/ActionSheetDistancePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,69 +351,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		016883AC4E27A5BE12E4AD28B64850A1 /* Pods */ = {
+		038E968B6120255E5900347D24FB114A /* GoogleParsingUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				39B2D6D37E327D18D3DECB2EC20E0BB0 /* ActionSheetPicker-3.0 */,
-				0E1BC760B2BFDAE84780A3DFF9721A82 /* AMPopTip */,
-				6EEC27A19F5CE986F4BB13627D213E76 /* Firebase */,
-				9A76DD61327BD3D72BA404D03947144B /* FirebaseAnalytics */,
-				3582623B459D15438CC648FF3BA23FE3 /* FirebaseAuth */,
-				BC03063B3BDCFA0AD0D1C15C3F56DAA6 /* FirebaseDatabase */,
-				538E2D7F92B9D87B1D890DC2566ABFCB /* FirebaseInstanceID */,
-				184239342694B7B487E3A19B89407235 /* FirebaseStorage */,
-				907873B270484430ADB7056F0DFD5B0A /* GoogleInterchangeUtilities */,
-				34A2468E59244A0B4A36DBBE27663E3A /* GoogleNetworkingUtilities */,
-				884DBD4A4D44EB4EE21537FB10B19D24 /* GoogleParsingUtilities */,
-				EB3411B8BFF6462F11CF76A1D6251429 /* GoogleSymbolUtilities */,
-				074BB420990F367D3765A95723BEB834 /* GoogleUtilities */,
-				02CEE21B0CF834FDCEB6C1B009886052 /* PDFGenerator */,
-				3A1BC08CACFC23E6C70E6084896A1AE2 /* SideMenu */,
-				7E68900C458FC4883F9F289586374256 /* SwiftValidator */,
+				690181600CDA3A9CC3B471DF2532BA41 /* Frameworks */,
 			);
-			name = Pods;
+			path = GoogleParsingUtilities;
 			sourceTree = "<group>";
 		};
-		017A5BA8FEB19D9FC190A37552B81EAD /* Frameworks */ = {
+		08857B87CEB54F24D362786DC77DFC75 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4618643F7A41F22F696CA9646CBF7DEA /* GoogleParsingUtilities.framework */,
+				5F2EE7193A369816E1E7DE2A1D3EFFA6 /* Info.plist */,
+				5E98D3D8B7246FC579A994AEF6CB5EAF /* SwiftValidator.modulemap */,
+				365719D8BEBD9D83BD16ECAE434EFFFA /* SwiftValidator.xcconfig */,
+				34BE41090C47FF9107185D05B41845D9 /* SwiftValidator-dummy.m */,
+				7C4340D7CE52C0F353D032EBDA78584C /* SwiftValidator-prefix.pch */,
+				53D314D93F3F48DEBD528AFE91FC6C67 /* SwiftValidator-umbrella.h */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		02CEE21B0CF834FDCEB6C1B009886052 /* PDFGenerator */ = {
-			isa = PBXGroup;
-			children = (
-				6B76DC05346FD0521B78D67874698D4F /* AutoreleasepoolTry.swift */,
-				4C9B5D0ABE66F3FE41D4CC82A0A9B0A5 /* DPIType.swift */,
-				ECCA6EA85F66C5CF6299F09A46E6F3F6 /* FilePathConvertible.swift */,
-				00B5464428202E7EE584C933E59D09B5 /* Info.plist */,
-				58CDAB0F29B8F9027E5BA5F2567B9089 /* PDFGenerateError.swift */,
-				AD5F16EF9A95167F93A596C172A0F689 /* PDFGenerator.h */,
-				EB2F0A5C060679CF7B408D857F0E8DCC /* PDFGenerator.swift */,
-				F34C3BE527A299D2B9722B34068F19F2 /* PDFPage.swift */,
-				FA6EFAE54270293AE6D3CD188552462A /* PDFPageRenderable.swift */,
-				117FBE2D5A1AEED1AFF87677AAF0632D /* PDFPassword.swift */,
-				6EB848A1E103B7D28404B951F67BC1C0 /* Support Files */,
-			);
-			path = PDFGenerator;
-			sourceTree = "<group>";
-		};
-		0662B2887A68413A0396655277F629DA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F5BB6EA07007F942CEF0B7F1CE16B3FD /* FirebaseDatabase.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		074BB420990F367D3765A95723BEB834 /* GoogleUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				32DE5FCC9CC643CC6605C34B74FFA16E /* Frameworks */,
-			);
-			path = GoogleUtilities;
+			name = "Support Files";
+			path = "../Target Support Files/SwiftValidator";
 			sourceTree = "<group>";
 		};
 		09982254A6BC5C523E19F7B94C1457C7 /* Pods-PeakPerformance */ = {
@@ -428,38 +391,20 @@
 			path = "Target Support Files/Pods-PeakPerformance";
 			sourceTree = "<group>";
 		};
-		0A666CA880AC26FDF2F839052C71C64F /* Support Files */ = {
+		0A0599FF4DEEA6093CED92E2B42F4492 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1FD12EBAF71208B1329B07B6F6FFC8BA /* Info.plist */,
-				E9DA607265095BF83F9E8CD8E9424B21 /* ResourceBundle-SideMenu-Info.plist */,
-				EC6F5FDFB1298E99410C16E93F6B4870 /* SideMenu.modulemap */,
-				CBA6880B01EAFC96F5FBF5E2B80BF259 /* SideMenu.xcconfig */,
-				089B9D033C17C9F4EF838C8D5172CAF2 /* SideMenu-dummy.m */,
-				9B1E7F0E77F449CB5F7E69323AF2F837 /* SideMenu-prefix.pch */,
-				C7FDC08818785179820C6A8846A7E6B8 /* SideMenu-umbrella.h */,
+				7A5E84DE056E6A86B57A9133CA05DBDB /* GoogleSymbolUtilities.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SideMenu";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0E1BC760B2BFDAE84780A3DFF9721A82 /* AMPopTip */ = {
+		0F65D7B262A68D03158A0A6F41309AE2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3835B99F6E40427EF359E753BFBBB02F /* AMPopTip.h */,
-				E60F2EEE1307EBF24C235FCA7A6EBE13 /* AMPopTip.m */,
-				0DC92FC649E8BAFF243A9639E2DD711A /* AMPopTip+Animation.h */,
-				9358249358AF7D0D5EDB9AD350011CBA /* AMPopTip+Animation.m */,
-				D8E6CA5E681F460BBA6B008F6BC5CAE8 /* AMPopTip+Draw.h */,
-				52ED97878C367C533BFF9D5E77874E2D /* AMPopTip+Draw.m */,
-				1C773692AE6B3DDD66DB7B90F468F21A /* AMPopTip+Entrance.h */,
-				A1A703FF62152EBE80B54904307361A2 /* AMPopTip+Entrance.m */,
-				4A3DCFDB14A0CA60F0F579F88D18E74D /* AMPopTip+Exit.h */,
-				7ACF9DB3D2E1976F7F25329F700C0DFA /* AMPopTip+Exit.m */,
-				0CECF8BC9900E56BAA4F6B03038F2628 /* AMPopTipDefaults.h */,
-				8D29699E486CC214816C59D6D27828DB /* Support Files */,
+				285BA551C6189441E2F92A784BBB7DEF /* Fabric.framework */,
 			);
-			path = AMPopTip;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
@@ -470,131 +415,173 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		184239342694B7B487E3A19B89407235 /* FirebaseStorage */ = {
+		20CABC059D7A0B691D4AC8A5F7C21685 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				BB39AAB039EFF429DB3C23B5FF9AFB72 /* Frameworks */,
+				19527F762451971E804E482BA2BD7888 /* Firebase.h */,
 			);
-			path = FirebaseStorage;
+			name = Analytics;
 			sourceTree = "<group>";
 		};
-		24EC77553EBCC9391150BE006D218C30 /* Frameworks */ = {
+		2586031FBB5D269E10DC5D0EB576CF24 /* GoogleUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				F537850C5D7DDA59D201689EC965A8A6 /* FirebaseAuth.framework */,
+				D38D02B2521F2A1381BB755C9C3863B4 /* Frameworks */,
+			);
+			path = GoogleUtilities;
+			sourceTree = "<group>";
+		};
+		2A24F97284E796F6F8E11A475789C61C /* TwitterKit */ = {
+			isa = PBXGroup;
+			children = (
+				4F1CDA9660A5CEC365E1DCEE80F250BB /* Frameworks */,
+				E7A4C2540E636ED94A0B64BF9B64D741 /* Resources */,
+			);
+			path = TwitterKit;
+			sourceTree = "<group>";
+		};
+		2AD6C62C71E443589794A610C9C6A58F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF3942E5A73EA3CF4A5EB0E29592923E /* FirebaseInstanceID.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		32DE5FCC9CC643CC6605C34B74FFA16E /* Frameworks */ = {
+		4B0480510ACCF8C36A48E32C16582E40 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BD74D66278FA78E9E8776DFFE17C2CC6 /* GoogleUtilities.framework */,
+				6052E0614BE1AB4DE8B9DF8586CB0329 /* ActionSheetPicker-3.0.modulemap */,
+				56B7CDE00604FE1FCEA955A46CEF06C7 /* ActionSheetPicker-3.0.xcconfig */,
+				BA32F1856A5EA7A0F5FE7CE4FDB23569 /* ActionSheetPicker-3.0-dummy.m */,
+				3AF5F094DC117A77B15E2B826F134DDE /* ActionSheetPicker-3.0-prefix.pch */,
+				82944423E14F6C1769C71D724A3812E9 /* ActionSheetPicker-3.0-umbrella.h */,
+				198682EDA2F9EAC0532CC10952764758 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ActionSheetPicker-3.0";
+			sourceTree = "<group>";
+		};
+		4F1CDA9660A5CEC365E1DCEE80F250BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE49EFB3E6262AA8AAD819A075F62B01 /* TwitterKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3497C921BC8F6FDEE40340AA38EFCF63 /* Frameworks */ = {
+		4FB3D3FCA5FD75A4E08A8D84F9C3E867 /* TwitterCore */ = {
 			isa = PBXGroup;
 			children = (
-				B23E6FE725E20926FF1C94D23620C6C8 /* GoogleSymbolUtilities.framework */,
+				C787D99D261B8F009DF56C994051DF43 /* Frameworks */,
+			);
+			path = TwitterCore;
+			sourceTree = "<group>";
+		};
+		5E5CBC80ECA827FD33DBA50B2DE535F0 /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				696C9D32E72FEE017C7BC6BA323B5608 /* FABAttributes.h */,
+				F034CF7AA100134C952608124776F171 /* Fabric.h */,
+				0F65D7B262A68D03158A0A6F41309AE2 /* Frameworks */,
+			);
+			path = Fabric;
+			sourceTree = "<group>";
+		};
+		690181600CDA3A9CC3B471DF2532BA41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFF5058BDE2DCA6F987732B8BE93AB46 /* GoogleParsingUtilities.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		34A2468E59244A0B4A36DBBE27663E3A /* GoogleNetworkingUtilities */ = {
+		69519057A1C5FCE2ED00EAEF157A5E1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9913CD3A063092C4BC9C3832BBFF8D7A /* Frameworks */,
+				AF141CA1C8CAC88645AD9400291AD929 /* GoogleNetworkingUtilities.framework */,
 			);
-			path = GoogleNetworkingUtilities;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3582623B459D15438CC648FF3BA23FE3 /* FirebaseAuth */ = {
+		6D2E2E925FF31C4A6C37E69D73823E63 /* SwiftValidator */ = {
 			isa = PBXGroup;
 			children = (
-				24EC77553EBCC9391150BE006D218C30 /* Frameworks */,
+				8BCFCD01F4CC28CB509B6C5807C74FCE /* AlphaNumericRule.swift */,
+				B12A76B6B36C7A28FDCA2753C9138C3F /* AlphaRule.swift */,
+				79AEDA842A1B1D3944367433C98102BE /* CharacterSetRule.swift */,
+				B047829C3DBDA40FDEFDAC7F020F4865 /* ConfirmRule.swift */,
+				5085D449B17676EF4A25F5A4B98B85F0 /* EmailRule.swift */,
+				264A36C58FD8AEE2B691A6EC287A16AE /* ExactLengthRule.swift */,
+				93011FBEFC04349A78CD54A36A044166 /* FloatRule.swift */,
+				BA8DE7D1D2FDBC882EE8FDB0344AB599 /* FullNameRule.swift */,
+				99EAB4AF4063170C857A2821B9B95F01 /* HexColorRule.swift */,
+				BCA47726BC99013A0B2117FCA6BEA4B6 /* IPV4Rule.swift */,
+				95F02A20619F2B07A5F596ABAD800BB5 /* ISBNRule.swift */,
+				7652E4C3FF6CED93D74EF9D729449F03 /* MaxLengthRule.swift */,
+				19EE7E3794CFA82ED3E2BAC6CE9B6D0E /* MinLengthRule.swift */,
+				B32CD5980689AFB59E16E8AFD876592F /* PasswordRule.swift */,
+				BFFBE4D87F1F92D8B01DBFC45AF49033 /* PhoneNumberRule.swift */,
+				E712AA7FFEE844343ECF912FC6DC5DBD /* RegexRule.swift */,
+				FB1A8EFCA50A8D994E3C2438DD1181B2 /* RequiredRule.swift */,
+				5940199D7A0C153E987E33E8470361AA /* Rule.swift */,
+				F535C03D90C88081D6A9833291D855A5 /* Validatable.swift */,
+				032656336B2DCBFC8CFB1FE1661A8068 /* ValidationDelegate.swift */,
+				CBA34BA945A0C2E91BF9BC412DA95FB3 /* ValidationError.swift */,
+				169E49CBE67E2708F5948D208877F99B /* ValidationRule.swift */,
+				E09C0DAF4DBCC779DAB41E72B8ECA9AF /* Validator.swift */,
+				907314CC3EFDF118BEF4285D17E625EE /* ValidatorDictionary.swift */,
+				88E4171CB0697C1C0BEA6A384A6A0160 /* ZipCodeRule.swift */,
+				08857B87CEB54F24D362786DC77DFC75 /* Support Files */,
 			);
-			path = FirebaseAuth;
+			path = SwiftValidator;
 			sourceTree = "<group>";
 		};
-		39B2D6D37E327D18D3DECB2EC20E0BB0 /* ActionSheetPicker-3.0 */ = {
+		739B007B109E63247E78D3F3FA2090C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7002E8EC167964633224FBD14944CB2 /* AbstractActionSheetPicker.h */,
-				1A3E3921317DD74828E4463F55D49D3B /* AbstractActionSheetPicker.m */,
-				BC5D11837496BA87CC9F75A956B68BDB /* ActionSheetCustomPicker.h */,
-				28060AB379F75FDBA1224527B7543D69 /* ActionSheetCustomPicker.m */,
-				D1728E4BCE248DED4EFE864B629A3D63 /* ActionSheetCustomPickerDelegate.h */,
-				7D5298F89A0E5FB33A56DAF63B28E3BB /* ActionSheetDatePicker.h */,
-				02B5B4041BC5AA4193303C56528CA336 /* ActionSheetDatePicker.m */,
-				B98BE8C4F613DE911BD961A1FF506C90 /* ActionSheetDistancePicker.h */,
-				9623DD51FB2A08072977C1FB4FA9F5D0 /* ActionSheetDistancePicker.m */,
-				B639CCF7E7823C0DD51F02645CA8B5EA /* ActionSheetLocalePicker.h */,
-				ADC7EB6281F2A13AD29A13EB8E4AB53C /* ActionSheetLocalePicker.m */,
-				82B32D35628BC1834AC55C9638E11BF5 /* ActionSheetMultipleStringPicker.h */,
-				CCC0476E85C453E95E0F7635A833BA46 /* ActionSheetMultipleStringPicker.m */,
-				A3D8F17F55172465056AA2511851F82A /* ActionSheetPicker.h */,
-				DFD33C5F824206B556ECC57B6971B089 /* ActionSheetStringPicker.h */,
-				977063AA19A5A998D97964676CFF913D /* ActionSheetStringPicker.m */,
-				86BCB7ADC010DCECE4790D004755F5EF /* DistancePickerView.h */,
-				6DB248D5EC6B597378F313CE798AE9E6 /* DistancePickerView.m */,
-				04710C1BE626EF4860AE8DA588CCF2A8 /* SWActionSheet.h */,
-				70A8069B1CD9256197DAB1ED9C713EFD /* SWActionSheet.m */,
-				E1164E7B24CAE2F9C721E5279B3E2F4D /* Support Files */,
+				883FC808A14DE6F8D703C3D1D74058FD /* FirebaseAuth.framework */,
 			);
-			path = "ActionSheetPicker-3.0";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3A1BC08CACFC23E6C70E6084896A1AE2 /* SideMenu */ = {
+		75BA25F9EEEBDA481B9ABB30DA1CE146 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				16565CA83B8D986A6C24B852E9FE5481 /* SideMenuManager.swift */,
-				F2E91D452F5FC83B7D78C3E2EF9C1108 /* SideMenuTransition.swift */,
-				9E518C25549AD04A9645906224791F4F /* UISideMenuNavigationController.swift */,
-				22C6D680AD5C1A1ABFD65681838CB45D /* UITableViewVibrantCell.swift */,
-				0A666CA880AC26FDF2F839052C71C64F /* Support Files */,
+				E64D53892ECA13F534B534F18F62CF4E /* GoogleInterchangeUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76A30294AC0987660385592B4574657B /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3E348B84F26D2BA9103A655882621960 /* SideMenuManager.swift */,
+				D83538D7FBBBE96AE85626D32E535D9D /* SideMenuTransition.swift */,
+				8084F19BBDC47B2E4887ED255F690F43 /* UISideMenuNavigationController.swift */,
+				079861B0CDDBF2CCC169B1BD62078A2A /* UITableViewVibrantCell.swift */,
+				E225011D67369D02677A433AFC7E9863 /* Support Files */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
 		};
-		538E2D7F92B9D87B1D890DC2566ABFCB /* FirebaseInstanceID */ = {
+		7C5344A704433C73D0A2BA459D68CE6B /* AMPopTip */ = {
 			isa = PBXGroup;
 			children = (
-				990A90E512685012A60E27DC47CA0732 /* FIRInstanceID.h */,
-				B3B19CEAE32F90B72209C140D8F6917F /* Frameworks */,
+				1E7AE664E5F89A17223FCEADD294115B /* AMPopTip.h */,
+				B3E1F70911FE3AE366008144EB618987 /* AMPopTip.m */,
+				BF56FA43F1F1EC0CF5EB3886E34F3842 /* AMPopTip+Animation.h */,
+				6AC5C1BA396FAB54457B01DF3B8E15ED /* AMPopTip+Animation.m */,
+				EBE956011C46563FD776A8B6BF6567F9 /* AMPopTip+Draw.h */,
+				ED2CFB5B5CBAF8DF6951B3313F568235 /* AMPopTip+Draw.m */,
+				F4D5B86B1240F13C578C65905BDAB8C4 /* AMPopTip+Entrance.h */,
+				FB8144B0B936174179F9F69FA935BDA4 /* AMPopTip+Entrance.m */,
+				6E458E55E5DC1B05D20DF7FE52430D8C /* AMPopTip+Exit.h */,
+				492829BFA473F1C66CFCF6C7EDC14218 /* AMPopTip+Exit.m */,
+				C06F4840BB817E8A558DCEB59D1E1700 /* AMPopTipDefaults.h */,
+				987266608CD39BB807064532B9E88AA9 /* Support Files */,
 			);
-			path = FirebaseInstanceID;
-			sourceTree = "<group>";
-		};
-		56A6BFC2379E4F4944D151ACF267B86E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5B1B81D301583ABC4849914AA536E58E /* FirebaseAnalytics.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6EB848A1E103B7D28404B951F67BC1C0 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9C05800037EC08B26D0467D771383E26 /* Info.plist */,
-				27A8433BB75C2776BB051B15F379F1A7 /* PDFGenerator.modulemap */,
-				FCAB77F139EE7629272BCBA46BAFF587 /* PDFGenerator.xcconfig */,
-				179C3E116D9620F19FBA1B7C62525E9A /* PDFGenerator-dummy.m */,
-				FF41C2392E5D749C46C0355B27EA63AA /* PDFGenerator-prefix.pch */,
-				94D71DF45200C7EAC475E14CA9827BDF /* PDFGenerator-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PDFGenerator";
-			sourceTree = "<group>";
-		};
-		6EEC27A19F5CE986F4BB13627D213E76 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				8E92A0EB98373184F965856CA1885ADF /* Analytics */,
-			);
-			path = Firebase;
+			path = AMPopTip;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -602,97 +589,49 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				016883AC4E27A5BE12E4AD28B64850A1 /* Pods */,
+				D226AB38870C4B8701038CA4AD9F8397 /* Pods */,
 				9F7229A475A75B88F1201F21078D8C10 /* Products */,
 				D6D789F9BCC4402D4659FF618636B191 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7E68900C458FC4883F9F289586374256 /* SwiftValidator */ = {
+		8A4D3CCA67E85C873269994A1BB7C6DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1EB930740D076D092065F17CF562D96D /* AlphaNumericRule.swift */,
-				F6FDE668D10511BF0F8DBBD0981E39D5 /* AlphaRule.swift */,
-				CDCEF807BFCEF2D32FF65AB4F3642E9D /* CharacterSetRule.swift */,
-				9803D542EE7C62B9E0F7FE73EEACFE11 /* ConfirmRule.swift */,
-				12F3B0648C89C2E2B7E88F33E706841D /* EmailRule.swift */,
-				8BD8116E3D24E3AC1D43A21AB3D93C5F /* ExactLengthRule.swift */,
-				7342C795A5FF9DEC2F9746DAF9CE33E6 /* FloatRule.swift */,
-				068CD223E58ACADF29727AE7B0294DF0 /* FullNameRule.swift */,
-				EBFA14FABBFD552C61ECBD0A0F671491 /* HexColorRule.swift */,
-				3DA1E5C709AD3CF4E6155A1B8F2EDED2 /* IPV4Rule.swift */,
-				52DA0532F4535F2692A86B707175A40E /* ISBNRule.swift */,
-				52B2655AEF842EEFD82BBE6202BE58E5 /* MaxLengthRule.swift */,
-				CBA0D480F099CFBD9ADA7B69BE6C3599 /* MinLengthRule.swift */,
-				E1720240974FE810014DD615206D9559 /* PasswordRule.swift */,
-				C9FA9B1EA36720E45FCDF6A2BBF8E7CA /* PhoneNumberRule.swift */,
-				A79FBAFF790389DE6939DF8D51C5D77A /* RegexRule.swift */,
-				18A0DDCB56F39894D9322FC6111D053D /* RequiredRule.swift */,
-				2B3FBFFF63E22A5D0075002CBB140F0F /* Rule.swift */,
-				9CA6F1AD37061E5A3BFE4A82C396951B /* Validatable.swift */,
-				4810111ED15CB1CDE4E77ECAE92D2E90 /* ValidationDelegate.swift */,
-				6FEA4B91DB5B835106602EBE123CFB99 /* ValidationError.swift */,
-				054E172AE09BFBFE0AE44BC7F43CB26B /* ValidationRule.swift */,
-				69FD3D09C57FB6A8B4B6936A6BA3AFB4 /* Validator.swift */,
-				FFF8D03C0FEDD2FEC007FD873AE863DA /* ValidatorDictionary.swift */,
-				456CCB7F612494EC66891C73EF78F9C2 /* ZipCodeRule.swift */,
-				EC5833CEFFBF3BCCA6625DCC1C067773 /* Support Files */,
-			);
-			path = SwiftValidator;
-			sourceTree = "<group>";
-		};
-		884DBD4A4D44EB4EE21537FB10B19D24 /* GoogleParsingUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				017A5BA8FEB19D9FC190A37552B81EAD /* Frameworks */,
-			);
-			path = GoogleParsingUtilities;
-			sourceTree = "<group>";
-		};
-		8D29699E486CC214816C59D6D27828DB /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				C57AD414394AB3DCDA16EA65B4B5E0AC /* AMPopTip.modulemap */,
-				F5CFF604C614626049E87FC9233F30DC /* AMPopTip.xcconfig */,
-				CC5E5EBCBB55D52715B6EE5DC0750C24 /* AMPopTip-dummy.m */,
-				E690ADE25CC520126E3FC0ADA578202C /* AMPopTip-prefix.pch */,
-				9134079E12F3888FF1BB93DFCA22BC4F /* AMPopTip-umbrella.h */,
-				30801CA37EC41513E86E76B536FB4EEC /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/AMPopTip";
-			sourceTree = "<group>";
-		};
-		8E92A0EB98373184F965856CA1885ADF /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				50E45E2A4D5D8833C51FEFE6F9144AB3 /* Firebase.h */,
-			);
-			name = Analytics;
-			sourceTree = "<group>";
-		};
-		907873B270484430ADB7056F0DFD5B0A /* GoogleInterchangeUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				FE5969218234FDB40F2160E3B53F7CB2 /* Frameworks */,
-			);
-			path = GoogleInterchangeUtilities;
-			sourceTree = "<group>";
-		};
-		9913CD3A063092C4BC9C3832BBFF8D7A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EE3731B692EE5E8FDBFCDC6B7CF72762 /* GoogleNetworkingUtilities.framework */,
+				AE8F34247B28667C1B4F07C6A36DB1E9 /* FirebaseAnalytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A76DD61327BD3D72BA404D03947144B /* FirebaseAnalytics */ = {
+		91FBEB1881A3AE8D646CA049125BA567 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				56A6BFC2379E4F4944D151ACF267B86E /* Frameworks */,
+				237A2F1F1A06140FFAF90F38EB08D733 /* FirebaseDatabase.framework */,
 			);
-			path = FirebaseAnalytics;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9332617C28D281155271496556659A0B /* FirebaseInstanceID */ = {
+			isa = PBXGroup;
+			children = (
+				3648B41F0D4BB1802184096B2BCE6159 /* FIRInstanceID.h */,
+				2AD6C62C71E443589794A610C9C6A58F /* Frameworks */,
+			);
+			path = FirebaseInstanceID;
+			sourceTree = "<group>";
+		};
+		987266608CD39BB807064532B9E88AA9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				18E2BA321601D2A2DE0091E34EA56B41 /* AMPopTip.modulemap */,
+				4DE6384B3B3B979996B95AC2ED1EF956 /* AMPopTip.xcconfig */,
+				70C3809352DAAC4C7FDF7E36DFADC854 /* AMPopTip-dummy.m */,
+				BEBFEEBFB7763BE79FA8A46E0143F19B /* AMPopTip-prefix.pch */,
+				F3CB5DCD9EDDEB27A1E921A739702E4D /* AMPopTip-umbrella.h */,
+				DC5C5616C2521C0FCBBD27E623DB8E32 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AMPopTip";
 			sourceTree = "<group>";
 		};
 		9F7229A475A75B88F1201F21078D8C10 /* Products */ = {
@@ -709,28 +648,136 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B3B19CEAE32F90B72209C140D8F6917F /* Frameworks */ = {
+		A2A13A5D3329A1F4EEC1AD4AD6A6F3A2 /* GoogleSymbolUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				65007C3FB743E7D77FEBEA32383099C6 /* FirebaseInstanceID.framework */,
+				0A0599FF4DEEA6093CED92E2B42F4492 /* Frameworks */,
 			);
-			name = Frameworks;
+			path = GoogleSymbolUtilities;
 			sourceTree = "<group>";
 		};
-		BB39AAB039EFF429DB3C23B5FF9AFB72 /* Frameworks */ = {
+		A74855916455398C250DB7F35D84CFBC /* FirebaseAuth */ = {
 			isa = PBXGroup;
 			children = (
-				02D88773F7716DA4DFE7A0EB4C62EA15 /* FirebaseStorage.framework */,
+				739B007B109E63247E78D3F3FA2090C9 /* Frameworks */,
 			);
-			name = Frameworks;
+			path = FirebaseAuth;
 			sourceTree = "<group>";
 		};
-		BC03063B3BDCFA0AD0D1C15C3F56DAA6 /* FirebaseDatabase */ = {
+		AB2A83E2149821341123C3E1A568397C /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				0662B2887A68413A0396655277F629DA /* Frameworks */,
+				20CABC059D7A0B691D4AC8A5F7C21685 /* Analytics */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		AC0CC77C44351B86657EC3A0D646275F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				755130D24E44FE012BBF7E9FA4F2BCCD /* Info.plist */,
+				8ABCEA08078CDD50708C51A34E719C74 /* PDFGenerator.modulemap */,
+				5D1DA9DF2CAA89FE037C095DB6B6C263 /* PDFGenerator.xcconfig */,
+				F450B19087FB298B86AC80B87C46AB75 /* PDFGenerator-dummy.m */,
+				92A7BD0E6463C089DE1B6302616ACA1E /* PDFGenerator-prefix.pch */,
+				CD39CDF68E6A4F661DCACAE2761B683F /* PDFGenerator-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PDFGenerator";
+			sourceTree = "<group>";
+		};
+		B07A8E650BC27D14914E32512E8F89B9 /* FirebaseDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				91FBEB1881A3AE8D646CA049125BA567 /* Frameworks */,
 			);
 			path = FirebaseDatabase;
+			sourceTree = "<group>";
+		};
+		C3AF1D9FCCBFCEAAD3036D57F6056DF7 /* ActionSheetPicker-3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				EA9DEDD443F49205924AE2CA209DBA74 /* AbstractActionSheetPicker.h */,
+				F005C40C2A2318E951C038603BAD7CA2 /* AbstractActionSheetPicker.m */,
+				BDD9E688EC812EF820B0C6586F98F3CD /* ActionSheetCustomPicker.h */,
+				3213A239F8E7B28278BAA33308A6D6CC /* ActionSheetCustomPicker.m */,
+				4832EACBF7EA82C00194701AB41C4ECF /* ActionSheetCustomPickerDelegate.h */,
+				E1C6C9FE4D6E268EB22B8941F6379A89 /* ActionSheetDatePicker.h */,
+				069BC7C610F02BEBE3920CC2E47607F9 /* ActionSheetDatePicker.m */,
+				60DE3FC004AB89B6A1D77167F6CBF268 /* ActionSheetDistancePicker.h */,
+				FC1C08EF5BAD121F88E2A784EDC40028 /* ActionSheetDistancePicker.m */,
+				F54D64281DB6E34B4D42C5691ECF9BB7 /* ActionSheetLocalePicker.h */,
+				D580128E8976D81C260BD478D339C523 /* ActionSheetLocalePicker.m */,
+				007275BBCEBD14261E50D109BCBF7CEA /* ActionSheetMultipleStringPicker.h */,
+				02B255ABC1D664069B6B51B2495DB97D /* ActionSheetMultipleStringPicker.m */,
+				7375DC2032020F06EBDE5548A1DEEEB9 /* ActionSheetPicker.h */,
+				C5A91F1B040845AC89005CB59299D105 /* ActionSheetStringPicker.h */,
+				05ABEF81609883A85E4439881CFF9C6D /* ActionSheetStringPicker.m */,
+				3ACE7D6CC77470FA3E8BB6832CA94FCE /* DistancePickerView.h */,
+				5269419003E60FC67CF1F9BE19351DC1 /* DistancePickerView.m */,
+				A4B9ADC0C307E6A8BDAEB366886B314F /* SWActionSheet.h */,
+				ECF5A0FA3D37DA6F076B66FF6A3556EA /* SWActionSheet.m */,
+				4B0480510ACCF8C36A48E32C16582E40 /* Support Files */,
+			);
+			path = "ActionSheetPicker-3.0";
+			sourceTree = "<group>";
+		};
+		C76FA05696CF3E330437F7CCE8883C07 /* GoogleInterchangeUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				75BA25F9EEEBDA481B9ABB30DA1CE146 /* Frameworks */,
+			);
+			path = GoogleInterchangeUtilities;
+			sourceTree = "<group>";
+		};
+		C787D99D261B8F009DF56C994051DF43 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59CC62F03939BB25D394F206AA74114F /* TwitterCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C85D66AA63D797BE2EB7C20D15D11CA3 /* GoogleNetworkingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				69519057A1C5FCE2ED00EAEF157A5E1C /* Frameworks */,
+			);
+			path = GoogleNetworkingUtilities;
+			sourceTree = "<group>";
+		};
+		D226AB38870C4B8701038CA4AD9F8397 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF1D9FCCBFCEAAD3036D57F6056DF7 /* ActionSheetPicker-3.0 */,
+				7C5344A704433C73D0A2BA459D68CE6B /* AMPopTip */,
+				5E5CBC80ECA827FD33DBA50B2DE535F0 /* Fabric */,
+				AB2A83E2149821341123C3E1A568397C /* Firebase */,
+				DDDB944372D9E890C4D719FBD5297976 /* FirebaseAnalytics */,
+				A74855916455398C250DB7F35D84CFBC /* FirebaseAuth */,
+				B07A8E650BC27D14914E32512E8F89B9 /* FirebaseDatabase */,
+				9332617C28D281155271496556659A0B /* FirebaseInstanceID */,
+				E4C2F4537D02697257DB3D3959390458 /* FirebaseStorage */,
+				C76FA05696CF3E330437F7CCE8883C07 /* GoogleInterchangeUtilities */,
+				C85D66AA63D797BE2EB7C20D15D11CA3 /* GoogleNetworkingUtilities */,
+				038E968B6120255E5900347D24FB114A /* GoogleParsingUtilities */,
+				A2A13A5D3329A1F4EEC1AD4AD6A6F3A2 /* GoogleSymbolUtilities */,
+				2586031FBB5D269E10DC5D0EB576CF24 /* GoogleUtilities */,
+				FB60070E3CF07712FFFFE0458DB558D7 /* PDFGenerator */,
+				76A30294AC0987660385592B4574657B /* SideMenu */,
+				6D2E2E925FF31C4A6C37E69D73823E63 /* SwiftValidator */,
+				4FB3D3FCA5FD75A4E08A8D84F9C3E867 /* TwitterCore */,
+				2A24F97284E796F6F8E11A475789C61C /* TwitterKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D38D02B2521F2A1381BB755C9C3863B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A00411AB8B23033506057D347EEF1BD /* GoogleUtilities.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D6D789F9BCC4402D4659FF618636B191 /* Targets Support Files */ = {
@@ -741,40 +788,51 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		E1164E7B24CAE2F9C721E5279B3E2F4D /* Support Files */ = {
+		DDDB944372D9E890C4D719FBD5297976 /* FirebaseAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				DE65E690779DFCF6D8E46A32D4B2ECF4 /* ActionSheetPicker-3.0.modulemap */,
-				7F14D2C00F3D81FCEBB35A0E2FEAE65F /* ActionSheetPicker-3.0.xcconfig */,
-				0D8D9CDFECBE82D0152EF21CD4812594 /* ActionSheetPicker-3.0-dummy.m */,
-				045F70665E8CF01CA934F1784AD37694 /* ActionSheetPicker-3.0-prefix.pch */,
-				8262059F6E8A2306FBE1B0BB144A7C15 /* ActionSheetPicker-3.0-umbrella.h */,
-				CD04EDF48889E20E1ED7A9618CFA4344 /* Info.plist */,
+				8A4D3CCA67E85C873269994A1BB7C6DA /* Frameworks */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/ActionSheetPicker-3.0";
+			path = FirebaseAnalytics;
 			sourceTree = "<group>";
 		};
-		EB3411B8BFF6462F11CF76A1D6251429 /* GoogleSymbolUtilities */ = {
+		E225011D67369D02677A433AFC7E9863 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3497C921BC8F6FDEE40340AA38EFCF63 /* Frameworks */,
-			);
-			path = GoogleSymbolUtilities;
-			sourceTree = "<group>";
-		};
-		EC5833CEFFBF3BCCA6625DCC1C067773 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9396C581C2024C6EFBD3F801F45ACEB4 /* Info.plist */,
-				AC9063DE1159E41831BB873B3FE45405 /* SwiftValidator.modulemap */,
-				F45E3B26346CC4712DFAC099BECD7C7C /* SwiftValidator.xcconfig */,
-				A78E119F041C072E7DAAFABF8E42D1AA /* SwiftValidator-dummy.m */,
-				CF23118BD1C81986604C24DF5F2DB7EA /* SwiftValidator-prefix.pch */,
-				93CCBC07AE04FC4855155A40FD022147 /* SwiftValidator-umbrella.h */,
+				0AC1B639FEA2345698A44BBC75D3C1FF /* Info.plist */,
+				9B88E517C8BD4646AE921D66D395811B /* ResourceBundle-SideMenu-Info.plist */,
+				14B0D926794F6D4DB4A87BA0A99AF8AB /* SideMenu.modulemap */,
+				114052E4BB8BE840BF57C469B7D07A6A /* SideMenu.xcconfig */,
+				F397CA27AD5D395DFEE66EF465788D0C /* SideMenu-dummy.m */,
+				2CBE9DEEB67713828A783D2DC7AF84A1 /* SideMenu-prefix.pch */,
+				83C8BAE9FE0D9BFE05098D839AE300B6 /* SideMenu-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/SwiftValidator";
+			path = "../Target Support Files/SideMenu";
+			sourceTree = "<group>";
+		};
+		E4C2F4537D02697257DB3D3959390458 /* FirebaseStorage */ = {
+			isa = PBXGroup;
+			children = (
+				F11268087211172485FBE4568F9BBD73 /* Frameworks */,
+			);
+			path = FirebaseStorage;
+			sourceTree = "<group>";
+		};
+		E7A4C2540E636ED94A0B64BF9B64D741 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2AABFC80E999B80404E3351C8CD6029 /* TwitterKitResources.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F11268087211172485FBE4568F9BBD73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C83D4927ED147E53C127E7FCA03B5DD3 /* FirebaseStorage.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F9EF718253E53076B84220C209CCBFE2 /* iOS */ = {
@@ -787,12 +845,22 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		FE5969218234FDB40F2160E3B53F7CB2 /* Frameworks */ = {
+		FB60070E3CF07712FFFFE0458DB558D7 /* PDFGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				36074EAD4A1859F315F89F375D09B785 /* GoogleInterchangeUtilities.framework */,
+				A067F7B7F43C2C01113D06DC79C1F4DB /* AutoreleasepoolTry.swift */,
+				1A0DE20D668EFE547E48454FB1EE1282 /* DPIType.swift */,
+				61C4828522FAA4EB8F361E8E7E078892 /* FilePathConvertible.swift */,
+				44939DE4D287B10FFE79C1ECA7DB8A5A /* Info.plist */,
+				88C53929E0019E6AE6F09560A20EB2F7 /* PDFGenerateError.swift */,
+				39ED2DEE596BABFC99E5E625973875DD /* PDFGenerator.h */,
+				1611CC676A2328179BD3BDD315964E27 /* PDFGenerator.swift */,
+				6AB8B39C85BC838F9D5FA1D03363C0DB /* PDFPage.swift */,
+				9A058012DEE5CACF5353B3D138DF284A /* PDFPageRenderable.swift */,
+				A6CF448D5A6C96B013C0F0E202784681 /* PDFPassword.swift */,
+				AC0CC77C44351B86657EC3A0D646275F /* Support Files */,
 			);
-			name = Frameworks;
+			path = PDFGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1001,11 +1069,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
-				TargetAttributes = {
-					053617A05C5A952CF2888B88D119FE01 = {
-						DevelopmentTeam = J9BYVMP3N7;
-					};
-				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1200,9 +1263,8 @@
 /* Begin XCBuildConfiguration section */
 		2ABB295E1660905C5579ABE0AD081F12 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F14D2C00F3D81FCEBB35A0E2FEAE65F /* ActionSheetPicker-3.0.xcconfig */;
+			baseConfigurationReference = 56B7CDE00604FE1FCEA955A46CEF06C7 /* ActionSheetPicker-3.0.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1272,7 +1334,7 @@
 		};
 		5285CC531DFA8F4D4A56695C89B72392 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCAB77F139EE7629272BCBA46BAFF587 /* PDFGenerator.xcconfig */;
+			baseConfigurationReference = 5D1DA9DF2CAA89FE037C095DB6B6C263 /* PDFGenerator.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1301,7 +1363,7 @@
 		};
 		59F7902839A2F036C0ED92ED85C36FDD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5CFF604C614626049E87FC9233F30DC /* AMPopTip.xcconfig */;
+			baseConfigurationReference = 4DE6384B3B3B979996B95AC2ED1EF956 /* AMPopTip.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1330,9 +1392,8 @@
 		};
 		60D78833C309CB561C110D53D301C776 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F14D2C00F3D81FCEBB35A0E2FEAE65F /* ActionSheetPicker-3.0.xcconfig */;
+			baseConfigurationReference = 56B7CDE00604FE1FCEA955A46CEF06C7 /* ActionSheetPicker-3.0.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1360,7 +1421,7 @@
 		};
 		718B7B16F51C8396819A0F4E457F8960 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5CFF604C614626049E87FC9233F30DC /* AMPopTip.xcconfig */;
+			baseConfigurationReference = 4DE6384B3B3B979996B95AC2ED1EF956 /* AMPopTip.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1460,7 +1521,7 @@
 		};
 		8D9D01A6AA4DCCEE4E1AF6D039E8B1DC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBA6880B01EAFC96F5FBF5E2B80BF259 /* SideMenu.xcconfig */;
+			baseConfigurationReference = 114052E4BB8BE840BF57C469B7D07A6A /* SideMenu.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SideMenu";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1477,7 +1538,7 @@
 		};
 		8F079448230EFD4D9A9425FBB2B0F11A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBA6880B01EAFC96F5FBF5E2B80BF259 /* SideMenu.xcconfig */;
+			baseConfigurationReference = 114052E4BB8BE840BF57C469B7D07A6A /* SideMenu.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1507,7 +1568,7 @@
 		};
 		928B3E2BB0EC0F4B5D8FFA39443C669B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBA6880B01EAFC96F5FBF5E2B80BF259 /* SideMenu.xcconfig */;
+			baseConfigurationReference = 114052E4BB8BE840BF57C469B7D07A6A /* SideMenu.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SideMenu";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1524,7 +1585,7 @@
 		};
 		B2A10062FC7D7974AE5A1D6B890A8B0E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBA6880B01EAFC96F5FBF5E2B80BF259 /* SideMenu.xcconfig */;
+			baseConfigurationReference = 114052E4BB8BE840BF57C469B7D07A6A /* SideMenu.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1553,7 +1614,7 @@
 		};
 		C3D661A6C91A389DD74B2F9FCA6C7E2D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F45E3B26346CC4712DFAC099BECD7C7C /* SwiftValidator.xcconfig */;
+			baseConfigurationReference = 365719D8BEBD9D83BD16ECAE434EFFFA /* SwiftValidator.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1582,7 +1643,7 @@
 		};
 		CA37B1A89A4D9D8C89A476B83ABC372A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCAB77F139EE7629272BCBA46BAFF587 /* PDFGenerator.xcconfig */;
+			baseConfigurationReference = 5D1DA9DF2CAA89FE037C095DB6B6C263 /* PDFGenerator.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1646,7 +1707,7 @@
 		};
 		F725FA5003CF4DBC9ADAAAF82129CFE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F45E3B26346CC4712DFAC099BECD7C7C /* SwiftValidator.xcconfig */;
+			baseConfigurationReference = 365719D8BEBD9D83BD16ECAE434EFFFA /* SwiftValidator.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;

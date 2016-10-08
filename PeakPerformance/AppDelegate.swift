@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Fabric
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.init(red: 255, green: 201, blue: 255, alpha: 1.0)], forState: UIControlState.Highlighted)
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert], categories: nil))
+        
+        Fabric.with([Twitter.self])
     
         return true
     }
