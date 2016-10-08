@@ -394,8 +394,11 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             performSegueWithIdentifier(GO_TO_YEARLY_REVIEW_SEGUE, sender: self)
             return
         }
-        
-        // TODO: Current Reality Summary Perform Segue with Identifier
+        else if s is CurrentRealitySummary
+        {
+            performSegueWithIdentifier(GO_TO_INITIAL_REVIEW_SEGUE, sender: self)
+            return
+        }
     }
 
     
