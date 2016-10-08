@@ -138,7 +138,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
         {
             let composer = TWTRComposer()
-            composer.setText("I completed my goal \"\(goal.goalText)\"! #PeakPerformance") //FIXME: test, make constant
+            composer.setText(TWITTER_MESSAGE_WEEKLY_GOAL(goal)) //FIXME: test, make constant
             
             composer.showFromViewController(self) { (result) in
                 if result == .Cancelled
@@ -150,8 +150,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                     print("sending tweet")
                 }
             }
-            
-
         }
     }
     

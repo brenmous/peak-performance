@@ -31,6 +31,7 @@ class SocialMediaViewController: UIViewController
                 }
                 print("Signed in as \(session!.userName)")
                 NSUserDefaults().setValue(true, forKey: USER_DEFAULTS_TWITTER)
+                self.twitterSwitch.on = true
             }
         }
     }

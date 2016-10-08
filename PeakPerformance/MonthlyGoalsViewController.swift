@@ -9,6 +9,7 @@
 
 import UIKit
 import SideMenu
+import TwitterKit
 
 
 /**
@@ -124,11 +125,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let mg = cu.monthlyGoals[indexPath.row]
         
         //goal completion confirm alert controller
-        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG_MONTHLY, preferredStyle: .Alert )
-        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM_MONTHLY, style: .Default ) { (action) in self.completeGoal(mg) }
-        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
-        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
-        presentViewController(goalCompleteAlertController, animated: true, completion: nil )
+        presentViewController(goalCompleteAlertController(mg), animated: true, completion: nil)
     }
     
     /// Sorts the user's monthly goal array.
@@ -137,6 +134,26 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         guard let cu = currentUser else { return }
         cu.monthlyGoals.sortInPlace({$0.deadline.compare($1.deadline) == .OrderedAscending})
         cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+    }
+    
+    /// Shares completed goals on social media if user has enabled them in settings.
+    func shareOnSocialMedia(goal: MonthlyGoal)
+    {
+        if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        {
+            let composer = TWTRComposer()
+            composer.setText(TWITTER_MESSAGE_MONTHLY_GOAL(goal))
+            composer.showFromViewController(self) { (result) in
+                if result == .Cancelled
+                {
+                    print("tweet cancelled")
+                }
+                else
+                {
+                    print("tweet sent")
+                }
+            }
+        }
     }
     
     // MARK: - Local notifications
@@ -201,6 +218,19 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 return
             }
         }
+    }
+    
+    // MARK: - Alert controllers
+    func goalCompleteAlertController(goal: MonthlyGoal) -> UIAlertController
+    {
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG_MONTHLY, preferredStyle: .Alert )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM_MONTHLY, style: .Default ) { (action) in
+            self.completeGoal(goal)
+            self.shareOnSocialMedia(goal)
+        }
+        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
+        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
+        return goalCompleteAlertController
     }
     
     
@@ -313,7 +343,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("configuring")
         let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath) as! MonthlyGoalTableViewCell
         let goal = currentUser!.monthlyGoals[indexPath.row]
 
@@ -323,6 +352,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         cell.delegate = self
         if  goal.complete
         {
+            print("goal \(goal.goalText) is complete")
             cell.iconImage.hidden = false
             cell.userInteractionEnabled = false
             cell.completeButton.hidden = false
