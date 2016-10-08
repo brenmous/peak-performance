@@ -27,7 +27,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     var summaryToSend: MonthlySummary?
     
     // MARK: - Outlets
-    @IBOutlet weak var titleLabel: UILabel!
+
     
     // MARK: - Actions
     @IBAction func menuButtonPressed(sender: AnyObject) {
@@ -113,7 +113,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         mailVC.addAttachmentData(pdfs[1], mimeType: PDF_MIME_TYPE, fileName: "\(currentUser!.email)_\(month)_goals.pdf")
         
         //set email body
-        mailVC.setMessageBody("\(self.currentUser!.email)\n\(self.currentUser!.uid)", isHTML: false)
+        mailVC.setMessageBody("Hi Peak Performance Coach, \nI would like to share with you my progress for the month of\(month)\nKind regards,\(self.currentUser!.fname)\(self.currentUser!.lname)", isHTML: false)
         
         if MFMailComposeViewController.canSendMail()
         {
@@ -219,9 +219,6 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             }
             self.currentUser = cu
         }
-        
-        self.titleLabel.text = "Summaries"
-        
         
         //check if a yearly review is needed
         if self.currentUser!.checkYearlyReview()
@@ -396,6 +393,8 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             performSegueWithIdentifier(GO_TO_YEARLY_REVIEW_SEGUE, sender: self)
             return
         }
+        
+        // TODO: Current Reality Summary Perform Segue with Identifier
     }
 
     
@@ -436,6 +435,9 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         case GO_TO_YEARLY_REVIEW_SEGUE:
             let dvc = segue.destinationViewController as! YearReviewViewController
             dvc.currentUser = self.currentUser
+        
+        // TODO: Add case GO_TO_INITIAL_REVIEW_SEGUE:
+
             
         default:
             return

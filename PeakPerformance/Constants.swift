@@ -344,6 +344,9 @@ let GO_TO_REVIEW_SEGUE = "goToMonthlyReview"
 /// Segue for going from first MR view to second MR view
 let GO_TO_SECOND_REVIEW_SEGUE = "goToMonthlyReviewSecond"
 
+/// Segue for going from history tab to initial review summary
+let GO_TO_INITIAL_REVIEW_SEGUE = "goToInitialReviewSummary"
+
 /// Unwind segue from monthly review to history
 let UNWIND_TO_HISTORY_SEGUE = "unwindToHistory"
 

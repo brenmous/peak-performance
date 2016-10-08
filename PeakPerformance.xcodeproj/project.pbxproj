@@ -37,6 +37,7 @@
 		44AA95E91D597C9E0020FBAF /* tutorial-preparation.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */; };
 		44D88C0A1D895B7E00F7C827 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D88C091D895B7E00F7C827 /* Extensions.swift */; };
 		44DD923F1D520F8C00BD312D /* MIDatePicker in Resources */ = {isa = PBXBuildFile; fileRef = 44DD923E1D520F8C00BD312D /* MIDatePicker */; };
+		44E2A0C71DA8722D00AB9183 /* InitialReviewSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E2A0C61DA8722D00AB9183 /* InitialReviewSummaryTableViewController.swift */; };
 		44E65A9B1D59EE1D008442F2 /* LastPageTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */; };
 		B50861BF1D4B316900901638 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861BE1D4B316900901638 /* Goal.swift */; };
 		B50861C11D4B359A00901638 /* MonthlyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50861C01D4B359A00901638 /* MonthlyGoal.swift */; };
@@ -144,6 +145,7 @@
 		44AA95E51D597C9E0020FBAF /* tutorial-preparation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tutorial-preparation.jpg"; sourceTree = "<group>"; };
 		44D88C091D895B7E00F7C827 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		44DD923E1D520F8C00BD312D /* MIDatePicker */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MIDatePicker; sourceTree = "<group>"; };
+		44E2A0C61DA8722D00AB9183 /* InitialReviewSummaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialReviewSummaryTableViewController.swift; sourceTree = "<group>"; };
 		44E65A9A1D59EE1D008442F2 /* LastPageTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPageTutorialViewController.swift; sourceTree = "<group>"; };
 		733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeakPerformance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50861BE1D4B316900901638 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				B51BD7941D7E8634003EA9AC /* HistoryTableViewCell.swift */,
 				B5A2295A1D9C44F50005FD29 /* YearReviewViewController.swift */,
 				B5A2295C1D9E2B8F0005FD29 /* SecondYearReviewViewController.swift */,
+				44E2A0C61DA8722D00AB9183 /* InitialReviewSummaryTableViewController.swift */,
 			);
 			name = HistoryTab;
 			sourceTree = "<group>";
@@ -395,10 +398,10 @@
 				B50861BE1D4B316900901638 /* Goal.swift */,
 				B50861C01D4B359A00901638 /* MonthlyGoal.swift */,
 				32D794EA1D61D5A600134D01 /* Dream.swift */,
-				B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */,
 				B567CE7F1D8BE8BE0033A8A1 /* Summary.swift */,
-				B567CE811D8BE91F0033A8A1 /* CurrentRealitySummary.swift */,
+				B51BD7961D7E95C4003EA9AC /* MonthlySummary.swift */,
 				B5A229581D9C31B50005FD29 /* YearlySummary.swift */,
+				B567CE811D8BE91F0033A8A1 /* CurrentRealitySummary.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				44E65A9B1D59EE1D008442F2 /* LastPageTutorialViewController.swift in Sources */,
 				B53E7EAF1D8BD0CA00CFF4AB /* InitialSetupViewController.swift in Sources */,
 				B59057751D946C7E00D12D2C /* ChangePasswordViewController.swift in Sources */,
+				44E2A0C71DA8722D00AB9183 /* InitialReviewSummaryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
