@@ -16,9 +16,9 @@
     SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
 */
 
-public class SideMenuManager {
+public class SideMenuManager : NSObject {
     
-    public enum MenuPresentMode {
+    @objc public enum MenuPresentMode : Int {
         case MenuSlideIn
         case ViewSlideOut
         case ViewSlideInOut
@@ -81,13 +81,19 @@ public class SideMenuManager {
     /// The right menu swipe to dismiss gesture.
     public static weak var menuRightSwipeToDismissGesture: UIPanGestureRecognizer?
     
+    /// Enable or disable gestures that would swipe to present or dismiss the menu. Default is true.
+    public static var menuEnableSwipeGestures: Bool = true
+    
+    /// Enable or disable interaction with the presenting view controller while the menu is displayed. Enabling may make it difficult to dismiss the menu or cause exceptions if the user tries to present and already presented menu. Default is false.
+    public static var menuPresentingViewControllerUserInteractionEnabled: Bool = false
+    
     /// The strength of the parallax effect on the existing view controller. Does not apply to `menuPresentMode` when set to `ViewSlideOut`. Default is 0.
     public static var menuParallaxStrength: Int = 0
     
     /// Draws the `menuAnimationBackgroundColor` behind the status bar. Default is true.
     public static var menuFadeStatusBar = true
     
-    /// - Warning: Deprecated. Use `menuAnimationTransformScaleFactor` instead.
+    /// -Warning: Deprecated. Use `menuAnimationTransformScaleFactor` instead.
     @available(*, deprecated, renamed="menuAnimationTransformScaleFactor")
     public static var menuAnimationShrinkStrength: CGFloat {
         get {
@@ -99,7 +105,7 @@ public class SideMenuManager {
     }
     
     // prevent instantiation
-    private init() {}
+    private override init() {}
     
     /**
      The blur effect style of the menu if the menu's root view controller is a UITableViewController or UICollectionViewController.

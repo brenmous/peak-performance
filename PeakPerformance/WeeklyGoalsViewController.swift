@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SideMenu //github.com/jonkeykong/SideMenu
+import TwitterKit
 
 /**
     Class that controls the weekly goals view.
@@ -120,7 +121,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let wg = cu.weeklyGoals[indexPath.row]
     
         //goal completion confirm alert controller
-        
         presentViewController(goalCompleteAlertController(wg), animated: true, completion: nil)
     }
     
@@ -130,6 +130,27 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         guard let cu = currentUser else { return }
         cu.weeklyGoals.sortInPlace({$0.deadline.compare($1.deadline) == .OrderedAscending})
         cu.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+    }
+    
+    /// Asks the user if they want to share their completed goal on social media (only occurs if they have set sharing to on in settings).
+    func shareOnSocialMedia(goal: WeeklyGoal)
+    {
+        if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        {
+            let composer = TWTRComposer()
+            composer.setText(TWITTER_MESSAGE_WEEKLY_GOAL(goal)) //FIXME: test, make constant
+            
+            composer.showFromViewController(self) { (result) in
+                if result == .Cancelled
+                {
+                    print("tweet cancelled")
+                }
+                else
+                {
+                    print("sending tweet")
+                }
+            }
+        }
     }
     
     // MARK: - Local notifications
@@ -211,6 +232,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             let kickItTextField = goalCompleteAlertController.textFields![0] as UITextField
             let kickItText = kickItTextField.text!
             self.completeGoal(goal, kickItText: kickItText)
+            self.shareOnSocialMedia(goal)
         }
         let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );

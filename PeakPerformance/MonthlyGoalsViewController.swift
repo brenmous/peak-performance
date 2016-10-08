@@ -9,6 +9,7 @@
 
 import UIKit
 import SideMenu
+import TwitterKit
 
 
 /**
@@ -124,11 +125,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let mg = cu.monthlyGoals[indexPath.row]
         
         //goal completion confirm alert controller
-        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG_MONTHLY, preferredStyle: .Alert )
-        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM_MONTHLY, style: .Default ) { (action) in self.completeGoal(mg) }
-        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
-        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
-        presentViewController(goalCompleteAlertController, animated: true, completion: nil )
+        presentViewController(goalCompleteAlertController(mg), animated: true, completion: nil)
     }
     
     /// Sorts the user's monthly goal array.
@@ -137,6 +134,26 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         guard let cu = currentUser else { return }
         cu.monthlyGoals.sortInPlace({$0.deadline.compare($1.deadline) == .OrderedAscending})
         cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+    }
+    
+    /// Shares completed goals on social media if user has enabled them in settings.
+    func shareOnSocialMedia(goal: MonthlyGoal)
+    {
+        if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        {
+            let composer = TWTRComposer()
+            composer.setText(TWITTER_MESSAGE_MONTHLY_GOAL(goal))
+            composer.showFromViewController(self) { (result) in
+                if result == .Cancelled
+                {
+                    print("tweet cancelled")
+                }
+                else
+                {
+                    print("tweet sent")
+                }
+            }
+        }
     }
     
     // MARK: - Local notifications
@@ -201,6 +218,19 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 return
             }
         }
+    }
+    
+    // MARK: - Alert controllers
+    func goalCompleteAlertController(goal: MonthlyGoal) -> UIAlertController
+    {
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG_MONTHLY, preferredStyle: .Alert )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM_MONTHLY, style: .Default ) { (action) in
+            self.completeGoal(goal)
+            self.shareOnSocialMedia(goal)
+        }
+        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
+        goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
+        return goalCompleteAlertController
     }
     
     
@@ -313,74 +343,62 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("configuring")
         let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath) as! MonthlyGoalTableViewCell
         let goal = currentUser!.monthlyGoals[indexPath.row]
-        
-        
-    
-        
+
         //Configure the cell
         let kla = goal.kla
         cell.goalTextLabel!.text = goal.goalText
         cell.delegate = self
+        var klaIcon = ""
+        var klaIconHighlighted = ""
+        
         if  goal.complete
         {
-            cell.iconImage.hidden = false
             cell.userInteractionEnabled = false
-            cell.completeButton.hidden = true
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
             cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueLabelIcon.hidden = true
-                   var klaIconDone = ""
-            
+        
             switch kla
             {
             case KLA_FAMILY:
-                klaIconDone = "F-done.png"
+                klaIcon = "F-done.png"
                 
             case KLA_WORKBUSINESS:
-                klaIconDone = "W-done.png"
+                klaIcon = "W-done.png"
                 
             case KLA_PARTNER:
-                klaIconDone = "P-done.png"
+                klaIcon = "P-done.png"
                 
             case KLA_FINANCIAL:
-                klaIconDone = "FI-done.png"
+                klaIcon = "FI-done.png"
                 
             case KLA_PERSONALDEV:
-                klaIconDone = "PD-done.png"
+                klaIcon = "PD-done.png"
                 
             case KLA_EMOSPIRITUAL:
-                klaIconDone = "ES-done.png"
+                klaIcon = "ES-done.png"
                 
             case KLA_HEALTHFITNESS:
-                klaIconDone = "H-done.png"
+                klaIcon = "H-done.png"
                 
             case KLA_FRIENDSSOCIAL:
-                klaIconDone = "FR-done.png"
+                klaIcon = "FR-done.png"
                 
             default:
-                klaIconDone = "F-done.png"
+                klaIcon = "F-done.png"
             }
-     
-            // use image instead of the button
-            cell.iconImage.image = UIImage(named: klaIconDone)
-        
         }
-            
         else if !goal.complete
         {
-            cell.iconImage.hidden = true
-            cell.completeButton.hidden = false
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
-            var klaIcon = ""
-            var klaIconHighlighted = ""
+            cell.dueLabelIcon.hidden = false
             
             switch kla
             {
@@ -420,8 +438,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 klaIconHighlighted = "F-highlighted"
             }
     
-            
-            cell.dueLabelIcon.hidden = false
             if goal.due == Goal.Due.overdue
             {
                 //show due image
@@ -437,13 +453,13 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 // hide image
                 cell.dueLabelIcon.hidden = true
             }
-            
-            // Image button for normal and highlighted
-            let imageButton = UIImage(named: klaIcon)
-            let highlightedImageButton = UIImage(named: klaIconHighlighted)
-            cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
-            cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
         }
+        
+        // Image button for normal and highlighted
+        let imageButton = UIImage(named: klaIcon)
+        let highlightedImageButton = UIImage(named: klaIconHighlighted)
+        cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
+        cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
         return cell
     }
     

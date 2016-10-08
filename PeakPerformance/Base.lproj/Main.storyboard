@@ -387,7 +387,7 @@
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="rLy-Wh-DnS" kind="unwind" unwindAction="unwindFromSignUp:" id="3NQ-cJ-eL3"/>
+                                                    <action selector="backToLoginPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="JPs-yt-Uwv"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -442,12 +442,13 @@
                         <outlet property="signUpButton" destination="BXg-UV-UPm" id="rMg-am-gKk"/>
                         <outlet property="signUpErrorLabel" destination="Fgv-UW-LfC" id="Czi-Bo-3Wd"/>
                         <segue destination="lwI-fF-ehg" kind="show" identifier="firstTimeLogIn" id="LJD-Jg-731"/>
+                        <segue destination="rLy-Wh-DnS" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogIn:" id="Dbl-MM-9NH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tj8-jy-jx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rLy-Wh-DnS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="252" y="68"/>
+            <point key="canvasLocation" x="276" y="108"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="VUB-jd-Qov">
@@ -901,7 +902,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UrL-OA-mxN">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UrL-OA-mxN" customClass="SZTextView">
                                         <rect key="frame" x="0.0" y="19" width="541" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -912,6 +913,9 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                <string key="value">To ensure your weekly goals are powerful, write them using the S.M.A.R.T (Specific, Measurable, Achieveable, Realistic, &amp; Time-based) format.</string>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Text Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUB-Qp-Z7Z">
@@ -1176,7 +1180,7 @@
                         <outlet property="monthlyCounterLabel" destination="RBX-K1-RcD" id="9LK-2i-uAo"/>
                         <outlet property="nameProfileLabel" destination="NPI-K6-EG8" id="lnS-sd-Ulo"/>
                         <outlet property="startDateProfileLabel" destination="jUv-ju-osw" id="WdN-2o-hAn"/>
-                        <segue destination="nzk-OW-G6R" kind="unwind" identifier="unwindFromWGVC" unwindAction="unwindFromWGVC:" id="JJJ-uh-d6s"/>
+                        <segue destination="nzk-OW-G6R" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogIn:" id="Naw-nf-3lc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDO-oM-cEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1249,9 +1253,6 @@
                                                 <action selector="completeButtonPressed:" destination="Fcw-r0-Gy4" eventType="touchUpInside" id="FyL-Or-olq"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8RL-Zc-h93">
-                                            <rect key="frame" x="-76" y="-2" width="29" height="91"/>
-                                        </imageView>
                                     </subviews>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -1271,7 +1272,6 @@
                                     <outlet property="completeButton" destination="t0H-dT-ypZ" id="AOh-mo-v8r"/>
                                     <outlet property="dueLabelIcon" destination="qa4-Qx-wZa" id="hyD-Nf-gux"/>
                                     <outlet property="goalTextLabel" destination="2xw-7Z-maC" id="R0h-6P-V1d"/>
-                                    <outlet property="iconImage" destination="8RL-Zc-h93" id="gam-JZ-hKx"/>
                                     <segue destination="vq9-2F-l8P" kind="show" identifier="editMonthlyGoal" id="eQB-wO-zQv"/>
                                 </connections>
                             </tableViewCell>
@@ -1485,11 +1485,14 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my dream?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YXv-dq-6aQ">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YXv-dq-6aQ" customClass="SZTextView">
                                         <rect key="frame" x="0.0" y="18" width="510" height="59"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What is your dream that you want to achieve? Remember, there are no barriers!"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>
                             </stackView>
@@ -1794,7 +1797,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4LV-NM-PlH" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4LV-NM-PlH" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -1805,6 +1808,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What are your family values? The definition of family is different for every person and can include immediate or extended family. A value can be anything you hold to be important and it must be positive.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -1862,7 +1868,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LmR-oh-Zo9" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LmR-oh-Zo9" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -1873,6 +1879,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What are your friends &amp; social values? You may wish to consider the question of quality and quantity in relation to your friends and social life. A value can be anything you hold to be important and it must be positive.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -1933,7 +1942,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jvD-WR-px4" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jvD-WR-px4" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -1944,6 +1953,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What are your partner values? If you have a partner, they should be considered seperately to other family members. A value can be anything you hold to be important and it must be positive.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -2004,7 +2016,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AQd-4Y-KRZ" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AQd-4Y-KRZ" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -2016,6 +2028,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What are your work/business values? A value can be anything you hold to be important and it must be positive."/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="ElQ-R6-5GM"/>
@@ -2075,7 +2088,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTS-Mt-UVi" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTS-Mt-UVi" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -2086,6 +2099,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What are your health &amp; fitness values? These values should be about your physical well-being. A value can be anything you hold to be important and it must be positive.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -2143,7 +2159,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kVx-va-Jdr" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kVx-va-Jdr" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -2154,6 +2170,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What are your personal development values? These values should relate to your general self-improvement. A value can be anything you hold to be important and it must be positive.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -2214,7 +2233,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIb-gt-W0P" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIb-gt-W0P" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -2225,6 +2244,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What are your financial values? These values can be about your household finances or investments. A value can be anything you hold to be important and it must be positive.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -2282,7 +2304,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is my value?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dn4-Vr-YSf" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dn4-Vr-YSf" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="8" width="563" height="89"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -2293,6 +2315,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What are your emotional/spiritual values? Depending on your beliefs, your values can be in relation to your religion or philosophical belief system. A value can be anything you hold to be important and it must be positive.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -2396,7 +2421,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2dZ-nq-ROf">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2dZ-nq-ROf" customClass="SZTextView">
                                         <rect key="frame" x="0.0" y="19" width="541" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -2407,6 +2432,9 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                <string key="value">To ensure your monthly goals are powerful, write them using the S.M.A.R.T (Specific, Measurable, Achieveable, Realistic, &amp; Time-based) format.</string>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Text Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlw-Qx-NeL">
@@ -2840,7 +2868,6 @@
                                                         <connections>
                                                             <action selector="logInButtonPressed:" destination="Xff-XV-rpI" eventType="touchUpInside" id="ccx-vP-v8B"/>
                                                             <action selector="resetPasswordButtonPressed:" destination="Xff-XV-rpI" eventType="touchUpInside" id="MKM-yz-HU3"/>
-                                                            <segue destination="b0e-8Q-hXB" kind="unwind" unwindAction="unwindFromSignUp:" id="bU3-hb-sYK"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -2890,6 +2917,7 @@
                         <outlet property="emailField" destination="pL7-pB-3RO" id="SjO-mK-FKu"/>
                         <outlet property="resetPasswordButton" destination="1AS-Va-MOw" id="dbl-VA-A7A"/>
                         <outlet property="resetPasswordErrorLabel" destination="cKF-nH-HPO" id="VgI-9k-MJJ"/>
+                        <segue destination="b0e-8Q-hXB" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogIn:" id="qHB-of-7ze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYK-yH-cSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4166,11 +4194,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-IP-7aA">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-IP-7aA" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="584" height="113"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What do you feel is working? Review your goals to check on your progress and performance."/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -4227,11 +4258,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mU1-0f-d8C">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mU1-0f-d8C" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="584" height="113"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What do you feel is not working? Review your goals to check on your progress and performance."/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -4288,11 +4322,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ppc-qx-kzP">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ppc-qx-kzP" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="584" height="113"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What do you feel you have improved upon this month? It could be regarding the goals you set yourself, how you executed them and other factors. </string>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -4349,11 +4388,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6oU-P5-1Md">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6oU-P5-1Md" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="584" height="121"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What do you feel you need to change? Do you need to change any of your weekly goals, monthly goals or values?"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -7935,11 +7977,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="placeholder" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G71-ps-1bl">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G71-ps-1bl" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="1" width="584" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What are your reasons for differences to the plan? Review your results against your goals for the 12 month period."/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -7998,11 +8043,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="placeholder" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HJn-2O-7aM">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HJn-2O-7aM" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                                                            <string key="value">What have you observed about your 12 month performance? Review your results against your goals for the 12 month period. Have any of your values changed due to your performance?</string>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -8048,11 +8098,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="111.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="placeholder" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4HH-1z-3F3">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4HH-1z-3F3" customClass="CustomizableTextView" customModule="PeakPerformance" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="8" width="592" height="103"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="How has your performance changed? In what key life areas have you reached peak performance?"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -9075,8 +9128,8 @@
         <image name="whatworked_icon" width="82" height="82"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F0k-MP-t0R"/>
-        <segue reference="RnB-wj-eoz"/>
         <segue reference="mQN-NJ-Qii"/>
+        <segue reference="RnB-wj-eoz"/>
+        <segue reference="eQB-wO-zQv"/>
     </inferredMetricsTieBreakers>
 </document>
