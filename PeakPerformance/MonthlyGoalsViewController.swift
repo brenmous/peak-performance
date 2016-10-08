@@ -316,10 +316,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         print("configuring")
         let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath) as! MonthlyGoalTableViewCell
         let goal = currentUser!.monthlyGoals[indexPath.row]
-        
-        
-    
-        
+
         //Configure the cell
         let kla = goal.kla
         cell.goalTextLabel!.text = goal.goalText
@@ -328,13 +325,14 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         {
             cell.iconImage.hidden = false
             cell.userInteractionEnabled = false
-            cell.completeButton.hidden = true
+            cell.completeButton.hidden = false
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
             cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueLabelIcon.hidden = true
-                   var klaIconDone = ""
+            
+            var klaIconDone = ""
             
             switch kla
             {
