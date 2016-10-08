@@ -13,7 +13,7 @@ import AMPopTip
 
 class SummaryViewController: UITableViewController {
 
-    // MARK: - Variable Declarations
+    // MARK: - Properties
     
     var summary: MonthlySummary?
   
@@ -28,7 +28,7 @@ class SummaryViewController: UITableViewController {
     
     // MARK: - Outlets
     
-    // KLA points
+    /// KLA points
     
     @IBOutlet weak var personalDevelopmentPoint: UIButton!
     
@@ -46,11 +46,12 @@ class SummaryViewController: UITableViewController {
     
     @IBOutlet weak var familyPoint: UIButton!
     
-    // KLA Diagram
+    /// KLA Diagram
     @IBOutlet weak var klaDiagramPeakPerformanceArea: CustomizableLabelView!
     
+    // MARK: - Actions
     
-    // KLA Buttons
+    /// KLA Buttons
     
     @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
 
