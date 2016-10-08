@@ -4,25 +4,85 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AMPopTip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ActionSheetPicker-3.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PDFGenerator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-PeakPerformance.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SZTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SideMenu-SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SwiftValidator.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9BD8C84013C087E55E79847CF4BDDF33</key>
+		<key>053617A05C5A952CF2888B88D119FE01</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A57D082DEF1971EABD506B0AFEFB893A</key>
+		<key>053BEED3EF80C8CDF479257D3435B424</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>586E40C0BEBAB01A075A5E60359FA09D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AAAAC468986591754601882FD5799ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B26BED6DACADD37F45808F7D16C7A96C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9AEF16C9237BB72E2149C142F7A6E9D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F926DEB100A8330346CDB2E7A4FD34B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FEEC91958E75D5701A29FC32E1DF27D2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
