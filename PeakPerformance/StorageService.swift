@@ -2,12 +2,12 @@
 //  StorageService.swift
 //  PeakPerformance
 //
-//  Created by Bren on 30/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com on 30/08/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation
-import Firebase
+import Firebase // https://firebase.google.com
 
 /**
  This class handles save/load to Firebase storage.
@@ -27,22 +27,15 @@ class StorageService
     static func saveDreamImage( user: User, dream: Dream, completion: ( ) -> Void )
     {
         let dreamRef =   FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE).child(user.uid).child("\(dream.did).jpg")
-        guard let imageData = dream.imageData else
-        {
-            print("SS: tried to save dream image that has no data")
-            return
-        }
+        guard let imageData = dream.imageData else { return }
         dreamRef.putData(imageData, metadata: nil ) { (metadata, error) in
             guard error == nil else
             {
-                //handle error
-                print("SS: error uploading image \(dream.did)")
+                print("StorageService - saveDreamImage(): \(error?.localizedDescription)")
                 return
             }
             dream.imageURL = metadata!.downloadURL()
             completion( )
-            print("SS: upload of \(dream.did)complete")
-            
         }
     }
     
@@ -54,26 +47,20 @@ class StorageService
     */
     static func loadDreamImages( user: User, completion: () -> Void )
     {
-        if user.dreams.isEmpty
-        {
-            print("SS: no dream images to load")
-            return
-        }
+        if user.dreams.isEmpty{ return }
         
         for i in 0...user.dreams.count - 1
         {
             let dream = user.dreams[i]
             let dreamRef =   FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE).child(user.uid).child("\(dream.did).jpg")
-            dreamRef.dataWithMaxSize(2 * 1024 * 1024) { (data, error) -> Void in
+            dreamRef.dataWithMaxSize(Int64(DREAM_IMAGE_SIZE)) { (data, error) -> Void in
                 guard error == nil else
                 {
-                    //handle error
-                    print("SS: error downloading image \(dream.did) - \(error!.localizedDescription)")
+                    print("StorageService - loadDreamImages(): \(error?.localizedDescription)")
                     return
                 }
                 dream.imageData = data
                 completion( )
-                print("SS: download of \(dream.did) complete")
             }
         }
     }
@@ -88,16 +75,14 @@ class StorageService
     static func loadDreamImage( user: User, dream: Dream, completion: () -> Void )
     {
         let dreamRef =   FIRStorage.storage( ).referenceForURL(STORAGE_REF_BASE).child(user.uid).child("\(dream.did).jpg")
-        dreamRef.dataWithMaxSize(2 * 1024 * 1024) { (data, error) -> Void in
+        dreamRef.dataWithMaxSize(Int64(DREAM_IMAGE_SIZE)) { (data, error) -> Void in
             guard error == nil else
             {
-                //handle error
-                print("SS: error downloading image \(dream.did) - \(error!.localizedDescription)")
+                print("StorageService - loadDreamImage(): \(error?.localizedDescription)")
                 return
             }
             dream.imageData = data
             completion( )
-            print("SS: download of \(dream.did) complete")
         }
         
     }
@@ -115,10 +100,9 @@ class StorageService
         dreamRef.deleteWithCompletion { (error) -> Void in
             guard error == nil else
             {
-                //handle error
+                print("StorageService - removeDreamImage(): \(error?.localizedDescription)")
                 return
             }
-            print("SS: dream image \(dream.did) deleted")
         }
     }
     

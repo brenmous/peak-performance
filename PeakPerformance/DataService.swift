@@ -2,12 +2,12 @@
 //  DataService.swift
 //  PeakPerformance
 //
-//  Created by Bren on 18/07/2016.
-//  Copyright © 2016 Bren. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 18/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation
-import Firebase
+import Firebase // https://firebase.google.com
 
 
 /**
@@ -114,12 +114,10 @@ class DataService
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             guard let startDate = dateFormatter.dateFromString(startDateString as! String) else
             {
-                print("DS: could not convert user start date") //DEBUG
                 return
             }
         
             let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
-            print("ar size \(user.yearlySummary.count)")
 
             completion( user: user )
         })
@@ -694,7 +692,6 @@ class DataService
                     }
                     
                     let dateString = (String(s.key))
-                    print("DS: fetching summary for \(dateString)")
                     let dateFormatter = NSDateFormatter( )
                     //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
                     dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING

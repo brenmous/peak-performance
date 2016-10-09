@@ -2,15 +2,20 @@
 //  UITableViewExtensions.swift
 //  PeakPerformance
 //
-//  Created by Bren on 14/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com on 14/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import SideMenu
-import SwiftValidator
-import Firebase
+import SideMenu // https://github.com/jonkykong/SideMenu
+import SwiftValidator // https://github.com/jpotts18/SwiftValidator
+import Firebase // https://firebase.google.com
+
+/**
+    This file contains various extensions to classes, mainly used to package methods and abstract them away from view controllers.
+*/
+
 
 // MARK: - UIViewController
 extension UIViewController

@@ -2,32 +2,37 @@
 //  MonthlyGoalsViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 24/07/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 24/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 
 import UIKit
-import SideMenu
-import TwitterKit
+import SideMenu // https://github.com/jonkykong/SideMenu
+import TwitterKit // https://fabric.io/kits/ios/twitterkit
 
 
 /**
  Class that controls the monthly goals view.
  */
-class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewControllerDelegate, MonthlyGoalTableViewCellDelegate {
+class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewControllerDelegate, MonthlyGoalTableViewCellDelegate
+{
     
     // MARK: - Properties
     
+    /// DataService instance for interacting with Firebase database.
     let dataService = DataService()
     
     /// The currently authenticated user.
     var currentUser: User?
     
+    
     // MARK: - Outlets
+    
     //progress bar
     @IBOutlet weak var progressBarMG: UIProgressView!
     @IBOutlet weak var progressViewLabel: UILabel!
+    
     
     // MARK: - Actions
     
@@ -144,14 +149,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             let composer = TWTRComposer()
             composer.setText(TWITTER_MESSAGE_MONTHLY_GOAL(goal))
             composer.showFromViewController(self) { (result) in
-                if result == .Cancelled
-                {
-                    print("tweet cancelled")
-                }
-                else
-                {
-                    print("tweet sent")
-                }
             }
         }
     }
@@ -170,12 +167,9 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         notification.alertBody = MG_NOTIFICATION_BODY(monthlyGoal)
         let calendar = NSCalendar.currentCalendar()
         // - FIXME:
-        notification.fireDate = calendar.dateByAddingUnit(.Day, value: 25, toDate: monthlyGoal.deadline, options: [])
+        notification.fireDate = calendar.dateByAddingUnit(.Day, value: MG_NOTIFICATION_FIREDATE, toDate: monthlyGoal.deadline, options: [])
         notification.userInfo = [MG_NOTIFICATION_ID: monthlyGoal.gid]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
-        //DEBUG
-        print("created notification: \(notification.alertBody) for date \(notification.fireDate)")
     }
     
     /**
@@ -250,8 +244,6 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
                 return
             }
             self.currentUser = cu
-            //tableView.reloadData( )
-            print("MGVC: got user \(currentUser!.email) with \(cu.monthlyGoals.count) monthly goals") //DEBUG
         }
         
         //disable editing in case user left view while in edit mode
@@ -295,25 +287,14 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         self.tableView.reloadData()
     }
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
-    
-    
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
+
     
     // MARK: - Table view data source
     
-    
+    // SOWMYA //
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         var numOfSections: Int = 0
-        
         
         if (currentUser?.monthlyGoals.count) > 0 {
             
@@ -335,7 +316,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         return numOfSections
     }
-    
+    // END SOWMYA //
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -474,11 +455,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         if editingStyle == .Delete
         {
             // Delete the row from the data source
-            guard let cu = self.currentUser else
-            {
-                //no user! wuh oh!
-                return
-            }
+            guard let cu = self.currentUser else { return }
             self.dataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
             cu.monthlyGoals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -489,14 +466,14 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == ADD_MONTHLY_GOAL_SEGUE
+        switch segue.identifier!
         {
+        case ADD_MONTHLY_GOAL_SEGUE:
             let dvc = segue.destinationViewController as! MonthlyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
-        }
-        else if segue.identifier == EDIT_MONTHLY_GOAL_SEGUE
-        {
+            
+        case EDIT_MONTHLY_GOAL_SEGUE:
             let dvc = segue.destinationViewController as! MonthlyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
@@ -504,9 +481,10 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             {
                 dvc.currentGoal = currentUser!.monthlyGoals[indexPath.row]
             }
+            
+        default:
+            return
         }
     }
-    
-    
 }
 

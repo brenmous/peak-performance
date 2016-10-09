@@ -2,8 +2,8 @@
 //  SecondSummaryViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 12/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 12/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -14,6 +14,7 @@ class SecondSummaryViewController: UITableViewController {
     var summary: MonthlySummary?
     
     var weeklyGoalsByWeek = [[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal]()]
+    
     
     // MARK: - Overriden methods
     
@@ -57,14 +58,8 @@ class SecondSummaryViewController: UITableViewController {
                 weeklyGoalsByWeek[index].sortInPlace({$0.complete && !$1.complete})
             }
         }
-        
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 
     // MARK: - Table view data source
 
@@ -85,7 +80,8 @@ class SecondSummaryViewController: UITableViewController {
         return self.weeklyGoalsByWeek.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         
         //if there were no goals for that week, make a section for a "no goals" label
         if self.weeklyGoalsByWeek[section].count == 0
@@ -104,10 +100,10 @@ class SecondSummaryViewController: UITableViewController {
             let goal = self.weeklyGoalsByWeek[indexPath.section][indexPath.row]
             if !goal.kickItText.isEmpty
             {
-                return 130 //TODO: - Make row height constants
+                return CGFloat(ROWHEIGHT_KICK_IT)
             }
         }
-        return 53
+        return CGFloat(ROWHEIGHT_NO_KICK_IT)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> SecondSummaryTableViewCell {
@@ -222,6 +218,4 @@ class SecondSummaryViewController: UITableViewController {
         
         return cell
     }
-
-
 }

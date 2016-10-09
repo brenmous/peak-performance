@@ -2,18 +2,19 @@
 //  SecondInitialSetupViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 16/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 16/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
 import Foundation
-import AMPopTip
+import AMPopTip // https://github.com/andreamazz/AMPopTip
 
 class SecondInitialSetupViewController: UITableViewController {
 
     // MARK: - Properties
     
+    /// DataService instance for interacting with Firebase database.
     let dataService = DataService()
     
     /// The currently logged in user.
@@ -22,12 +23,11 @@ class SecondInitialSetupViewController: UITableViewController {
     /// The summary being reviewed.
     var summary: CurrentRealitySummary?
     
-    /// Poptip
     let popTip = AMPopTip()
+    
     
     // MARK: - Outlets
     
-    //*****these need to be hooked up******//
     @IBOutlet weak var familyTextView: UITextView!
 
     @IBOutlet weak var friendsTextView: UITextView!
@@ -67,6 +67,7 @@ class SecondInitialSetupViewController: UITableViewController {
     
     // MARK: - Actions
     
+    //// BEN ///
     @IBAction func personalDevPointPressed(sender: AnyObject) {
         popTip.hide()
         popTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: 90, inView: super.view, fromFrame: personalDevPoint.frame)
@@ -82,7 +83,6 @@ class SecondInitialSetupViewController: UITableViewController {
     
     }
 
-    
     @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
         popTip.hide()
         popTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: 90, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
@@ -107,7 +107,6 @@ class SecondInitialSetupViewController: UITableViewController {
     
     }
     
-
     @IBAction func healthPointPressed(sender: AnyObject) {
         popTip.hide()
         popTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: 60, inView: super.view, fromFrame: healthPoint.frame)
@@ -128,23 +127,14 @@ class SecondInitialSetupViewController: UITableViewController {
         popTip.popoverColor = PEAK_FAMILY_BLUE
         popTip.textColor = UIColor.whiteColor()
     }
-
+    /// END BEN ///
     
     
     
     @IBAction func doneButtonPressed(sender: AnyObject)
     {
-        //self.updateSummaryWithText( )
-        guard let s = self.summary else
-        {
-            print("SMRVC: error unwrapping summary")
-            return
-        }
-        guard let cu = self.currentUser else
-        {
-            print("SMRVC: error unwrapping user")
-            return
-        }
+        guard let s = self.summary else { return }
+        guard let cu = self.currentUser else { return }
         cu.initialSummary = s
         self.dataService.saveCurrentRealitySummary( cu, summary: s )
         let tbvc = self.storyboard?.instantiateViewControllerWithIdentifier(TAB_BAR_VC) as! TabBarViewController
@@ -160,7 +150,6 @@ class SecondInitialSetupViewController: UITableViewController {
     {
         guard let s = self.summary else
         {
-            print("SMRVC: could not get summary")
             return
         }
         self.familyTextView.text = s.klaReasons[KLA_FAMILY]
@@ -173,6 +162,7 @@ class SecondInitialSetupViewController: UITableViewController {
         self.emotionalTextView.text = s.klaReasons[KLA_EMOSPIRITUAL]
     }
 
+    /// BEN ///
     func displayPoints( ) {
         
         
@@ -242,6 +232,8 @@ class SecondInitialSetupViewController: UITableViewController {
         
         
     }
+    /// END BEN ///
+    
     // MARK: - Overriden methods
     
     override func viewDidLoad() {
@@ -249,11 +241,12 @@ class SecondInitialSetupViewController: UITableViewController {
         self.updateSummaryWithText( )
         displayPoints( )
 
+        /// BEN ///
         // Poptip
         popTip.offset = OFFSET
         popTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
         popTip.shouldDismissOnTap = true
-        
+        /// END BEN ///
     }
     
     
@@ -272,16 +265,11 @@ class SecondInitialSetupViewController: UITableViewController {
         }
     }
     
-    //Dismisses keyboard when tap outside keyboard detected.
+    /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
         self.view.endEditing(true)
     }
-    
-
-    
-
-    
 }
 
 

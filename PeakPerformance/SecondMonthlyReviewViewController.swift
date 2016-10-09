@@ -2,8 +2,8 @@
 //  SecondMonthlyReviewViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 8/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 8/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -27,6 +27,8 @@ class SecondMonthlyReviewViewController: UITableViewController {
     
     
     // MARK: - Outlets
+    
+    // Text views
     @IBOutlet weak var whatIsWorkingTextView: UITextView!
     @IBOutlet weak var whatIsNotWorkingTextView: UITextView!
     @IBOutlet weak var whatHaveIImprovedTextView: UITextView!
@@ -34,25 +36,21 @@ class SecondMonthlyReviewViewController: UITableViewController {
     
     // Plot points 
     @IBOutlet weak var familyPoint: UIButton!
-    
     @IBOutlet weak var friendPoint: UIButton!
-    
     @IBOutlet weak var financialPoint: UIButton!
-    
     @IBOutlet weak var healthPoint: UIButton!
-    
     @IBOutlet weak var partnerPoint: UIButton!
-    
     @IBOutlet weak var personalDevelopmentPoint: UIButton!
-    
     @IBOutlet weak var workPoint: UIButton!
-    
     @IBOutlet weak var emotionalSpiritual: UIButton!
+    
+    // KLA graph
     @IBOutlet weak var klaDiagramPeakPerformanceArea: CustomizableLabelView!
 
     
     // MARK: - Actions
     
+    /// BEN ///
     @IBAction func familyPointPressed(sender: AnyObject) {
         popTip.hide()
         popTip.showText(KLA_FAMILY, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
@@ -110,80 +108,45 @@ class SecondMonthlyReviewViewController: UITableViewController {
        popTip.popoverColor = PEAK_EMOTIONAL_VIOLET
         popTip.textColor = UIColor.whiteColor()
     }
+    /// END BEN ///
+    
     @IBAction func doneButtonPressed(sender: AnyObject)
     {
-        self.updateSummaryWithText( )
-        guard let s = self.summary else
-        {
-            print("SMRVC: error unwrapping summary")
-            return
-        }
-        guard let cu = self.currentUser else
-        {
-            print("SMRVC: error unwrapping user")
-            return
-        }
+        self.updateSummaryWithText()
+        guard let s = self.summary else { return }
+        guard let cu = self.currentUser else { return }
         s.reviewed = true
-        self.dataService.saveSummary( cu, summary: s )
-        performSegueWithIdentifier( UNWIND_TO_HISTORY_SEGUE, sender: self)
+        self.dataService.saveSummary(cu, summary: s)
+        performSegueWithIdentifier(UNWIND_TO_HISTORY_SEGUE, sender: self)
         
     }
     
     // MARK: - Methods
     
     /// Updates the summary being reviewed with text from the text views.
-    func updateSummaryWithText( )
+    func updateSummaryWithText()
     {
-        guard let s = self.summary else
-        {
-            print("SMRVC: could not get summary")
-            return
-        }
+        guard let s = self.summary else { return }
         s.whatIsWorking = self.whatIsWorkingTextView.text
         s.whatIsNotWorking = self.whatIsNotWorkingTextView.text
         s.whatHaveIImproved = self.whatHaveIImprovedTextView.text
-        s.doIHaveToChange = self.doIHaveToChangeTextView.text //TODO: - Temp. Make this radio buttons.
+        s.doIHaveToChange = self.doIHaveToChangeTextView.text
     }
     
-    // MARK: - keyboard stuff
-    /// Work around for dismissing keyboard on text view.
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
-    {
-        if text == "\n"
-        {
-            textView.resignFirstResponder( )
-            return false
-        }
-        else
-        {
-            return true
-        }
-    }
-    
-    //Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
-    {
-        self.view.endEditing(true)
-    }
-    
-
+    // BEN //
     // Function to diplay the points of 8 key life areas;
     // Derives the origin (0,0) from the midpoint of the parent view and the biggest circle
     func displayPoints( ) {
         
- 
+        
         // origin
         let xmidpoint = (self.view.frame.size.width/2) - (familyPoint.frame.size.width/2)
         let ymidpoint = (klaDiagramPeakPerformanceArea.frame.midY) - (familyPoint.frame.size.width/2)
-    
+        
         
         // family point
         var familyFrame: CGRect = familyPoint.frame
         familyFrame.origin.x = xmidpoint
-        
-        print("SVC: family x coord\(familyFrame.origin.x)") // DEBUG
-        print("SVC: family y coord\(familyFrame.origin.x)")  // DEBUG
-
         familyFrame.origin.y = ymidpoint + UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
 
         familyPoint.translatesAutoresizingMaskIntoConstraints = true
@@ -202,7 +165,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
         friendFrame.origin.y = ymidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FRIENDSSOCIAL]!))
         friendPoint.translatesAutoresizingMaskIntoConstraints = true
         friendPoint.frame = friendFrame
-    
+        
         // health point
         var healthFrame: CGRect = healthPoint.frame
         healthFrame.origin.x = xmidpoint
@@ -240,8 +203,30 @@ class SecondMonthlyReviewViewController: UITableViewController {
         emotionalSpiritualFrame.origin.y = ymidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
         emotionalSpiritual.translatesAutoresizingMaskIntoConstraints = true
         emotionalSpiritual.frame = emotionalSpiritualFrame
+    }
+    // END BEN //
     
- 
+    
+    // MARK: - keyboard stuff
+    
+    /// Work around for dismissing keyboard on text view.
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    {
+        if text == "\n"
+        {
+            textView.resignFirstResponder( )
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
+    
+    /// Dismisses keyboard when tap outside keyboard detected.
+    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    {
+        self.view.endEditing(true)
     }
     
         // MARK: - Overriden methods
@@ -251,10 +236,12 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         displayPoints( )
         
+        // BEN //
         // Poptip
         popTip.offset = OFFSET
         popTip.arrowSize = CGSize(width:ARROW_WIDTH, height: ARROW_HEIGHT)
         popTip.shouldDismissOnTap = true
+        // END BEN //
      }
 
     override func didReceiveMemoryWarning() {

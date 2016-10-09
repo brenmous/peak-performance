@@ -2,8 +2,8 @@
 //  ResetPasswordViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 9/08/2016.
-//  Copyright © 2016 CtrlAltDesign. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 9/08/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit

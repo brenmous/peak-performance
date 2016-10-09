@@ -3,7 +3,7 @@
 //  PeakPerformance
 //
 //  Created by Bren on 30/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -12,10 +12,13 @@ class SecondYearReviewViewController: UIViewController {
 
     // MARK: - Properties
     
+    /// DataService instance for interacting with Firebase database.
     let dataService = DataService()
     
+    /// Currently authenticated user.
     var currentUser: User?
 
+    /// The yearly summary being completed.
     var summary: YearlySummary?
     
     // MARK: - Actions
@@ -26,25 +29,10 @@ class SecondYearReviewViewController: UIViewController {
         self.performSegueWithIdentifier(UNWIND_TO_HISTORY_SEGUE, sender: self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        self.summary = currentUser!.yearlySummary[currentUser!.year]!! //FIXME: shebangbangbangbangbang
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    // MARK: - Methods
     
     /// Resets user's monthly reviews/summaries, gets new summaries for current 12 month period. Sets yearly summary to nil.
-    //if we want to send the yearly review to Paul/save it for user/whatever, that will happen here.
-    func yearlyCleanUp() //TOOD: - move to user class
+    func yearlyCleanUp()
     {
         //Save the completed yearly summary
         self.dataService.saveYearlySummary(self.currentUser!, summary: summary!)
@@ -53,16 +41,12 @@ class SecondYearReviewViewController: UIViewController {
         let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self.currentUser!)
         self.currentUser!.year = yearsPassedSinceStart
         self.dataService.saveUserYear(self.currentUser!)
-        
-        //Wipe all the user's monthly summaries from the previous year
-        //self.currentUser!.monthlySummaries = [String:MonthlySummary]( )
-        //self.dataService.removeAllMonthlySummaries(self.currentUser!)
-       
-        //Reset weekly and monthly goals
-        /*
-        self.currentUser!.weeklyGoals = [WeeklyGoal]()
-        self.currentUser!.monthlyGoals = [MonthlyGoal]()
-        self.dataService.removeAllGoals(self.currentUser!.uid)
-        */
+    }
+    
+    // MARK: - Overriden methods
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        self.summary = currentUser!.yearlySummary[currentUser!.year]!! //FIXME: shebangbangbangbangbang
     }
 }

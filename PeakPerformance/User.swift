@@ -2,15 +2,15 @@
 //  User.swift
 //  PeakPerformance
 //
-//  Created by Bren on 17/07/2016.
-//  Copyright © 2016 Bren. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 17/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation
 import UIKit //UIAlertController
 
 /**
-    Class that represents a peak performance user
+    Class that represents a peak performance user.
  */
 public class User
 {

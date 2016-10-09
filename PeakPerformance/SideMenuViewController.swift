@@ -2,13 +2,13 @@
 //  SideMenuViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 23/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 23/08/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
-import SideMenu
-import Firebase
+import SideMenu // https://github.com/jonkykong/SideMenu
+import Firebase // https://firebase.google.com
 
 /**
     Class that controls the side menu. Also contains extension to SideMenu framework that handles set up.
@@ -25,8 +25,11 @@ class SideMenuViewController: UITableViewController
     @IBOutlet weak var monthlyCounterLabel: CustomizableLabelView!
     
     // MARK: - Properties
+    
+    /// Currently authenticated user.
     var currentUser: User?
     
+    /// Storyboard instance for instantiating view from storyboard.
     var sb: UIStoryboard?
     
     // MARK: - Methods
@@ -56,7 +59,7 @@ class SideMenuViewController: UITableViewController
         
     }
     
-    /// Takes user to the History view
+    /// Takes user to the History view.
     func goToMonthlyReview( )
     {
         //ask user if they want to go to history view to complete monthly reviews
@@ -64,6 +67,7 @@ class SideMenuViewController: UITableViewController
         nc.postNotificationName("changeIndex", object: nil)
     }
   
+    /// Takes user to settings view.
     func goToSettings( )
     {
         //self.performSegueWithIdentifier("goToSettings", sender: self)
@@ -141,9 +145,6 @@ class SideMenuViewController: UITableViewController
         }
         emailProfileLabel.text = cu.email
     }
-    
-  
-
 }
 
 

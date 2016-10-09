@@ -2,14 +2,14 @@
 //  WeeklyGoalsViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 24/07/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 24/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
-import Firebase
-import SideMenu //github.com/jonkeykong/SideMenu
-import TwitterKit
+import Firebase // https://firebase.google.com
+import SideMenu // https://github.com/jonkeykong/SideMenu
+import TwitterKit // https://fabric.io/kits/ios/twitterkit
 
 /**
     Class that controls the weekly goals view.
@@ -19,6 +19,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
 
     // MARK: - Properties
 
+    /// DataService instance for interacting with Firebase database.
     let dataService = DataService()
     
     /// The currently authenticated user.
@@ -139,16 +140,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         {
             let composer = TWTRComposer()
             composer.setText(TWITTER_MESSAGE_WEEKLY_GOAL(goal)) //FIXME: test, make constant
-            
             composer.showFromViewController(self) { (result) in
-                if result == .Cancelled
-                {
-                    print("tweet cancelled")
-                }
-                else
-                {
-                    print("sending tweet")
-                }
             }
         }
     }
@@ -173,9 +165,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         notification.fireDate = weeklyGoal.deadline
         notification.userInfo = [WG_NOTIFICATION_ID: weeklyGoal.gid]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
-        //DEBUG
-        print("created notification: \(notification.alertBody) for date \(notification.fireDate)")
     }
     
     /**
@@ -253,7 +242,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             let tbvc = self.tabBarController as! TabBarViewController
             guard let cu = tbvc.currentUser else { return }
             self.currentUser = cu
-            print("WGVC: got user \(currentUser!.email) with \(cu.weeklyGoals.count) weekly goals") //DEBUG
         }
         
         //disable editing in case user left view while in edit mode
@@ -477,17 +465,17 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     // MARK: - Navigation
     
-    //TODO: Change if to switch
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == ADD_WEEKLY_GOAL_SEGUE
+        switch segue.identifier!
         {
+        case ADD_WEEKLY_GOAL_SEGUE:
             let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
             return
-        }
-        else if segue.identifier == EDIT_WEEKLY_GOAL_SEGUE
-        {
+            
+        case EDIT_WEEKLY_GOAL_SEGUE:
             let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
@@ -496,7 +484,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 dvc.currentGoal = currentUser!.weeklyGoals[indexPath.row]
                 return
             }
+            
+        default:
+            return
         }
-        
     }
 }

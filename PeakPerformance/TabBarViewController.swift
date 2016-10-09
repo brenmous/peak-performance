@@ -2,8 +2,8 @@
 //  TabBarViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 23/07/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 23/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -34,12 +34,12 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // BEN //
         let nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector: #selector(TabBarViewController.setIndexNumber), name: "changeIndex", object: nil)
-        
-        //set default tab to weekly goals view
+        // END BEN //
+
         self.selectedIndex = currentSelectedIndex
-        //set default tab to weekly goals view
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,17 +51,4 @@ class TabBarViewController: UITabBarController {
     {
         super.viewWillAppear(animated)
     }
-  
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
-
-    
 }

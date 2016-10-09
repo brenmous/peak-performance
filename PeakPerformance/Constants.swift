@@ -2,8 +2,8 @@
 //  Constants.swift
 //  PeakPerformance
 //
-//  Created by Bren on 21/07/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 21/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation
@@ -587,6 +587,9 @@ let PRIVACY_CELL_ID = "privacyPolicyCell"
 /// Constant for compression of JPEG UIImage representation.
 let JPEG_QUALITY: CGFloat = 0.25
 
+/// Constant for size of images to load/save to storage.
+let DREAM_IMAGE_SIZE = 2 * 1024 * 1024
+
 ///Placeholder image for dream list
 let DREAM_PLACEHOLDER = "dream-list-placeholder"
 
@@ -623,7 +626,7 @@ let USER_DEFAULTS_AUTO_LOGIN = "autoLogin"
 let USER_DEFAULTS_TWITTER = "twitter"
 
 
-// MARK: - UILocalNotification strings
+// MARK: - UILocalNotification
 
 /// Body of WG due soon local notification
 func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "Weekly goal \"\(goal.goalText)\" is due." }
@@ -637,10 +640,23 @@ func MG_NOTIFICATION_BODY(monthlyGoal: MonthlyGoal) -> String { return "Monthly 
 /// Key for ID in monthly goal notification.userSettings
 let MG_NOTIFICATION_ID = "MONTH"
 
+/// Day of month to fire monthly goal notifications
+let MG_NOTIFICATION_FIREDATE = 25
+
+
+
 
 // MARK: - Coach email strings
 
+/// Message displayed when trying to send summary with no coach email set
 let NO_COACH_EMAIL_MESSAGE = "No coach!"
+
+/// Summary email default body
+func SUMMARY_EMAIL_BODY(month: String, user: User) -> String { return "Hi Peak Performance Coach, \nI would like to share with you my progress for the month of\(month)\nKind regards,\(user.fname)\(user.lname)" }
+
+/// Summary email default subject
+func SUMMARY_EMAIL_SUBJECT(month: String) -> String { return "My monthly review for \(month)." }
+
 
 // MARK: - Social Media strings
 
@@ -650,8 +666,11 @@ func TWITTER_MESSAGE_WEEKLY_GOAL(goal: Goal) -> String { return "I completed my 
 /// Default body text for twitter posts about monthly goals
 func TWITTER_MESSAGE_MONTHLY_GOAL(goal: Goal) -> String { return "I completed my monthly goal \"\(goal.goalText)\"! #PeakPerformance"}
 
+/// Default body text for twitter posts about dreams
+func TWITTER_MESSAGE_DREAM(dream: Dream) -> String { return "My dream is to \"\(dream.dreamDesc)\" #PeakPerformance" }
 
-// MARK: - Pop Tip My Values messages help
+
+// MARK: - AMPopTip constants
 
 let FAMILY_MESSAGE_HELP = "The definition of family is different for every person and can include immediate or extended family. A value can be anything you hold to be important and it must be positive."
 

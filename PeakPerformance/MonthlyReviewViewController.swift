@@ -2,8 +2,8 @@
 //  MonthlyReviewViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 6/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 6/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -17,8 +17,6 @@ class MonthlyReviewViewController: UITableViewController {
     var summary: MonthlySummary?
     
     // MARK: - Outlets
-    
-
     
     @IBOutlet weak var familySlider: UISlider!
     @IBOutlet weak var friendsSlider: UISlider!
@@ -68,8 +66,6 @@ class MonthlyReviewViewController: UITableViewController {
 
     }
 
-
-    
     // MARK: - Navigation
 
 
