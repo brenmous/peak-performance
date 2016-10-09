@@ -69,16 +69,15 @@ class SecondInitialSetupViewController: UITableViewController {
     
     @IBAction func personalDevPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Personal Development", direction: .Up, maxWidth: 90, inView: super.view, fromFrame: personalDevPoint.frame)
+        popTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: 90, inView: super.view, fromFrame: personalDevPoint.frame)
         popTip.popoverColor = UIColor.orangeColor()
         popTip.textColor = UIColor.whiteColor()
-        print("this is personal dev")
     }
     
     @IBAction func financialPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Financial", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: financialPoint.frame)
-        popTip.popoverColor = UIColor.init(red: 47/355, green: 188/255, blue: 184/255, alpha: 1)
+        popTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: 60, inView: super.view, fromFrame: financialPoint.frame)
+        popTip.popoverColor = PEAK_FINANCE_BLUE_GREEN
         popTip.textColor = UIColor.whiteColor()
     
     }
@@ -86,15 +85,15 @@ class SecondInitialSetupViewController: UITableViewController {
     
     @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Emotional/Spiritual", direction: .Up, maxWidth: 90, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
-        popTip.popoverColor = UIColor.init(red: 144/355, green: 85/255, blue: 153/255, alpha: 1)
+        popTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: 90, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
+        popTip.popoverColor = PEAK_EMOTIONAL_VIOLET
         popTip.textColor = UIColor.whiteColor()
     
     }
     
     @IBAction func workPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Work", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: workPoint.frame)
+        popTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: 60, inView: super.view, fromFrame: workPoint.frame)
         popTip.popoverColor = UIColor.yellowColor()
         popTip.textColor = UIColor.blackColor()
     
@@ -102,8 +101,8 @@ class SecondInitialSetupViewController: UITableViewController {
     
     @IBAction func partnerPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Partner", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: partnerPoint.frame)
-        popTip.popoverColor = UIColor.init(red: 193/355, green: 36/255, blue: 198/255, alpha: 1)
+        popTip.showText(KLA_PARTNER, direction: .Up, maxWidth: 60, inView: super.view, fromFrame: partnerPoint.frame)
+        popTip.popoverColor = PEAK_PARTNER_PURPLE
         popTip.textColor = UIColor.whiteColor()
     
     }
@@ -111,22 +110,22 @@ class SecondInitialSetupViewController: UITableViewController {
 
     @IBAction func healthPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Health", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: healthPoint.frame)
-        popTip.popoverColor = UIColor.init(red: 191/355, green: 204/255, blue: 31/255, alpha: 1)
+        popTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: 60, inView: super.view, fromFrame: healthPoint.frame)
+        popTip.popoverColor = PEAK_HEALTH_GREEN
         popTip.textColor = UIColor.blackColor()
     }
     
     @IBAction func friendPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Friend", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: friendPoint.frame)
-        popTip.popoverColor = UIColor.init(red: 101/355, green: 229/255, blue: 225/255, alpha: 1)
+        popTip.showText(KLA_FRIENDSSOCIAL, direction: .Up, maxWidth: 60, inView: super.view, fromFrame: friendPoint.frame)
+        popTip.popoverColor = PEAK_FRIEND_CYAN
         popTip.textColor = UIColor.blackColor()
     }
     
     @IBAction func familyPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText("Family", direction: .Up, maxWidth: 60, inView: super.view, fromFrame: familyPoint.frame)
-        popTip.popoverColor = UIColor.init(red: 32/355, green: 113/255, blue: 201/255, alpha: 1)
+        popTip.showText(KLA_FAMILY, direction: .Up, maxWidth: 60, inView: super.view, fromFrame: familyPoint.frame)
+        popTip.popoverColor = PEAK_FAMILY_BLUE
         popTip.textColor = UIColor.whiteColor()
     }
 
@@ -186,8 +185,6 @@ class SecondInitialSetupViewController: UITableViewController {
         var familyFrame: CGRect = familyPoint.frame
         familyFrame.origin.x = xmidpoint
         familyFrame.origin.y = ymidpoint + UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
-        print("coord y \(familyFrame.origin.y)")
-        print("family y coord\(familyFrame.origin.y)")
         familyPoint.translatesAutoresizingMaskIntoConstraints = true
         familyPoint.frame = familyFrame
         
@@ -253,8 +250,8 @@ class SecondInitialSetupViewController: UITableViewController {
         displayPoints( )
 
         // Poptip
-        popTip.offset = -50
-        popTip.arrowSize = CGSize(width: 10, height: 10)
+        popTip.offset = OFFSET
+        popTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
         popTip.shouldDismissOnTap = true
         
     }

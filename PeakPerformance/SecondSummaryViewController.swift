@@ -26,7 +26,7 @@ class SecondSummaryViewController: UITableViewController {
     {
         super.viewDidLoad()
         // Nav bar back button
-        self.navigationController?.navigationBar.tintColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
+        self.navigationController?.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
         
         //rearrange weekly goals into nested arrays representing weeks of the month
         let daysInMonth = NSDate( ).numberOfDaysInCurrentMonth()
@@ -77,7 +77,7 @@ class SecondSummaryViewController: UITableViewController {
         let font = UIFont.systemFontOfSize(14, weight: UIFontWeightSemibold)
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.font = font
-        header.textLabel?.textColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
+        header.textLabel?.textColor = PEAK_NAV_BAR_COLOR
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

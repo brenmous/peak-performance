@@ -141,7 +141,7 @@ class InitialSetupViewController: UITableViewController {
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.tintColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
+        self.navigationController!.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
     }
     
     

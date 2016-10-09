@@ -189,11 +189,11 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         
         /// Poptip
         infoPopTip.textAlignment = .Left
-        infoPopTip.offset = -35
-        infoPopTip.arrowSize = CGSize(width: 10, height: 10)
+        infoPopTip.offset = OFFSET_MY_VALUES
+        infoPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
         infoPopTip.shouldDismissOnTap = true
         infoPopTip.shouldDismissOnTapOutside = true
-        infoPopTip.popoverColor = UIColor.init(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
+        infoPopTip.popoverColor = PEAK_POPTIP_MY_VALUES_GRAY
         infoPopTip.textColor = UIColor.blackColor()
         
         let tbvc = self.tabBarController as! TabBarViewController
