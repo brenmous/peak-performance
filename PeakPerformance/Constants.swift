@@ -720,4 +720,30 @@ let ARROW_WIDTH: CGFloat = 10
 
 let ARROW_HEIGHT: CGFloat = 10
 
+// MARK: - UITableView
+
+/// Rowheight for goal summary cells with no kick it text.
+let ROWHEIGHT_NO_KICK_IT = 53
+
+/// Rowheight for goal summary cell with kick it text.
+let ROWHEIGHT_KICK_IT = 130
+
+// MARK: - History view strings
+
+/// String for summary cell when review is ready.
+let SUMMARY_CELL_REVIEW_READY = "Review ready to complete!"
+
+/// String for summary cell when review is completed.
+let SUMMARY_CELL_REVIEW_COMPLETE = "Review complete - view summary"
+
+/// String for initial review summary cell.
+let SUMMARY_CELL_INITIAL_REVIEW = "Initial Review"
+
+/// String for intial review summary cell "view summary" text.
+let SUMMARY_CELL_VIEW_INITIAL_REVIEW = "View Summary"
+
+/// String for yearly review summary cell
+let SUMMARY_CELL_YEARLY_REVIEW = "Yearly Review"
+
+
 

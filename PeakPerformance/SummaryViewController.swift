@@ -267,6 +267,7 @@ class SummaryViewController: UITableViewController {
         emotionalSpiritualPopTip.popoverColor = PEAK_EMOTIONAL_VIOLET
         emotionalSpiritualPopTip.textColor = UIColor.whiteColor()
 
+    }
     
     // MARK: - Overriden methods
     
