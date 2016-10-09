@@ -793,7 +793,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0Ld-0F-0pI">
                                         <rect key="frame" x="0.0" y="17" width="251" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H68-T5-Epg">
+                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick an area" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H68-T5-Epg">
                                                 <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="gIH-VX-qJm"/>
@@ -856,7 +856,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-5E-4Id">
                                         <rect key="frame" x="0.0" y="17" width="231" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-IY-rkV">
+                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set a deadline" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-IY-rkV">
                                                 <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="h9T-4O-i53"/>
@@ -913,9 +913,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                <string key="value">e.g. Book a visit to parents in each 3 month period eg by end March, June, September,December.</string>
-                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Go for a 1 hour bike ride with the kids every Sunday morning we are in town."/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Text Error Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUB-Qp-Z7Z">
@@ -1778,14 +1776,27 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiK-Hh-4SC">
+                                                    <rect key="frame" x="559" y="15" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="YTU-HI-hVL"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="familyInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="IMJ-VD-SfG"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="zjv-sd-W2E" firstAttribute="top" secondItem="lM5-5t-19d" secondAttribute="topMargin" constant="7" id="D02-8x-0Ax"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tiK-Hh-4SC" secondAttribute="trailing" constant="10" id="DtN-ru-1bk"/>
                                                 <constraint firstItem="usV-MA-cW3" firstAttribute="leading" secondItem="lM5-5t-19d" secondAttribute="leadingMargin" constant="5" id="Edq-D8-1Cu"/>
                                                 <constraint firstItem="usV-MA-cW3" firstAttribute="top" secondItem="lM5-5t-19d" secondAttribute="topMargin" id="G0n-HD-yHD"/>
                                                 <constraint firstItem="usV-MA-cW3" firstAttribute="centerY" secondItem="lM5-5t-19d" secondAttribute="centerY" id="IPx-fy-UoP"/>
                                                 <constraint firstItem="usV-MA-cW3" firstAttribute="centerY" secondItem="zjv-sd-W2E" secondAttribute="centerY" id="Omi-yV-avq"/>
+                                                <constraint firstItem="tiK-Hh-4SC" firstAttribute="top" secondItem="zjv-sd-W2E" secondAttribute="top" id="Yfx-Fz-xwd"/>
+                                                <constraint firstItem="tiK-Hh-4SC" firstAttribute="centerY" secondItem="usV-MA-cW3" secondAttribute="centerY" id="ZFK-Ui-aOF"/>
                                                 <constraint firstItem="zjv-sd-W2E" firstAttribute="leading" secondItem="usV-MA-cW3" secondAttribute="trailing" constant="9" id="wqB-9d-028"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1793,7 +1804,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="qaC-gr-Bro">
                                         <rect key="frame" x="0.0" y="159" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qaC-gr-Bro" id="GsO-eG-31m">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="qaC-gr-Bro" id="GsO-eG-31m">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1809,9 +1820,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                            <string key="value">What are your family values? The definition of family is different for every person and can include immediate or extended family. A value can be anything you hold to be important and it must be positive.</string>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Be closer with family and ensure that I make time for them"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="LcD-Zm-g4W"/>
@@ -1834,7 +1843,7 @@
                                         <rect key="frame" x="0.0" y="264" width="600" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weo-Dj-g5g" id="mie-fN-9xg">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FR.png" translatesAutoresizingMaskIntoConstraints="NO" id="hSG-Ga-AbC">
@@ -1849,6 +1858,16 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWS-Ow-TnC">
+                                                    <rect key="frame" x="557" y="13" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="XEU-9r-z0e"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="friendsInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="tq3-bk-dG2"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -1858,13 +1877,16 @@
                                                 <constraint firstItem="uj4-uN-PGy" firstAttribute="centerY" secondItem="hSG-Ga-AbC" secondAttribute="centerY" id="OBW-hP-Baw"/>
                                                 <constraint firstItem="hSG-Ga-AbC" firstAttribute="leading" secondItem="mie-fN-9xg" secondAttribute="leadingMargin" constant="5" id="WOi-vv-7AW"/>
                                                 <constraint firstItem="hSG-Ga-AbC" firstAttribute="centerY" secondItem="mie-fN-9xg" secondAttribute="centerY" id="ZIj-kz-hO7"/>
+                                                <constraint firstItem="JWS-Ow-TnC" firstAttribute="centerY" secondItem="mie-fN-9xg" secondAttribute="centerY" id="eDO-gf-Tzi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JWS-Ow-TnC" secondAttribute="trailing" constant="12" id="iQx-3L-AjQ"/>
+                                                <constraint firstItem="JWS-Ow-TnC" firstAttribute="bottom" secondItem="uj4-uN-PGy" secondAttribute="bottom" id="tBg-gX-KEZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="2Gq-HG-KMm">
                                         <rect key="frame" x="0.0" y="315" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Gq-HG-KMm" id="2eq-Vx-0eg">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="center" tableViewCell="2Gq-HG-KMm" id="2eq-Vx-0eg">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1880,9 +1902,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                            <string key="value">What are your friends &amp; social values? You may wish to consider the question of quality and quantity in relation to your friends and social life. A value can be anything you hold to be important and it must be positive.</string>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. It is important to maintain the friendships I made a long time ago and also strive to make new friends"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="KhX-EP-6HK"/>
@@ -1905,7 +1925,7 @@
                                         <rect key="frame" x="0.0" y="420" width="600" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Wd-jt-KeN" id="tUd-IQ-Y7p">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P.png" translatesAutoresizingMaskIntoConstraints="NO" id="JMz-cw-927">
@@ -1923,14 +1943,27 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRN-A7-VMZ">
+                                                    <rect key="frame" x="558" y="13" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="mdG-Rg-CbF"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="partnerInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="518-DO-ONr"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="hnO-ug-ch1" firstAttribute="leading" secondItem="JMz-cw-927" secondAttribute="trailing" constant="9" id="5xk-tr-cCX"/>
                                                 <constraint firstItem="JMz-cw-927" firstAttribute="centerY" secondItem="tUd-IQ-Y7p" secondAttribute="centerY" id="7vA-a1-wx4"/>
+                                                <constraint firstItem="DRN-A7-VMZ" firstAttribute="bottom" secondItem="hnO-ug-ch1" secondAttribute="bottom" id="Eij-eD-VCW"/>
                                                 <constraint firstItem="JMz-cw-927" firstAttribute="top" secondItem="tUd-IQ-Y7p" secondAttribute="topMargin" id="JJY-X8-evs"/>
                                                 <constraint firstItem="hnO-ug-ch1" firstAttribute="top" secondItem="tUd-IQ-Y7p" secondAttribute="topMargin" constant="7" id="WJJ-ze-p6v"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DRN-A7-VMZ" secondAttribute="trailing" constant="11" id="ZaS-tg-hA6"/>
                                                 <constraint firstItem="JMz-cw-927" firstAttribute="centerY" secondItem="hnO-ug-ch1" secondAttribute="centerY" id="moN-9w-b1e"/>
+                                                <constraint firstItem="DRN-A7-VMZ" firstAttribute="centerY" secondItem="tUd-IQ-Y7p" secondAttribute="centerY" id="qDd-xc-eFY"/>
                                                 <constraint firstItem="JMz-cw-927" firstAttribute="leading" secondItem="tUd-IQ-Y7p" secondAttribute="leadingMargin" constant="5" id="u2S-fT-uiG"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1938,7 +1971,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="tqn-rp-eQZ">
                                         <rect key="frame" x="0.0" y="471" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tqn-rp-eQZ" id="Wdj-qm-oqv">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="center" tableViewCell="tqn-rp-eQZ" id="Wdj-qm-oqv">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1954,9 +1987,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                            <string key="value">What are your partner values? If you have a partner, they should be considered seperately to other family members. A value can be anything you hold to be important and it must be positive.</string>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Communication is important and a top priority"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="W1f-cO-WkY"/>
@@ -1979,7 +2010,7 @@
                                         <rect key="frame" x="0.0" y="576" width="600" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fel-0F-Jgf" id="rqW-gT-RGV">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="W.png" translatesAutoresizingMaskIntoConstraints="NO" id="na9-KG-Iiv">
@@ -1997,14 +2028,27 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2p-9L-DOp">
+                                                    <rect key="frame" x="558" y="14" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="iKt-vv-MCy"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="workInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="lSR-in-YWK"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="o2p-9L-DOp" firstAttribute="centerY" secondItem="ulw-nz-wbv" secondAttribute="centerY" id="P3p-1v-Dvk"/>
                                                 <constraint firstItem="na9-KG-Iiv" firstAttribute="top" secondItem="rqW-gT-RGV" secondAttribute="topMargin" id="SMq-VR-OCy"/>
                                                 <constraint firstItem="na9-KG-Iiv" firstAttribute="centerY" secondItem="ulw-nz-wbv" secondAttribute="centerY" id="Uuk-vk-ba8"/>
+                                                <constraint firstItem="o2p-9L-DOp" firstAttribute="top" secondItem="rqW-gT-RGV" secondAttribute="topMargin" constant="6" id="XGB-s3-oHg"/>
                                                 <constraint firstItem="na9-KG-Iiv" firstAttribute="centerY" secondItem="rqW-gT-RGV" secondAttribute="centerY" id="Z0S-Y5-VLU"/>
                                                 <constraint firstItem="ulw-nz-wbv" firstAttribute="leading" secondItem="na9-KG-Iiv" secondAttribute="trailing" constant="9" id="cEC-2P-sAw"/>
                                                 <constraint firstItem="ulw-nz-wbv" firstAttribute="top" secondItem="rqW-gT-RGV" secondAttribute="topMargin" constant="7" id="d0H-AI-WYv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="o2p-9L-DOp" secondAttribute="trailing" constant="11" id="jrk-38-KYO"/>
                                                 <constraint firstItem="na9-KG-Iiv" firstAttribute="leading" secondItem="rqW-gT-RGV" secondAttribute="leadingMargin" constant="5" id="twP-6q-VGh"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2012,7 +2056,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="GeC-dG-n0i">
                                         <rect key="frame" x="0.0" y="627" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GeC-dG-n0i" id="mHv-bl-snM">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="center" tableViewCell="GeC-dG-n0i" id="mHv-bl-snM">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -2028,7 +2072,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What are your work/business values? A value can be anything you hold to be important and it must be positive."/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Be prepared and organised to ensure I can produce quality work"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="ElQ-R6-5GM"/>
@@ -2051,7 +2095,7 @@
                                         <rect key="frame" x="0.0" y="732" width="600" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WeZ-Zl-mjz" id="OJD-Sd-KHv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="H.png" translatesAutoresizingMaskIntoConstraints="NO" id="JFx-F9-11R">
@@ -2069,14 +2113,27 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8a-8V-HGQ">
+                                                    <rect key="frame" x="559" y="13" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="Cye-aZ-ysC"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="healthInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="JvX-Ka-zRb"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="S8a-8V-HGQ" secondAttribute="trailing" constant="10" id="2sv-ks-Mx6"/>
                                                 <constraint firstItem="JFx-F9-11R" firstAttribute="top" secondItem="OJD-Sd-KHv" secondAttribute="topMargin" id="BMC-k7-d6P"/>
                                                 <constraint firstItem="JFx-F9-11R" firstAttribute="centerY" secondItem="LvL-gq-RVb" secondAttribute="centerY" id="GwU-LF-zGR"/>
                                                 <constraint firstItem="LvL-gq-RVb" firstAttribute="leading" secondItem="JFx-F9-11R" secondAttribute="trailing" constant="9" id="Pcn-3O-PCi"/>
                                                 <constraint firstItem="JFx-F9-11R" firstAttribute="leading" secondItem="OJD-Sd-KHv" secondAttribute="leadingMargin" constant="5" id="mky-YN-seR"/>
+                                                <constraint firstItem="S8a-8V-HGQ" firstAttribute="centerY" secondItem="OJD-Sd-KHv" secondAttribute="centerY" constant="-1" id="nAj-cz-o6N"/>
                                                 <constraint firstItem="LvL-gq-RVb" firstAttribute="top" secondItem="OJD-Sd-KHv" secondAttribute="topMargin" constant="7" id="q0h-Bz-8vG"/>
+                                                <constraint firstItem="S8a-8V-HGQ" firstAttribute="bottom" secondItem="LvL-gq-RVb" secondAttribute="bottom" id="tU5-gT-ED6"/>
                                                 <constraint firstItem="JFx-F9-11R" firstAttribute="centerY" secondItem="OJD-Sd-KHv" secondAttribute="centerY" id="vgT-0l-d5R"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2084,7 +2141,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="I8W-Gn-3kh">
                                         <rect key="frame" x="0.0" y="783" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I8W-Gn-3kh" id="FeN-y6-83H">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="5" contentMode="center" tableViewCell="I8W-Gn-3kh" id="FeN-y6-83H">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -2100,9 +2157,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                            <string key="value">What are your health &amp; fitness values? These values should be about your physical well-being. A value can be anything you hold to be important and it must be positive.</string>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. It is important to fit in exercise and healthy eating into my busy schedule"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="4XM-mh-Ig4"/>
@@ -2125,7 +2180,7 @@
                                         <rect key="frame" x="0.0" y="888" width="600" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7EZ-9X-Z91" id="0ck-Gt-Hm4">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PD.png" translatesAutoresizingMaskIntoConstraints="NO" id="SSV-a4-pDK">
@@ -2140,22 +2195,35 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh0-ZX-LDX">
+                                                    <rect key="frame" x="556" y="13" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="CxY-Wd-Bre"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="personalInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="G0h-GN-N6F"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="SSV-a4-pDK" firstAttribute="leading" secondItem="0ck-Gt-Hm4" secondAttribute="leadingMargin" constant="5" id="3Oe-Cw-2za"/>
                                                 <constraint firstItem="Tcg-Vz-CTa" firstAttribute="centerY" secondItem="SSV-a4-pDK" secondAttribute="centerY" id="5do-h5-Gfg"/>
+                                                <constraint firstItem="wh0-ZX-LDX" firstAttribute="centerY" secondItem="0ck-Gt-Hm4" secondAttribute="centerY" id="8VB-oB-Old"/>
                                                 <constraint firstItem="SSV-a4-pDK" firstAttribute="centerY" secondItem="0ck-Gt-Hm4" secondAttribute="centerY" id="G9K-sd-UZM"/>
                                                 <constraint firstItem="SSV-a4-pDK" firstAttribute="top" secondItem="0ck-Gt-Hm4" secondAttribute="topMargin" id="Hpw-93-e0V"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wh0-ZX-LDX" secondAttribute="trailing" constant="13" id="Pyn-hD-TIq"/>
                                                 <constraint firstItem="Tcg-Vz-CTa" firstAttribute="top" secondItem="0ck-Gt-Hm4" secondAttribute="topMargin" constant="7" id="iPK-Wl-Npb"/>
                                                 <constraint firstItem="Tcg-Vz-CTa" firstAttribute="leading" secondItem="SSV-a4-pDK" secondAttribute="trailing" constant="9" id="oRI-7y-XQB"/>
+                                                <constraint firstItem="wh0-ZX-LDX" firstAttribute="bottom" secondItem="Tcg-Vz-CTa" secondAttribute="bottom" id="uF6-Xe-MJ9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="GcH-f7-wE4">
                                         <rect key="frame" x="0.0" y="939" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GcH-f7-wE4" id="lvd-K0-GEP">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="center" tableViewCell="GcH-f7-wE4" id="lvd-K0-GEP">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -2171,9 +2239,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                            <string key="value">What are your personal development values? These values should relate to your general self-improvement. A value can be anything you hold to be important and it must be positive.</string>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Better myself by focusing on a new interesting side project"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="WCn-VD-3VQ"/>
@@ -2196,7 +2262,7 @@
                                         <rect key="frame" x="0.0" y="1044" width="600" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ung-sb-OQS" id="4np-7H-fhK">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FI.png" translatesAutoresizingMaskIntoConstraints="NO" id="m6g-kL-9dF">
@@ -2214,22 +2280,35 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRO-DN-Ug2">
+                                                    <rect key="frame" x="556" y="13" width="23" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="23" id="1NI-Ue-00S"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="financeInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="ka5-hN-SBK"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="m6g-kL-9dF" firstAttribute="top" secondItem="4np-7H-fhK" secondAttribute="topMargin" id="0qT-lt-Jbb"/>
                                                 <constraint firstItem="m6g-kL-9dF" firstAttribute="centerY" secondItem="4np-7H-fhK" secondAttribute="centerY" id="HdZ-VL-Smr"/>
+                                                <constraint firstItem="sRO-DN-Ug2" firstAttribute="centerY" secondItem="4np-7H-fhK" secondAttribute="centerY" id="LeQ-jx-BXF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sRO-DN-Ug2" secondAttribute="trailing" constant="13" id="Pcr-Yd-H8q"/>
                                                 <constraint firstItem="m6g-kL-9dF" firstAttribute="centerY" secondItem="Bw0-SV-DmS" secondAttribute="centerY" id="kwM-gk-w1S"/>
                                                 <constraint firstItem="Bw0-SV-DmS" firstAttribute="top" secondItem="4np-7H-fhK" secondAttribute="topMargin" constant="7" id="rHi-oV-qCh"/>
                                                 <constraint firstItem="m6g-kL-9dF" firstAttribute="leading" secondItem="4np-7H-fhK" secondAttribute="leadingMargin" constant="5" id="sKV-js-YrA"/>
                                                 <constraint firstItem="Bw0-SV-DmS" firstAttribute="leading" secondItem="m6g-kL-9dF" secondAttribute="trailing" constant="9" id="uvA-Os-ifn"/>
+                                                <constraint firstItem="sRO-DN-Ug2" firstAttribute="bottom" secondItem="Bw0-SV-DmS" secondAttribute="bottom" id="vsJ-BQ-Div"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="sZu-9m-aBb">
                                         <rect key="frame" x="0.0" y="1095" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sZu-9m-aBb" id="ptT-JJ-W6u">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="7" contentMode="center" tableViewCell="sZu-9m-aBb" id="ptT-JJ-W6u">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -2245,9 +2324,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                            <string key="value">What are your financial values? These values can be about your household finances or investments. A value can be anything you hold to be important and it must be positive.</string>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Important to keep track of my finances and continue to save"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="WL1-Y6-A1f"/>
@@ -2270,7 +2347,7 @@
                                         <rect key="frame" x="0.0" y="1200" width="600" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfd-q7-2Py" id="teO-tA-W80">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES.png" translatesAutoresizingMaskIntoConstraints="NO" id="5UB-II-D7Q">
@@ -2285,6 +2362,16 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFy-lP-0Qg">
+                                                    <rect key="frame" x="552" y="13" width="26" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="26" id="nw6-lV-AbI"/>
+                                                    </constraints>
+                                                    <state key="normal" image="About Filled Values"/>
+                                                    <connections>
+                                                        <action selector="emotionalInfoPressed:" destination="wNQ-VY-Pru" eventType="touchUpInside" id="VuP-hF-tfz"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -2293,6 +2380,9 @@
                                                 <constraint firstItem="5UB-II-D7Q" firstAttribute="centerY" secondItem="teO-tA-W80" secondAttribute="centerY" id="9LK-pK-1CK"/>
                                                 <constraint firstItem="5UB-II-D7Q" firstAttribute="leading" secondItem="teO-tA-W80" secondAttribute="leadingMargin" constant="5" id="GUS-wZ-lpE"/>
                                                 <constraint firstItem="Njp-i0-Bc8" firstAttribute="top" secondItem="teO-tA-W80" secondAttribute="topMargin" constant="7" id="RRK-BJ-Szs"/>
+                                                <constraint firstItem="hFy-lP-0Qg" firstAttribute="top" secondItem="teO-tA-W80" secondAttribute="topMargin" constant="5" id="YV1-lU-uIS"/>
+                                                <constraint firstItem="hFy-lP-0Qg" firstAttribute="centerY" secondItem="Njp-i0-Bc8" secondAttribute="centerY" id="g4V-yV-ONd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hFy-lP-0Qg" secondAttribute="trailing" constant="14" id="he3-Gd-jQs"/>
                                                 <constraint firstItem="5UB-II-D7Q" firstAttribute="top" secondItem="teO-tA-W80" secondAttribute="topMargin" id="y6Z-Jl-0Uf"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2300,7 +2390,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="zna-JL-GVF">
                                         <rect key="frame" x="0.0" y="1251" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zna-JL-GVF" id="SYp-4L-PVk">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="8" contentMode="center" tableViewCell="zna-JL-GVF" id="SYp-4L-PVk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -2316,9 +2406,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                                                            <string key="value">What are your emotional/spiritual values? Depending on your beliefs, your values can be in relation to your religion or philosophical belief system. A value can be anything you hold to be important and it must be positive.</string>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. It is important to dedicate some quality quiet time for myself regularly"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="wNQ-VY-Pru" id="SwZ-hQ-Jmj"/>
@@ -2357,13 +2445,21 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emotionalPopTip" destination="hFy-lP-0Qg" id="e10-tw-kC6"/>
                         <outlet property="emotionalTextView" destination="Dn4-Vr-YSf" id="9ke-20-PhQ"/>
+                        <outlet property="familyPopTip" destination="tiK-Hh-4SC" id="Irv-Hb-wyJ"/>
                         <outlet property="familyTextView" destination="4LV-NM-PlH" id="AL8-zy-07k"/>
+                        <outlet property="financePopTip" destination="sRO-DN-Ug2" id="x7U-Pt-HlA"/>
                         <outlet property="financeTextView" destination="dIb-gt-W0P" id="RBL-lq-jNK"/>
+                        <outlet property="friendsPopTip" destination="JWS-Ow-TnC" id="UwM-zS-PRU"/>
                         <outlet property="friendsTextView" destination="LmR-oh-Zo9" id="RpB-WQ-hVo"/>
+                        <outlet property="healthPopTip" destination="S8a-8V-HGQ" id="L43-AQ-ZUK"/>
                         <outlet property="healthTextView" destination="ZTS-Mt-UVi" id="TL4-TU-D4q"/>
+                        <outlet property="partnerPopTip" destination="DRN-A7-VMZ" id="hFb-TH-GSd"/>
                         <outlet property="partnerTextView" destination="jvD-WR-px4" id="6eQ-op-EcO"/>
                         <outlet property="personalDevTextView" destination="kVx-va-Jdr" id="NXQ-fL-ldP"/>
+                        <outlet property="personalPopTip" destination="wh0-ZX-LDX" id="X6l-QS-O0M"/>
+                        <outlet property="workPopTip" destination="o2p-9L-DOp" id="hvd-YH-pFX"/>
                         <outlet property="workTextView" destination="AQd-4Y-KRZ" id="DId-zq-lde"/>
                     </connections>
                 </tableViewController>
@@ -2501,7 +2597,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-Pi-91U">
                                         <rect key="frame" x="0.0" y="17" width="251" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUC-WZ-PQp">
+                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick an area" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUC-WZ-PQp">
                                                 <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="Hy2-Ak-fvd"/>
@@ -2564,7 +2660,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-7x-626">
                                         <rect key="frame" x="0.0" y="17" width="231" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLj-3p-fOd">
+                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set a deadline" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLj-3p-fOd">
                                                 <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="R8T-h2-a4K"/>
@@ -7151,7 +7247,7 @@
                                             <segue destination="ApN-uN-777" kind="show" identifier="settingsToSharingSegue" id="7Ek-Z1-ide"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" restorationIdentifier="autoLoginCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="autoLogin" rowHeight="53" id="k0j-Ea-bLD">
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" restorationIdentifier="autoLoginCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="autoLogin" rowHeight="53" id="k0j-Ea-bLD">
                                         <rect key="frame" x="0.0" y="261.5" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k0j-Ea-bLD" id="OTN-lN-8yh">
@@ -7199,7 +7295,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about-icon" translatesAutoresizingMaskIntoConstraints="NO" id="0V9-iZ-ZNs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="About Filled" translatesAutoresizingMaskIntoConstraints="NO" id="0V9-iZ-ZNs">
                                                     <rect key="frame" x="24" y="18" width="23" height="17"/>
                                                     <color key="tintColor" red="0.21176470589999999" green="0.1960784314" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -9116,6 +9212,8 @@ achieving your goals.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="About Filled" width="208" height="201"/>
+        <image name="About Filled Values" width="208" height="201"/>
         <image name="ES.png" width="211" height="211"/>
         <image name="F.png" width="211" height="211"/>
         <image name="FI.png" width="211" height="211"/>
@@ -9124,7 +9222,6 @@ achieving your goals.</string>
         <image name="P.png" width="211" height="211"/>
         <image name="PD.png" width="211" height="211"/>
         <image name="W.png" width="211" height="211"/>
-        <image name="about-icon" width="208" height="208"/>
         <image name="annualreview-graphic" width="448" height="436"/>
         <image name="arrow" width="110" height="72"/>
         <image name="auto-login-2" width="192" height="191"/>
