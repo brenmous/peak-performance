@@ -710,15 +710,15 @@ let PEAK_POPTIP_MY_VALUES_GRAY = UIColor.init(red: 225/255, green: 225/255, blue
 
 // MARK: - Pop Tips CGFloat Position
 
-let OFFSET: CGFloat = -50
+let POPTIP_OFFSET: CGFloat = -50
 
-let OFFSET_MY_VALUES: CGFloat = -35
+let POPTIP_OFFSET_MY_VALUES: CGFloat = -35
 
-let MAXWIDTH: CGFloat = 60
+let POPTIP_MAXWIDTH: CGFloat = 60
 
-let ARROW_WIDTH: CGFloat = 10
+let POPTIP_ARROW_WIDTH: CGFloat = 10
 
-let ARROW_HEIGHT: CGFloat = 10
+let POPTIP_ARROW_HEIGHT: CGFloat = 10
 
 // MARK: - UITableView
 
