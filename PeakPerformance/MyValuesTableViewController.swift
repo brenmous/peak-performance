@@ -189,8 +189,8 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         
         /// Poptip
         infoPopTip.textAlignment = .Left
-        infoPopTip.offset = OFFSET_MY_VALUES
-        infoPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        infoPopTip.offset = POPTIP_OFFSET_MY_VALUES
+        infoPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         infoPopTip.shouldDismissOnTap = true
         infoPopTip.shouldDismissOnTapOutside = true
         infoPopTip.popoverColor = PEAK_POPTIP_MY_VALUES_GRAY

@@ -243,8 +243,8 @@ class SecondInitialSetupViewController: UITableViewController {
 
         /// BEN ///
         // Poptip
-        popTip.offset = OFFSET
-        popTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        popTip.offset = POPTIP_OFFSET
+        popTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         popTip.shouldDismissOnTap = true
         /// END BEN ///
     }

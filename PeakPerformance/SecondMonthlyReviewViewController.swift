@@ -53,7 +53,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
     /// BEN ///
     @IBAction func familyPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_FAMILY, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
+        popTip.showText(KLA_FAMILY, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
         popTip.popoverColor = PEAK_FAMILY_BLUE
         popTip.textColor = UIColor.whiteColor()
 
@@ -61,14 +61,14 @@ class SecondMonthlyReviewViewController: UITableViewController {
     
     @IBAction func friendPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_FRIENDSSOCIAL, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
+        popTip.showText(KLA_FRIENDSSOCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
         popTip.popoverColor = PEAK_FRIEND_CYAN
         popTip.textColor = UIColor.blackColor()
     }
     
     @IBAction func healthPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
+        popTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
         popTip.popoverColor = PEAK_HEALTH_GREEN
         popTip.textColor = UIColor.blackColor()
         
@@ -76,35 +76,35 @@ class SecondMonthlyReviewViewController: UITableViewController {
     
     @IBAction func partnerPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_PARTNER, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: partnerPoint.frame)
+        popTip.showText(KLA_PARTNER, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: partnerPoint.frame)
         popTip.popoverColor = PEAK_PARTNER_PURPLE
         popTip.textColor = UIColor.whiteColor()
     }
     
     @IBAction func financialPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: financialPoint.frame)
+        popTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: financialPoint.frame)
         popTip.popoverColor = PEAK_FINANCE_BLUE_GREEN
         popTip.textColor = UIColor.whiteColor()
     }
     
     @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: MAXWIDTH + 30, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
+        popTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
         popTip.popoverColor = UIColor.orangeColor()
         popTip.textColor = UIColor.whiteColor()
     }
     
     @IBAction func workPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
+        popTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
        popTip.popoverColor = UIColor.yellowColor()
         popTip.textColor = UIColor.blackColor()
     }
 
     @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: MAXWIDTH + 30, inView: super.view, fromFrame: emotionalSpiritual.frame)
+        popTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: emotionalSpiritual.frame)
        popTip.popoverColor = PEAK_EMOTIONAL_VIOLET
         popTip.textColor = UIColor.whiteColor()
     }
@@ -238,8 +238,8 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         // BEN //
         // Poptip
-        popTip.offset = OFFSET
-        popTip.arrowSize = CGSize(width:ARROW_WIDTH, height: ARROW_HEIGHT)
+        popTip.offset = POPTIP_OFFSET
+        popTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         popTip.shouldDismissOnTap = true
         // END BEN //
      }

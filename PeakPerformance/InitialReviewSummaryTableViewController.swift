@@ -185,71 +185,71 @@ class InitialReviewSummaryTableViewController: UITableViewController {
     func displayPopTips( ) {
                 
         /// family
-        familyPopTip.offset = OFFSET
-        familyPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        familyPopTip.offset = POPTIP_OFFSET
+        familyPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         familyPopTip.shouldDismissOnTapOutside = false
-        familyPopTip.showText(KLA_FAMILY, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
+        familyPopTip.showText(KLA_FAMILY, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
         familyPopTip.popoverColor = PEAK_FAMILY_BLUE
         familyPopTip.textColor = UIColor.whiteColor()
         
         /// friend
-        friendPopTip.offset = OFFSET
-        friendPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        friendPopTip.offset = POPTIP_OFFSET
+        friendPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         friendPopTip.shouldDismissOnTapOutside = false
-        friendPopTip.showText(KLA_FRIENDSSOCIAL, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
+        friendPopTip.showText(KLA_FRIENDSSOCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
         friendPopTip.popoverColor = PEAK_FRIEND_CYAN
         friendPopTip.textColor = UIColor.blackColor()
         
         /// Health
-        healthPopTip.offset = OFFSET
-        healthPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        healthPopTip.offset = POPTIP_OFFSET
+        healthPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         healthPopTip.shouldDismissOnTapOutside = false
-        healthPopTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
+        healthPopTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
         healthPopTip.popoverColor = PEAK_HEALTH_GREEN
         healthPopTip.textColor = UIColor.blackColor()
         
         
         /// Partner
-        partnerPopTip.offset = OFFSET
-        partnerPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        partnerPopTip.offset = POPTIP_OFFSET
+        partnerPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         partnerPopTip.shouldDismissOnTapOutside = false
-        partnerPopTip.showText(KLA_PARTNER, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: partnerPoint.frame)
+        partnerPopTip.showText(KLA_PARTNER, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: partnerPoint.frame)
         partnerPopTip.popoverColor = PEAK_PARTNER_PURPLE
         partnerPopTip.textColor = UIColor.whiteColor()
         
         
         /// Financial
-        financialPopTip.offset = OFFSET
-        financialPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        financialPopTip.offset = POPTIP_OFFSET
+        financialPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         financialPopTip.shouldDismissOnTapOutside = false
-        financialPopTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: financePoint.frame)
+        financialPopTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: financePoint.frame)
         financialPopTip.popoverColor = PEAK_FINANCE_BLUE_GREEN
         financialPopTip.textColor = UIColor.whiteColor()
         
         
         /// Personal Development
-        personalDevPopTip.offset = OFFSET
-        personalDevPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        personalDevPopTip.offset = POPTIP_OFFSET
+        personalDevPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         personalDevPopTip.shouldDismissOnTapOutside = false
-        personalDevPopTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: MAXWIDTH + 30, inView: super.view, fromFrame: personalPoint.frame)
+        personalDevPopTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: personalPoint.frame)
         personalDevPopTip.popoverColor = UIColor.orangeColor()
         personalDevPopTip.textColor = UIColor.whiteColor()
         
         
         /// Work
-        workPopTip.offset = OFFSET
-        workPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        workPopTip.offset = POPTIP_OFFSET
+        workPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         workPopTip.shouldDismissOnTapOutside = false
-        workPopTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
+        workPopTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
         workPopTip.popoverColor = UIColor.yellowColor()
         workPopTip.textColor = UIColor.blackColor()
         
         
         /// Emotional/Spritual
-        emotionalSpiritualPopTip.offset = OFFSET
-        emotionalSpiritualPopTip.arrowSize = CGSize(width: ARROW_WIDTH, height: ARROW_HEIGHT)
+        emotionalSpiritualPopTip.offset = POPTIP_OFFSET
+        emotionalSpiritualPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         emotionalSpiritualPopTip.shouldDismissOnTapOutside = false
-        emotionalSpiritualPopTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: MAXWIDTH+30, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
+        emotionalSpiritualPopTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH+30, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
         emotionalSpiritualPopTip.popoverColor = PEAK_EMOTIONAL_VIOLET
         emotionalSpiritualPopTip.textColor = UIColor.whiteColor()
         
