@@ -2,8 +2,8 @@
 //  WeeklyGoal.swift
 //  PeakPerformance
 //
-//  Created by Bren on 24/07/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 24/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation
@@ -63,7 +63,6 @@ class WeeklyGoal: Goal
         
         //compare goal deadline with current date
         let days = NSDate().daysBetweenTodayAndDate(self.deadline)
-        print("\(self.goalText) is \(days) days from deadline")
         if days <= 0
         {
             self.due = Due.overdue

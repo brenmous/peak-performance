@@ -2,8 +2,8 @@
 //  SummaryViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 12/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 12/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -17,6 +17,7 @@ class SummaryViewController: UITableViewController {
     
     var summary: MonthlySummary?
   
+    // BEN //
     let familyPopTip = AMPopTip()
     let healthPopTip = AMPopTip()
     let workPopTip = AMPopTip()
@@ -25,6 +26,7 @@ class SummaryViewController: UITableViewController {
     let personalDevPopTip = AMPopTip()
     let partnerPopTip = AMPopTip()
     let financialPopTip = AMPopTip()
+    // END BEN //
     
     // MARK: - Outlets
     
@@ -49,44 +51,7 @@ class SummaryViewController: UITableViewController {
     /// KLA Diagram
     @IBOutlet weak var klaDiagramPeakPerformanceArea: CustomizableLabelView!
     
-    // MARK: - Actions
-    
-    /// KLA Buttons
-    
-    @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
-
-    }
-    
-    @IBAction func financialPointPressed(sender: AnyObject) {
-        
-    }
-    
-    @IBAction func partnerPointPressed(sender: AnyObject) {
-
-    }
-
-    @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
-
-    }
-    
-    @IBAction func workPointPressed(sender: AnyObject) {
-
-    }
-    
-    @IBAction func healthPointPressed(sender: AnyObject) {
-
-    }
-   
-    @IBAction func friendPointPressed(sender: AnyObject) {
-    
-    }
-    
-    @IBAction func familyPointPressed(sender: AnyObject) {
-
-    }
-
-    
-    // Review Questions
+    // Text views
     @IBOutlet weak var whatIsWorkingTextView: UITextView!
     
     @IBOutlet weak var whatIsNotWorkingTextView: UITextView!
@@ -95,38 +60,56 @@ class SummaryViewController: UITableViewController {
 
     @IBOutlet weak var doINeedToChangeTextView: UITextView!
     
+    
     // MARK: - Actions
+    
+    //BEN//
+    /// KLA Buttons
+    
+    @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func financialPointPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func partnerPointPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func workPointPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func healthPointPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func friendPointPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func familyPointPressed(sender: AnyObject) {
+        
+    }
+    // END BEN //
+    
     @IBAction func weeklyButtonPressed(sender: AnyObject)
     {
         performSegueWithIdentifier(GO_TO_SECOND_SUMMARY_SEGUE, sender: self)
     }
     
     
-    // MARK: - Override Functions
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.updateTextViews( )
-        
-        displayPoints( )
-        displayPopTips( )
-
-        
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Methods
     
     /// Update the text views with the strings from the summary.
     func updateTextViews( )
     {
-        //TODO: maybe have some sort of placeholder "nothing was entered for this section" or prevent user from leaving these sections blank in the review
         guard let s = self.summary else
         {
             print("SVC: problem getting summary")
@@ -138,6 +121,8 @@ class SummaryViewController: UITableViewController {
         self.doINeedToChangeTextView.text = s.doIHaveToChange
     }
 
+    // FIXME: Please comment and turn raw values into constants
+    // BEN //
     func displayPoints( ) {
         
         
@@ -210,6 +195,7 @@ class SummaryViewController: UITableViewController {
         
     }
     
+
     func displayPopTips( ) {
     
         // Display poptips as summary
@@ -288,73 +274,29 @@ class SummaryViewController: UITableViewController {
         emotionalSpiritualPopTip.showText("Emotional/Spiritual", direction: .Up, maxWidth: 90, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
         emotionalSpiritualPopTip.popoverColor = UIColor.init(red: 144/355, green: 85/255, blue: 153/255, alpha: 1)
         emotionalSpiritualPopTip.textColor = UIColor.whiteColor()
+    }
+    // END BEN //
     
     
+    // MARK: - Overriden methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.updateTextViews( )
+        
+        displayPoints( )
+        displayPopTips( )
     }
     
-    // MARK: - Table view data source
-
-    /*
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-    */
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     
     // MARK: - Navigation
 
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == GO_TO_SECOND_SUMMARY_SEGUE

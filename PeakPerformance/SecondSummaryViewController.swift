@@ -2,8 +2,8 @@
 //  SecondSummaryViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 12/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 12/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -15,6 +15,7 @@ class SecondSummaryViewController: UITableViewController {
     
     var weeklyGoalsByWeek = [[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal]()]
     
+    
     // MARK: - Overriden methods
     
     override func viewWillAppear(animated: Bool)
@@ -25,23 +26,10 @@ class SecondSummaryViewController: UITableViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Nav bar back button
+        // FIXME: please make custom colours constant
         self.navigationController?.navigationBar.tintColor = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
-        
-        //rearrange weekly goals into nested arrays representing weeks of the month
-        let daysInMonth = NSDate( ).numberOfDaysInCurrentMonth()
-        
-        //default array is for five weeks, change to four if February and non leap year
-        if daysInMonth == 28
-        {
-            weeklyGoalsByWeek = [[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal](),[WeeklyGoal]()]
-        }
-        
-        guard let s = self.summary else
-        {
-            print("SSVC: problem getting summary")
-            return
-        }
+   
+        guard let s = self.summary else { return }
         
         //place goals in their respective subararys depending on the week of their deadline
         for goal in s.weeklyGoals
@@ -57,14 +45,8 @@ class SecondSummaryViewController: UITableViewController {
                 weeklyGoalsByWeek[index].sortInPlace({$0.complete && !$1.complete})
             }
         }
-        
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 
     // MARK: - Table view data source
 
@@ -85,7 +67,8 @@ class SecondSummaryViewController: UITableViewController {
         return self.weeklyGoalsByWeek.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         
         //if there were no goals for that week, make a section for a "no goals" label
         if self.weeklyGoalsByWeek[section].count == 0
@@ -104,10 +87,10 @@ class SecondSummaryViewController: UITableViewController {
             let goal = self.weeklyGoalsByWeek[indexPath.section][indexPath.row]
             if !goal.kickItText.isEmpty
             {
-                return 130 //TODO: - Make row height constants
+                return CGFloat(ROWHEIGHT_KICK_IT)
             }
         }
-        return 53
+        return CGFloat(ROWHEIGHT_NO_KICK_IT)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> SecondSummaryTableViewCell {
@@ -222,6 +205,4 @@ class SecondSummaryViewController: UITableViewController {
         
         return cell
     }
-
-
 }

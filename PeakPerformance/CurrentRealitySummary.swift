@@ -2,8 +2,8 @@
 //  CurrentRealitySummary.swift
 //  PeakPerformance
 //
-//  Created by Bren on 16/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 16/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation

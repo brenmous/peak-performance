@@ -2,8 +2,8 @@
 //  MonthlyGoalTableViewCell.swift
 //  PeakPerformance
 //
-//  Created by Bren on 20/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 20/08/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 protocol MonthlyGoalTableViewCellDelegate
@@ -13,7 +13,8 @@ protocol MonthlyGoalTableViewCellDelegate
 
 import UIKit
 
-class MonthlyGoalTableViewCell: UITableViewCell {
+class MonthlyGoalTableViewCell: UITableViewCell
+{
 
     var delegate: MonthlyGoalTableViewCellDelegate?
 
@@ -26,16 +27,4 @@ class MonthlyGoalTableViewCell: UITableViewCell {
     {
         delegate?.completeButtonPressed(self)
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

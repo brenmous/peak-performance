@@ -3,7 +3,7 @@
 //  PeakPerformance
 //
 //  Created by Benjamin Chiong on 8/8/16.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit

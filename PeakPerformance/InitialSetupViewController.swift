@@ -2,8 +2,8 @@
 //  InitialSetupViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 16/09/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 16/09/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -41,6 +41,7 @@ class InitialSetupViewController: UITableViewController {
         performSegueWithIdentifier(GO_TO_SECOND_INITIAL_SETUP, sender: self)
     }
     
+    /// BEN ///
     @IBAction func reasonButtonPushed(sender: AnyObject) {
         showAlertBox(sender)
         }
@@ -75,7 +76,7 @@ class InitialSetupViewController: UITableViewController {
     }
     
 
-    /// Add reason alert box
+    /// Presents alert controller asking user to provide reason for their rating.
     func showAlertBox(sender: AnyObject) {
         print("add reason pushed from sender \(sender.tag)")
         var reason = ""
@@ -118,8 +119,9 @@ class InitialSetupViewController: UITableViewController {
         presentViewController(reasonAlertController, animated: true, completion: nil )
 
     }
+    /// END BEN ///
     
-    /// Get values from sliders and save to self.summary
+    /// Get values from sliders and save to summary.
     func updateSummaryWithSliderValues( )
     {
         summary.klaRatings[KLA_FAMILY] = Double(self.familySlider.value)
@@ -153,8 +155,7 @@ class InitialSetupViewController: UITableViewController {
     
     
     // MARK: - Navigation
-    
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == GO_TO_SECOND_INITIAL_SETUP

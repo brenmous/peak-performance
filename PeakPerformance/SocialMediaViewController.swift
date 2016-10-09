@@ -2,8 +2,8 @@
 //  SocialMediaViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 8/10/2016.
-//  Copyright © 2016 CtrlAltDesign. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 8/10/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
@@ -25,11 +25,9 @@ class SocialMediaViewController: UIViewController
             Twitter.sharedInstance().logInWithCompletion { (session, error) in
                 guard session != nil else
                 {
-                    print("SocialMediaViewController - twitterSwitchSwitched(): \(error?.localizedDescription)")
                     NSUserDefaults().setValue(false, forKey: USER_DEFAULTS_TWITTER)
                     return
                 }
-                print("Signed in as \(session!.userName)")
                 NSUserDefaults().setValue(true, forKey: USER_DEFAULTS_TWITTER)
                 self.twitterSwitch.on = true
             }

@@ -3,7 +3,7 @@
 //  PeakPerformance
 //
 //  Created by Sai on 15/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation

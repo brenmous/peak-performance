@@ -2,14 +2,14 @@
 //  WeeklyGoalDetailViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 2/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 2/08/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
-import SwiftValidator //https://github.com/jpotts18/SwiftValidator
-import ActionSheetPicker_3_0
-import SideMenu
+import SwiftValidator // https://github.com/jpotts18/SwiftValidator
+import ActionSheetPicker_3_0 // https://github.com/TimCinel/ActionSheetPicker
+import SideMenu // https://github.com/jonkykong/SideMenu
 
 protocol MonthlyGoalDetailViewControllerDelegate
 {
@@ -126,15 +126,11 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("MGDVC: validation successful") //DEBUG
         saveChanges( )
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
-    {
-        print ("MGDVC: validation failed") //DEBUG
-    }
+    func validationFailed(errors: [(Validatable, ValidationError)]){}
 
     /// Saves changes to an existing goal, or creates a new one if no goal currently exists.
     func saveChanges( )
@@ -147,8 +143,6 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             //...otherwise modify the referenced goal
         else
         {
-        
-            print("MGDVC: updating goal")
             updateGoal( )
         }
         performSegueWithIdentifier(UNWIND_FROM_MGDVC_SEGUE, sender: self)
@@ -168,21 +162,13 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     /// Updates a currently existing goal with details from text fields. Calls delegate to save goal.
     func updateGoal( )
     {
-        guard let cg = currentGoal else
-        {
-            print("MGDVC: no goal to update")
-            return
-        }
+        guard let cg = currentGoal else { return }
         cg.goalText = goalTextView.text!
         cg.kla = klaTextField.text!
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let deadline = deadlineTextField.text!
-        guard let dl = dateFormatter.dateFromString(deadline) else
-        {
-            print("WGDVC: could not format date")
-            return
-        }
+        guard let dl = dateFormatter.dateFromString(deadline) else { return }
         cg.deadline = dl
         delegate?.saveModifiedGoal(cg)
     }
@@ -190,10 +176,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     /// Updates text fields with details from the current goal (if available).
     func updateTextFields( )
     {
-        guard let cg = currentGoal else
-        {
-            return
-        }
+        guard let cg = currentGoal else { return }
         goalTextView.text = cg.goalText
         klaTextField.text = cg.kla
         let dateFormatter = NSDateFormatter( )
@@ -277,11 +260,6 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         
     }
     
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - keyboard stuff
     /// Work around for dismissing keyboard on text view.
@@ -299,16 +277,15 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         }
     }
     
-    //Dismisses keyboard when tap outside keyboard detected.
+    /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
         self.view.endEditing(true)
     }
     
-    
+    // BEN //
     // MARK: - KLA Picker
-    //Ben
-    
+
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
     {
         return 1
@@ -329,7 +306,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         klaTextField.text = keyLifeAreas[row]
         klaPicker.hidden = true
     }
-    
+    // END BEN //
     
     
     /*

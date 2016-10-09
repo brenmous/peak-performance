@@ -3,13 +3,14 @@
 //  PeakPerformance
 //
 //  Created by Sai on 13/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
-import SideMenu
-import Photos //for getting image using local URL
-import AssetsLibrary //for saving image and getting local URL
+import SideMenu // https://github.com/jonkykong/SideMenu
+import Photos
+import AssetsLibrary
+import TwitterKit // https://fabric.io/kits/ios/twitterkit
 
 private let reuseIdentifier = "Cell"
 
@@ -90,6 +91,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         print("DVC: dream count \(self.currentUser!.dreams.count)")
         self.collectionView?.reloadData()
         
+        shareOnTwitter(dream)
+        
         
     }
     
@@ -161,6 +164,21 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         
     }
+    
+    /// BREN ///
+    /// Shares a dream goal on twitter.
+    func shareOnTwitter(dream: Dream)
+    {
+        if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        {
+            let composer = TWTRComposer()
+            composer.setText(TWITTER_MESSAGE_DREAM(dream))
+            if dream.imageData != nil { composer.setImage(UIImage(data: dream.imageData!)!) }
+            composer.showFromViewController(self) { result in
+            }
+        }
+    }
+    /// END BREN ///
 
 
 

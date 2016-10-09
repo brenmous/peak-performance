@@ -2,14 +2,14 @@
 //  WeeklyGoalDetailViewController.swift
 //  PeakPerformance
 //
-//  Created by Bren on 2/08/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 2/08/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import UIKit
-import SwiftValidator //https://github.com/jpotts18/SwiftValidator
-import ActionSheetPicker_3_0
-import SideMenu
+import SwiftValidator // https://github.com/jpotts18/SwiftValidator
+import ActionSheetPicker_3_0 // https://github.com/TimCinel/ActionSheetPicker
+import SideMenu // https://github.com/jonkykong/SideMenu
 
 protocol WeeklyGoalDetailViewControllerDelegate
 {
@@ -37,9 +37,6 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     /// Swift validator instance.
     let validator = Validator( )
     
-    /// Date Picker Instance (retrieved from cocoapods)
-    // let datePicker = MIDatePicker.getFromNib() <- Is this needed?
-    
     // MARK: - Outlets
     
     //text fields
@@ -55,11 +52,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet weak var klaErrorLabel: UILabel!
     @IBOutlet weak var goalTextErrorLabel: UILabel!
     @IBOutlet weak var deadlineErrorLabel: UILabel!
-    
-    //buttons
-    
-    
-    
+  
     
     // MARK: - Actions
     
@@ -70,6 +63,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         validator.validate(self)
     }
     
+    // BEN //
     @IBAction func klaButtonPressed(sender: AnyObject) //Ben
     {
         //dismiss keyboard
@@ -92,7 +86,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         
         acp.showActionSheetPicker()
     }
+    // END BEN //
     
+    // BEN (NSDate arithmetic by Bren) //
     @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
     {
         //dismiss keyboard
@@ -102,9 +98,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
         let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
             picker, value, index in
-            print("WGDVC: value = \(value)")
             let newDate = value as? NSDate
-            print("WGDVC: newDate = \(newDate)")
             
             // assign to textfield
             self.deadlineTextField.text =  dateFormatter.stringFromDate(newDate!)
@@ -116,8 +110,8 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         datePicker.maximumDate = NSDate().weeklyDatePickerMaxDate( )
         
         datePicker.showActionSheetPicker()
-    
     }
+    // END BEN //
     
     @IBAction func menuButtonPressed(sender: AnyObject)
     {
@@ -134,21 +128,11 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        print ("WGDVC: validation successful") //DEBUG
-        
-        //hide error labels
-        //goalTextErrorLabel.hidden = true
-        //klaErrorLabel.hidden = true
-        //deadlineErrorLabel.hidden = true
-        
         saveChanges( )
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
-    {
-        print ("WGDVC: validation failed") //DEBUG
-    }
+    func validationFailed(errors: [(Validatable, ValidationError)]){}
     
     /// Saves changes to an existing goal, or creates a new one if no goal currently exists.
     func saveChanges( )
@@ -180,18 +164,12 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     /// Updates a currently existing goal with details from text fields. Calls delegate to save goal.
     func updateGoal( )
     {
-        guard let cg = currentGoal else
-        {
-            return
-        }
+        guard let cg = currentGoal else { return }
         cg.goalText = goalTextView.text!
         cg.kla = klaTextField.text!
         let dateFormatter = NSDateFormatter( )
         dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
-        guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else
-        {
-            return
-        }
+        guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else { return }
         cg.deadline = dl
         delegate?.saveModifiedGoal(cg)
     }
@@ -199,10 +177,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     /// Updates text fields with details from the current goal (if available).
     func updateTextFields( )
     {
-        guard let cg = currentGoal else
-        {
-            return
-        }
+        guard let cg = currentGoal else { return }
         goalTextView.text = cg.goalText
         klaTextField.text = cg.kla
         let dateFormatter = NSDateFormatter( )
@@ -296,7 +271,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     // MARK: - KLA Picker
-    //Ben
+    // BEN //
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
     {
         return 1
@@ -317,8 +292,11 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         klaTextField.text = keyLifeAreas[row]
         klaPicker.hidden = true
     }
+    // END BEN //
+    
     
     // MARK: - keyboard stuff
+    
     /// Work around for dismissing keyboard on text view.
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
@@ -333,17 +311,12 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
             return true
         }
     }
-    //Dismisses keyboard when tap outside keyboard detected.
+    
+    /// Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
         self.view.endEditing(true)
     }
-    
-    
-    // MARK: - Deadline picker
-    
-    
-
 }
 
 

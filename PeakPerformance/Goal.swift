@@ -2,8 +2,8 @@
 //  Goal.swift
 //  PeakPerformance
 //
-//  Created by Bren on 24/07/2016.
-//  Copyright © 2016 derridale. All rights reserved.
+//  Created by Bren - bmoush@gmail.com - on 24/07/2016.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 import Foundation
@@ -34,6 +34,7 @@ class Goal
     /// Whether the goal has reached its deadline.
     var due: Due = .notdue
     
+    /// Represents how far a goal is from the due date.
     enum Due
     {
         case notdue

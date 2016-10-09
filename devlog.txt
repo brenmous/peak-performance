@@ -278,7 +278,11 @@
 
 08/10/2016 12:40 - 15:15
 	- social media integration
-		- twitter
+		- twitter for goals
 	- bug fixes
 		- monthly goals icon
 		- signup -> login segue
+
+09/10/2016 14:00 - 
+	- social media integration
+		- twitter for dreams

@@ -2,14 +2,14 @@
 //  DreamDetailViewController.swift
 //  PeakPerformance
 //
-//  Created by Sowmya on 13/08/2016.
-//  Copyright © 2016 CtrlAltDesign All rights reserved.
+//  Created by Sowmya on 13/08/2016. Saving/loading to/from local and online storage by Bren.
+//  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 
 
 import UIKit
 import Photos
-import SideMenu
+import SideMenu // https://github.com/jonkykong/SideMenu
 
 
 
@@ -219,6 +219,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             })
         }
     }
+    
     
     // MARK: - Overridden methods
     
