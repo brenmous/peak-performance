@@ -649,3 +649,30 @@ func TWITTER_MESSAGE_WEEKLY_GOAL(goal: Goal) -> String { return "I completed my 
 
 /// Default body text for twitter posts about monthly goals
 func TWITTER_MESSAGE_MONTHLY_GOAL(goal: Goal) -> String { return "I completed my monthly goal \"\(goal.goalText)\"! #PeakPerformance"}
+
+
+// MARK: - Pop Tip My Values messages help
+
+let FAMILY_MESSAGE_HELP = "The definition of family is different for every person and can include immediate or extended family. A value can be anything you hold to be important and it must be positive."
+
+let FRIENDS_MESSAGE_HELP = "You may wish to consider the question of quality and quantity in relation to your friends and social life."
+
+let PARTNER_MESSAGE_HELP = "If you have a partner, they should be considered seperately to other family members."
+
+let WORK_MESSAGE_HELP = "Feedback received from supervisors, peers and performance reviews may be useful to consider when developing this area"
+
+let HEALTH_MESSAGE_HELP = "These values should be about your physical well-being. The goals set in this area may vary. It's no secret that health and fitness is often the first to suffer when you are busy."
+
+let PERSONAL_MESSAGE_HELP = "These values should relate to your general self-improvement. Such pursuits may include music, public speaking, service clubs, study in an area of interest or at work"
+
+let FINANCE_MESSAGE_HELP = "These values can be about your household finances or investments."
+
+let EMOTIONAL_MESSAGE_HELP = "Depending on your beliefs, your values can be in relation to your religion or philosophical belief system. A value can be anything you hold to be important and it must be positive."
+
+
+
+
+
+
+
+

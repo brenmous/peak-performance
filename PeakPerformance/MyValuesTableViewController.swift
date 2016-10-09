@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 import Firebase
-
+import AMPopTip
 
 class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
 
@@ -19,8 +19,8 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     var currentUser: User?
 
     
-// MARK: IBOutlet
-
+    // MARK: - Outlet
+    let infoPopTip = AMPopTip()
 
     @IBOutlet weak var familyTextView: UITextView!
     @IBOutlet weak var friendsTextView: UITextView!
@@ -30,6 +30,71 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var personalDevTextView: UITextView!
     @IBOutlet weak var financeTextView: UITextView!
     @IBOutlet weak var emotionalTextView: UITextView!
+
+    @IBOutlet weak var familyPopTip: UIButton!
+    
+    @IBOutlet weak var friendsPopTip: UIButton!
+    
+    @IBOutlet weak var partnerPopTip: UIButton!
+    
+    @IBOutlet weak var workPopTip: UIButton!
+    
+    @IBOutlet weak var healthPopTip: UIButton!
+    
+    @IBOutlet weak var personalPopTip: UIButton!
+    
+    @IBOutlet weak var financePopTip: UIButton!
+   
+    @IBOutlet weak var emotionalPopTip: UIButton!
+    
+    // MARK: - Action
+    
+    @IBAction func familyInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(FAMILY_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(1), fromFrame: familyPopTip.frame)
+
+    }
+    
+    @IBAction func friendsInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(FRIENDS_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(2), fromFrame: friendsPopTip.frame)
+
+    }
+    
+    @IBAction func partnerInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(PARTNER_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(3), fromFrame: partnerPopTip.frame)
+        
+    }
+    
+    
+    @IBAction func workInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(WORK_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(4), fromFrame: workPopTip.frame)
+    }
+    
+    @IBAction func healthInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(HEALTH_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(5), fromFrame: healthPopTip.frame)
+    }
+    
+
+    @IBAction func personalInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(PERSONAL_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(6), fromFrame: personalPopTip.frame)
+    }
+    
+    @IBAction func financeInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(FINANCE_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(7), fromFrame: financePopTip.frame)
+    }
+
+    
+    @IBAction func emotionalInfoPressed(sender: AnyObject) {
+        infoPopTip.hide()
+        infoPopTip.showText(EMOTIONAL_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(8), fromFrame: emotionalPopTip.frame)
+    }
+    
     
     @IBAction func saveMyValues(sender: AnyObject) {
         
@@ -121,6 +186,15 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /// Poptip
+        infoPopTip.textAlignment = .Left
+        infoPopTip.offset = -35
+        infoPopTip.arrowSize = CGSize(width: 10, height: 10)
+        infoPopTip.shouldDismissOnTap = true
+        infoPopTip.shouldDismissOnTapOutside = true
+        infoPopTip.popoverColor = UIColor.init(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
+        infoPopTip.textColor = UIColor.blackColor()
         
         let tbvc = self.tabBarController as! TabBarViewController
         

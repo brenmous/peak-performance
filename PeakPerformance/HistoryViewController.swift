@@ -443,7 +443,8 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         case GO_TO_INITIAL_REVIEW_SEGUE:
             let dvc = segue.destinationViewController as! InitialReviewSummaryTableViewController
             dvc.currentUser = self.currentUser
-
+            dvc.summary = self.currentUser?.initialSummary
+//            dvc.reasons = self.currentUser?.initialSummary.klaReasons
             
         default:
             return
