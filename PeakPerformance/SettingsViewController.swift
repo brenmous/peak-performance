@@ -68,6 +68,9 @@ class SettingsViewController: UITableViewController
             let dvc = segue.destinationViewController as! CoachEmailViewController
             dvc.currentUser = currentUser
             
+        case SETTINGS_TO_ABOUT_SEGUE:
+            return
+            
         default:
             return
         }
