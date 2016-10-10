@@ -101,8 +101,12 @@ class InitialReviewSummaryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController!.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
+        
         displayPoints( )
         displayPopTips( )
+        
         updateSummaryWithText( )
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -238,6 +238,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
         
         // BEN //
         // Poptip
+        self.navigationController!.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
         popTip.offset = POPTIP_OFFSET
         popTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         popTip.shouldDismissOnTap = true

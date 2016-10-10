@@ -274,6 +274,8 @@ class SummaryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController!.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
+        
         self.updateTextViews( )
         
         displayPoints( )

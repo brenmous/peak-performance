@@ -56,6 +56,9 @@ class YearReviewViewController: UITableViewController {
     // MARK: - Overriden methods
     override func viewDidLoad()
     {
+        
+        self.navigationController!.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
+        
         guard let summary = self.summary else { return }
         //If the summary has been reviwed, hide the graphic, place summary text in fields and disable/hide "Done" button.
         if summary.reviewed
