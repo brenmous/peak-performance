@@ -10,6 +10,7 @@
 		32D794EB1D61D5A600134D01 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D794EA1D61D5A600134D01 /* Dream.swift */; };
 		3A45B58978882C650823EE39 /* Pods_PeakPerformance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */; };
 		440E23771D982078002AA889 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440E23761D982078002AA889 /* CustomizableView.swift */; };
+		4423410D1DAB799000635B6D /* PrivacyStatementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4423410C1DAB799000635B6D /* PrivacyStatementViewController.swift */; };
 		4427EFE81D4CD57B005458DB /* menu icon_25x17.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFE71D4CD57B005458DB /* menu icon_25x17.png */; };
 		4427EFEA1D4CED13005458DB /* dream-list-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFE91D4CED13005458DB /* dream-list-icon-25x25.png */; };
 		4427EFEE1D4CED39005458DB /* monthly-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFED1D4CED39005458DB /* monthly-icon-25x25.png */; };
@@ -119,6 +120,7 @@
 		300B342D95480D2EB8714615 /* Pods-PeakPerformance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeakPerformance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PeakPerformance/Pods-PeakPerformance.debug.xcconfig"; sourceTree = "<group>"; };
 		32D794EA1D61D5A600134D01 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
 		440E23761D982078002AA889 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
+		4423410C1DAB799000635B6D /* PrivacyStatementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementViewController.swift; sourceTree = "<group>"; };
 		4427EFE71D4CD57B005458DB /* menu icon_25x17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu icon_25x17.png"; sourceTree = "<group>"; };
 		4427EFE91D4CED13005458DB /* dream-list-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dream-list-icon-25x25.png"; sourceTree = "<group>"; };
 		4427EFED1D4CED39005458DB /* monthly-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "monthly-icon-25x25.png"; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				B59057771D96009000D12D2C /* DeleteAccountViewController.swift */,
 				B5DA2B871D9727FE0091AA75 /* CoachEmailViewController.swift */,
 				B527F7D51DA898C200EC1077 /* SocialMediaViewController.swift */,
+				4423410C1DAB799000635B6D /* PrivacyStatementViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				446A25521D9EA8FB00E7DC75 /* DrawKLALines.swift in Sources */,
+				4423410D1DAB799000635B6D /* PrivacyStatementViewController.swift in Sources */,
 				B577EAE91D86BE230039BB76 /* SecondSummaryViewController.swift in Sources */,
 				440E23771D982078002AA889 /* CustomizableView.swift in Sources */,
 				B5B8D2CB1D44D9270072E50A /* WeeklyGoalsViewController.swift in Sources */,
