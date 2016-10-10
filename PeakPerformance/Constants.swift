@@ -375,6 +375,9 @@ let SETTINGS_TO_SHARING_SEGUE = "settingsToSharingSegue"
 /// Settings -> About
 let SETTINGS_TO_ABOUT_SEGUE = "settingsToAboutSegue"
 
+/// Settings -> Privacy Statement
+let SETTINGS_TO_PRIVACY_STATEMENT = "goToPrivacyStatement"
+
 /// Change coach email -> Settings
 let UNWIND_FROM_COACH_EMAIL_SEGUE = "unwindToSettings"
 

@@ -351,7 +351,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A2Y-tZ-FBT">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A2Y-tZ-FBT">
                                         <rect key="frame" x="0.0" y="291" width="510" height="67"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXg-UV-UPm">
@@ -373,7 +373,7 @@
                                                     <action selector="signUpButtonPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="mNZ-N0-LJc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
                                                 <rect key="frame" x="201" y="39" width="109" height="28"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
@@ -2892,7 +2892,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9Vd-em-2lZ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fJP-Zn-i1q">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fJP-Zn-i1q">
                                 <rect key="frame" x="50" y="120" width="500" height="176"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngf-he-koB">
@@ -2906,16 +2906,16 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-zv-JWt">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-zv-JWt">
                                         <rect key="frame" x="0.0" y="35" width="500" height="42"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pL7-pB-3RO">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pL7-pB-3RO">
                                                 <rect key="frame" x="0.0" y="0.0" width="500" height="28"/>
                                                 <color key="tintColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-W5-tXX">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email Error label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-W5-tXX">
                                                 <rect key="frame" x="0.0" y="28" width="500" height="14"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <color key="textColor" red="0.78039215689999997" green="0.80000000000000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
@@ -2923,7 +2923,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-Zc-d09">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-Zc-d09">
                                         <rect key="frame" x="0.0" y="97" width="500" height="29"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AS-Va-MOw">
@@ -2948,7 +2948,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcl-fe-dRd">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xcl-fe-dRd">
                                         <rect key="frame" x="0.0" y="146" width="500" height="30"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-qf-8W9">
@@ -7358,6 +7358,9 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="vAJ-ob-hgg" secondAttribute="bottom" constant="8.5" id="uNs-PM-dDE"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="XH7-cq-193" kind="show" identifier="goToPrivacyStatement" id="NRu-xt-anQ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings" rowHeight="523" id="IuW-z6-gZe">
                                         <rect key="frame" x="0.0" y="472" width="600" height="523"/>
@@ -7392,7 +7395,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xO-mq-hgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="pN4-N0-IYo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5737" y="-1293"/>
+            <point key="canvasLocation" x="5698" y="-1213"/>
         </scene>
         <!--Change Password-->
         <scene sceneID="12R-mU-R0k">
@@ -9166,7 +9169,7 @@ achieving your goals.</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="243" id="S6r-ZF-V82"/>
                                         </constraints>
-                                        <mutableString key="text">THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</mutableString>
+                                        <string key="text">THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9182,7 +9185,7 @@ achieving your goals.</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="360" id="ht5-IM-ugQ"/>
                                         </constraints>
-                                        <mutableString key="text">Firebase iOS Client Library
+                                        <string key="text">Firebase iOS Client Library
 Copyright © 2013 Firebase - All Rights Reserved
 https://www.firebase.com  Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -9203,7 +9206,7 @@ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
 DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</mutableString>
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9222,7 +9225,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</mutableString>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="417" id="WwH-VQ-BJx"/>
                                         </constraints>
-                                        <mutableString key="text">ActionSheetPicker-3.0 Copyright © 2011, Tim Cinel - All Rights Reserved https://github.com/skywinder/ActionSheetPicker-3.0 
+                                        <string key="text">ActionSheetPicker-3.0 Copyright © 2011, Tim Cinel - All Rights Reserved https://github.com/skywinder/ActionSheetPicker-3.0 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
@@ -9244,7 +9247,7 @@ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</mutableString>
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9254,7 +9257,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</mutableString>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="332" id="Fbp-hv-myQ"/>
                                         </constraints>
-                                        <mutableString key="text">AMPopTip Copyright © 2014 Fancy Pixel - All Right Reserved https://github.com/andreamazz/AMPopTip  Permission is hereby granted, free of charge, to any person obtaining a
+                                        <string key="text">AMPopTip Copyright © 2014 Fancy Pixel - All Right Reserved https://github.com/andreamazz/AMPopTip  Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
@@ -9271,7 +9274,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9281,7 +9284,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="332" id="b3k-sR-KBe"/>
                                         </constraints>
-                                        <mutableString key="text">PDFGenerator Copyright © 2016 Suguru Kishimoto - All Rights Reserved https://github.com/sgr-ksmt/PDFGenerator  Permission is hereby granted, free of charge, to any person obtaining a
+                                        <string key="text">PDFGenerator Copyright © 2016 Suguru Kishimoto - All Rights Reserved https://github.com/sgr-ksmt/PDFGenerator  Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
@@ -9298,7 +9301,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9308,7 +9311,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="332" id="vI7-eN-mdR"/>
                                         </constraints>
-                                        <mutableString key="text">SideMenu Copyright © 2015 Jonathan Kent - All Rights Reserved https://github.com/jonkykong/SideMenu  Permission is hereby granted, free of charge, to any person obtaining a
+                                        <string key="text">SideMenu Copyright © 2015 Jonathan Kent - All Rights Reserved https://github.com/jonkykong/SideMenu  Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
@@ -9325,7 +9328,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9335,7 +9338,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="332" id="UBs-HT-GfL"/>
                                         </constraints>
-                                        <mutableString key="text">SwiftValidator Copyright © 2014 - 2015 Jeff Potter - All Rights Reserved https://github.com/jpotts18/SwiftValidator  Permission is hereby granted, free of charge, to any person obtaining a
+                                        <string key="text">SwiftValidator Copyright © 2014 - 2015 Jeff Potter - All Rights Reserved https://github.com/jpotts18/SwiftValidator  Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
@@ -9352,7 +9355,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9362,7 +9365,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="332" id="Fnw-Yi-RHs"/>
                                         </constraints>
-                                        <mutableString key="text">SZTextView Copyright © 2013 glaszig - All Rights Reserved https://github.com/glaszig/SZTextView  Permission is hereby granted, free of charge, to any person obtaining a
+                                        <string key="text">SZTextView Copyright © 2013 glaszig - All Rights Reserved https://github.com/glaszig/SZTextView  Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
@@ -9379,7 +9382,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -9517,6 +9520,174 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                 <exit id="xjA-f8-3vF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6433" y="-1964"/>
+        </scene>
+        <!--Privacy Statement-->
+        <scene sceneID="iU4-pD-4a9">
+            <objects>
+                <viewController title="Privacy Statement" id="XH7-cq-193" customClass="PrivacyStatementViewController" customModule="PeakPerformance" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U8m-Y3-zgE"/>
+                        <viewControllerLayoutGuide type="bottom" id="ptH-Mq-bVc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CbW-SP-EYP">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlc-D5-nGw">
+                                <rect key="frame" x="0.0" y="-20" width="600" height="556"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kb3-bQ-Nfg">
+                                        <rect key="frame" x="34" y="48" width="533" height="464"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">This following document sets forth the Privacy Policy for the Derridale mobile application, Peak Performance. Derridale is bound by the Privacy Act 1988 (Crh), which sets out a number of principles concerning the privacy of individuals.</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Collection of your personal information">
+                                                <attributes>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">
+There are many aspects of the application cannot be viewed without providing personal information, however, for access to the coaching features of the application you are required to submit personally identifiable information. Other aspects include but not limited to a unique username and password, or provide sensitive information in the recovery of your lost password.
+
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Sharing of your personal information">
+                                                <attributes>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">
+We may occasionally hire other companies to provide services on our behalf, including but not limited to handling support enquiries, database management or updating the application. Those companies will be permitted to obtain only the personal information they need to deliver the service. Derridale takes reasonable steps to ensure that these organisations are bound by confidentiality and privacy obligations in relation to the protection of your personal information.
+
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Use of your personal information">
+                                                <attributes>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">
+Currently there is an encryption system in place to ensure users personal account details security, however not all information stored uses this encryption.
+From time to time, we may use customer information for new, uses such as targeted marketing. If our information practices change at some time in the future we will use for these new purposes only, data collected from the time of the policy change forward will adhere to our updated practices.
+
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Changes to this Privacy Policy">
+                                                <attributes>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">
+Derridale reserves the right to make amendments to this Privacy Policy at any time. If you have objections to the Privacy Policy, you should not access or use the application.
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">
+Contacting us</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">
+Derridale welcomes your comments regarding this Privacy Policy. If you have any questions about this Privacy Policy and would like further information, please contact us by any of the following means during business hours Monday to Friday.
+
+Post: Attn: Privacy Policy,
+Derridale,
+Address: Unit 37 Benson House,
+2 Benson Street,Toowong 
+PO Box 1350, Kenmore QLD 4069
+E-mail: admin@derridale.com.au
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" address="YES"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="kb3-bQ-Nfg" firstAttribute="leading" secondItem="vlc-D5-nGw" secondAttribute="leading" constant="34" id="0SN-aa-7Sb"/>
+                                    <constraint firstAttribute="bottom" secondItem="kb3-bQ-Nfg" secondAttribute="bottom" constant="44" id="78g-0W-cQU"/>
+                                    <constraint firstItem="kb3-bQ-Nfg" firstAttribute="centerX" secondItem="vlc-D5-nGw" secondAttribute="centerX" id="Fw8-2R-Ygt"/>
+                                    <constraint firstItem="kb3-bQ-Nfg" firstAttribute="top" secondItem="vlc-D5-nGw" secondAttribute="top" constant="48" id="Hna-L0-ZbQ"/>
+                                    <constraint firstItem="kb3-bQ-Nfg" firstAttribute="leading" secondItem="vlc-D5-nGw" secondAttribute="leading" constant="34" id="cZK-g6-fzG"/>
+                                    <constraint firstAttribute="trailing" secondItem="kb3-bQ-Nfg" secondAttribute="trailing" constant="33" id="fke-YM-pqR"/>
+                                    <constraint firstAttribute="trailing" secondItem="kb3-bQ-Nfg" secondAttribute="trailing" constant="33" id="l3V-Pn-zCL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vlc-D5-nGw" secondAttribute="trailing" id="6eb-XY-BAA"/>
+                            <constraint firstItem="vlc-D5-nGw" firstAttribute="top" secondItem="U8m-Y3-zgE" secondAttribute="bottom" constant="-20" id="HOo-GX-FWp"/>
+                            <constraint firstItem="vlc-D5-nGw" firstAttribute="bottom" secondItem="ptH-Mq-bVc" secondAttribute="top" id="Jgq-CN-Lig"/>
+                            <constraint firstItem="vlc-D5-nGw" firstAttribute="leading" secondItem="CbW-SP-EYP" secondAttribute="leading" id="zws-pT-a52"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Privacy Policy" id="8aw-YZ-Uxv">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="5I6-xV-AHD" kind="unwind" identifier="unwindToSettings" unwindAction="unwindToSettings:" id="p4f-kO-CvX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1pz-1g-nwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5I6-xV-AHD" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5735" y="-1952"/>
         </scene>
     </scenes>
     <resources>
