@@ -418,7 +418,11 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         case GO_TO_YEARLY_REVIEW_SEGUE:
             let dvc = segue.destinationViewController as! YearReviewViewController
             dvc.currentUser = self.currentUser
-        
+            if let indexPath = self.tableView.indexPathForSelectedRow
+            {
+                dvc.summary = summariesArray[indexPath.section][indexPath.row] as? YearlySummary
+            }
+            
         case GO_TO_INITIAL_REVIEW_SEGUE:
             let dvc = segue.destinationViewController as! InitialReviewSummaryTableViewController
             dvc.currentUser = self.currentUser

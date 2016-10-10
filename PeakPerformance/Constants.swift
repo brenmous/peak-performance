@@ -642,7 +642,7 @@ func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "Weekly goal \"\(goal.g
 let WG_NOTIFICATION_ID = "GID"
 
 /// Body of MG due soon local notification
-func MG_NOTIFICATION_BODY(monthlyGoal: MonthlyGoal) -> String { return "Monthly goal \(monthlyGoal.goalText) is due soon." }
+func MG_NOTIFICATION_BODY(monthlyGoal: MonthlyGoal) -> String { return "Monthly goal \"\(monthlyGoal.goalText)\" is due soon." }
 
 /// Key for ID in monthly goal notification.userSettings
 let MG_NOTIFICATION_ID = "MONTH"
