@@ -696,6 +696,8 @@ let EMOTIONAL_MESSAGE_HELP = "Depending on your beliefs, your values can be in r
 
 let PEAK_NAV_BAR_COLOR = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
 
+let PEAK_BLACK = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
+
 let PEAK_FAMILY_BLUE = UIColor.init(red: 32/355, green: 113/255, blue: 201/255, alpha: 1)
 
 
@@ -730,7 +732,7 @@ let POPTIP_ARROW_HEIGHT: CGFloat = 10
 let ROWHEIGHT_NO_KICK_IT = 53
 
 /// Rowheight for goal summary cell with kick it text.
-let ROWHEIGHT_KICK_IT = 130
+let ROWHEIGHT_KICK_IT = 80
 
 // MARK: - History view strings
 

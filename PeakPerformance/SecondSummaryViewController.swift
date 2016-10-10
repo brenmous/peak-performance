@@ -134,7 +134,49 @@ class SecondSummaryViewController: UITableViewController {
         
         if goal.complete
         {
-            cell.accessoryType = .Checkmark
+            cell.goalTextLabel.textColor = PEAK_BLACK
+            switch kla
+            {
+            case KLA_FAMILY:
+                klaIcon = "F.png"
+                
+            case KLA_WORKBUSINESS:
+                klaIcon = "W.png"
+                
+            case KLA_PARTNER:
+                klaIcon = "P.png"
+                
+            case KLA_FINANCIAL:
+                klaIcon = "FI.png"
+                
+            case KLA_PERSONALDEV:
+                klaIcon = "PD.png"
+                
+            case KLA_EMOSPIRITUAL:
+                klaIcon = "ES.png"
+                
+            case KLA_HEALTHFITNESS:
+                klaIcon = "H.png"
+                
+            case KLA_FRIENDSSOCIAL:
+                klaIcon = "FR.png"
+                
+            default:
+                klaIcon = "F.png"
+            }
+            
+            if !goal.kickItText.isEmpty
+            {
+                cell.kickItTextView.text = "Kick it to the next level: \(goal.kickItText)"
+                cell.kickItTextView.hidden = false
+            }
+         
+            
+        }
+        else
+        {
+            
+            cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             switch kla
             {
@@ -164,49 +206,6 @@ class SecondSummaryViewController: UITableViewController {
                 
             default:
                 klaIcon = "F-done.png"
-            }
-            
-            if !goal.kickItText.isEmpty
-            {
-                cell.kickItTextView.text = "Kick it to the next level: \(goal.kickItText)"
-                cell.kickItTextView.hidden = false
-            }
-         
-            
-        }
-        else
-        {
-            
-            cell.accessoryType = .None
-            cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
-            switch kla
-            {
-            case KLA_FAMILY:
-                klaIcon = "F.png"
-                
-            case KLA_WORKBUSINESS:
-                klaIcon = "W.png"
-                
-            case KLA_PARTNER:
-                klaIcon = "P.png"
-                
-            case KLA_FINANCIAL:
-                klaIcon = "FI.png"
-                
-            case KLA_PERSONALDEV:
-                klaIcon = "PD.png"
-                
-            case KLA_EMOSPIRITUAL:
-                klaIcon = "ES.png"
-                
-            case KLA_HEALTHFITNESS:
-                klaIcon = "H.png"
-                
-            case KLA_FRIENDSSOCIAL:
-                klaIcon = "FR.png"
-                
-            default:
-                klaIcon = "F.png"
             }
             
         }

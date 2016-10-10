@@ -42,30 +42,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    
-    @IBAction func cellLongPress(sender: AnyObject) {
-        print("longpressed")
-        let deleteDreamAlertController = UIAlertController(title: DELETE_DREAM_ALERT_TITLE, message: DELETE_DREAM_ALERT_MSG, preferredStyle: .Alert)
-        
-        let delete = UIAlertAction(title: DELETE_DREAM_ALERT, style: .Default ) { (action) in
 
-//            let pointInCollectionView: CGPoint = sender.locationInView(self.collectionView)
-//            let selectedIndexPath: NSIndexPath = (self.collectionView?.indexPathForItemAtPoint(pointInCollectionView))!
-//                self.currentDream = self.currentUser!.dreams[selectedIndexPath.row]
-//                self.globalindexPathForRow = selectedIndexPath.row
-//                print("tried to delete")
-//            
-//            
-//                self.deleteDream(self.currentDream!)
-
-        }
-        
-        let cancel = UIAlertAction(title: CANCEL_DREAM_ALERT, style: .Cancel, handler: nil)
-        
-        deleteDreamAlertController.addAction(delete)
-        deleteDreamAlertController.addAction(cancel)
-        presentViewController(deleteDreamAlertController, animated: true, completion: nil )
-    }
     
     
     // MARK: - Methods

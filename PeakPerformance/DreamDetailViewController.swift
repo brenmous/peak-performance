@@ -231,7 +231,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             self.updateImageandTextView()
         }
         
-        self.dreamText.textColor = UIColor.lightGrayColor()
+        self.dreamText.textColor = UIColor.blackColor()
     }
     
     override func viewDidLoad() {
