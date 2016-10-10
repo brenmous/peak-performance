@@ -291,3 +291,6 @@
 10/10/2016 00:30 - 1:30 
 	- client presentation prep
 	- fixed yearly review stuff
+
+10/10/2016 16:30
+	- fixed notification bug

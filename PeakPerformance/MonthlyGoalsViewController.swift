@@ -206,9 +206,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             guard let key = notification.userInfo![MG_NOTIFICATION_ID] else { continue }
             if key as! String == monthlyGoal.gid
             {
-                let calendar = NSCalendar.currentCalendar()
-                // - FIXME:
-                notification.fireDate = calendar.dateByAddingUnit(.Day, value: 25, toDate: monthlyGoal.deadline, options: [])
+                removeMonthlyGoalDueSoonNotification(monthlyGoal)
+                createMonthlyGoalDueSoonNotification(monthlyGoal)
                 return
             }
         }

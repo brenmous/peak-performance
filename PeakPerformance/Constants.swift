@@ -14,7 +14,8 @@ import UIKit
     If you find yourself using raw values (e.g. string literals) then consider if it should go here instead.
 */
 
-
+/// VERSION NUMBER
+let VERSION_NUMBER = "1.0"
 
 // MARK: - Error messages
 //N.B. Change these messages to something more appropriate/polite, just placeholders at the moment

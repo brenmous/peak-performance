@@ -202,12 +202,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             guard let key = notification.userInfo![WG_NOTIFICATION_ID] else { continue }
             if key as! String == weeklyGoal.gid
             {
-                /* Notification for due soon
-                 let calendar = NSCalendar.currentCalendar()
-                 notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
-                 */
-                
-                notification.fireDate = weeklyGoal.deadline
+                removeWeeklyGoalDueSoonNotification(weeklyGoal)
+                createWeeklyGoalDueSoonNotification(weeklyGoal)
                 return
             }
         }
