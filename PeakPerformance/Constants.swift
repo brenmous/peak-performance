@@ -741,7 +741,7 @@ let ROWHEIGHT_KICK_IT = 80
 let ROWHEIGHT_YEARLY_COMPLETE = 0.1
 
 /// Rowheight for top yearly summary cell when review is incomplete.
-let ROWHEIGHT_YEARLY_INCOMPLETE = 128
+let ROWHEIGHT_YEARLY_INCOMPLETE = 228
 
 // MARK: - History view strings
 
