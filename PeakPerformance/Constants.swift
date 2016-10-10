@@ -737,6 +737,12 @@ let ROWHEIGHT_NO_KICK_IT = 53
 /// Rowheight for goal summary cell with kick it text.
 let ROWHEIGHT_KICK_IT = 80
 
+/// Rowheight for top yearly summary cell when review is complete.
+let ROWHEIGHT_YEARLY_COMPLETE = 0.1
+
+/// Rowheight for top yearly summary cell when review is incomplete.
+let ROWHEIGHT_YEARLY_INCOMPLETE = 128
+
 // MARK: - History view strings
 
 /// String for summary cell when review is ready.
