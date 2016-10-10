@@ -11,6 +11,7 @@
 		3A45B58978882C650823EE39 /* Pods_PeakPerformance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733FAC696FC1D07ED33F757B /* Pods_PeakPerformance.framework */; };
 		440E23771D982078002AA889 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440E23761D982078002AA889 /* CustomizableView.swift */; };
 		4423410D1DAB799000635B6D /* PrivacyStatementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4423410C1DAB799000635B6D /* PrivacyStatementViewController.swift */; };
+		4423410F1DABC43600635B6D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4423410E1DABC43600635B6D /* AboutViewController.swift */; };
 		4427EFE81D4CD57B005458DB /* menu icon_25x17.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFE71D4CD57B005458DB /* menu icon_25x17.png */; };
 		4427EFEA1D4CED13005458DB /* dream-list-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFE91D4CED13005458DB /* dream-list-icon-25x25.png */; };
 		4427EFEE1D4CED39005458DB /* monthly-icon-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4427EFED1D4CED39005458DB /* monthly-icon-25x25.png */; };
@@ -121,6 +122,7 @@
 		32D794EA1D61D5A600134D01 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
 		440E23761D982078002AA889 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
 		4423410C1DAB799000635B6D /* PrivacyStatementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyStatementViewController.swift; sourceTree = "<group>"; };
+		4423410E1DABC43600635B6D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4427EFE71D4CD57B005458DB /* menu icon_25x17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu icon_25x17.png"; sourceTree = "<group>"; };
 		4427EFE91D4CED13005458DB /* dream-list-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dream-list-icon-25x25.png"; sourceTree = "<group>"; };
 		4427EFED1D4CED39005458DB /* monthly-icon-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "monthly-icon-25x25.png"; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				B5DA2B871D9727FE0091AA75 /* CoachEmailViewController.swift */,
 				B527F7D51DA898C200EC1077 /* SocialMediaViewController.swift */,
 				4423410C1DAB799000635B6D /* PrivacyStatementViewController.swift */,
+				4423410E1DABC43600635B6D /* AboutViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				B59EC4331D3FB45C00AF1297 /* AppDelegate.swift in Sources */,
 				449618051D7D503100AD8C25 /* customizableTextView.swift in Sources */,
 				B53B45601D3FB85500F20D25 /* SignUpViewController.swift in Sources */,
+				4423410F1DABC43600635B6D /* AboutViewController.swift in Sources */,
 				B527F7D61DA898C200EC1077 /* SocialMediaViewController.swift in Sources */,
 				B53E7EB11D8BD0DB00CFF4AB /* SecondInitialSetupViewController.swift in Sources */,
 				B59C1F461D61E6B6005F18E1 /* DreamDetailViewController.swift in Sources */,

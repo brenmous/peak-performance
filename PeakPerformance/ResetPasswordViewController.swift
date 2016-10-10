@@ -44,7 +44,9 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
         activityIndicatorReset.startAnimating()
     }
     
-    @IBAction func logInButtonPressed(sender: AnyObject){} //unwind to login (storyboard segue)
+    @IBAction func logInButtonPressed(sender: AnyObject){
+    self.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: self)
+    } //unwind to login (storyboard segue)
     
     
     // MARK: - Methods

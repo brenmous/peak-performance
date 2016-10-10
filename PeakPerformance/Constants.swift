@@ -372,6 +372,9 @@ let SETTINGS_TO_COACH_EMAIL_SEGUE = "settingsToCoachEmailSegue"
 /// Settings -> Sharing
 let SETTINGS_TO_SHARING_SEGUE = "settingsToSharingSegue"
 
+/// Settings -> About
+let SETTINGS_TO_ABOUT_SEGUE = "settingsToAboutSegue"
+
 /// Settings -> Privacy Statement
 let SETTINGS_TO_PRIVACY_STATEMENT = "goToPrivacyStatement"
 
