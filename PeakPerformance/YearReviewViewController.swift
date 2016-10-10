@@ -115,7 +115,7 @@ class YearReviewViewController: UITableViewController {
             return 80
         }
         //Text cells
-        return 0
+        return 128
     }
     
 
