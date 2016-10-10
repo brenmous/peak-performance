@@ -351,7 +351,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A2Y-tZ-FBT">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A2Y-tZ-FBT">
                                         <rect key="frame" x="0.0" y="291" width="510" height="67"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXg-UV-UPm">
@@ -373,7 +373,7 @@
                                                     <action selector="signUpButtonPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="mNZ-N0-LJc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
                                                 <rect key="frame" x="201" y="39" width="109" height="28"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
@@ -2892,7 +2892,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9Vd-em-2lZ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fJP-Zn-i1q">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fJP-Zn-i1q">
                                 <rect key="frame" x="50" y="120" width="500" height="176"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngf-he-koB">
@@ -2906,16 +2906,16 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-zv-JWt">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-zv-JWt">
                                         <rect key="frame" x="0.0" y="35" width="500" height="42"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pL7-pB-3RO">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pL7-pB-3RO">
                                                 <rect key="frame" x="0.0" y="0.0" width="500" height="28"/>
                                                 <color key="tintColor" red="0.56078431370000004" green="0.3411764706" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email Error label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-W5-tXX">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-W5-tXX">
                                                 <rect key="frame" x="0.0" y="28" width="500" height="14"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <color key="textColor" red="0.78039215689999997" green="0.80000000000000004" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
@@ -2923,7 +2923,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-Zc-d09">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-Zc-d09">
                                         <rect key="frame" x="0.0" y="97" width="500" height="29"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AS-Va-MOw">
@@ -2948,7 +2948,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xcl-fe-dRd">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcl-fe-dRd">
                                         <rect key="frame" x="0.0" y="146" width="500" height="30"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-qf-8W9">
@@ -9163,7 +9163,7 @@ achieving your goals.</string>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yap-CC-1np">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yap-CC-1np">
                                         <rect key="frame" x="8" y="179" width="584" height="243"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9179,7 +9179,7 @@ achieving your goals.</string>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dav-IX-zgY">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dav-IX-zgY">
                                         <rect key="frame" x="8" y="459" width="584" height="360"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9210,7 +9210,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Twitter for iOS Copyright © 2015 Twitter - All Rights Reserved https://fabric.io/kits/ios/twitterkit" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mOP-is-ukm">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Twitter for iOS Copyright © 2015 Twitter - All Rights Reserved https://fabric.io/kits/ios/twitterkit" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOP-is-ukm">
                                         <rect key="frame" x="8" y="827" width="584" height="59"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9219,7 +9219,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KiF-fg-sHG">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiF-fg-sHG">
                                         <rect key="frame" x="8" y="894" width="584" height="417"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9251,7 +9251,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SlX-aP-z9P">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlX-aP-z9P">
                                         <rect key="frame" x="8" y="1319" width="584" height="332"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9278,7 +9278,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9iG-CU-R3V">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iG-CU-R3V">
                                         <rect key="frame" x="8" y="1659" width="584" height="332"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9305,7 +9305,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dcG-6Q-g74">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcG-6Q-g74">
                                         <rect key="frame" x="8" y="1999" width="584" height="332"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9332,7 +9332,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5kB-rk-3oU">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kB-rk-3oU">
                                         <rect key="frame" x="8" y="2339" width="584" height="332"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9359,7 +9359,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zp6-ES-mpL">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp6-ES-mpL">
                                         <rect key="frame" x="8" y="2679" width="584" height="332"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -9390,6 +9390,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                 <constraints>
                                     <constraint firstItem="WD4-iP-Vpg" firstAttribute="top" secondItem="h54-l8-RLR" secondAttribute="topMargin" id="2Wa-dX-PQ8"/>
                                     <constraint firstItem="9iG-CU-R3V" firstAttribute="leading" secondItem="dcG-6Q-g74" secondAttribute="leading" id="3mn-cQ-ZR1"/>
+                                    <constraint firstItem="Dav-IX-zgY" firstAttribute="top" secondItem="T7T-RQ-Ikz" secondAttribute="bottom" constant="8" symbolic="YES" id="4FN-6i-Y8J"/>
                                     <constraint firstItem="WD4-iP-Vpg" firstAttribute="bottom" secondItem="KOQ-H9-MvM" secondAttribute="bottom" id="5aE-fM-QXd"/>
                                     <constraint firstItem="SlX-aP-z9P" firstAttribute="trailing" secondItem="9iG-CU-R3V" secondAttribute="trailing" id="77B-HX-LEt"/>
                                     <constraint firstItem="mOP-is-ukm" firstAttribute="leading" secondItem="KiF-fg-sHG" secondAttribute="leading" id="9Mu-7Y-Guh"/>
@@ -9403,8 +9404,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                     <constraint firstItem="h8U-2n-lTS" firstAttribute="leading" secondItem="WD4-iP-Vpg" secondAttribute="trailing" constant="8" symbolic="YES" id="Fp6-7x-3zO"/>
                                     <constraint firstItem="Yap-CC-1np" firstAttribute="trailing" secondItem="h54-l8-RLR" secondAttribute="trailingMargin" id="Fwe-mB-aYT"/>
                                     <constraint firstItem="mOP-is-ukm" firstAttribute="trailing" secondItem="KiF-fg-sHG" secondAttribute="trailing" id="HFe-sc-ObM"/>
-                                    <constraint firstItem="T7T-RQ-Ikz" firstAttribute="top" secondItem="Yap-CC-1np" secondAttribute="bottom" constant="8" symbolic="YES" id="IZB-Gv-CrM"/>
                                     <constraint firstItem="KiF-fg-sHG" firstAttribute="top" secondItem="mOP-is-ukm" secondAttribute="bottom" constant="8" symbolic="YES" id="JCT-xk-V6y"/>
+                                    <constraint firstItem="T7T-RQ-Ikz" firstAttribute="top" secondItem="Yap-CC-1np" secondAttribute="bottom" constant="8" symbolic="YES" id="Jtc-U8-4u9"/>
+                                    <constraint firstItem="T7T-RQ-Ikz" firstAttribute="centerX" secondItem="Jxd-hM-bLs" secondAttribute="centerX" id="Ktk-gT-9qy"/>
                                     <constraint firstItem="thu-EZ-Xws" firstAttribute="top" secondItem="KOQ-H9-MvM" secondAttribute="bottom" constant="15" id="RPn-4R-JfG"/>
                                     <constraint firstItem="5kB-rk-3oU" firstAttribute="leading" secondItem="Zp6-ES-mpL" secondAttribute="leading" id="TOm-7B-Rx9"/>
                                     <constraint firstItem="dcG-6Q-g74" firstAttribute="trailing" secondItem="5kB-rk-3oU" secondAttribute="trailing" id="TQ4-ar-9Mp"/>
@@ -9416,7 +9418,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                     <constraint firstItem="SlX-aP-z9P" firstAttribute="leading" secondItem="9iG-CU-R3V" secondAttribute="leading" id="b6s-ia-Dwj"/>
                                     <constraint firstItem="5kB-rk-3oU" firstAttribute="trailing" secondItem="Zp6-ES-mpL" secondAttribute="trailing" id="cW0-rK-jOK"/>
                                     <constraint firstItem="5kB-rk-3oU" firstAttribute="top" secondItem="dcG-6Q-g74" secondAttribute="bottom" constant="8" symbolic="YES" id="jIo-e4-FJm"/>
-                                    <constraint firstItem="Jxd-hM-bLs" firstAttribute="centerX" secondItem="T7T-RQ-Ikz" secondAttribute="centerX" id="jgO-xp-Om3"/>
                                     <constraint firstItem="KiF-fg-sHG" firstAttribute="trailing" secondItem="SlX-aP-z9P" secondAttribute="trailing" id="jj0-Oq-Zhd"/>
                                     <constraint firstItem="Yap-CC-1np" firstAttribute="trailing" secondItem="Dav-IX-zgY" secondAttribute="trailing" id="koQ-1S-TYO"/>
                                     <constraint firstItem="dcG-6Q-g74" firstAttribute="top" secondItem="9iG-CU-R3V" secondAttribute="bottom" constant="8" symbolic="YES" id="l9N-lQ-10r"/>
@@ -9429,7 +9430,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                     <constraint firstItem="thu-EZ-Xws" firstAttribute="centerX" secondItem="h54-l8-RLR" secondAttribute="centerX" id="trQ-oe-Qtc"/>
                                     <constraint firstItem="Yap-CC-1np" firstAttribute="leading" secondItem="Dav-IX-zgY" secondAttribute="leading" id="xIc-V4-CKi"/>
                                     <constraint firstItem="dcG-6Q-g74" firstAttribute="leading" secondItem="5kB-rk-3oU" secondAttribute="leading" id="xb2-sl-z1f"/>
-                                    <constraint firstItem="Dav-IX-zgY" firstAttribute="top" secondItem="T7T-RQ-Ikz" secondAttribute="bottom" constant="8" symbolic="YES" id="yzN-cO-xCT"/>
                                     <constraint firstAttribute="bottom" secondItem="Zp6-ES-mpL" secondAttribute="bottom" constant="69" id="zBv-Dd-Pak"/>
                                 </constraints>
                             </scrollView>
