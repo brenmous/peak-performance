@@ -28,6 +28,17 @@ class YearReviewViewController: UITableViewController {
     
     @IBOutlet weak var changedMyPerformance: UITextView!
     
+    //"Just a few more questions" label
+    @IBOutlet weak var questionsLabel: UILabel!
+    
+    //Down arrow
+    @IBOutlet weak var downArrow: UIImageView!
+    
+    
+    
+    //Down arrow
+    
+    
     // MARK: - Actions
     @IBAction func doneButtonPressed(sender: AnyObject)
     {
@@ -69,12 +80,42 @@ class YearReviewViewController: UITableViewController {
             reasonsForDifferencesTextView.editable = false
             observedAboutMyPerformanceTextView.editable = false
             changedMyPerformance.editable = false
+
             
             let doneButton = self.navigationItem.rightBarButtonItem
             doneButton?.title = ""
             doneButton?.enabled = false
             
         }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        //If the review has been completed, hide the top cell that contains the prompt to complete the review.
+        //This is poorly done as each cell in a section has a custom height so each cell needs to be covered.
+        
+        //Graphics cell
+        if indexPath.section == 0 && indexPath.row != 0 && summary!.reviewed
+        {
+            return CGFloat(ROWHEIGHT_YEARLY_COMPLETE)
+        }
+        //Graphics cell
+        else if indexPath.section == 0 && indexPath.row != 0 && !summary!.reviewed
+        {
+            return CGFloat(ROWHEIGHT_YEARLY_INCOMPLETE)
+        }
+        //top buffer cell
+        else if indexPath.section == 0 && indexPath.row == 0
+        {
+            return 3
+        }
+        //Heading cells
+        else if indexPath.section != 0 && indexPath.row == 0
+        {
+            return 80
+        }
+        //Text cells
+        return 128
     }
     
 
