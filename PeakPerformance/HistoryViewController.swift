@@ -93,10 +93,12 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     */
     func sendToCoach(summary: MonthlySummary)
     {
+        print("SENDING TO COACH")
         //set recipient (coach email)
         let mailVC = MFMailComposeViewController( )
         mailVC.mailComposeDelegate = self
         mailVC.setToRecipients([self.currentUser!.coachEmail])
+        print("1")
         
         //get month of selected summary and set as email subject
         let month = NSDate( ).monthAsString(summary.date)
@@ -127,21 +129,26 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     */
     func generatePDF( ) -> [NSData]
     {
+        let junk = [NSData()]
+        print("UNWRAPPING SBS")
         //Get summary view controllers for creating PDFs from views
-        let vcSum = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_SUMMARY_VC) as! SummaryViewController
-        vcSum.summary = self.summaryToSend
-        vcSum.tableView!.reloadData()
+        let vcSum = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_SUMMARY_VC) as? SummaryViewController
+        guard let vcs = vcSum else { print("VCSUM IS NIL"); return junk }
+        vcs.summary = self.summaryToSend
+        vcs.tableView!.reloadData()
  
-        let vcGoals = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_GOALS_VC) as! SecondSummaryViewController
-        vcGoals.summary = self.summaryToSend
-        vcGoals.tableView!.reloadData()
-        while(vcSum.viewIfLoaded == nil && vcGoals.viewIfLoaded == nil){} //wait for views to load
-     
+        let vcGoals = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_GOALS_VC) as? SecondSummaryViewController
+        guard let vcg = vcGoals else { print("VCGOALS IS NIL"); return junk }
+        vcg.summary = self.summaryToSend
+        vcg.tableView!.reloadData()
+        while(vcs.viewIfLoaded == nil && vcg.viewIfLoaded == nil){} //wait for views to load
+        print("FINISHED UNWRAP")
+        
         var pdfs = [NSData]( )
         do
         {
-            let pdfSum = try PDFGenerator.generate(vcSum.view)
-            let pdfGoals = try PDFGenerator.generate(vcGoals.view)
+            let pdfSum = try PDFGenerator.generate(vcs.view)
+            let pdfGoals = try PDFGenerator.generate(vcg.view)
             pdfs.insert(pdfSum, atIndex: 0); pdfs.insert(pdfGoals, atIndex: 1)
         }
         catch (let error)
