@@ -17,7 +17,7 @@ class GoalTableViewCell: UITableViewCell {
 
     var delegate: GoalTableViewCellDelegate?
     
-    @IBOutlet weak var iconImage: UIImageView!
+
     @IBOutlet weak var dueImageIcon: UIImageView!
     @IBOutlet weak var goalTextLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!

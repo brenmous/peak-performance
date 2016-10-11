@@ -377,7 +377,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
             cell.accessoryType = .None
-            cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
+            cell.goalTextLabel.textColor = PEAK_BLACK
             cell.dueLabelIcon.hidden = false
             
             switch kla
@@ -440,6 +440,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let highlightedImageButton = UIImage(named: klaIconHighlighted)
         cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
         cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
+        
         return cell
     }
     

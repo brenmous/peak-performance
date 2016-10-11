@@ -312,7 +312,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let goal = currentUser!.weeklyGoals[indexPath.row]
     
         
-        // Configure the cell...
+        // Configure the cell
         var klaIcon = ""
         var klaIconHighlighted = ""
         let kla = goal.kla
@@ -320,9 +320,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         if goal.complete
         {
             cell.userInteractionEnabled = false
-            cell.completeButton.hidden = true
             cell.completeButton.enabled = false
             cell.accessoryType = .Checkmark
+            cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueImageIcon.hidden = true
 
@@ -357,7 +357,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             }
             
             // use image instead of the button
-            cell.iconImage.image = UIImage(named: klaIcon)
+//            cell.iconImage.image = UIImage(named: klaIcon)
             
         }
         else if !goal.complete
@@ -366,7 +366,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
             cell.accessoryType = .None
-            cell.goalTextLabel.textColor = UIColor.init(red: 54/255, green: 50/255, blue: 42/255, alpha: 1)
+            cell.goalTextLabel.textColor = PEAK_BLACK
+            
             switch kla
             {
             case KLA_FAMILY:
@@ -406,6 +407,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             }
             
             cell.dueImageIcon.hidden = false
+            
             if goal.due == Goal.Due.overdue
             {
                 // show due image

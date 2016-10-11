@@ -373,7 +373,7 @@
                                                     <action selector="signUpButtonPressed:" destination="oXb-Ny-XTu" eventType="touchUpInside" id="mNZ-N0-LJc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-0s-LUf">
                                                 <rect key="frame" x="201" y="39" width="109" height="29"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
@@ -633,9 +633,6 @@
                                                 <constraint firstAttribute="width" constant="35" id="U7C-AB-Tsh"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UzL-bZ-hEG">
-                                            <rect key="frame" x="21" y="8" width="40" height="39"/>
-                                        </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kK6-bq-LUI">
                                             <rect key="frame" x="21" y="8" width="40" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -659,14 +656,10 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="aUr-44-wb5" secondAttribute="trailing" constant="8" id="DbP-N1-FUu"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="aUr-44-wb5" secondAttribute="bottom" constant="25.5" id="HRD-Lu-KpX"/>
                                         <constraint firstItem="gko-yX-lHo" firstAttribute="top" secondItem="NwC-tn-gqo" secondAttribute="top" id="Lor-5d-eMs"/>
-                                        <constraint firstItem="UzL-bZ-hEG" firstAttribute="trailing" secondItem="kK6-bq-LUI" secondAttribute="trailing" id="Wog-2f-Dbg"/>
-                                        <constraint firstItem="UzL-bZ-hEG" firstAttribute="top" secondItem="kK6-bq-LUI" secondAttribute="top" id="b9h-HB-Msl"/>
                                         <constraint firstItem="aUr-44-wb5" firstAttribute="leading" secondItem="gko-yX-lHo" secondAttribute="trailing" constant="8" symbolic="YES" id="c9I-9h-tIZ"/>
                                         <constraint firstItem="kK6-bq-LUI" firstAttribute="top" secondItem="NwC-tn-gqo" secondAttribute="topMargin" id="deZ-Wl-4As"/>
-                                        <constraint firstItem="UzL-bZ-hEG" firstAttribute="centerY" secondItem="kK6-bq-LUI" secondAttribute="centerY" id="f41-Yi-UFi"/>
                                         <constraint firstItem="gko-yX-lHo" firstAttribute="centerY" secondItem="NwC-tn-gqo" secondAttribute="centerY" id="rnf-qp-9gk"/>
                                         <constraint firstItem="aUr-44-wb5" firstAttribute="top" secondItem="NwC-tn-gqo" secondAttribute="topMargin" constant="-12" id="w60-C3-aKo"/>
-                                        <constraint firstItem="UzL-bZ-hEG" firstAttribute="leading" secondItem="kK6-bq-LUI" secondAttribute="leading" id="x9x-Eg-I46"/>
                                     </constraints>
                                     <edgeInsets key="layoutMargins" top="8" left="5" bottom="8" right="8"/>
                                 </tableViewCellContentView>
@@ -675,7 +668,6 @@
                                     <outlet property="completeButton" destination="kK6-bq-LUI" id="L3F-O5-phL"/>
                                     <outlet property="dueImageIcon" destination="aUr-44-wb5" id="e6z-vX-Eya"/>
                                     <outlet property="goalTextLabel" destination="gko-yX-lHo" id="IRG-bJ-llR"/>
-                                    <outlet property="iconImage" destination="UzL-bZ-hEG" id="Yah-Uc-enb"/>
                                     <segue destination="m6s-0q-9KL" kind="show" identifier="editWeeklyGoal" id="1fl-TW-tGD"/>
                                 </connections>
                             </tableViewCell>
