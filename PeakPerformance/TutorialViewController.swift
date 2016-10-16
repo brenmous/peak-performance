@@ -21,20 +21,16 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     
     @IBAction func skipTutorial(sender: AnyObject) {
         self.performSegueWithIdentifier( GO_TO_INITIAL_SETUP, sender: self )
-        print("skip button")
     }
     
     // Mark: Delegate Methods
     
     func lastPageDone() {
-        print("Last page done")
-        //TODO: segue to initial setup
         self.performSegueWithIdentifier( GO_TO_INITIAL_SETUP, sender: self )
         
     }
     
     func getFirstName() -> String {
-        print("function works")
         return (currentUser?.fname)!
     }
 

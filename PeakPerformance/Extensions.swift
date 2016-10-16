@@ -16,17 +16,18 @@ import Firebase // https://firebase.google.com
     This file contains various extensions to classes, mainly used to package methods and abstract them away from view controllers.
 */
 
-
 // MARK: - UIViewController
 extension UIViewController
 {
-    //  - Loads the burger icon with the badge if a monthly review is available
-    //  - Sets up a UIImage and a Highlighted UIImage and a button and assigns it to leftBarButtonItem
-    //  - ENMBadgedBarButtonItem is responsible for the badge
-    
+    // BEN //
+    /** 
+        Sets up the side menu button (left bar button).
+            
+        - Parameters:
+            - number: the badge for number of incomplete monthly reviews.
+    */
     func setUpLeftBarButtonItem( number: String )
     {
-        
         let image = UIImage(named: MENU_ICON_NAME)
         let highlightedImage = UIImage(named: MENU_ICON_HIGHLIGHTED_NAME)
         let button = UIButton(type: .Custom)
@@ -48,24 +49,31 @@ extension UIViewController
         newBarButton.badgeValue = number  // sets the dot and the number inside
         navigationItem.leftBarButtonItem = newBarButton
     }
+    // END BEN //
 }
 
 extension UIViewController
 {
-    // function to Bar Button item tap
+    // BEN //
+    /// Triggers when side menu button is pressed (presents the side menu).
     func leftButtonPressed(_sender: UIButton)
     {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
         navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGrayColor()
     }
+    // END BEN //
     
 }
 
 extension UITableViewController
 {
-    // Returns an incremental value in CGFloat for the dot to move from the origin
-    // - Parameter: Rating from Summary KLA Rating dictionary
-    
+    // BEN //
+    /** Returns an incremental value in CGFloat for the dot to move from the origin
+        - Parameters: 
+            - rating: Rating from Summary KLA Rating dictionary
+     
+        - Returns: a CGFloat for displacing KLA dot point from origin.
+    */
     static func getIncrementFromRating(rating: Double) -> CGFloat {
         
         let decimal = rating * 10
@@ -106,13 +114,20 @@ extension UITableViewController
         
         return increment
     }
+    // END BEN //
 }
 
 
 //MARK: - SideMenu
 extension SideMenuManager
 {
-    /// Set up side menu in view controllers that should be able to display it.
+    /** 
+        Set up side menu in view controllers that should be able to display it.
+        
+        - Parameters: 
+            - sb: current storyboard according to view controller hosting the side menu.
+            - user: the currently active user.
+    */
     public class func setUpSideMenu( sb: UIStoryboard, user: User )
     {
         SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
@@ -122,7 +137,8 @@ extension SideMenuManager
         smvc.currentUser = user
         smvc.sb = sb
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
-
+        
+        // BEN //
         // Pan Gestures
         
         SideMenuManager.menuAddPanGestureToPresent(toView: (menuLeftNavigationController?.navigationBar)!)
@@ -134,6 +150,7 @@ extension SideMenuManager
         SideMenuManager.menuShadowOpacity = 0.5
         SideMenuManager.menuBlurEffectStyle = .Light
         SideMenuManager.menuAnimationFadeStrength = 0.5
+        // END BEN //
     }
 }
 
@@ -427,74 +444,6 @@ extension UIAlertController
         annualReviewAlertController.addAction(cancel) ; annualReviewAlertController.addAction(confirm)
         return annualReviewAlertController
     }
-}
-
-extension FIRAuth
-{ /*
-    /// Reauthenticates the current user
-    func reauthenticate(currentUser: User, password: String )
-    {
-        print("DAVC - deleteAccount(): attemping to reauthenticate user...")
-        guard let cu = currentUser else
-        {
-            return
-        }
-        
-        let user = FIRAuth.auth()?.currentUser
-        let credential = FIREmailPasswordAuthProvider.credentialWithEmail(currentUser.email, password: password)
-        user?.reauthenticateWithCredential(credential) { (error) in
-            guard let error = error else
-            {
-                //reauth successful
-                print("CPVC - reauthUser(): auth successful")
-                self.activityIndicator.stopAnimating()
-                self.loadScreenBackground.hidden = true
-                
-                //show destructive alert
-                self.presentViewController(UIAlertController.getDeleteAccountAlert(self), animated: true, completion: nil)
-                
-                return
-            }
-            //handle reauth error
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
-            {
-                return
-            }
-            print("CPVC - reauthUser(): auth failed")
-            self.loadScreenBackground.hidden = true
-            self.activityIndicator.stopAnimating()
-            
-            switch errCode
-            {
-            case .ErrorCodeUserNotFound:
-                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
-                
-            case .ErrorCodeTooManyRequests:
-                self.deleteAccountErrorLabel.text = REQUEST_ERR_MSG
-                
-            case .ErrorCodeNetworkError:
-                self.deleteAccountErrorLabel.text = NETWORK_ERR_MSG
-                
-            case .ErrorCodeInternalError:
-                self.deleteAccountErrorLabel.text = FIR_INTERNAL_ERROR
-                
-            case .ErrorCodeUserDisabled:
-                self.deleteAccountErrorLabel.text = USER_DISABLED_ERROR
-                
-            case .ErrorCodeWrongPassword:
-                self.deleteAccountErrorLabel.text = CHANGE_PW_ERROR
-                
-            case .ErrorCodeUserMismatch:
-                self.deleteAccountErrorLabel.text = LOGIN_ERR_MSG
-                
-            default:
-                print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
-                self.deleteAccountErrorLabel.text = "Error case not currently covered." //DEBUG
-            }
-            self.deleteAccountErrorLabel.hidden = false
-            self.navigationItem.rightBarButtonItem?.enabled = false
-        }
-    } */
 }
 
 

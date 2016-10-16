@@ -15,8 +15,11 @@ class SettingsViewController: UITableViewController
     var currentUser: User?
     
     // MARK: - Actions
+    
+    /// Unwind segue to this view controller.
     @IBAction func unwindToSettings( sender: UIStoryboardSegue){}
     
+    /// Sets UserDefaults for autologin based on state of switch.
     @IBAction func automaticLoginSwitched(sender: AnyObject)
     {
         let s = sender as! UISwitch
@@ -43,13 +46,13 @@ class SettingsViewController: UITableViewController
     override func viewWillAppear(animated: Bool )
     {
         super.viewWillAppear(animated)
+        //set switch to reflect current autologin setting
         automaticLoginSwitch.on = NSUserDefaults().boolForKey(USER_DEFAULTS_AUTO_LOGIN)
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)

@@ -18,6 +18,10 @@ class SocialMediaViewController: UIViewController
     
     @IBOutlet weak var twitterSwitch: UISwitch!
     
+    
+    // MARK: - Actions
+
+    /// Updates whether Twitter is enabled and if so asks user to login in via Twitter API.
     @IBAction func twitterSwitchSwitched(sender: AnyObject?)
     {
         if twitterSwitch.on
@@ -34,6 +38,8 @@ class SocialMediaViewController: UIViewController
         }
     }
 
+    // MARK: - Overriden methods
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
