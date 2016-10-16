@@ -732,6 +732,30 @@ let POPTIP_ARROW_WIDTH: CGFloat = 10
 
 let POPTIP_ARROW_HEIGHT: CGFloat = 10
 
+// MARK: - Shortened title for PopTip
+
+let SHORTENED_KLA_HEALTH_TITLE = "Health"
+
+let SHORTENED_KLA_FRIEND_TITLE = "Friends"
+
+let SHORTENED_KLA_WORK_TITLE = "Work"
+
+let SHORTENED_KLA_PERSONAL_TITLE = "Personal Dev't"
+
+let SHORTENED_KLA_PARTNER_TITLE = "Partner"
+
+let SHORTENED_KLA_FINANCIAL_TITLE = "Financial"
+
+let SHORTENED_KLA_EMOTIONAL_TITLE = "Emo/Spiritual"
+
+// MARK: - PEAK PERFORMANCE VALUE
+
+let PEAK_PERFORMANCE_LOW: CGFloat = 90
+
+let PEAK_PERFORMANCE_MEDIUM: CGFloat = 115
+
+let PEAK_PERFORMANCE_HIGH: CGFloat = 120
+
 // MARK: - UITableView
 
 /// Rowheight for goal summary cells with no kick it text.
