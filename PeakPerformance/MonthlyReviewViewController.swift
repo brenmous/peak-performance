@@ -42,7 +42,6 @@ class MonthlyReviewViewController: UITableViewController {
     {
         guard let s = self.summary else
         {
-            print("MRVC: could not get summary")
             return
         }
         s.klaRatings[KLA_FAMILY] = Double(self.familySlider.value)

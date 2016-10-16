@@ -295,3 +295,7 @@
 10/10/2016 16:30 - 18:00, 21:30 - 22:10
 	- fixed notification bug
 	- About section (disclaimer, acknowledgements)
+
+16/10/2016 16:20 - 17:10
+	- task details in sprint 5 
+	- packaging source code
