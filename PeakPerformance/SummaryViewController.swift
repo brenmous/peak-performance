@@ -162,9 +162,12 @@ class SummaryViewController: UITableViewController {
         healthPoint.frame = healthFrame
         
         /// partner point
+        
         var partnerFrame: CGRect = partnerPoint.frame
         partnerFrame.origin.x = xmidpoint + UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_PARTNER]!)
         partnerFrame.origin.y = ymidpoint
+        
+        
         partnerPoint.translatesAutoresizingMaskIntoConstraints = true
         partnerPoint.frame = partnerFrame
         
@@ -186,7 +189,7 @@ class SummaryViewController: UITableViewController {
         
         
         /// emotional spiritual point
-        var emotionalSpiritualFrame: CGRect = workPoint.frame
+        var emotionalSpiritualFrame: CGRect = emotionalSpiritualPoint.frame
         emotionalSpiritualFrame.origin.x = xmidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
         emotionalSpiritualFrame.origin.y = ymidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
         emotionalSpiritualPoint.translatesAutoresizingMaskIntoConstraints = true
@@ -197,75 +200,97 @@ class SummaryViewController: UITableViewController {
     
 
     func displayPopTips( ) {
-        
-        /// family
-        familyPopTip.offset = POPTIP_OFFSET
-        familyPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
-        familyPopTip.shouldDismissOnTapOutside = false
-        familyPopTip.showText(KLA_FAMILY, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
-        familyPopTip.popoverColor = PEAK_FAMILY_BLUE
-        familyPopTip.textColor = UIColor.whiteColor()
 
-        /// friend
-        friendPopTip.offset = POPTIP_OFFSET
-        friendPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
-        friendPopTip.shouldDismissOnTapOutside = false
-        friendPopTip.showText(KLA_FRIENDSSOCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
-        friendPopTip.popoverColor = PEAK_FRIEND_CYAN
-        friendPopTip.textColor = UIColor.blackColor()
-        
         /// Health
         healthPopTip.offset = POPTIP_OFFSET
-        healthPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
+        healthPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 30)
         healthPopTip.shouldDismissOnTapOutside = false
-        healthPopTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
+        healthPopTip.showText("Health", direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
         healthPopTip.popoverColor = PEAK_HEALTH_GREEN
-        healthPopTip.textColor = UIColor.blackColor()
+        healthPopTip.textColor = UIColor.whiteColor()
 
+        /// Work
+        workPopTip.offset = POPTIP_OFFSET
+        workPopTip.bubbleOffset = 10
+        workPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 15)
+        workPopTip.shouldDismissOnTapOutside = false
+        workPopTip.showText("Work", direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
+        workPopTip.popoverColor = PEAK_WORK_YELLOW
+        workPopTip.textColor = UIColor.whiteColor()
+
+        /// Personal Development
+        personalDevPopTip.offset = POPTIP_OFFSET
+        personalDevPopTip.bubbleOffset = -35
+        personalDevPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 15)
+        personalDevPopTip.shouldDismissOnTapOutside = false
+        personalDevPopTip.showText("Personal Dev't", direction: .Up, maxWidth: POPTIP_MAXWIDTH + 60, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
+        personalDevPopTip.popoverColor = PEAK_PERSONAL_ORANGE
+        personalDevPopTip.textColor = UIColor.whiteColor()
         
+
         /// Partner
-        partnerPopTip.offset = POPTIP_OFFSET
-        partnerPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
+        let customPartnerView = UIView(frame: CGRect(x: partnerPoint.frame.origin.x + POPTIP_OFFSET + 3, y: partnerPoint.frame.origin.y - POPTIP_OFFSET + 3, width: 65, height: 15))
+        let customPartnerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: self.view.frame.width, height: 15))
+        customPartnerLabel.numberOfLines = 1
+        //customPartnerLabel.textAlignment = NSTextAlignment.Center
+        customPartnerLabel.text = "Partner"
+        customPartnerLabel.textColor = UIColor.whiteColor()
+        customPartnerLabel.font = UIFont.systemFontOfSize(14)
+        customPartnerView.addSubview(customPartnerLabel)
+        partnerPopTip.showCustomView(customPartnerView, direction: .Right, inView: self.view, fromFrame: customPartnerView.frame)
+       // partnerPopTip.offset = abs(POPTIP_OFFSET)
+        //partnerPopTip.bubbleOffset = -50
+        partnerPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH , height: POPTIP_ARROW_HEIGHT + 15)
         partnerPopTip.shouldDismissOnTapOutside = false
-        partnerPopTip.showText(KLA_PARTNER, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: partnerPoint.frame)
+        //partnerPopTip.showText(KLA_PARTNER, direction: .Down, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: partnerPoint.frame)
         partnerPopTip.popoverColor = PEAK_PARTNER_PURPLE
         partnerPopTip.textColor = UIColor.whiteColor()
 
         
         /// Financial
-        financialPopTip.offset = POPTIP_OFFSET
-        financialPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
+        let customFinancialView = UIView(frame: CGRect(x: financialPoint.frame.origin.x, y: partnerPoint.frame.origin.y - POPTIP_OFFSET + 3, width: 75, height: 15))
+        let customFinancialLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
+        customFinancialLabel.numberOfLines = 1
+        //customPartnerLabel.textAlignment = NSTextAlignment.Center
+        customFinancialLabel.text = "Financial"
+        customFinancialLabel.textColor = UIColor.whiteColor()
+        customFinancialLabel.font = UIFont.systemFontOfSize(14)
+        customFinancialView.addSubview(customFinancialLabel)
+        financialPopTip.showCustomView(customFinancialView, direction: .Left, inView: self.view, fromFrame: customFinancialView.frame)
+
+        //financialPopTip.offset = POPTIP_OFFSET
+        financialPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 15)
         financialPopTip.shouldDismissOnTapOutside = false
-        financialPopTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: financialPoint.frame)
+        //financialPopTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: financialPoint.frame)
         financialPopTip.popoverColor = PEAK_FINANCE_BLUE_GREEN
-        financialPopTip.textColor = UIColor.whiteColor()
-
-        
-        /// Personal Development
-        personalDevPopTip.offset = POPTIP_OFFSET
-        personalDevPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
-        personalDevPopTip.shouldDismissOnTapOutside = false
-        personalDevPopTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
-        personalDevPopTip.popoverColor = UIColor.orangeColor()
-        personalDevPopTip.textColor = UIColor.whiteColor()
-
-        
-        /// Work
-        workPopTip.offset = POPTIP_OFFSET
-        workPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
-        workPopTip.shouldDismissOnTapOutside = false
-        workPopTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
-        workPopTip.popoverColor = UIColor.yellowColor()
-        workPopTip.textColor = UIColor.blackColor()
-
+        //financialPopTip.textColor = UIColor.whiteColor()
         
         /// Emotional/Spritual
-        emotionalSpiritualPopTip.offset = POPTIP_OFFSET
-        emotionalSpiritualPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
+        emotionalSpiritualPopTip.offset = abs(POPTIP_OFFSET)
+        emotionalSpiritualPopTip.bubbleOffset = -35
+        emotionalSpiritualPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 15)
         emotionalSpiritualPopTip.shouldDismissOnTapOutside = false
-        emotionalSpiritualPopTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH+30, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
+        emotionalSpiritualPopTip.showText("Emo/Spiritual", direction: .Down, maxWidth: POPTIP_MAXWIDTH+60, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
         emotionalSpiritualPopTip.popoverColor = PEAK_EMOTIONAL_VIOLET
         emotionalSpiritualPopTip.textColor = UIColor.whiteColor()
+        
+        /// family
+        familyPopTip.offset = abs(POPTIP_OFFSET)
+        familyPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 25)
+        familyPopTip.shouldDismissOnTapOutside = false
+        familyPopTip.showText(KLA_FAMILY, direction: .Down, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
+        familyPopTip.popoverColor = PEAK_FAMILY_BLUE
+        familyPopTip.textColor = UIColor.whiteColor()
+        
+        /// friend
+        friendPopTip.offset = abs(POPTIP_OFFSET)
+        friendPopTip.bubbleOffset = 20
+        friendPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 15)
+        friendPopTip.shouldDismissOnTapOutside = false
+        friendPopTip.showText("Friends", direction: .Down, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
+        friendPopTip.popoverColor = PEAK_FRIEND_CYAN
+        friendPopTip.textColor = UIColor.whiteColor()
+
 
     }
     

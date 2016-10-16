@@ -91,14 +91,14 @@ class SecondMonthlyReviewViewController: UITableViewController {
     @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
         popTip.hide()
         popTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
-        popTip.popoverColor = UIColor.orangeColor()
+        popTip.popoverColor = PEAK_PERSONAL_ORANGE
         popTip.textColor = UIColor.whiteColor()
     }
     
     @IBAction func workPointPressed(sender: AnyObject) {
         popTip.hide()
         popTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
-       popTip.popoverColor = UIColor.yellowColor()
+       popTip.popoverColor = PEAK_WORK_YELLOW
         popTip.textColor = UIColor.blackColor()
     }
 

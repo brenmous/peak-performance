@@ -236,7 +236,7 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         personalDevPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         personalDevPopTip.shouldDismissOnTapOutside = false
         personalDevPopTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: personalPoint.frame)
-        personalDevPopTip.popoverColor = UIColor.orangeColor()
+        personalDevPopTip.popoverColor = PEAK_PERSONAL_ORANGE
         personalDevPopTip.textColor = UIColor.whiteColor()
         
         
@@ -245,7 +245,7 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         workPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         workPopTip.shouldDismissOnTapOutside = false
         workPopTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
-        workPopTip.popoverColor = UIColor.yellowColor()
+        workPopTip.popoverColor = PEAK_WORK_YELLOW
         workPopTip.textColor = UIColor.blackColor()
         
         

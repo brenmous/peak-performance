@@ -701,21 +701,24 @@ let PEAK_NAV_BAR_COLOR = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, 
 
 let PEAK_BLACK = UIColor.init(red: 54/255, green: 54/255, blue: 52/255, alpha: 1);
 
-let PEAK_FAMILY_BLUE = UIColor.init(red: 32/355, green: 113/255, blue: 201/255, alpha: 1)
+let PEAK_FAMILY_BLUE = UIColor.init(red: 32/355, green: 113/255, blue: 201/255, alpha: 0.75)
 
+let PEAK_FRIEND_CYAN = UIColor.init(red: 101/355, green: 229/255, blue: 225/255, alpha:0.6)
 
-let PEAK_FRIEND_CYAN = UIColor.init(red: 101/355, green: 229/255, blue: 225/255, alpha: 1)
+let PEAK_HEALTH_GREEN = UIColor.init(red: 191/355, green: 204/255, blue: 31/255, alpha: 0.75)
 
+let PEAK_PARTNER_PURPLE = UIColor.init(red: 193/355, green: 36/255, blue: 198/255, alpha: 0.75)
 
-let PEAK_HEALTH_GREEN = UIColor.init(red: 191/355, green: 204/255, blue: 31/255, alpha: 1)
+let PEAK_FINANCE_BLUE_GREEN = UIColor.init(red: 47/355, green: 188/255, blue: 184/255, alpha: 0.75)
 
-let PEAK_PARTNER_PURPLE = UIColor.init(red: 193/355, green: 36/255, blue: 198/255, alpha: 1)
+let PEAK_EMOTIONAL_VIOLET = UIColor.init(red: 144/355, green: 85/255, blue: 153/255, alpha: 0.6)
 
-let PEAK_FINANCE_BLUE_GREEN = UIColor.init(red: 47/355, green: 188/255, blue: 184/255, alpha: 1)
+let PEAK_WORK_YELLOW = UIColor.init(red: 242/255, green: 207/255, blue: 3/255, alpha: 0.6)
 
-let PEAK_EMOTIONAL_VIOLET = UIColor.init(red: 144/355, green: 85/255, blue: 153/255, alpha: 1)
+let PEAK_PERSONAL_ORANGE = UIColor.init(red: 247/255, green: 173/255, blue: 30/255, alpha: 0.6)
 
 let PEAK_POPTIP_MY_VALUES_GRAY = UIColor.init(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
+
 
 // MARK: - Pop Tips CGFloat Position
 
