@@ -21,10 +21,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     let dataService = DataService()
     
+    // User logged in
     var currentUser: User?
-    
     var currentDream: Dream?
-    
     var Dreams = [UIImage]()
     
     /// Indicates the index path of the cell
@@ -42,11 +41,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-
-    
     
     // MARK: - Methods
-    // These need to be commented.
     
     func addDream(dream: Dream) {
         guard let cu = currentUser else
@@ -55,7 +51,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             return
         }
         
-        
         StorageService.saveDreamImage(cu, dream: dream) { () in
             self.dataService.saveDream(cu.uid, dream: dream)
         }
@@ -63,21 +58,16 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         
         cu.dreams.append(dream)
         
-        
-        print("DVC: image added")
-        print("DVC: dream count \(self.currentUser!.dreams.count)")
         self.collectionView?.reloadData()
         
         shareOnTwitter(dream)
         
-        
     }
     
     func saveModifiedDream(dream: Dream) {
-        print("\(dream.dreamDesc)") // DEBUG
+
         guard let cu = currentUser else
         {
-            //user not available handle it HANDLE IT!
             return
         }
         
@@ -86,7 +76,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         
         self.collectionView?.reloadData()
-        
         
     }
     
@@ -107,7 +96,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     {
         guard let cu = self.currentUser else
         {
-            print("DVC: no user")
             return
         }
         for dream in cu.dreams
@@ -123,7 +111,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
                 {
                     PHImageManager( ).requestImageDataForAsset(photo!, options: nil) { (data, info, orientation, dict) in
                         dream.imageData = data!
-                        print("DVC: got dream image \(dream.did) from photo library")
                         self.collectionView?.reloadData( )
                     }
                 }
@@ -134,8 +121,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             {
                 StorageService.loadDreamImage(cu, dream: dream){ () in
                     self.collectionView?.reloadData()
-                    print("DVC: got dream image \(dream.did) from storage bucket")
-                    //In here we can save the image back to the user's device but it's probably not a good idea.
                 }
             }
         }
@@ -156,9 +141,6 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
     }
     /// END BREN ///
-
-
-
 
 
     // MARK: - Overriden functions
@@ -224,7 +206,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     // MARK: - UICollectionViewDataSource
     
-    
+    /// SOWMYA ///
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         
         var numOfSection: NSInteger = 0
@@ -236,7 +218,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             
             
         } else {
-            
+            // show dream placeholder if there are no dreams
             var dreamPlaceholderView : UIImageView
             dreamPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.collectionView!.bounds.size.width, self.collectionView!.bounds.size.height));
             dreamPlaceholderView.image = UIImage(named:DREAM_PLACEHOLDER)
@@ -245,9 +227,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         }
         return numOfSection
     }
+    /// END SOWMYA
 
-    
-    
+    // Used to count the number of dreams the user has
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return currentUser!.dreams.count
         

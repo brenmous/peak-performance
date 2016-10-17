@@ -12,23 +12,17 @@ import Photos
 import SideMenu // https://github.com/jonkykong/SideMenu
 
 
-
 protocol DreamDetailViewControllerDelegate {
     func addDream(dream: Dream)
     func saveModifiedDream(dream: Dream)
     func deleteDream(dream: Dream)
 }
+
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     
     // MARK: - Properties
     
-    var assetCollection: PHAssetCollection!
-    var albumCreated : Bool = false
-    var photosAsset: PHFetchResult!
-    var assetThumbnailSize:CGSize!
-    var collection: PHAssetCollection!
-    var assetCollectionPlaceholder: PHObjectPlaceholder!
     var currentUser: User?
     var currentDream: Dream?
     var delegate: DreamDetailViewControllerDelegate?
@@ -38,6 +32,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     let imgPicker = UIImagePickerController( )
     var dreamImageLocalURL: NSURL?
     
+       
     // MARK: - Outlets
     
     @IBOutlet weak var dreamLabel: UILabel!
@@ -66,7 +61,6 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         {
             updateDream( )
             
-            print("DVC: Update dream") //DEBUG
         }
     }
     
@@ -99,7 +93,9 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         presentViewController(deleteDreamAlertController, animated: true, completion: nil )
         
     }
-
+    
+    /// SOWMYA ///
+    
     @IBAction func getPhotoFromCameraRoll(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
             self.imgPicker.delegate = self
@@ -112,6 +108,8 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             //handle error
         }
     }
+    
+    /// END SOWMYA ///
     
     
     // MARK: - Methods
@@ -159,8 +157,11 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         // delegate?.saveModifiedDream(dream)
     }
 
+    /// SOWMYA ///
     
+    // Allows user to select photo from camera roll
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         {
             imageData = UIImageJPEGRepresentation(pickedImage, JPEG_QUALITY)
@@ -174,38 +175,13 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    
+    // Dismiss the camera roll after selecting photo
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
-    func createAlbum() {
-        
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title = %@", "Peak Performance")
-        let collection : PHFetchResult = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: fetchOptions)
-        
-        if let obj: AnyObject = collection.firstObject {
-            self.albumCreated = true
-            assetCollection = obj as! PHAssetCollection
-        } else {
-            
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-                let createAlbumRequest : PHAssetCollectionChangeRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle("Peak Performance")
-                self.assetCollectionPlaceholder = createAlbumRequest.placeholderForCreatedAssetCollection
-                }, completionHandler: { success, error in
-                    self.albumCreated = (success ? true: false)
-                    
-                    if (success) {
-                        let collectionFetchResult = PHAssetCollection.fetchAssetCollectionsWithLocalIdentifiers([self.assetCollectionPlaceholder.localIdentifier], options: nil)
-                        print(collectionFetchResult)
-                        self.assetCollection = collectionFetchResult.firstObject as! PHAssetCollection
-                    }
-            })
-        }
-    }
-    
+    /// END SOWMYA ///
     
     // MARK: - Overridden methods
     
@@ -229,8 +205,6 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         //text field delegates
         dreamText.delegate = self
         
-        //createAlbum()
-        
         // text view UI configuration
         dreamText.layer.cornerRadius = 5
         dreamText.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
@@ -245,37 +219,5 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - UITextView placeholder
-    func textViewDidBeginEditing(textView: UITextView)
-    {
-        if textView.textColor == UIColor.lightGrayColor()
-        {
-            textView.text = ""
-            textView.textColor = UIColor.blackColor( )
-        }
-    }
-    
-    
-    // MARK: - keyboard stuff
-    /// Work around for dismissing keyboard on text view.
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
-    {
-        if text == "\n"
-        {
-            textView.resignFirstResponder( )
-            //validator.validate(self)
-            return false
-        }
-        else
-        {
-            return true
-        }
-    }
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
-    {
-        self.view.endEditing(true)
-    }
-    
     
 }
