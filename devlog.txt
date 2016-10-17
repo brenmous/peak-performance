@@ -299,3 +299,6 @@
 16/10/2016 16:20 - 17:10
 	- task details in sprint 5 
 	- packaging source code
+
+17/10/2016 20:40 - 21:22 
+	- dreamlist change photo issue

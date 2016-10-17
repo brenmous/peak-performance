@@ -2,7 +2,7 @@
 //  DreamCollectionViewController.swift
 //  PeakPerformance
 //
-//  Created by Sai on 13/08/2016.
+//  Created by Sowmya on 13/08/2016.
 //  Copyright © 2016 Bren Moushall, Benjamin Chiong, Sowmya Devarakonda. All rights reserved.
 //
 

@@ -134,16 +134,10 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         {
             return
         }
-        cd.dreamDesc = dreamText.text!
-        if let di = dreamImg.image
-        {
-            imageData = UIImageJPEGRepresentation(di, JPEG_QUALITY)
-            cd.imageData = imageData!
-        }
-        if self.dreamImageLocalURL != nil
-        {
-            cd.imageLocalURL = self.dreamImageLocalURL
-        }
+        print("Updating dream")
+        cd.dreamDesc = self.dreamText.text!
+        cd.imageData = self.imageData!
+        cd.imageLocalURL = self.dreamImageLocalURL
         delegate?.saveModifiedDream(cd)
     }
     
@@ -162,26 +156,18 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         dreamImg.image = UIImage(data: imageData)
-        
         // delegate?.saveModifiedDream(dream)
     }
 
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
             imageData = UIImageJPEGRepresentation(pickedImage, JPEG_QUALITY)
             imageSet = pickedImage
             dreamImg.contentMode = .ScaleAspectFit
             dreamImg.image = pickedImage
-         
-            //if the user has taken a photo, then save it to the photo library
-            if imgPicker.sourceType == .Camera
-            {
-                UIImageWriteToSavedPhotosAlbum(pickedImage, nil, nil, nil)
-            }
-            //TODO: - this is a problem, can't get URL of camera photo
             self.dreamImageLocalURL = info[UIImagePickerControllerReferenceURL] as? NSURL
-            print("DDVC: local URL of selected image is \(self.dreamImageLocalURL!.absoluteString)")
         }
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -226,7 +212,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if currentDream != nil
+        if currentDream != nil && dreamImg.image == nil
         {
             self.updateImageandTextView()
         }
@@ -291,16 +277,5 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         self.view.endEditing(true)
     }
     
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
