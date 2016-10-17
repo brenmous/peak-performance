@@ -133,8 +133,8 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         }
         cu.values[KLA_FRIENDSSOCIAL] = friendsTextView.text
         self.dataService.saveValues(cu)
-        print("MVVC: This is my financial goal \(cu.values[KLA_FINANCIAL]!)") //label debug strings please
     }
+    
     /// Updates text views with details from the current my values (if available)
     func updateTextViews( )
     {
@@ -153,6 +153,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         print("MVVC: textviews updated \(cu.values[KLA_FRIENDSSOCIAL])") // DEBUG
     }
     // MARK: Overridden methods
+
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -184,10 +185,12 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         self.setUpLeftBarButtonItem( String(self.currentUser!.numberOfUnreviwedSummaries()) )
         self.tableView.reloadData()
     }
+    
+    // BEN //
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /// Poptip
+        /// Poptip setup
         infoPopTip.textAlignment = .Left
         infoPopTip.offset = POPTIP_OFFSET_MY_VALUES
         infoPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
@@ -211,7 +214,8 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-//        saveValues( )
+        
+       /// Determines if a textfield has been edited and prompts the user to save the updated text
        if familyTextView.text != currentUser!.values[KLA_FAMILY] {
             showSaveAlert()
        } else if friendsTextView.text != currentUser!.values[KLA_FRIENDSSOCIAL] {
@@ -231,6 +235,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         }
         
     }
+    // END BEN //
     
     func showSaveAlert() {
             let saveNotificationAlertController = UIAlertController(title: SAVE_VALUE_ALERT, message: CONFIRM_TO_SAVE_VALUES, preferredStyle: .Alert)
@@ -252,7 +257,6 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         if text == "\n"
         {
             textView.resignFirstResponder( )
-//            validator.validate(self)
             return false
         }
         else
@@ -261,12 +265,13 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
-    //Dismisses keyboard when tap outside keyboard detected.
+    ///Dismisses keyboard when tap outside keyboard detected.
     override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
     {
+        
         self.view.endEditing(true)
+        super.touchesBegan(touchers, withEvent: event)
     }
     
-
 
 }

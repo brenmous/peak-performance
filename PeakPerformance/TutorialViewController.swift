@@ -25,6 +25,10 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     
     // Mark: Delegate Methods
     
+    /**
+     Segues to the tabview controller
+     
+     */
     func lastPageDone() {
         self.performSegueWithIdentifier( GO_TO_INITIAL_SETUP, sender: self )
         
@@ -56,7 +60,6 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     }
     
     // Mark: Public Functions for Page Control
-    
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return pages.count
     }
@@ -65,6 +68,12 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
                 return 0
     }
     
+    /**
+     Instantiates the view controller from an array of identifiers through indexing
+     
+     Parameter:
+     - index of the array
+    */
     
     func viewControllerAtIndex(index: Int) -> UIViewController? {
         let vc = storyboard?.instantiateViewControllerWithIdentifier(pages[index])

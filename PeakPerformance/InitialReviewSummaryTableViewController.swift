@@ -119,40 +119,40 @@ class InitialReviewSummaryTableViewController: UITableViewController {
     func displayPoints( ) {
         
         
-        // origin
+        // Origin
         let xmidpoint = (self.view.frame.size.width/2) - (familyPoint.frame.size.width/2)
         let ymidpoint = (klaDiagramPeakPerformanceArea.frame.midY) - (familyPoint.frame.size.width/2)
         
         
-        // family point
+        // Family point
         var familyFrame: CGRect = familyPoint.frame
         familyFrame.origin.x = xmidpoint
         familyFrame.origin.y = ymidpoint + UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
         familyPoint.translatesAutoresizingMaskIntoConstraints = true
         familyPoint.frame = familyFrame
         
-        // financial point
+        // Financial point
         var financialFrame: CGRect = financePoint.frame
         financialFrame.origin.x = xmidpoint - UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FINANCIAL]!)
         financialFrame.origin.y = ymidpoint
         financePoint.translatesAutoresizingMaskIntoConstraints = true
         financePoint.frame = financialFrame
         
-        // friend point
+        // Friend point
         var friendFrame: CGRect = friendPoint.frame
         friendFrame.origin.x = xmidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FRIENDSSOCIAL]!))
         friendFrame.origin.y = ymidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FRIENDSSOCIAL]!))
         friendPoint.translatesAutoresizingMaskIntoConstraints = true
         friendPoint.frame = friendFrame
         
-        // health point
+        // Health point
         var healthFrame: CGRect = healthPoint.frame
         healthFrame.origin.x = xmidpoint
         healthFrame.origin.y = ymidpoint - UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_HEALTHFITNESS]!)
         healthPoint.translatesAutoresizingMaskIntoConstraints = true
         healthPoint.frame = healthFrame
         
-        // partner point
+        // Partner point
         var partnerFrame: CGRect = partnerPoint.frame
         partnerFrame.origin.x = xmidpoint + UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_PARTNER]!)
         partnerFrame.origin.y = ymidpoint
@@ -160,7 +160,7 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         partnerPoint.frame = partnerFrame
         
         
-        // personal development point
+        // Personal development point
         var personalDevelopmentFrame: CGRect = personalPoint.frame
         personalDevelopmentFrame.origin.x = xmidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_PERSONALDEV]!))
         personalDevelopmentFrame.origin.y = ymidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_PERSONALDEV]!))
@@ -168,7 +168,7 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         personalPoint.frame = personalDevelopmentFrame
         
         
-        // work point
+        // Work point
         var workFrame: CGRect = workPoint.frame
         workFrame.origin.x = xmidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_WORKBUSINESS]!))
         workFrame.origin.y = ymidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_WORKBUSINESS]!))
@@ -176,7 +176,7 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         workPoint.frame = workFrame
         
         
-        // emotional spiritual point
+        // Emotional spiritual point
         var emotionalSpiritualFrame: CGRect = workPoint.frame
         emotionalSpiritualFrame.origin.x = xmidpoint - ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
         emotionalSpiritualFrame.origin.y = ymidpoint + ((sqrt(2)/2) * UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_EMOSPIRITUAL]!))
@@ -186,6 +186,15 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         
     }
 
+    // BEN //
+    /**
+     Displays the poptips of the 8 KLAs. All except financial and partner are custom poptips that were created with CGRect.
+     Family, financial, partner and health poptips include an if-statement to determine the direction of the pop up.
+     
+     - Parameters:
+     - None
+     */
+    
     func displayPopTips( ) {
         var directionOfPopTip: CGFloat
         /// Health
@@ -207,6 +216,7 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         
         
         /// Work
+        
         workPopTip.offset = POPTIP_OFFSET
         workPopTip.bubbleOffset = 10
         workPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 7)
@@ -286,7 +296,7 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         emotionalSpiritualPopTip.popoverColor = PEAK_EMOTIONAL_VIOLET
         emotionalSpiritualPopTip.textColor = UIColor.whiteColor()
         
-        /// family
+        /// Family
         directionOfPopTip = UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
         familyPopTip.shouldDismissOnTapOutside = false
         
@@ -314,6 +324,8 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         friendPopTip.textColor = UIColor.whiteColor()
 
     }
+  
+    // END BEN //
     
     /// Updates the summary being reviewed with text from the text views.
     func updateSummaryWithText( )
@@ -333,29 +345,5 @@ class InitialReviewSummaryTableViewController: UITableViewController {
         self.emotionalSpiritualTextView.text = s.klaReasons[KLA_EMOSPIRITUAL]
     }
     
-    // MARK: - Table view data source
-
-    /*
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-    */
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-
 
 }

@@ -134,8 +134,13 @@ class SecondMonthlyReviewViewController: UITableViewController {
     }
     
     // BEN //
-    // Function to diplay the points of 8 key life areas;
-    // Derives the origin (0,0) from the midpoint of the parent view and the biggest circle
+    /**
+       Displays the points of 8 key life areas; Derives the origin (0,0) from the midpoint of the parent view and the biggest circle
+     
+     - Parameters:
+     - None
+     */
+    
     func displayPoints( ) {
         
         

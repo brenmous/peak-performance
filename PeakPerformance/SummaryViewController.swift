@@ -121,7 +121,12 @@ class SummaryViewController: UITableViewController {
         self.doINeedToChangeTextView.text = s.doIHaveToChange
     }
 
-    // FIXME: Please comment and turn raw values into constants
+    /**
+     Displays the points of 8 key life areas; Derives the origin (0,0) from the midpoint of the parent view and the biggest circle
+     
+     - Parameters:
+     - None
+     */
     // BEN //
     func displayPoints( ) {
         
@@ -192,7 +197,14 @@ class SummaryViewController: UITableViewController {
         
         
     }
-    
+
+    /**
+     Displays the poptips of the 8 KLAs. All except financial and partner are custom poptips that were created with CGRect. 
+     Family, financial, partner and health poptips include an if-statement to determine the direction of the pop up.
+     
+     - Parameters:
+     - None
+     */
 
     func displayPopTips( ) {
 
@@ -329,8 +341,6 @@ class SummaryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("hello i loaded")
-        //self.navigationController!.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
         
         self.updateTextViews( )
         
