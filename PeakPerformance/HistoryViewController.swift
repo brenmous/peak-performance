@@ -313,10 +313,12 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             if !summary.sent && summary.reviewed
             {
                 cell.sendToCoachButton.hidden = false
+                cell.sendToCoachImage.hidden = false
             }
             else
             {
                 cell.sendToCoachButton.hidden = true
+                cell.sendToCoachImage.hidden = true
             }
             
             //set "review ready" label
@@ -335,6 +337,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         {
             //let summary = s as! CurrentRealitySummary
             cell.sendToCoachButton.hidden = true
+            cell.sendToCoachImage.hidden = true
             cell.reviewReadyLabel.text = SUMMARY_CELL_VIEW_INITIAL_REVIEW
             cell.monthLabel.text = SUMMARY_CELL_INITIAL_REVIEW
             cell.reviewReadyLabel.textColor = UIColor.grayColor()
@@ -343,6 +346,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         {
             let summary = s as! YearlySummary
             cell.sendToCoachButton.hidden = true
+            cell.sendToCoachImage.hidden = true
             cell.monthLabel.text = SUMMARY_CELL_YEARLY_REVIEW
             
             if !summary.reviewed

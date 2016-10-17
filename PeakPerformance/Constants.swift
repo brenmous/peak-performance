@@ -762,7 +762,7 @@ let PEAK_PERFORMANCE_HIGH: CGFloat = 120
 let ROWHEIGHT_NO_KICK_IT = 53
 
 /// Rowheight for goal summary cell with kick it text.
-let ROWHEIGHT_KICK_IT = 80
+let ROWHEIGHT_KICK_IT = 90
 
 /// Rowheight for top yearly summary cell when review is complete.
 let ROWHEIGHT_YEARLY_COMPLETE = 0.1
@@ -787,5 +787,6 @@ let SUMMARY_CELL_VIEW_INITIAL_REVIEW = "View Summary"
 /// String for yearly review summary cell
 let SUMMARY_CELL_YEARLY_REVIEW = "Yearly Review"
 
+// MARK: - Second Summary VC strings
 
-
+let NO_WEEKLY_GOALS_MESSAGE = "No goals for this week."

@@ -21,7 +21,12 @@ class MonthlyGoalTableViewCell: UITableViewCell
     @IBOutlet weak var dueLabelIcon: UIImageView!
     @IBOutlet weak var goalTextLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var doneCircle: UIImageView!
+    
 
+    @IBAction func tickButtonToComplete(sender: AnyObject) {
+        delegate?.completeButtonPressed(self)
+    }
     
     @IBAction func completeButtonPressed(sender: AnyObject)
     {

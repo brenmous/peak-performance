@@ -337,7 +337,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         {
             cell.userInteractionEnabled = false
             cell.completeButton.enabled = false
-            cell.accessoryType = .Checkmark
+//            cell.accessoryType = .Checkmark
+            cell.doneCircle.image = UIImage(named: "done-circle")
             cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueLabelIcon.hidden = true
@@ -376,6 +377,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         {
             cell.completeButton.enabled = true
             cell.userInteractionEnabled = true
+            cell.doneCircle.image = UIImage(named: "not-done-circle")
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = PEAK_BLACK
             cell.dueLabelIcon.hidden = false

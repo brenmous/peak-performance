@@ -116,7 +116,7 @@ class SecondSummaryViewController: UITableViewController {
             frame.origin.x = 20
             cell.goalTextLabel.frame = frame
             cell.goalTextLabel.translatesAutoresizingMaskIntoConstraints = true
-            cell.goalTextLabel.text = "No goals for this week." //TODO: - Make constant
+            cell.goalTextLabel.text = NO_WEEKLY_GOALS_MESSAGE
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.userInteractionEnabled = false
             cell.selectionStyle = .None
@@ -168,6 +168,7 @@ class SecondSummaryViewController: UITableViewController {
             if !goal.kickItText.isEmpty
             {
                 cell.kickItTextView.text = "Kick it to the next level: \(goal.kickItText)"
+                
                 cell.kickItTextView.hidden = false
             }
          

@@ -248,7 +248,7 @@ class SummaryViewController: UITableViewController {
         customPartnerView.addSubview(customPartnerLabel)
         
         /// determines when pop tip is in Peak Performance to set leftward pop up direction
-        if directionOfPopTip >= PEAK_PERFORMANCE_MEDIUM {
+        if directionOfPopTip >= PEAK_PERFORMANCE_LOW {
             partnerPopTip.offset = POPTIP_OFFSET + 20
             partnerPopTip.showCustomView(customPartnerView, direction: .Left, inView: self.view, fromFrame: customPartnerView.frame)
         } else {
@@ -275,7 +275,7 @@ class SummaryViewController: UITableViewController {
         customFinancialView.addSubview(customFinancialLabel)
         
         /// determines when pop tip is in Peak Performance to set rightward pop up direction
-        if directionOfPopTip >= PEAK_PERFORMANCE_MEDIUM {
+        if directionOfPopTip >= PEAK_PERFORMANCE_LOW {
             financialPopTip.offset = POPTIP_OFFSET + 7
             financialPopTip.showCustomView(customFinancialView, direction: .Right, inView: self.view, fromFrame: customFinancialView.frame)
         } else {
@@ -288,7 +288,7 @@ class SummaryViewController: UITableViewController {
         
         /// Emotional/Spritual
         emotionalSpiritualPopTip.offset = abs(POPTIP_OFFSET)
-        emotionalSpiritualPopTip.bubbleOffset = -40
+        emotionalSpiritualPopTip.bubbleOffset = -100
         emotionalSpiritualPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 7)
         emotionalSpiritualPopTip.shouldDismissOnTapOutside = false
         emotionalSpiritualPopTip.showText(SHORTENED_KLA_EMOTIONAL_TITLE, direction: .Down, maxWidth: POPTIP_MAXWIDTH + 60, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)

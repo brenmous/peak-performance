@@ -321,7 +321,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         {
             cell.userInteractionEnabled = false
             cell.completeButton.enabled = false
-            cell.accessoryType = .Checkmark
+            //cell.accessoryType = .Checkmark
+            cell.doneCircle.image = UIImage(named: "done-circle")
             cell.tintColor = UIColor.darkGrayColor()
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.dueImageIcon.hidden = true
@@ -356,9 +357,6 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIcon = "F-done.png"
             }
             
-            // use image instead of the button
-//            cell.iconImage.image = UIImage(named: klaIcon)
-            
         }
         else if !goal.complete
         {
@@ -367,7 +365,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             cell.userInteractionEnabled = true
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = PEAK_BLACK
-            
+            cell.doneCircle.image = UIImage(named: "not-done-circle")
+
             switch kla
             {
             case KLA_FAMILY:
@@ -424,13 +423,14 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             {
                 // hide image
                 cell.dueImageIcon.hidden = true
-               
+                
             }
-
+            
         }
         // Image button for normal and highlighted
         let imageButton = UIImage(named: klaIcon)
         let highlightedImageButton = UIImage(named: klaIconHighlighted)
+        
         cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
         cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
     
