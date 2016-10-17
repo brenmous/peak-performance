@@ -44,7 +44,7 @@ class SecondSummaryViewController: UITableViewController {
             return
         }
         
-        //place goals in their respective subararys depending on the week of their deadline
+        //place goals in their respective subararrays depending on the week of their deadline
         for goal in s.weeklyGoals
         {
             weeklyGoalsByWeek[goal.getWeekOfGoal() - 1].append(goal)
@@ -108,7 +108,8 @@ class SecondSummaryViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> SecondSummaryTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("summaryCell", forIndexPath: indexPath) as! SecondSummaryTableViewCell
-
+ 
+        
         //no goals for this week so present "no goal" label
         if self.weeklyGoalsByWeek[indexPath.section].isEmpty
         {
@@ -120,11 +121,21 @@ class SecondSummaryViewController: UITableViewController {
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             cell.userInteractionEnabled = false
             cell.selectionStyle = .None
+
+  
             return cell
         }
         
         let goal = self.weeklyGoalsByWeek[indexPath.section][indexPath.row]
         
+        // Only displays separator when there are goals to show
+        for week in weeklyGoalsByWeek {
+            if !week .isEmpty {
+                tableView.separatorStyle = .SingleLine
+                cell.separatorInset = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
+            }
+        }
+
         // Configure the cell...
         
         cell.kickItTextView.hidden = true
@@ -168,7 +179,6 @@ class SecondSummaryViewController: UITableViewController {
             if !goal.kickItText.isEmpty
             {
                 cell.kickItTextView.text = "Kick it to the next level: \(goal.kickItText)"
-                
                 cell.kickItTextView.hidden = false
             }
          
@@ -176,7 +186,6 @@ class SecondSummaryViewController: UITableViewController {
         }
         else
         {
-            
             cell.accessoryType = .None
             cell.goalTextLabel.textColor = UIColor.lightGrayColor()
             switch kla
@@ -215,7 +224,6 @@ class SecondSummaryViewController: UITableViewController {
         cell.klaIconImageView.image = UIImage(named: klaIcon)
         cell.userInteractionEnabled = false
         cell.selectionStyle = .None
-        
         return cell
     }
 }
