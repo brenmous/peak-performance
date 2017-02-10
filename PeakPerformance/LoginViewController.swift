@@ -47,23 +47,23 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     
     // MARK: - Actions
     
-    @IBAction func logInButtonPressed(sender: AnyObject)
+    @IBAction func logInButtonPressed(_ sender: AnyObject)
     {
         validator.validate(self)
     }
     
-    @IBAction func signUpButtonPressed(sender: AnyObject)
+    @IBAction func signUpButtonPressed(_ sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier(GO_TO_SIGN_UP_SEGUE, sender: self )
+        shouldPerformSegue(withIdentifier: GO_TO_SIGN_UP_SEGUE, sender: self )
     }
     
-    @IBAction func resetPasswordButtonPressed(sender: AnyObject)
+    @IBAction func resetPasswordButtonPressed(_ sender: AnyObject)
     {
-        shouldPerformSegueWithIdentifier(GO_TO_RESET_PW_SEGUE, sender: self )
+        shouldPerformSegue(withIdentifier: GO_TO_RESET_PW_SEGUE, sender: self )
     }
     
     // FIXME: - change these two unwind segues to the single "unwindToLogIn" segue
-    @IBAction func unwindToLogIn(segue: UIStoryboardSegue){}
+    @IBAction func unwindToLogIn(_ segue: UIStoryboardSegue){}
     
     // MARK: - Methods
     
@@ -74,7 +74,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
+    func validationFailed(_ errors: [(Validatable, ValidationError)])
     {
         activityIndicator.stopAnimating()
     }
@@ -83,11 +83,11 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     func login()
     {
         activityIndicator.startAnimating()
-        logInErrorLabel.hidden = true
+        logInErrorLabel.isHidden = true
         logInErrorLabel.text = ""
-        logInButton.enabled = false
+        logInButton.isEnabled = false
         
-        FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text!, completion:  {
+        FIRAuth.auth()?.signIn( withEmail: emailField.text!, password: passwordField.text!, completion:  {
             user, error in
             guard let error = error else
             {
@@ -96,34 +96,34 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             }
             self.activityIndicator.stopAnimating()
             print("LIVC: error logging in - " + error.localizedDescription)
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else {
+            guard let errCode = FIRAuthErrorCode(rawValue: (error as NSError).code) else {
                 return
             }
             switch errCode
             {
-            case .ErrorCodeUserNotFound:
+            case .errorCodeUserNotFound:
                 self.logInErrorLabel.text = LOGIN_ERR_MSG
                 
-            case .ErrorCodeTooManyRequests:
+            case .errorCodeTooManyRequests:
                 self.logInErrorLabel.text = REQUEST_ERR_MSG
                 
-            case .ErrorCodeNetworkError:
+            case .errorCodeNetworkError:
                 self.logInErrorLabel.text = NETWORK_ERR_MSG
                 
-            case .ErrorCodeInternalError:
+            case .errorCodeInternalError:
                 self.logInErrorLabel.text = FIR_INTERNAL_ERROR
                 
-            case .ErrorCodeUserDisabled:
+            case .errorCodeUserDisabled:
                 self.logInErrorLabel.text = USER_DISABLED_ERROR
                 
-            case .ErrorCodeWrongPassword:
+            case .errorCodeWrongPassword:
                 self.logInErrorLabel.text = WRONG_PW_ERROR
                 
             default:
                 self.logInErrorLabel.text = FIR_INTERNAL_ERROR
             }
-            self.logInErrorLabel.hidden = false
-            self.logInButton.enabled = true
+            self.logInErrorLabel.isHidden = false
+            self.logInButton.isEnabled = true
             
         })
     }
@@ -142,79 +142,79 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         dataService.loadUser(user.uid) { (user) in
             self.currentUser = user
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 
                 self.dataService.loadSummaries(user) { (summaries) in
                     user.monthlySummaries = summaries
                     loadCount += 1
                     if loadCount == thingsToLoad
                     {
-                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                        self.performSegue(withIdentifier: LOGGED_IN_SEGUE, sender: self)
                     }
                 }
             });
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 self.dataService.loadWeeklyGoals(user.uid) { (weeklyGoals) in
                     user.weeklyGoals = weeklyGoals
                     loadCount += 1
                     if loadCount == thingsToLoad
                     {
-                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                        self.performSegue(withIdentifier: LOGGED_IN_SEGUE, sender: self)
                     }
                 }
             });
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 self.dataService.loadMonthlyGoals(user.uid) { (monthlyGoals) in
                     user.monthlyGoals = monthlyGoals
                     loadCount += 1
                     if loadCount == thingsToLoad
                     {
-                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                        self.performSegue(withIdentifier: LOGGED_IN_SEGUE, sender: self)
                     }
                 }
             });
             
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 self.dataService.loadDreams(user.uid) { (dreams) in
                     user.dreams = dreams
                     loadCount += 1
                     if loadCount == thingsToLoad
                     {
-                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                        self.performSegue(withIdentifier: LOGGED_IN_SEGUE, sender: self)
                     }
                 }
             });
             
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 self.dataService.loadValues(user.uid) { (values) in
                     user.values = values
                     loadCount += 1
                     if loadCount == thingsToLoad
                     {
-                        self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self)
+                        self.performSegue(withIdentifier: LOGGED_IN_SEGUE, sender: self)
                     }
                 }
             });
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 
                     self.dataService.loadYearlySummaries(user) { (summaries) in
                         user.yearlySummary = summaries
                         loadCount += 1
-                        if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
+                        if loadCount == thingsToLoad { self.performSegue(withIdentifier: LOGGED_IN_SEGUE, sender: self) }
                     }
             });
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 
                 self.dataService.loadCurrentRealitySummary(user) { (summary) in
                     user.initialSummary = summary
                     loadCount += 1
-                    if loadCount == thingsToLoad { self.performSegueWithIdentifier(LOGGED_IN_SEGUE, sender: self) }
+                    if loadCount == thingsToLoad { self.performSegue(withIdentifier: LOGGED_IN_SEGUE, sender: self) }
                 }
             });
         }
@@ -223,7 +223,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     // MARK: - Keyboard
     
     /// Dismisses keyboard when return is pressed.
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         validator.validate(self)
         textField.resignFirstResponder()
@@ -231,7 +231,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    override func touchesBegan( _ touchers: Set<UITouch>, with event: UIEvent? )
     {
         self.view.endEditing(true)
     }
@@ -244,7 +244,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.isHidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
@@ -253,7 +253,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
             }
             
             }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.isHidden = false
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
@@ -275,30 +275,30 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         passwordField.delegate = self
     
         //Set automatic sign in to true if it has not been set
-        let ud = NSUserDefaults()
-        if ud.valueForKey(USER_DEFAULTS_AUTO_LOGIN) == nil
+        let ud = UserDefaults()
+        if ud.value(forKey: USER_DEFAULTS_AUTO_LOGIN) == nil
         {
             ud.setValue(true, forKey: USER_DEFAULTS_AUTO_LOGIN)
         }
         
         //Check if user is already authenticated and log in if so
-        let userDefaults = NSUserDefaults()
+        let userDefaults = UserDefaults()
         userDefaults.setValue(true, forKey: USER_DEFAULTS_AUTO_LOGIN)
-        if userDefaults.boolForKey(USER_DEFAULTS_AUTO_LOGIN)
+        if userDefaults.bool(forKey: USER_DEFAULTS_AUTO_LOGIN)
         {
             let user = FIRAuth.auth()?.currentUser
             if user != nil
             {
                 activityIndicator.startAnimating()
-                logInErrorLabel.hidden = true
+                logInErrorLabel.isHidden = true
                 logInErrorLabel.text = ""
-                logInButton.enabled = false
+                logInButton.isEnabled = false
                 fetchUser()
             }
         }
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -307,18 +307,18 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         passwordField.text = ""
         
         //hide error labels
-        logInErrorLabel.hidden = true
-        emailErrorLabel.hidden = true
-        passwordErrorLabel.hidden = true
+        logInErrorLabel.isHidden = true
+        emailErrorLabel.isHidden = true
+        passwordErrorLabel.isHidden = true
         
         //enable log in button
-        logInButton.enabled = true
+        logInButton.isEnabled = true
         
         activityIndicator.stopAnimating()
         
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         activityIndicator.stopAnimating()
@@ -331,9 +331,9 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
     }
     
     /// Inverts the colour of the status bar.
-    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    override var preferredStatusBarStyle : UIStatusBarStyle
     {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.lightContent
     }
     
     
@@ -341,12 +341,12 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         switch segue.identifier!
         {
         case LOGGED_IN_SEGUE:
-            let dvc = segue.destinationViewController as! TabBarViewController
+            let dvc = segue.destination as! TabBarViewController
             dvc.currentUser = currentUser
             
         default:

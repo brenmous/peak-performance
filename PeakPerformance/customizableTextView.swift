@@ -37,7 +37,7 @@ private let kPlaceholderTextViewInsetSpan: CGFloat = 8
         }
     }
     
-    @IBInspectable var borderColor: CGColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor {
+    @IBInspectable var borderColor: CGColor = UIColor.gray.withAlphaComponent(0.5).cgColor {
         
         didSet {
             layer.borderColor = borderColor
@@ -47,7 +47,7 @@ private let kPlaceholderTextViewInsetSpan: CGFloat = 8
     /** The string that will be put in the placeholder */
     @IBInspectable var placeholder: NSString? { didSet { setNeedsDisplay() } }
     /** color for the placeholder text. Default is UIColor.lightGrayColor() */
-    @IBInspectable var placeholderColor: UIColor = UIColor.lightGrayColor()
+    @IBInspectable var placeholderColor: UIColor = UIColor.lightGray
     
     // MARK: - Text insertion methods need to "remove" the placeholder when needed
     
@@ -84,31 +84,31 @@ private let kPlaceholderTextViewInsetSpan: CGFloat = 8
     
     /** Initializes the placeholder text view, waiting for a notification of text changed */
     func listenForTextChangedNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomizableTextView.textChangedForPlaceholderTextView(_:)), name:UITextViewTextDidChangeNotification , object: self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomizableTextView.textChangedForPlaceholderTextView(_:)), name:UITextViewTextDidBeginEditingNotification , object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(CustomizableTextView.textChangedForPlaceholderTextView(_:)), name:NSNotification.Name.UITextViewTextDidChange , object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(CustomizableTextView.textChangedForPlaceholderTextView(_:)), name:NSNotification.Name.UITextViewTextDidBeginEditing , object: self)
     }
     
     /** willMoveToWindow will get called with a nil argument when the window is about to dissapear */
-    override func willMoveToWindow(newWindow: UIWindow?) {
-        super.willMoveToWindow(newWindow)
-        if newWindow == nil { NSNotificationCenter.defaultCenter().removeObserver(self) }
+    override func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
+        if newWindow == nil { NotificationCenter.default.removeObserver(self) }
         else { listenForTextChangedNotifications() }
     }
     
     
     // MARK: - Adjusting placeholder.
-    func textChangedForPlaceholderTextView(notification: NSNotification) {
+    func textChangedForPlaceholderTextView(_ notification: Notification) {
         setNeedsDisplay()
         setNeedsLayout()
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         // in case we don't have a text, put the placeholder (if any)
         if self.text.characters.count == 0 && self.placeholder != nil {
             let baseRect = placeholderBoundsContainedIn(self.bounds)
-            let font = self.font ?? self.typingAttributes[NSFontAttributeName] as? UIFont ?? UIFont.systemFontOfSize(UIFont.systemFontSize())
+            let font = self.font ?? self.typingAttributes[NSFontAttributeName] as? UIFont ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
             
             self.placeholderColor.set()
             
@@ -116,17 +116,17 @@ private let kPlaceholderTextViewInsetSpan: CGFloat = 8
             var customParagraphStyle: NSMutableParagraphStyle!
             if let defaultParagraphStyle =  typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle {
                 customParagraphStyle = defaultParagraphStyle.mutableCopy() as! NSMutableParagraphStyle
-            } else { customParagraphStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle }
+            } else { customParagraphStyle = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle }
             // set attributes
-            customParagraphStyle.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            customParagraphStyle.lineBreakMode = NSLineBreakMode.byWordWrapping
             customParagraphStyle.alignment = self.textAlignment
             let attributes = [NSFontAttributeName: font, NSParagraphStyleAttributeName: customParagraphStyle.copy() as! NSParagraphStyle, NSForegroundColorAttributeName: self.placeholderColor]
             // draw in rect.
-            self.placeholder?.drawInRect(baseRect, withAttributes: attributes)
+            self.placeholder?.draw(in: baseRect, withAttributes: attributes)
         }
     }
     
-    func placeholderBoundsContainedIn(containerBounds: CGRect) -> CGRect {
+    func placeholderBoundsContainedIn(_ containerBounds: CGRect) -> CGRect {
         // get the base rect with content insets.
         let baseRect = UIEdgeInsetsInsetRect(containerBounds, UIEdgeInsetsMake(kPlaceholderTextViewInsetSpan, kPlaceholderTextViewInsetSpan/2.0, 0, 0))
         

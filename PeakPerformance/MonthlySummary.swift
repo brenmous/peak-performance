@@ -16,7 +16,7 @@ class MonthlySummary: Summary
 {
     
     /// The date of the summary (MMMM yyyy e.g. "August 2016").
-    var date: NSDate //maybe string
+    var date: Date //maybe string
     
     /// The completed weekly goals for this month.
     var weeklyGoals = [WeeklyGoal]( )
@@ -47,7 +47,7 @@ class MonthlySummary: Summary
         - Parameters: 
             - month: the month of the summary.
     */
-    init ( date: NSDate )
+    init ( date: Date )
     {
         self.date = date
     }

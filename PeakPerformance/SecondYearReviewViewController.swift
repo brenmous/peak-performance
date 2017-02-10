@@ -22,11 +22,11 @@ class SecondYearReviewViewController: UIViewController {
     var summary: YearlySummary?
     
     // MARK: - Actions
-    @IBAction func resetButtonPressed(sender: AnyObject)
+    @IBAction func resetButtonPressed(_ sender: AnyObject)
     {
         summary!.reviewed = true
         self.yearlyCleanUp()
-        self.performSegueWithIdentifier(UNWIND_TO_HISTORY_SEGUE, sender: self)
+        self.performSegue(withIdentifier: UNWIND_TO_HISTORY_SEGUE, sender: self)
     }
     
     // MARK: - Methods
@@ -38,13 +38,13 @@ class SecondYearReviewViewController: UIViewController {
         self.dataService.saveYearlySummary(self.currentUser!, summary: summary!)
 
         //Update user's year property
-        let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self.currentUser!)
+        let yearsPassedSinceStart = Date().checkTwelveMonthPeriod(self.currentUser!)
         self.currentUser!.year = yearsPassedSinceStart
         self.dataService.saveUserYear(self.currentUser!)
     }
     
     // MARK: - Overriden methods
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.summary = currentUser!.yearlySummary[currentUser!.year]!! //FIXME: shebangbangbangbangbang

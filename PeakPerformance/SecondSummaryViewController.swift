@@ -18,7 +18,7 @@ class SecondSummaryViewController: UITableViewController {
     
     // MARK: - Overriden methods
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
     }
@@ -30,7 +30,7 @@ class SecondSummaryViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
         
         //rearrange weekly goals into nested arrays representing weeks of the month
-        let daysInMonth = NSDate( ).numberOfDaysInCurrentMonth()
+        let daysInMonth = Date( ).numberOfDaysInCurrentMonth()
         
         //default array is for five weeks, change to four if February and non leap year
         if daysInMonth == 28
@@ -55,7 +55,7 @@ class SecondSummaryViewController: UITableViewController {
         {
             if !weeklyGoalsByWeek[index].isEmpty
             {
-                weeklyGoalsByWeek[index].sortInPlace({$0.complete && !$1.complete})
+                weeklyGoalsByWeek[index].sort(by: {$0.complete && !$1.complete})
             }
         }
     }
@@ -63,24 +63,24 @@ class SecondSummaryViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         return "Week \(section + 1)"
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let font = UIFont.systemFontOfSize(14, weight: UIFontWeightSemibold)
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightSemibold)
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.font = font
         header.textLabel?.textColor = PEAK_NAV_BAR_COLOR
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // number of weeks in month
         return self.weeklyGoalsByWeek.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
         //if there were no goals for that week, make a section for a "no goals" label
@@ -93,7 +93,7 @@ class SecondSummaryViewController: UITableViewController {
         return self.weeklyGoalsByWeek[section].count
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         if !self.weeklyGoalsByWeek[indexPath.section].isEmpty
         {
@@ -106,8 +106,8 @@ class SecondSummaryViewController: UITableViewController {
         return CGFloat(ROWHEIGHT_NO_KICK_IT)
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> SecondSummaryTableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("summaryCell", forIndexPath: indexPath) as! SecondSummaryTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> SecondSummaryTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as! SecondSummaryTableViewCell
  
         
         //no goals for this week so present "no goal" label
@@ -118,9 +118,9 @@ class SecondSummaryViewController: UITableViewController {
             cell.goalTextLabel.frame = frame
             cell.goalTextLabel.translatesAutoresizingMaskIntoConstraints = true
             cell.goalTextLabel.text = NO_WEEKLY_GOALS_MESSAGE
-            cell.goalTextLabel.textColor = UIColor.lightGrayColor()
-            cell.userInteractionEnabled = false
-            cell.selectionStyle = .None
+            cell.goalTextLabel.textColor = UIColor.lightGray
+            cell.isUserInteractionEnabled = false
+            cell.selectionStyle = .none
 
   
             return cell
@@ -131,14 +131,14 @@ class SecondSummaryViewController: UITableViewController {
         // Only displays separator when there are goals to show
         for week in weeklyGoalsByWeek {
             if !week .isEmpty {
-                tableView.separatorStyle = .SingleLine
+                tableView.separatorStyle = .singleLine
                 cell.separatorInset = UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)
             }
         }
 
         // Configure the cell...
         
-        cell.kickItTextView.hidden = true
+        cell.kickItTextView.isHidden = true
         
         var klaIcon = ""
         let kla = goal.kla
@@ -179,15 +179,15 @@ class SecondSummaryViewController: UITableViewController {
             if !goal.kickItText.isEmpty
             {
                 cell.kickItTextView.text = "Kick it to the next level: \(goal.kickItText)"
-                cell.kickItTextView.hidden = false
+                cell.kickItTextView.isHidden = false
             }
          
             
         }
         else
         {
-            cell.accessoryType = .None
-            cell.goalTextLabel.textColor = UIColor.lightGrayColor()
+            cell.accessoryType = .none
+            cell.goalTextLabel.textColor = UIColor.lightGray
             switch kla
             {
             case KLA_FAMILY:
@@ -222,8 +222,8 @@ class SecondSummaryViewController: UITableViewController {
         
         cell.goalTextLabel.text = goal.goalText
         cell.klaIconImageView.image = UIImage(named: klaIcon)
-        cell.userInteractionEnabled = false
-        cell.selectionStyle = .None
+        cell.isUserInteractionEnabled = false
+        cell.selectionStyle = .none
         return cell
     }
 }

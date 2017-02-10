@@ -66,42 +66,42 @@ class SummaryViewController: UITableViewController {
     //BEN//
     /// KLA Buttons
     
-    @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
+    @IBAction func personalDevelopmentPointPressed(_ sender: AnyObject) {
         
     }
     
-    @IBAction func financialPointPressed(sender: AnyObject) {
+    @IBAction func financialPointPressed(_ sender: AnyObject) {
         
     }
     
-    @IBAction func partnerPointPressed(sender: AnyObject) {
+    @IBAction func partnerPointPressed(_ sender: AnyObject) {
         
     }
     
-    @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
+    @IBAction func emotionalSpiritualPointPressed(_ sender: AnyObject) {
         
     }
     
-    @IBAction func workPointPressed(sender: AnyObject) {
+    @IBAction func workPointPressed(_ sender: AnyObject) {
         
     }
     
-    @IBAction func healthPointPressed(sender: AnyObject) {
+    @IBAction func healthPointPressed(_ sender: AnyObject) {
         
     }
     
-    @IBAction func friendPointPressed(sender: AnyObject) {
+    @IBAction func friendPointPressed(_ sender: AnyObject) {
         
     }
     
-    @IBAction func familyPointPressed(sender: AnyObject) {
+    @IBAction func familyPointPressed(_ sender: AnyObject) {
         
     }
     // END BEN //
     
-    @IBAction func weeklyButtonPressed(sender: AnyObject)
+    @IBAction func weeklyButtonPressed(_ sender: AnyObject)
     {
-        performSegueWithIdentifier(GO_TO_SECOND_SUMMARY_SEGUE, sender: self)
+        performSegue(withIdentifier: GO_TO_SECOND_SUMMARY_SEGUE, sender: self)
     }
     
     
@@ -216,15 +216,15 @@ class SummaryViewController: UITableViewController {
         if directionOfPopTip == PEAK_PERFORMANCE_HIGH {
             healthPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
             healthPopTip.offset = -POPTIP_OFFSET
-            healthPopTip.showText(SHORTENED_KLA_HEALTH_TITLE, direction: .Down, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
+            healthPopTip.showText(SHORTENED_KLA_HEALTH_TITLE, direction: .down, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: healthPoint.frame)
         } else {
             healthPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 30)
             healthPopTip.offset = POPTIP_OFFSET
-            healthPopTip.showText(SHORTENED_KLA_HEALTH_TITLE, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
+            healthPopTip.showText(SHORTENED_KLA_HEALTH_TITLE, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: healthPoint.frame)
         }
         healthPopTip.shouldDismissOnTapOutside = false
         healthPopTip.popoverColor = PEAK_HEALTH_GREEN
-        healthPopTip.textColor = UIColor.whiteColor()
+        healthPopTip.textColor = UIColor.white
         
         
         /// Work
@@ -232,18 +232,18 @@ class SummaryViewController: UITableViewController {
         workPopTip.bubbleOffset = 10
         workPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 7)
         workPopTip.shouldDismissOnTapOutside = false
-        workPopTip.showText(SHORTENED_KLA_WORK_TITLE, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
+        workPopTip.showText(SHORTENED_KLA_WORK_TITLE, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: workPoint.frame)
         workPopTip.popoverColor = PEAK_WORK_YELLOW
-        workPopTip.textColor = UIColor.whiteColor()
+        workPopTip.textColor = UIColor.white
         
         /// Personal Development
         personalDevPopTip.offset = POPTIP_OFFSET
         personalDevPopTip.bubbleOffset = -35
         personalDevPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 7)
         personalDevPopTip.shouldDismissOnTapOutside = false
-        personalDevPopTip.showText(SHORTENED_KLA_PERSONAL_TITLE, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 60, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
+        personalDevPopTip.showText(SHORTENED_KLA_PERSONAL_TITLE, direction: .up, maxWidth: POPTIP_MAXWIDTH + 60, in: super.view, fromFrame: personalDevelopmentPoint.frame)
         personalDevPopTip.popoverColor = PEAK_PERSONAL_ORANGE
-        personalDevPopTip.textColor = UIColor.whiteColor()
+        personalDevPopTip.textColor = UIColor.white
         
         
         /// Partner
@@ -255,22 +255,22 @@ class SummaryViewController: UITableViewController {
         let customPartnerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
         customPartnerLabel.numberOfLines = 1
         customPartnerLabel.text = SHORTENED_KLA_PARTNER_TITLE
-        customPartnerLabel.textColor = UIColor.whiteColor()
-        customPartnerLabel.font = UIFont.systemFontOfSize(14)
+        customPartnerLabel.textColor = UIColor.white
+        customPartnerLabel.font = UIFont.systemFont(ofSize: 14)
         customPartnerView.addSubview(customPartnerLabel)
         
         /// determines when pop tip is in Peak Performance to set leftward pop up direction
         if directionOfPopTip >= PEAK_PERFORMANCE_LOW {
             partnerPopTip.offset = POPTIP_OFFSET + 20
-            partnerPopTip.showCustomView(customPartnerView, direction: .Left, inView: self.view, fromFrame: customPartnerView.frame)
+            partnerPopTip.showCustomView(customPartnerView, direction: .left, in: self.view, fromFrame: customPartnerView.frame)
         } else {
-            partnerPopTip.showCustomView(customPartnerView, direction: .Right, inView: self.view, fromFrame: customPartnerView.frame)
+            partnerPopTip.showCustomView(customPartnerView, direction: .right, in: self.view, fromFrame: customPartnerView.frame)
         }
         
         partnerPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH , height: POPTIP_ARROW_HEIGHT)
         partnerPopTip.shouldDismissOnTapOutside = false
         partnerPopTip.popoverColor = PEAK_PARTNER_PURPLE
-        partnerPopTip.textColor = UIColor.whiteColor()
+        partnerPopTip.textColor = UIColor.white
         
         
         /// Financial
@@ -282,16 +282,16 @@ class SummaryViewController: UITableViewController {
         let customFinancialLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
         customFinancialLabel.numberOfLines = 1
         customFinancialLabel.text = SHORTENED_KLA_FINANCIAL_TITLE
-        customFinancialLabel.textColor = UIColor.whiteColor()
-        customFinancialLabel.font = UIFont.systemFontOfSize(14)
+        customFinancialLabel.textColor = UIColor.white
+        customFinancialLabel.font = UIFont.systemFont(ofSize: 14)
         customFinancialView.addSubview(customFinancialLabel)
         
         /// determines when pop tip is in Peak Performance to set rightward pop up direction
         if directionOfPopTip >= PEAK_PERFORMANCE_LOW {
             financialPopTip.offset = POPTIP_OFFSET + 7
-            financialPopTip.showCustomView(customFinancialView, direction: .Right, inView: self.view, fromFrame: customFinancialView.frame)
+            financialPopTip.showCustomView(customFinancialView, direction: .right, in: self.view, fromFrame: customFinancialView.frame)
         } else {
-            financialPopTip.showCustomView(customFinancialView, direction: .Left, inView: self.view, fromFrame: customFinancialView.frame)
+            financialPopTip.showCustomView(customFinancialView, direction: .left, in: self.view, fromFrame: customFinancialView.frame)
         }
         financialPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         financialPopTip.shouldDismissOnTapOutside = false
@@ -303,9 +303,9 @@ class SummaryViewController: UITableViewController {
         emotionalSpiritualPopTip.bubbleOffset = -100
         emotionalSpiritualPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 7)
         emotionalSpiritualPopTip.shouldDismissOnTapOutside = false
-        emotionalSpiritualPopTip.showText(SHORTENED_KLA_EMOTIONAL_TITLE, direction: .Down, maxWidth: POPTIP_MAXWIDTH + 60, inView: super.view, fromFrame: emotionalSpiritualPoint.frame)
+        emotionalSpiritualPopTip.showText(SHORTENED_KLA_EMOTIONAL_TITLE, direction: .down, maxWidth: POPTIP_MAXWIDTH + 60, in: super.view, fromFrame: emotionalSpiritualPoint.frame)
         emotionalSpiritualPopTip.popoverColor = PEAK_EMOTIONAL_VIOLET
-        emotionalSpiritualPopTip.textColor = UIColor.whiteColor()
+        emotionalSpiritualPopTip.textColor = UIColor.white
         
         /// family
         directionOfPopTip = UITableViewController.getIncrementFromRating(summary!.klaRatings[KLA_FAMILY]!)
@@ -315,24 +315,24 @@ class SummaryViewController: UITableViewController {
         if directionOfPopTip >= PEAK_PERFORMANCE_LOW {
             familyPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
             familyPopTip.offset = POPTIP_OFFSET
-            familyPopTip.showText(KLA_FAMILY, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
+            familyPopTip.showText(KLA_FAMILY, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: familyPoint.frame)
             
         } else {
             familyPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 30)
             familyPopTip.offset = abs(POPTIP_OFFSET)
-            familyPopTip.showText(KLA_FAMILY, direction: .Down, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
+            familyPopTip.showText(KLA_FAMILY, direction: .down, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: familyPoint.frame)
         }
         familyPopTip.popoverColor = PEAK_FAMILY_BLUE
-        familyPopTip.textColor = UIColor.whiteColor()
+        familyPopTip.textColor = UIColor.white
         
         /// friend
         friendPopTip.offset = abs(POPTIP_OFFSET)
         friendPopTip.bubbleOffset = 20
         friendPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT + 7)
         friendPopTip.shouldDismissOnTapOutside = false
-        friendPopTip.showText(SHORTENED_KLA_FRIEND_TITLE, direction: .Down, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
+        friendPopTip.showText(SHORTENED_KLA_FRIEND_TITLE, direction: .down, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: friendPoint.frame)
         friendPopTip.popoverColor = PEAK_FRIEND_CYAN
-        friendPopTip.textColor = UIColor.whiteColor()
+        friendPopTip.textColor = UIColor.white
 
     }
     
@@ -356,11 +356,11 @@ class SummaryViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == GO_TO_SECOND_SUMMARY_SEGUE
         {
-            let dvc = segue.destinationViewController as! SecondSummaryViewController
+            let dvc = segue.destination as! SecondSummaryViewController
             dvc.summary = self.summary
         }
         

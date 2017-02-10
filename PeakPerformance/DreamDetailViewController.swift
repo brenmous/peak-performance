@@ -13,9 +13,9 @@ import SideMenu // https://github.com/jonkykong/SideMenu
 
 
 protocol DreamDetailViewControllerDelegate {
-    func addDream(dream: Dream)
-    func saveModifiedDream(dream: Dream)
-    func deleteDream(dream: Dream)
+    func addDream(_ dream: Dream)
+    func saveModifiedDream(_ dream: Dream)
+    func deleteDream(_ dream: Dream)
 }
 
 class DreamDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
@@ -27,10 +27,10 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     var currentDream: Dream?
     var delegate: DreamDetailViewControllerDelegate?
     var imageSet: UIImage!
-    var imageData: NSData!
+    var imageData: Data!
     
     let imgPicker = UIImagePickerController( )
-    var dreamImageLocalURL: NSURL?
+    var dreamImageLocalURL: URL?
     
        
     // MARK: - Outlets
@@ -42,12 +42,12 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     // MARK: - Actions
     
-    @IBAction func menuButtonPressed(sender: AnyObject)
+    @IBAction func menuButtonPressed(_ sender: AnyObject)
     {
-        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    @IBAction func savePressed(sender: AnyObject) {
+    @IBAction func savePressed(_ sender: AnyObject) {
         //dismiss keyboard
         self.view.endEditing(true)
         
@@ -65,14 +65,14 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
-    @IBAction func deleteButtonPressed(sender: AnyObject)
+    @IBAction func deleteButtonPressed(_ sender: AnyObject)
     {
         //dismiss keyboard
         self.view.endEditing(true)
         
-        let deleteDreamAlertController = UIAlertController(title: DELETE_DREAM_ALERT_TITLE, message: DELETE_DREAM_ALERT_MSG, preferredStyle: .Alert)
+        let deleteDreamAlertController = UIAlertController(title: DELETE_DREAM_ALERT_TITLE, message: DELETE_DREAM_ALERT_MSG, preferredStyle: .alert)
         
-        let delete = UIAlertAction(title: DELETE_DREAM_ALERT, style: .Default ) { (action) in
+        let delete = UIAlertAction(title: DELETE_DREAM_ALERT, style: .default ) { (action) in
             guard let cd = self.currentDream else
             {
                 return
@@ -80,28 +80,28 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             self.delegate?.deleteDream(cd)
             
             if let nc = self.navigationController {
-                nc.popViewControllerAnimated(true)
+                nc.popViewController(animated: true)
             } else {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         }
         
-        let cancel = UIAlertAction(title: CANCEL_DREAM_ALERT, style: .Cancel, handler: nil)
+        let cancel = UIAlertAction(title: CANCEL_DREAM_ALERT, style: .cancel, handler: nil)
         
         deleteDreamAlertController.addAction(delete)
         deleteDreamAlertController.addAction(cancel)
-        presentViewController(deleteDreamAlertController, animated: true, completion: nil )
+        present(deleteDreamAlertController, animated: true, completion: nil )
         
     }
     
     /// SOWMYA ///
     
-    @IBAction func getPhotoFromCameraRoll(sender: AnyObject) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+    @IBAction func getPhotoFromCameraRoll(_ sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
             self.imgPicker.delegate = self
-            self.imgPicker.sourceType = .PhotoLibrary
+            self.imgPicker.sourceType = .photoLibrary
             self.imgPicker.allowsEditing = false
-            self.presentViewController(imgPicker, animated: true, completion: nil)
+            self.present(imgPicker, animated: true, completion: nil)
         }
         else
         {
@@ -120,7 +120,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         self.view.endEditing(true)
         
         let dreamDescription = dreamText.text!
-        let did = NSUUID( ).UUIDString
+        let did = UUID( ).uuidString
         let dream = Dream(dreamDesc: dreamDescription, imageLocalURL: self.dreamImageLocalURL, did: did, imageData: self.imageData)
         print("DDVC: created image with local URL \(dream.imageLocalURL)")
         delegate?.addDream(dream)
@@ -153,31 +153,31 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             //placeholder/file not found image
             return
         }
-        dreamImg.image = UIImage(data: imageData)
+        dreamImg.image = UIImage(data: imageData as Data)
         // delegate?.saveModifiedDream(dream)
     }
 
     /// SOWMYA ///
     
     // Allows user to select photo from camera roll
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         {
             imageData = UIImageJPEGRepresentation(pickedImage, JPEG_QUALITY)
             imageSet = pickedImage
-            dreamImg.contentMode = .ScaleAspectFit
+            dreamImg.contentMode = .scaleAspectFit
             dreamImg.image = pickedImage
-            self.dreamImageLocalURL = info[UIImagePickerControllerReferenceURL] as? NSURL
+            self.dreamImageLocalURL = info[UIImagePickerControllerReferenceURL] as? URL
         }
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
     // Dismiss the camera roll after selecting photo
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -185,7 +185,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     // MARK: - Overridden methods
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if currentDream != nil && dreamImg.image == nil
@@ -193,7 +193,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
             self.updateImageandTextView()
         }
         
-        self.dreamText.textColor = UIColor.blackColor()
+        self.dreamText.textColor = UIColor.black
     }
     
     override func viewDidLoad() {
@@ -207,7 +207,7 @@ class DreamDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         // text view UI configuration
         dreamText.layer.cornerRadius = 5
-        dreamText.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
+        dreamText.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         dreamText.layer.borderWidth = 1
         dreamText.clipsToBounds = true
         

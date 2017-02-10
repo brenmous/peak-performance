@@ -36,7 +36,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView! // BEN
  
     // MARK: - Actions
-    @IBAction func confirmButtonPressed(sender: UIBarButtonItem)
+    @IBAction func confirmButtonPressed(_ sender: UIBarButtonItem)
     {
         validator.validate(self)
     }
@@ -47,15 +47,15 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when all registered fields pass validation.
     func validationSuccessful()
     {
-        self.navigationItem.rightBarButtonItem!.enabled = false
+        self.navigationItem.rightBarButtonItem!.isEnabled = false
         self.activityIndicator.startAnimating()
         self.changeCoachEmail()
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
+    func validationFailed(_ errors: [(Validatable, ValidationError)])
     {
-        self.navigationItem.rightBarButtonItem!.enabled = true
+        self.navigationItem.rightBarButtonItem!.isEnabled = true
         self.activityIndicator.stopAnimating()
     }
     
@@ -65,7 +65,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
         self.currentUser?.coachEmail = self.newCoachEmailField.text!
         self.dataService.saveCoachEmail(self.currentUser!)
         self.activityIndicator.stopAnimating()
-        self.presentViewController(getChangeCoachEmailSuccessAlert(), animated: true, completion: nil)
+        self.present(getChangeCoachEmailSuccessAlert(), animated: true, completion: nil)
     }
     
     // MARK: - Alert controllers
@@ -78,10 +78,10 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
      */
     func getChangeCoachEmailSuccessAlert() -> UIAlertController
     {
-        let changeCoachEmailSucccessAlertController = UIAlertController(title: COACH_EMAIL_SUCC_ALERT_TITLE, message: COACH_EMAIL_SUCC_ALERT_MSG, preferredStyle: .ActionSheet)
+        let changeCoachEmailSucccessAlertController = UIAlertController(title: COACH_EMAIL_SUCC_ALERT_TITLE, message: COACH_EMAIL_SUCC_ALERT_MSG, preferredStyle: .actionSheet)
         
-        let confirm = UIAlertAction(title: COACH_EMAIL_SUCC_ALERT_CONFIRM, style: .Default) { (action) in
-            self.performSegueWithIdentifier(UNWIND_FROM_COACH_EMAIL_SEGUE, sender: self)
+        let confirm = UIAlertAction(title: COACH_EMAIL_SUCC_ALERT_CONFIRM, style: .default) { (action) in
+            self.performSegue(withIdentifier: UNWIND_FROM_COACH_EMAIL_SEGUE, sender: self)
         }
         
         changeCoachEmailSucccessAlertController.addAction(confirm)
@@ -101,7 +101,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.isHidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
@@ -110,7 +110,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
             }
             
             }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.isHidden = false
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
@@ -129,13 +129,13 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
         newCoachEmailField.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
         //hide labels
-        self.newCoachEmailErrorLabel.hidden = true
-        self.changeCoachEmailErrorLabel.hidden = true
+        self.newCoachEmailErrorLabel.isHidden = true
+        self.changeCoachEmailErrorLabel.isHidden = true
         
         let ce = self.currentUser!.coachEmail
         self.currentCoachEmailLabel.text =  ce.isEmpty ? NO_COACH_EMAIL_MESSAGE : ce
@@ -151,7 +151,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     // MARK: - Keyboard
     
     /// Dismisses keyboard when return is pressed.
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         validator.validate( self )
         textField.resignFirstResponder()
@@ -159,7 +159,7 @@ class CoachEmailViewController: UIViewController, UITextFieldDelegate, Validatio
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    override func touchesBegan( _ touchers: Set<UITouch>, with event: UIEvent? )
     {
         self.view.endEditing(true)
     }

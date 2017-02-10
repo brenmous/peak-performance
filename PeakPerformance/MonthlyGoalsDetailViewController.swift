@@ -13,8 +13,8 @@ import SideMenu // https://github.com/jonkykong/SideMenu
 
 protocol MonthlyGoalDetailViewControllerDelegate
 {
-    func addNewGoal( monthlyGoal: MonthlyGoal )
-    func saveModifiedGoal( monthlyGoal: MonthlyGoal)
+    func addNewGoal( _ monthlyGoal: MonthlyGoal )
+    func saveModifiedGoal( _ monthlyGoal: MonthlyGoal)
 }
 
 class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate, UITextViewDelegate
@@ -55,7 +55,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     // MARK: - Actions
     
-    @IBAction func saveButtonPressed(sender: AnyObject)
+    @IBAction func saveButtonPressed(_ sender: AnyObject)
     {
         //dismiss keyboard
         self.view.endEditing(true)
@@ -63,7 +63,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         validator.validate(self)
     }
     
-    @IBAction func klaButtonPressed(sender: AnyObject) //Ben
+    @IBAction func klaButtonPressed(_ sender: AnyObject) //Ben
     {
         //dismiss keyboard
         self.view.endEditing(true)
@@ -72,20 +72,20 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             picker, values, indexes in
             
             // trimming the index values
-            let newValue = String(values)
-            let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
-            let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let newValue = String(describing: values)
+            let trimmedPunctuationWithNewValue = newValue.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+            let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.trimmingCharacters(in: CharacterSet.whitespaces)
             let index = Int(trimmedSpaceWithNewValue)
             // assign to textfield 
             self.klaTextField.text = self.keyLifeAreas[index!]
             return
-            }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
+            }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
         
-        acp.showActionSheetPicker()
+        acp?.show()
         
     }
     
-    @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
+    @IBAction func deadlineButtonPressed(_ sender: AnyObject) //Ben
     {
         //dismiss keyboard
         self.view.endEditing(true)
@@ -94,29 +94,29 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         {
             return
         }
-        let monthsOfTheYear = NSDate().monthlyDatePickerStringArray(cu.startDate)
+        let monthsOfTheYear = Date().monthlyDatePickerStringArray(cu.startDate)
         let acp = ActionSheetMultipleStringPicker(title: "Deadline", rows: [monthsOfTheYear], initialSelection: [0], doneBlock: {
             picker, values, indexes in
             
             // trimming the index values
-            let newValue = String(values)
-            let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
-            let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let newValue = String(describing: values)
+            let trimmedPunctuationWithNewValue = newValue.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+            let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.trimmingCharacters(in: CharacterSet.whitespaces)
             let index = Int(trimmedSpaceWithNewValue)
             // assign to textfield
             self.deadlineTextField.text = monthsOfTheYear[index!]
             return
-            }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
+            }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
         
-        acp.showActionSheetPicker()
+        acp?.show()
     }
     
-    @IBAction func menuButtonPressed(sender: AnyObject)
+    @IBAction func menuButtonPressed(_ sender: AnyObject)
     {
         //dismiss keyboard
         self.view.endEditing(true)
         
-        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     
@@ -130,7 +130,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)]){}
+    func validationFailed(_ errors: [(Validatable, ValidationError)]){}
 
     /// Saves changes to an existing goal, or creates a new one if no goal currently exists.
     func saveChanges( )
@@ -145,7 +145,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         {
             updateGoal( )
         }
-        performSegueWithIdentifier(UNWIND_FROM_MGDVC_SEGUE, sender: self)
+        performSegue(withIdentifier: UNWIND_FROM_MGDVC_SEGUE, sender: self)
     }
     
     /// Creates a new weekly goal object with details from text fields. Calls delegate to save goal.
@@ -154,7 +154,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
         let deadline = deadlineTextField.text!
-        let gid = NSUUID( ).UUIDString
+        let gid = UUID( ).uuidString
         let mg = MonthlyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(mg)
     }
@@ -165,10 +165,10 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         guard let cg = currentGoal else { return }
         cg.goalText = goalTextView.text!
         cg.kla = klaTextField.text!
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         let deadline = deadlineTextField.text!
-        guard let dl = dateFormatter.dateFromString(deadline) else { return }
+        guard let dl = dateFormatter.date(from: deadline) else { return }
         cg.deadline = dl
         delegate?.saveModifiedGoal(cg)
     }
@@ -179,23 +179,23 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         guard let cg = currentGoal else { return }
         goalTextView.text = cg.goalText
         klaTextField.text = cg.kla
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = MONTH_FORMAT_STRING
-        deadlineTextField.text = dateFormatter.stringFromDate(cg.deadline)
+        deadlineTextField.text = dateFormatter.string(from: cg.deadline as Date)
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
         //hide pickers
-        klaPicker.hidden = true
-        deadlinePicker.hidden = true
+        klaPicker.isHidden = true
+        deadlinePicker.isHidden = true
         
         //hide error labels
-        goalTextErrorLabel.hidden = true
-        klaErrorLabel.hidden = true
-        deadlineErrorLabel.hidden = true
+        goalTextErrorLabel.isHidden = true
+        klaErrorLabel.isHidden = true
+        deadlineErrorLabel.isHidden = true
         
         //update textfields if editing a goal
         if currentGoal != nil
@@ -214,13 +214,13 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
         
         // text view set up
         goalTextView.layer.cornerRadius = 5
-        goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
+        goalTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         goalTextView.layer.borderWidth = 1
         goalTextView.clipsToBounds = true
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.isHidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
@@ -229,7 +229,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
             }
             
             }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.isHidden = false
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
@@ -263,7 +263,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     
     // MARK: - keyboard stuff
     /// Work around for dismissing keyboard on text view.
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
     {
         if text == "\n"
         {
@@ -278,7 +278,7 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    override func touchesBegan( _ touchers: Set<UITouch>, with event: UIEvent? )
     {
         self.view.endEditing(true)
     }
@@ -286,25 +286,25 @@ class MonthlyGoalDetailViewController: UIViewController, UIPickerViewDataSource,
     // BEN //
     // MARK: - KLA Picker
 
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    func numberOfComponents(in pickerView: UIPickerView) -> Int
     {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         return keyLifeAreas.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
         return keyLifeAreas[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         klaTextField.text = keyLifeAreas[row]
-        klaPicker.hidden = true
+        klaPicker.isHidden = true
     }
     // END BEN //
     

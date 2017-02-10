@@ -41,7 +41,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     
     // MARK: - Actions
 
-    @IBAction func pressConfirmBarButton(sender: UIBarButtonItem)
+    @IBAction func pressConfirmBarButton(_ sender: UIBarButtonItem)
     {
         validator.validate(self)
     }
@@ -56,58 +56,58 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)]){}
+    func validationFailed(_ errors: [(Validatable, ValidationError)]){}
     
     /// Change the currently authenticated user's password.
     func changePassword( )
     {
-        loadScreenBackground.hidden = false
+        loadScreenBackground.isHidden = false
         activityIndicator.startAnimating()
-        changePasswordErrorLabel.hidden = true
+        changePasswordErrorLabel.isHidden = true
         changePasswordErrorLabel.text = ""
         let user = FIRAuth.auth()?.currentUser
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         user?.updatePassword(self.newPasswordField.text!) { (error) in
             guard let error = error else
             {
-                self.loadScreenBackground.hidden = true
+                self.loadScreenBackground.isHidden = true
                 self.activityIndicator.stopAnimating()
-                self.presentViewController(self.getChangePasswordAlert(), animated: true) {
+                self.present(self.getChangePasswordAlert(), animated: true) {
                     self.currentPasswordField.text = ""
                     self.newPasswordField.text = ""
                     self.confirmPasswordField.text = ""
-                    self.navigationItem.rightBarButtonItem?.enabled = false
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
                 }
                 return
             }
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code ) else
+            guard let errCode = FIRAuthErrorCode( rawValue: (error as NSError).code ) else
             {
                 print("CPVC - changePassword(): change password failed with error but couldn't get error code")
                 return
             }
             switch errCode
             {
-            case .ErrorCodeInvalidCredential:
+            case .errorCodeInvalidCredential:
                 print("CPVC - changePassword(): invalid credential, user alerted in reauthUser()")
                 
             default:
                 break
             }
             self.activityIndicator.stopAnimating()
-            self.loadScreenBackground.hidden = true
-            self.changePasswordErrorLabel.hidden = false
-            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.loadScreenBackground.isHidden = true
+            self.changePasswordErrorLabel.isHidden = false
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
     
     /// Reauthenticates the current user
     func reauthenticateUser()
     {
-        self.loadScreenBackground.hidden = false
+        self.loadScreenBackground.isHidden = false
         self.activityIndicator.startAnimating()
-        self.changePasswordErrorLabel.hidden = true
+        self.changePasswordErrorLabel.isHidden = true
         self.changePasswordErrorLabel.text = ""
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         guard let cu = currentUser else
         {
@@ -115,14 +115,14 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         }
         
         let user = FIRAuth.auth()?.currentUser
-        let credential = FIREmailPasswordAuthProvider.credentialWithEmail(cu.email, password: self.currentPasswordField.text!)
-        user?.reauthenticateWithCredential(credential) { (error) in
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: cu.email, password: self.currentPasswordField.text!)
+        user?.reauthenticate(with: credential) { (error) in
             guard let error = error else
             {
                 self.reauthSuccess()
                 return
             }
-            self.reauthFailure(error)
+            self.reauthFailure(error as NSError)
             return
         }
     }
@@ -131,14 +131,14 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     func reauthSuccess()
     {
         self.activityIndicator.stopAnimating()
-        self.loadScreenBackground.hidden = true
+        self.loadScreenBackground.isHidden = true
         changePassword()
     }
     
     /// Called when a user fails to reauthenticate.
-    func reauthFailure(error: NSError)
+    func reauthFailure(_ error: NSError)
     {
-        self.loadScreenBackground.hidden = true
+        self.loadScreenBackground.isHidden = true
         self.activityIndicator.stopAnimating()
         guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
         {
@@ -147,34 +147,34 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         }
         switch errCode
         {
-        case .ErrorCodeUserNotFound:
+        case .errorCodeUserNotFound:
             self.changePasswordErrorLabel.text = LOGIN_ERR_MSG
             return
             
-        case .ErrorCodeTooManyRequests:
+        case .errorCodeTooManyRequests:
             self.changePasswordErrorLabel.text = REQUEST_ERR_MSG
             
-        case .ErrorCodeNetworkError:
+        case .errorCodeNetworkError:
             self.changePasswordErrorLabel.text = NETWORK_ERR_MSG
             
-        case .ErrorCodeInternalError:
+        case .errorCodeInternalError:
             self.changePasswordErrorLabel.text = FIR_INTERNAL_ERROR
             
-        case .ErrorCodeUserDisabled:
+        case .errorCodeUserDisabled:
             self.changePasswordErrorLabel.text = USER_DISABLED_ERROR
             
-        case .ErrorCodeWrongPassword:
+        case .errorCodeWrongPassword:
             self.changePasswordErrorLabel.text = CHANGE_PW_ERROR
             
-        case .ErrorCodeUserMismatch:
+        case .errorCodeUserMismatch:
             self.changePasswordErrorLabel.text = LOGIN_ERR_MSG
             
         default:
             print("CPVC - reauthUser(): error case not currently covered - \(error.localizedDescription)") //DEBUG
             self.changePasswordErrorLabel.text = "Error case not currently covered." //DEBUG
         }
-        self.changePasswordErrorLabel.hidden = false
-        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.changePasswordErrorLabel.isHidden = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
     }
 
     
@@ -187,9 +187,9 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
      */
     func getChangePasswordAlert() -> UIAlertController
     {
-        let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .Default) { (action) in
-            self.performSegueWithIdentifier(UNWIND_FROM_CHANGE_PW_SEGUE, sender: self)
+        let changePWAlertController = UIAlertController(title: CHANGEPW_ALERT_TITLE, message: CHANGEPW_ALERT_MSG, preferredStyle: .actionSheet)
+        let confirm = UIAlertAction(title: CHANGEPW_ALERT_CONFIRM, style: .default) { (action) in
+            self.performSegue(withIdentifier: UNWIND_FROM_CHANGE_PW_SEGUE, sender: self)
         }
         
         changePWAlertController.addAction(confirm)
@@ -204,14 +204,14 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         super.viewDidLoad()
         
         // BEN //
-        loadScreenBackground.hidden = true
+        loadScreenBackground.isHidden = true
         // Back button 
         self.navigationController!.navigationBar.tintColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1);
         // END BEN //
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.isHidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
@@ -220,7 +220,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
             }
             
             }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.isHidden = false
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
@@ -246,7 +246,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         confirmPasswordField.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -257,13 +257,13 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
         self.changePasswordErrorLabel.text = ""
         
         //hide labels
-        self.currentPasswordErrorLabel.hidden = true
-        self.newPasswordErrorLabel.hidden = true
-        self.confirmPasswordErrorLabel.hidden = true
-        self.changePasswordErrorLabel.hidden = true
+        self.currentPasswordErrorLabel.isHidden = true
+        self.newPasswordErrorLabel.isHidden = true
+        self.confirmPasswordErrorLabel.isHidden = true
+        self.changePasswordErrorLabel.isHidden = true
         
         //enable change password button
-        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
     }
     
 
@@ -277,7 +277,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     // MARK: - keyboard stuff
     
     /// Dismisses keyboard when return is pressed.
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         validator.validate( self )
         textField.resignFirstResponder()
@@ -285,7 +285,7 @@ class ChangePasswordViewController: UIViewController, ValidationDelegate, UIText
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    override func touchesBegan( _ touchers: Set<UITouch>, with event: UIEvent? )
     {
         self.view.endEditing(true)
     }

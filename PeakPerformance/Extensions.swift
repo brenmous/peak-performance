@@ -26,25 +26,25 @@ extension UIViewController
         - Parameters:
             - number: the badge for number of incomplete monthly reviews.
     */
-    func setUpLeftBarButtonItem( number: String )
+    func setUpLeftBarButtonItem( _ number: String )
     {
         let image = UIImage(named: MENU_ICON_NAME)
         let highlightedImage = UIImage(named: MENU_ICON_HIGHLIGHTED_NAME)
-        let button = UIButton(type: .Custom)
+        let button = UIButton(type: .custom)
         
         if let knownImage = image {
-            button.frame = CGRectMake(0.0, 0.0, knownImage.size.width, knownImage.size.height)
+            button.frame = CGRect(x: 0.0, y: 0.0, width: knownImage.size.width, height: knownImage.size.height)
         } else {
-            button.frame = CGRectZero;
+            button.frame = CGRect.zero;
         }
         
-        button.setBackgroundImage(image, forState: UIControlState.Normal)
-        button.setBackgroundImage(highlightedImage, forState: .Highlighted)
+        button.setBackgroundImage(image, for: UIControlState())
+        button.setBackgroundImage(highlightedImage, for: .highlighted)
         button.addTarget(self,
                          action: #selector(leftButtonPressed(_:)),
-                         forControlEvents: UIControlEvents.TouchUpInside)
+                         for: UIControlEvents.touchUpInside)
         button.adjustsImageWhenHighlighted = true
-        button.tintColor = UIColor.lightGrayColor()
+        button.tintColor = UIColor.lightGray
         let newBarButton = ENMBadgedBarButtonItem(customView: button, value: number) // parameter value for the number inside the dot
         newBarButton.badgeValue = number  // sets the dot and the number inside
         navigationItem.leftBarButtonItem = newBarButton
@@ -56,10 +56,10 @@ extension UIViewController
 {
     // BEN //
     /// Triggers when side menu button is pressed (presents the side menu).
-    func leftButtonPressed(_sender: UIButton)
+    func leftButtonPressed(_ _sender: UIButton)
     {
-        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.lightGray
     }
     // END BEN //
     
@@ -74,7 +74,7 @@ extension UITableViewController
      
         - Returns: a CGFloat for displacing KLA dot point from origin.
     */
-    static func getIncrementFromRating(rating: Double) -> CGFloat {
+    static func getIncrementFromRating(_ rating: Double) -> CGFloat {
         
         let decimal = rating * 10
         var increment: CGFloat = 0
@@ -128,12 +128,12 @@ extension SideMenuManager
             - sb: current storyboard according to view controller hosting the side menu.
             - user: the currently active user.
     */
-    public class func setUpSideMenu( sb: UIStoryboard, user: User )
+    public class func setUpSideMenu( _ sb: UIStoryboard, user: User )
     {
         SideMenuManager.menuLeftNavigationController = UISideMenuNavigationController( )
-        SideMenuManager.menuLeftNavigationController?.navigationBarHidden = true // hides the navigation bar
+        SideMenuManager.menuLeftNavigationController?.isNavigationBarHidden = true // hides the navigation bar
         SideMenuManager.menuLeftNavigationController?.leftSide = true
-        let smvc = sb.instantiateViewControllerWithIdentifier(SIDE_MENU_VC) as! SideMenuViewController
+        let smvc = sb.instantiateViewController(withIdentifier: SIDE_MENU_VC) as! SideMenuViewController
         smvc.currentUser = user
         smvc.sb = sb
         SideMenuManager.menuLeftNavigationController?.setViewControllers([smvc], animated: true)
@@ -146,9 +146,9 @@ extension SideMenuManager
         
         // Customize side menu
         SideMenuManager.menuFadeStatusBar = false
-        SideMenuManager.menuPresentMode = .MenuSlideIn
+        SideMenuManager.menuPresentMode = .menuSlideIn
         SideMenuManager.menuShadowOpacity = 0.5
-        SideMenuManager.menuBlurEffectStyle = .Light
+        SideMenuManager.menuBlurEffectStyle = .light
         SideMenuManager.menuAnimationFadeStrength = 0.5
         // END BEN //
     }
@@ -168,56 +168,56 @@ extension UITextView: Validatable {
 
 // MARK: - NSDate
 /// Class that provides manipulations of NSDate to get various date components and Strings to assist with various tasks related to calendar dates.
-extension NSDate
+extension Date
 {
     /// Get the day, month and year components of a date.
-    func dateComponents( date: NSDate ) -> NSDateComponents
+    func dateComponents( _ date: Date ) -> DateComponents
     {
-        return NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: date)
+        return (Calendar.current as NSCalendar).components([.day, .month, .year], from: date)
     }
     
     /// Get the number of days in the current month (28, 30 or 31).
     func numberOfDaysInCurrentMonth( ) -> Int
     {
-        let range = NSCalendar.currentCalendar().rangeOfUnit(.Day, inUnit: .Month, forDate: self)
+        let range = (Calendar.current as NSCalendar).range(of: .day, in: .month, for: self)
         return range.length
     }
     
     /// Get the current day of the month.
-    private func currentDayOfMonth( ) -> Int
+    fileprivate func currentDayOfMonth( ) -> Int
     {
-        return self.dateComponents(NSDate( )).day
+        return self.dateComponents(Date( )).day!
     }
     
     /// Get the month of a date as a string (dateComponents.month returns an index for non-zero indexed array of ints representing months by default).
-    func monthAsString( date: NSDate ) -> String
+    func monthAsString( _ date: Date ) -> String
     {
         let dateComponents = self.dateComponents(date)
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        return months[dateComponents.month - 1]
+        return months[dateComponents.month! - 1]
     }
     
     /// Get the year of a date as a string.
-    func yearAsString( date: NSDate ) -> String
+    func yearAsString( _ date: Date ) -> String
     {
-        return String(self.dateComponents(date).year)
+        return String(describing: self.dateComponents(date).year)
     }
     
     /// Get the current day of the week.
-    private func currentDayOfWeek( ) -> Int
+    fileprivate func currentDayOfWeek( ) -> Int
     {
         let week = self.currentWeekOfMonth()
         return self.currentDayOfMonth( ) - ( ( week - 1 ) * 7 )
     }
     
     /// Get the current week of the month.
-    private func currentWeekOfMonth( ) -> Int
+    fileprivate func currentWeekOfMonth( ) -> Int
     {
-        let day = self.dateComponents(NSDate( )).day
-        var week = (day/7)+1
-        if day % 7 == 0
+        let day = self.dateComponents(Date( )).day
+        var week = (day!/7)+1
+        if day! % 7 == 0
         {
-            week = day/7
+            week = day!/7
         }
         return week
     }
@@ -232,7 +232,7 @@ extension NSDate
     /// Returns the string for the monthly progress bar label.
     func monthlyProgressString( ) -> String
     {
-        let month = self.monthAsString(NSDate())
+        let month = self.monthAsString(Date())
         let week = self.currentWeekOfMonth()
         return "\(month) Week \(week)"
     }
@@ -270,19 +270,19 @@ extension NSDate
     }
     
     /// Returns an NSDate for specifying max date of the weekly goal deadline picker.
-    func weeklyDatePickerMaxDate( ) -> NSDate
+    func weeklyDatePickerMaxDate( ) -> Date
     {
-        let dateComponents = self.dateComponents(NSDate())
+        var dateComponents = self.dateComponents(Date())
         dateComponents.day = self.numberOfDaysInCurrentMonth()
-        return NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
+        return Calendar.current.date(from: dateComponents)!
     }
     
     //FIXME: - Do this better (add to date while comparing to current date)
     /// Returns an array of months as strings ranging from [currentMonth...userStartMonth - 1]
-    func monthlyDatePickerStringArray( startDate: NSDate ) -> [String]
+    func monthlyDatePickerStringArray( _ startDate: Date ) -> [String]
     {
-        let startMonth = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self ).month - 1
-        var endMonth = NSCalendar.currentCalendar().components([.Month], fromDate: startDate ).month - 2
+        let startMonth = (Calendar.current as NSCalendar).components([.day, .month, .year], from: self ).month! - 1
+        var endMonth = (Calendar.current as NSCalendar).components([.month], from: startDate ).month! - 2
         if endMonth < 0
         {
             endMonth = 11
@@ -294,8 +294,8 @@ extension NSDate
         
         var monthlyDatePickerArray = [String]( )
         
-        let currentYear = NSDate().yearAsString(NSDate())
-        let nextYear = NSDate().yearAsString(NSCalendar.currentCalendar().dateByAddingUnit(.Year, value: 1, toDate: NSDate(), options: [])!)
+        let currentYear = Date().yearAsString(Date())
+        let nextYear = Date().yearAsString((Calendar.current as NSCalendar).date(byAdding: .year, value: 1, to: Date(), options: [])!)
         if endMonth < startMonth
         {
             for i in startMonth...months.count - 1
@@ -327,32 +327,32 @@ extension NSDate
      Checks how many years the user has been doing the program.
         - Returns: an int representing how many years the user has been doing the program.
     */
-    func checkTwelveMonthPeriod(currentUser: User) -> Int
+    func checkTwelveMonthPeriod(_ currentUser: User) -> Int
     {
-        let calendar = NSCalendar.currentCalendar()
-        let startDate = calendar.startOfDayForDate(currentUser.startDate)
-        let currentDate = self.startOfMonthForDate(calendar.startOfDayForDate(NSDate())) //12AM 01/month/year
+        let calendar = Calendar.current
+        let startDate = calendar.startOfDay(for: currentUser.startDate as Date)
+        let currentDate = self.startOfMonthForDate(calendar.startOfDay(for: Date())) //12AM 01/month/year
         
         
-        let dateComponents = calendar.components([.Year], fromDate: startDate, toDate: currentDate!, options: [])
+        let dateComponents = (calendar as NSCalendar).components([.year], from: startDate, to: currentDate!, options: [])
         //if this is negative then user has set their system time back and everything is fucked
-        return dateComponents.year
+        return dateComponents.year!
     }
     
     /**
      Gets array of months and years (as string "MMMM yyyy") that need to be checked for summaries.
      - Returns: an array of dates in string form that need to be checked.
      */
-    func datesToCheckForSummaries( currentUser: User ) -> [String]
+    func datesToCheckForSummaries( _ currentUser: User ) -> [String]
     {
-        let calendar = NSCalendar.currentCalendar()
-        let currentDate = calendar.startOfDayForDate(self)
+        let calendar = Calendar.current
+        let currentDate = calendar.startOfDay(for: self)
         var lastMonth = currentDate
-        lastMonth = calendar.dateByAddingUnit(.Month, value: -1, toDate: lastMonth, options: [])!
-        var startDate = calendar.startOfDayForDate(currentUser.startDate)
+        lastMonth = (calendar as NSCalendar).date(byAdding: .month, value: -1, to: lastMonth, options: [])!
+        var startDate = calendar.startOfDay(for: currentUser.startDate as Date)
         
         //only get dates for current 12 month period, remove if we want all reviews ever
-        startDate = calendar.dateByAddingUnit(.Year, value: currentUser.year, toDate: startDate, options: [])!
+        startDate = (calendar as NSCalendar).date(byAdding: .year, value: currentUser.year, to: startDate, options: [])!
         
         var datesToCheck = [String]( )
         if startDate == currentDate
@@ -361,14 +361,14 @@ extension NSDate
             return datesToCheck
         }
    
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         //change this to MONTH_YEAR_FORMAT_STRING if we want to have all reviews ever
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         var date = startDate
-        while date.compare(lastMonth) != .OrderedDescending
+        while date.compare(lastMonth) != .orderedDescending
         {
-            datesToCheck.append(dateFormatter.stringFromDate(date))
-            date = calendar.dateByAddingUnit(.Month, value: 1, toDate: date, options: [])!
+            datesToCheck.append(dateFormatter.string(from: date))
+            date = (calendar as NSCalendar).date(byAdding: .month, value: 1, to: date, options: [])!
         }
         
         print("CHECK THESE DATES: \(datesToCheck)")
@@ -376,31 +376,31 @@ extension NSDate
         return datesToCheck
     }
     
-    func daysBetweenTodayAndDate( date: NSDate ) -> Int
+    func daysBetweenTodayAndDate( _ date: Date ) -> Int
     {
         //get days between current date and deadline
-        let calendar = NSCalendar.currentCalendar()
-        let start = calendar.startOfDayForDate(date)
-        let end = calendar.startOfDayForDate(self)
-        let dateComponents = calendar.components([.Day], fromDate: end, toDate: start, options: [])
-        return dateComponents.day
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: date)
+        let end = calendar.startOfDay(for: self)
+        let dateComponents = (calendar as NSCalendar).components([.day], from: end, to: start, options: [])
+        return dateComponents.day!
     }
     
-    func monthsBetweenTodayAndDate(date: NSDate) -> Int
+    func monthsBetweenTodayAndDate(_ date: Date) -> Int
     {
-        let calendar = NSCalendar.currentCalendar()
-        let start = calendar.startOfDayForDate(date)
-        let end = calendar.startOfDayForDate(self)
-        let dateComponents = calendar.components([.Month], fromDate: end, toDate: start, options: [])
-        return dateComponents.month
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: date)
+        let end = calendar.startOfDay(for: self)
+        let dateComponents = (calendar as NSCalendar).components([.month], from: end, to: start, options: [])
+        return dateComponents.month!
     }
     
-    private func startOfMonthForDate(date: NSDate) -> NSDate?
+    fileprivate func startOfMonthForDate(_ date: Date) -> Date?
     {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day, .Month, .Year], fromDate: date)
+        let calendar = Calendar.current
+        var components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
         components.day = 1
-        return calendar.dateFromComponents(components)
+        return calendar.date(from: components)
     }
 }
 
@@ -412,11 +412,11 @@ extension UIAlertController
      Creates an alert controller informing the user to complete their monthly review.
      - Returns: an alert controller.
      */
-    static func getReviewAlert(tbvc: TabBarViewController) -> UIAlertController
+    static func getReviewAlert(_ tbvc: TabBarViewController) -> UIAlertController
     {
-        let reviewAlertController = UIAlertController(title: REVIEW_ALERT_TITLE, message: REVIEW_ALERT_MSG, preferredStyle: .ActionSheet)
-        let cancel = UIAlertAction(title: REVIEW_ALERT_CANCEL, style: .Cancel, handler: nil )
-        let confirm = UIAlertAction(title: REVIEW_ALERT_CONFIRM, style: .Default ) { (action) in
+        let reviewAlertController = UIAlertController(title: REVIEW_ALERT_TITLE, message: REVIEW_ALERT_MSG, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: REVIEW_ALERT_CANCEL, style: .cancel, handler: nil )
+        let confirm = UIAlertAction(title: REVIEW_ALERT_CONFIRM, style: .default ) { (action) in
             //take user to history to complete review
             tbvc.selectedIndex = 0
             
@@ -433,11 +433,11 @@ extension UIAlertController
     
     - Returns: an alert controller.
     */
-    static func AnnualReviewAlert(tbvc: TabBarViewController) -> UIAlertController
+    static func AnnualReviewAlert(_ tbvc: TabBarViewController) -> UIAlertController
     {
-        let annualReviewAlertController = UIAlertController(title: ANNUAL_REVIEW_ALERT_TITLE, message: ANNUAL_REVIEW_ALERT_MSG, preferredStyle: .ActionSheet)
-        let cancel = UIAlertAction(title: ANNUAL_REVIEW_ALERT_CANCEL, style: .Cancel, handler: nil)
-        let confirm = UIAlertAction(title: ANNUAL_REVIEW_ALERT_CONFIRM, style: .Default) { (action) in
+        let annualReviewAlertController = UIAlertController(title: ANNUAL_REVIEW_ALERT_TITLE, message: ANNUAL_REVIEW_ALERT_MSG, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: ANNUAL_REVIEW_ALERT_CANCEL, style: .cancel, handler: nil)
+        let confirm = UIAlertAction(title: ANNUAL_REVIEW_ALERT_CONFIRM, style: .default) { (action) in
             //change tab bar index to take user to history view
             tbvc.selectedIndex = 0
         }

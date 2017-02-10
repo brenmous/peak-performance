@@ -9,7 +9,31 @@
 
 import UIKit
 import SideMenu // https://github.com/jonkykong/SideMenu
-import TwitterKit // https://fabric.io/kits/ios/twitterkit
+import TwitterKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+ // https://fabric.io/kits/ios/twitterkit
 
 
 /**
@@ -36,23 +60,23 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     // MARK: - Actions
     
-    @IBAction func editButtonPressed(sender: AnyObject)
+    @IBAction func editButtonPressed(_ sender: AnyObject)
     {
-        self.tableView.setEditing(tableView.editing != true, animated: true)
+        self.tableView.setEditing(tableView.isEditing != true, animated: true)
     }
     
-    @IBAction func addButtonPressed(sender: AnyObject)
+    @IBAction func addButtonPressed(_ sender: AnyObject)
     {
-        performSegueWithIdentifier(ADD_MONTHLY_GOAL_SEGUE, sender: self)
+        performSegue(withIdentifier: ADD_MONTHLY_GOAL_SEGUE, sender: self)
     }
     
-    @IBAction func menuButtonPressed(sender: AnyObject)
+    @IBAction func menuButtonPressed(_ sender: AnyObject)
     {
         //Side Menu
-        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    @IBAction func unwindFromMGDVC( segue: UIStoryboardSegue ){ }
+    @IBAction func unwindFromMGDVC( _ segue: UIStoryboardSegue ){ }
     
     
     // MARK: - Methods
@@ -60,8 +84,8 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     /// Updates progress bar with the current date and progress value.
     func updateProgressBar( )
     {
-        progressViewLabel.text = NSDate().monthlyProgressString()
-        progressBarMG.progress = NSDate().monthlyProgressValue()
+        progressViewLabel.text = Date().monthlyProgressString()
+        progressBarMG.progress = Date().monthlyProgressValue()
     }
     
     /**
@@ -70,7 +94,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
      - Parameters:
      - weeklyGoal: the newly created weeklygoal
      */
-    func addNewGoal( monthlyGoal: MonthlyGoal )
+    func addNewGoal( _ monthlyGoal: MonthlyGoal )
     {
         guard let cu = currentUser else
         {
@@ -88,7 +112,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
      - Parameters:
      - weeklyGoal: the edited weekly goal.
      */
-    func saveModifiedGoal(monthlyGoal: MonthlyGoal)
+    func saveModifiedGoal(_ monthlyGoal: MonthlyGoal)
     {
         guard let cu = currentUser else
         {
@@ -105,7 +129,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
      - Parameters:
      - goal: the goal being completed.
      */
-    func completeGoal( goal: MonthlyGoal )
+    func completeGoal( _ goal: MonthlyGoal )
     {
         goal.complete = true
         self.saveModifiedGoal(goal)
@@ -114,10 +138,10 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         self.tableView.reloadData()
     }
     
-    func completeButtonPressed( cell: MonthlyGoalTableViewCell )
+    func completeButtonPressed( _ cell: MonthlyGoalTableViewCell )
     {
         //get weekly goal from cell
-        guard let indexPath = self.tableView.indexPathForCell(cell) else
+        guard let indexPath = self.tableView.indexPath(for: cell) else
         {
             //couldn't get index path of cell
             return
@@ -130,25 +154,25 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         let mg = cu.monthlyGoals[indexPath.row]
         
         //goal completion confirm alert controller
-        presentViewController(goalCompleteAlertController(mg), animated: true, completion: nil)
+        present(goalCompleteAlertController(mg), animated: true, completion: nil)
     }
     
     /// Sorts the user's monthly goal array.
     func sortMonthlyGoals()
     {
         guard let cu = currentUser else { return }
-        cu.monthlyGoals.sortInPlace({$0.deadline.compare($1.deadline) == .OrderedAscending})
-        cu.monthlyGoals.sortInPlace({!$0.complete && $1.complete})
+        cu.monthlyGoals.sort(by: {$0.deadline.compare($1.deadline as Date) == .orderedAscending})
+        cu.monthlyGoals.sort(by: {!$0.complete && $1.complete})
     }
     
     /// Shares completed goals on social media if user has enabled them in settings.
-    func shareOnSocialMedia(goal: MonthlyGoal)
+    func shareOnSocialMedia(_ goal: MonthlyGoal)
     {
-        if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        if UserDefaults().bool(forKey: USER_DEFAULTS_TWITTER)
         {
             let composer = TWTRComposer()
             composer.setText(TWITTER_MESSAGE_MONTHLY_GOAL(goal))
-            composer.showFromViewController(self) { (result) in
+            composer.show(from: self) { (result) in
             }
         }
     }
@@ -161,15 +185,15 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         - Parameters:
             - monthlyGoal: the goal to create a notification for.
     */
-    func createMonthlyGoalDueSoonNotification(monthlyGoal: MonthlyGoal)
+    func createMonthlyGoalDueSoonNotification(_ monthlyGoal: MonthlyGoal)
     {
         let notification = UILocalNotification()
         notification.alertBody = MG_NOTIFICATION_BODY(monthlyGoal)
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         // - FIXME:
-        notification.fireDate = calendar.dateByAddingUnit(.Day, value: MG_NOTIFICATION_FIREDATE, toDate: monthlyGoal.deadline, options: [])
+        notification.fireDate = (calendar as NSCalendar).date(byAdding: .day, value: MG_NOTIFICATION_FIREDATE, to: monthlyGoal.deadline as Date, options: [])
         notification.userInfo = [MG_NOTIFICATION_ID: monthlyGoal.gid]
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
     /**
@@ -178,15 +202,15 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         - Parameters:
             - monthlyGoal: goal to remove notification for.
      */
-    func removeMonthlyGoalDueSoonNotification(monthlyGoal: MonthlyGoal)
+    func removeMonthlyGoalDueSoonNotification(_ monthlyGoal: MonthlyGoal)
     {
-        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        guard let notifications = UIApplication.shared.scheduledLocalNotifications else { return }
         for notification in notifications
         {
             guard let key = notification.userInfo![MG_NOTIFICATION_ID] else { continue }
             if key as! String == monthlyGoal.gid
             {
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                UIApplication.shared.cancelLocalNotification(notification)
                 return
             }
         }
@@ -198,9 +222,9 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         - Parameters:
             - monthlyGoal: the goal to update the notification for.
     */
-    func updateMonthlyGoalDueSoonNotificationFireDate(monthlyGoal: MonthlyGoal)
+    func updateMonthlyGoalDueSoonNotificationFireDate(_ monthlyGoal: MonthlyGoal)
     {
-        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        guard let notifications = UIApplication.shared.scheduledLocalNotifications else { return }
         for notification in notifications
         {
             guard let key = notification.userInfo![MG_NOTIFICATION_ID] else { continue }
@@ -214,14 +238,14 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     
     // MARK: - Alert controllers
-    func goalCompleteAlertController(goal: MonthlyGoal) -> UIAlertController
+    func goalCompleteAlertController(_ goal: MonthlyGoal) -> UIAlertController
     {
-        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG_MONTHLY, preferredStyle: .Alert )
-        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM_MONTHLY, style: .Default ) { (action) in
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG_MONTHLY, preferredStyle: .alert )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM_MONTHLY, style: .default ) { (action) in
             self.completeGoal(goal)
             self.shareOnSocialMedia(goal)
         }
-        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
+        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .cancel, handler: nil )
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
         return goalCompleteAlertController
     }
@@ -229,7 +253,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     
     // MARK: - Overridden methods
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -268,7 +292,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         if self.currentUser!.checkYearlyReview()
         {
             self.currentUser!.allMonthlyReviewsFromLastYear()
-            self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+            self.present(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
             //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else
@@ -276,7 +300,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             //check if a monthly review is needed
             if self.currentUser!.checkMonthlyReview()
             {
-                self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+                self.present(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
 
@@ -291,7 +315,7 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     // MARK: - Table view data source
     
     // SOWMYA //
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         var numOfSections: Int = 0
         
@@ -299,17 +323,17 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             
             self.tableView!.backgroundView = nil
             numOfSections = 1
-            tableView.separatorStyle = .SingleLine
+            tableView.separatorStyle = .singleLine
             
         } else {
             
             // Creating and editing label to display when there are no Weekly Goals
             var weeklyPlaceholderView : UIImageView
-            weeklyPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.tableView!.bounds.size.width, self.tableView!.bounds.size.height));
+            weeklyPlaceholderView  = UIImageView(frame:CGRect(x: 0, y: 0, width: self.tableView!.bounds.size.width, height: self.tableView!.bounds.size.height));
             weeklyPlaceholderView.image = UIImage(named:MONTHLY_PLACEHOLDER)
-            weeklyPlaceholderView.contentMode = .ScaleAspectFill
+            weeklyPlaceholderView.contentMode = .scaleAspectFill
             self.tableView.backgroundView = weeklyPlaceholderView
-            tableView.separatorStyle = .None
+            tableView.separatorStyle = .none
             
         }
         
@@ -317,13 +341,13 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     // END SOWMYA //
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return currentUser!.monthlyGoals.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("monthlyGoalCell", forIndexPath: indexPath) as! MonthlyGoalTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "monthlyGoalCell", for: indexPath) as! MonthlyGoalTableViewCell
         let goal = currentUser!.monthlyGoals[indexPath.row]
 
         //Configure the cell
@@ -335,13 +359,13 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         
         if  goal.complete
         {
-            cell.userInteractionEnabled = false
-            cell.completeButton.enabled = false
+            cell.isUserInteractionEnabled = false
+            cell.completeButton.isEnabled = false
 //            cell.accessoryType = .Checkmark
             cell.doneCircle.image = UIImage(named: "done-circle")
-            cell.tintColor = UIColor.darkGrayColor()
-            cell.goalTextLabel.textColor = UIColor.lightGrayColor()
-            cell.dueLabelIcon.hidden = true
+            cell.tintColor = UIColor.darkGray
+            cell.goalTextLabel.textColor = UIColor.lightGray
+            cell.dueLabelIcon.isHidden = true
         
             switch kla
             {
@@ -375,12 +399,12 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
         }
         else if !goal.complete
         {
-            cell.completeButton.enabled = true
-            cell.userInteractionEnabled = true
+            cell.completeButton.isEnabled = true
+            cell.isUserInteractionEnabled = true
             cell.doneCircle.image = UIImage(named: "not-done-circle")
-            cell.accessoryType = .None
+            cell.accessoryType = .none
             cell.goalTextLabel.textColor = PEAK_BLACK
-            cell.dueLabelIcon.hidden = false
+            cell.dueLabelIcon.isHidden = false
             
             switch kla
             {
@@ -433,21 +457,21 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
             else
             {
                 // hide image
-                cell.dueLabelIcon.hidden = true
+                cell.dueLabelIcon.isHidden = true
             }
         }
         
         // Image button for normal and highlighted
         let imageButton = UIImage(named: klaIcon)
         let highlightedImageButton = UIImage(named: klaIconHighlighted)
-        cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
-        cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
+        cell.completeButton.setBackgroundImage(imageButton, for: UIControlState())
+        cell.completeButton.setBackgroundImage(highlightedImageButton, for: .highlighted)
         
         return cell
     }
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         if currentUser!.monthlyGoals[indexPath.row].complete
         {
@@ -457,30 +481,30 @@ class MonthlyGoalsViewController: UITableViewController, MonthlyGoalDetailViewCo
     }
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete
         {
             // Delete the row from the data source
             guard let cu = self.currentUser else { return }
             self.dataService.removeGoal(cu.uid, goal: cu.monthlyGoals[indexPath.row])
-            cu.monthlyGoals.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            cu.monthlyGoals.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     // MARK: - Navigation
 
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier!
         {
         case ADD_MONTHLY_GOAL_SEGUE:
-            let dvc = segue.destinationViewController as! MonthlyGoalDetailViewController
+            let dvc = segue.destination as! MonthlyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
             
         case EDIT_MONTHLY_GOAL_SEGUE:
-            let dvc = segue.destinationViewController as! MonthlyGoalDetailViewController
+            let dvc = segue.destination as! MonthlyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
             if let indexPath = self.tableView.indexPathForSelectedRow

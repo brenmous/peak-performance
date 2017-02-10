@@ -21,7 +21,7 @@ class TabBarViewController: UITabBarController {
     /// The current select tab view
     var currentSelectedIndex = 2
     
-    @IBAction func unwindToTabBar( sender: UIStoryboardSegue){ }
+    @IBAction func unwindToTabBar( _ sender: UIStoryboardSegue){ }
     
     // MARK: - Methods
     
@@ -35,8 +35,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // BEN //
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: #selector(TabBarViewController.setIndexNumber), name: "changeIndex", object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(TabBarViewController.setIndexNumber), name: NSNotification.Name(rawValue: "changeIndex"), object: nil)
         // END BEN //
 
         self.selectedIndex = currentSelectedIndex
@@ -47,7 +47,7 @@ class TabBarViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
     }

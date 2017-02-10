@@ -22,11 +22,16 @@ platform :ios, "8.1"
 
 use_frameworks!
 
-# As of 4.0.0, SwiftValidator has been extended beyond UITextField
+# Swift 3
+# Extended beyond UITextField
+pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'master'
+
+# Swift 2.1
+# Extended beyond UITextField
 # Note: Installing 4.x.x will break code from 3.x.x
 pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '4.0.0'
 
-# For older versions
+# Swift 2.1 (limited to UITextField validation)
 pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '3.0.5'
 ```
 
@@ -89,7 +94,7 @@ Validate Fields on button tap or however you would like to trigger it.
 
 ```swift
 @IBAction func signupTapped(sender: AnyObject) {
-	validator.validate(delegate:self)
+	validator.validate(self)
 }
 ```
 
@@ -102,11 +107,13 @@ func validationSuccessful() {
 	// submit the form
 }
 
-func validationFailed(errors:[UITextField:ValidationError]) {
+func validationFailed(errors:[(Validatable ,ValidationError)]) {
 	// turn the fields to red
-	for (field, error) in validator.errors {
-		field.layer.borderColor = UIColor.redColor().CGColor
-		field.layer.borderWidth = 1.0
+	for (field, error) in errors {
+		if let field = field as? UITextField {
+			field.layer.borderColor = UIColor.redColor().CGColor
+			field.layer.borderWidth = 1.0		
+		}
 		error.errorLabel?.text = error.errorMessage // works if you added labels
 		error.errorLabel?.hidden = false
 	}

@@ -19,8 +19,8 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
                  "thirdPageTutorial", "fourthPageTutorial", "fifthPageTutorial" ]
     // Mark: IBActions
     
-    @IBAction func skipTutorial(sender: AnyObject) {
-        self.performSegueWithIdentifier( GO_TO_INITIAL_SETUP, sender: self )
+    @IBAction func skipTutorial(_ sender: AnyObject) {
+        self.performSegue( withIdentifier: GO_TO_INITIAL_SETUP, sender: self )
     }
     
     // Mark: Delegate Methods
@@ -30,7 +30,7 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
      
      */
     func lastPageDone() {
-        self.performSegueWithIdentifier( GO_TO_INITIAL_SETUP, sender: self )
+        self.performSegue( withIdentifier: GO_TO_INITIAL_SETUP, sender: self )
         
     }
     
@@ -39,8 +39,8 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     }
 
     // Mark: Public functions for PageViewController
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        if let index = pages.indexOf(viewController.restorationIdentifier!) {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if let index = pages.index(of: viewController.restorationIdentifier!) {
             if index > 0 {
                 return viewControllerAtIndex(index - 1)
                 
@@ -49,9 +49,9 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
         return nil
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        if let index = pages.indexOf(viewController.restorationIdentifier!) {
+        if let index = pages.index(of: viewController.restorationIdentifier!) {
             if index < pages.count - 1 {
                 return viewControllerAtIndex(index + 1)
             }
@@ -60,11 +60,11 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     }
     
     // Mark: Public Functions for Page Control
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
                 return 0
     }
     
@@ -75,8 +75,8 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
      - index of the array
     */
     
-    func viewControllerAtIndex(index: Int) -> UIViewController? {
-        let vc = storyboard?.instantiateViewControllerWithIdentifier(pages[index])
+    func viewControllerAtIndex(_ index: Int) -> UIViewController? {
+        let vc = storyboard?.instantiateViewController(withIdentifier: pages[index])
         
         if pages[index] == "fifthPageTutorial" {
             (vc as! LastPageTutorialViewController).delegate = self
@@ -94,7 +94,7 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
         let vc = viewControllerAtIndex(0)
         (vc as! GreetingViewController).delegate = self
         
-        if let vc = storyboard?.instantiateViewControllerWithIdentifier("tutorialPageViewController"){
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "tutorialPageViewController"){
             self.addChildViewController(vc)
             self.view.addSubview(vc.view)
             
@@ -102,8 +102,8 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
             pageViewController.dataSource = self
             pageViewController.delegate = self
             
-            pageViewController.setViewControllers([viewControllerAtIndex(0)!], direction: .Forward, animated: true, completion: nil)
-            pageViewController.didMoveToParentViewController(self)
+            pageViewController.setViewControllers([viewControllerAtIndex(0)!], direction: .forward, animated: true, completion: nil)
+            pageViewController.didMove(toParentViewController: self)
         
         }
         
@@ -119,12 +119,12 @@ LastPageTutorialViewControllerDelegate, GreetingViewControllerDelegate {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == GO_TO_INITIAL_SETUP
         {
-            let nav = segue.destinationViewController as! UINavigationController
+            let nav = segue.destination as! UINavigationController
             let dvc = nav.topViewController as! InitialSetupViewController
             dvc.currentUser = self.currentUser
         }

@@ -49,71 +49,71 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Action
     
-    @IBAction func familyInfoPressed(sender: AnyObject) {
+    @IBAction func familyInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(FAMILY_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(1), fromFrame: familyPopTip.frame)
+        infoPopTip.showText(FAMILY_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(1)!, fromFrame: familyPopTip.frame)
 
     }
     
-    @IBAction func friendsInfoPressed(sender: AnyObject) {
+    @IBAction func friendsInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(FRIENDS_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(2), fromFrame: friendsPopTip.frame)
+        infoPopTip.showText(FRIENDS_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(2)!, fromFrame: friendsPopTip.frame)
 
     }
     
-    @IBAction func partnerInfoPressed(sender: AnyObject) {
+    @IBAction func partnerInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(PARTNER_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(3), fromFrame: partnerPopTip.frame)
+        infoPopTip.showText(PARTNER_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(3)!, fromFrame: partnerPopTip.frame)
         
     }
     
     
-    @IBAction func workInfoPressed(sender: AnyObject) {
+    @IBAction func workInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(WORK_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(4), fromFrame: workPopTip.frame)
+        infoPopTip.showText(WORK_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(4)!, fromFrame: workPopTip.frame)
     }
     
-    @IBAction func healthInfoPressed(sender: AnyObject) {
+    @IBAction func healthInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(HEALTH_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(5), fromFrame: healthPopTip.frame)
+        infoPopTip.showText(HEALTH_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(5)!, fromFrame: healthPopTip.frame)
     }
     
 
-    @IBAction func personalInfoPressed(sender: AnyObject) {
+    @IBAction func personalInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(PERSONAL_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(6), fromFrame: personalPopTip.frame)
+        infoPopTip.showText(PERSONAL_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(6)!, fromFrame: personalPopTip.frame)
     }
     
-    @IBAction func financeInfoPressed(sender: AnyObject) {
+    @IBAction func financeInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(FINANCE_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(7), fromFrame: financePopTip.frame)
+        infoPopTip.showText(FINANCE_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(7)!, fromFrame: financePopTip.frame)
     }
 
     
-    @IBAction func emotionalInfoPressed(sender: AnyObject) {
+    @IBAction func emotionalInfoPressed(_ sender: AnyObject) {
         infoPopTip.hide()
-        infoPopTip.showText(EMOTIONAL_MESSAGE_HELP, direction: .Down, maxWidth: self.view.frame.width-10, inView: self.view.viewWithTag(8), fromFrame: emotionalPopTip.frame)
+        infoPopTip.showText(EMOTIONAL_MESSAGE_HELP, direction: .down, maxWidth: self.view.frame.width-10, in: self.view.viewWithTag(8)!, fromFrame: emotionalPopTip.frame)
     }
     
     
-    @IBAction func saveMyValues(sender: AnyObject) {
+    @IBAction func saveMyValues(_ sender: AnyObject) {
         
         //dismiss keyboard
         self.view.endEditing(true)
         saveValues( )
         
-        let saveNotificationAlertController = UIAlertController(title: SAVED_VALUES, message: nil, preferredStyle: .Alert)
+        let saveNotificationAlertController = UIAlertController(title: SAVED_VALUES, message: nil, preferredStyle: .alert)
         
-        let confirm = UIAlertAction(title: CONFIRM_SAVE_VALUES, style: .Default, handler: nil)
+        let confirm = UIAlertAction(title: CONFIRM_SAVE_VALUES, style: .default, handler: nil)
         
         saveNotificationAlertController.addAction(confirm)
-        presentViewController(saveNotificationAlertController, animated: true, completion: nil)
+        present(saveNotificationAlertController, animated: true, completion: nil)
         
     }
     
 
-    @IBAction func menuButtonPressed(sender: UIBarButtonItem) {
-                presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    @IBAction func menuButtonPressed(_ sender: UIBarButtonItem) {
+                present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
 
     func saveValues( )
@@ -154,7 +154,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     }
     // MARK: Overridden methods
 
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -168,7 +168,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         {
             //inform user review is needed
             //self.currentUser!.allMonthlyReviewsFromLastYear()
-            self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+            self.present(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
             //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else
@@ -176,7 +176,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
             //check if a monthly review is needed
             if self.currentUser!.checkMonthlyReview()
             {
-                self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+                self.present(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
 
@@ -191,13 +191,13 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         /// Poptip setup
-        infoPopTip.textAlignment = .Left
+        infoPopTip.textAlignment = .left
         infoPopTip.offset = POPTIP_OFFSET_MY_VALUES
         infoPopTip.arrowSize = CGSize(width: POPTIP_ARROW_WIDTH, height: POPTIP_ARROW_HEIGHT)
         infoPopTip.shouldDismissOnTap = true
         infoPopTip.shouldDismissOnTapOutside = true
         infoPopTip.popoverColor = PEAK_POPTIP_MY_VALUES_GRAY
-        infoPopTip.textColor = UIColor.blackColor()
+        infoPopTip.textColor = UIColor.black
         
         let tbvc = self.tabBarController as! TabBarViewController
         
@@ -212,7 +212,7 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
 
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
        /// Determines if a textfield has been edited and prompts the user to save the updated text
@@ -238,21 +238,21 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     // END BEN //
     
     func showSaveAlert() {
-            let saveNotificationAlertController = UIAlertController(title: SAVE_VALUE_ALERT, message: CONFIRM_TO_SAVE_VALUES, preferredStyle: .Alert)
+            let saveNotificationAlertController = UIAlertController(title: SAVE_VALUE_ALERT, message: CONFIRM_TO_SAVE_VALUES, preferredStyle: .alert)
             
-            let confirmSave = UIAlertAction(title: CONFIRM_SAVE_VALUES, style: .Default) { (action) in
+            let confirmSave = UIAlertAction(title: CONFIRM_SAVE_VALUES, style: .default) { (action) in
                 self.saveValues( )
             }
-            let cancelSave = UIAlertAction(title: CANCEL_SAVE_VALUES, style: .Default, handler: nil)
+            let cancelSave = UIAlertAction(title: CANCEL_SAVE_VALUES, style: .default, handler: nil)
             saveNotificationAlertController.addAction(confirmSave)
             saveNotificationAlertController.addAction(cancelSave)
-            presentViewController(saveNotificationAlertController, animated: true, completion: nil)
+            present(saveNotificationAlertController, animated: true, completion: nil)
 
     }
 
     // MARK: - keyboard stuff
     /// Work around for dismissing keyboard on text view.
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
     {
         if text == "\n"
         {
@@ -266,11 +266,11 @@ class MyValuesTableViewController: UITableViewController, UITextViewDelegate {
     }
     
     ///Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    override func touchesBegan( _ touchers: Set<UITouch>, with event: UIEvent? )
     {
         
         self.view.endEditing(true)
-        super.touchesBegan(touchers, withEvent: event)
+        super.touchesBegan(touchers, with: event)
     }
     
 

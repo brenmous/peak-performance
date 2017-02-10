@@ -10,7 +10,31 @@ import UIKit
 import SideMenu // https://github.com/jonkykong/SideMenu
 import Photos
 import AssetsLibrary
-import TwitterKit // https://fabric.io/kits/ios/twitterkit
+import TwitterKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+ // https://fabric.io/kits/ios/twitterkit
 
 private let reuseIdentifier = "Cell"
 
@@ -31,20 +55,20 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     // MARK: - Actions
     
-    @IBAction func unwindFromDDVC(segue: UIStoryboardSegue)
+    @IBAction func unwindFromDDVC(_ segue: UIStoryboardSegue)
     {
         
     }
     
-    @IBAction func menuButtonPressed(sender: AnyObject)
+    @IBAction func menuButtonPressed(_ sender: AnyObject)
     {
-        self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+        self.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     
     // MARK: - Methods
     
-    func addDream(dream: Dream) {
+    func addDream(_ dream: Dream) {
         guard let cu = currentUser else
         {
             //user not available? handle it here
@@ -64,7 +88,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         
     }
     
-    func saveModifiedDream(dream: Dream) {
+    func saveModifiedDream(_ dream: Dream) {
 
         guard let cu = currentUser else
         {
@@ -79,14 +103,14 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         
     }
     
-    func deleteDream(dream: Dream) {
+    func deleteDream(_ dream: Dream) {
         guard let cu = currentUser else
         {
             return
         }
         StorageService.removeDreamImage(cu, dream: dream)
         self.dataService.removeDream(cu.uid, dream: dream)
-        cu.dreams.removeAtIndex(globalindexPathForRow!)
+        cu.dreams.remove(at: globalindexPathForRow!)
         self.collectionView?.reloadData( )
         
     }
@@ -104,12 +128,12 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             var photo: PHAsset? = nil
             if let url = dream.imageLocalURL
             {
-                let fetchResult = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil)
+                let fetchResult = PHAsset.fetchAssets(withALAssetURLs: [url as URL], options: nil)
             
-                photo = fetchResult.firstObject as? PHAsset
+                photo = fetchResult.firstObject! as PHAsset
                 if photo != nil
                 {
-                    PHImageManager( ).requestImageDataForAsset(photo!, options: nil) { (data, info, orientation, dict) in
+                    PHImageManager( ).requestImageData(for: photo!, options: nil) { (data, info, orientation, dict) in
                         dream.imageData = data!
                         self.collectionView?.reloadData( )
                     }
@@ -129,14 +153,14 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     
     /// BREN ///
     /// Shares a dream goal on twitter.
-    func shareOnTwitter(dream: Dream)
+    func shareOnTwitter(_ dream: Dream)
     {
-        if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        if UserDefaults().bool(forKey: USER_DEFAULTS_TWITTER)
         {
             let composer = TWTRComposer()
             composer.setText(TWITTER_MESSAGE_DREAM(dream))
-            if dream.imageData != nil { composer.setImage(UIImage(data: dream.imageData!)!) }
-            composer.showFromViewController(self) { result in
+            if dream.imageData != nil { composer.setImage(UIImage(data: dream.imageData! as Data)!) }
+            composer.show(from: self) { result in
             }
         }
     }
@@ -145,7 +169,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
 
     // MARK: - Overriden functions
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -155,7 +179,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         if self.currentUser!.checkYearlyReview()
         {
             //self.currentUser!.allMonthlyReviewsFromLastYear()
-            self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+            self.present(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
             //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else
@@ -163,7 +187,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             //check if a monthly review is needed
             if self.currentUser!.checkMonthlyReview()
             {
-                self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+                self.present(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
 
@@ -207,7 +231,7 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     // MARK: - UICollectionViewDataSource
     
     /// SOWMYA ///
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         var numOfSection: NSInteger = 0
         
@@ -220,9 +244,9 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
         } else {
             // show dream placeholder if there are no dreams
             var dreamPlaceholderView : UIImageView
-            dreamPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.collectionView!.bounds.size.width, self.collectionView!.bounds.size.height));
+            dreamPlaceholderView  = UIImageView(frame:CGRect(x: 0, y: 0, width: self.collectionView!.bounds.size.width, height: self.collectionView!.bounds.size.height));
             dreamPlaceholderView.image = UIImage(named:DREAM_PLACEHOLDER)
-            dreamPlaceholderView.contentMode = .ScaleAspectFill
+            dreamPlaceholderView.contentMode = .scaleAspectFill
             self.collectionView?.backgroundView = dreamPlaceholderView
         }
         return numOfSection
@@ -230,13 +254,13 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
     /// END SOWMYA
 
     // Used to count the number of dreams the user has
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return currentUser!.dreams.count
         
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         let imageView = cell.viewWithTag(1) as! UIImageView
         let labelView = cell.viewWithTag(2) as! UILabel
@@ -248,40 +272,40 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             imageView.image = UIImage(contentsOfFile: "business-cat.jpg")
             return cell
         }
-        imageView.image = UIImage(data: userImageData)
+        imageView.image = UIImage(data: userImageData as Data)
         return cell
     }
     
     // MARK: - Collection View Layout
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2 - 1
         return  CGSize(width: width, height: width)
         
     }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1.0
     }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1.0
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ADD_DREAM_SEGUE
         {
-            let dvc = segue.destinationViewController as! DreamDetailViewController
+            let dvc = segue.destination as! DreamDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
         }
         else if segue.identifier == EDIT_DREAM_SEGUE
         {
-            let dvc = segue.destinationViewController as! DreamDetailViewController
+            let dvc = segue.destination as! DreamDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
             let cell = sender as! UICollectionViewCell
-            if let indexPath = self.collectionView?.indexPathForCell(cell)
+            if let indexPath = self.collectionView?.indexPath(for: cell)
             {
                 dvc.currentDream = currentUser!.dreams[indexPath.row]
                 self.globalindexPathForRow = indexPath.row

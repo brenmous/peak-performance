@@ -8,7 +8,7 @@
 
 protocol GoalTableViewCellDelegate
 {
-    func completeButtonPressed( cell: GoalTableViewCell )
+    func completeButtonPressed( _ cell: GoalTableViewCell )
 }
 
 import UIKit
@@ -25,13 +25,13 @@ class GoalTableViewCell: UITableViewCell {
     @IBOutlet weak var tickButton: UIButton!
 
     
-    @IBAction func completeButtonPressed(sender: AnyObject)
+    @IBAction func completeButtonPressed(_ sender: AnyObject)
     {
         
         delegate?.completeButtonPressed(self)
     }
     
-    @IBAction func tickButtonToComplete(sender: AnyObject) {
+    @IBAction func tickButtonToComplete(_ sender: AnyObject) {
         delegate?.completeButtonPressed(self)
 
     }

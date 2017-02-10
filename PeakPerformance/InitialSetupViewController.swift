@@ -33,61 +33,65 @@ class InitialSetupViewController: UITableViewController {
     
     
     // MARK: - Actions
-    @IBAction func nextButtonPushed(sender: AnyObject)
+    @IBAction func nextButtonPushed(_ sender: AnyObject)
     {
         updateSummaryWithSliderValues( )
        
         //go to next view
-        performSegueWithIdentifier(GO_TO_SECOND_INITIAL_SETUP, sender: self)
+        performSegue(withIdentifier: GO_TO_SECOND_INITIAL_SETUP, sender: self)
     }
     
     /// BEN ///
-    @IBAction func reasonButtonPushed(sender: AnyObject) {
+    @IBAction func reasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
         }
     
-    @IBAction func friendAddReasonButtonPushed(sender: AnyObject) {
+    @IBAction func friendAddReasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
     }
     
-    @IBAction func partnerAddReasonButtonPushed(sender: AnyObject) {
+    @IBAction func partnerAddReasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
     }
 
-    @IBAction func workAddReasonButtonPushed(sender: AnyObject) {
+    @IBAction func workAddReasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
     }
     
-    @IBAction func healthAddReasonButtonPushed(sender: AnyObject) {
+    @IBAction func healthAddReasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
     }
     
-    @IBAction func personalDevAddReasonButtonPushed(sender: AnyObject) {
+    @IBAction func personalDevAddReasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
     }
     
-    @IBAction func financialAddReasonButtonPushed(sender: AnyObject) {
+    @IBAction func financialAddReasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
     }
     
     
-    @IBAction func emotionalAddReasonButtonPushed(sender: AnyObject) {
+    @IBAction func emotionalAddReasonButtonPushed(_ sender: AnyObject) {
         showAlertBox(sender)
     }
     
 
     /// Presents alert controller asking user to provide reason for their rating.
-    func showAlertBox(sender: AnyObject) {
+    func showAlertBox(_ sender: AnyObject) {
         print("add reason pushed from sender \(sender.tag)")
         var reason = ""
         
-        let reasonAlertController = UIAlertController(title: INITIAL_SETUP_ALERT_TITLE, message: INITIAL_SETUP_ALERT_MSG, preferredStyle: .Alert)
-        let cancel = UIAlertAction(title: INITIAL_SETUP_ALERT_CANCEL, style: .Cancel, handler: nil )
-        let confirm = UIAlertAction(title: INITIAL_SETUP_ALERT_CONFIRM, style: .Default ) { (action) in
+        let reasonAlertController = UIAlertController(title: INITIAL_SETUP_ALERT_TITLE, message: INITIAL_SETUP_ALERT_MSG, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: INITIAL_SETUP_ALERT_CANCEL, style: .cancel, handler: nil )
+        let confirm = UIAlertAction(title: INITIAL_SETUP_ALERT_CONFIRM, style: .default ) { (action) in
             let reasonTextField = reasonAlertController.textFields![0] as UITextField
             reason = "- \(reasonTextField.text!) \n"
             print("\(reason)")
-            let tag = sender.tag
+            guard let tag = sender.tag else
+            {
+                print("ISVC: tag out of range or some whack computer shit happened, I dunno I ain't getting paid for this")
+                return
+            }
             
             switch tag
             {
@@ -113,10 +117,10 @@ class InitialSetupViewController: UITableViewController {
             }
         }
         reasonAlertController.addAction(confirm); reasonAlertController.addAction(cancel)
-        reasonAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in
+        reasonAlertController.addTextField( ) { (textField) in
             textField.placeholder = ADDREASON_PLACEHOLDER_STRING
         }
-        presentViewController(reasonAlertController, animated: true, completion: nil )
+        present(reasonAlertController, animated: true, completion: nil )
 
     }
     /// END BEN ///
@@ -140,7 +144,7 @@ class InitialSetupViewController: UITableViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = PEAK_NAV_BAR_COLOR
@@ -156,11 +160,11 @@ class InitialSetupViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == GO_TO_SECOND_INITIAL_SETUP
         {
-            let dvc = segue.destinationViewController as! SecondInitialSetupViewController
+            let dvc = segue.destination as! SecondInitialSetupViewController
             dvc.currentUser = self.currentUser
             dvc.summary = self.summary
         }

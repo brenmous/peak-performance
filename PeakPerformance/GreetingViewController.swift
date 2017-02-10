@@ -32,7 +32,7 @@ class GreetingViewController: UIViewController {
     }
     
 
-    @IBAction func tutorialDidSkip(sender: UIButton) {
+    @IBAction func tutorialDidSkip(_ sender: UIButton) {
         if delegate != nil {
             delegate?.lastPageDone()
         }

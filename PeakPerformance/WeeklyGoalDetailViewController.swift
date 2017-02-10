@@ -13,8 +13,8 @@ import SideMenu // https://github.com/jonkykong/SideMenu
 
 protocol WeeklyGoalDetailViewControllerDelegate
 {
-    func addNewGoal( weeklyGoal: WeeklyGoal )
-    func saveModifiedGoal( weeklyGoal: WeeklyGoal )
+    func addNewGoal( _ weeklyGoal: WeeklyGoal )
+    func saveModifiedGoal( _ weeklyGoal: WeeklyGoal )
 }
 
 class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, ValidationDelegate, UITextViewDelegate
@@ -56,7 +56,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     // MARK: - Actions
     
-    @IBAction func saveButtonPressed(sender: AnyObject)
+    @IBAction func saveButtonPressed(_ sender: AnyObject)
     {
         //dismiss keyboard
         self.view.endEditing(true)
@@ -64,7 +64,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     // BEN //
-    @IBAction func klaButtonPressed(sender: AnyObject) //Ben
+    @IBAction func klaButtonPressed(_ sender: AnyObject) //Ben
     {
         //dismiss keyboard
         self.view.endEditing(true)
@@ -74,51 +74,51 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
                 picker, values, indexes in
             
         // trimming the index values
-                let newValue = String(values)
-                let trimmedPunctuationWithNewValue = newValue.stringByTrimmingCharactersInSet(NSCharacterSet.punctuationCharacterSet())
-                let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                let newValue = String(describing: values)
+                let trimmedPunctuationWithNewValue = newValue.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                let trimmedSpaceWithNewValue = trimmedPunctuationWithNewValue.trimmingCharacters(in: CharacterSet.whitespaces)
                 let index = Int(trimmedSpaceWithNewValue)
             
         // assign to textfield
                 self.klaTextField.text = self.keyLifeAreas[index!]
                 return
-            }, cancelBlock: { ActionMultipleStringCancelBlock in return }, origin: sender)
+            }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
         
-        acp.showActionSheetPicker()
+        acp?.show()
     }
     // END BEN //
     
     // BEN (NSDate arithmetic by Bren) //
-    @IBAction func deadlineButtonPressed(sender: AnyObject) //Ben
+    @IBAction func deadlineButtonPressed(_ sender: AnyObject) //Ben
     {
         //dismiss keyboard
         self.view.endEditing(true)
         
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
-        let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
+        let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.date, selectedDate: Date(), doneBlock: {
             picker, value, index in
-            let newDate = value as? NSDate
+            let newDate = value as? Date
             
             // assign to textfield
-            self.deadlineTextField.text =  dateFormatter.stringFromDate(newDate!)
+            self.deadlineTextField.text =  dateFormatter.string(from: newDate!)
             return
-            }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!!.superview)
+            }, cancel: { ActionStringCancelBlock in return }, origin: sender.superview!!.superview)
         
         
-        datePicker.minimumDate = NSDate()
-        datePicker.maximumDate = NSDate().weeklyDatePickerMaxDate( )
+        datePicker?.minimumDate = Date()
+        datePicker?.maximumDate = Date().weeklyDatePickerMaxDate( )
         
-        datePicker.showActionSheetPicker()
+        datePicker?.show()
     }
     // END BEN //
     
-    @IBAction func menuButtonPressed(sender: AnyObject)
+    @IBAction func menuButtonPressed(_ sender: AnyObject)
     {
         //dismiss keyboard
         self.view.endEditing(true)
         
-        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil )
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil )
     }
     
     
@@ -132,7 +132,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)]){}
+    func validationFailed(_ errors: [(Validatable, ValidationError)]){}
     
     /// Saves changes to an existing goal, or creates a new one if no goal currently exists.
     func saveChanges( )
@@ -147,7 +147,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         {
             updateGoal( )
         }
-        performSegueWithIdentifier(UNWIND_FROM_WGDVC_SEGUE, sender: self)
+        performSegue(withIdentifier: UNWIND_FROM_WGDVC_SEGUE, sender: self)
     }
     
     /// Creates a new weekly goal object with details from text fields. Calls delegate to save goal.
@@ -156,7 +156,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         let goalText = goalTextView.text!
         let kla = klaTextField.text!
         let deadline = deadlineTextField.text!
-        let gid = NSUUID( ).UUIDString
+        let gid = UUID( ).uuidString
         let wg = WeeklyGoal(goalText: goalText, kla: kla, deadline: deadline, gid: gid)
         delegate?.addNewGoal(wg)
     }
@@ -167,9 +167,9 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         guard let cg = currentGoal else { return }
         cg.goalText = goalTextView.text!
         cg.kla = klaTextField.text!
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
-        guard let dl = dateFormatter.dateFromString(deadlineTextField.text!) else { return }
+        guard let dl = dateFormatter.date(from: deadlineTextField.text!) else { return }
         cg.deadline = dl
         delegate?.saveModifiedGoal(cg)
     }
@@ -180,25 +180,25 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         guard let cg = currentGoal else { return }
         goalTextView.text = cg.goalText
         klaTextField.text = cg.kla
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
-        deadlineTextField.text = dateFormatter.stringFromDate(cg.deadline)
+        deadlineTextField.text = dateFormatter.string(from: cg.deadline as Date)
     }
     
     // MARK: - Overridden methods
 
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
         //hide pickers
-        klaPicker.hidden = true
-        deadlinePicker.hidden = true
+        klaPicker.isHidden = true
+        deadlinePicker.isHidden = true
         
         //hide error labels
-        goalTextErrorLabel.hidden = true
-        klaErrorLabel.hidden = true
-        deadlineErrorLabel.hidden = true
+        goalTextErrorLabel.isHidden = true
+        klaErrorLabel.isHidden = true
+        deadlineErrorLabel.isHidden = true
         
         //update textfields if editing a goal
         if currentGoal != nil
@@ -221,13 +221,13 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
         
         // Do any additional setup after loading the view.
         goalTextView.layer.cornerRadius = 5
-        goalTextView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
+        goalTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         goalTextView.layer.borderWidth = 1
         goalTextView.clipsToBounds = true
         
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.isHidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
@@ -236,7 +236,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
             }
             
             }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.isHidden = false
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
@@ -272,25 +272,25 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     
     // MARK: - KLA Picker
     // BEN //
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    func numberOfComponents(in pickerView: UIPickerView) -> Int
     {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         return keyLifeAreas.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
         return keyLifeAreas[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         klaTextField.text = keyLifeAreas[row]
-        klaPicker.hidden = true
+        klaPicker.isHidden = true
     }
     // END BEN //
     
@@ -298,7 +298,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     // MARK: - keyboard stuff
     
     /// Work around for dismissing keyboard on text view.
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
     {
         if text == "\n"
         {
@@ -313,7 +313,7 @@ class WeeklyGoalDetailViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    override func touchesBegan( _ touchers: Set<UITouch>, with event: UIEvent? )
     {
         self.view.endEditing(true)
     }

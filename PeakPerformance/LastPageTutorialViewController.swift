@@ -17,7 +17,7 @@ class LastPageTutorialViewController: UIViewController {
     // Mark: IBAction
     var delegate: LastPageTutorialViewControllerDelegate?
     
-    @IBAction func tutorialFinished(sender: AnyObject) {
+    @IBAction func tutorialFinished(_ sender: AnyObject) {
         if delegate != nil {
         delegate?.lastPageDone()
         }

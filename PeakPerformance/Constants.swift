@@ -95,10 +95,10 @@ let TEXTFIELD_REGULAR_BORDER_WIDTH = 0.5
 let TEXTFIELD_ERROR_BORDER_WIDTH = 1.0
 
 //The standard text field border colour
-let TEXTFIELD_REGULAR_BORDER_COLOUR = UIColor.clearColor().CGColor
+let TEXTFIELD_REGULAR_BORDER_COLOUR = UIColor.clear.cgColor
 
 //The text field border colour for indicating an error
-let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).CGColor
+let TEXTFIELD_ERROR_BORDER_COLOUR = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor
 
 
 
@@ -636,13 +636,13 @@ let USER_DEFAULTS_TWITTER = "twitter"
 // MARK: - UILocalNotification
 
 /// Body of WG due soon local notification
-func WG_NOTIFICATION_BODY(goal: Goal) -> String { return "Weekly goal \"\(goal.goalText)\" is due." }
+func WG_NOTIFICATION_BODY(_ goal: Goal) -> String { return "Weekly goal \"\(goal.goalText)\" is due." }
 
 /// Key for ID in weekly goal notification.userSettings
 let WG_NOTIFICATION_ID = "GID"
 
 /// Body of MG due soon local notification
-func MG_NOTIFICATION_BODY(monthlyGoal: MonthlyGoal) -> String { return "Monthly goal \"\(monthlyGoal.goalText)\" is due soon." }
+func MG_NOTIFICATION_BODY(_ monthlyGoal: MonthlyGoal) -> String { return "Monthly goal \"\(monthlyGoal.goalText)\" is due soon." }
 
 /// Key for ID in monthly goal notification.userSettings
 let MG_NOTIFICATION_ID = "MONTH"
@@ -659,22 +659,22 @@ let MG_NOTIFICATION_FIREDATE = 25
 let NO_COACH_EMAIL_MESSAGE = "No coach!"
 
 /// Summary email default body
-func SUMMARY_EMAIL_BODY(month: String, user: User) -> String { return "Hi Peak Performance Coach, \nI would like to share with you my progress for the month of\(month)\nKind regards,\(user.fname)\(user.lname)" }
+func SUMMARY_EMAIL_BODY(_ month: String, user: User) -> String { return "Hi Peak Performance Coach, \nI would like to share with you my progress for the month of\(month)\nKind regards,\(user.fname)\(user.lname)" }
 
 /// Summary email default subject
-func SUMMARY_EMAIL_SUBJECT(month: String) -> String { return "My monthly review for \(month)." }
+func SUMMARY_EMAIL_SUBJECT(_ month: String) -> String { return "My monthly review for \(month)." }
 
 
 // MARK: - Social Media strings
 
 /// Default body text for twitter posts about weekly goals
-func TWITTER_MESSAGE_WEEKLY_GOAL(goal: Goal) -> String { return "I completed my goal \"\(goal.goalText)\"! #PeakPerformance"}
+func TWITTER_MESSAGE_WEEKLY_GOAL(_ goal: Goal) -> String { return "I completed my goal \"\(goal.goalText)\"! #PeakPerformance"}
 
 /// Default body text for twitter posts about monthly goals
-func TWITTER_MESSAGE_MONTHLY_GOAL(goal: Goal) -> String { return "I completed my monthly goal \"\(goal.goalText)\"! #PeakPerformance"}
+func TWITTER_MESSAGE_MONTHLY_GOAL(_ goal: Goal) -> String { return "I completed my monthly goal \"\(goal.goalText)\"! #PeakPerformance"}
 
 /// Default body text for twitter posts about dreams
-func TWITTER_MESSAGE_DREAM(dream: Dream) -> String { return "My dream is to \"\(dream.dreamDesc)\" #PeakPerformance" }
+func TWITTER_MESSAGE_DREAM(_ dream: Dream) -> String { return "My dream is to \"\(dream.dreamDesc)\" #PeakPerformance" }
 
 
 // MARK: - AMPopTip constants

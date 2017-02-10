@@ -29,12 +29,12 @@ class MonthlyReviewViewController: UITableViewController {
     
     
     // MARK: - Actions
-    @IBAction func nextButtonPushed(sender: AnyObject)
+    @IBAction func nextButtonPushed(_ sender: AnyObject)
     {
         updateSummaryWithSliderValues( )
     
         //go to next view
-        performSegueWithIdentifier(GO_TO_SECOND_REVIEW_SEGUE, sender: self)
+        performSegue(withIdentifier: GO_TO_SECOND_REVIEW_SEGUE, sender: self)
     }
     
     /// Get values from sliders and save to self.summary
@@ -68,11 +68,11 @@ class MonthlyReviewViewController: UITableViewController {
     // MARK: - Navigation
 
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == GO_TO_SECOND_REVIEW_SEGUE
         {
-            let dvc = segue.destinationViewController as! SecondMonthlyReviewViewController
+            let dvc = segue.destination as! SecondMonthlyReviewViewController
             dvc.currentUser = self.currentUser
             dvc.summary = self.summary
         }

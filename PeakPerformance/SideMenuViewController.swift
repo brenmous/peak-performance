@@ -37,9 +37,9 @@ class SideMenuViewController: UITableViewController
     /// Present an alert asking the user if they want to sign out.
     func signOut( )
     {
-        let signOutAlertController = UIAlertController(title: SIGNOUT_ALERT_TITLE, message: SIGNOUT_ALERT_MSG, preferredStyle: .ActionSheet)
-        let cancelSignOut = UIAlertAction(title: SIGNOUT_ALERT_CANCEL, style: .Cancel, handler: nil )
-        let signOut = UIAlertAction(title: SIGNOUT_ALERT_CONFIRM, style: .Default ) { (action) in
+        let signOutAlertController = UIAlertController(title: SIGNOUT_ALERT_TITLE, message: SIGNOUT_ALERT_MSG, preferredStyle: .actionSheet)
+        let cancelSignOut = UIAlertAction(title: SIGNOUT_ALERT_CANCEL, style: .cancel, handler: nil )
+        let signOut = UIAlertAction(title: SIGNOUT_ALERT_CONFIRM, style: .default ) { (action) in
             do
             {
                 try FIRAuth.auth()?.signOut()
@@ -50,12 +50,12 @@ class SideMenuViewController: UITableViewController
             {
                 print(error.localizedDescription)
             }
-            self.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: self)
+            self.performSegue(withIdentifier: UNWIND_TO_LOGIN, sender: self)
             
         }
         signOutAlertController.addAction(signOut); signOutAlertController.addAction(cancelSignOut)
         
-        self.presentViewController(signOutAlertController, animated: true, completion: nil)
+        self.present(signOutAlertController, animated: true, completion: nil)
         
     }
     
@@ -63,24 +63,24 @@ class SideMenuViewController: UITableViewController
     func goToMonthlyReview( )
     {
         //ask user if they want to go to history view to complete monthly reviews
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName("changeIndex", object: nil)
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue: "changeIndex"), object: nil)
     }
   
     /// Takes user to settings view.
     func goToSettings( )
     {
         //self.performSegueWithIdentifier("goToSettings", sender: self)
-        let nav = self.storyboard?.instantiateViewControllerWithIdentifier(SETTINGS_NAV) as! UINavigationController
+        let nav = self.storyboard?.instantiateViewController(withIdentifier: SETTINGS_NAV) as! UINavigationController
         let settingsVC = nav.viewControllers[0] as! SettingsViewController
         settingsVC.currentUser = self.currentUser
-        self.presentViewController(nav, animated: true, completion: nil)
+        self.present(nav, animated: true, completion: nil)
     }
     
     // MARK: - Overridden methods
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let cell = tableView.cellForRow(at: indexPath)
         
         guard let c = cell else
         {
@@ -95,7 +95,7 @@ class SideMenuViewController: UITableViewController
             self.signOut()
             
         case MONTHLYREVIEW_CELL_ID?:
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             self.goToMonthlyReview()
             
         case SETTINGS_CELL_ID?:
@@ -106,11 +106,11 @@ class SideMenuViewController: UITableViewController
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         guard let cu = currentUser else {
@@ -121,9 +121,9 @@ class SideMenuViewController: UITableViewController
         nameProfileLabel.text = cu.fname
         
         //set month label
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-        let monthAsString = dateFormatter.stringFromDate(cu.startDate)
+        let monthAsString = dateFormatter.string(from: cu.startDate as Date)
         startDateProfileLabel.text = "Started \(monthAsString)"
         print("SMVC: \(cu.email)") //DEBUG
         
@@ -131,7 +131,7 @@ class SideMenuViewController: UITableViewController
         let counter = self.currentUser!.numberOfUnreviwedSummaries()
         
         if counter == 0 {
-            monthlyCounterLabel.hidden = true
+            monthlyCounterLabel.isHidden = true
         } else {
            monthlyCounterLabel.text = String(self.currentUser!.numberOfUnreviwedSummaries())
         }

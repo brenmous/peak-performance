@@ -8,7 +8,7 @@
 
 protocol MonthlyGoalTableViewCellDelegate
 {
-    func completeButtonPressed( cell: MonthlyGoalTableViewCell )
+    func completeButtonPressed( _ cell: MonthlyGoalTableViewCell )
 }
 
 import UIKit
@@ -24,11 +24,11 @@ class MonthlyGoalTableViewCell: UITableViewCell
     @IBOutlet weak var doneCircle: UIImageView!
     
 
-    @IBAction func tickButtonToComplete(sender: AnyObject) {
+    @IBAction func tickButtonToComplete(_ sender: AnyObject) {
         delegate?.completeButtonPressed(self)
     }
     
-    @IBAction func completeButtonPressed(sender: AnyObject)
+    @IBAction func completeButtonPressed(_ sender: AnyObject)
     {
         delegate?.completeButtonPressed(self)
     }

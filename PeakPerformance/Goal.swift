@@ -20,7 +20,7 @@ class Goal
     var kla: String
     
     /// The deadline of the weekly goal.
-    var deadline: NSDate
+    var deadline: Date
     
     /// Unique ID of the goal.
     var gid: String
@@ -53,7 +53,7 @@ class Goal
      
      - Returns: A weekly goal with the specified paramters.
      */
-    init ( goalText: String, kla: String, deadline: NSDate, gid: String, complete: Bool = false, kickItText: String = "", due: Due = .notdue )
+    init ( goalText: String, kla: String, deadline: Date, gid: String, complete: Bool = false, kickItText: String = "", due: Due = .notdue )
     {
         self.goalText = goalText
         self.kla = kla

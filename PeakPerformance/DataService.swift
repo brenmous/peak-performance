@@ -28,7 +28,7 @@ class DataService
         - Parameters:
             - user: the user being saved.
     */
-    func saveUser(user: User)
+    func saveUser(_ user: User)
     {
         //self.database.goOnline()
         
@@ -44,9 +44,9 @@ class DataService
         userRef.child(EMAIL_REF_STRING).setValue(user.email)
         
         //convert startDate to string
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-        let startDateString = dateFormatter.stringFromDate(user.startDate)
+        let startDateString = dateFormatter.string(from: user.startDate as Date)
         
         userRef.child(STARTDATE_REF_STRING).setValue(startDateString)
         
@@ -59,7 +59,7 @@ class DataService
         - Parameters:
             - user: user whose coach email to save.
     */
-    func saveCoachEmail(user: User)
+    func saveCoachEmail(_ user: User)
     {
         //self.database.goOnline()
         
@@ -75,7 +75,7 @@ class DataService
         - Parameters:
             - user: owner of year being saved.
     */
-    func saveUserYear(user: User)
+    func saveUserYear(_ user: User)
     {
         //self.database.goOnline()
         
@@ -92,7 +92,7 @@ class DataService
             - uid: the user's unique ID.
             - completion: the completion block that passes back the completed user.
      */
-    func loadUser(uid: String, completion: (user: User) -> Void)
+    func loadUser(_ uid: String, completion: @escaping (_ user: User) -> Void)
     {
         //self.database.goOnline()
         
@@ -100,26 +100,26 @@ class DataService
         let usersRef = self.database.reference().child(USERS_REF_STRING)
         let userRef = usersRef.child(uid)
 
-        userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            let fname = snapshot.value![FNAME_REF_STRING] as! String
-            let lname = snapshot.value![LNAME_REF_STRING] as! String
-            let org = snapshot.value![ORG_REF_STRING] as! String
-            let email = snapshot.value![EMAIL_REF_STRING] as! String
-            let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value![USER_YEAR_REF_STRING] as! Int : 0
-            let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value![COACH_EMAIL_REF_STRING] as! String : ""
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let fname = value![FNAME_REF_STRING] as? String ?? ""
+            let lname = snapshot.value(forKey: LNAME_REF_STRING) as! String
+            let org = snapshot.value(forKey: ORG_REF_STRING) as! String
+            let email = snapshot.value(forKey: EMAIL_REF_STRING) as! String
+            let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value(forKey: USER_YEAR_REF_STRING) as! Int : 0
+            let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value(forKey: COACH_EMAIL_REF_STRING) as! String : ""
             
             //convert start date to string
-            let startDateString = snapshot.value![STARTDATE_REF_STRING]
-            let dateFormatter = NSDateFormatter( )
+            let startDateString = snapshot.value(forKey: STARTDATE_REF_STRING)
+            let dateFormatter = DateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-            guard let startDate = dateFormatter.dateFromString(startDateString as! String) else
+            guard let startDate = dateFormatter.date(from: startDateString as! String) else
             {
                 return
             }
-        
             let user = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate, coachEmail: coachEmail, year: year)
 
-            completion( user: user )
+            completion(user)
         })
         //self.database.goOffline()
     }
@@ -130,7 +130,7 @@ class DataService
         - Parameters:
             - user: the user to remove.
      */
-    func removeUser(user: User)
+    func removeUser(_ user: User)
     {
         //self.database.goOnline()
         
@@ -162,7 +162,7 @@ class DataService
             - summaryGoal: whether the goal is part of a summary (removes UID child ref).
             - summaryDate: date of the summary for summary goals.
     */
-    func saveGoal(uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "")
+    func saveGoal(_ uid: String, goal: Goal, summaryGoal: Bool = false, summaryDate: String = "")
     {
         //self.database.goOnline()
         
@@ -188,7 +188,7 @@ class DataService
         goalRef.child(KICKIT_REF_STRING).setValue(goal.kickItText)
         
         //convert deadline from NSDate to String
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         if goal is WeeklyGoal
         {
             dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
@@ -197,7 +197,7 @@ class DataService
         {
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
         }
-        goalRef.child(DEADLINE_REF_STRING).setValue(dateFormatter.stringFromDate(goal.deadline) )
+        goalRef.child(DEADLINE_REF_STRING).setValue(dateFormatter.string(from: goal.deadline as Date) )
       
         //self.database.goOffline()
     }
@@ -210,7 +210,7 @@ class DataService
             - summary: the summary that the goals belong to. Nil if not part of a summary.
             - completion: the block that passes back the fetched goals.
      */
-    func loadWeeklyGoals(uid: String, summary: MonthlySummary? = nil, completion: (( weeklyGoals: [WeeklyGoal] ) -> Void)?)
+    func loadWeeklyGoals(_ uid: String, summary: MonthlySummary? = nil, completion: (( _ weeklyGoals: [WeeklyGoal] ) -> Void)?)
     {
         //self.database.goOnline()
         
@@ -218,23 +218,23 @@ class DataService
         var weeklyGoalsRef = self.database.reference().child(WEEKLYGOALS_REF_STRING).child(uid)
         if summary != nil
         {
-            let dateFormatter = NSDateFormatter( )
+            let dateFormatter = DateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-            let dateAsString = dateFormatter.stringFromDate(summary!.date)
+            let dateAsString = dateFormatter.string(from: summary!.date as Date)
             weeklyGoalsRef = self.database.reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(WEEKLYGOALS_REF_STRING)
         }
-        weeklyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        weeklyGoalsRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists()
             {
                 for goalSnapshot in snapshot.children
                 {
-                    let goalText = goalSnapshot.value![GOALTEXT_REF_STRING] as! String
-                    let keyLifeArea = goalSnapshot.value![KLA_REF_STRING] as! String
-                    let complete = goalSnapshot.value![COMPLETE_REF_STRING] as! Bool
-                    let kickItText = goalSnapshot.value![KICKIT_REF_STRING] as! String
-                    let deadline = goalSnapshot.value![DEADLINE_REF_STRING] as! String
-                    let weeklyGoalID = String(goalSnapshot.key)
-                    let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID, complete: complete, kickItText: kickItText)
+                    let goalText = (goalSnapshot as AnyObject).value(forKey: GOALTEXT_REF_STRING) as! String
+                    let keyLifeArea = (goalSnapshot as AnyObject).value(forKey: KLA_REF_STRING) as! String
+                    let complete = (goalSnapshot as AnyObject).value(forKey: COMPLETE_REF_STRING) as! Bool
+                    let kickItText = (goalSnapshot as AnyObject).value(forKey: KICKIT_REF_STRING) as! String
+                    let deadline = (goalSnapshot as AnyObject).value(forKey: DEADLINE_REF_STRING) as! String
+                    let weeklyGoalID = String((goalSnapshot as AnyObject).key)
+                    let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID!, complete: complete, kickItText: kickItText)
                     weeklyGoals.append(weeklyGoal)
                 }
                 if summary != nil
@@ -242,7 +242,7 @@ class DataService
                     summary?.weeklyGoals = weeklyGoals
                     return
                 }
-                completion!( weeklyGoals: weeklyGoals )
+                completion!( weeklyGoals )
                 
             }
             else
@@ -251,7 +251,7 @@ class DataService
                 {
                     return
                 }
-                completion!( weeklyGoals: weeklyGoals )
+                completion!( weeklyGoals )
                 
             }
         })
@@ -267,7 +267,7 @@ class DataService
             - summary: the summary the goals belong to. Nil if goals are not part of a summary.
             - completion: the block that passes back the fetched goals.
      */
-    func loadMonthlyGoals(uid: String, summary: MonthlySummary? = nil, completion: (( monthlyGoals: [MonthlyGoal] ) -> Void)?)
+    func loadMonthlyGoals(_ uid: String, summary: MonthlySummary? = nil, completion: (( _ monthlyGoals: [MonthlyGoal] ) -> Void)?)
     {
         //self.database.goOnline()
         
@@ -275,23 +275,23 @@ class DataService
         var monthlyGoalsRef = self.database.reference().child(MONTHLYGOALS_REF_STRING).child(uid)
         if summary != nil
         {
-            let dateFormatter = NSDateFormatter( )
+            let dateFormatter = DateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-            let dateAsString = dateFormatter.stringFromDate(summary!.date)
+            let dateAsString = dateFormatter.string(from: summary!.date as Date)
             monthlyGoalsRef = self.database.reference().child(SUMMARIES_REF_STRING).child(uid).child(dateAsString).child(MONTHLYGOALS_REF_STRING)
         }
-        monthlyGoalsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        monthlyGoalsRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists()
             {
                 for goalSnapshot in snapshot.children
                 {
-                    let goalText = goalSnapshot.value![GOALTEXT_REF_STRING] as! String
-                    let keyLifeArea = goalSnapshot.value![KLA_REF_STRING] as! String
-                    let complete = goalSnapshot.value![COMPLETE_REF_STRING] as! Bool
-                    let kickItText = goalSnapshot.value![KICKIT_REF_STRING] as! String
-                    let deadline = goalSnapshot.value![DEADLINE_REF_STRING] as! String
-                    let gid = String(goalSnapshot.key)
-                    let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid, complete: complete, kickItText: kickItText)
+                    let goalText = (goalSnapshot as AnyObject).value(forKey: GOALTEXT_REF_STRING) as! String
+                    let keyLifeArea = (goalSnapshot as AnyObject).value(forKey: KLA_REF_STRING) as! String
+                    let complete = (goalSnapshot as AnyObject).value(forKey: COMPLETE_REF_STRING) as! Bool
+                    let kickItText = (goalSnapshot as AnyObject).value(forKey: KICKIT_REF_STRING) as! String
+                    let deadline = (goalSnapshot as AnyObject).value(forKey: DEADLINE_REF_STRING) as! String
+                    let gid = String((goalSnapshot as AnyObject).key)
+                    let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid!, complete: complete, kickItText: kickItText)
                     monthlyGoals.append(monthlyGoal)
                 }
                 if summary != nil
@@ -299,7 +299,7 @@ class DataService
                     summary?.monthlyGoals = monthlyGoals
                     return
                 }
-                completion!( monthlyGoals: monthlyGoals )
+                completion!( monthlyGoals )
                 
             }
             else
@@ -308,7 +308,7 @@ class DataService
                 {
                     return
                 }
-                completion!( monthlyGoals: monthlyGoals )
+                completion!( monthlyGoals )
                 
             }
         })
@@ -324,7 +324,7 @@ class DataService
             - uid: ID of user that owns the weekly goal.
             - goal: the goal being removed
      */
-    func removeGoal(uid: String, goal: Goal)
+    func removeGoal(_ uid: String, goal: Goal)
     {
         //self.database.goOnline()
         
@@ -350,7 +350,7 @@ class DataService
         - Parameters:
             - uid: ID of the user whose goals are being removed.
     */
-    func removeAllGoals( uid: String )
+    func removeAllGoals( _ uid: String )
     {
         //self.database.goOnline()
         
@@ -369,7 +369,7 @@ class DataService
             - uid: the user ID of the user the goal belongs to.
             - dream: the dream being saved.
      */
-    func saveDream(uid: String, dream: Dream)
+    func saveDream(_ uid: String, dream: Dream)
     {
         //self.database.goOnline()
         
@@ -396,32 +396,32 @@ class DataService
             - uid: user ID that the goals belong.
             - completion: the block that passes back the fetched goals.
      */
-    func loadDreams(uid: String, completion: ( dreams: [Dream] ) -> Void)
+    func loadDreams(_ uid: String, completion: @escaping ( _ dreams: [Dream] ) -> Void)
     {
         //self.database.goOnline()
         
         var dreams = [Dream]()
         let dreamsRef = self.database.reference().child(DREAMS_REF_STRING).child(uid)
-        dreamsRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        dreamsRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists()
             {
                 for dreamSnapshot in snapshot.children
                 {
-                    let dreamText = dreamSnapshot.value![DREAMTEXT_REF_STRING] as! String
-                    let dreamURLString = dreamSnapshot.value![DREAMURL_REF_STRING] as! String
-                    let dreamURL = NSURL(string: dreamURLString)
-                    let dreamLocalURLString = dreamSnapshot.value![DREAMLOCALURL_REF_STRING] as! String
-                    let dreamLocalURL = NSURL(string: dreamLocalURLString)
-                    let did = String(dreamSnapshot.key)
-                    let dream = Dream(dreamDesc: dreamText, imageURL: dreamURL, imageLocalURL: dreamLocalURL, did: did)
+                    let dreamText = (dreamSnapshot as AnyObject).value(forKey: DREAMTEXT_REF_STRING) as! String
+                    let dreamURLString = (dreamSnapshot as AnyObject).value(forKey: DREAMURL_REF_STRING) as! String
+                    let dreamURL = URL(string: dreamURLString)
+                    let dreamLocalURLString = (dreamSnapshot as AnyObject).value(forKey: DREAMLOCALURL_REF_STRING) as! String
+                    let dreamLocalURL = URL(string: dreamLocalURLString)
+                    let did = String((dreamSnapshot as AnyObject).key)
+                    let dream = Dream(dreamDesc: dreamText, imageURL: dreamURL, imageLocalURL: dreamLocalURL, did: did!)
                     dreams.append(dream)
                 }
-                completion( dreams: dreams )
+                completion( dreams )
                 
             }
             else
             {
-                completion( dreams: dreams )
+                completion( dreams )
                 
             }
         })
@@ -436,7 +436,7 @@ class DataService
             - uid: ID of user that owns the weekly goal.
             - dream: the dream being removed
      */
-    func removeDream( uid: String, dream: Dream )
+    func removeDream( _ uid: String, dream: Dream )
     {
         //self.database.goOnline()
         self.database.reference().child(DREAMS_REF_STRING).child(uid).child(dream.did).removeValue()
@@ -452,7 +452,7 @@ class DataService
         - Parameters:
             - user: user whose values are being saved
      */
-    func saveValues( user: User )
+    func saveValues( _ user: User )
     {
         //self.database.goOnline()
         
@@ -477,31 +477,31 @@ class DataService
             - uid: user ID that the goals belong.
             - completion: the block that passes back the fetched goals.
      */
-    func loadValues(uid: String, completion: ( values: [String:String] ) -> Void)
+    func loadValues(_ uid: String, completion: @escaping ( _ values: [String:String] ) -> Void)
     {
         //self.database.goOnline()
         
         var values = [ KLA_FAMILY: "", KLA_WORKBUSINESS: "", KLA_PERSONALDEV: "", KLA_FINANCIAL: "",
                        KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
         let ref = self.database.reference().child(VALUES_REF_STRING).child(uid)
-        ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists()
             {
-                values[KLA_FAMILY] = snapshot.value![KLA_FAMILY] as? String
-                values[KLA_FINANCIAL] = snapshot.value![KLA_FINANCIAL] as? String
-                values[KLA_PERSONALDEV] = snapshot.value![KLA_PERSONALDEV] as? String
-                values[KLA_FRIENDSSOCIAL] = snapshot.value![KLA_FRIENDSSOCIAL] as? String
-                values[KLA_HEALTHFITNESS] = snapshot.value![KLA_HEALTHFITNESS] as? String
-                values[KLA_WORKBUSINESS] = snapshot.value![KLA_WORKBUSINESS] as? String
-                values[KLA_PARTNER] = snapshot.value![KLA_PARTNER] as? String
-                values[KLA_EMOSPIRITUAL] = snapshot.value![KLA_EMOSPIRITUAL] as? String
+                values[KLA_FAMILY] = snapshot.value(forKey: KLA_FAMILY) as? String
+                values[KLA_FINANCIAL] = snapshot.value(forKey: KLA_FINANCIAL) as? String
+                values[KLA_PERSONALDEV] = snapshot.value(forKey: KLA_PERSONALDEV) as? String
+                values[KLA_FRIENDSSOCIAL] = snapshot.value(forKey: KLA_FRIENDSSOCIAL) as? String
+                values[KLA_HEALTHFITNESS] = snapshot.value(forKey: KLA_HEALTHFITNESS) as? String
+                values[KLA_WORKBUSINESS] = snapshot.value(forKey: KLA_WORKBUSINESS) as? String
+                values[KLA_PARTNER] = snapshot.value(forKey: KLA_PARTNER) as? String
+                values[KLA_EMOSPIRITUAL] = snapshot.value(forKey: KLA_EMOSPIRITUAL) as? String
 
-                completion( values: values )
+                completion( values )
                 
             }
             else
             {
-                completion( values: values )
+                completion( values )
             }
         })
         
@@ -518,7 +518,7 @@ class DataService
             - user: the user whose summary is being saved.
             - summary: the summary to save.
     */
-    func saveCurrentRealitySummary(user: User, summary: CurrentRealitySummary)
+    func saveCurrentRealitySummary(_ user: User, summary: CurrentRealitySummary)
     {
         //self.database.goOnline()
         
@@ -543,7 +543,7 @@ class DataService
             - user: the user whose summary is being saved.
             - summary: the summary to save.
     */
-    func saveYearlySummary(user: User, summary: YearlySummary )
+    func saveYearlySummary(_ user: User, summary: YearlySummary )
     {
         //self.database.goOnline()
         
@@ -563,13 +563,13 @@ class DataService
             - user: the user whose summary is being saved.
             - summary: the summary to save.
     */
-    func saveSummary(user: User, summary: MonthlySummary)
+    func saveSummary(_ user: User, summary: MonthlySummary)
     {
         //self.database.goOnline()
         
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-        let dateAsString = dateFormatter.stringFromDate(summary.date)
+        let dateAsString = dateFormatter.string(from: summary.date as Date)
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(dateAsString)
         
         ref.child(SUMMARY_WIW_REF_STRING).setValue(summary.whatIsWorking)
@@ -613,23 +613,23 @@ class DataService
             - user: the user whose summary is being loaded.
             - completion: completion block for passing back the loaded summary.
     */
-    func loadCurrentRealitySummary(user: User, completion: ( summary: CurrentRealitySummary ) -> Void)
+    func loadCurrentRealitySummary(_ user: User, completion: @escaping ( _ summary: CurrentRealitySummary ) -> Void)
     {
         //self.database.goOnline()
         
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(CURRENT_REALITY_SUMMARY_REF_STRING)
         let summary = CurrentRealitySummary( )
-        ref.observeEventType(.Value, withBlock: { (snapshot) in
+        ref.observe(.value, with: { (snapshot) in
             if snapshot.exists()
             {
                 //get both ratings and reasons
                 for (kla,_) in summary.klaRatings
                 {
-                    summary.klaRatings[kla] = Double(snapshot.value![kla] as! String)
-                    summary.klaReasons[kla] = snapshot.value!["\(kla)Reason"] as? String
+                    summary.klaRatings[kla] = Double(snapshot.value(forKey: kla) as! String)
+                    summary.klaReasons[kla] = snapshot.value(forKey: "\(kla)Reason") as? String
                 }
             }
-            completion( summary: summary )
+            completion( summary )
         })
         
         //self.database.goOffline()
@@ -642,27 +642,27 @@ class DataService
             - user: the user whose summary is being loaded.
             - completion: completion block for passing back the loaded summary.
     */
-    func loadYearlySummaries(user: User, completion: ( summaries: [Int:YearlySummary?] ) -> Void)
+    func loadYearlySummaries(_ user: User, completion: @escaping ( _ summaries: [Int:YearlySummary?] ) -> Void)
     {
         //self.database.goOnline()
         
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).child(YEARLY_REVIEW_REF_STRING)
         var summaries = [Int:YearlySummary?]()
-        ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists()
             {
                 for s in snapshot.children
                 {
                     let summary = YearlySummary()
-                    summary.reasonsForDifferencesText = s.value![YEARLY_REVIEW_DIFF_REF_STRING] as! String
-                    summary.changedMyPerformanceText = s.value![YEARLY_REVIEW_CHA_REF_STRING] as! String
-                    summary.observedAboutPerformanceText = s.value![YEARLY_REVIEW_OBS_REF_STRING] as! String
-                    summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
-                    summaries[Int(s.key)!] = summary
-                    print("DS - loadYearlySummaries(): fetched summary for year \(Int(s.key)!), reviewed = \(summary.reviewed), changes = \(summary.changedMyPerformanceText)")
+                    summary.reasonsForDifferencesText = (s as AnyObject).value(forKey: YEARLY_REVIEW_DIFF_REF_STRING) as! String
+                    summary.changedMyPerformanceText = (s as AnyObject).value(forKey: YEARLY_REVIEW_CHA_REF_STRING) as! String
+                    summary.observedAboutPerformanceText = (s as AnyObject).value(forKey: YEARLY_REVIEW_OBS_REF_STRING) as! String
+                    summary.reviewed = (s as AnyObject).value(forKey: SUMMARY_REVIEWED_REF_STRING) as! Bool
+                    summaries[Int((s as AnyObject).key)!] = summary
+                    print("DS - loadYearlySummaries(): fetched summary for year \(Int((s as AnyObject).key)!), reviewed = \(summary.reviewed), changes = \(summary.changedMyPerformanceText)")
                 }
             }
-                completion(summaries: summaries)
+                completion(summaries)
         })
         
         //self.database.goOffline()
@@ -675,59 +675,59 @@ class DataService
             - user: the user whose summaries are being loaded.
             - completion: block for passing back the loaded summaries.
     */
-    func loadSummaries(user: User, completion: ( summaries: [String:MonthlySummary?] ) -> Void)
+    func loadSummaries(_ user: User, completion: @escaping ( _ summaries: [String:MonthlySummary?] ) -> Void)
     {
         //self.database.goOnline()
         
         var monthlySummaries = [String: MonthlySummary?]( )
         let ref = self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid)
-        ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists()
             {
                 for s in snapshot.children
                 {
-                    if String(s.key) == "initial" || String(s.key) == "yearly"
+                    if String((s as AnyObject).key) == "initial" || String((s as AnyObject).key) == "yearly"
                     {
                         continue
                     }
                     
-                    let dateString = (String(s.key))
-                    let dateFormatter = NSDateFormatter( )
+                    let dateString = (String((s as AnyObject).key))
+                    let dateFormatter = DateFormatter( )
                     //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
                     dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
                     
-                    let date = dateFormatter.dateFromString(dateString)
+                    let date = dateFormatter.date(from: dateString!)
                     let summary = MonthlySummary(date: date!)
-                    summary.whatIsWorking = s.value![SUMMARY_WIW_REF_STRING] as! String
-                    summary.whatIsNotWorking = s.value![SUMMARY_WINOTW_REF_STRING] as! String
-                    summary.whatHaveIImproved = s.value![SUMMARY_WHII_REF_STRING] as! String
-                    summary.doIHaveToChange = s.value![SUMMARY_DIHTC_REF_STRING] as! String
-                    summary.reviewed = s.value![SUMMARY_REVIEWED_REF_STRING] as! Bool
-                    summary.sent = s.hasChild(SUMMARY_SENT_REF_STRING) ? s.value![SUMMARY_SENT_REF_STRING] as! Bool : false
+                    summary.whatIsWorking = (s as AnyObject).value(forKey: SUMMARY_WIW_REF_STRING) as! String
+                    summary.whatIsNotWorking = (s as AnyObject).value(forKey: SUMMARY_WINOTW_REF_STRING) as! String
+                    summary.whatHaveIImproved = (s as AnyObject).value(forKey: SUMMARY_WHII_REF_STRING) as! String
+                    summary.doIHaveToChange = (s as AnyObject).value(forKey: SUMMARY_DIHTC_REF_STRING) as! String
+                    summary.reviewed = (s as AnyObject).value(forKey: SUMMARY_REVIEWED_REF_STRING) as! Bool
+                    summary.sent = (s as AnyObject).hasChild(SUMMARY_SENT_REF_STRING) ? (s as AnyObject).value(forKey: SUMMARY_SENT_REF_STRING) as! Bool : false
                     
                     for (kla,_) in summary.klaRatings
                     {
-                        summary.klaRatings[kla] = Double(s.value![kla] as! String)
+                        summary.klaRatings[kla] = Double((s as AnyObject).value(forKey: kla) as! String)
                     }
                     
-                    if s.hasChild(WEEKLYGOALS_REF_STRING)
+                    if (s as AnyObject).hasChild(WEEKLYGOALS_REF_STRING)
                     {
                         self.loadWeeklyGoals(user.uid, summary: summary, completion: nil)
                     }
                     
-                    if s.hasChild(MONTHLYGOALS_REF_STRING)
+                    if (s as AnyObject).hasChild(MONTHLYGOALS_REF_STRING)
                     {
                         self.loadMonthlyGoals(user.uid, summary: summary, completion: nil)
                     }
-                    monthlySummaries[dateString] = summary
+                    monthlySummaries[dateString!] = summary
                     
                 }
-                completion( summaries: monthlySummaries )
+                completion( monthlySummaries )
                 return
             }
             else
             {
-                completion( summaries: monthlySummaries )
+                completion( monthlySummaries )
                 return
             }
         })
@@ -741,7 +741,7 @@ class DataService
         - Parameters: 
             - user: the user whose summaries are being removed.
     */
-    func removeAllMonthlySummaries(user: User)
+    func removeAllMonthlySummaries(_ user: User)
     {
         //self.database.goOnline()
         self.database.reference().child(SUMMARIES_REF_STRING).child(user.uid).removeValue()

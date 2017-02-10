@@ -15,14 +15,14 @@ class DrawKLALines: UIView {
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         // Drawing code
         
         // context is the object used for drawing the line
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 4.0)
-        CGContextSetStrokeColorWithColor(context, UIColor.darkGrayColor().CGColor)
+        context?.setLineWidth(4.0)
+        context?.setStrokeColor(UIColor.darkGray.cgColor)
         
 //        let xcoord = summary?.klaXaxis[KLA_FAMILY]
         
@@ -31,7 +31,7 @@ class DrawKLALines: UIView {
 //        CGContextAddLineToPoint(context, 120, 50) // end of the line
 
         // Actually draw the path
-        CGContextStrokePath(context)
+        context?.strokePath()
     }
  
 

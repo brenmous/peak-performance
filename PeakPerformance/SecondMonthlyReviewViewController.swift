@@ -51,73 +51,73 @@ class SecondMonthlyReviewViewController: UITableViewController {
     // MARK: - Actions
     
     /// BEN ///
-    @IBAction func familyPointPressed(sender: AnyObject) {
+    @IBAction func familyPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_FAMILY, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: familyPoint.frame)
+        popTip.showText(KLA_FAMILY, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: familyPoint.frame)
         popTip.popoverColor = PEAK_FAMILY_BLUE
-        popTip.textColor = UIColor.whiteColor()
+        popTip.textColor = UIColor.white
 
     }
     
-    @IBAction func friendPointPressed(sender: AnyObject) {
+    @IBAction func friendPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_FRIENDSSOCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: friendPoint.frame)
+        popTip.showText(KLA_FRIENDSSOCIAL, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: friendPoint.frame)
         popTip.popoverColor = PEAK_FRIEND_CYAN
-        popTip.textColor = UIColor.blackColor()
+        popTip.textColor = UIColor.black
     }
     
-    @IBAction func healthPointPressed(sender: AnyObject) {
+    @IBAction func healthPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_HEALTHFITNESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: healthPoint.frame)
+        popTip.showText(KLA_HEALTHFITNESS, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: healthPoint.frame)
         popTip.popoverColor = PEAK_HEALTH_GREEN
-        popTip.textColor = UIColor.blackColor()
+        popTip.textColor = UIColor.black
         
     }
     
-    @IBAction func partnerPointPressed(sender: AnyObject) {
+    @IBAction func partnerPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_PARTNER, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: partnerPoint.frame)
+        popTip.showText(KLA_PARTNER, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: partnerPoint.frame)
         popTip.popoverColor = PEAK_PARTNER_PURPLE
-        popTip.textColor = UIColor.whiteColor()
+        popTip.textColor = UIColor.white
     }
     
-    @IBAction func financialPointPressed(sender: AnyObject) {
+    @IBAction func financialPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_FINANCIAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: financialPoint.frame)
+        popTip.showText(KLA_FINANCIAL, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: financialPoint.frame)
         popTip.popoverColor = PEAK_FINANCE_BLUE_GREEN
-        popTip.textColor = UIColor.whiteColor()
+        popTip.textColor = UIColor.white
     }
     
-    @IBAction func personalDevelopmentPointPressed(sender: AnyObject) {
+    @IBAction func personalDevelopmentPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_PERSONALDEV, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: personalDevelopmentPoint.frame)
+        popTip.showText(KLA_PERSONALDEV, direction: .up, maxWidth: POPTIP_MAXWIDTH + 30, in: super.view, fromFrame: personalDevelopmentPoint.frame)
         popTip.popoverColor = PEAK_PERSONAL_ORANGE
-        popTip.textColor = UIColor.whiteColor()
+        popTip.textColor = UIColor.white
     }
     
-    @IBAction func workPointPressed(sender: AnyObject) {
+    @IBAction func workPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_WORKBUSINESS, direction: .Up, maxWidth: POPTIP_MAXWIDTH, inView: super.view, fromFrame: workPoint.frame)
+        popTip.showText(KLA_WORKBUSINESS, direction: .up, maxWidth: POPTIP_MAXWIDTH, in: super.view, fromFrame: workPoint.frame)
        popTip.popoverColor = PEAK_WORK_YELLOW
-        popTip.textColor = UIColor.blackColor()
+        popTip.textColor = UIColor.black
     }
 
-    @IBAction func emotionalSpiritualPointPressed(sender: AnyObject) {
+    @IBAction func emotionalSpiritualPointPressed(_ sender: AnyObject) {
         popTip.hide()
-        popTip.showText(KLA_EMOSPIRITUAL, direction: .Up, maxWidth: POPTIP_MAXWIDTH + 30, inView: super.view, fromFrame: emotionalSpiritual.frame)
+        popTip.showText(KLA_EMOSPIRITUAL, direction: .up, maxWidth: POPTIP_MAXWIDTH + 30, in: super.view, fromFrame: emotionalSpiritual.frame)
        popTip.popoverColor = PEAK_EMOTIONAL_VIOLET
-        popTip.textColor = UIColor.whiteColor()
+        popTip.textColor = UIColor.white
     }
     /// END BEN ///
     
-    @IBAction func doneButtonPressed(sender: AnyObject)
+    @IBAction func doneButtonPressed(_ sender: AnyObject)
     {
         self.updateSummaryWithText()
         guard let s = self.summary else { return }
         guard let cu = self.currentUser else { return }
         s.reviewed = true
         self.dataService.saveSummary(cu, summary: s)
-        performSegueWithIdentifier(UNWIND_TO_HISTORY_SEGUE, sender: self)
+        performSegue(withIdentifier: UNWIND_TO_HISTORY_SEGUE, sender: self)
         
     }
     
@@ -215,7 +215,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
     // MARK: - keyboard stuff
     
     /// Work around for dismissing keyboard on text view.
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    func textView(_ textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
         if text == "\n"
         {
@@ -229,7 +229,7 @@ class SecondMonthlyReviewViewController: UITableViewController {
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan( touchers: Set<UITouch>, withEvent event: UIEvent? )
+    override func touchesBegan( _ touchers: Set<UITouch>, with event: UIEvent? )
     {
         self.view.endEditing(true)
     }

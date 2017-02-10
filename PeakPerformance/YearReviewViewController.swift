@@ -36,13 +36,13 @@ class YearReviewViewController: UITableViewController {
     
     
     // MARK: - Actions
-    @IBAction func doneButtonPressed(sender: AnyObject)
+    @IBAction func doneButtonPressed(_ sender: AnyObject)
     {
         //guard let summary = currentUser!.yearlySummary[currentUser!.year] else { return }
         guard let summary = self.summary else { return }
         summary.reviewed = true
         self.yearlyCleanUp()
-        self.performSegueWithIdentifier(UNWIND_TO_HISTORY_SEGUE, sender: self)
+        self.performSegue(withIdentifier: UNWIND_TO_HISTORY_SEGUE, sender: self)
     }
     
     // MARK: - Methods
@@ -55,7 +55,7 @@ class YearReviewViewController: UITableViewController {
         self.dataService.saveYearlySummary(self.currentUser!, summary: summary)
         
         //Update user's year property
-        let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self.currentUser!)
+        let yearsPassedSinceStart = Date().checkTwelveMonthPeriod(self.currentUser!)
         self.currentUser!.year = yearsPassedSinceStart
         self.dataService.saveUserYear(self.currentUser!)
     }
@@ -73,19 +73,19 @@ class YearReviewViewController: UITableViewController {
             reasonsForDifferencesTextView.text = summary.reasonsForDifferencesText
             observedAboutMyPerformanceTextView.text = summary.observedAboutPerformanceText
             changedMyPerformance.text = summary.changedMyPerformanceText
-            reasonsForDifferencesTextView.editable = false
-            observedAboutMyPerformanceTextView.editable = false
-            changedMyPerformance.editable = false
+            reasonsForDifferencesTextView.isEditable = false
+            observedAboutMyPerformanceTextView.isEditable = false
+            changedMyPerformance.isEditable = false
 
             
             let doneButton = self.navigationItem.rightBarButtonItem
             doneButton?.title = ""
-            doneButton?.enabled = false
+            doneButton?.isEnabled = false
             
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         //If the review has been completed, hide the top cell that contains the prompt to complete the review.
         //This is poorly done as each cell in a section has a custom height so each cell needs to be covered.

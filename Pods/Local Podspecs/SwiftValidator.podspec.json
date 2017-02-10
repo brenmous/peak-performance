@@ -1,6 +1,6 @@
 {
   "name": "SwiftValidator",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "summary": "A UITextField Validation library for Swift",
   "homepage": "https://github.com/jpotts18/SwiftValidator",
   "screenshots": "https://raw.githubusercontent.com/jpotts18/SwiftValidator/master/swift-validator-v2.gif",
@@ -17,7 +17,7 @@
   },
   "source": {
     "git": "https://github.com/jpotts18/SwiftValidator.git",
-    "tag": "3.0.1"
+    "tag": "4.0.0"
   },
   "source_files": "SwiftValidator/**/*.swift",
   "exclude_files": "Validator/AppDelegate.swift",

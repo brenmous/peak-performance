@@ -29,9 +29,9 @@ class WeeklyGoal: Goal
      */
     convenience init ( goalText: String, kla: String, deadline: String, gid: String, complete: Bool = false, kickItText: String = "" )
     {
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = DAY_MONTH_YEAR_FORMAT_STRING
-        let newDeadline = dateFormatter.dateFromString(deadline)
+        let newDeadline = dateFormatter.date(from: deadline)
         self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText )
     }
     
@@ -42,7 +42,7 @@ class WeeklyGoal: Goal
     */
     func getWeekOfGoal( ) -> Int
     {
-        let day = NSCalendar.currentCalendar().component(.Day, fromDate: self.deadline)
+        let day = (Calendar.current as NSCalendar).component(.day, from: self.deadline as Date)
         var week = (day/7)+1
         if day % 7 == 0
         {
@@ -62,7 +62,7 @@ class WeeklyGoal: Goal
         }
         
         //compare goal deadline with current date
-        let days = NSDate().daysBetweenTodayAndDate(self.deadline)
+        let days = Date().daysBetweenTodayAndDate(self.deadline)
         if days <= 0
         {
             self.due = Due.overdue

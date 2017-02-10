@@ -12,7 +12,7 @@ import UIKit //UIAlertController
 /**
     Class that represents a peak performance user.
  */
-public class User
+open class User
 {
     /// User's first name.
     var fname: String
@@ -43,7 +43,7 @@ public class User
                    KLA_FRIENDSSOCIAL: "", KLA_HEALTHFITNESS: "", KLA_EMOSPIRITUAL: "", KLA_PARTNER: "" ]
     
     /// Sign up date (MMMM yyyy e.g. "August 2016").
-    var startDate: NSDate
+    var startDate: Date
     
     /// Dictionary of monthly reviews/summaries.
     var monthlySummaries = [String:MonthlySummary?]( )
@@ -74,7 +74,7 @@ public class User
      
         - Returns: A user with the specified parameters.
     */
-    init( fname: String, lname: String, org: String, email: String, uid: String, startDate: NSDate, coachEmail: String = "", year: Int = 0 )
+    init( fname: String, lname: String, org: String, email: String, uid: String, startDate: Date, coachEmail: String = "", year: Int = 0 )
     {
         self.fname = fname
         self.lname = lname
@@ -111,7 +111,7 @@ public class User
     */
     func checkYearlyReview() -> Bool
     {
-        let yearsPassedSinceStart = NSDate().checkTwelveMonthPeriod(self)
+        let yearsPassedSinceStart = Date().checkTwelveMonthPeriod(self)
        
         if yearsPassedSinceStart < self.year{ fatalError(USER_YEARLY_REVIEW_FATAL_ERR_MSG) }
         
@@ -132,22 +132,22 @@ public class User
     */
     func allMonthlyReviewsFromLastYear()
     {
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         
         //check all summaries for the 12 month period
         for month in 0...11
         {
-            let dateFormatter = NSDateFormatter( )
+            let dateFormatter = DateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             
-            let date = dateFormatter.stringFromDate(calendar.dateByAddingUnit(.Month, value: month, toDate: self.startDate, options: [])!)
+            let date = dateFormatter.string(from: (calendar as NSCalendar).date(byAdding: .month, value: month, to: self.startDate, options: [])!)
             
             print("MRH: checking for summary for \(date)")
             if self.monthlySummaries[date] == nil
             {
                 print("MRH: no summary for \(date), creating...")
                 //no summary for this month, so create one
-                guard let d = dateFormatter.dateFromString(date) else
+                guard let d = dateFormatter.date(from: date) else
                 {
                     print("MRH: could not create monthly summary date")
                     return
@@ -177,7 +177,7 @@ public class User
      */
     func checkMonthlyReview() -> Bool
     {
-        let datesToCheck = NSDate( ).datesToCheckForSummaries(self)
+        let datesToCheck = Date( ).datesToCheckForSummaries(self)
         //let calendar = NSCalendar.currentCalendar()
         var alertUserToReview = false
         
@@ -192,10 +192,10 @@ public class User
                 print("MRH: no summary for \(date), creating...")
                 alertUserToReview = true
                 //no summary for this month, so create one
-                let dateFormatter = NSDateFormatter( )
+                let dateFormatter = DateFormatter( )
                 //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
                 dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-                guard let d = dateFormatter.dateFromString(date) else
+                guard let d = dateFormatter.date(from: date) else
                 {
                     print("MRH: could not create monthly summary date")
                     return false
@@ -221,14 +221,14 @@ public class User
      - Parameters:
      - weeklySummary: summary being dealt with.
      */
-    func moveWeeklyGoalsFromUserToSummary( monthlySummary: MonthlySummary )
+    func moveWeeklyGoalsFromUserToSummary( _ monthlySummary: MonthlySummary )
     {
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         var numberOfGoalsRemoved = 0
-        for (index, goal) in self.weeklyGoals.enumerate()
+        for (index, goal) in self.weeklyGoals.enumerated()
         {
-            let goalDate = calendar.components([.Month, .Year], fromDate: goal.deadline)
-            let summaryDate = calendar.components([.Month, .Year], fromDate: monthlySummary.date)
+            let goalDate = (calendar as NSCalendar).components([.month, .year], from: goal.deadline as Date)
+            let summaryDate = (calendar as NSCalendar).components([.month, .year], from: monthlySummary.date as Date)
             
             //place any goals for this month in the summary array and remove them from the user array
             if (goalDate.month == summaryDate.month) //TODO: - check year (part of 12 month roll over, sprint 5)
@@ -238,7 +238,7 @@ public class User
                 if goal.complete
                 {
                     DataService().removeGoal(self.uid, goal: self.weeklyGoals[index - numberOfGoalsRemoved])
-                    self.weeklyGoals.removeAtIndex(index - numberOfGoalsRemoved)
+                    self.weeklyGoals.remove(at: index - numberOfGoalsRemoved)
                     numberOfGoalsRemoved += 1
                 }
                 //...if it isn't complete, carry it over
@@ -252,14 +252,14 @@ public class User
      - Parameters:
      - monthlySummary: summary being dealt with.
      */
-    func moveMonthlyGoalsFromUserToSummary( monthlySummary: MonthlySummary )
+    func moveMonthlyGoalsFromUserToSummary( _ monthlySummary: MonthlySummary )
     {
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         var numberOfGoalsRemoved = 0
-        for (index ,goal) in self.monthlyGoals.enumerate()
+        for (index ,goal) in self.monthlyGoals.enumerated()
         {
-            let goalDate = calendar.components([.Month], fromDate: goal.deadline)
-            let summaryDate = calendar.components([.Month], fromDate: monthlySummary.date)
+            let goalDate = (calendar as NSCalendar).components([.month], from: goal.deadline as Date)
+            let summaryDate = (calendar as NSCalendar).components([.month], from: monthlySummary.date as Date)
             
             //place any goals for this month in the summary array and remove them from the user array
             if ( goalDate.month == summaryDate.month ) //TODO: - Check year (12 month roll over)
@@ -269,7 +269,7 @@ public class User
                 if goal.complete
                 {
                     DataService().removeGoal(self.uid, goal: self.monthlyGoals[index - numberOfGoalsRemoved])
-                    self.monthlyGoals.removeAtIndex(index - numberOfGoalsRemoved)
+                    self.monthlyGoals.remove(at: index - numberOfGoalsRemoved)
                     numberOfGoalsRemoved += 1
                 }
                     //...if it isn't complete, carry it over

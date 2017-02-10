@@ -22,18 +22,18 @@ class SocialMediaViewController: UIViewController
     // MARK: - Actions
 
     /// Updates whether Twitter is enabled and if so asks user to login in via Twitter API.
-    @IBAction func twitterSwitchSwitched(sender: AnyObject?)
+    @IBAction func twitterSwitchSwitched(_ sender: AnyObject?)
     {
-        if twitterSwitch.on
+        if twitterSwitch.isOn
         {
-            Twitter.sharedInstance().logInWithCompletion { (session, error) in
+            Twitter.sharedInstance().logIn { (session, error) in
                 guard session != nil else
                 {
-                    NSUserDefaults().setValue(false, forKey: USER_DEFAULTS_TWITTER)
+                    UserDefaults().setValue(false, forKey: USER_DEFAULTS_TWITTER)
                     return
                 }
-                NSUserDefaults().setValue(true, forKey: USER_DEFAULTS_TWITTER)
-                self.twitterSwitch.on = true
+                UserDefaults().setValue(true, forKey: USER_DEFAULTS_TWITTER)
+                self.twitterSwitch.isOn = true
             }
         }
     }
@@ -43,14 +43,14 @@ class SocialMediaViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        twitterSwitch.on = NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        twitterSwitch.isOn = UserDefaults().bool(forKey: USER_DEFAULTS_TWITTER)
     }
 
     override func didReceiveMemoryWarning()

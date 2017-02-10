@@ -32,37 +32,37 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
 
     
     // MARK: - Actions
-    @IBAction func menuButtonPressed(sender: AnyObject)
+    @IBAction func menuButtonPressed(_ sender: AnyObject)
     {
-        self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+        self.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
 
-    @IBAction func sendEmailToCoachPressed(sender: AnyObject)
+    @IBAction func sendEmailToCoachPressed(_ sender: AnyObject)
     {
         if self.currentUser!.coachEmail.isEmpty
         {
-            self.presentViewController(getNoCoachEmailAlert(), animated: true, completion: nil)
+            self.present(getNoCoachEmailAlert(), animated: true, completion: nil)
             return
         }
         
         //get summary to send
         let button = sender as! UIButton
         let cell = button.superview!.superview as! HistoryTableViewCell
-        let indexPath = self.tableView.indexPathForCell(cell)
+        let indexPath = self.tableView.indexPath(for: cell)
         let summary = self.summariesArray[indexPath!.section][indexPath!.row] as! MonthlySummary
         self.summaryToSend = summary
         self.sendToCoach(summary)
     }
     
-    @IBAction func unwindToHistory(sender: UIStoryboardSegue){}
+    @IBAction func unwindToHistory(_ sender: UIStoryboardSegue){}
     
     
     // MARK: - Methods
     
     /// Delegate function for MFMailComposeViewController. Handles dismissal of mail VC.
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
         switch result.rawValue
         {
         case 0: //cancelled 
@@ -91,7 +91,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         - Parameters:
             - summary: the summary to send.
     */
-    func sendToCoach(summary: MonthlySummary)
+    func sendToCoach(_ summary: MonthlySummary)
     {
         print("SENDING TO COACH")
         //set recipient (coach email)
@@ -101,7 +101,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         print("1")
         
         //get month of selected summary and set as email subject
-        let month = NSDate( ).monthAsString(summary.date)
+        let month = Date( ).monthAsString(summary.date)
         let subject = SUMMARY_EMAIL_SUBJECT(month)
         mailVC.setSubject(subject)
         
@@ -119,7 +119,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         
         if MFMailComposeViewController.canSendMail()
         {
-            self.presentViewController(mailVC, animated: true, completion: nil)
+            self.present(mailVC, animated: true, completion: nil)
         }
     }
     
@@ -127,29 +127,29 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
         Generates PDFs of the summary selected to email to coach.
         - Returns: An array of PDFs as NSData. Array will be empty if an error occurred.
     */
-    func generatePDF( ) -> [NSData]
+    func generatePDF( ) -> [Data]
     {
-        let junk = [NSData()]
+        let junk = [Data()]
         print("UNWRAPPING SBS")
         //Get summary view controllers for creating PDFs from views
-        let vcSum = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_SUMMARY_VC) as? SummaryViewController
+        let vcSum = self.storyboard?.instantiateViewController(withIdentifier: HISTORY_SUMMARY_VC) as? SummaryViewController
         guard let vcs = vcSum else { print("VCSUM IS NIL"); return junk }
         vcs.summary = self.summaryToSend
         vcs.tableView!.reloadData()
  
-        let vcGoals = self.storyboard?.instantiateViewControllerWithIdentifier(HISTORY_GOALS_VC) as? SecondSummaryViewController
+        let vcGoals = self.storyboard?.instantiateViewController(withIdentifier: HISTORY_GOALS_VC) as? SecondSummaryViewController
         guard let vcg = vcGoals else { print("VCGOALS IS NIL"); return junk }
         vcg.summary = self.summaryToSend
         vcg.tableView!.reloadData()
         while(vcs.viewIfLoaded == nil && vcg.viewIfLoaded == nil){} //wait for views to load
         print("FINISHED UNWRAP")
         
-        var pdfs = [NSData]( )
+        var pdfs = [Data]( )
         do
         {
-            let pdfSum = try PDFGenerator.generate(vcs.view)
-            let pdfGoals = try PDFGenerator.generate(vcg.view)
-            pdfs.insert(pdfSum, atIndex: 0); pdfs.insert(pdfGoals, atIndex: 1)
+            let pdfSum = try PDFGenerator.generated(by: vcs.view)
+            let pdfGoals = try PDFGenerator.generated(by: vcg.view)
+            pdfs.insert(pdfSum, at: 0); pdfs.insert(pdfGoals, at: 1)
         }
         catch (let error)
         {
@@ -161,18 +161,18 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     /// Orders the nested data source array so that goals are displayed in yearly sections.
     func setUpSummaryArray()
     {
-        summariesArray = [[Summary]](count: currentUser!.year+1, repeatedValue: [Summary]())
+        summariesArray = [[Summary]](repeating: [Summary](), count: currentUser!.year+1)
         var offsetForCheckDates = currentUser!.year
         for year in 0...currentUser!.year
         {
 
-            let calendar = NSCalendar.currentCalendar()
-            let checkDateStart = calendar.dateByAddingUnit(.Year, value: year, toDate: currentUser!.startDate, options: [])
-            let checkDateEnd = calendar.dateByAddingUnit(.Year, value: year + 1, toDate: currentUser!.startDate, options: [])
+            let calendar = Calendar.current
+            let checkDateStart = (calendar as NSCalendar).date(byAdding: .year, value: year, to: currentUser!.startDate as Date, options: [])
+            let checkDateEnd = (calendar as NSCalendar).date(byAdding: .year, value: year + 1, to: currentUser!.startDate as Date, options: [])
             offsetForCheckDates += 1
             for (_, val) in self.currentUser!.monthlySummaries
             {
-                if val != nil && (val?.date.compare(checkDateStart!) == .OrderedDescending || val?.date.compare(checkDateStart!) == .OrderedSame) && val?.date.compare(checkDateEnd!) == .OrderedAscending
+                if val != nil && (val?.date.compare(checkDateStart!) == .orderedDescending || val?.date.compare(checkDateStart!) == .orderedSame) && val?.date.compare(checkDateEnd!) == .orderedAscending
                 {
                     self.summariesArray[year].append(val!)
                 }
@@ -181,7 +181,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             //sort monthly summaries by date with newest first
             if summariesArray[year].count > 1
             {
-                self.summariesArray[year].sortInPlace({($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date) == .OrderedDescending })
+                self.summariesArray[year].sort(by: {($0 as! MonthlySummary).date.compare(($1 as! MonthlySummary).date as Date) == .orderedDescending })
             }
             
             if year == 0 { summariesArray[0].append(currentUser!.initialSummary) }
@@ -190,17 +190,17 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             if let yearlySummary = self.currentUser!.yearlySummary[year]
             {
                 guard let ys = yearlySummary else { continue }
-                self.summariesArray[year].insert(ys, atIndex: 0)
+                self.summariesArray[year].insert(ys, at: 0)
             }
         }
         //reverse array to place most recent years first
-        summariesArray = summariesArray.reverse()
+        summariesArray = summariesArray.reversed()
     }
     
     
     // MARK: - Overridden methods
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         if self.currentUser == nil
@@ -271,8 +271,8 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
      */
     func getNoCoachEmailAlert() -> UIAlertController
     {
-        let noCoachEmailAlertController = UIAlertController(title: NO_COACH_EMAIL_ALERT_TITLE, message: NO_COACH_EMAIL_ALERT_MSG, preferredStyle: .ActionSheet)
-        let confirm = UIAlertAction(title: NO_COACH_EMAIL_ALERT_CONFIRM, style: .Default, handler: nil)
+        let noCoachEmailAlertController = UIAlertController(title: NO_COACH_EMAIL_ALERT_TITLE, message: NO_COACH_EMAIL_ALERT_MSG, preferredStyle: .actionSheet)
+        let confirm = UIAlertAction(title: NO_COACH_EMAIL_ALERT_CONFIRM, style: .default, handler: nil)
         
         noCoachEmailAlertController.addAction(confirm)
         
@@ -281,44 +281,44 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return currentUser!.year > 0 ? currentUser!.year + 1 : 1
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         return "Year \(summariesArray.count - section)"
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return summariesArray[section].count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> HistoryTableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath) as! HistoryTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HistoryTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryTableViewCell
         let s = summariesArray[indexPath.section][indexPath.row]
 
         if s is MonthlySummary
         {
             let summary = s as! MonthlySummary
             //set month label
-            let dateFormatter = NSDateFormatter( )
+            let dateFormatter = DateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-            let dateAsString = dateFormatter.stringFromDate(summary.date)
+            let dateAsString = dateFormatter.string(from: summary.date as Date)
             cell.monthLabel.text = dateAsString
             
             //send to coach button
             if !summary.sent && summary.reviewed
             {
-                cell.sendToCoachButton.hidden = false
-                cell.sendToCoachImage.hidden = false
+                cell.sendToCoachButton.isHidden = false
+                cell.sendToCoachImage.isHidden = false
             }
             else
             {
-                cell.sendToCoachButton.hidden = true
-                cell.sendToCoachImage.hidden = true
+                cell.sendToCoachButton.isHidden = true
+                cell.sendToCoachImage.isHidden = true
             }
             
             //set "review ready" label
@@ -330,23 +330,23 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             else
             {
                 cell.reviewReadyLabel.text = SUMMARY_CELL_REVIEW_COMPLETE
-                cell.reviewReadyLabel.textColor = UIColor.grayColor()
+                cell.reviewReadyLabel.textColor = UIColor.gray
             }
         }
         else if s is CurrentRealitySummary
         {
             //let summary = s as! CurrentRealitySummary
-            cell.sendToCoachButton.hidden = true
-            cell.sendToCoachImage.hidden = true
+            cell.sendToCoachButton.isHidden = true
+            cell.sendToCoachImage.isHidden = true
             cell.reviewReadyLabel.text = SUMMARY_CELL_VIEW_INITIAL_REVIEW
             cell.monthLabel.text = SUMMARY_CELL_INITIAL_REVIEW
-            cell.reviewReadyLabel.textColor = UIColor.grayColor()
+            cell.reviewReadyLabel.textColor = UIColor.gray
         }
         else if s is YearlySummary
         {
             let summary = s as! YearlySummary
-            cell.sendToCoachButton.hidden = true
-            cell.sendToCoachImage.hidden = true
+            cell.sendToCoachButton.isHidden = true
+            cell.sendToCoachImage.isHidden = true
             cell.monthLabel.text = SUMMARY_CELL_YEARLY_REVIEW
             
             if !summary.reviewed
@@ -357,14 +357,14 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             else
             {
                 cell.reviewReadyLabel.text = SUMMARY_CELL_REVIEW_COMPLETE
-                cell.reviewReadyLabel.textColor = UIColor.grayColor()
+                cell.reviewReadyLabel.textColor = UIColor.gray
             }
         }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let s = summariesArray[indexPath.section][indexPath.row]
         
@@ -376,30 +376,30 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             if summary.reviewed == false
             {
                 //go to review for summary
-                performSegueWithIdentifier(GO_TO_REVIEW_SEGUE, sender: self)
+                performSegue(withIdentifier: GO_TO_REVIEW_SEGUE, sender: self)
                 return
             }
             else
             {
-                performSegueWithIdentifier(GO_TO_SUMMARY_SEGUE, sender: self)
+                performSegue(withIdentifier: GO_TO_SUMMARY_SEGUE, sender: self)
                 return
             }
         }
         else if s is YearlySummary
         {
-            performSegueWithIdentifier(GO_TO_YEARLY_REVIEW_SEGUE, sender: self)
+            performSegue(withIdentifier: GO_TO_YEARLY_REVIEW_SEGUE, sender: self)
             return
         }
         else if s is CurrentRealitySummary
         {
-            performSegueWithIdentifier(GO_TO_INITIAL_REVIEW_SEGUE, sender: self)
+            performSegue(withIdentifier: GO_TO_INITIAL_REVIEW_SEGUE, sender: self)
             return
         }
     }
     
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return false
     }
@@ -407,12 +407,12 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         switch segue.identifier!
         {
         case GO_TO_REVIEW_SEGUE:
-            let dvc = segue.destinationViewController as! MonthlyReviewViewController
+            let dvc = segue.destination as! MonthlyReviewViewController
             dvc.currentUser = self.currentUser
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
@@ -420,14 +420,14 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             }
                 
         case GO_TO_SUMMARY_SEGUE:
-            let dvc = segue.destinationViewController as! SummaryViewController
+            let dvc = segue.destination as! SummaryViewController
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
                 dvc.summary = summariesArray[indexPath.section][indexPath.row] as? MonthlySummary
             }
         
         case GO_TO_YEARLY_REVIEW_SEGUE:
-            let dvc = segue.destinationViewController as! YearReviewViewController
+            let dvc = segue.destination as! YearReviewViewController
             dvc.currentUser = self.currentUser
             if let indexPath = self.tableView.indexPathForSelectedRow
             {
@@ -435,7 +435,7 @@ class HistoryViewController: UITableViewController, MFMailComposeViewControllerD
             }
             
         case GO_TO_INITIAL_REVIEW_SEGUE:
-            let dvc = segue.destinationViewController as! InitialReviewSummaryTableViewController
+            let dvc = segue.destination as! InitialReviewSummaryTableViewController
             dvc.currentUser = self.currentUser
             dvc.summary = self.currentUser?.initialSummary
             

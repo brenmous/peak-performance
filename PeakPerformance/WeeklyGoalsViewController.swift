@@ -9,7 +9,31 @@
 import UIKit
 import Firebase // https://firebase.google.com
 import SideMenu // https://github.com/jonkeykong/SideMenu
-import TwitterKit // https://fabric.io/kits/ios/twitterkit
+import TwitterKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+ // https://fabric.io/kits/ios/twitterkit
 
 /**
     Class that controls the weekly goals view.
@@ -37,23 +61,23 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     // MARK: - Actions
     
     /// Toggle editing (for deleting goals).
-    @IBAction func editButtonPressed(sender: AnyObject)
+    @IBAction func editButtonPressed(_ sender: AnyObject)
     {
-        self.tableView.setEditing(tableView.editing != true, animated: true) // :)
+        self.tableView.setEditing(tableView.isEditing != true, animated: true) // :)
     }
     
-    @IBAction func addButtonPressed(sender: AnyObject)
+    @IBAction func addButtonPressed(_ sender: AnyObject)
     {
-       performSegueWithIdentifier(ADD_WEEKLY_GOAL_SEGUE, sender: self)
+       performSegue(withIdentifier: ADD_WEEKLY_GOAL_SEGUE, sender: self)
     }
     
-    @IBAction func menuButtonPressed(sender: AnyObject)
+    @IBAction func menuButtonPressed(_ sender: AnyObject)
     {
         
-        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    @IBAction func unwindFromWGDVC( segue: UIStoryboardSegue){}
+    @IBAction func unwindFromWGDVC( _ segue: UIStoryboardSegue){}
     
     
     // MARK: - Methods
@@ -61,8 +85,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     /// Updates the progress bar with the current date and progress value.
     func updateProgressView()
     {
-        progressViewLabel.text = NSDate().weeklyProgressString()
-        progressViewWG.progress = NSDate().weeklyProgressValue()
+        progressViewLabel.text = Date().weeklyProgressString()
+        progressViewWG.progress = Date().weeklyProgressValue()
     }
     
     /**
@@ -71,7 +95,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         - Parameters:
             - weeklyGoal: the newly created weeklygoal
     */
-    func addNewGoal(weeklyGoal: WeeklyGoal)
+    func addNewGoal(_ weeklyGoal: WeeklyGoal)
     {
         guard let cu = currentUser else { return }
         cu.weeklyGoals.append(weeklyGoal)
@@ -85,7 +109,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         - Parameters:
             - weeklyGoal: the edited weekly goal.
     */
-    func saveModifiedGoal(weeklyGoal: WeeklyGoal)
+    func saveModifiedGoal(_ weeklyGoal: WeeklyGoal)
     {
         guard let cu = currentUser else { return }
         self.dataService.saveGoal(cu.uid, goal: weeklyGoal)
@@ -98,7 +122,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         - Parameters:
             - goal: the goal being completed.
     */
-    func completeGoal(goal: WeeklyGoal, kickItText: String)
+    func completeGoal(_ goal: WeeklyGoal, kickItText: String)
     {
         goal.complete = true
         goal.kickItText = kickItText
@@ -114,33 +138,33 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         - Parameters:
             - cell: the selected table view cell.
     */
-    func completeButtonPressed( cell: GoalTableViewCell )
+    func completeButtonPressed( _ cell: GoalTableViewCell )
     {
         //get weekly goal from cell
-        guard let indexPath = self.tableView.indexPathForCell(cell) else { return }
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
         guard let cu = self.currentUser else { return }
         let wg = cu.weeklyGoals[indexPath.row]
     
         //goal completion confirm alert controller
-        presentViewController(goalCompleteAlertController(wg), animated: true, completion: nil)
+        present(goalCompleteAlertController(wg), animated: true, completion: nil)
     }
     
     /// Sorts user's weekly goals.
     func sortWeeklyGoals()
     {
         guard let cu = currentUser else { return }
-        cu.weeklyGoals.sortInPlace({$0.deadline.compare($1.deadline) == .OrderedAscending})
-        cu.weeklyGoals.sortInPlace({!$0.complete && $1.complete})
+        cu.weeklyGoals.sort(by: {$0.deadline.compare($1.deadline as Date) == .orderedAscending})
+        cu.weeklyGoals.sort(by: {!$0.complete && $1.complete})
     }
     
     /// Asks the user if they want to share their completed goal on social media (only occurs if they have set sharing to on in settings).
-    func shareOnSocialMedia(goal: WeeklyGoal)
+    func shareOnSocialMedia(_ goal: WeeklyGoal)
     {
-        if NSUserDefaults().boolForKey(USER_DEFAULTS_TWITTER)
+        if UserDefaults().bool(forKey: USER_DEFAULTS_TWITTER)
         {
             let composer = TWTRComposer()
             composer.setText(TWITTER_MESSAGE_WEEKLY_GOAL(goal)) //FIXME: test, make constant
-            composer.showFromViewController(self) { (result) in
+            composer.show(from: self) { (result) in
             }
         }
     }
@@ -152,7 +176,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
      - Parameters:
      - weeklyGoal: the goal to create a notification for.
      */
-    func createWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
+    func createWeeklyGoalDueSoonNotification(_ weeklyGoal: WeeklyGoal)
     {
         let notification = UILocalNotification()
         notification.alertBody = WG_NOTIFICATION_BODY(weeklyGoal)
@@ -162,9 +186,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
          notification.fireDate = calendar.dateByAddingUnit(.Day, value: -(weeklyGoal.daysTillDueSoon), toDate: weeklyGoal.deadline, options: [])
          */
         
-        notification.fireDate = weeklyGoal.deadline
+        notification.fireDate = weeklyGoal.deadline as Date
         notification.userInfo = [WG_NOTIFICATION_ID: weeklyGoal.gid]
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
     /**
@@ -173,15 +197,15 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
      - Parameters:
      - weeklyGoal: the goal to remove the notification for.
      */
-    func removeWeeklyGoalDueSoonNotification(weeklyGoal: WeeklyGoal)
+    func removeWeeklyGoalDueSoonNotification(_ weeklyGoal: WeeklyGoal)
     {
-        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        guard let notifications = UIApplication.shared.scheduledLocalNotifications else { return }
         for notification in notifications
         {
             guard let key = notification.userInfo![WG_NOTIFICATION_ID] else { continue }
             if key as! String == weeklyGoal.gid
             {
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                UIApplication.shared.cancelLocalNotification(notification)
                 return
             }
         }
@@ -194,9 +218,9 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
      - Parameters:
      - weeklyGoal: the goal to update the notification for.
      */
-    func updateWeeklyGoalDueSoonNotificationFireDate(weeklyGoal: WeeklyGoal)
+    func updateWeeklyGoalDueSoonNotificationFireDate(_ weeklyGoal: WeeklyGoal)
     {
-        guard let notifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        guard let notifications = UIApplication.shared.scheduledLocalNotifications else { return }
         for notification in notifications
         {
             guard let key = notification.userInfo![WG_NOTIFICATION_ID] else { continue }
@@ -210,18 +234,18 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     }
     
     // MARK: - Alert controllers
-    func goalCompleteAlertController(goal: WeeklyGoal) -> UIAlertController
+    func goalCompleteAlertController(_ goal: WeeklyGoal) -> UIAlertController
     {
-        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .Alert )
-        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .Default ) { (action) in
+        let goalCompleteAlertController = UIAlertController( title: COMPLETION_ALERT_TITLE, message: COMPLETION_ALERT_MSG, preferredStyle: .alert )
+        let confirm = UIAlertAction(title: COMPLETION_ALERT_CONFIRM, style: .default ) { (action) in
             let kickItTextField = goalCompleteAlertController.textFields![0] as UITextField
             let kickItText = kickItTextField.text!
             self.completeGoal(goal, kickItText: kickItText)
             self.shareOnSocialMedia(goal)
         }
-        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .Cancel, handler: nil )
+        let cancel = UIAlertAction(title: COMPLETION_ALERT_CANCEL, style: .cancel, handler: nil )
         goalCompleteAlertController.addAction( confirm ); goalCompleteAlertController.addAction( cancel );
-        goalCompleteAlertController.addTextFieldWithConfigurationHandler( ) { (textField) in
+        goalCompleteAlertController.addTextField( ) { (textField) in
             textField.placeholder = KICKIT_PLACEHOLDER_STRING
         }
         return goalCompleteAlertController
@@ -229,7 +253,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     // MARK: - Overridden methods
 
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
       
@@ -260,7 +284,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         if self.currentUser!.checkYearlyReview()
         {
             self.currentUser!.allMonthlyReviewsFromLastYear()
-            self.presentViewController(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+            self.present(UIAlertController.AnnualReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
         }
             //only check for monthly reviews if the year hasn't changed, because if it has we know we need 12 months of reviews
         else
@@ -268,7 +292,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             //check if a monthly review is needed
             if self.currentUser!.checkMonthlyReview()
             {
-                self.presentViewController(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
+                self.present(UIAlertController.getReviewAlert(self.tabBarController as! TabBarViewController), animated: true, completion: nil)
             }
         }
         
@@ -278,7 +302,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         var numOfSections = 0
         if (currentUser?.weeklyGoals.count) > 0
@@ -286,29 +310,29 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             
             self.tableView!.backgroundView = nil
             numOfSections = 1
-            tableView.separatorStyle = .SingleLine
+            tableView.separatorStyle = .singleLine
             
         }
         else
         {
-            let weeklyPlaceholderView  = UIImageView(frame:CGRectMake(0, 0, self.tableView!.bounds.size.width, self.tableView!.bounds.size.height));
+            let weeklyPlaceholderView  = UIImageView(frame:CGRect(x: 0, y: 0, width: self.tableView!.bounds.size.width, height: self.tableView!.bounds.size.height));
             weeklyPlaceholderView.image = UIImage(named:WEEK_PLACEHOLDER)
-            weeklyPlaceholderView.contentMode = .ScaleAspectFill
+            weeklyPlaceholderView.contentMode = .scaleAspectFill
             self.tableView.backgroundView = weeklyPlaceholderView
-            tableView.separatorStyle = .None
+            tableView.separatorStyle = .none
         }
         return numOfSections
     }
 
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return currentUser!.weeklyGoals.count
     }
     
     //TODO: Refactor
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> GoalTableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("weeklyGoalCell", forIndexPath: indexPath) as! GoalTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> GoalTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "weeklyGoalCell", for: indexPath) as! GoalTableViewCell
         let goal = currentUser!.weeklyGoals[indexPath.row]
     
         
@@ -319,13 +343,13 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         
         if goal.complete
         {
-            cell.userInteractionEnabled = false
-            cell.completeButton.enabled = false
+            cell.isUserInteractionEnabled = false
+            cell.completeButton.isEnabled = false
             //cell.accessoryType = .Checkmark
             cell.doneCircle.image = UIImage(named: "done-circle")
-            cell.tintColor = UIColor.darkGrayColor()
-            cell.goalTextLabel.textColor = UIColor.lightGrayColor()
-            cell.dueImageIcon.hidden = true
+            cell.tintColor = UIColor.darkGray
+            cell.goalTextLabel.textColor = UIColor.lightGray
+            cell.dueImageIcon.isHidden = true
 
             switch kla
             {
@@ -360,10 +384,10 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         }
         else if !goal.complete
         {
-            cell.completeButton.hidden = false
-            cell.completeButton.enabled = true
-            cell.userInteractionEnabled = true
-            cell.accessoryType = .None
+            cell.completeButton.isHidden = false
+            cell.completeButton.isEnabled = true
+            cell.isUserInteractionEnabled = true
+            cell.accessoryType = .none
             cell.goalTextLabel.textColor = PEAK_BLACK
             cell.doneCircle.image = UIImage(named: "not-done-circle")
 
@@ -405,7 +429,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
                 klaIconHighlighted = "F-highlighted"
             }
             
-            cell.dueImageIcon.hidden = false
+            cell.dueImageIcon.isHidden = false
             
             if goal.due == Goal.Due.overdue
             {
@@ -422,7 +446,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
             else
             {
                 // hide image
-                cell.dueImageIcon.hidden = true
+                cell.dueImageIcon.isHidden = true
                 
             }
             
@@ -431,8 +455,8 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
         let imageButton = UIImage(named: klaIcon)
         let highlightedImageButton = UIImage(named: klaIconHighlighted)
         
-        cell.completeButton.setBackgroundImage(imageButton, forState: .Normal)
-        cell.completeButton.setBackgroundImage(highlightedImageButton, forState: .Highlighted)
+        cell.completeButton.setBackgroundImage(imageButton, for: UIControlState())
+        cell.completeButton.setBackgroundImage(highlightedImageButton, for: .highlighted)
     
         cell.goalTextLabel!.text = goal.goalText
         cell.delegate = self
@@ -440,7 +464,7 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     }
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         if currentUser!.weeklyGoals[indexPath.row].complete
         {
@@ -450,16 +474,16 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     }
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if editingStyle == .Delete
+        if editingStyle == .delete
         {
             // Delete the row from the data source
             guard let cu = self.currentUser else { return }
             let goal = cu.weeklyGoals[indexPath.row]
             self.dataService.removeGoal(cu.uid, goal: goal) // remove goal
-            cu.weeklyGoals.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            cu.weeklyGoals.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             removeWeeklyGoalDueSoonNotification(goal)
         }
     }
@@ -467,17 +491,17 @@ class WeeklyGoalsViewController: UITableViewController, WeeklyGoalDetailViewCont
     // MARK: - Navigation
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier!
         {
         case ADD_WEEKLY_GOAL_SEGUE:
-            let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
+            let dvc = segue.destination as! WeeklyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
             return
             
         case EDIT_WEEKLY_GOAL_SEGUE:
-            let dvc = segue.destinationViewController as! WeeklyGoalDetailViewController
+            let dvc = segue.destination as! WeeklyGoalDetailViewController
             dvc.delegate = self
             dvc.currentUser = self.currentUser
             if let indexPath = self.tableView.indexPathForSelectedRow

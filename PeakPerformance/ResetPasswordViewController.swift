@@ -38,14 +38,14 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     
     // MARK: - Actions
    
-    @IBAction func resetPasswordButtonPressed(sender: AnyObject)
+    @IBAction func resetPasswordButtonPressed(_ sender: AnyObject)
     {
         validator.validate(self)
         activityIndicatorReset.startAnimating()
     }
     
-    @IBAction func logInButtonPressed(sender: AnyObject){
-    self.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: self)
+    @IBAction func logInButtonPressed(_ sender: AnyObject){
+    self.performSegue(withIdentifier: UNWIND_TO_LOGIN, sender: self)
     } //unwind to login (storyboard segue)
     
     
@@ -60,7 +60,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)])
+    func validationFailed(_ errors: [(Validatable, ValidationError)])
     {
         print ("RPVC: validation failed") //DEBUG
        
@@ -70,63 +70,63 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     func resetPassword()
     {
         //reset error label
-        resetPasswordErrorLabel.hidden = true
+        resetPasswordErrorLabel.isHidden = true
         resetPasswordErrorLabel.text = ""
-        resetPasswordButton.enabled = false
-        FIRAuth.auth( )?.sendPasswordResetWithEmail(emailField.text!, completion: {
+        resetPasswordButton.isEnabled = false
+        FIRAuth.auth( )?.sendPasswordReset(withEmail: emailField.text!, completion: {
             error in
             guard let error = error else
             {
                 self.activityIndicatorReset.stopAnimating()
                 self.resetPasswordErrorLabel.text = RESET_EMAIL_SENT
-                self.resetPasswordErrorLabel.hidden = false
-                self.resetPasswordButton.enabled = true
+                self.resetPasswordErrorLabel.isHidden = false
+                self.resetPasswordButton.isEnabled = true
                 return
             }
             print("RPVC - resetPassword() " + error.localizedDescription)
-            guard let errCode = FIRAuthErrorCode( rawValue: error.code) else
+            guard let errCode = FIRAuthErrorCode( rawValue: (error as NSError).code ) else
             {
                 return
             }
             switch errCode
             {
-            case .ErrorCodeUserNotFound:
+            case .errorCodeUserNotFound:
                 self.resetPasswordErrorLabel.text = LOGIN_ERR_MSG
-                self.resetPasswordErrorLabel.hidden = false
-                self.resetPasswordButton.enabled = true
+                self.resetPasswordErrorLabel.isHidden = false
+                self.resetPasswordButton.isEnabled = true
                 
-            case .ErrorCodeTooManyRequests:
+            case .errorCodeTooManyRequests:
                 self.resetPasswordErrorLabel.text = REQUEST_ERR_MSG
-                self.resetPasswordErrorLabel.hidden = false
-                self.resetPasswordButton.enabled = true
+                self.resetPasswordErrorLabel.isHidden = false
+                self.resetPasswordButton.isEnabled = true
                 
-            case .ErrorCodeNetworkError:
+            case .errorCodeNetworkError:
                 self.resetPasswordErrorLabel.text = NETWORK_ERR_MSG
-                self.resetPasswordErrorLabel.hidden = false
-                self.resetPasswordButton.enabled = true
+                self.resetPasswordErrorLabel.isHidden = false
+                self.resetPasswordButton.isEnabled = true
                 
-            case .ErrorCodeInternalError:
+            case .errorCodeInternalError:
                 self.resetPasswordErrorLabel.text = FIR_INTERNAL_ERROR
-                self.resetPasswordErrorLabel.hidden = false
-                self.resetPasswordButton.enabled = true
+                self.resetPasswordErrorLabel.isHidden = false
+                self.resetPasswordButton.isEnabled = true
                 
-            case .ErrorCodeUserDisabled:
+            case .errorCodeUserDisabled:
                 self.resetPasswordErrorLabel.text = USER_DISABLED_ERROR
-                self.resetPasswordErrorLabel.hidden = false
-                self.resetPasswordButton.enabled = true
+                self.resetPasswordErrorLabel.isHidden = false
+                self.resetPasswordButton.isEnabled = true
                 
             default:
                 print("RPVC - resetPassword() " + error.localizedDescription)
                 self.resetPasswordErrorLabel.text = FIR_INTERNAL_ERROR
-                self.resetPasswordErrorLabel.hidden = false
-                self.resetPasswordButton.enabled = true
+                self.resetPasswordErrorLabel.isHidden = false
+                self.resetPasswordButton.isEnabled = true
             }
         })
     }
     
     // MARK: - keyboard stuff
     /// Dismisses keyboard when return is pressed.
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         validator.validate(self)
         textField.resignFirstResponder()
@@ -134,7 +134,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan(touchers: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesBegan(_ touchers: Set<UITouch>, with event: UIEvent?)
     {
         self.view.endEditing(true)
     }
@@ -145,7 +145,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
 
         //set up validator style transformer
         validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.isHidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
@@ -154,7 +154,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
             }
             
             }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.isHidden = false
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
@@ -172,7 +172,7 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     }
     
     // MARK: Override Functions
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -180,8 +180,8 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
         emailField.text = ""
         
         //hide error labels
-        resetPasswordErrorLabel.hidden = true
-        emailErrorLabel.hidden = true
+        resetPasswordErrorLabel.isHidden = true
+        emailErrorLabel.isHidden = true
     }
 
     override func didReceiveMemoryWarning()
@@ -192,9 +192,9 @@ class ResetPasswordViewController: UIViewController, ValidationDelegate, UITextF
     
     // BEN //
     /// Inverts the status bar colour.
-    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    override var preferredStatusBarStyle : UIStatusBarStyle
     {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.lightContent
     }
     // END BEN //
 }

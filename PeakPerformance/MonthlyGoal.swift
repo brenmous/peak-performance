@@ -28,9 +28,9 @@ class MonthlyGoal: Goal
      */
     convenience init ( goalText: String, kla: String, deadline: String, gid: String, complete: Bool = false, kickItText: String = "" )
     {
-        let dateFormatter = NSDateFormatter( )
+        let dateFormatter = DateFormatter( )
         dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
-        let newDeadline = dateFormatter.dateFromString(deadline)
+        let newDeadline = dateFormatter.date(from: deadline)
         self.init( goalText: goalText, kla: kla, deadline: newDeadline!, gid: gid, complete: complete, kickItText: kickItText )
     }
     
@@ -44,7 +44,7 @@ class MonthlyGoal: Goal
         }
         
         //compare goal deadline with current date
-        let days = NSDate().daysBetweenTodayAndDate(self.deadline)
+        let days = Date().daysBetweenTodayAndDate(self.deadline)
         if days <= 0
         {
             self.due = Due.overdue

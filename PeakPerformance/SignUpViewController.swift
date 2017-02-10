@@ -56,14 +56,14 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     
     // MARK: - Actions
     
-    @IBAction func signUpButtonPressed(sender: AnyObject)
+    @IBAction func signUpButtonPressed(_ sender: AnyObject)
     {
         validator.validate(self)
     }
     
-    @IBAction func backToLoginPressed(sender: AnyObject?)
+    @IBAction func backToLoginPressed(_ sender: AnyObject?)
     {
-        self.performSegueWithIdentifier(UNWIND_TO_LOGIN, sender: self)
+        self.performSegue(withIdentifier: UNWIND_TO_LOGIN, sender: self)
     }
 
     
@@ -77,12 +77,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     }
     
     /// Method required by ValidationDelegate (part of SwiftValidator). Is called when a registered field fails against a validation rule.
-    func validationFailed(errors: [(Validatable, ValidationError)]){}
+    func validationFailed(_ errors: [(Validatable, ValidationError)]){}
     
     /// Attempts to create a new Firebase user account with supplied email and password.
     func signUp()
     {
-        FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
+        FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text! ) { (user, error) in
             guard let error = error else
             {
                 self.firstLogin()
@@ -91,32 +91,32 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             //Check for Firebase errors and inform user of error here somewhere
             print("SUVC - signUp(): " + error.localizedDescription)
             self.activityIndicatorSU.stopAnimating()
-            guard let errCode = FIRAuthErrorCode(rawValue: error.code) else
+            guard let errCode = FIRAuthErrorCode(rawValue: (error as NSError).code ) else
             {
                 return
             }
             switch errCode
             {
-            case .ErrorCodeNetworkError:
+            case .errorCodeNetworkError:
                 self.signUpErrorLabel.text = NETWORK_ERR_MSG
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
               
-            case .ErrorCodeEmailAlreadyInUse:
+            case .errorCodeEmailAlreadyInUse:
                 self.signUpErrorLabel.text = EMAIL_IN_USE_ERR_MSG
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
                
-            case .ErrorCodeInternalError:
+            case .errorCodeInternalError:
                 self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
               
             default:
                 print("SUVC - signUp(): " + error.localizedDescription)
                 self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
                
             }
         }
@@ -126,50 +126,50 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     func firstLogin()
     {
         //reset error label
-        signUpErrorLabel.hidden = true
+        signUpErrorLabel.isHidden = true
         signUpErrorLabel.text = ""
-        signUpButton.enabled = false
-        FIRAuth.auth()?.signInWithEmail( emailField.text!, password: passwordField.text! ) { (user, error) in
+        signUpButton.isEnabled = false
+        FIRAuth.auth()?.signIn( withEmail: emailField.text!, password: passwordField.text! ) { (user, error) in
             guard let error = error else
             {
                 self.createUser( )
                 self.activityIndicatorSU.stopAnimating()
-                self.performSegueWithIdentifier(FT_LOG_IN_SEGUE, sender: self)
+                self.performSegue(withIdentifier: FT_LOG_IN_SEGUE, sender: self)
                 return
             }
             print("SUVC - firstLogin(): " + error.localizedDescription)
             self.activityIndicatorSU.stopAnimating()
-            guard let errCode = FIRAuthErrorCode(rawValue: error.code) else
+            guard let errCode = FIRAuthErrorCode(rawValue: (error as NSError).code) else
             {
                 return
             }
             switch errCode
             {
-            case .ErrorCodeUserNotFound:
+            case .errorCodeUserNotFound:
                 self.signUpErrorLabel.text = LOGIN_ERR_MSG
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
                 
-            case .ErrorCodeTooManyRequests:
+            case .errorCodeTooManyRequests:
                 self.signUpErrorLabel.text = REQUEST_ERR_MSG
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
                 
-            case .ErrorCodeNetworkError:
+            case .errorCodeNetworkError:
                 self.signUpErrorLabel.text = NETWORK_ERR_MSG
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
                 
-            case .ErrorCodeInternalError:
+            case .errorCodeInternalError:
                 self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
                 
             default:
                 print("LUVC - firstLogin(): " + error.localizedDescription)
                 self.signUpErrorLabel.text = FIR_INTERNAL_ERROR
-                self.signUpErrorLabel.hidden = false
-                self.signUpButton.enabled = true
+                self.signUpErrorLabel.isHidden = false
+                self.signUpButton.isEnabled = true
             }
         }
     }
@@ -188,7 +188,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         let org = orgField.text!
         let email = emailField.text!
         let uid = user.uid as String
-        let startDate = NSDate()
+        let startDate = Date()
         
         self.currentUser = User(fname: fname, lname: lname, org: org, email: email, uid: uid, startDate: startDate)
         
@@ -205,7 +205,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         //Set up SwiftValidator style transformers (modifying the field/error label based on success or failure).
         //This should pretty much stay the same for all controllers and text fields.
         validator.styleTransformers(success: { (validationRule) -> Void in
-            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.isHidden = true
             validationRule.errorLabel?.text = ""
             if let textField = validationRule.field as? UITextField
             {
@@ -214,7 +214,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
             }
             
             }, error: { (validationError ) -> Void in
-                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.isHidden = false
                 validationError.errorLabel?.text = validationError.errorMessage
                 if let textField = validationError.field as? UITextField
                 {
@@ -264,7 +264,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -277,16 +277,16 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
         confirmPasswordField.text = ""
         
         //hide error labels
-        firstNameErrorLabel.hidden = true
-        lastNameErrorLabel.hidden = true
-        orgErrorLabel.hidden = true
-        emailErrorLabel.hidden = true
-        passwordErrorLabel.hidden = true
-        confirmPasswordErrorLabel.hidden = true
-        signUpErrorLabel.hidden = true
+        firstNameErrorLabel.isHidden = true
+        lastNameErrorLabel.isHidden = true
+        orgErrorLabel.isHidden = true
+        emailErrorLabel.isHidden = true
+        passwordErrorLabel.isHidden = true
+        confirmPasswordErrorLabel.isHidden = true
+        signUpErrorLabel.isHidden = true
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         activityIndicatorSU.stopAnimating()
@@ -294,9 +294,9 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     
     // BEN //
     // Inverts colour of the status bar.
-    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    override var preferredStatusBarStyle : UIStatusBarStyle
     {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.lightContent
     }
     // END BEN //
     
@@ -304,7 +304,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     // MARK: - keyboard stuff
     
     /// Dismisses keyboard when return is pressed.
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         validator.validate(self)
         textField.resignFirstResponder()
@@ -312,7 +312,7 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     }
     
     /// Dismisses keyboard when tap outside keyboard detected.
-    override func touchesBegan(touchers: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesBegan(_ touchers: Set<UITouch>, with event: UIEvent?)
     {
         self.view.endEditing(true)
     }
@@ -321,12 +321,12 @@ class SignUpViewController: UIViewController, ValidationDelegate, UITextFieldDel
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         switch segue.identifier!
         {
         case FT_LOG_IN_SEGUE:
-            let dvc = segue.destinationViewController as! TutorialViewController
+            let dvc = segue.destination as! TutorialViewController
             dvc.currentUser = self.currentUser
             
         default:

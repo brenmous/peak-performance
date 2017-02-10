@@ -17,19 +17,19 @@ class SettingsViewController: UITableViewController
     // MARK: - Actions
     
     /// Unwind segue to this view controller.
-    @IBAction func unwindToSettings( sender: UIStoryboardSegue){}
+    @IBAction func unwindToSettings( _ sender: UIStoryboardSegue){}
     
     /// Sets UserDefaults for autologin based on state of switch.
-    @IBAction func automaticLoginSwitched(sender: AnyObject)
+    @IBAction func automaticLoginSwitched(_ sender: AnyObject)
     {
         let s = sender as! UISwitch
-        let userDefaults = NSUserDefaults()
-        userDefaults.setValue(s.on, forKey: USER_DEFAULTS_AUTO_LOGIN)
+        let userDefaults = UserDefaults()
+        userDefaults.setValue(s.isOn, forKey: USER_DEFAULTS_AUTO_LOGIN)
     }
     
-    @IBAction func backButtonPressed( sender: AnyObject )
+    @IBAction func backButtonPressed( _ sender: AnyObject )
     {
-        performSegueWithIdentifier(UNWIND_FROM_SETTINGS_SEGUE, sender: self)
+        performSegue(withIdentifier: UNWIND_FROM_SETTINGS_SEGUE, sender: self)
     }
     
     // MARK: - Outlets
@@ -43,11 +43,11 @@ class SettingsViewController: UITableViewController
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool )
+    override func viewWillAppear(_ animated: Bool )
     {
         super.viewWillAppear(animated)
         //set switch to reflect current autologin setting
-        automaticLoginSwitch.on = NSUserDefaults().boolForKey(USER_DEFAULTS_AUTO_LOGIN)
+        automaticLoginSwitch.isOn = UserDefaults().bool(forKey: USER_DEFAULTS_AUTO_LOGIN)
     }
 
     override func didReceiveMemoryWarning()
@@ -55,20 +55,20 @@ class SettingsViewController: UITableViewController
         super.didReceiveMemoryWarning()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         switch segue.identifier!
         {
         case GO_TO_CHANGE_PASSWORD_SEGUE:
-            let dvc = segue.destinationViewController as! ChangePasswordViewController
+            let dvc = segue.destination as! ChangePasswordViewController
             dvc.currentUser = currentUser
             
         case SETTINGS_TO_DELETE_ACCOUNT_SEGUE:
-            let dvc = segue.destinationViewController as! DeleteAccountViewController
+            let dvc = segue.destination as! DeleteAccountViewController
             dvc.currentUser = currentUser
             
         case SETTINGS_TO_COACH_EMAIL_SEGUE:
-            let dvc = segue.destinationViewController as! CoachEmailViewController
+            let dvc = segue.destination as! CoachEmailViewController
             dvc.currentUser = currentUser
             
         case SETTINGS_TO_ABOUT_SEGUE:
