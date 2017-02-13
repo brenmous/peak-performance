@@ -129,8 +129,8 @@ class DreamCollectionViewController: UICollectionViewController, DreamDetailView
             if let url = dream.imageLocalURL
             {
                 let fetchResult = PHAsset.fetchAssets(withALAssetURLs: [url as URL], options: nil)
-            
-                photo = fetchResult.firstObject! as PHAsset
+
+                photo = (fetchResult.firstObject)! as PHAsset
                 if photo != nil
                 {
                     PHImageManager( ).requestImageData(for: photo!, options: nil) { (data, info, orientation, dict) in

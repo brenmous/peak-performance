@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, ValidationDelegate, UITextFieldDele
         
         dataService.loadUser(user.uid) { (user) in
             self.currentUser = user
-            
+          
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
                 
                 self.dataService.loadSummaries(user) { (summaries) in

@@ -103,14 +103,14 @@ class DataService
         userRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let fname = value![FNAME_REF_STRING] as? String ?? ""
-            let lname = snapshot.value(forKey: LNAME_REF_STRING) as! String
-            let org = snapshot.value(forKey: ORG_REF_STRING) as! String
-            let email = snapshot.value(forKey: EMAIL_REF_STRING) as! String
-            let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? snapshot.value(forKey: USER_YEAR_REF_STRING) as! Int : 0
-            let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? snapshot.value(forKey: COACH_EMAIL_REF_STRING) as! String : ""
+            let lname = value![LNAME_REF_STRING] as? String ?? ""
+            let org = value![ORG_REF_STRING] as? String ?? ""
+            let email = value![EMAIL_REF_STRING] as? String ?? ""
+            let year = snapshot.hasChild(USER_YEAR_REF_STRING) ? value![USER_YEAR_REF_STRING] as! Int : 0
+            let coachEmail = snapshot.hasChild(COACH_EMAIL_REF_STRING) ? value![COACH_EMAIL_REF_STRING] as! String : ""
             
             //convert start date to string
-            let startDateString = snapshot.value(forKey: STARTDATE_REF_STRING)
+            let startDateString = value![STARTDATE_REF_STRING]
             let dateFormatter = DateFormatter( )
             dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
             guard let startDate = dateFormatter.date(from: startDateString as! String) else
@@ -228,12 +228,14 @@ class DataService
             {
                 for goalSnapshot in snapshot.children
                 {
-                    let goalText = (goalSnapshot as AnyObject).value(forKey: GOALTEXT_REF_STRING) as! String
-                    let keyLifeArea = (goalSnapshot as AnyObject).value(forKey: KLA_REF_STRING) as! String
-                    let complete = (goalSnapshot as AnyObject).value(forKey: COMPLETE_REF_STRING) as! Bool
-                    let kickItText = (goalSnapshot as AnyObject).value(forKey: KICKIT_REF_STRING) as! String
-                    let deadline = (goalSnapshot as AnyObject).value(forKey: DEADLINE_REF_STRING) as! String
-                    let weeklyGoalID = String((goalSnapshot as AnyObject).key)
+                    let snap = goalSnapshot as! FIRDataSnapshot
+                    let value = snap.value as! NSDictionary
+                    let goalText = value[GOALTEXT_REF_STRING] as? String ?? ""
+                    let keyLifeArea = value[KLA_REF_STRING] as? String ?? ""
+                    let complete = value[COMPLETE_REF_STRING] as? Bool ?? false
+                    let kickItText = value[KICKIT_REF_STRING] as? String ?? ""
+                    let deadline = value[DEADLINE_REF_STRING] as? String ?? ""
+                    let weeklyGoalID = String(snap.key)
                     let weeklyGoal = WeeklyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: weeklyGoalID!, complete: complete, kickItText: kickItText)
                     weeklyGoals.append(weeklyGoal)
                 }
@@ -285,12 +287,14 @@ class DataService
             {
                 for goalSnapshot in snapshot.children
                 {
-                    let goalText = (goalSnapshot as AnyObject).value(forKey: GOALTEXT_REF_STRING) as! String
-                    let keyLifeArea = (goalSnapshot as AnyObject).value(forKey: KLA_REF_STRING) as! String
-                    let complete = (goalSnapshot as AnyObject).value(forKey: COMPLETE_REF_STRING) as! Bool
-                    let kickItText = (goalSnapshot as AnyObject).value(forKey: KICKIT_REF_STRING) as! String
-                    let deadline = (goalSnapshot as AnyObject).value(forKey: DEADLINE_REF_STRING) as! String
-                    let gid = String((goalSnapshot as AnyObject).key)
+                    let snap = goalSnapshot as! FIRDataSnapshot
+                    let value = snap.value as! NSDictionary
+                    let goalText = value[GOALTEXT_REF_STRING] as? String ?? ""
+                    let keyLifeArea = value[KLA_REF_STRING] as? String ?? ""
+                    let complete = value[COMPLETE_REF_STRING] as? Bool ?? false
+                    let kickItText = value[KICKIT_REF_STRING] as? String ?? ""
+                    let deadline = value[DEADLINE_REF_STRING] as? String ?? ""
+                    let gid = String(snap.key)
                     let monthlyGoal = MonthlyGoal(goalText: goalText, kla: keyLifeArea, deadline: deadline, gid: gid!, complete: complete, kickItText: kickItText)
                     monthlyGoals.append(monthlyGoal)
                 }
@@ -407,12 +411,14 @@ class DataService
             {
                 for dreamSnapshot in snapshot.children
                 {
-                    let dreamText = (dreamSnapshot as AnyObject).value(forKey: DREAMTEXT_REF_STRING) as! String
-                    let dreamURLString = (dreamSnapshot as AnyObject).value(forKey: DREAMURL_REF_STRING) as! String
+                    let ds = dreamSnapshot as! FIRDataSnapshot
+                    let value = ds.value as! NSDictionary
+                    let dreamText = value[DREAMTEXT_REF_STRING] as! String
+                    let dreamURLString = value[DREAMURL_REF_STRING] as! String
                     let dreamURL = URL(string: dreamURLString)
-                    let dreamLocalURLString = (dreamSnapshot as AnyObject).value(forKey: DREAMLOCALURL_REF_STRING) as! String
+                    let dreamLocalURLString = value[DREAMLOCALURL_REF_STRING] as! String
                     let dreamLocalURL = URL(string: dreamLocalURLString)
-                    let did = String((dreamSnapshot as AnyObject).key)
+                    let did = String(ds.key)
                     let dream = Dream(dreamDesc: dreamText, imageURL: dreamURL, imageLocalURL: dreamLocalURL, did: did!)
                     dreams.append(dream)
                 }
@@ -487,14 +493,15 @@ class DataService
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists()
             {
-                values[KLA_FAMILY] = snapshot.value(forKey: KLA_FAMILY) as? String
-                values[KLA_FINANCIAL] = snapshot.value(forKey: KLA_FINANCIAL) as? String
-                values[KLA_PERSONALDEV] = snapshot.value(forKey: KLA_PERSONALDEV) as? String
-                values[KLA_FRIENDSSOCIAL] = snapshot.value(forKey: KLA_FRIENDSSOCIAL) as? String
-                values[KLA_HEALTHFITNESS] = snapshot.value(forKey: KLA_HEALTHFITNESS) as? String
-                values[KLA_WORKBUSINESS] = snapshot.value(forKey: KLA_WORKBUSINESS) as? String
-                values[KLA_PARTNER] = snapshot.value(forKey: KLA_PARTNER) as? String
-                values[KLA_EMOSPIRITUAL] = snapshot.value(forKey: KLA_EMOSPIRITUAL) as? String
+                let value = snapshot.value as! NSDictionary
+                values[KLA_FAMILY] = value[KLA_FAMILY] as? String
+                values[KLA_FINANCIAL] = value[KLA_FINANCIAL] as? String
+                values[KLA_PERSONALDEV] = value[KLA_PERSONALDEV] as? String
+                values[KLA_FRIENDSSOCIAL] = value[KLA_FRIENDSSOCIAL] as? String
+                values[KLA_HEALTHFITNESS] = value[KLA_HEALTHFITNESS] as? String
+                values[KLA_WORKBUSINESS] = value[KLA_WORKBUSINESS] as? String
+                values[KLA_PARTNER] = value[KLA_PARTNER] as? String
+                values[KLA_EMOSPIRITUAL] = value[KLA_EMOSPIRITUAL] as? String
 
                 completion( values )
                 
@@ -622,11 +629,12 @@ class DataService
         ref.observe(.value, with: { (snapshot) in
             if snapshot.exists()
             {
+                let value = snapshot.value as! NSDictionary
                 //get both ratings and reasons
                 for (kla,_) in summary.klaRatings
                 {
-                    summary.klaRatings[kla] = Double(snapshot.value(forKey: kla) as! String)
-                    summary.klaReasons[kla] = snapshot.value(forKey: "\(kla)Reason") as? String
+                    summary.klaRatings[kla] = Double(value[kla] as? String ?? "")
+                    summary.klaReasons[kla] = value["\(kla)Reason"] as? String ?? ""
                 }
             }
             completion( summary )
@@ -653,12 +661,14 @@ class DataService
             {
                 for s in snapshot.children
                 {
+                    let snap = s as! FIRDataSnapshot
+                    let value = snap.value as! NSDictionary
                     let summary = YearlySummary()
-                    summary.reasonsForDifferencesText = (s as AnyObject).value(forKey: YEARLY_REVIEW_DIFF_REF_STRING) as! String
-                    summary.changedMyPerformanceText = (s as AnyObject).value(forKey: YEARLY_REVIEW_CHA_REF_STRING) as! String
-                    summary.observedAboutPerformanceText = (s as AnyObject).value(forKey: YEARLY_REVIEW_OBS_REF_STRING) as! String
-                    summary.reviewed = (s as AnyObject).value(forKey: SUMMARY_REVIEWED_REF_STRING) as! Bool
-                    summaries[Int((s as AnyObject).key)!] = summary
+                    summary.reasonsForDifferencesText = value[YEARLY_REVIEW_DIFF_REF_STRING] as! String
+                    summary.changedMyPerformanceText = value[YEARLY_REVIEW_CHA_REF_STRING] as! String
+                    summary.observedAboutPerformanceText = value[YEARLY_REVIEW_OBS_REF_STRING] as! String
+                    summary.reviewed = value[SUMMARY_REVIEWED_REF_STRING] as! Bool
+                    summaries[Int(snap.key)!] = summary
                     print("DS - loadYearlySummaries(): fetched summary for year \(Int((s as AnyObject).key)!), reviewed = \(summary.reviewed), changes = \(summary.changedMyPerformanceText)")
                 }
             }
@@ -675,6 +685,7 @@ class DataService
             - user: the user whose summaries are being loaded.
             - completion: block for passing back the loaded summaries.
     */
+
     func loadSummaries(_ user: User, completion: @escaping ( _ summaries: [String:MonthlySummary?] ) -> Void)
     {
         //self.database.goOnline()
@@ -686,28 +697,30 @@ class DataService
             {
                 for s in snapshot.children
                 {
-                    if String((s as AnyObject).key) == "initial" || String((s as AnyObject).key) == "yearly"
+                    let snap = s as! FIRDataSnapshot
+                    let value = snap.value as? NSDictionary
+                    if String(snap.key) == "initial" || String(snap.key) == "yearly"
                     {
                         continue
                     }
                     
-                    let dateString = (String((s as AnyObject).key))
+                    let dateString = (String(snap.key))
                     let dateFormatter = DateFormatter( )
                     //change to MONTH_YEAR_FORMAT_STRING if we want all summaries from all time
                     dateFormatter.dateFormat = MONTH_YEAR_FORMAT_STRING
                     
                     let date = dateFormatter.date(from: dateString!)
                     let summary = MonthlySummary(date: date!)
-                    summary.whatIsWorking = (s as AnyObject).value(forKey: SUMMARY_WIW_REF_STRING) as! String
-                    summary.whatIsNotWorking = (s as AnyObject).value(forKey: SUMMARY_WINOTW_REF_STRING) as! String
-                    summary.whatHaveIImproved = (s as AnyObject).value(forKey: SUMMARY_WHII_REF_STRING) as! String
-                    summary.doIHaveToChange = (s as AnyObject).value(forKey: SUMMARY_DIHTC_REF_STRING) as! String
-                    summary.reviewed = (s as AnyObject).value(forKey: SUMMARY_REVIEWED_REF_STRING) as! Bool
-                    summary.sent = (s as AnyObject).hasChild(SUMMARY_SENT_REF_STRING) ? (s as AnyObject).value(forKey: SUMMARY_SENT_REF_STRING) as! Bool : false
+                    summary.whatIsWorking = value![SUMMARY_WIW_REF_STRING] as? String ?? ""
+                    summary.whatIsNotWorking = value![SUMMARY_WINOTW_REF_STRING] as? String ?? ""
+                    summary.whatHaveIImproved = value![SUMMARY_WHII_REF_STRING] as? String ?? ""
+                    summary.doIHaveToChange = value![SUMMARY_DIHTC_REF_STRING] as? String ?? ""
+                    summary.reviewed = value![SUMMARY_REVIEWED_REF_STRING] as? Bool ?? false
+                    summary.sent = snap.hasChild(SUMMARY_SENT_REF_STRING) ? value![SUMMARY_SENT_REF_STRING] as! Bool : false
                     
                     for (kla,_) in summary.klaRatings
                     {
-                        summary.klaRatings[kla] = Double((s as AnyObject).value(forKey: kla) as! String)
+                        summary.klaRatings[kla] = Double(value![kla] as! String)
                     }
                     
                     if (s as AnyObject).hasChild(WEEKLYGOALS_REF_STRING)
@@ -734,7 +747,7 @@ class DataService
         
         //self.database.goOffline()
     }
-    
+ 
     /**
         Removes all of a user's summaries from the database.
         
